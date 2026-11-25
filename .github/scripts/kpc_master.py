@@ -1197,9 +1197,13 @@ def saved_counts(path):
 def joined_missing(key_path, blob):
     """Nov 10 (actually missing): {prefix: n} of record ids the live key (data/us-key/US-XX.json) joins a park to that the saved copy
     does not hold. Only these make a layer 'needed'; a short copy whose missing records sit in no joined layer asks no one."""
-    try: pk = (load_json(key_path, {}) or {}).get('parks') or {}
+    try: kd = load_json(key_path, {}) or {}
     except Exception: return {}  # noqa: BLE001
+    pk = kd.get('parks') or {}
     have = {str(r.get('OBJECTID')) for r in blob.get('recs') or []}
+    # 25 Nov 2026 (KPC-Links #380): a key built from the outline store's own records lists them in 'fresh_store'; those live
+    # in the store, never in the saved copy, so they are not 'missing' from it (no layer is asked for because of them)
+    have |= {str(i) for i in ((kd.get('fresh_store') or {}).get('ids') or [])}
     out = {}
     for q in pk.values():
         ids = [x[0] for x in q.get('m') or [] if isinstance(x, list) and x]

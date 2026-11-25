@@ -53,6 +53,27 @@ def union_geometry(rs):
 def npts(g): return sum(len(r) for p in M.polys_of(g) for r in p)
 
 
+def store_records(store, area):
+    """25 Nov 2026 (KPC-Links #380, the other builder's next fix): the outline store's own records of one area, by record id as
+    the key spells it ('sgmnc210', a PAD-US number), at the store's full detail: {id: {'_r': rings, 'Loc_Mang', 'publishable',
+    'read', 'layer_url', 'name'}}. {} when the store folder or the area's file is not there. Reads files only."""
+    if not store: return {}
+    f = pathlib.Path(store) / f'{area}.kpcstore.json.gz'
+    if not f.is_file(): return {}
+    import kpc_store_attrs as SA
+    with gzip.open(f, 'rt', encoding='utf-8') as fh: d = json.load(fh)
+    out = {}
+    for p in d.get('parks') or []:
+        for r in p.get('records') or []:
+            k = SA.record_key(r)
+            if not k: continue
+            rs = SA.record_rings(r)
+            if not rs: continue
+            out[k] = {'_r': rs, 'Loc_Mang': r.get('agency_label') or '', 'publishable': r.get('publishable') is True,
+                      'read': str(r.get('read') or '')[:10], 'layer_url': r.get('layer_url') or '', 'name': r.get('record_name') or ''}
+    return out
+
+
 def clip_rec(rec, boxes):
     """D9 / rule B12 (KPC owner, 2026-11-17): a record shared by two far-apart parks keeps, for THIS park, only the rings whose middle
     sits in one of the park's own part boxes from the key ('parts' {record id: [[w, s, e, n], ...]}), +-0.01 degree, exactly as
@@ -64,7 +85,7 @@ def clip_rec(rec, boxes):
     return dict(rec, _r=keep) if keep else rec
 
 
-def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=print):
+def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=print, store=None):
     root = pathlib.Path(root or M.OUTLINES); area = f'US-{st}'
     key_dir = pathlib.Path(key_dir or (ROOT / 'data' / 'us-key'))
     key = json.loads((key_dir / f'US-{st}.json').read_text())
@@ -85,6 +106,9 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         if q.get('parts'): return True   # D9: a park given only its own parts of a shared record is always drawn from those parts
         ids = [str(x[0]) for x in (q.get('m') or []) if isinstance(x, list) and x]
         ids = [i for i in ids if M.prefix_of(i) != 'trl']
+        # 25 Nov 2026: a park joined to a fresh store record whose outline was not cut from the store is always rebuilt (the
+        # same number in the old saved copy can be other land, so equal record ids prove nothing)
+        if any(i in fresh for i in ids) and not str(rec.get('layer_url') or '').startswith('store:'): return True
         have_ids = M.outline_record_ids(rec)
         return sorted(have_ids) != sorted(ids)
     added, skipped, replaced = [], [], []
@@ -93,6 +117,8 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
     # drew old 210, about 140 miles off). Fail closed: a park with any such record is skipped (kept as it is, listed), never
     # cut from the saved copy. Cutting it from the store is a later step.
     fresh = {str(i) for i in ((key.get('fresh_store') or {}).get('ids') or [])}
+    srecs = store_records(store, area) if fresh else {}
+    drop_fresh = []
     for ref, q in sorted((key.get('parks') or {}).items()):
         if only and ref not in only: continue
         if ref in have and not stale(ref, have[ref], q): continue
@@ -101,8 +127,34 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         if not ids: continue
         if q.get('g') == 'pin': continue   # KPC owner, 2026-11-11: a park the key grades pin never gets an outline
         _fr = [i for i in ids if i in fresh]
-        if _fr: skipped.append((ref, f'{len(_fr)} of {len(ids)} joined records are fresh store records ({" ".join(_fr[:4])}): '
-                                     'their shapes are in the store, not the saved copy; not cut (fail closed)')); continue
+        if _fr:
+            # 25 Nov 2026: a park joined to fresh store records is cut from the STORE's own outlines, never the saved copy. Every
+            # one of its records must be in the store and publishable; else it is skipped and its old outline is DROPPED (it
+            # may hold land the fresh match left out): the park shows its pin. Fail closed.
+            why = ''
+            if not srecs: why = 'no outline store given (--store) or no store file for this area'
+            elif any(i not in srecs for i in ids): why = f'{sum(1 for i in ids if i not in srecs)} of {len(ids)} joined records not in the store ({" ".join([i for i in ids if i not in srecs][:4])})'
+            elif any(not srecs[i]['publishable'] for i in ids): why = f'{sum(1 for i in ids if not srecs[i]["publishable"])} of {len(ids)} joined store records not publishable (licence)'
+            if why:
+                skipped.append((ref, f'fresh store records ({" ".join(_fr[:4])}): {why}; not cut (fail closed)'))
+                if ref in have: drop_fresh.append(ref)
+                continue
+            _parts = q.get('parts') or {}
+            g, why = union_geometry([clip_rec(srecs[i], _parts.get(i)) for i in ids])
+            if g is None:
+                skipped.append((ref, f'fresh store records: {why}'))
+                if ref in have: drop_fresh.append(ref)
+                continue
+            g = json.loads(json.dumps(M.trim_geometry(g)))
+            lay = sorted({M.prefix_of(i) or 'padus' for i in ids})
+            agency = '; '.join(sorted({srecs[i]['Loc_Mang'] for i in ids} - {''}))[:300]
+            gk = q.get('g') if q.get('g') in M.RANK else 'official'
+            rd = min((srecs[i]['read'] for i in ids if srecs[i]['read']), default='') or str(q.get('read') or today)
+            r = M.make_record(ref, q.get('n') or ref, gk, g, agency, f'store:{area}.kpcstore.json.gz', ids, 0, rd, '', 'key', layers=lay)
+            M.assert_public_safe(r); added.append(r)
+            if ref in have: replaced.append(ref)
+            say(f'  {"would write" if dry else "write"} {ref} {gk:<11} {len(ids)} store record(s) {npts(g):>8,} points  {(q.get("n") or "")[:60]}')
+            continue
         if not recs: skipped.append((ref, 'no saved copy (cannot rebuild this outline this run)')); continue
         miss = [i for i in ids if i not in recs]
         if miss: skipped.append((ref, f'{len(miss)} of {len(ids)} joined records not in the saved copy ({" ".join(miss[:4])})')); continue
@@ -119,12 +171,12 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         M.assert_public_safe(r); added.append(r)
         if ref in have: replaced.append(ref)
         say(f'  {"would write" if dry else "write"} {ref} {gk:<11} {len(ids)} record(s) {npts(g):>8,} points  {(q.get("n") or "")[:60]}')
-    out = dict(have); out.update({r['ref']: r for r in added})
+    out = {k: v for k, v in have.items() if k not in set(drop_fresh)}; out.update({r['ref']: r for r in added})
     # Always run save_area when there is something to drop (PIN leftovers, refs not in any key) or something to write, even
     # if this pass added no new park: an outline already in the file is otherwise never cleaned.
     drop_pin = M.pin_drops(area, out, key_dir)
     drop_unk = M.not_in_key_drops(area, out, key_dir)
-    if added or drop_pin or drop_unk:
+    if added or drop_pin or drop_unk or drop_fresh:
         if dry:   # the same save into a scratch copy: which files it would make, and how big
             with tempfile.TemporaryDirectory() as t:
                 tr = pathlib.Path(t) / 'outlines'; tr.mkdir()
@@ -136,6 +188,7 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
             for f in M.area_files(area, root): say(f'  saved {f.name}: {f.stat().st_size:,} bytes')
         if drop_pin: say(f'  dropped {len(drop_pin)} PIN outline(s): {" ".join(sorted(drop_pin)[:8])}')
         if drop_unk: say(f'  dropped {len(drop_unk)} outline(s) not in any key: {" ".join(sorted(drop_unk)[:8])}')
+        if drop_fresh: say(f'  dropped {len(drop_fresh)} old outline(s) of parks joined to fresh store records that could not be cut from the store: {" ".join(sorted(drop_fresh)[:8])}')
         if replaced: say(f'  rebuilt {len(replaced)} outline(s) to match the key: {" ".join(replaced[:8])}')
     return added, skipped
 
@@ -169,6 +222,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(); ap.add_argument('--cache'); ap.add_argument('--states', required=True)
     ap.add_argument('--only-refs', nargs='*'); ap.add_argument('--dry-run', action='store_true'); ap.add_argument('--root')
     ap.add_argument('--key', help='the us-key folder (default data/us-key)'); ap.add_argument('--verify', action='store_true'); ap.add_argument('--ref', default='HEAD')
+    ap.add_argument('--store', help="the outline store's results\\store folder (US-XX.kpcstore.json.gz): fresh store records are cut from it")
     a = ap.parse_args(argv)
     if a.verify:
         ok = True
@@ -177,7 +231,7 @@ def main(argv=None):
         return 0 if ok else 1
     if not a.cache: ap.error('--cache is needed (the folder that holds US-XX.json.gz)')
     for st in a.states.replace(',', ' ').split():
-        added, skipped = build_state(st, a.cache, set(a.only_refs or []) or None, a.dry_run, a.root, a.key)
+        added, skipped = build_state(st, a.cache, set(a.only_refs or []) or None, a.dry_run, a.root, a.key, store=a.store or os.environ.get('KPC_STORE_DIR'))
         print(f'US-{st}: {len(added)} outline(s) {"would be " if a.dry_run else ""}added; {len(skipped)} skipped'
               + ''.join(f'\n  skipped {r}: {w}' for r, w in skipped))
     return 0
