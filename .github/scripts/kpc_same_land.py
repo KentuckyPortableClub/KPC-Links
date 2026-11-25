@@ -17,6 +17,13 @@ by PROOF, best first, and never by its number:
      An outline too rough for its size (measured area 20% off its acres, or a tiny 5-point shape) cannot be measured: 'can't tell'.
   3. 'name_size'  the same name (not a generic name such as 'Unit 1' or 'Tract 2'; letters and digits, case aside), sizes within
                   SIZE_TOL (10%), boxes overlap, and the outlines do not show different ground. Name alone never counts.
+  R1 (grade 25 Nov 9:51 AM, after the owner's 9:11 MN test): an AGENCY RECORD id (AGENCY_RECORD_IDS: Minnesota DNR's state land
+                  'su_id', its wildlife areas' 'uniqueid') proves 'id' only when the boxes overlap AND (a real name in common OR
+                  sizes within 10%). A different value never refuses (such a field can be renumbered too).
+  R2: an outline too rough to measure (one side coarse) is measured by the OLD record's grid points against the FRESH outline,
+      with a 0.001-degree edge allowance: 80% / 50% = 'overlap'; 90% inside + a shared name = 'piece'.
+  R3: two records proven by name + size ('two fits'): the one holding at least half of the old record's ground (the R2 measure)
+      while every other holds less wins; never the row number.
   None            not proven: the caller shows the pin only and marks it for the code to fix (never a person's job).
 
 A US rule file (kpc_key_freeze.RULE_FILES['us-key']): a change here moves the US rules hash.
@@ -38,6 +45,10 @@ NEAR_EDGE = 0.08
 MIN_HITS = 12          # fewer grid points than this inside the smaller record: the overlap cannot be told
 
 LEVELS = ('id', 'overlap', 'piece', 'name_size')
+# R1 (grade 25 Nov 9:51 AM): the agency's own record id fields, by layer (the 12 Nov saved copy holds them in 'SA': sgmne su_id on
+# 13,295 records, sgmna uniqueid on 1,751). Proof only with the place and a name or the size agreeing; a different value never refuses.
+AGENCY_RECORD_IDS = {'sgmne': ('su_id',), 'sgmna': ('uniqueid',)}
+EDGE = 0.001           # R2: a grid point this close (degrees) to the fresh outline's edge counts as on its ground
 
 KIND_WORDS = {'state', 'national', 'county', 'city', 'regional', 'public', 'park', 'parks', 'forest', 'forests', 'wildlife',
               'management', 'area', 'areas', 'natural', 'scientific', 'preserve', 'reserve', 'refuge', 'recreation', 'recreational',
@@ -109,6 +120,8 @@ def id_spec(layer):
         if fl in ties or 'web address' in why: out[fl] = ('web', ties.get(fl) or [])
         elif 'unit id' in why or 'crosswalk' in why: out[fl] = ('unit', [])
     for fl, rx in ties.items(): out.setdefault(fl, ('web', rx))
+    for fl in AGENCY_RECORD_IDS.get(layer, ()):   # R1: agency record ids (never 'unit': they never refuse)
+        if fl not in out: out[fl] = ('arec', [])
     return out
 
 
@@ -211,6 +224,49 @@ def shares(ra, rb, acres_a=None, acres_b=None):
     return (s_small, s_big) if a_small else (s_big, s_small)
 
 
+def _near_edge(x, y, rings, d):
+    """True when (x, y) lies within d degrees of an edge of the rings."""
+    d2 = d * d
+    for r in rings:
+        for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1]):
+            if min(x1, x2) - d > x or max(x1, x2) + d < x or min(y1, y2) - d > y or max(y1, y2) + d < y: continue
+            dx, dy = x2 - x1, y2 - y1
+            t = 0.0 if dx == dy == 0 else max(0.0, min(1.0, ((x - x1) * dx + (y - y1) * dy) / (dx * dx + dy * dy)))
+            if (x1 + t * dx - x) ** 2 + (y1 + t * dy - y) ** 2 <= d2: return True
+    return False
+
+
+def ground_share(va, vb, n=GRID_FINE):
+    """R2: the share of a's grid points (inside a's outline) on b's ground or within EDGE of b's edge; None when it cannot be
+    told (no outline, fewer than MIN_HITS points inside a)."""
+    ra, rb = va.get('rings'), vb.get('rings')
+    if not ra or not rb: return None
+    bx = box_of(ra); bb = box_of(rb)
+    if not boxes_overlap(bx, bb, EDGE): return 0.0
+    sa_, sb_ = [box_of([r]) for r in ra], [box_of([r]) for r in rb]
+    ins = on = 0
+    dx, dy = (bx[2] - bx[0]) / n, (bx[3] - bx[1]) / n
+    for i in range(n):
+        x = bx[0] + (i + 0.5) * dx
+        for j in range(n):
+            y = bx[1] + (j + 0.5) * dy
+            if not _inside(x, y, ra, sa_): continue
+            ins += 1
+            if boxes_overlap([x, y, x, y], bb, EDGE) and (_inside(x, y, rb, sb_) or _near_edge(x, y, rb, EDGE)): on += 1
+    if ins < MIN_HITS: return None
+    return on / ins
+
+
+def point_shares(va, vb):
+    """R2: (share of a on b's ground, share of b on a's ground) from a's grid points; the second by the sizes (stated acres
+    first: a rough outline's measured area is off). None when it cannot be told."""
+    s_a = ground_share(va, vb)
+    if s_a is None: return None
+    za, zb = (va['acres'] or va['measured']), (vb['acres'] or vb['measured'])
+    if za <= 0 or zb <= 0: return None
+    return (s_a, min(1.0, s_a * za / zb))
+
+
 # ---- one record -----------------------------------------------------------------------------------------------------------
 
 COARSE_OFF = 0.20       # an outline whose measured area is more than 20% off its own acres is too rough to measure shared ground
@@ -231,15 +287,19 @@ def view(rec, id_fields=()):
     flds = dict(rec.get('SA') or {}); flds.update({k: v for k, v in rec.items() if not str(k).startswith('_') and k != 'SA'})
     low = {str(k).lower(): v for k, v in flds.items()}
     spec = id_fields if isinstance(id_fields, dict) else {str(x).lower(): ('unit', []) for x in id_fields}
-    ids = {}
+    ids, arecs = {}, {}
     for f, (kind, pats) in spec.items():
+        if kind == 'arec':
+            v = norm_id(low.get(f))
+            if v: arecs[f] = v
+            continue
         v = _web_id(low.get(f), pats) if kind == 'web' else norm_id(low.get(f)) if kind == 'unit' else ''
         if v: ids[f] = v
     measured = acres_of(rings) if rings else 0.0
     npts = sum(len(r) for r in rings)
     coarse = bool(rings) and ((ac > 0 and measured > 0 and abs(measured - ac) > COARSE_OFF * ac) or (measured < COARSE_SMALL and npts <= 5))
     return {'names': {name_key(n) for n in names if not generic(n)}, 'rings': rings, 'box': box_of(rings) or rec.get('_bx') or rec.get('_bb'),
-            'acres': ac, 'measured': measured, 'coarse': coarse, 'ids': ids}
+            'acres': ac, 'measured': measured, 'coarse': coarse, 'ids': ids, 'arecs': arecs}
 
 
 def prove(a, b, id_fields=()):
@@ -256,8 +316,24 @@ def prove(a, b, id_fields=()):
             if sa and sb and max(sa, sb) / min(sa, sb) > SIZE_JUMP: note = 'same id, size changed'
             return 'id', note or f"{same_f[0]} {va['ids'][same_f[0]]}"
     if not near: return None, 'different place'
+    # R1: the same agency RECORD id, the place agreeing, and a real name in common or the size within 10% (never the id alone)
+    ra, rb = va.get('arecs') or {}, vb.get('arecs') or {}
+    same_r = [f for f in ra if f in rb and ra[f] == rb[f]]
+    if same_r:
+        sa, sb = (va['acres'] or va['measured']), (vb['acres'] or vb['measured'])
+        if (va['names'] & vb['names']) or (sa > 0 and sb > 0 and abs(sa - sb) <= SIZE_TOL * max(sa, sb) + 0.5):
+            return 'id', f"agency record id {same_r[0]} {ra[same_r[0]]}"
+    rough = va['coarse'] or vb['coarse']
     # grade 25 Nov (M4): an outline too rough for its size (the key's 0.001-degree saved copy) cannot say 'different ground'
-    sh = None if (va['coarse'] or vb['coarse']) else shares(va['rings'], vb['rings'], va['measured'] or None, vb['measured'] or None)
+    sh = None if rough else shares(va['rings'], vb['rings'], va['measured'] or None, vb['measured'] or None)
+    if sh is None and rough:   # R2: the old record's grid points against the fresh outline, edge allowance EDGE
+        sh = point_shares(va, vb)
+        if sh is not None:
+            small, big = (max(sh), min(sh))
+            if small >= OVERLAP_SMALL and big >= OVERLAP_LARGE: return 'overlap', f'{round(small * 100)}% / {round(big * 100)}% shared (rough outline, grid points)'
+            if small >= PIECE_IN and va['names'] & vb['names']:
+                return 'piece', f'{round(small * 100)}% of the smaller record inside the larger (rough outline, grid points)'
+            sh = None   # a rough outline never says 'different ground': the name + size step below decides
     if sh is not None:
         small, big = (max(sh), min(sh))
         if small >= OVERLAP_SMALL and big >= OVERLAP_LARGE: return 'overlap', f'{round(small * 100)}% / {round(big * 100)}% shared'
@@ -288,35 +364,55 @@ def cached_view(key, rec, id_fields=()):
     return _VIEWS[k]
 
 
-def pick(a, cands, id_fields=(), cache=False, own=None):
+_WHY_RANK = ('two fits', 'conflict', 'different agency id', 'same name, size differs', 'different ground', 'not proven', 'different place')
+
+
+def pick(a, cands, id_fields=(), cache=False, own=None, trace=None):
     """The ONE candidate proven to be the same land as a: (key, level, note), or (None, None, why). cands = {key: record}.
     The strongest level wins; two at that level are one answer only when they carry the same agency ids (pieces of one unit,
     the fields agree), the one with the most shared ground is taken; or two proven records of which one carries a's own
     number (own); else 'two fits' (not proven). why = 'conflict' when a
     record with a DIFFERENT agency id lies on the same ground (half of the smaller one or more) and nothing is proven."""
     va = view(a, id_fields)
-    got, conflict = {}, False
+    got, conflict, miss = {}, False, []
+    if trace is not None: trace.update({'rough': bool(va['coarse']), 'ids': bool(va['ids'] or va['arecs']), 'cands': len(cands)})
     for k, c in cands.items():
         vc = cached_view(k, c, id_fields) if cache else view(c, id_fields)
         lv, note = prove(va, vc, id_fields)
-        if lv: got.setdefault(lv, []).append((k, note, vc))
-        elif note.startswith('different agency id') and not conflict and not (va['coarse'] or vc['coarse']):
+        if lv: got.setdefault(lv, []).append((k, note, vc)); continue
+        miss.append((k, note))
+        if note.startswith('different agency id') and not conflict and not (va['coarse'] or vc['coarse']):
             sh = shares(va['rings'], vc['rings'], va['measured'] or None, vc['measured'] or None)
             conflict = bool(sh) and max(sh) >= DIFFERENT_GROUND
     for lv in LEVELS:
         hits = got.get(lv) or []
         if not hits: continue
-        if len(hits) == 1: return hits[0][0], lv, hits[0][1]
+        if len(hits) == 1: return _tr(trace, hits[0][0], lv, hits[0][1])
         if len({tuple(sorted(h[2]['ids'].items())) for h in hits}) == 1 and hits[0][2]['ids']:
             best = max(hits, key=lambda h: (max(shares(va['rings'], h[2]['rings']) or (0, 0)), str(h[0])))
-            return best[0], lv, best[1] + ' (pieces of one unit)'
+            return _tr(trace, best[0], lv, best[1] + ' (pieces of one unit)')
         # two records proven at the same level (PAD-US often holds one refuge twice, fee and designation): the one that also
         # carries a's own number breaks the tie. The number never proves anything alone; here both are already proven.
         if own is not None and lv in ('id', 'overlap'):   # M2 (grade 25 Nov): never at piece or name + size
             same = [h for h in hits if str(h[0]) == str(own)]
-            if len(same) == 1: return same[0][0], lv, same[0][1] + ' (two fits; the same number breaks the tie)'
-        return None, None, f'two fits ({lv})'
-    return None, None, ('conflict' if conflict else 'not proven')
+            if len(same) == 1: return _tr(trace, same[0][0], lv, same[0][1] + ' (two fits; the same number breaks the tie)')
+        if lv == 'name_size':   # R3: the one record holding at least half of a's ground, every other less; never the number
+            gs = [(ground_share(va, h[2]), h) for h in hits]
+            win = [h for g_, h in gs if g_ is not None and g_ >= DIFFERENT_GROUND]
+            if len(win) == 1 and all(g_ is not None and g_ < DIFFERENT_GROUND for g_, h in gs if h is not win[0]):
+                return _tr(trace, win[0][0], lv, win[0][1] + ' (two fits; shared ground breaks the tie)')
+        return _tr(trace, None, None, f'two fits ({lv})', hits[0][0])
+    why = 'conflict' if conflict else 'not proven'
+    best = min(miss, key=lambda m: next((n for n, w in enumerate(_WHY_RANK) if m[1].startswith(w)), len(_WHY_RANK)), default=None)
+    return _tr(trace, None, None, why, best[0] if best else None, best[1] if best else '')
+
+
+def _tr(trace, k, lv, note, best=None, best_note=''):
+    """pick's answer, written into trace (R6: the per-row proof list) when one is given."""
+    if trace is not None:
+        trace.update({'best': k if k is not None else best, 'level': lv,
+                      'why': note if lv or not best_note or best_note == note else f'{note}: {best_note}'})
+    return k, lv, note
 
 
 def selftest():

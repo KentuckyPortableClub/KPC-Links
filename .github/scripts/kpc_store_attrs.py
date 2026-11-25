@@ -14,6 +14,9 @@ import argparse, datetime, glob, gzip, hashlib, json, os, re, sys, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 WDPA = re.compile(r'wdpa', re.I)
 MAX_TEXT = 300
+# R5 (grade 25 Nov 9:51 AM): the FWS realty fields the wetland district rule (kpc_us_key, W12) filters on: complex, tract type,
+# interest type (O = owned in fee, E = easement), the office and unit names and the tract's acres
+FWS_REALTY_FIELDS = ('CMPXNAME', 'RSL_TYPE', 'INTTYPE1', 'ORGNAME', 'UNITNAME', 'SUM_GISACRES')
 
 
 def wanted_fields(gh=None):
@@ -29,6 +32,13 @@ def wanted_fields(gh=None):
         for t in json.load(open(os.path.join(gh, 'link-id-ties.json'))).get('ties') or []:
             if t.get('field'): out.add(str(t['field']).lower())
     except (OSError, ValueError):
+        pass
+    out |= {f.lower() for f in FWS_REALTY_FIELDS}   # R5 (grade 25 Nov 9:51 AM): the wetland district rule reads these from the layer file
+    try:
+        sys.path.insert(0, HERE)
+        import kpc_same_land as SL_   # R1: the agency record id fields (sgmne su_id, sgmna uniqueid)
+        for flds in SL_.AGENCY_RECORD_IDS.values(): out |= {str(f).lower() for f in flds}
+    except Exception:  # noqa: BLE001
         pass
     try:
         sys.path.insert(0, HERE)
@@ -220,7 +230,7 @@ def run(store, out, gh=None, today=None):
               f"skipped_ids): {', '.join(f'{l} {n:,}' for l, n in sorted(sk.items()))}", flush=True)
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 9, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'format': 10, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
            'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
                              for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
@@ -262,7 +272,7 @@ def selftest():
         ok = ok and {k: {f: x for f, x in v.items() if f not in ('_st', '_rd', '_src')} for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
                                          'sgzzc30': {'URL': 'https://example.org/alpha', '_nm': 'Alpha Forest', '_ac': 50.0, '_kid': 'sgzzc12'},
                                          'sgzzd5': {'URL': 'https://example.org/refound', '_nm': '', '_kid': 'sgzzd9'}}
-        ok = ok and d.get('format') == 9 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
+        ok = ok and d.get('format') == 10 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
         ok = ok and d['by_name'].get('sgzzc', {}).get('alphaforest') == [[50.0, 'sgzzc30@']]
         e = d['refound'].get('sgzze4') or {}   # format 6: name, size, box and a light outline, for the same-land proof
         ok = ok and e.get('_nm') == 'Lost Valley Prairie' and e.get('_bx') == [-92.83, 44.8, -92.82, 44.81] and len((e.get('_g') or [[]])[0]) == 5

@@ -72,3 +72,14 @@ MN dry run on the saved files (25 Nov, before the gate): of the store's 552 MN r
 - Grade fixes: only UNIT id fields prove or refuse (never a 'record id' field; a web address by the id inside it); leading zeros never differ; the row number breaks a tie only on one ground (id, overlap); a piece needs a real name in common; a rough outline is 'can't tell'; the gate counts the park's own name + official size within 10%; a confirmed park's row on ground with another agency id is kept and LISTED; D1 does not re-point under proof-or-pin; the PC test lists every pin-only park and why.
 - Exception for the owner to OK: code rows (Park Service unit code, official line) still draw from their record even when it is an old-copy record.
 - Before any release: the outline cutter (kpc_outlines_from_key.py) reads shapes from the saved copy by id, so today it SKIPS fresh rows (fail closed, no wrong outline). It must read their shapes from the store first.
+
+## ROUND 10 (25 Nov ~10:30 AM CT; the grade after the owner's 9:11 AM MN test, "all pre-approved"; owner 9:50 AM pick "Two sources agree")
+- R1 agency RECORD id (sgmne su_id, sgmna uniqueid): proves 'id' only with boxes overlapping AND (a real name in common OR size within 10%). A different value never refuses.
+- R2 a rough outline: the OLD record's grid points measured against the FRESH outline, 0.001-degree edge allowance: 80% / 50% = overlap; 90% inside + a shared name = piece. A rough outline never says "different ground".
+- R3 name + size "two fits": the one record holding half the old ground or more (R2 measure), every other less, wins. Never the row number.
+- R4 park level, no tagged official size: the park's OLD joined land (website key 'ac', else its rows, same ground once) is the size; the FRESH records carrying the park's real name, in the old land's boxes, within 10% = proven.
+- Owner's pick: two named FRESH records of DIFFERENT layers (two official sources) on the same ground, sizes within 10% = proven.
+- Real name (R4 + pick): full name, or bare name + the park's kind word, or the same with single-letter initials set aside when 2+ real words remain ('George H. Crosby-Manitou' = 'George Crosby Manitou State Park'; 'Area C' never = 'Area D').
+- A park proven by R4 or two sources keeps its named rows; a row carrying ANOTHER real name leaves (code to fix).
+- R5 wetland districts: tracts from the layer file's fws records (CMPXNAME '<core>...WETLAND MANAGEMENT DISTRICT', RSL_TYPE WPA, INTTYPE1 O). R6 per-row proof list on the PC (row-proof.csv). R7 Catskill: hand download in layer-files\hand\US-NY\sgnyd\ (KPC-Store).
+- GREY AREAS for the owner (built the careful way; say if not): (a) initials set aside in names; (b) PAD-US counts as a second source next to a state layer although PAD-US often copies state data; (c) R4 trusts the website key's old joined size, which was itself matched by name.

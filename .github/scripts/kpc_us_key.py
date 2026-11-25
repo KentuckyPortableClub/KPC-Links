@@ -2344,14 +2344,41 @@ LISTED = []        # [state, park, record id, why]: rows the gate keeps but list
 SIZE_TOL_PARK = 0.10
 
 
-def park_name_and_size(ref, p, byid, facts):
+def real_name(park_name, rec_name, kind=''):
+    """R4 (25 Nov): the record carries the park's REAL name: the full name, or its bare name + the park's kind word
+    (MC.exact_name), or the same once single-letter initials are set aside ('George H. Crosby-Manitou' = 'George Crosby
+    Manitou'), only when 2 or more real words are left (so 'Area C' never equals 'Area D')."""
+    if not rec_name or SL.generic(rec_name): return False
+    if MC.exact_name(park_name, rec_name, kind): return True
+    def bare(t): return [w for w in MC.full(t).split() if len(w) > 1]
+    a, b, b2 = bare(park_name), bare(rec_name), bare(f'{rec_name} {kind}') if kind else []
+    if len([w for w in a if w not in SL.KIND_WORDS]) < 2: return False
+    return a == b or (bool(b2) and a == b2)
+
+
+_WEB = {}
+
+
+def web_park(st, ref):
+    """The park as the key on the website has it (data/us-key/US-XX.json before this build writes it): its old joined land."""
+    if st not in _WEB:
+        try:
+            with open(OUT / f'US-{st}.json', encoding='utf-8') as fh: _WEB[st] = json.load(fh).get('parks') or {}
+        except (OSError, ValueError): _WEB[st] = {}
+    return _WEB[st].get(ref) or {}
+
+
+NEW_PROOFS = ('name and old joined size', 'name in two official sources')
+
+
+def park_name_and_size(ref, p, byid, facts, st=None):
     """The owner's proof 3 at park level (25 Nov 6:20 AM: 'Name AND size within 10%'; grade M4): a joined record carries the park's
     own full name (not a generic one) and the park's official size (park facts, a tagged witness only) is within 10% of the
     joined land's size (same ground counted once). Returns (reason, stage): stage 'ok', or why not: 'no witness' (no tagged
     official size), 'generic' (the park's name says nothing), 'name' (no joined record carries the name), 'size' (off by more)."""
     f = (facts or {}).get(ref) or {}
     wits = MC.size_witnesses(f)
-    if not wits: return '', 'no witness'
+    if not wits: return park_name_no_witness(ref, p, byid, st)
     pn = MC.full(p.get('n') or f.get('name') or '')
     if not pn or SL.generic(pn): return '', 'generic'
     rows = p.get('m') or []
@@ -2363,6 +2390,40 @@ def park_name_and_size(ref, p, byid, facts):
         if got and abs(got - ac) <= SIZE_TOL_PARK * ac:
             return f'name and official size ({round(got):,} of {round(ac):,} acres)', 'ok'
     return '', 'size'
+
+
+def park_name_no_witness(ref, p, byid, st=None):
+    """No tagged official size. Two proofs, both on FRESH records that carry the park's real name (real_name):
+      R4 (grade 25 Nov 9:51 AM): the park's OLD joined land (the website key: its 'ac', else its rows with the same ground once) is
+         the size: the named fresh records lie in the old land's boxes and their size (same ground once) is within 10% of it;
+      owner 25 Nov 9:50 AM ('Two sources agree'): two named fresh records of DIFFERENT layers (two official sources) on the same
+         ground (boxes overlapping) agree on their size within 10%.
+    Returns (reason, stage) as park_name_and_size: 'ok', or 'no witness' (no official size, and neither proof held)."""
+    pn = p.get('n') or ''
+    if not MC.full(pn) or SL.generic(pn): return '', 'no witness'   # as before: the official size is looked for first
+    kind = p.get('t') or ''
+    named = []
+    for q in p.get('m') or []:
+        rec = byid.get(str(q[0])) or {}
+        if rec.get('_fresh') and not rec.get('_read_now') and real_name(pn, MC.rec_name(rec) or '', kind): named.append(q)
+    if not named: return '', 'no witness'   # the counts keep 'no tagged official size' as the reason (M3)
+    box_of = lambda i: (byid.get(i) or byid.get(i + '~old') or {}).get('_bb')
+    layer_of = lambda i: _sl_layer(i)
+    got = MC.size_once({'twin': p.get('twin') or []}, named, box_of, layer_of)
+    w = web_park(st, ref) if st else {}
+    old_ac = w.get('ac') or (MC.size_once({'twin': w.get('twin') or []}, w.get('m') or [], box_of, layer_of) if w.get('m') else 0)
+    obx = [b for b in (box_of(str(q[0])) for q in w.get('m') or []) if b]
+    if old_ac and got and obx and abs(got - old_ac) <= SIZE_TOL_PARK * old_ac and \
+            all(any(SL.boxes_overlap(box_of(str(q[0])), b, 0.01) for b in obx) for q in named if box_of(str(q[0]))):
+        return f'name and old joined size ({round(got):,} of {round(old_ac):,} acres)', 'ok'
+    for i_, a_ in enumerate(named):
+        for b_ in named[i_ + 1:]:
+            ia, ib = str(a_[0]), str(b_[0])
+            if layer_of(ia) == layer_of(ib) or not SL.boxes_overlap(box_of(ia), box_of(ib)): continue
+            sa, sb = float((byid.get(ia) or {}).get('GIS_Acres') or a_[2] or 0), float((byid.get(ib) or {}).get('GIS_Acres') or b_[2] or 0)
+            if sa > 0 and sb > 0 and abs(sa - sb) <= SIZE_TOL_PARK * max(sa, sb):
+                return f'name in two official sources ({ia} {round(sa):,} and {ib} {round(sb):,} acres)', 'ok'
+    return '', 'no witness'
 
 
 NOSTORE_LAYERS = []   # [state, layer, joined rows, parks]: layers the keys join that the store holds no record of (M2)
@@ -2390,11 +2451,12 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
         status = (p.get('match') or {}).get('status')
         ns_ok = False
         if status != 'confirmed':
-            ns, stage = park_name_and_size(ref, p, byid, facts)
+            ns, stage = park_name_and_size(ref, p, byid, facts, st)
             out['name_size']['tried'] += 1; out['name_size'][stage] += 1
             if ns:
                 status = 'confirmed'; ns_ok = True
-                mt = p.setdefault('match', {}); mt['status'] = 'confirmed'; mt['by'] = 'name and official size'; mt['proof'] = ns
+                mt = p.setdefault('match', {}); mt['status'] = 'confirmed'; mt['by'] = ns.split(' (')[0]; mt['proof'] = ns
+                out['name_size'][mt['by']] = out['name_size'].get(mt['by'], 0) + 1   # R4 / two sources counted apart
         keep, gone = [], []
         for q in p['m']:
             rid, cls = str(q[0]), MC.row_class(q)
@@ -2413,6 +2475,9 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
                 why = 'a fresh agency record on this ground carries a different agency id'
             elif status != 'confirmed' and cls == 'name':
                 why = "not proven: no agency id, shared ground, name and size or park page agrees"
+            elif ns_ok and any(ns.startswith(w_) for w_ in NEW_PROOFS) and cls == 'name' and rec is not None and \
+                    MC.rec_name(rec) and not SL.generic(MC.rec_name(rec)) and not real_name(p.get('n') or '', MC.rec_name(rec), p.get('t') or ''):
+                why = 'not proven: the park was proven by its named records, and this record carries another name'
             elif status != 'confirmed' and cls == 'person' and fps == 'nofp':
                 why = "a person's saved join with no fingerprint, and nothing else proves it"
             if not why and SAME_STATE.get(rid) == 'conflict':
@@ -2428,6 +2493,11 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
                                      "a NO with no fingerprint: still applied (it can only take land away)"])
         if ns_ok and keep: out['by_name_size'] += 1   # M3: counted only when the park keeps at least one row
         if not gone: continue
+        _gone_ids = {str(q[0]) for q, _w in gone}
+        for wq in (web_park(st, ref).get('m') or []):   # R6: why each of the park's old rows did or did not find its fresh record
+            oi = str(wq[0]); lay_, tr_ = PROOF.get(oi, (_sl_layer(oi), {'why': 'not looked at (no record in the old copy)'}))
+            PROOF_ROWS.append([st, ref, oi, lay_ or 'padus', 'y' if tr_.get('rough') else 'n', tr_.get('best') or '',
+                               tr_.get('level') or tr_.get('why') or '', 'y' if (oi in _gone_ids or oi + '~old' in _gone_ids or not p['m']) else 'n'])
         p['m'] = [q for q, _w in keep]
         have = {str(x[0]) for x in p.get('c') or []}
         p['c'] = [list(q[:3]) + [f'check ({FIX}: {w})'] for q, w in gone if str(q[0]) not in have] + list(p.get('c') or [])
@@ -2492,6 +2562,10 @@ def _write_list(env, rows, head, st):
         w.writerows(x for x in rows if x[0] == st)
 
 
+PROOF = {}         # R6 (grade 25 Nov 9:51 AM): old record id -> (layer, pick's trace: rough, best candidate, level or why)
+PROOF_ROWS = []    # [state, park, old id, layer, rough, best candidate, level or why, left the map]: rows of parks the gate touched
+
+
 def fresh_records(st, recs, P):
     """25 Nov 2026 (KPC owner, 7:18 AM: 'Use today's store records as the FRESH source for both matching and drawing outlines, not
     the Nov 11-12 saved copies. Old copies are hints only.'; switch KPC_STORE_FRESH). The outline store's records of this state
@@ -2537,17 +2611,19 @@ def fresh_records(st, recs, P):
     for a in recs:
         i = _oid(a)
         lay = _sl_layer(i)
-        if lay not in held_layers: continue
+        if lay not in held_layers: PROOF[i] = (lay, {'why': 'layer not in the layer file'}); continue
         g = idx.get(lay) or {}
         bb = SL.box_of(SL.rings_of(a.get('_g'))) or a.get('_bb')
-        if not bb or not g: continue
+        if not bb or not g: PROOF[i] = (lay, {'why': 'no outline in the old copy'}); continue
         cands = {}
         for cx in range(int(math.floor(bb[0] / SL_CELL)), int(math.floor(bb[2] / SL_CELL)) + 1):
             for cy in range(int(math.floor(bb[1] / SL_CELL)), int(math.floor(bb[3] / SL_CELL)) + 1):
                 for k, e in (g.get((cx, cy)) or {}).items():
                     if k in ents and k not in cands and SL.boxes_overlap(bb, e.get('_bx'), 0.001): cands[k] = e
-        if not cands: continue
-        k, lv, _w = SL.pick(a, cands, SL.id_spec(lay), cache=True, own=i)
+        if not cands: PROOF[i] = (lay, {'why': 'not near: no fresh record of this layer near it'}); continue
+        tr_ = {}
+        k, lv, _w = SL.pick(a, cands, SL.id_spec(lay), cache=True, own=i, trace=tr_)
+        PROOF[i] = (lay, tr_)   # R6: the per-row proof list
         if k: alias[i] = k; lv_n[lv] = lv_n.get(lv, 0) + 1
     by_old = {_oid(a): a for a in recs}
     olds_of = {}
@@ -3537,6 +3613,26 @@ def run(st):
         q = {'where': f"UPPER(CMPXNAME) LIKE '%{core}%WETLAND MANAGEMENT DISTRICT%' AND RSL_TYPE = 'WPA' AND INTTYPE1 = 'O'",
              'outFields': 'OBJECTID,ORGNAME,UNITNAME,CMPXNAME,INTTYPE1,SUM_GISACRES', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json'}
         fs, off_, bad_ = [], 0, False
+        # R5 (grade 25 Nov 9:51 AM): the realty layer sits on a saved-copy-only host, so the live read below always got 0. With the
+        # full layer file's fws records (FWS realty fields kept by kpc_store_attrs) the district's tracts come from them, the SAME
+        # filter: complex = '<core> WETLAND MANAGEMENT DISTRICT', a Waterfowl Production Area, owned in fee ('O'; never 'E').
+        _lay_fws = [a for a in recs if a.get('_fresh') and _sl_layer(_oid(a)) == 'fws' and (a.get('SA') or {}).get('CMPXNAME')]
+        if _lay_fws:
+            _cx = re.compile(re.escape(core.replace("''", "'")) + r'.*WETLAND MANAGEMENT DISTRICT', re.I)
+            m = []
+            for a in _lay_fws:
+                sa_ = a['SA']
+                if not (_cx.search(str(sa_.get('CMPXNAME') or '')) and str(sa_.get('RSL_TYPE') or '').upper() == 'WPA'
+                        and str(sa_.get('INTTYPE1') or '').upper() == 'O' and a.get('_g')): continue
+                nm_ = ((str(sa_.get('UNITNAME')) + ' WPA, ') if sa_.get('UNITNAME') else '') + str(sa_.get('ORGNAME') or '').title()
+                ac_ = sa_.get('SUM_GISACRES') or a.get('GIS_Acres') or 0
+                if KR.is_no(OVR.get(ref) or {}, a['OBJECTID'], nm_, ac_): wmd_no += 1; continue
+                a.update({'Unit_Nm': nm_ or a.get('Unit_Nm') or '', 'Category': 'Fee', '_k': set(a.get('_k') or set()) | {'nwr'},
+                          'Loc_Mang': 'U.S. Fish & Wildlife Service (own realty map, fee tracts)'})
+                m.append([a['OBJECTID'], a['Unit_Nm'], round(float(ac_ or 0)), 'reviewed: the district = FWS fee (owned) tracts only, easements left out (Brandon Oct 29)'])
+            if m:
+                parks[ref]['m'] = sorted(m, key=lambda x: -x[2]); parks[ref].pop('c', None); nwmd += 1
+            continue
         while True:
             try: j, _pg = fetch_geo(FWS, dict(q, resultOffset=off_))
             except Exception as e: notice(f'US key {st}', f'{ref} wetland district tracts not read ({str(e)[:60]})'); bad_ = True; break  # noqa: BLE001
@@ -4218,7 +4314,8 @@ def run(st):
                       f"{_po.get('pin_now', 0)} park(s) now pin only, {_po.get('by_name_size', 0)} park(s) kept by name and official size "
                       f"(of {_ns.get('tried', 0)} parks tried: {_ns.get('no witness', 0)} with no tagged official size, "
                       f"{_ns.get('generic', 0)} generic names, {_ns.get('name', 0)} no record with the park's name, "
-                      f"{_ns.get('size', 0)} size off, {_ns.get('ok', 0)} passed); layers the store does not hold: "
+                      f"{_ns.get('size', 0)} size off, {_ns.get('ok', 0)} passed: by official size {_ns.get('name and official size', 0)}, "
+                      f"by old joined size {_ns.get('name and old joined size', 0)}, by two official sources {_ns.get('name in two official sources', 0)}); layers the store does not hold: "
                       + (', '.join(f'{k} {v} row(s)' for k, v in sorted(_nl.items())) or 'none')
                       + f"; {_po.get('listed', 0)} row(s) kept but listed (another agency id on the ground); why rows left: "
                       + ', '.join(f'{v} {w}' for w, v in sorted((_po.get('why') or {}).items(), key=lambda x: -x[1]))
@@ -4226,6 +4323,8 @@ def run(st):
         notice(f'US key {st}', _line)
         for _env, _rows, _head in (('KPC_PIN_ONLY_LIST', PIN_ONLY, ['state', 'park', 'rows that left the map', 'why', 'layer_in_store']),
                                    ('KPC_NOSTORE_LIST', NOSTORE_LAYERS, ['state', 'layer', 'joined rows', 'parks']),
+                                   ('KPC_PROOF_LIST', PROOF_ROWS, ['state', 'park', 'old id', 'layer', 'rough outline', 'best fresh candidate',
+                                                                   'level or why', 'left the map']),   # R6
                                    ('KPC_REPOINTS', REPOINTS, ['state', 'park', 'saved row', 'old id', 'fresh id', 'how']),
                                    ('KPC_LISTED', LISTED, ['state', 'park', 'record id', 'why'])):
             _fn = os.environ.get(_env) or ''

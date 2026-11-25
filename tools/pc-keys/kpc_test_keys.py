@@ -138,7 +138,7 @@ def store_attrs():
             import gzip
             with gzip.open(out, 'rt', encoding='utf-8') as fh: fmt = int(json.load(fh).get('format') or 0)
         except Exception: fmt = 0  # noqa: BLE001
-    if not out.is_file() or out.stat().st_mtime < newest or fmt < 9:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest; 9 each layer file's identity (Q1)
+    if not out.is_file() or out.stat().st_mtime < newest or fmt < 10:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest; 9 each layer file's identity (Q1); 10 the agency record ids and FWS realty fields (R1, R5)
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
         rc = subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS).returncode
@@ -227,7 +227,8 @@ def run_build(st, rep, attrs):
                        KPC_FP_PROPOSALS=str(rep / 'saved-answers-no-fingerprint.csv'),   # 25 Nov: the owner's lists (never data/)
                        KPC_PIN_ONLY_LIST=str(rep / 'pin-only-parks.csv'), KPC_REPOINTS=str(rep / 'saved-answers-moved.csv'),
                        KPC_LISTED=str(rep / 'rows-kept-but-listed.csv'), KPC_NOSTORE_LIST=str(rep / 'layers-not-in-store.csv'),
-                       KPC_GAP_LIST=str(rep / 'layers-not-complete.csv'))   # 25 Nov (owner 8:48 AM): a state stops on a gap
+                       KPC_GAP_LIST=str(rep / 'layers-not-complete.csv'),
+                       KPC_PROOF_LIST=str(rep / 'row-proof.csv'))   # R6: why each old row of a park that lost rows did or did not prove   # 25 Nov (owner 8:48 AM): a state stops on a gap
             cmd = [sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py']
     kept = []
     with open(rep / f'{st}.log', 'w', encoding='utf-8', errors='replace') as lf:
