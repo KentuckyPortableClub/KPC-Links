@@ -603,21 +603,13 @@
   "kpc-reports.yml|2026-11-25T09:29:00+00:00": "2026-11-25T10:36+00:00 started",
   "kpc-research-helpers.yml|2026-11-25T05:23:00+00:00": "2026-11-25T10:36+00:00 skipped (not restarted)",
   "kpc-state-camps.yml|2026-11-25T08:23:00+00:00": "2026-11-25T10:36+00:00 started",
-  "pages-deploy.yml|2026-11-25T08:41:00+00:00": "2026-11-25T10:36+00:00 started"
+  "pages-deploy.yml|2026-11-25T08:41:00+00:00": "2026-11-25T10:36+00:00 started",
+  "kpc-fb-comments.yml|2026-11-25T10:32:00+00:00": "2026-11-25T11:08+00:00 skipped (not restarted)",
+  "kpc-ses.yml|2026-11-25T10:41:00+00:00": "2026-11-25T11:08+00:00 started"
  },
- "last": "2026-11-25T10:36+00:00",
+ "last": "2026-11-25T11:08+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 25 09:48 UTC)",
-  "kpc-boards.yml (missed Nov 25 09:44 UTC)",
-  "kpc-bot-health.yml (missed Nov 25 09:44 UTC)",
-  "kpc-canada.yml (missed Nov 25 08:53 UTC)",
-  "kpc-community.yml (missed Nov 25 08:17 UTC)",
-  "kpc-fb-comments.yml (missed Nov 25 08:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 25 10:07 UTC)",
-  "kpc-pota-discord.yml (missed Nov 25 09:19 UTC)",
-  "kpc-reports.yml (missed Nov 25 09:29 UTC)",
-  "kpc-research-helpers.yml (missed Nov 25 05:23 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-state-camps.yml (missed Nov 25 08:23 UTC)",
-  "pages-deploy.yml (missed Nov 25 08:41 UTC)"
+  "kpc-fb-comments.yml (missed Nov 25 10:32 UTC, NOT restarted: its next scheduled run catches up)",
+  "kpc-ses.yml (missed Nov 25 10:41 UTC)"
  ]
 }
