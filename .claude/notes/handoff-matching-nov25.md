@@ -25,6 +25,10 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   downloads (layer-files\hand\<area>\<layer>\). Kit **25o** + the new LAYER-RECORDS on the PC, read back equal. Not graded yet.
   Owner next: Catskill file into the hand folder, LAYER-RECORDS 1 + Y, START-HERE MN NY (report must say US 3d367d4d143f).
 
+- **Round 11 (f119a34, ~10:35 AM CT): grade of round 10 = FIX S1 + S2, both done** (rough edge allowance capped + half strictly inside;
+  old land from the old copy only). US rules -> **57cffee74bdd**. Kit **25p** on the PC, read back equal. Catskill (Nov 11 DEC file
+  from D:\DOWNLOADS!) is in layer-files\hand\US-NY\sgnyd\; the owner says a newer download exists somewhere: newest file there wins.
+
 ## The rules now (owner's words 25 Nov)
 - 6:20 / 6:28 AM: match by proof from fresh data: agency (unit) id, then shared ground (80% / 50%; piece 90% with a shared name),
   then real name + size within 10%; never a row number; unproven = POTA pin + "code to fix", no hand-offs to the reps.
