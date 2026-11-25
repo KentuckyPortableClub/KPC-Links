@@ -34,6 +34,11 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   layer, warns on a layer with no address, and ends with a layer / source / stored / complete list. Round 12 (8c2bc3d, kit 25q,
   US 8ec9ea21fa07): district tract rows are code rows. Owner next: LAYER-RECORDS 1 + Y, then START-HERE MN NY.
 
+- **Round 13 (d8a73e9 + 3aa6a48, ~12:15 PM CT): saved answers are hints only (owner 12:07 PM 'Delete any holds they maybe wrong
+  idk.'; switch KPC_SAVED_HINTS_ONLY, MN NY). US rules 698b0126ee4f, changelog APPROVED (owner 12:09 PM: 'no need to ask about a
+  ducking number changes I do not have to approve you all to fix this.'). Kit 25s on the PC, read back equal. The other builder
+  grades and merges after the owner's MN/NY PC test. Never ask the owner about hashes, holds or parks.
+
 ## The rules now (owner's words 25 Nov)
 - 6:20 / 6:28 AM: match by proof from fresh data: agency (unit) id, then shared ground (80% / 50%; piece 90% with a shared name),
   then real name + size within 10%; never a row number; unproven = POTA pin + "code to fix", no hand-offs to the reps.
