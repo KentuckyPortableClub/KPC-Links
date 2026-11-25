@@ -40,3 +40,16 @@ Nothing new on the map. The report says per state: "same record by agency id N, 
 - G4. Order of work. [1) the id-field table for the 20 layers with the most re-found records; 2) key vs store (B1, extends #379); 3) saved answers; 4) keeper old vs new; 5) the website-vs-test comparison line.]
 
 Not in scope: changing what a park is joined to (this sheet only decides "same record"), Canada and world (they do not use store id fields today).
+
+## TIGHTENINGS from the other builder's re-grade (25 Nov ~6 AM; part of the sheet, the owner sees them with the PR)
+T1. What happens TODAY: D1 already moves a person's saved join to the same-name, same-size record near the pin ("join moved 46" in MN). G3 adds agency-id re-pointing on top of that; it is not new behaviour.
+T2. Saved answers with NO fingerprint (72 join rows in 57 parks, 301 NO rows, list in the re-grade zip) are trusted by row number alone. Fix: give each the name and size from the read it was made on, or list it as "saved answer needs a look". Never trusted by number alone after a republish.
+T3. G1's field test is "unique per record GROUP" (pieces of one unit share a code), not "unique per record". Ids are compared after normalising ("SNA01041" = "SNA 01041"; 1041 = "1041.0"). The field must be in kpc_store_attrs' wanted list, or the store copy drops it.
+T4. G2: the same agency id is the same record only when the boxes overlap too. A size change over 2x is reported ("same id, size changed"). A piece is matched to a whole by name + box only when its box is inside the whole's box, it is smaller, and the pieces add up to no more than the whole (+ slack).
+T5. No acres on either side: name + box, never name alone (today saved_row_ok skips the size test when an acres value is 0).
+T6. Generic names never count as "the same name": "Unit 1", "Tract 3", "Wildlife Management Area", a name of only kind words. A short stop list.
+T7. G3 re-pointing limits: a dry-run count on the report first; a join re-points only if the name also matches, else "needs a look"; NO rows follow their land the same way; a per-state cap stops the run if passed.
+T8. Process: data/us-key/stable-ids.json is data: each batch needs the owner's OK (or goes through the waiting room). Canada's saved answers and hard-look ids are row numbers too: on the list for later. The keeper's old-vs-new step is KPC-Store work.
+
+## FIRST REAL CASE: Illinois (25 Nov)
+The key's Illinois conservation layer (sgilc, 6,908 records, numbers up to 9,197, read 11 Nov) now answers "Invalid URL". The owner's hand download of the same compiler's newer list (2,171 records, numbered 1-2,171) has the parks by name (Chain O'Lakes, Channahon, Illini, Gebhard Woods, Illinois Beach...) but none of the numbers. The store already has the tool for this: replacement-layers.csv, fetch "hand", match "by-name" (exact name, exactly one record, keeps both ids, never publishable without its own licence row).
