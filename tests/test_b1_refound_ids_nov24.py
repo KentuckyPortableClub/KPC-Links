@@ -21,7 +21,7 @@ def check(msg, cond):
 
 
 r = subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_store_attrs.py'), '--selftest'], capture_output=True, text=True)
-check('kpc_store_attrs self-test (format 4: key_record_id, refound kept apart, a clash trusts neither)', 'ALL PASS' in r.stdout)
+check('kpc_store_attrs self-test (format 5: every re-found record kept apart, with its name, size and key_record_id)', 'ALL PASS' in r.stdout)
 
 src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
 start = src.index('RA_USED = {}'); end = src.index('\ndef _maiden6')
@@ -29,18 +29,21 @@ ns = {'os': os, 're': re, 'json': json, 'gzip': gzip, 'KR': KR, 'notice': lambda
 exec(src[start:end], ns)
 with tempfile.TemporaryDirectory() as td:
     f = pathlib.Path(td) / 'ra.json.gz'
-    doc = {'format': 4,
-           'records': {'sgzzb15': {'URL': 'https://example.org/alpha'}, 'sgzza7': {'URL': 'https://example.org/plain'}},
-           'refound': {'sgzzb20': {'URL': 'https://example.org/alpha-refound', '_nm': 'Alpha State Forest', '_ac': 1000.0},
-                       'sgzzb31': {'URL': 'https://example.org/no-name'}},
+    doc = {'format': 5,
+           'records': {'sgzza7': {'URL': 'https://example.org/plain'}},
+           'refound': {'sgzzb20': {'URL': 'https://example.org/alpha-refound', '_nm': 'Alpha State Forest', '_ac': 1000.0, '_kid': 'sgzzb15'},
+                       'sgzzb31': {'URL': 'https://example.org/no-name'},
+                       'sgzzb60': {'URL': 'https://example.org/gamma', '_nm': 'Gamma State Forest', '_ac': 500.0, '_kid': 'sgzzb7'}},
            'by_name': {'sgzzb': {'alphastateforest': [[1000.0, 'sgzzb20@']]}}}
     with gzip.open(f, 'wt') as fh: json.dump(doc, fh)
     os.environ['KPC_RECORD_ATTRS'] = str(f)
     ns['record_attrs']()
     sf = ns['store_fields']
     check('a plain record: fields by its number', sf('sgzza7', {'Unit_Nm': 'X'}) == ('id', {'URL': 'https://example.org/plain'}))
-    check("a re-found record filed under the key's own id (key_record_id): fields, exactly",
-          sf('sgzzb15', {'Unit_Nm': 'Alpha State Forest', 'GIS_Acres': 1000}) == ('id', {'URL': 'https://example.org/alpha'}))
+    check("a re-found record naming the key's id (key_record_id), same record: fields",
+          sf('sgzzb15', {'Unit_Nm': 'Alpha State Forest', 'GIS_Acres': 1000}) == ('refound', {'URL': 'https://example.org/alpha-refound'}))
+    check("key_record_id names a record the key has renumbered since (another forest now): refused (the MN 4:08 AM case)",
+          sf('sgzzb7', {'Unit_Nm': 'Delta State Forest', 'GIS_Acres': 500}) == ('refused', None))
     check('a re-found record, same name and size: used, helper keys gone',
           sf('sgzzb20', {'Unit_Nm': 'Alpha State Forest', 'GIS_Acres': 1040}) == ('refound', {'URL': 'https://example.org/alpha-refound'}))
     check('another forest under the same number: refused (the MN case)', sf('sgzzb20', {'Unit_Nm': 'Beta State Forest', 'GIS_Acres': 1000}) == ('refused', None))
@@ -52,6 +55,6 @@ with tempfile.TemporaryDirectory() as td:
 check('the key counts only records that really got fields, and the refused ones apart',
       "RA_USED[st] = nu" in src and "RA_REFUSED[st] = nr" in src and 'refused: another record' in src)
 kt = (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8')
-check('the PC test makes its id file again when it is older than format 4', 'fmt < 4' in kt)
+check('the PC test makes its id file again when it is older than format 5', 'fmt < 5' in kt)
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

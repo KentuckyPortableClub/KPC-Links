@@ -2199,7 +2199,8 @@ RA_BRIDGED = {}
 RA_REFUSED = {}   # 24 Nov 2026 (B1, #379): re-found store records whose fields were NOT used (another record under that number)
 _RA = [None]
 _RA_BY = [{}]
-_RA_RF = [{}]     # 'refound' of kpc_store_attrs format 4: re-found records with no key_record_id, with their name and size
+_RA_RF = [{}]     # 'refound' of kpc_store_attrs format 5: re-found store records, with their name, size and key_record_id
+_RA_KID = [{}]    # key_record_id -> the refound entries that name it
 def record_attrs():
     """{record id: {id field: value}} from KPC_RECORD_ATTRS (kpc_store_attrs.py), or {} when the switch has no file."""
     if _RA[0] is None:
@@ -2211,6 +2212,9 @@ def record_attrs():
                 _RA[0] = doc.get('records') or {}
                 _RA_BY[0] = doc.get('by_name') or {}
                 _RA_RF[0] = doc.get('refound') or {}
+                _RA_KID[0] = {}
+                for k_, v_ in _RA_RF[0].items():
+                    if v_.get('_kid'): _RA_KID[0].setdefault(v_['_kid'], []).append(k_)
             except Exception as e:  # noqa: BLE001
                 notice('US key', f'store id fields not read ({e}); the id checks use the saved copies only')
     return _RA[0]
@@ -2239,22 +2243,25 @@ def record_attrs_by_name(i, a):
     h = next(iter(hits))
     if h.endswith('@'):   # B1: a re-found record's entry (kpc_store_attrs format 4); its helper keys never reach the checks
         x = (_RA_RF[0] or {}).get(h[:-1])
-        return {k: v for k, v in x.items() if k not in ('_nm', '_ac')} if x else None
+        return {k: v for k, v in x.items() if k not in ('_nm', '_ac', '_kid')} if x else None
     return (_RA[0] or {}).get(h)
 
 
 def store_fields(i, a):
-    """24 Nov 2026 (B1, #379): the outline store's id fields for saved record i (a = the record), and how: ('id', fields) by its
-    number; ('refound', fields) a re-found store record kept under that number, used only when it is provably the same record
-    (saved_row_ok, D1's test: same name, size within 10%; no name = not proven); ('refused', None) a re-found record that is
-    another record; ('', None) nothing. A re-found record with the key's own id (key_record_id) is already filed under 'id'."""
+    """24 Nov 2026 (B1, #379): the outline store's id fields for saved record i (a = the record), and how: ('id', fields) a plain
+    store record of that number; ('refound', fields) a re-found store record (under that number, or naming i as its key_record_id)
+    used only when it is provably the same record (saved_row_ok, D1's test: same name, size within 10%; no name = not proven);
+    ('refused', None) only re-found records that are another record; ('', None) nothing. Neither the number nor key_record_id is
+    trusted alone: the key's saved copy can be renumbered after the store was built (MN, 25 Nov 4:08 AM PC test)."""
     x = (_RA[0] or {}).get(i)
     if x: return 'id', x
-    y = (_RA_RF[0] or {}).get(i)
-    if not y: return '', None
-    if y.get('_nm') and KR.saved_row_ok([i, y['_nm'], y.get('_ac') or 0], a):
-        return 'refound', {k: v for k, v in y.items() if k not in ('_nm', '_ac')}
-    return 'refused', None
+    rf = _RA_RF[0] or {}
+    cands = [k for k in [i] + list((_RA_KID[0] or {}).get(i) or []) if k in rf]
+    for k in cands:
+        y = rf[k]
+        if y.get('_nm') and KR.saved_row_ok([i, y['_nm'], y.get('_ac') or 0], a):
+            return 'refound', {k_: v for k_, v in y.items() if k_ not in ('_nm', '_ac', '_kid')}
+    return ('refused', None) if cands else ('', None)
 
 
 def _maiden6(la, lo):

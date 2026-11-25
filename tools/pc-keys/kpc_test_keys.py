@@ -138,7 +138,7 @@ def store_attrs():
             import gzip
             with gzip.open(out, 'rt', encoding='utf-8') as fh: fmt = int(json.load(fh).get('format') or 0)
         except Exception: fmt = 0  # noqa: BLE001
-    if not out.is_file() or out.stat().st_mtime < newest or fmt < 4:   # 24 Nov (B1, #379): format 4 files re-found records under the key's own id
+    if not out.is_file() or out.stat().st_mtime < newest or fmt < 5:   # 25 Nov (B1, #379): format 5 keeps every re-found record apart, with its name and size
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
         subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS)
