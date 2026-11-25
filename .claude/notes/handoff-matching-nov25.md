@@ -44,6 +44,20 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   verified row fetch yes / publish no, an old-address file is downloaded again. Kit 25u on the PC. Owner next: LAYER-RECORDS 1 + Y
   (downloads only the Adirondack polygon), START-HERE MN NY expecting US 03c3525be24b.
 
+- **FS hand pieces (25 Nov ~3 PM):** the owner's 4 Forest Service geodatabases converted, cut into the 62 missing state/layer
+  pieces (fsod sggad sgidd fwsr wld sgnvg) as .geojson.gz in the store's results\layer-files\hand\<AREA>\<layer>\; KPC-Store
+  8f6bc39 (gzipped hand files) on the PC, read back equal. LAYER-RECORDS 2 + Y loads them.
+- **Round 15 (d2c166c, 25 Nov ~4 PM): US rules 3438197bf50b, kit 25v on the PC (read back equal).** From the 2:28 PM MN NY test
+  (03c3525be24b: 1,129 outlines vs 1,145; MN US-7145 Minnesota Valley SRA lost 339 pieces; check rows 426 -> 1,424):
+  (1) store attrs read the layer's own acres field (first field with 'acre': MN DNR su_acres), format 11 (fresh MN parcels were
+  sized by their section-level outline); (2) with KPC_STORE_FRESH the website key's rows (t915u carry, keep-last-good) follow
+  the proven alias (fresh_old_parks), unproven = '~old' hint, D1 number check off (419 MN D1 check rows + ~74 'place' rows came from
+  shifted row numbers); (3) R4 old size like with like when the website 'ac' = its rows added up (twins counted both sides or
+  neither; 7145: ac 6,226 counted 49 twins, fresh sum left them out); (4) row-proof 'left the map' read after the gate.
+  Left for later: NY US-2137 Schunnemunk Mountain SP (records say 'Schunnemunk State Park': name rule misses 'Mountain'), US-8319
+  Palisades (old land included 'Palisades Park' 2,218 ac), MN US-2506/7148 (one PAD-US record, two POTA parks), the hint records'
+  same-land step (~21 of MN's 49 minutes, the last ~480 records), MN wsrc listed 'not in store' though its file has 4 of 4.
+
 ## The rules now (owner's words 25 Nov)
 - 6:20 / 6:28 AM: match by proof from fresh data: agency (unit) id, then shared ground (80% / 50%; piece 90% with a shared name),
   then real name + size within 10%; never a row number; unproven = POTA pin + "code to fix", no hand-offs to the reps.
