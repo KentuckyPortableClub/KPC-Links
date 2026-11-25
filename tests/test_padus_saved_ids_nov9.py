@@ -84,7 +84,7 @@ check('no name-kept record, no change', U.prefer_state_layer('ID', [lay], P) == 
 
 src_full = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
 check('run(): state layer read with name-only records left out of its duplicate list', "_have([a for a in recs if not a.get('KPC_NameKeep')])" in src_full)
-check('run(): saved ids topped up on the saved-copy path too', 'saved_fetch(st, P, recs)' in src_full.split('def run(st)')[1].split('if _kr(')[0])
+check('run(): saved ids topped up on the saved-copy path too', 'saved_fetch(st, P, recs)' in src_full.split('def run(st)')[1].split("if _kr('KPC_STORE_FRESH')")[0])   # 25 Nov: switches now come first in run()
 check('no new host: the by-id ask uses the PAD-US query url Q only', 'nationalmap.gov' in U.Q and 'arcgis.com/33TOOklri9xpic7U' not in src_full and 'natureserve' not in '\n'.join(l for l in src_full.splitlines() if not l.lstrip().startswith('NEVER_HOSTS')))   # Nov 10: named only in the never-contact refusal list
 check('the 11:24 AM OK recorded (date only) with the new US hash', 'Nov 9, 2026, 11:24 AM CST' in (ROOT / 'docs/key-rules-change.txt').read_text() and KZ.rules_hash('us-key') in (ROOT / 'docs/key-rules-change.txt').read_text())
 import kpc_preflight as PF

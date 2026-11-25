@@ -3012,6 +3012,11 @@ def run(st):
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']; P_ALL.clear(); P_ALL.update(P)
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
     progress(st, f'state build started ({len(P):,} parks)', start=True)
+    # A park in several states (US-4236 is in MN, IA, IL and WI) has ONE override: a state with the switch off that is built
+    # after a state with it on (one build job holds several states) gets its saved answers back first; only this state sets
+    # them aside (grade of round 13).
+    for _r, _v in SAVED_HINTS.items():
+        if _r not in OVR: OVR[_r] = _v
     if _kr('KPC_SAVED_HINTS_ONLY'):
         # KPC owner, 25 Nov 12:07 PM: 'Delete any holds they maybe wrong idk.' Old saved answers (a person's joins, NOs, blocked
         # ids, tracts, aliases, answer-sheet NOs: everything overrides*.json holds for this state's parks) are no longer obeyed:
