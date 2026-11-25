@@ -60,8 +60,9 @@ check('a fresh record with ANOTHER unit id on the same ground: conflict, no fiel
 check('the same unit id (leading zeros aside): proven by id', slf('sgmnb3', dict(other_id, SA={'sft': 'SFT900'}))[0] == 'id')
 check('no store record of the layer near it: none', slf('sgzza1', {'OBJECTID': 'sgzza1', 'Unit_Nm': 'X', '_g': {'rings': sq(-80, 40, 0.01)}}) == ('none', None))
 
-# the fresh source: today's store records stand in for the old saved copy
+# the fresh source: today's store records stand in for the old saved copy (N3: only layers the store's manifest says are complete)
 ns['CUR_ST']['st'] = 'MN'
+ns['_RA_MAN'][0] = {'US-MN': {'sgmnc': {'complete': True}, 'padus': {'complete': True}, 'sgmnb': {'complete': False}}}
 old_recs = [key55, key210, {'OBJECTID': 207720, 'Unit_Nm': 'Lost Valley Prairie State Scientific and Natural Area', 'GIS_Acres': 216,
                             '_g': {'rings': sq(-92.83, 44.80, 0.01)}, 'Des_Tp': 'SCA', '_k': {'snp'}}]
 for a in old_recs: a['_bb'] = ns['bbox'](a['_g'])
@@ -122,6 +123,22 @@ check('the counts', res['rows'] == 4 and res['pin_now'] == 4 and res['by_name_si
 check('the name + size counts say why parks were not kept (M3: missing data or a bug)',
       res['name_size']['tried'] == 5 and res['name_size']['ok'] == 1 and res['name_size']['no witness'] == 4)
 
+# N3 (grade of round 5): a layer the store holds only PART of (manifest: not complete) is handled like a layer not in store
+part_old = {'OBJECTID': 'sgmnb3', 'Unit_Nm': 'Far Away Forest', 'GIS_Acres': 50, '_g': {'rings': sq(-91.0, 47.5, 0.004)}, 'rd': '2026-11-12'}
+part_old['_bb'] = ns['bbox'](part_old['_g'])
+outp, aliasp = ns['fresh_records']('MN', old_recs + [part_old], {})
+idp = {str(a['OBJECTID']): a for a in outp}
+check('a layer the store holds only part of: an unproven old record is kept (not a hint), and the layer is listed as not complete',
+      idp.get('sgmnb3', {}).get('_nostore') and not idp['sgmnb3'].get('_hint') and 'sgmnb' in (ns['FRESH']['MN'].get('partial_layers') or []))
+ns['_RA_MAN'][0] = {}
+outq, _a = ns['fresh_records']('MN', old_recs, {})
+idq = {str(a['OBJECTID']): a for a in outq}
+check('no manifest at all: no layer counts as in the store (one record never makes a layer complete); records kept, never hints',
+      not any(a.get('_hint') for a in outq) and ns['FRESH']['MN'].get('no_manifest') and idq.get('sgmnc210~old', {}).get('_nostore'))
+ns['_RA_MAN'][0] = {'US-MN': {'sgmnc': {'complete': True}, 'padus': {'complete': True}, 'sgmnb': {'complete': False}}}
+check('N1: a record read live this run is never listed as a store record (the cutter cuts it from the saved copy)',
+      "a.get('_fresh') and not a.get('_read_now')" in src)
+
 # M2 (grade of round 4): a layer the store holds NO record of for this state is not 'missing records'
 fws_old = {'OBJECTID': 'fws4026', 'Unit_Nm': 'Detroit Lakes WMD tract', 'GIS_Acres': 80, '_g': {'rings': sq(-95.8, 46.8, 0.005)}, 'rd': '2026-11-12'}
 fws_old['_bb'] = ns['bbox'](fws_old['_g'])
@@ -153,7 +170,7 @@ check('kpc_same_land.py is a US rule file (it moves the US hash)', '.github/scri
 check('the one line per state: by agency id, by shared ground, pieces, by name and size, not proven',
       all(w in src for w in ("by agency id {_sh.get('id', 0)}", "by shared ground", "by name and size", "not proven {_sh.get('unproven', 0)}", 'now pin only')))
 kt = (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8')
-check('the PC test remakes its id file before format 7 and saves the owner lists',
-      'fmt < 7' in kt and all(w in kt for w in ('saved-answers-no-fingerprint.csv', 'pin-only-parks.csv', 'saved-answers-moved.csv', 'rows-kept-but-listed.csv', 'layers-not-in-store.csv')))
+check('the PC test remakes its id file before format 8 and saves the owner lists',
+      'fmt < 8' in kt and all(w in kt for w in ('saved-answers-no-fingerprint.csv', 'pin-only-parks.csv', 'saved-answers-moved.csv', 'rows-kept-but-listed.csv', 'layers-not-in-store.csv')))
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

@@ -125,14 +125,25 @@ def record_acres(r):
 def run(store, out, gh=None, today=None):
     want = wanted_fields(gh)
     recs, files, by_name, refound = {}, 0, {}, {}
-    for path in sorted(glob.glob(os.path.join(store, '*.kpcstore.json.gz'))):
+    manifest = {}
+    paths_ = sorted(glob.glob(os.path.join(store, '*.kpcstore.json.gz'))) + sorted(glob.glob(os.path.join(store, '*.layer-records.json.gz')))
+    for path in paths_:
         if '.prev.' in os.path.basename(path):
             continue
         files += 1
         with gzip.open(path, 'rt', encoding='utf-8') as f:
             d = json.load(f)
-        area = str(d.get('area') or re.sub(r'\.kpcstore\.json\.gz$', '', os.path.basename(path)))
-        for p in d.get('parks') or []:
+        area = str(d.get('area') or re.sub(r'\.(kpcstore|layer-records)\.json\.gz$', '', os.path.basename(path)))
+        # 25 Nov 2026 (format 8; KPC-Store kpc_layer_records.py, the owner's 8:21 AM fix): every record of every layer the keys
+        # join, linked to a park or not, with a per-layer manifest (source count, store count, complete). The manifest goes along
+        # so the key counts a layer as 'in the store' only when it is complete.
+        if d.get('kpcstore_layers'):
+            for lay, m in (d.get('manifest') or {}).items():
+                manifest.setdefault(area, {})['padus' if lay == 'PAD-US' else lay] = {
+                    'complete': bool(m.get('complete')), 'source_count': m.get('source_count'), 'store_count': m.get('store_count'), 'read': m.get('read')}
+        groups = d.get('parks') or []
+        if d.get('records'): groups = list(groups) + [{'records': d['records']}]
+        for p in groups:
             for r in p.get('records') or []:
                 k = record_key(r)
                 if not k:
@@ -181,7 +192,7 @@ def run(store, out, gh=None, today=None):
                             by_name.setdefault(lay, {}).setdefault(nm, []).append([round(ac, 3), k] + ([bx] if bx else []))
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 7, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'format': 8, 'manifest': manifest, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
            'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
                              for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
@@ -207,21 +218,29 @@ def selftest():
              'rings': [[-92830000, 44800000, 10000, 0, 0, 10000, -10000, 0, 0, -10000]], 'attributes': {'gis_acres': 216.0}}]}
         with gzip.open(os.path.join(st, 'US-ZZ.kpcstore.json.gz'), 'wt') as f: json.dump({'parks': [park]}, f)
         with gzip.open(os.path.join(st, 'US-ZZ.kpcstore.prev.json.gz'), 'wt') as f: json.dump({'parks': [{'records': [{'key': 'sgold1', 'layer': 'sgold', 'record_id': '1', 'attributes': {'URL': 'old'}}]}]}, f)
+        with gzip.open(os.path.join(st, 'US-ZZ.layer-records.json.gz'), 'wt') as f:
+            json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'manifest': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1},
+                                                                          'PAD-US': {'complete': False, 'source_count': 9, 'store_count': 2}},
+                       'records': [{'key': 'fws4026', 'layer': 'fws', 'record_id': '4026', 'record_name': 'Rothi WPA', 'q': 6,
+                                    'rings': [[-95800000, 46800000, 10000, 0, 0, 10000, -10000, 0, 0, -10000]], 'attributes': {}}]}, f)
         gh = os.path.join(t, 'gh'); os.mkdir(gh)
         json.dump({'layers': {'x': {'fields': ['Comments', 'WDPA_Cd']}}}, open(os.path.join(gh, 'keep-record-fields.json'), 'w'))
         json.dump({'ties': [{'field': 'URL'}]}, open(os.path.join(gh, 'link-id-ties.json'), 'w'))
         o = os.path.join(t, 'a.json.gz'); run(st, o, gh, '2026-11-22')
         d = json.load(gzip.open(o, 'rt'))
-        plain = {k: {f: v for f, v in x.items() if not f.startswith('_')} for k, x in d['records'].items()}
+        plain = {k: {f: v for f, v in x.items() if not f.startswith('_')} for k, x in d['records'].items() if k != 'fws4026'}
         ok = plain == {'sgzza7': {'URL': 'https://dec.ny.gov/lands/123.html'}, '3422': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST'},
                               'sgzzd9': {'URL': 'https://example.org/plain'}}   # B1: re-found records are never filed as plain ones
         ok = ok and {k: {f: x for f, x in v.items() if f not in ('_st', '_rd')} for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
                                          'sgzzc30': {'URL': 'https://example.org/alpha', '_nm': 'Alpha Forest', '_ac': 50.0, '_kid': 'sgzzc12'},
                                          'sgzzd5': {'URL': 'https://example.org/refound', '_nm': '', '_kid': 'sgzzd9'}}
-        ok = ok and d.get('format') == 7 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
+        ok = ok and d.get('format') == 8 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
         ok = ok and d['by_name'].get('sgzzc', {}).get('alphaforest') == [[50.0, 'sgzzc30@']]
         e = d['refound'].get('sgzze4') or {}   # format 6: name, size, box and a light outline, for the same-land proof
         ok = ok and e.get('_nm') == 'Lost Valley Prairie' and e.get('_bx') == [-92.83, 44.8, -92.82, 44.81] and len((e.get('_g') or [[]])[0]) == 5
+        ok = ok and d['manifest'] == {'US-ZZ': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1, 'read': None},
+                                                 'padus': {'complete': False, 'source_count': 9, 'store_count': 2, 'read': None}}}
+        ok = ok and (d['records'].get('fws4026') or {}).get('_nm') == 'Rothi WPA'   # format 8: a layer record that no park links
         ok = ok and e.get('_st') == 'US-ZZ' and d['records']['3422'].get('_pad') == {'Loc_Nm': 'TEST', 'GIS_Acres': 4}   # format 7
     print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']) + ' ' + json.dumps(d.get('refound')))
     return 0 if ok else 1

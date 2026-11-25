@@ -131,14 +131,14 @@ def store_attrs():
     if not STORE.is_dir():
         say(f'  (the outline store folder is not at {STORE}: the id checks use the saved copies only)')
         return ''
-    newest = max((p.stat().st_mtime for p in STORE.glob('*.kpcstore.json.gz')), default=0)
+    newest = max((p.stat().st_mtime for p in list(STORE.glob('*.kpcstore.json.gz')) + list(STORE.glob('*.layer-records.json.gz'))), default=0)   # 25 Nov: and every layer record
     fmt = 0
     if out.is_file():   # 24 Nov: a file made before the '@' fix and the name-and-size index with map boxes (format 3) is made again
         try:
             import gzip
             with gzip.open(out, 'rt', encoding='utf-8') as fh: fmt = int(json.load(fh).get('format') or 0)
         except Exception: fmt = 0  # noqa: BLE001
-    if not out.is_file() or out.stat().st_mtime < newest or fmt < 7:   # 25 Nov (better matcher): format 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words
+    if not out.is_file() or out.stat().st_mtime < newest or fmt < 8:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
         subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS)

@@ -2201,6 +2201,7 @@ _RA = [None]
 _RA_BY = [{}]
 _RA_RF = [{}]     # 'refound' of kpc_store_attrs format 5: re-found store records, with their name, size and key_record_id
 _RA_KID = [{}]    # key_record_id -> the refound entries that name it
+_RA_MAN = [{}]    # 25 Nov 2026 (N3): {area: {layer: {'complete': bool, 'source_count', 'store_count'}}} from the store's layer records
 def record_attrs():
     """{record id: {id field: value}} from KPC_RECORD_ATTRS (kpc_store_attrs.py), or {} when the switch has no file."""
     if _RA[0] is None:
@@ -2212,6 +2213,7 @@ def record_attrs():
                 _RA[0] = doc.get('records') or {}
                 _RA_BY[0] = doc.get('by_name') or {}
                 _RA_RF[0] = doc.get('refound') or {}
+                _RA_MAN[0] = doc.get('manifest') or {}   # format 8: per area, per layer: complete yes / no (KPC-Store kpc_layer_records)
                 _RA_KID[0] = {}
                 for k_, v_ in _RA_RF[0].items():
                     if v_.get('_kid'): _RA_KID[0].setdefault(v_['_kid'], []).append(k_)
@@ -2400,7 +2402,7 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
             if fresh_on and rec is not None and rec.get('_nostore'):
                 lay = _sl_layer(rid)
                 nostore.setdefault(lay, [0, set()]); nostore[lay][0] += 1; nostore[lay][1].add(ref)
-                if cls != 'code': why = 'layer not in store: the store holds no record of this layer here, and only the old saved copy reads it'
+                if cls != 'code': why = 'layer not in store (or not complete there): only the old saved copy reads this record'
             elif fresh_on and (rec is None or not rec.get('_fresh')) and cls != 'code':
                 why = 'only in the old saved copy: no fresh store record proves this land'
             elif fps == 'nofit':
@@ -2471,12 +2473,17 @@ def fresh_records(st, recs, P):
     # M2 (grade of round 4): a layer the store holds NO record of for this state is not 'missing records'. Its old records are
     # never hints: they keep their ids. Read this run (a live read) they count as fresh; read only from the old saved copy they
     # are marked '_nostore' and the gate shows the pin with the reason 'layer not in store'.
-    store_layers = {_sl_layer(k) for k in ents}
+    # N3 (grade of round 5): a layer is 'in the store' only when the store's manifest says it is COMPLETE (every record of the
+    # layer, linked to a park or not: KPC-Store kpc_layer_records.py). A partial layer, or one with no manifest, is handled like
+    # a layer not in the store: its proven old records still give way to their fresh twin, the others are kept (never hints).
+    man = (_RA_MAN[0] or {}).get(area) or {}
+    held_layers = {_sl_layer(k) for k in ents}
+    store_layers = {lay for lay in held_layers if (man.get(lay) or {}).get('complete')}
     this_run = CMODE != 'only'
     for a in recs:
         i = _oid(a)
         lay = _sl_layer(i)
-        if lay not in store_layers: continue
+        if lay not in held_layers: continue
         g = idx.get(lay) or {}
         bb = SL.box_of(SL.rings_of(a.get('_g'))) or a.get('_bb')
         if not bb or not g: continue
@@ -2528,13 +2535,16 @@ def fresh_records(st, recs, P):
         i = _oid(a)
         if i in alias: continue
         if _sl_layer(i) not in store_layers:
-            nostore.append(dict(a, _fresh=True, _read_now=True) if (this_run and not a.get('rd')) else dict(a, _nostore=True))
+            x = dict(a, _fresh=True, _read_now=True) if (this_run and not a.get('rd')) else dict(a, _nostore=True)
+            if i in fresh_ids: x['OBJECTID'] = i + '~old'; x.pop('_fresh', None); x.pop('_read_now', None); x['_nostore'] = True   # a fresh record holds this number
+            nostore.append(x)
             continue
         h = dict(a, _hint=True)
         if i in fresh_ids: h['OBJECTID'] = i + '~old'   # an old row number that a fresh record now carries: never the same id
         hints.append(h)
     FRESH[st] = dict({'fresh': len(out), 'twins': len(alias), 'hints': len(hints), 'nostore': sum(1 for a in nostore if a.get('_nostore')),
-                      'read_now': sum(1 for a in nostore if a.get('_read_now')), 'store_layers': sorted(store_layers)},
+                      'read_now': sum(1 for a in nostore if a.get('_read_now')), 'store_layers': sorted(store_layers),
+                      'partial_layers': sorted(held_layers - store_layers), 'no_manifest': not man},
                      **{'by_' + k_: v for k_, v in lv_n.items()})
     return out + nostore + hints, alias
 
@@ -2553,8 +2563,8 @@ def repoint_saved(st, P, alias, fresh_ids, store_layers=None):
             if x_ in alias:
                 if alias[x_] != x_: REPOINTS.append([st, ref, kind, x_, alias[x_], 'proven same land'])
                 return int(alias[x_]) if alias[x_].isdigit() else alias[x_]
-            if store_layers is not None and _sl_layer(x_) not in store_layers:
-                REPOINTS.append([st, ref, kind, x_, '', 'layer not in store: the id stays (the store holds no record of this layer here)'])
+            if store_layers is not None and _sl_layer(x_) not in store_layers and x_ not in fresh_ids:
+                REPOINTS.append([st, ref, kind, x_, '', 'layer not in store (or not complete there): the id stays'])
                 return x
             REPOINTS.append([st, ref, kind, x_, '', 'no fresh record proves this land: the answer stays on the old copy (a hint, never drawn)'])
             return x_ + '~old' if x_ in fresh_ids else x
@@ -2954,7 +2964,9 @@ def run(st):
                f"{_fr.get('twins', 0)} old saved record(s) proven to one (by agency id {_fr.get('by_id', 0)}, by shared ground "
                f"{_fr.get('by_overlap', 0)}, pieces {_fr.get('by_piece', 0)}, by name and size {_fr.get('by_name_size', 0)}); "
                f"{_fr.get('hints', 0)} old record(s) with no fresh twin kept as hints (never drawn); {_fr.get('nostore', 0)} record(s) of "
-               f"layers the store does not hold here (only the old saved copy reads them), {_fr.get('read_now', 0)} read this run; saved answers moved to their "
+               f"layers the store does not hold complete here (only the old saved copy reads them), {_fr.get('read_now', 0)} read this run; "
+               f"layers complete in the store: {' '.join(_fr.get('store_layers') or []) or 'none'}; held but not complete: "
+               f"{' '.join(_fr.get('partial_layers') or []) or 'none'}" + (' (no layer manifest: run the store\'s layer-records step)' if _fr.get('no_manifest') else '') + "; saved answers moved to their "
                f"fresh record {sum(1 for x in REPOINTS if x[0] == st and x[4])}, left on the old copy {sum(1 for x in REPOINTS if x[0] == st and not x[4])}")
     recs = prefer_state_layer(st, recs, P)
     if _kr('KPC_SAVED_NEXT_STATE'):
@@ -4246,7 +4258,7 @@ def run(st):
         # 25 Nov 2026 (grade of #380 round 2, must-fix): the joined ids of fresh store records. The outline cutter
         # (kpc_outlines_from_key.py) cuts by id from the OLD saved copy, where the same number can be other land
         # (fresh sgmnc210 = Lost Valley Prairie, old 210 = another place, about 140 miles off): it must never cut these there.
-        _fr_ids = {_oid(a) for a in recs if a.get('_fresh')}
+        _fr_ids = {_oid(a) for a in recs if a.get('_fresh') and not a.get('_read_now')}   # N1: a live read this run is cut from the saved copy
         out['fresh_store'] = {'about': "joined record ids that are the outline store's own records (KPC_STORE_FRESH): "
                                        'their shapes are in the store, never in the saved copy',
                               'ids': sorted({str(x[0]) for p_ in parks.values() for x in p_.get('m') or [] if str(x[0]) in _fr_ids})}
