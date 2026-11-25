@@ -179,7 +179,7 @@
   "AR": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "CT": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "DC": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "DE": "the state GIS server did not answer from GitHub (HTTP 500); ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "DE": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "IL": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "KS": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "LA": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
