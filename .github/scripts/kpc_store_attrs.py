@@ -125,22 +125,39 @@ def record_acres(r):
 def run(store, out, gh=None, today=None):
     want = wanted_fields(gh)
     recs, files, by_name, refound = {}, 0, {}, {}
-    manifest = {}
+    manifest, broken = {}, set()
     paths_ = sorted(glob.glob(os.path.join(store, '*.kpcstore.json.gz'))) + sorted(glob.glob(os.path.join(store, '*.layer-records.json.gz')))
     for path in paths_:
         if '.prev.' in os.path.basename(path):
             continue
+        is_layers = path.endswith('.layer-records.json.gz')
+        try:
+            with gzip.open(path, 'rt', encoding='utf-8') as f:
+                d = json.load(f)
+        except Exception as e:  # noqa: BLE001
+            if not is_layers: raise
+            # P2 (grade of round 6): a broken layer-records file is skipped LOUDLY; its area gets no manifest (no layer counts
+            # as complete), and everything else is still written
+            bad_area = re.sub(r'\.layer-records\.json\.gz$', '', os.path.basename(path))
+            broken.add(bad_area)
+            print(f'::warning title=Store id fields::{os.path.basename(path)} cannot be read ({type(e).__name__}: {str(e)[:120]}): '
+                  f'skipped; {bad_area} gets no layer manifest (no layer counts as complete there)', flush=True)
+            continue
         files += 1
-        with gzip.open(path, 'rt', encoding='utf-8') as f:
-            d = json.load(f)
         area = str(d.get('area') or re.sub(r'\.(kpcstore|layer-records)\.json\.gz$', '', os.path.basename(path)))
         # 25 Nov 2026 (format 8; KPC-Store kpc_layer_records.py, the owner's 8:21 AM fix): every record of every layer the keys
         # join, linked to a park or not, with a per-layer manifest (source count, store count, complete). The manifest goes along
         # so the key counts a layer as 'in the store' only when it is complete.
         if d.get('kpcstore_layers'):
+            in_file = {}
+            for r in d.get('records') or []: in_file[str(r.get('layer') or '')] = in_file.get(str(r.get('layer') or ''), 0) + 1
             for lay, m in (d.get('manifest') or {}).items():
+                src, sto = m.get('source_count'), m.get('store_count')
+                # P3 (grade of round 6): complete only when the file says so AND the layer's own count, the stored count and the
+                # records really in this file are the same number, above 0; anything else is partial
+                full = bool(m.get('complete')) and isinstance(src, int) and src > 0 and src == sto == in_file.get(lay, 0)
                 manifest.setdefault(area, {})['padus' if lay == 'PAD-US' else lay] = {
-                    'complete': bool(m.get('complete')), 'source_count': m.get('source_count'), 'store_count': m.get('store_count'), 'read': m.get('read')}
+                    'complete': full, 'source_count': src, 'store_count': sto, 'in_file': in_file.get(lay, 0), 'read': m.get('read')}
         groups = d.get('parks') or []
         if d.get('records'): groups = list(groups) + [{'records': d['records']}]
         for p in groups:
@@ -190,6 +207,7 @@ def run(store, out, gh=None, today=None):
                         bx = record_box(r)
                         for nm in {name_key(r.get('record_name')), name_key(r.get('record_name_in_source'))} - {''}:
                             by_name.setdefault(lay, {}).setdefault(nm, []).append([round(ac, 3), k] + ([bx] if bx else []))
+    for a_ in broken: manifest.pop(a_, None)
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
            'format': 8, 'manifest': manifest, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
@@ -238,9 +256,24 @@ def selftest():
         ok = ok and d['by_name'].get('sgzzc', {}).get('alphaforest') == [[50.0, 'sgzzc30@']]
         e = d['refound'].get('sgzze4') or {}   # format 6: name, size, box and a light outline, for the same-land proof
         ok = ok and e.get('_nm') == 'Lost Valley Prairie' and e.get('_bx') == [-92.83, 44.8, -92.82, 44.81] and len((e.get('_g') or [[]])[0]) == 5
-        ok = ok and d['manifest'] == {'US-ZZ': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1, 'read': None},
-                                                 'padus': {'complete': False, 'source_count': 9, 'store_count': 2, 'read': None}}}
+        ok = ok and d['manifest'] == {'US-ZZ': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1, 'in_file': 1, 'read': None},
+                                                 'padus': {'complete': False, 'source_count': 9, 'store_count': 2, 'in_file': 0, 'read': None}}}
         ok = ok and (d['records'].get('fws4026') or {}).get('_nm') == 'Rothi WPA'   # format 8: a layer record that no park links
+        # P3: 'complete' with counts that disagree with the records in the file = partial; P2: a broken file = no manifest, loud
+        with gzip.open(os.path.join(st, 'US-YY.layer-records.json.gz'), 'wt') as f:
+            json.dump({'kpcstore_layers': 1, 'area': 'US-YY', 'manifest': {'fws': {'complete': True, 'source_count': 2, 'store_count': 2},
+                                                                          'sgyya': {'complete': True, 'source_count': 0, 'store_count': 0}},
+                       'records': [{'key': 'fws7', 'layer': 'fws', 'record_id': '7', 'q': 6, 'rings': [[0, 0, 10, 0, 0, 10, -10, 0, 0, -10]]}]}, f)
+        with open(os.path.join(st, 'US-XX.layer-records.json.gz'), 'wb') as f: f.write(b'not a gzip file')
+        o2 = os.path.join(t, 'b.json.gz')
+        import io, contextlib
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf): run(st, o2, gh, '2026-11-25')
+        d2 = json.load(gzip.open(o2, 'rt'))
+        ok = ok and d2['manifest']['US-YY']['fws']['complete'] is False and d2['manifest']['US-YY']['sgyya']['complete'] is False
+        ok = ok and 'US-XX' not in d2['manifest'] and '::warning title=Store id fields::US-XX.layer-records.json.gz cannot be read' in buf.getvalue()
+        ok = ok and 'fws4026' in d2['records']   # the rest is still written
+        for f_ in ('US-YY.layer-records.json.gz', 'US-XX.layer-records.json.gz'): os.remove(os.path.join(st, f_))
         ok = ok and e.get('_st') == 'US-ZZ' and d['records']['3422'].get('_pad') == {'Loc_Nm': 'TEST', 'GIS_Acres': 4}   # format 7
     print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']) + ' ' + json.dumps(d.get('refound')))
     return 0 if ok else 1

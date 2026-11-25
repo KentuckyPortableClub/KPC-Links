@@ -141,7 +141,9 @@ def store_attrs():
     if not out.is_file() or out.stat().st_mtime < newest or fmt < 8:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
-        subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS)
+        rc = subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS).returncode
+        if rc != 0:   # P2 (grade of round 6): a failed run never falls back to an older id file
+            return None
     return str(out) if out.is_file() else ''
 
 
@@ -407,6 +409,10 @@ def main(argv):
     rep = HERE / 'reports' / ('test-' + datetime.datetime.now().strftime('%Y-%m-%d-%H%M'))
     rep.mkdir(parents=True, exist_ok=True)
     attrs = store_attrs() if any(s != 'KY' for s in order) else ''
+    if attrs is None:
+        say('STOPPED: the agency id fields could not be read from the outline store (kpc_store_attrs.py failed; see above). '
+            'The test never uses an older id file. Tell Claude.')
+        return
     if any(s != 'KY' for s in order): official_sizes()
     out = [f'KPC test keys, {datetime.datetime.now():%d %b %Y %I:%M %p}. Saved copies only: nothing was downloaded or uploaded.',
            'Counts only, no park names. "website" = the key on the website today; "last test" = this PC\'s previous test of that state.',

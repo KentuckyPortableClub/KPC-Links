@@ -172,5 +172,22 @@ check('the one line per state: by agency id, by shared ground, pieces, by name a
 kt = (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8')
 check('the PC test remakes its id file before format 8 and saves the owner lists',
       'fmt < 8' in kt and all(w in kt for w in ('saved-answers-no-fingerprint.csv', 'pin-only-parks.csv', 'saved-answers-moved.csv', 'rows-kept-but-listed.csv', 'layers-not-in-store.csv')))
+# P2 (grade of round 6): a failed id-file run stops the PC test; it never falls back to an older record-attrs file
+import importlib.util  # noqa: E402
+spec = importlib.util.spec_from_file_location('kpc_test_keys_p2', ROOT / 'tools/pc-keys/kpc_test_keys.py')
+TK = importlib.util.module_from_spec(spec)
+try:
+    spec.loader.exec_module(TK)
+    with tempfile.TemporaryDirectory() as td_:
+        td_ = pathlib.Path(td_); (td_ / 'store').mkdir(); (td_ / 'links' / '.pf').mkdir(parents=True)
+        (td_ / 'links' / '.pf' / 'record-attrs.json.gz').write_bytes(b'stale')   # an older file that must never be used
+        TK.STORE, TK.LINKS, TK.say = td_ / 'store', td_ / 'links', (lambda *a: None)
+        import subprocess as _sp
+        _run = TK.subprocess.run
+        TK.subprocess = type('S', (), {'run': staticmethod(lambda *a, **k: type('R', (), {'returncode': 1})())})
+        check('P2: kpc_store_attrs failing = no id file used (the PC test stops), never the older file', TK.store_attrs() is None)
+except SystemExit:
+    check('P2: kpc_test_keys loads', False)
+check('P2: the PC test says STOPPED when the id fields cannot be read', 'STOPPED: the agency id fields could not be read' in kt)
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

@@ -58,13 +58,17 @@ def store_records(store, area):
     the key spells it ('sgmnc210', a PAD-US number), at the store's full detail: {id: {'_r': rings, 'Loc_Mang', 'publishable',
     'read', 'layer_url', 'name'}}. {} when the store folder or the area's file is not there. Reads files only."""
     if not store: return {}
-    f = pathlib.Path(store) / f'{area}.kpcstore.json.gz'
-    if not f.is_file(): return {}
     import kpc_store_attrs as SA
-    with gzip.open(f, 'rt', encoding='utf-8') as fh: d = json.load(fh)
     out = {}
-    for p in d.get('parks') or []:
-        for r in p.get('records') or []:
+    # P1 (grade of round 6): the park store AND the layer records (every record of a layer, linked to a park or not; KPC-Store
+    # kpc_layer_records.py) are both the store. A park record wins when both hold the same id.
+    groups = []
+    for f in (pathlib.Path(store) / f'{area}.layer-records.json.gz', pathlib.Path(store) / f'{area}.kpcstore.json.gz'):
+        if not f.is_file(): continue
+        with gzip.open(f, 'rt', encoding='utf-8') as fh: d = json.load(fh)
+        groups += [p.get('records') or [] for p in d.get('parks') or []] + [d.get('records') or []]
+    for recs_ in groups:
+        for r in recs_:
             k = SA.record_key(r)
             if not k: continue
             rs = SA.record_rings(r)
@@ -122,7 +126,7 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
     # M1 (grade of round 4): no store file for this area = this run cannot tell what the fresh records look like. It changes
     # NOTHING here: no save, every old outline kept, the reason listed, and the caller exits 3 (the workflow then says the file
     # is as it was and the sync marks the state HELD). Only with the store file present is an old outline ever dropped.
-    if fresh and not (store and (pathlib.Path(store) / f'{area}.kpcstore.json.gz').is_file()):
+    if fresh and not (store and any((pathlib.Path(store) / f'{area}.{x}.json.gz').is_file() for x in ('kpcstore', 'layer-records'))):
         return [], [('*', f'{len(fresh)} fresh store record id(s) in the key, but no outline store file for {area} '
                           f'(--store / KPC_STORE_DIR): nothing changed, nothing saved, every old outline kept (HELD)')]
     for ref, q in sorted((key.get('parks') or {}).items()):

@@ -121,6 +121,34 @@ with tempfile.TemporaryDirectory() as t:
     check('with the store record publishable the old outline (same record number) is rebuilt from the store',
           'store:' in json.dumps(saved['out'].get('US-9001') or {}) and '-94.7' not in json.dumps(saved['out'].get('US-9001') or {}))
 
+# P1 (grade of round 6): a park joined only to a LAYER RECORD (every record of a layer, in <area>.layer-records.json.gz) is cut from it
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    cache, keys, outl, store = t / 'cache', t / 'keys', t / 'outlines', t / 'store'
+    for d in (cache, keys, outl, store): d.mkdir()
+    with gzip.open(cache / 'US-ZZ.json.gz', 'wt', encoding='utf-8') as f: json.dump({'st': 'ZZ', 'recs': []}, f)
+    (keys / 'US-ZZ.json').write_text(json.dumps({'st': 'ZZ', 'fresh_store': {'ids': ['fws4026']}, 'parks': {
+        'US-9358': {'n': 'Detroit Lakes WMD', 'g': 'official', 'm': [['fws4026', 'Rothi WPA', 1231, 'reviewed']]}}}))
+    with gzip.open(store / 'US-ZZ.layer-records.json.gz', 'wt', encoding='utf-8') as f:
+        json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'manifest': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1}},
+                   'records': [{'key': 'fws4026', 'layer': 'fws', 'record_id': '4026', 'q': 6, 'read': '2026-11-25', 'publishable': True,
+                                'agency_label': 'U.S. Fish and Wildlife Service', 'rings': [enc(sq(-95.8, 46.8, 0.01)[0])]}]}, f)
+    old_rec = {'ref': 'US-9358', 'record_ids': ['fws4026'], 'layer_url': 'file:US-ZZ.json.gz'}
+    saved = {}
+    _sv, _la = O.M.save_area, O.M.load_area
+    O.M.load_area = lambda area, root=None: {'US-9358': old_rec}
+    O.M.save_area = lambda area, out, root, key_dir=None: saved.update({'out': dict(out)})
+    added, skipped = O.build_state('ZZ', cache, dry=False, root=outl, key_dir=keys, say=lambda *a: None, store=store)
+    r = (saved.get('out') or {}).get('US-9358') or {}
+    check('a park joined only to a layer record is cut from the store (store:, the store read date), never dropped',
+          'store:' in json.dumps(r) and '2026-11-25' in json.dumps(r) and '-95.8' in json.dumps(r))
+    with gzip.open(store / 'US-ZZ.layer-records.json.gz', 'wt', encoding='utf-8') as f:
+        json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'records': [{'key': 'fws4026', 'layer': 'fws', 'record_id': '4026', 'q': 6,
+                   'publishable': False, 'rings': [enc(sq(-95.8, 46.8, 0.01)[0])]}]}, f)
+    added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store)
+    check('a layer record that is not publishable is not cut (the same publishable-is-True rule)', not added and 'not publishable' in dict(skipped).get('US-9358', ''))
+    O.M.save_area, O.M.load_area = _sv, _la
+
 # the report-only tools: kpc_master.joined_missing and kpc_outline_score
 import importlib, os, subprocess  # noqa: E402
 KM = importlib.import_module('kpc_master')
@@ -140,11 +168,20 @@ with tempfile.TemporaryDirectory() as t:
     with gzip.open(t / 'store' / 'US-ZZ.kpcstore.json.gz', 'wt') as f:
         json.dump({'parks': [{'records': [{'key': '207720', 'layer': 'PAD-US', 'record_id': '207720', 'q': 6, 'rings': [enc(sq(-92.8, 44.8, 0.01)[0])],
                                            'attributes': {'Unit_Nm': 'Alpha National Wildlife Refuge', 'Mang_Name': 'FWS', 'Mang_Type': 'FED', 'GIS_Acres': 500}}]}]}, f)
+    (t / 'data' / 'us-key' / 'US-ZY.json').write_text(json.dumps({'fresh_store': {'ids': ['fws4026']}, 'parks': {
+        'US-9358': {'n': 'Detroit Lakes Wetland Management District', 't': 'National Wildlife Refuge', 'm': [['fws4026', 'Rothi WPA', 1231, 'reviewed']]}}}))
+    with gzip.open(t / 'store' / 'US-ZY.layer-records.json.gz', 'wt') as f:
+        json.dump({'kpcstore_layers': 1, 'records': [{'key': 'fws4026', 'layer': 'fws', 'record_id': '4026', 'q': 6, 'rings': [enc(sq(-95.8, 46.8, 0.01)[0])],
+                                                      'record_name': 'Rothi WPA', 'attributes': {'Mang_Name': 'FWS'}}]}, f)
     env = dict(os.environ, GEO_CACHE=str(t / 'cache'), KPC_STORE_DIR=str(t / 'store'))
     subprocess.run([sys.executable, str(ROOT / '.github/scripts/kpc_outline_score.py')], cwd=t, env=env, capture_output=True, text=True)
     sc = json.loads((t / 'data' / 'boundary-score.json').read_text())['parks'].get('US-9003') or ['', '', '', '']
     check("the outline score reads a fresh id's agency from the store (FWS: agency 1/1), not the old copy's record of that number",
           'agency 1/1' in sc[3])
+    import importlib  # noqa: E402
+    S_ = importlib.import_module('kpc_outline_score')
+    sid, _sn = S_.store_index(str(t / 'store'))
+    check('the outline score reads the layer records too (a record linked to no park)', 'fws4026' in sid and '207720' in sid)
 
 src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
 check("the US key writes the fresh ids into the key file ('fresh_store') when KPC_STORE_FRESH is on",
