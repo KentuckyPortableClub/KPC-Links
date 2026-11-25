@@ -1,5 +1,5 @@
 {
- "about": "Trail and river lines picked by hand: the exact official layer + filter for one POTA park (outside research bot, round 6, Oct 25 2026; checked by chat 2). kpc_state_trails.py draws these first, whatever the name. NOT SURE rows keep their note. Oct 26 (round 11, HQ): + 16 National Historic Trails from NPS National Trails (one layer per trail, so the whole layer is the trail; 5 have no name field: Oregon, California, Pony Express, Mormon Pioneer, El Camino Real de los Tejas). Ala Kahakai is a corridor polygon: in the US key instead. Nov 2 (PR 4, 'Official trail lines'): + 44 trail parks that had only an OpenStreetMap line, each with its verified official layer (USGS National Digital Trails, state / provincial agencies, Parks Canada, BLM, USFS). Optional per entry: 'km' = the official length (a drawn line over 3x is flagged), 'water': true = a paddle route, and per part 'bbox' [W,S,E,N] = only pieces crossing that box.",
+ "about": "Trail and river lines picked by hand: the exact official layer + filter for one POTA park (outside research bot, round 6, Oct 25 2026; checked by chat 2). kpc_state_trails.py draws these first, whatever the name. NOT SURE rows keep their note. Oct 26 (round 11, HQ): + 16 National Historic Trails from NPS National Trails (one layer per trail, so the whole layer is the trail; 5 have no name field: Oregon, California, Pony Express, Mormon Pioneer, El Camino Real de los Tejas). Ala Kahakai is a corridor polygon: in the US key instead. Nov 2 (PR 4, 'Official trail lines'): + 44 trail parks that had only an OpenStreetMap line, each with its verified official layer (USGS National Digital Trails, state / provincial agencies, Parks Canada, BLM, USFS). Optional per entry: 'km' = the official length (a drawn line over 3x is flagged), 'water': true = a paddle route, and per part 'bbox' [W,S,E,N] = only pieces crossing that box. 24 Nov 2026 (owner t2067u 'I agree work on it'): + US-8313 and US-12717 BUILT-ONLY hand picks from NC Division of Parks and Recreation's own State Trails layer (TRAILSTAT Constructed or Designated; Planned left out). That layer is on a services*.arcgis.com host, which the bots never contact, so each part names 'saved': the saved copy of that layer the bot reads from disk (kpc_state_trails.saved_part_lines). Until the saved copy is on file the bot notes it and keeps the park's saved line.",
  "parks": {
   "CA-5536": {
    "name": "Nassagaweya Canyon Trail Recreation Site",
@@ -1240,6 +1240,32 @@
    ],
    "note": "Nov 2 PR 4 (official trail lines): 23.5 km, WI DNR",
    "km": 23.5
+  },
+  "US-8313": {
+   "name": "Mountains to Sea State Trail",
+   "parts": [
+    {
+     "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1",
+     "saved": "data/trails-saved/nc-dpr-state-trails.geojson",
+     "where": "SYSTEMNAME = 'Mountains-to-Sea Trail' AND TRAILSTAT IN ('Constructed','Designated')",
+     "by": "NC Division of Parks and Recreation, DNCR (State Trails layer; built segments only)"
+    }
+   ],
+   "km": 1255,
+   "note": "24 Nov 2026: built only (Constructed 131.9 mi + Designated 647.9 mi = 779.8 mi, about 1,255 km, by the layer LENGTH field); 681.7 mi Planned is not drawn"
+  },
+  "US-12717": {
+   "name": "Deep River State Trail",
+   "parts": [
+    {
+     "url": "https://services6.arcgis.com/nRIB86xC7kq6wavB/arcgis/rest/services/State_Trails/FeatureServer/1",
+     "saved": "data/trails-saved/nc-dpr-state-trails.geojson",
+     "where": "SYSTEMNAME = 'Deep River State Trail' AND TRAILSTAT IN ('Constructed','Designated')",
+     "by": "NC Division of Parks and Recreation, DNCR (State Trails layer; built segments only)"
+    }
+   ],
+   "km": 36,
+   "note": "24 Nov 2026: built only (Constructed 0.5 mi + Designated 21.6 mi = 22.1 mi, about 36 km, by the layer LENGTH field); 91.9 mi Planned is not drawn"
   }
  }
 }

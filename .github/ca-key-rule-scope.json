@@ -150,6 +150,14 @@
    "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US report-only confirm evidence, per-rule counters, and a size flag. The Canada pass does not use them, so no Canada result changes. Scope none.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (report only; shared helper; Canada pass unchanged)"
+  },
+  {
+   "id": "2026-11-24-loose-name-guards-shared",
+   "when": "2026-11-24",
+   "from": "6cf67b0757cb",
+   "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US auto-confirm guards A1 to A4 and the NY bracket-twin cut. The Canada pass (canada_pass) does not use them, so no Canada result changes. Scope none.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (t2067u 8:32 PM CT 'I agree work on it': the fixes from the check of 787 loose-name confirms); shared helper, Canada pass unchanged"
   }
  ]
 }

@@ -23,7 +23,13 @@ a new line under half the length of the saved one keeps the saved one; parks POT
 gate (Sheltowee Trace + Katy, Virginia Creeper, Greenbrier River lines) writes /tmp/kpc-gate.txt for the grade-me line.
 Nov 16: before writing, the bot checks both index-state.json and index.json. A new official line always beats a saved
 OpenStreetMap line. A hand-picked line always gets written. Between two official lines, only a shorter or rougher new one
-is blocked (under 75% of the saved length, or under half the saved points). A skip is logged with the reason."""
+is blocked (under 75% of the saved length, or under half the saved points). A skip is logged with the reason.
+24 Nov 2026 (owner t2067u 'I agree work on it'): (1) a line in index-state.json read before Nov 2 (the no-planned rule), or with no
+read date, is STALE: not reused for 60 days, and a shorter or rougher new line may replace it; (2) closed segments (a status field
+says closed / decommissioned / abandoned / obliterated; OpenStreetMap access=no, abandoned, disused) are not drawn; (3) a trail line
+more than 1 km (0.6 mi) from POTA's pin is not used automatically: it goes to the state report's 'check' list for a person (a hand
+pick and a wild and scenic river are not held); (4) a hand-picked part may name 'saved', a saved copy of a layer on a host the
+bots never contact, read from disk with the part's where filter."""
 import json, os, re, time, math, urllib.request, urllib.parse, datetime
 import kpc_net_guard; kpc_net_guard.install()   # never-contact hosts refused before any request, redirect hops included
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
@@ -43,6 +49,21 @@ PLANNED = re.compile(r'\b(planned|proposed|future|conceptual|potential|unbuilt|n
 def planned(A):
     """Nov 2 (PR 4): a segment that is only planned / proposed (a status-like field says so) is not drawn."""
     return any(re.search(r'stat|phase|exist|cond|build|constr', str(k), re.I) and isinstance(v, str) and PLANNED.search(v) for k, v in (A or {}).items())
+# 24 Nov 2026 (owner t2067u 'I agree': closed trail segments are not drawn). A status-like field that says the segment is closed,
+# decommissioned, abandoned or obliterated; a seasonal or partial closure ('closed to motor vehicles', 'closed in winter') is not.
+CLOSED = re.compile(r'\b(closed|decommissioned|abandoned|obliterated)\b', re.I)
+CLOSED_NOT = re.compile(r'season|winter|spring|summer|autumn|\bfall\b|temporar|closed to\b|hunt|night|dusk|dawn|motor|vehicle|\batv\b|\bohv\b|snow|bike|horse|equestrian', re.I)
+def closed(A):
+    return any(re.search(r'stat|phase|exist|cond|open|clos', str(k), re.I) and isinstance(v, str) and CLOSED.search(v) and not CLOSED_NOT.search(v)
+               for k, v in (A or {}).items())
+def not_drawn(A):
+    """Planned / proposed (Nov 2) or closed (24 Nov) segments are not drawn."""
+    return planned(A) or closed(A)
+def osm_closed(tg):
+    """24 Nov 2026: an OpenStreetMap way or route marked closed (access=no, abandoned / disused) is not drawn."""
+    tg = tg or {}
+    return (str(tg.get('access') or '').lower() == 'no' or str(tg.get('abandoned') or '').lower() == 'yes' or str(tg.get('disused') or '').lower() == 'yes'
+            or any(str(k).startswith(('abandoned:', 'disused:')) for k in tg) or (isinstance(tg.get('highway'), str) and tg['highway'] in ('abandoned', 'disused')))
 WATER = re.compile(r'water (state )?trail|watertrail|blueway|paddl|canoe|kayak', re.I)
 CHECK_KM = 8.0   # the drawn line must come this close to the POTA pin
 CHECK_KM_TRAIL = 35.0  # Oct 18: a real trail (not a park named 'Trail') may have its POTA pin at one end, away from the mapped line
@@ -155,7 +176,7 @@ def forest(name, la, lo):
         q = {'where': f"{nf} LIKE '%{'%'.join(w)}%'", 'geometry': f'{lo-.6},{la-.6},{lo+.6},{la+.6}', 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
              'spatialRel': 'esriSpatialRelIntersects', 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json'}
         j = get(FS + '/query?' + urllib.parse.urlencode(q))
-        lines = [[[round(x, 5), round(y, 5)] for x, y in p] for f in j.get('features', []) if not planned(f.get('attributes'))
+        lines = [[[round(x, 5), round(y, 5)] for x, y in p] for f in j.get('features', []) if not not_drawn(f.get('attributes'))
                  for p in (f.get('geometry') or {}).get('paths', [])]
         return lines or None
     except Exception as e:
@@ -240,7 +261,7 @@ def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
         fs = j.get('features', [])
         for f in fs:  # Oct 18: 'Greenbrier River Trail' must not pick up the 'Greenbrier River Water Trail' (the river itself)
             A = f.get('attributes') or {}; nm = str(A.get(fld, '') if fld else '')
-            if planned(A): continue   # Nov 2 (PR 4): planned / proposed segments are not drawn
+            if not_drawn(A): continue   # Nov 2 (PR 4): planned / proposed segments are not drawn; 24 Nov: closed ones neither
             # WV-style layers mark the river line with surface = Water (named just like the rail-trail)
             if nowater and any(re.search(r'surf|type|use|class', str(k), re.I) and str(v).strip().lower() in ('water', 'water trail', 'paddle', 'blueway') for k, v in A.items()): continue
             if nowater and re.search(r'water ?trail|blueway|paddl|canoe', nm, re.I) and not re.search(r'water ?trail|blueway', want or '', re.I): continue
@@ -341,7 +362,7 @@ def osm(name, iso, la, lo):
     keep, names = [], set()
     for el in j.get('elements', []):
         tg = el.get('tags', {}) or {}
-        if tg.get('highway') == 'proposed' or tg.get('state') == 'proposed' or 'proposed' in tg or tg.get('construction'): continue   # Nov 2: not built
+        if tg.get('highway') == 'proposed' or tg.get('state') == 'proposed' or 'proposed' in tg or tg.get('construction') or osm_closed(tg): continue   # Nov 2: not built; 24 Nov: closed
         if el.get('type') == 'relation':
             lines = [[[round(p['lon'], 5), round(p['lat'], 5)] for p in m.get('geometry', [])] for m in el.get('members', []) if m.get('type') == 'way' and m.get('geometry')]
         else:
@@ -458,7 +479,107 @@ def saved_record(ref, idx_state, idx_nat, outdir):
         'source': 'official' if official else (rec.get('source') or props.get('source') or ''),
         'in_state': bool(idx_state and ref in idx_state),
         'in_nat': bool(idx_nat and ref in idx_nat),
+        # 24 Nov 2026: a line in index-state.json read before Nov 2 (or with no read date: written before dates were kept,
+        # Oct 28) is stale. index.json lines (the national bot's, hand-checked USGS extracts) carry no read date and are not.
+        'read': str(((idx_state or {}).get(ref) or {}).get('read') or ''),
+        'stale': bool(idx_state and ref in idx_state and stale_read((idx_state.get(ref) or {}).get('read'))),
     }
+
+
+# 24 Nov 2026 (owner t2067u 'I agree'): a line read before the Nov 2 no-planned rule may still carry planned trail, so it is STALE:
+# it is not reused for 60 days, and a shorter or rougher new line may replace it. Lines read on or after Nov 2 keep both guards.
+STALE_BEFORE = '2026-11-02'
+# 24 Nov 2026 (owner t2067u): a trail line more than 1 km (about 0.6 mi) from POTA's pin is not used automatically: it goes to
+# the 'check' list in the state report for a person. A line picked by hand (data/trails-hand.json) is a person's pick and a wild
+# and scenic river is drawn from the river layer (its own rules): neither is held here.
+PIN_CHECK_KM = 1.0
+FT_PER_KM, MI_PER_KM = 3280.84, 0.621371
+
+
+def stale_read(read):
+    """True when a saved line was read before STALE_BEFORE, or its read date is missing or unreadable (index-state.json rows
+    carry 'read' since Oct 28; a row without one is older)."""
+    d = str(read or '')[:10]
+    if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', d):
+        return True
+    return d < STALE_BEFORE   # ISO dates compare as text
+
+
+def pin_check_reason(near_km, from_hand=False):
+    """Why a line goes to a person instead of the map: more than PIN_CHECK_KM from POTA's pin. None when it may be used."""
+    if from_hand or near_km is None or near_km <= PIN_CHECK_KM:
+        return None
+    mi = near_km * MI_PER_KM
+    far = f'{mi:.1f} mi' if mi >= 0.95 else f'{near_km * FT_PER_KM:,.0f} ft'
+    return f"line is {far} from POTA's pin (over 0.6 mi): not used automatically, a person checks"
+
+
+def line_near_km(path, la, lo):
+    """Kilometres from the pin to the nearest point of a saved line file; None when the file has no line."""
+    try:
+        g = json.load(open(path))
+    except Exception:  # noqa: BLE001
+        return None
+    best = None
+    for f in (g.get('features') or [g]):
+        gg = f.get('geometry') or {}
+        c = gg.get('coordinates') or []
+        for line in ([c] if gg.get('type') == 'LineString' else c):
+            for q in line or []:
+                if q and len(q) >= 2:
+                    d = km(la, lo, q[1], q[0])
+                    best = d if best is None or d < best else best
+    return best
+
+
+_WHERE_EQ = re.compile(r"^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*'((?:[^']|'')*)'\s*$")
+_WHERE_IN = re.compile(r"^\s*([A-Za-z_][A-Za-z0-9_]*)\s+IN\s*\((.*)\)\s*$", re.I)
+
+
+def where_test(where):
+    """24 Nov 2026: the hand-pick 'where' read on a saved copy (no server to run it): FIELD = 'x' and FIELD IN ('a', 'b'), joined
+    by AND; blank or 1=1 = every feature. Anything else raises ValueError (a filter that cannot be read is never guessed)."""
+    w = str(where or '').strip()
+    if not w or w.replace(' ', '') == '1=1': return lambda A: True
+    tests = []
+    for part in re.split(r'\s+AND\s+', w, flags=re.I):
+        m = _WHERE_EQ.match(part)
+        if m:
+            tests.append((m.group(1), {m.group(2).replace("''", "'")})); continue
+        m = _WHERE_IN.match(part)
+        vals = re.findall(r"'((?:[^']|'')*)'", m.group(2)) if m else []
+        if not m or not vals: raise ValueError(f'hand-pick filter not readable on a saved copy: {part[:80]}')
+        tests.append((m.group(1), {v.replace("''", "'") for v in vals}))
+    def test(A):
+        up = {str(k).upper(): v for k, v in (A or {}).items()}
+        return all(str(up.get(f.upper())) in vals for f, vals in tests)
+    return test
+
+
+def saved_part_lines(part, bases=None):
+    """24 Nov 2026: a hand-picked part with 'saved' (a GeoJSON FeatureCollection with the layer's own fields: the saved copy of a
+    layer on a host the bots never contact, such as services*.arcgis.com) is read from disk: its 'where' (where_test) and 'bbox'
+    are applied, and planned or closed segments are left out (not_drawn). None when no saved copy is on disk."""
+    rel = part.get('saved')
+    if not rel: return None
+    for base in (bases if bases is not None else ['', os.environ.get('DATA') or 'kpcdata']):
+        f = os.path.join(base, rel) if base else rel
+        if os.path.isfile(f): break
+    else:
+        return None
+    g = json.load(open(f, encoding='utf-8'))
+    test, bb, out = where_test(part.get('where')), part.get('bbox'), []
+    for ft in g.get('features') or []:
+        A = ft.get('properties') or {}
+        if not test(A) or not_drawn(A): continue
+        gg = ft.get('geometry') or {}
+        c = gg.get('coordinates') or []
+        for ln in ([c] if gg.get('type') == 'LineString' else c if gg.get('type') == 'MultiLineString' else []):
+            pts = [[round(q[0], 5), round(q[1], 5)] for q in ln if q and len(q) >= 2]
+            if len(pts) < 2: continue
+            if bb and not any(bb[0] <= q[0] <= bb[2] and bb[1] <= q[1] <= bb[3] for q in pts): continue
+            out.append(pts)
+    return out
 
 
 def keep_saved_reason(saved, new_official, new_km, new_pts, new_hand=False):
@@ -478,6 +599,8 @@ def keep_saved_reason(saved, new_official, new_km, new_pts, new_hand=False):
         return (f"saved official line is kept ({skm:.0f} km, {spts} points); "
                 f"a new OpenStreetMap line ({new_km:.0f} km) does not replace it")
     if new_official and not saved.get('official'):
+        return None
+    if saved.get('stale'):   # 24 Nov: read before Nov 2 = stale; a shorter or rougher new line may replace it
         return None
     if saved.get('official') and new_official:
         if spts and new_pts < .5 * spts:
@@ -529,7 +652,8 @@ try:  # keep last run's rows for the states not run this time (Oct 17), so the r
     _rr = lambda x: (_ran(x[2]) and (not ONLY or x[0] in ONLY)) or x[0] in _WSRREFS   # Nov 2: an ONLY run keeps every other park's row
     report['found'] = [x for x in _old.get('found', []) if not _rr(x)]; report['missing'] = [x for x in _old.get('missing', []) if not _rr(x)]
     report['noline'] = [x for x in _old.get('noline', []) if not _rr(x)]
-    for _k in ('found', 'missing', 'noline'):
+    report['check'] = [x for x in _old.get('check', []) if not _rr(x)]   # 24 Nov: lines far from the pin, for a person
+    for _k in ('found', 'missing', 'noline', 'check'):
         for x in _old.get(_k, []):
             if _rr(x): OLDROWS.setdefault(x[0], []).append((_k, x))
 except Exception: pass
@@ -563,17 +687,23 @@ def hand_lines(ref):
     trail of the same name) and 'max' (records per page, for servers that cap pages lower than 1000). Planned segments are skipped."""
     out, by = [], ''
     for part in HAND[ref]['parts']:
+        sv = saved_part_lines(part)   # 24 Nov 2026: a saved copy on disk is read first (no network)
+        if sv is not None:
+            out += sv; by = by or part.get('by') or ''; continue
         off = 0
         for _ in range(20):
             q = {'where': part.get('where') or '1=1', 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326,
                  'maxAllowableOffset': 0.00003, 'f': 'json', 'resultOffset': off, 'resultRecordCount': part.get('max') or 1000}
             if part.get('bbox'):
                 q.update({'geometry': ','.join(map(str, part['bbox'])), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects'})
-            j = get(part['url'] + '/query?' + urllib.parse.urlencode(q), t=90)
+            try: j = get(part['url'] + '/query?' + urllib.parse.urlencode(q), t=90)
+            except Exception as e:  # noqa: BLE001
+                if part.get('saved'): raise Exception(f"no saved copy at {part['saved']} and the live layer was not read ({str(e)[:90]})")
+                raise
             if 'error' in j: raise Exception(str(j['error'])[:150])
             fs = j.get('features', [])
             for f in fs:
-                if planned(f.get('attributes')): continue
+                if not_drawn(f.get('attributes')): continue   # planned (Nov 2) or closed (24 Nov) segments are not drawn
                 out += [[[round(x, 5), round(y, 5)] for x, y in pth] for pth in (f.get('geometry') or {}).get('paths', [])]
             if not fs or not j.get('exceededTransferLimit'): break
             off += len(fs)
@@ -586,9 +716,10 @@ FULL = os.environ.get('FULL') == '1'
 def fresh(ref):
     x = IDX.get(ref)
     if FULL or not x or not x.get('official') or not os.path.exists(f'{OUT}/{ref}.json'): return False
+    if stale_read(x.get('read')): return False   # 24 Nov 2026 (owner t2067u): read before Nov 2 = stale, searched again
     try: return (datetime.date.today() - datetime.date.fromisoformat(x.get('read') or '2026-10-26')).days < REUSE_DAYS
     except Exception: return False  # noqa: BLE001
-REUSED, KEPT = [], []
+REUSED, KEPT, PIN_HELD = [], [], []
 # Oct 28: parks POTA no longer lists come out of the index (only when the park lists really loaded)
 ALLREFS = set()
 for _fp in os.listdir('data/parkinfo'):
@@ -613,7 +744,10 @@ for st, cand in jobs():
             if not OUT_OF_TIME: note('State trails', f'stopped for time at {ref}; the parks not reached keep last run\'s results'); OUT_OF_TIME = True
             for _k, x in OLDROWS.get(ref, []): report.setdefault(_k, []).append(x)
             continue
-        if fresh(ref):   # Oct 28: an official line read lately is reused as it is
+        _pin = (v[5], v[6]) if len(v) > 6 and v[5] is not None else LOC.get(ref, (None, None))
+        _far = (_pin[0] is not None and ref not in HAND and kind(v[2] or '', v[0]) != 'WSR' and os.path.exists(f'{OUT}/{ref}.json')
+                and pin_check_reason(line_near_km(f'{OUT}/{ref}.json', _pin[0], _pin[1])) is not None)
+        if fresh(ref) and not _far:   # Oct 28: an official line read lately is reused as it is (24 Nov: not one far from the pin)
             for _k, x in OLDROWS.get(ref, []):
                 if _k == 'found': report['found'].append(x)
             if not any(_k == 'found' for _k, _ in OLDROWS.get(ref, [])):
@@ -655,6 +789,24 @@ for st, cand in jobs():
                 near = min(km(la, lo, p[1], p[0]) for l in lines for p in l)
                 if near <= lim: break
                 lines = None
+        if lines and not from_hand and kind(typ, name) != 'WSR':
+            # 24 Nov 2026 (owner t2067u): a line more than 1 km (0.6 mi) from POTA's pin is not used automatically; a person checks.
+            # A saved line of this park that is itself within 1 km stays; a saved line that is also far comes off the index (its
+            # file stays on disk for the person). A hand-picked line (data/trails-hand.json) is a person's pick and is not held.
+            pc = pin_check_reason(near)
+            if pc:
+                sn = line_near_km(f'{OUT}/{ref}.json', la, lo) if os.path.exists(f'{OUT}/{ref}.json') else None
+                report.setdefault('check', []).append([ref, name, stc, pc]); PIN_HELD.append(ref); note(ref, f'{name}: {pc}')
+                if sn is not None and pin_check_reason(sn) is None and ref in IDX:
+                    KEPT.append(ref); report['found'].append([ref, name, stc, IDX[ref].get('by', ''), IDX[ref].get('km', 0), round(sn, 1)]); got += 1
+                elif ref in IDX and ref not in HAND:
+                    IDX.pop(ref, None); note(ref, f'{name}: the saved line is also far from the pin: taken off the map until a person checks')
+                continue
+        if not lines and ref in IDX and ref not in HAND and kind(typ, name) != 'WSR' and os.path.exists(f'{OUT}/{ref}.json'):
+            pc = pin_check_reason(line_near_km(f'{OUT}/{ref}.json', la, lo))
+            if pc:   # 24 Nov: no new line, and the saved one is far from the pin: off the map until a person checks
+                report.setdefault('check', []).append([ref, name, stc, 'saved ' + pc]); PIN_HELD.append(ref); IDX.pop(ref, None)
+                note(ref, f'{name}: saved {pc}'); continue
         saved = saved_record(ref, IDX, NATIDX, OUT)
         if not lines and saved and saved.get('exists'):
             # Nov 2 (PR 4) + Nov 16: no new official line: a saved official line (either index) stays; a saved OSM line stays, labelled unofficial
@@ -712,10 +864,11 @@ save_json(f'{OUT}/index-state.json', sorted(IDX.values(), key=lambda x: (x['st']
 try: _oldag = _old.get('agency', [])  # Oct 28: a run that searched nothing keeps the last search log
 except Exception: _oldag = []  # noqa: BLE001
 report['agency'] = (ALOG or _oldag)[-400:]
-for _k in ('found', 'missing', 'noline'): report[_k] = sorted(report.get(_k, []), key=lambda x: (str(x[2]), str(x[0])))   # a stable order: no churn
+for _k in ('found', 'missing', 'noline', 'check'): report[_k] = sorted(report.get(_k, []), key=lambda x: (str(x[2]), str(x[0])))   # a stable order: no churn
 save_json(f'{OUT}/state-report.json', report, indent=1)
 note('State trails done', f"{len(report['found'])} drawn, {len(report['missing'])} not drawn (see data/trails/state-report.json); "
                           f"{len(REUSED)} official lines reused, {len(KEPT)} saved lines kept over shorter ones; "
+                          f"{len(PIN_HELD)} lines over 0.6 mi from POTA's pin sent to a person (state-report 'check'); "
                           f"{sum(1 for x in IDX.values() if not x.get('official'))} still unofficial (OpenStreetMap); OpenStreetMap fallback {'ON' if OSM_ON else 'OFF'}")
 # Nov 2 (PR 4): every index row says where its line came from (source official / osm; unofficial rows carry the one label)
 for _x in IDX.values():
@@ -735,6 +888,7 @@ why = []
 if _pts('ky-sheltowee.geojson') < 100: why.append('ky-sheltowee.geojson has no line')
 for ref, nm, mk in (('US-11181', 'Sheltowee Trace', 250), ('US-1766', 'Katy Trail', 250), ('US-9923', 'Virginia Creeper', 15), ('US-9742', 'Greenbrier River', 80)):
     x = IDX.get(ref)
+    if ref in PIN_HELD and not x: why.append(f"{nm} ({ref}) is held for a person: its line is over 0.6 mi from POTA's pin (24 Nov rule)"); continue
     if not x or _pts(f'{OUT}/{ref}.json') < 10 or (x.get('km') or 0) < mk: why.append(f'{nm} ({ref}) lost its line')
 res = 'FAIL' if why else 'PASS'
 msg = f"{len(IDX)} state trail lines; {len(report['found'])} drawn, {len(REUSED)} reused" + ('; ' + '; '.join(why) if why else '')
