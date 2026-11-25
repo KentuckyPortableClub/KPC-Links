@@ -119,6 +119,12 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
     fresh = {str(i) for i in ((key.get('fresh_store') or {}).get('ids') or [])}
     srecs = store_records(store, area) if fresh else {}
     drop_fresh = []
+    # M1 (grade of round 4): no store file for this area = this run cannot tell what the fresh records look like. It changes
+    # NOTHING here: no save, every old outline kept, the reason listed, and the caller exits 3 (the workflow then says the file
+    # is as it was and the sync marks the state HELD). Only with the store file present is an old outline ever dropped.
+    if fresh and not (store and (pathlib.Path(store) / f'{area}.kpcstore.json.gz').is_file()):
+        return [], [('*', f'{len(fresh)} fresh store record id(s) in the key, but no outline store file for {area} '
+                          f'(--store / KPC_STORE_DIR): nothing changed, nothing saved, every old outline kept (HELD)')]
     for ref, q in sorted((key.get('parks') or {}).items()):
         if only and ref not in only: continue
         if ref in have and not stale(ref, have[ref], q): continue
@@ -132,8 +138,7 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
             # one of its records must be in the store and publishable; else it is skipped and its old outline is DROPPED (it
             # may hold land the fresh match left out): the park shows its pin. Fail closed.
             why = ''
-            if not srecs: why = 'no outline store given (--store) or no store file for this area'
-            elif any(i not in srecs for i in ids): why = f'{sum(1 for i in ids if i not in srecs)} of {len(ids)} joined records not in the store ({" ".join([i for i in ids if i not in srecs][:4])})'
+            if any(i not in srecs for i in ids): why = f'{sum(1 for i in ids if i not in srecs)} of {len(ids)} joined records not in the store ({" ".join([i for i in ids if i not in srecs][:4])})'
             elif any(not srecs[i]['publishable'] for i in ids): why = f'{sum(1 for i in ids if not srecs[i]["publishable"])} of {len(ids)} joined store records not publishable (licence)'
             if why:
                 skipped.append((ref, f'fresh store records ({" ".join(_fr[:4])}): {why}; not cut (fail closed)'))
@@ -230,10 +235,16 @@ def main(argv=None):
             good, lines = verify(st, a.ref, a.root); ok = ok and good; print('\n'.join(lines)); print(f'US-{st}: ' + ('OK' if good else 'PROBLEM'))
         return 0 if ok else 1
     if not a.cache: ap.error('--cache is needed (the folder that holds US-XX.json.gz)')
+    held = []
     for st in a.states.replace(',', ' ').split():
         added, skipped = build_state(st, a.cache, set(a.only_refs or []) or None, a.dry_run, a.root, a.key, store=a.store or os.environ.get('KPC_STORE_DIR'))
+        if any(r == '*' for r, _w in skipped):
+            held.append(st); print(f'US-{st}: HELD: ' + next(w for r, w in skipped if r == '*')); continue
         print(f'US-{st}: {len(added)} outline(s) {"would be " if a.dry_run else ""}added; {len(skipped)} skipped'
               + ''.join(f'\n  skipped {r}: {w}' for r, w in skipped))
+    if held:   # M1: exit 3 = the outline file of these states is as it was (kpc-us-key.yml says so; the sync marks them HELD)
+        print(f'HELD (no outline store file for fresh store records): {" ".join(held)}')
+        return 3
     return 0
 
 

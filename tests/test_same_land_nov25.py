@@ -119,6 +119,31 @@ check("the park's own name and its official size within 10% keep its outline (M4
 check('an old-copy hint never draws, even on a confirmed park (fresh data only)',
       parks['K-10']['m'] == [] and 'only in the old saved copy' in parks['K-10']['c'][0][3])
 check('the counts', res['rows'] == 4 and res['pin_now'] == 4 and res['by_name_size'] == 1 and res['listed'] == 1)
+check('the name + size counts say why parks were not kept (M3: missing data or a bug)',
+      res['name_size']['tried'] == 5 and res['name_size']['ok'] == 1 and res['name_size']['no witness'] == 4)
+
+# M2 (grade of round 4): a layer the store holds NO record of for this state is not 'missing records'
+fws_old = {'OBJECTID': 'fws4026', 'Unit_Nm': 'Detroit Lakes WMD tract', 'GIS_Acres': 80, '_g': {'rings': sq(-95.8, 46.8, 0.005)}, 'rd': '2026-11-12'}
+fws_old['_bb'] = ns['bbox'](fws_old['_g'])
+out2, alias2 = ns['fresh_records']('MN', old_recs + [fws_old], {})
+ids2 = {str(a['OBJECTID']): a for a in out2}
+check("a record of a layer the store does not hold keeps its id and is marked 'not in store', never a hint",
+      ids2.get('fws4026', {}).get('_nostore') and not ids2['fws4026'].get('_hint') and 'fws4026~old' not in ids2)
+ns['OVR']['K-11'] = {'join': ['fws4026']}
+ns['repoint_saved']('MN', {'K-11': []}, alias2, set(), set((ns['FRESH'].get('MN') or {}).get('store_layers') or []))
+check('its saved join keeps its id, listed as layer not in store', ns['OVR']['K-11']['join'] == ['fws4026']
+      and any(x[1] == 'K-11' and 'layer not in store' in x[5] for x in ns['REPOINTS']))
+parks2 = {'K-11': {'m': [['fws4026', 'Detroit Lakes WMD tract', 80, 'reviewed']], 'match': {'status': 'confirmed', 'by': 'link'}, 'g': 'official'},
+          'K-12': {'n': 'Golf State Park', 'm': [['sg7', 'Golf State Park', 410, 'name']], 'match': {'status': 'outlined'}, 'g': 'official'}}
+byid2 = dict(byid, fws4026=ids2['fws4026'], sg7=dict(byid['sg7'], Unit_Nm='Golf State Park', GIS_Acres=410))
+facts2 = {'K-12': {'name': 'Golf State Park', 'size': {'acres': 400, 'witness': 'agency_document'}}}
+res2 = gate('MN', parks2, byid2, facts=facts2)
+check("its rows show the pin with the reason 'layer not in store' (not 'old copy only'), and pin-only-parks says layer_in_store no",
+      parks2['K-11']['m'] == [] and 'layer not in store' in parks2['K-11']['c'][0][3]
+      and any(x[1] == 'K-11' and x[4] == 'no' for x in ns['PIN_ONLY']))
+check('each layer the keys join that the store lacks is listed', any(x[:2] == ['MN', 'fws'] and x[2] == 1 for x in ns['NOSTORE_LAYERS']))
+check('M3: a park proven by name and official size whose only row then leaves (an old-copy hint) is NOT counted as kept',
+      parks2['K-12']['m'] == [] and res2['by_name_size'] == 0 and res2['name_size']['ok'] == 1)
 
 # switches: MN and NY only (the owner's test order); never Kentucky yet
 for sw in ('KPC_SAME_LAND', 'KPC_PROVEN_ONLY', 'KPC_STORE_FRESH'):
@@ -129,6 +154,6 @@ check('the one line per state: by agency id, by shared ground, pieces, by name a
       all(w in src for w in ("by agency id {_sh.get('id', 0)}", "by shared ground", "by name and size", "not proven {_sh.get('unproven', 0)}", 'now pin only')))
 kt = (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8')
 check('the PC test remakes its id file before format 7 and saves the owner lists',
-      'fmt < 7' in kt and all(w in kt for w in ('saved-answers-no-fingerprint.csv', 'pin-only-parks.csv', 'saved-answers-moved.csv', 'rows-kept-but-listed.csv')))
+      'fmt < 7' in kt and all(w in kt for w in ('saved-answers-no-fingerprint.csv', 'pin-only-parks.csv', 'saved-answers-moved.csv', 'rows-kept-but-listed.csv', 'layers-not-in-store.csv')))
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

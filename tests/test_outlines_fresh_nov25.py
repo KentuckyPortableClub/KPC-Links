@@ -51,9 +51,26 @@ with tempfile.TemporaryDirectory() as t:
     key(fresh=True)
     added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None)
     sk = dict(skipped)
-    check('a park joined to a fresh store record is never cut from the saved copy (no store given: fail closed)',
-          'US-9001' not in {r['ref'] for r in added} and 'fresh store records' in sk.get('US-9001', ''))
-    check('a park joined only to saved-copy records is still cut as before', 'US-9002' in {r['ref'] for r in added})
+    check('no store file: the area is HELD as a whole (nothing cut, nothing changed, the reason listed)',
+          not added and 'HELD' in sk.get('*', '') and 'every old outline kept' in sk.get('*', ''))
+    # M1 (grade of round 4): with no store, an old outline is never dropped, nothing is saved, and the run exits 3
+    calls = []
+    _sv, _la = O.M.save_area, O.M.load_area
+    O.M.save_area = lambda *a, **k: calls.append('save')
+    O.M.load_area = lambda area, root=None: {'US-9001': {'ref': 'US-9001', 'record_ids': ['sgzzc210'], 'layer_url': 'file:US-ZZ.json.gz'}}
+    added, skipped = O.build_state('ZZ', cache, dry=False, root=outl, key_dir=keys, say=lambda *a: None)
+    check('no store file: no save at all, so the old outline stays', calls == [] and not added)
+    import contextlib, io  # noqa: E402
+    with contextlib.redirect_stdout(io.StringIO()):
+        rc = O.main(['--cache', str(cache), '--states', 'ZZ', '--root', str(outl), '--key', str(keys)])
+    check('no store file: the run exits 3 (kpc-us-key.yml: the file is as it was; the sync marks the state HELD)', rc == 3)
+    O.M.save_area, O.M.load_area = _sv, _la
+    store0 = t / 'store0'; store0.mkdir()
+    store_file0 = store0 / 'US-ZZ.kpcstore.json.gz'
+    with gzip.open(store_file0, 'wt', encoding='utf-8') as f: json.dump({'area': 'US-ZZ', 'parks': []}, f)
+    added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store0)
+    check('with the store file there: a park joined only to saved-copy records is still cut as before; a fresh one not in the store is skipped',
+          'US-9002' in {r['ref'] for r in added} and 'not in the store' in dict(skipped).get('US-9001', ''))
 
 def enc(ring, q=6):   # the store's ring spelling: first point, then steps, as q-digit integers
     m = 10 ** q; pts = [(round(x * m), round(y * m)) for x, y in ring]
