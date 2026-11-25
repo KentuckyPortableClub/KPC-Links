@@ -1,4 +1,4 @@
-# RULE SHEET: when is a record "the same record"? (draft, Opus, 25 Nov 2026 5:15 AM)
+# RULE SHEET: when is a record "the same record"? (Opus, 25 Nov 2026 5:15 AM; grey areas G1-G4 RULED by the owner 5:02 AM: 'i guess' to 'yes to all', so each suggestion in brackets below is the rule)
 
 Why: the map server's row number (OBJECTID) is NOT an id. Servers hand out new row numbers when an agency republishes a layer.
 Proof (25 Nov): the store asked Minnesota's server for row 210 (Nov 14) and got Lost Valley Prairie (agency code SNA01041);
@@ -33,7 +33,7 @@ Nothing new on the map. The report says per state: "same record by agency id N, 
 - A saved answer (overrides `join: ["sgmnb20"]`) made before a republish: after it, row 20 is another forest -> today D1 refuses it by name + size; with the table, it is re-pointed to the record with the same agency id (G3).
 - PAD-US (national): its own `OBJECTID` changes between releases (4.0 -> 4.1) and between the GDB download and the web service: test 2 only.
 
-## GREY AREAS (owner rules; my suggestion in brackets)
+## GREY AREAS (RULED 25 Nov 5:02 AM: the bracketed suggestion is the rule)
 - G1. Who fills the id-field table? [A bot proposes the field per layer (a field that is unique, never empty and code-like in the saved copy); an agent checks 10 records per layer against the agency's own page; only then it is used.]
 - G2. Split / merged records (pieces): same agency id, different sizes. [Same record when the agency id matches, whatever the size; with no id field, pieces are matched to the whole only by name + box, and the size test is skipped for pieces.]
 - G3. Saved answers that name a row number: re-point them automatically when the agency id proves which record it is now? [Yes, and list each re-point in the review list; with no id field, refuse as today.]
