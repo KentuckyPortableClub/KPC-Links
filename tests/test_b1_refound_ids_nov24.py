@@ -55,6 +55,6 @@ with tempfile.TemporaryDirectory() as td:
 check('the key counts only records that really got fields, and the refused ones apart',
       "RA_USED[st] = nu" in src and "RA_REFUSED[st] = nr" in src and 'refused: another record' in src)
 kt = (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8')
-check('the PC test makes its id file again when it is older than format 10 (R1, R5 fields)', 'fmt < 10' in kt)
+check('the PC test makes its id file again when it is older than format 11 (R1, R5 fields; round 15 acres field)', 'fmt < 11' in kt)
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

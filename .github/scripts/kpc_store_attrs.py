@@ -118,6 +118,9 @@ def light_rings(r):
         step *= 2
 
 
+ACRE_FIELD = re.compile(r'acre', re.I)
+
+
 def record_acres(r):
     a = r.get('attributes') or {}
     for k in ('GIS_Acres', 'ACRES', 'Acres', 'acres', 'GISACRES', 'Shape_Acres'):
@@ -127,9 +130,21 @@ def record_acres(r):
         except (TypeError, ValueError):
             pass
     try:
-        return float(((r.get('attrs') or {}).get('_norm') or {}).get('acres') or 0) or None
+        v = float(((r.get('attrs') or {}).get('_norm') or {}).get('acres') or 0)
+        if v > 0: return v
     except (TypeError, ValueError):
-        return None
+        pass
+    # round 15 (KPC owner, 25 Nov 2026, MN 2:28 PM test): a layer whose own acres field has another name (Minnesota DNR state
+    # lands: 'su_acres') is read by the same rule the key's live reader uses (kpc_us_key.resolve: the layer's FIRST field with
+    # 'acre' in its name). Without it the fresh record's size was its outline measured (a section-level parcel: the whole section).
+    for k, x in a.items():
+        if ACRE_FIELD.search(str(k)):
+            try:
+                v = float(x)
+            except (TypeError, ValueError):
+                return None
+            return v if v > 0 else None
+    return None
 
 
 def run(store, out, gh=None, today=None):
@@ -230,7 +245,7 @@ def run(store, out, gh=None, today=None):
               f"skipped_ids): {', '.join(f'{l} {n:,}' for l, n in sorted(sk.items()))}", flush=True)
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 10, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'format': 11, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
            'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
                              for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
@@ -272,7 +287,7 @@ def selftest():
         ok = ok and {k: {f: x for f, x in v.items() if f not in ('_st', '_rd', '_src')} for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
                                          'sgzzc30': {'URL': 'https://example.org/alpha', '_nm': 'Alpha Forest', '_ac': 50.0, '_kid': 'sgzzc12'},
                                          'sgzzd5': {'URL': 'https://example.org/refound', '_nm': '', '_kid': 'sgzzd9'}}
-        ok = ok and d.get('format') == 10 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
+        ok = ok and d.get('format') == 11 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
         ok = ok and d['by_name'].get('sgzzc', {}).get('alphaforest') == [[50.0, 'sgzzc30@']]
         e = d['refound'].get('sgzze4') or {}   # format 6: name, size, box and a light outline, for the same-land proof
         ok = ok and e.get('_nm') == 'Lost Valley Prairie' and e.get('_bx') == [-92.83, 44.8, -92.82, 44.81] and len((e.get('_g') or [[]])[0]) == 5

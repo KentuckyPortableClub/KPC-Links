@@ -2516,9 +2516,20 @@ def _name_proofs(ref, p, byid, st, pn, kind, wide):
     w = web_park(st, ref) if st else {}
     old_ac = w.get('ac') or (MC.size_once({'twin': w.get('twin') or []}, w.get('m') or [], old_box, layer_of) if w.get('m') else 0)
     obx = [b for b in (old_box(str(q[0])) for q in w.get('m') or []) if b]
-    if old_ac and got and obx and abs(got - old_ac) <= SIZE_TOL_PARK * old_ac and \
-            all(any(SL.boxes_overlap(box_of(str(q[0])), b, 0.01) for b in obx) for q in named if box_of(str(q[0]))):
-        return f'name and old joined size ({round(got):,} of {round(old_ac):,} acres)', 'ok'
+    # round 15 (MN 2:28 PM test, Minnesota Valley SRA: 339 DNR parcels, 49 of them the builder's 'same land again' twins): the
+    # sizes are compared LIKE WITH LIKE. The website's 'ac' counts the twins (6,226 = every parcel added up) while the fresh sum
+    # left them out (4,933): so each side is also measured the other way (twins left out on both sides; twins counted on both).
+    # Only when the website's 'ac' IS its rows added up (the union was capped to the rows' total): a measured 'ac' that differs
+    # from the rows is the truth and stays the only old size (round 10: Gamma Falls 358 measured, its one row 91).
+    pairs = [(got, old_ac)]
+    old_all = MC.size_once({'twin': []}, w['m'], old_box, layer_of) if w.get('m') else 0
+    if w.get('m') and (not w.get('ac') or abs(float(w['ac']) - old_all) <= 1):
+        pairs.append((got, MC.size_once({'twin': w.get('twin') or []}, w['m'], old_box, layer_of)))
+        got_all = MC.size_once({'twin': []}, named, box_of, layer_of)
+        pairs += [(got_all, old_all), (got_all, old_ac)]
+    hit = next(((g_, o_) for g_, o_ in pairs if o_ and g_ and abs(g_ - o_) <= SIZE_TOL_PARK * o_), None)
+    if hit and obx and all(any(SL.boxes_overlap(box_of(str(q[0])), b, 0.01) for b in obx) for q in named if box_of(str(q[0]))):
+        return f'name and old joined size ({round(hit[0]):,} of {round(hit[1]):,} acres)', 'ok'
     for i_, a_ in enumerate(named):
         for b_ in named[i_ + 1:]:
             ia, ib = str(a_[0]), str(b_[0])
@@ -2623,7 +2634,7 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
         for wq in (web_park(st, ref).get('m') or []):   # R6: why each of the park's old rows did or did not find its fresh record
             oi = str(wq[0]); lay_, tr_ = PROOF.get(oi, (_sl_layer(oi), {'why': 'not looked at (no record in the old copy)'}))
             PROOF_ROWS.append([st, ref, oi, lay_ or 'padus', 'y' if tr_.get('rough') else 'n', tr_.get('best') or '',
-                               tr_.get('level') or tr_.get('why') or '', 'y' if (oi in _gone_ids or oi + '~old' in _gone_ids or not p['m']) else 'n'])
+                               tr_.get('level') or tr_.get('why') or '', 'y' if (oi in _gone_ids or oi + '~old' in _gone_ids or not keep or (tr_.get('level') and str(tr_.get('best') or '') in _gone_ids)) else 'n'])   # round 15: read after the gate (was: before p['m'] was emptied)
         p['m'] = [q for q, _w in keep]
         have = {str(x[0]) for x in p.get('c') or []}
         p['c'] = [list(q[:3]) + [f'check ({FIX}: {w})'] for q, w in gone if str(q[0]) not in have] + list(p.get('c') or [])
@@ -2813,6 +2824,39 @@ def fresh_records(st, recs, P):
                       'partial_layers': sorted(held_layers - store_layers), 'no_manifest': not man},
                      **{'by_' + k_: v for k_, v in lv_n.items()})
     return out + nostore + hints, alias
+
+
+def fresh_old_parks(old, alias, recs):
+    """Round 15 (KPC owner, 25 Nov 2026, 2:28 PM MN test: Minnesota Valley SRA US-7145 lost 339 pieces; 419 'check (D1): this saved
+    record id now holds other land' rows): the website key's rows carry the OLD copy's row numbers, and an agency's row numbers move
+    when it republishes (rule sheet: row numbers are not ids). With the fresh source on, the parks the key carries from the website
+    (the saved-id carry, t915u; the keep-last-good guard) follow each old row to its PROVEN fresh record (alias: old id -> fresh id,
+    kpc_same_land) with that record's own size; an old row with no proven twin names its old HINT record ('<id>~old' when a fresh
+    record took its number), so the gate never draws it. The park's 'twin' ids follow the same way. Returns a new dict."""
+    if not alias: return old
+    by = {_oid(a): a for a in recs}
+    def mp(i):
+        i = str(i)
+        if i in alias: return alias[i]
+        if i + '~old' in by: return i + '~old'
+        return i
+    out = {}
+    for ref, op in (old or {}).items():
+        if not isinstance(op, dict) or not op.get('m'):
+            out[ref] = op; continue
+        m, seen = [], set()
+        for x in op['m']:
+            if not isinstance(x, (list, tuple)) or not x: m.append(x); continue
+            n = mp(x[0])
+            if n in seen: continue   # two old rows proven to ONE fresh record: the land once
+            seen.add(n)
+            r = by.get(n)
+            ac = round(float(r.get('GIS_Acres') or 0)) if r is not None and r.get('_fresh') else (x[2] if len(x) > 2 else 0)
+            m.append([int(n) if n.isdigit() else n, x[1] if len(x) > 1 else '', ac] + list(x[3:]))
+        np_ = dict(op, m=m)
+        if op.get('twin'): np_['twin'] = sorted({mp(t) for t in op['twin']} - {None})
+        out[ref] = np_
+    return out
 
 
 def repoint_saved(st, P, alias, fresh_ids, store_layers=None):
@@ -3238,6 +3282,7 @@ def run(st):
             notice(f'US key {st}', f'a map did not answer ({len(recs)} areas read, {len(old[0])} saved), so the saved copy was used (nothing dropped)')
             recs, seen, used_detail = old; CACHE_USED.append(st)
         elif CMODE in ('use', 'refresh') and not (st in FAILED_READ and old is None and cache_file(st).exists()): save_cache(st, recs, seen)
+    _alias = {}   # round 15: old id -> proven fresh id (fresh_records); the website key's old rows follow it (fresh_old_park)
     if _kr('KPC_STORE_FRESH'):   # 25 Nov 2026 (owner 7:18 AM): today's store records are the fresh source; the old copy = hints
         progress(st, f'joining the fresh layer files ({len(recs):,} old saved records)')
         recs, _alias = fresh_records(st, recs, P)
@@ -4181,6 +4226,7 @@ def run(st):
     # (its land is here, just not matched) is not kept; a person's 'no' always wins.
     try:
         old = json.load(open(OUT / f'US-{st}.json')).get('parks', {})
+        if _kr('KPC_STORE_FRESH'): old = fresh_old_parks(old, _alias, recs)   # round 15: old row numbers are not ids
         ids_here = {_oid(a) for a in recs}; kept = 0
         TR = transfers()
         for ref, op in old.items():
@@ -4234,6 +4280,8 @@ def run(st):
     if os.environ.get('KPC_KEY_REMATCH_IDS') != '1':
         try:
             old = json.load(open(OUT / f'US-{st}.json')).get('parks', {})
+            _fresh_map = _kr('KPC_STORE_FRESH')
+            if _fresh_map: old = fresh_old_parks(old, _alias, recs)   # round 15: old row numbers are not ids
             ids_here = {_oid(a) for a in recs}; carried = 0
             for ref, op in old.items():
                 np_ = parks.get(ref)
@@ -4241,7 +4289,7 @@ def run(st):
                 oids = sorted(str(x[0]) for x in op['m'])
                 if not all(i in ids_here for i in oids) or set(oids) & BLOCKED.get(ref, set()): continue
                 if sorted(str(x[0]) for x in np_.get('m') or []) == oids: continue
-                if _kr('KPC_SAVED_ID_LAND'):
+                if _kr('KPC_SAVED_ID_LAND') and not _fresh_map:   # round 15: with the fresh source the land is PROVEN (alias), never a number
                     # D1 (KPC owner, 2026-11-17): a saved id is the LAND, not the number. A row whose record now carries another
                     # name, or acres more than 10% off, is looked for again by its saved name + acres in the SAME layer near the
                     # pin; if that fails the old row is not carried (this run's own match stands) and the record goes to check.
