@@ -116,13 +116,13 @@ def notices(log):
     """The builder's own count lines for the report (never a park name)."""
     out = []
     for ln in log.splitlines():
-        m = re.search(r'::notice title=(?:US key [A-Z]{2}|Canada key[^:]*)::(match checks: .*)', ln)
+        m = re.search(r'::notice title=(?:US key [A-Z]{2}|Canada key[^:]*)::(match checks: .*|same land .*|fresh source .*)', ln)   # 25 Nov: the matcher's lines
         if m: out.append('  ' + m.group(1)[:3000])   # 24 Nov (F2): was cut at 900
         elif ln.startswith('Recreation.gov saved copy') and not any('Recreation.gov' in o for o in out): out.append('  ' + ln.strip()[:160])
         elif '::notice title=Boundary check::' in ln: out.append('  pins: ' + ln.split('::', 2)[-1].replace('%25', '%').strip()[:300])
         elif re.search(r'::(error|warning) title=', ln) or 'golden cases' in ln or 'US key STOPPED' in ln:
             out.append('  ' + re.sub(r'(US|CA)-\d{3,5}', r'\1-####', ln.strip())[:300])
-    return out[:16]
+    return out[:20]
 
 
 def store_attrs():
@@ -138,7 +138,7 @@ def store_attrs():
             import gzip
             with gzip.open(out, 'rt', encoding='utf-8') as fh: fmt = int(json.load(fh).get('format') or 0)
         except Exception: fmt = 0  # noqa: BLE001
-    if not out.is_file() or out.stat().st_mtime < newest or fmt < 6:   # 25 Nov (better matcher): format 6 adds each record's name, size, box and light outline
+    if not out.is_file() or out.stat().st_mtime < newest or fmt < 7:   # 25 Nov (better matcher): format 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
         subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS)
@@ -222,7 +222,9 @@ def run_build(st, rep, attrs):
             if not (LINKS / 'cache' / 'us' / f'US-{st}.json.gz').is_file():
                 return None, f'{st}: no saved copy in links\\cache\\us (US-{st}.json.gz); skipped'
             env = dict(common, STATES=st, GEO_CACHE=str(LINKS / 'cache' / 'us'),
-                       KPC_FP_PROPOSALS=str(rep / 'saved-answers-no-fingerprint.csv'))   # 25 Nov: the owner's list (never data/)
+                       KPC_FP_PROPOSALS=str(rep / 'saved-answers-no-fingerprint.csv'),   # 25 Nov: the owner's lists (never data/)
+                       KPC_PIN_ONLY_LIST=str(rep / 'pin-only-parks.csv'), KPC_REPOINTS=str(rep / 'saved-answers-moved.csv'),
+                       KPC_LISTED=str(rep / 'rows-kept-but-listed.csv'))
             cmd = [sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py']
     kept = []
     with open(rep / f'{st}.log', 'w', encoding='utf-8', errors='replace') as lf:

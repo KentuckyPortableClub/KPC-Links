@@ -83,6 +83,8 @@ def record_box(r):
     return [round(min(xs), 3), round(min(ys), 3), round(max(xs), 3), round(max(ys), 3)]
 
 
+PAD_FIELDS = ('Unit_Nm', 'Loc_Nm', 'Own_Type', 'Own_Name', 'Loc_Own', 'Mang_Type', 'Mang_Name', 'Loc_Mang', 'Des_Tp', 'Loc_Ds',
+              'Pub_Access', 'GIS_Acres', 'Category', 'FeatClass', 'Agg_Src', 'State_Nm', 'Unit_Code')
 LIGHT_STEP = 0.00005     # 25 Nov (better matcher): about 5 m; enough to measure shared ground at 80% / 50%
 LIGHT_MAX = 2000         # points per record at most (a bigger record is thinned more)
 
@@ -129,6 +131,7 @@ def run(store, out, gh=None, today=None):
         files += 1
         with gzip.open(path, 'rt', encoding='utf-8') as f:
             d = json.load(f)
+        area = str(d.get('area') or re.sub(r'\.kpcstore\.json\.gz$', '', os.path.basename(path)))
         for p in d.get('parks') or []:
             for r in p.get('records') or []:
                 k = record_key(r)
@@ -146,6 +149,14 @@ def run(store, out, gh=None, today=None):
                 if record_acres(r): helper['_ac'] = round(record_acres(r), 3)
                 bx0 = record_box(r)
                 if bx0: helper['_bx'] = bx0; helper['_g'] = light_rings(r)
+                # 25 Nov 2026 (owner 7:18 AM: 'Use today's store records as the FRESH source for both matching and drawing'):
+                # the area, the date the store read the record, and for PAD-US its own describing fields, so the key can
+                # stand the fresh record in for its old saved copy (kpc_us_key fresh_records)
+                if area: helper['_st'] = area
+                if r.get('read'): helper['_rd'] = str(r.get('read'))[:10]
+                if str(r.get('layer') or '') == 'PAD-US':
+                    pad = {f: a.get(f) for f in PAD_FIELDS if a.get(f) not in (None, '')}
+                    if pad: helper['_pad'] = pad
                 if got or helper.get('_g'):
                     # 24 Nov 2026 (B1, #379): a re-found store record ('sgmnb@20') is not proven to be the key's record 20 (the
                     # agency renumbered its layer), nor the record the store's key_record_id names (that is the key's id when the
@@ -170,7 +181,7 @@ def run(store, out, gh=None, today=None):
                             by_name.setdefault(lay, {}).setdefault(nm, []).append([round(ac, 3), k] + ([bx] if bx else []))
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 6, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'format': 7, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
            'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
                              for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
@@ -204,13 +215,14 @@ def selftest():
         plain = {k: {f: v for f, v in x.items() if not f.startswith('_')} for k, x in d['records'].items()}
         ok = plain == {'sgzza7': {'URL': 'https://dec.ny.gov/lands/123.html'}, '3422': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST'},
                               'sgzzd9': {'URL': 'https://example.org/plain'}}   # B1: re-found records are never filed as plain ones
-        ok = ok and {k: v for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
+        ok = ok and {k: {f: x for f, x in v.items() if f not in ('_st', '_rd')} for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
                                          'sgzzc30': {'URL': 'https://example.org/alpha', '_nm': 'Alpha Forest', '_ac': 50.0, '_kid': 'sgzzc12'},
                                          'sgzzd5': {'URL': 'https://example.org/refound', '_nm': '', '_kid': 'sgzzd9'}}
-        ok = ok and d.get('format') == 6 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
+        ok = ok and d.get('format') == 7 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
         ok = ok and d['by_name'].get('sgzzc', {}).get('alphaforest') == [[50.0, 'sgzzc30@']]
         e = d['refound'].get('sgzze4') or {}   # format 6: name, size, box and a light outline, for the same-land proof
         ok = ok and e.get('_nm') == 'Lost Valley Prairie' and e.get('_bx') == [-92.83, 44.8, -92.82, 44.81] and len((e.get('_g') or [[]])[0]) == 5
+        ok = ok and e.get('_st') == 'US-ZZ' and d['records']['3422'].get('_pad') == {'Loc_Nm': 'TEST', 'GIS_Acres': 4}   # format 7
     print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']) + ' ' + json.dumps(d.get('refound')))
     return 0 if ok else 1
 

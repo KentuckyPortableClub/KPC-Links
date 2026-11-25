@@ -184,6 +184,10 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
                           only when the park is confirmed, the row is a code row or a person's join whose fingerprint fits;
                           never when a fresh record with another agency id holds its ground. Else 'check (code to fix: why)'
                           and the pin. Saved answers with no fingerprint are listed for the owner (KPC_FP_PROPOSALS).
+  KPC_STORE_FRESH 0 (25 Nov 2026, KPC owner 7:18 AM 'Use today's store records as the FRESH source for both matching and
+                          drawing outlines ... Old copies are hints only'): the outline store's own records stand in for the old
+                          saved copy (fresh_records); an old record with no proven fresh twin is a hint that never draws; saved
+                          answers follow their land to the fresh record by proof (repoint_saved, listed). MN and NY first.
                           when ON, an auto-confirm (held name and pin, or page names the land) whose outline acres
                           are far off the official acres (the same 3x SIZE_FAR band) is left outlined and flagged
                           for a person. OFF (today): the confirm still stands, and the park is only listed in the
@@ -196,7 +200,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_ANSWER_HOLDERS': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
             'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0', 'KPC_NO_FOLLOWS_FP': '0', 'KPC_SAVED_ANSWERS_SAY': '0', 'KPC_SAVED_NEXT_STATE': '0', 'KPC_SAVED_ALL_PARCELS': '0',
-            'KPC_MATCH_CHECKS': '0', 'KPC_CONFIRM_SIZE_HOLD': '0', 'KPC_SAME_LAND': '0', 'KPC_PROVEN_ONLY': '0',
+            'KPC_MATCH_CHECKS': '0', 'KPC_CONFIRM_SIZE_HOLD': '0', 'KPC_SAME_LAND': '0', 'KPC_PROVEN_ONLY': '0', 'KPC_STORE_FRESH': '0',
             'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1', 'KPC_PRESERVE_WITH_PARK': '1'}
 
 

@@ -2316,7 +2316,7 @@ def same_land_fields(i, a):
                 if k not in cands and SL.boxes_overlap(bb, e.get('_bx'), 0.001): cands[k] = e
     if not cands: return 'none', None
     lay = _sl_layer(i)
-    k, lv, why = SL.pick(a, cands, SF.keep_fields(lay) if lay != 'padus' else ('unit_code',), cache=True, own=i)
+    k, lv, why = SL.pick(a, cands, SL.id_spec(lay), cache=True, own=i)
     if not k: return ('conflict' if why == 'conflict' else 'unproven'), None
     SAME_OF[i] = (lv, k)
     return lv, {f: v for f, v in cands[k].items() if not str(f).startswith('_')}
@@ -2335,36 +2335,73 @@ def _fp_state(ref, rid, rec, key='fp'):
     return 'ok' if rec is not None and KR.saved_row_ok([rid, fp[0], fp[1] if len(fp) > 1 else 0], rec) else 'nofit'
 
 
-def proven_only_gate(st, parks, byid, skip=()):
+PIN_ONLY = []      # [state, park, rows that left the map, why]: every park the gate leaves with its pin only (the PC report lists them)
+LISTED = []        # [state, park, record id, why]: rows the gate keeps but lists (a confirmed park, a fresh record with another id)
+SIZE_TOL_PARK = 0.10
+
+
+def park_name_and_size(ref, p, byid, facts):
+    """The owner's proof 3 at park level (25 Nov 6:20 AM: 'Name AND size within 10%'; grade M4): a joined record carries the park's
+    own full name (not a generic one) and the park's official size (park facts, a tagged witness only) is within 10% of the
+    joined land's size (same ground counted once). Returns the reason or ''."""
+    f = (facts or {}).get(ref) or {}
+    wits = MC.size_witnesses(f)
+    if not wits: return ''
+    pn = MC.full(p.get('n') or f.get('name') or '')
+    if not pn or SL.generic(pn): return ''
+    rows = p.get('m') or []
+    if not any(MC.full(MC.rec_name(byid.get(str(q[0])) or {}) or q[1]) == pn for q in rows): return ''
+    box_of = lambda i: (byid.get(i) or {}).get('_bb')
+    layer_of = lambda i: _sl_layer(i)
+    got = MC.size_once(p, rows, box_of, layer_of)
+    for ac, _w, _why in wits:
+        if got and abs(got - ac) <= SIZE_TOL_PARK * ac:
+            return f'name and official size ({round(got):,} of {round(ac):,} acres)'
+    return ''
+
+
+def proven_only_gate(st, parks, byid, skip=(), facts=None):
     """25 Nov 2026 (KPC owner, 6:28 AM: 'Settle every park in code with real proof from fresh data ... If it can't be proven,
     show the POTA pin only (no guessed outline) and mark it for the code to fix. No hand-offs to the reps for matching.';
-    switch KPC_PROVEN_ONLY). After the match checks, a joined row stays on the map only with proof:
-      - the park is CONFIRMED (agency id from POTA's link, a tagged official size, the park's own agency page, ...), or the
-        row is a code row (Park Service unit code, official line, link id), or a person's saved join whose fingerprint
-        still fits this read;
-      - and no fresh store record with a DIFFERENT agency id lies on the row's ground (SAME_STATE 'conflict');
-      - and a person's saved join whose fingerprint no longer fits (other land holds the number now) never draws.
-    Every other row leaves the outline for the park's check rows, worded 'check (code to fix: why)': a job for the code,
-    never a person's. A park left with no row shows its pin. Saved answers with no fingerprint are listed in FP_PROPOSALS
-    (the owner OKs each new fingerprint; nothing is written to data/). Returns the counts."""
-    out = {'rows': 0, 'parks': 0, 'pin_now': 0, 'why': {}}
+    7:18 AM: 'Use today's store records as the FRESH source for both matching and drawing'; switch KPC_PROVEN_ONLY). After the
+    match checks, a joined row stays on the map only with proof:
+      - the park is CONFIRMED by the match checks, or proven by name and official size (park_name_and_size), or the row is a
+        code row (Park Service unit code, official line, link id), or a person's saved join whose fingerprint still fits;
+      - with KPC_STORE_FRESH, the row's record is a FRESH store record (an old-copy hint never draws);
+      - a person's saved join whose fingerprint no longer fits never draws.
+    A fresh record with ANOTHER agency id on the row's ground: on a confirmed park the row is kept and LISTED (grade M3: until
+    the PC test shows the counts); on any other park it leaves the map. Every row that leaves becomes 'check (code to fix:
+    why)', and a park left with none shows its pin (listed in PIN_ONLY with why). Saved answers with no fingerprint are listed
+    in FP_PROPOSALS (the owner OKs each new fingerprint; nothing is written to data/). Returns the counts."""
+    out = {'rows': 0, 'parks': 0, 'pin_now': 0, 'why': {}, 'listed': 0, 'by_name_size': 0}
+    fresh_on = _kr('KPC_STORE_FRESH')
     for ref, p in parks.items():
         if ref in skip or not p.get('m'): continue
         status = (p.get('match') or {}).get('status')
+        if status != 'confirmed':
+            ns = park_name_and_size(ref, p, byid, facts)
+            if ns:
+                status = 'confirmed'; out['by_name_size'] += 1
+                mt = p.setdefault('match', {}); mt['status'] = 'confirmed'; mt['by'] = 'name and official size'; mt['proof'] = ns
         keep, gone = [], []
         for q in p['m']:
             rid, cls = str(q[0]), MC.row_class(q)
             rec = byid.get(rid)
             why = None
             fps = _fp_state(ref, rid, rec) if cls == 'person' else ''
-            if SAME_STATE.get(rid) == 'conflict':
-                why = 'a fresh agency record on this ground carries a different agency id'
+            if fresh_on and (rec is None or not rec.get('_fresh')) and cls != 'code':
+                why = 'only in the old saved copy: no fresh store record proves this land'
             elif fps == 'nofit':
                 why = "a person's saved join, but other land holds this record number now"
+            elif SAME_STATE.get(rid) == 'conflict' and status != 'confirmed':
+                why = 'a fresh agency record on this ground carries a different agency id'
             elif status != 'confirmed' and cls == 'name':
                 why = "not proven: no agency id, shared ground, name and size or park page agrees"
             elif status != 'confirmed' and cls == 'person' and fps == 'nofp':
                 why = "a person's saved join with no fingerprint, and nothing else proves it"
+            if not why and SAME_STATE.get(rid) == 'conflict':
+                LISTED.append([st, ref, rid, 'kept on a confirmed park, but a fresh record with another agency id holds this ground'])
+                out['listed'] += 1
             if cls == 'person' and fps == 'nofp':
                 FP_PROPOSALS.append([st, ref, 'join', rid, MC.rec_name(rec or {}), round(float((rec or {}).get('GIS_Acres') or 0)),
                                      'kept: the park is confirmed' if not why else 'not drawn: ' + why])
@@ -2384,7 +2421,121 @@ def proven_only_gate(st, parks, byid, skip=()):
             mt = p.setdefault('match', {})
             mt['status'] = 'pin'; mt['why'] = sorted(set(list(mt.get('why') or []) + [FIX]))
             out['pin_now'] += 1
+            ws = sorted({w for _q, w in gone})
+            PIN_ONLY.append([st, ref, len(gone), '; '.join(ws)])
     return out
+
+
+FRESH = {}         # state -> counts of the fresh step (KPC_STORE_FRESH)
+REPOINTS = []      # [state, park, 'join' / 'no', old id, new id or '', how]: every saved answer the fresh step moved or could not
+LAYER_KEEP = ('Own_Type', 'Mang_Type', 'Mang_Name', 'Loc_Mang', 'Des_Tp', 'Category', 'Pub_Access', 'Own_Name', 'Loc_Own', 'Loc_Ds',
+              'FeatClass', 'Agg_Src', 'Water')
+
+
+def fresh_records(st, recs, P):
+    """25 Nov 2026 (KPC owner, 7:18 AM: 'Use today's store records as the FRESH source for both matching and drawing outlines, not
+    the Nov 11-12 saved copies. Old copies are hints only.'; switch KPC_STORE_FRESH). The outline store's records of this state
+    (kpc_store_attrs format 7: name, size, box, a 5 m outline, the agency id fields, the read date) become the state's records:
+      - each old saved record PROVEN to be the same land as a fresh one (kpc_same_land.pick) gives that fresh record its kind
+        and owner words (layer-level facts) and is dropped: the fresh record, with its own id, outline and size, stands in;
+      - a fresh record with no old twin joins as it is (its layer's words come from the layer's other records);
+      - an old record with no fresh twin stays as a HINT ('_hint'): the key may join it, but it never draws (the gate).
+    The fresh records carry '_fresh'. Returns (records, {old id: fresh id}). Nothing is fetched."""
+    record_attrs()
+    area = f'US-{st}'
+    ents = {}
+    for d_ in (_RA[0] or {}, _RA_RF[0] or {}):
+        for k, e in d_.items():
+            if e.get('_st') == area and e.get('_g') and re.fullmatch(r'[a-z]*\d+', k): ents[k] = e
+    if not ents:
+        FRESH[st] = {'fresh': 0, 'hints': len(recs)}
+        return [dict(a, _hint=True) for a in recs], {}
+    alias, lv_n = {}, {}
+    idx = _sl_index()
+    for a in recs:
+        i = _oid(a)
+        lay = _sl_layer(i)
+        g = idx.get(lay) or {}
+        bb = SL.box_of(SL.rings_of(a.get('_g'))) or a.get('_bb')
+        if not bb or not g: continue
+        cands = {}
+        for cx in range(int(math.floor(bb[0] / SL_CELL)), int(math.floor(bb[2] / SL_CELL)) + 1):
+            for cy in range(int(math.floor(bb[1] / SL_CELL)), int(math.floor(bb[3] / SL_CELL)) + 1):
+                for k, e in (g.get((cx, cy)) or {}).items():
+                    if k in ents and k not in cands and SL.boxes_overlap(bb, e.get('_bx'), 0.001): cands[k] = e
+        if not cands: continue
+        k, lv, _w = SL.pick(a, cands, SL.id_spec(lay), cache=True, own=i)
+        if k: alias[i] = k; lv_n[lv] = lv_n.get(lv, 0) + 1
+    by_old = {_oid(a): a for a in recs}
+    olds_of = {}
+    for i, k in alias.items(): olds_of.setdefault(k, []).append(by_old[i])
+    lay_words, lay_kinds = {}, {}
+    for a in recs:
+        lay = _sl_layer(_oid(a))
+        lay_words.setdefault(lay, {kk: a.get(kk) for kk in LAYER_KEEP if a.get(kk) not in (None, '')})
+        extra = set(a.get('_k') or set()) - kinds(a.get('Unit_Nm') or '')
+        if extra: lay_kinds.setdefault(lay, {}).update({x: lay_kinds.get(lay, {}).get(x, 0) + 1 for x in extra})
+    out = []
+    for k, e in sorted(ents.items()):
+        lay = _sl_layer(k)
+        olds = olds_of.get(k) or []
+        base = olds[0] if olds else {}
+        rec = {kk: base.get(kk) for kk in LAYER_KEEP if base.get(kk) not in (None, '')} if olds else dict(lay_words.get(lay) or {})
+        rec.update({kk: v for kk, v in (e.get('_pad') or {}).items() if kk in LAYER_KEEP})
+        nms = [n for n in e.get('_nms') or [] if n and n != e.get('_nm')]
+        pad = e.get('_pad') or {}
+        rec['OBJECTID'] = int(k) if k.isdigit() else k
+        rec['Unit_Nm'] = pad.get('Unit_Nm') or e.get('_nm') or base.get('Unit_Nm') or ''
+        rec['Loc_Nm'] = pad.get('Loc_Nm') or (nms[0] if nms else '') or ''
+        if rec['Loc_Nm'] == rec['Unit_Nm']: rec['Loc_Nm'] = ''
+        rec['_g'] = {'rings': e['_g']}
+        rec['_bb'] = bbox(rec['_g'])
+        try: rec['GIS_Acres'] = float(e.get('_ac') or pad.get('GIS_Acres') or 0) or round(SL.acres_of(SL.rings_of(e['_g'])), 1)
+        except (TypeError, ValueError): rec['GIS_Acres'] = round(SL.acres_of(SL.rings_of(e['_g'])), 1)
+        kk_ = kinds(rec['Unit_Nm']) | set().union(*[set(o.get('_k') or set()) - kinds(o.get('Unit_Nm') or '') for o in olds]) if olds else \
+            kinds(rec['Unit_Nm']) | ({max(lay_kinds[lay], key=lay_kinds[lay].get)} if lay_kinds.get(lay) else set())
+        rec['_k'] = kk_
+        rec['SA'] = _plain(e)
+        rec['rd'] = e.get('_rd') or ''
+        rec['_fresh'] = True
+        rec['_was'] = [_oid(o) for o in olds]
+        out.append(rec)
+    fresh_ids = {_oid(r) for r in out}
+    hints = []
+    for a in recs:
+        i = _oid(a)
+        if i in alias: continue
+        h = dict(a, _hint=True)
+        if i in fresh_ids: h['OBJECTID'] = i + '~old'   # an old row number that a fresh record now carries: never the same id
+        hints.append(h)
+    FRESH[st] = dict({'fresh': len(out), 'twins': len(alias), 'hints': len(hints)}, **{'by_' + k_: v for k_, v in lv_n.items()})
+    return out + hints, alias
+
+
+def repoint_saved(st, P, alias, fresh_ids):
+    """The state's saved answers (overrides join / no / fp / nofp ids) follow their land to the fresh record (alias: old id -> fresh
+    id, each one PROVEN by kpc_same_land). An id with no proven fresh twin now names its old hint record ('<id>~old' when a fresh
+    record took its number), so it never lands on other land. Every move and every miss is listed in REPOINTS."""
+    for ref in P:
+        ov = OVR.get(ref)
+        if not ov: continue
+        ov = dict(ov)
+        def mv(x, kind):
+            x_ = str(x)
+            if not re.fullmatch(r'[a-z]*\d+', x_): return x       # a name, not an id: the name rules handle it
+            if x_ in alias:
+                if alias[x_] != x_: REPOINTS.append([st, ref, kind, x_, alias[x_], 'proven same land'])
+                return int(alias[x_]) if alias[x_].isdigit() else alias[x_]
+            REPOINTS.append([st, ref, kind, x_, '', 'no fresh record proves this land: the answer stays on the old copy (a hint, never drawn)'])
+            return x_ + '~old' if x_ in fresh_ids else x
+        for kind, key in (('join', 'join'), ('no', 'no')):
+            if ov.get(key): ov[key] = [mv(x, kind) for x in ov[key]]
+        for key in ('fp', 'nofp', 'far'):
+            if isinstance(ov.get(key), dict):
+                ov[key] = {str(mv(k_, key + ' key')): v for k_, v in ov[key].items()}
+            elif isinstance(ov.get(key), list):
+                ov[key] = [mv(x, key) for x in ov[key]]
+        OVR[ref] = ov
 
 
 def _maiden6(la, lo):
@@ -2497,6 +2648,9 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
         SAME_OF.clear(); SAME_STATE.clear()
         cnt = {}
         for i, a in list(byid.items()):
+            if a.get('_fresh'):   # the store's own record: its id fields are its own (KPC_STORE_FRESH)
+                cnt['fresh'] = cnt.get('fresh', 0) + 1; SAME_STATE[i] = 'fresh'
+                continue
             how, x = same_land_fields(i, a)
             cnt[how] = cnt.get(how, 0) + 1
             SAME_STATE[i] = how
@@ -2558,7 +2712,7 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
     _page_point_checks(st, parks, byid, facts, res)
     _map_name_checks(st, parks, byid, facts, res)
     if _kr('KPC_PROVEN_ONLY'):   # 25 Nov 2026 (KPC owner, 6:28 AM): proof or the pin; no hand-offs
-        res['proven_only'] = proven_only_gate(st, parks, byid, set(TRL))
+        res['proven_only'] = proven_only_gate(st, parks, byid, set(TRL), facts)
     res['facts'] = MC.facts_stamp(PFR.find())   # which park facts file decided (plan L6: a changed file is visible)
     for h in hits:
         MATCH_HIT.append([st] + h)
@@ -2762,6 +2916,15 @@ def run(st):
             notice(f'US key {st}', f'a map did not answer ({len(recs)} areas read, {len(old[0])} saved), so the saved copy was used (nothing dropped)')
             recs, seen, used_detail = old; CACHE_USED.append(st)
         elif CMODE in ('use', 'refresh') and not (st in FAILED_READ and old is None and cache_file(st).exists()): save_cache(st, recs, seen)
+    if _kr('KPC_STORE_FRESH'):   # 25 Nov 2026 (owner 7:18 AM): today's store records are the fresh source; the old copy = hints
+        recs, _alias = fresh_records(st, recs, P)
+        repoint_saved(st, P, _alias, {_oid(a) for a in recs if a.get('_fresh')})
+        _fr = FRESH.get(st) or {}
+        notice(f'US key {st}', f"fresh source (the outline store's own read): {_fr.get('fresh', 0)} fresh record(s); "
+               f"{_fr.get('twins', 0)} old saved record(s) proven to one (by agency id {_fr.get('by_id', 0)}, by shared ground "
+               f"{_fr.get('by_overlap', 0)}, pieces {_fr.get('by_piece', 0)}, by name and size {_fr.get('by_name_size', 0)}); "
+               f"{_fr.get('hints', 0)} old record(s) with no fresh twin kept as hints (never drawn); saved answers moved to their "
+               f"fresh record {sum(1 for x in REPOINTS if x[0] == st and x[4])}, left on the old copy {sum(1 for x in REPOINTS if x[0] == st and not x[4])}")
     recs = prefer_state_layer(st, recs, P)
     if _kr('KPC_SAVED_NEXT_STATE'):
         # 23 Nov 2026 (owner 9:20 AM, job 7): a saved answer of this state's park whose record only a bordering state's saved
@@ -2799,7 +2962,9 @@ def run(st):
                 fam = re.match(r'\D*', old).group()
                 return [a for a in recs if re.match(r'\D*', _oid(a)).group() == fam and _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(nm)
                         and (la_ is None or near(la_, lo_, a['_bb'], .6))]
-            nov, notes = KR.saved_land_moves(ov_, _by, _rf)
+            # S3 (grade 25 Nov): under KPC_PROVEN_ONLY nothing is re-pointed by D1's old name + acres test (the fresh step moved
+            # every saved answer by proof); a fingerprint that no longer fits still goes to the gate ('code to fix')
+            nov, notes = KR.saved_land_moves(ov_, _by, (lambda *x_: []) if _kr('KPC_PROVEN_ONLY') else _rf)
             if not notes: continue
             OVR[ref] = nov
             _moved += [(ref,) + n for n in notes]
@@ -3948,9 +4113,23 @@ def run(st):
                f"by agency id {_sh.get('id', 0)}, by shared ground {_sh.get('overlap', 0)}, pieces {_sh.get('piece', 0)}, "
                f"by name and size {_sh.get('name_size', 0)}, not proven {_sh.get('unproven', 0)}, other agency id on the same ground "
                f"{_sh.get('conflict', 0)}, no store record near {_sh.get('none', 0)}"
+               + (f", fresh store records {_sh.get('fresh', 0)}" if 'fresh' in _sh else '')
                + (f"; proof or the pin: {_po.get('rows', 0)} row(s) of {_po.get('parks', 0)} park(s) left the map ({FIX}), "
-                  f"{_po.get('pin_now', 0)} park(s) now pin only; saved answers with no fingerprint: "
-                  f"{sum(1 for x in FP_PROPOSALS if x[0] == st)}" if _po or _kr('KPC_PROVEN_ONLY') else ''))
+                  f"{_po.get('pin_now', 0)} park(s) now pin only, {_po.get('by_name_size', 0)} park(s) kept by name and official size, "
+                  f"{_po.get('listed', 0)} row(s) kept but listed (another agency id on the ground); why rows left: "
+                  + ', '.join(f'{v} {w}' for w, v in sorted((_po.get('why') or {}).items(), key=lambda x: -x[1]))
+                  + f"; saved answers with no fingerprint: {sum(1 for x in FP_PROPOSALS if x[0] == st)}" if _po or _kr('KPC_PROVEN_ONLY') else ''))
+        for _env, _rows, _head in (('KPC_PIN_ONLY_LIST', PIN_ONLY, ['state', 'park', 'rows that left the map', 'why']),
+                                   ('KPC_REPOINTS', REPOINTS, ['state', 'park', 'saved row', 'old id', 'fresh id', 'how']),
+                                   ('KPC_LISTED', LISTED, ['state', 'park', 'record id', 'why'])):
+            _fn = os.environ.get(_env) or ''
+            if _fn and any(x[0] == st for x in _rows):   # the PC test's lists for the owner (never data/)
+                import csv as _csv
+                _new = not os.path.isfile(_fn)
+                with open(_fn, 'a', encoding='utf-8', newline='') as _fh:
+                    _w = _csv.writer(_fh)
+                    if _new: _w.writerow(_head)
+                    _w.writerows(x for x in _rows if x[0] == st)
         _fpf = os.environ.get('KPC_FP_PROPOSALS') or ''
         if _fpf and any(x[0] == st for x in FP_PROPOSALS):   # the PC test's list for the owner (never data/)
             import csv as _csv

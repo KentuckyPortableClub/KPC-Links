@@ -7,13 +7,14 @@ and state land layers were numbered again between our 12 Nov saved copy and the 
 was row 55, then row 210; same name, same acres to 8 decimals, same outline). So a record is matched to a record of another read
 by PROOF, best first, and never by its number:
 
-  1. 'id'         the agency's own id field (one field list per layer: .github/keep-record-fields.json) is the same on both,
-                  after normalising ('SNA 01041' = 'SNA01041', 1041 = '1041.0'), and the two boxes overlap. Pieces of one unit
+  1. 'id'         the agency's own UNIT id (id_spec: keep-record-fields.json 'unit id' / crosswalk fields; a web address by the
+                  id inside it) is the same on both, after normalising ('SNA 01041' = 'SNA1041', 1041 = '1041.0'), boxes overlap. Pieces of one unit
                   may share an id. A size change over 2 times is noted ('same id, size changed'). Two DIFFERENT ids of the
                   same field = not the same record, whatever else agrees.
   2. 'overlap'    the outlines share ground: at least OVERLAP_SMALL (80%) of the smaller one and OVERLAP_LARGE (50%) of the
                   larger one (area, measured on the outlines, not boxes). Works when acres are missing.
-     'piece'      at least PIECE_IN (90%) of the smaller record lies inside the larger one: a piece of the whole (no size test).
+     'piece'      at least PIECE_IN (90%) of the smaller record lies inside the larger one and they share a real name.
+     An outline too rough for its size (measured area 20% off its acres, or a tiny 5-point shape) cannot be measured: 'can't tell'.
   3. 'name_size'  the same name (not a generic name such as 'Unit 1' or 'Tract 2'; letters and digits, case aside), sizes within
                   SIZE_TOL (10%), boxes overlap, and the outlines do not show different ground. Name alone never counts.
   None            not proven: the caller shows the pin only and marks it for the code to fix (never a person's job).
@@ -23,7 +24,7 @@ Pure Python (no shapely), so GitHub, the PC and the tests measure the same way: 
 fixed grid of points over the smaller record's box (GRID x GRID; finer for thin shapes).
   python3 kpc_same_land.py --selftest
 """
-import math, re, sys
+import json, math, os, re, sys
 
 OVERLAP_SMALL = 0.80   # owner's numbers to OK (25 Nov 6:20 AM plan): 80% of the smaller record
 OVERLAP_LARGE = 0.50   # and 50% of the larger one
@@ -63,7 +64,8 @@ def generic(name):
 
 
 def norm_id(v):
-    """'SNA 01041' -> 'SNA01041'; 1041.0 -> '1041'; '' / None / 0 -> ''."""
+    """'SNA 01041' -> 'SNA1041' = 'SNA01041' -> 'SNA1041'; 1041.0 -> '1041'; '' / None / 0 -> ''. Leading zeros in a run of digits
+    never make two ids different (grade 25 Nov, M3 case 4)."""
     if v is None or isinstance(v, bool): return ''
     if isinstance(v, float):
         if v != v or v == 0: return ''
@@ -71,7 +73,52 @@ def norm_id(v):
     s = str(v).strip().upper()
     if re.fullmatch(r'-?\d+\.0+', s): s = s.split('.')[0]
     s = re.sub(r'[\s_\-./]+', '', s)
+    s = re.sub(r'(?<![0-9])0+(?=[0-9])', '', s)
     return '' if s in ('', '0', 'NONE', 'NULL', 'NA') else s
+
+
+_TABLES = {}
+
+
+def _table(name):
+    if name not in _TABLES:
+        try:
+            with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), name), encoding='utf-8') as f:
+                _TABLES[name] = json.load(f)
+        except (OSError, ValueError):
+            _TABLES[name] = {}
+    return _TABLES[name]
+
+
+def id_spec(layer):
+    """{field (lower case): (kind, [patterns])} for one layer. Only a UNIT id proves or refuses (grade 25 Nov, M3):
+      'unit'  the id finder's 'unit id' fields and the crosswalk's SAME ID fields (.github/keep-record-fields.json);
+      'web'   a web-address field: compared by the id INSIDE the address (.github/link-id-ties.json patterns), never as text,
+              so http / https or a moved site is not a different id;
+    A 'record id' field (numbered like a row) is left out: it can be renumbered too. PAD-US: the Park Service unit code."""
+    if layer in ('padus', 'PAD-US', ''): return {'unit_code': ('unit', [])}
+    out = {}
+    ties = {}
+    for t in (_table('link-id-ties.json').get('ties') or []):
+        if t.get('field') and (t.get('layer') or t.get('pre')) == layer and (t.get('rx') or t.get('pattern')):
+            ties.setdefault(str(t['field']).lower(), []).append(t.get('rx') or t.get('pattern'))
+    v = (_table('keep-record-fields.json').get('layers') or {}).get(layer) or {}
+    why = ' '.join(str(w) for w in v.get('why') or []).lower()
+    for f in v.get('fields') or []:
+        fl = str(f).lower()
+        if fl in ties or 'web address' in why: out[fl] = ('web', ties.get(fl) or [])
+        elif 'unit id' in why or 'crosswalk' in why: out[fl] = ('unit', [])
+    for fl, rx in ties.items(): out.setdefault(fl, ('web', rx))
+    return out
+
+
+def _web_id(v, pats):
+    t = str(v or '')
+    for rx in pats:
+        try: m = re.search(rx, t, re.I)
+        except re.error: continue
+        if m: return norm_id(''.join(g for g in m.groups() if g) or m.group(0))
+    return ''
 
 
 # ---- outlines -------------------------------------------------------------------------------------------------------------
@@ -166,9 +213,14 @@ def shares(ra, rb, acres_a=None, acres_b=None):
 
 # ---- one record -----------------------------------------------------------------------------------------------------------
 
+COARSE_OFF = 0.20       # an outline whose measured area is more than 20% off its own acres is too rough to measure shared ground
+COARSE_SMALL = 20.0     # a record under 20 acres drawn with 5 points or fewer is too rough as well
+
+
 def view(rec, id_fields=()):
     """The parts of a record the proof reads. rec: a key record ({'Unit_Nm', 'Loc_Nm', 'GIS_Acres', '_g', 'SA'}) or a store
-    entry from kpc_store_attrs format 6 ({'_nm', '_ac', '_g', field: value})."""
+    entry from kpc_store_attrs ({'_nm', '_ac', '_g', field: value}). id_fields: id_spec(layer), or a plain list of unit-id
+    fields."""
     rec = rec or {}
     names = {str(x) for x in (rec.get('Unit_Nm'), rec.get('Loc_Nm'), rec.get('_nm')) if x and str(x).strip()}
     for n in rec.get('_nms') or []:
@@ -178,9 +230,16 @@ def view(rec, id_fields=()):
     except (TypeError, ValueError): ac = 0.0
     flds = dict(rec.get('SA') or {}); flds.update({k: v for k, v in rec.items() if not str(k).startswith('_') and k != 'SA'})
     low = {str(k).lower(): v for k, v in flds.items()}
-    ids = {f: norm_id(low.get(f)) for f in (str(x).lower() for x in id_fields)}
+    spec = id_fields if isinstance(id_fields, dict) else {str(x).lower(): ('unit', []) for x in id_fields}
+    ids = {}
+    for f, (kind, pats) in spec.items():
+        v = _web_id(low.get(f), pats) if kind == 'web' else norm_id(low.get(f)) if kind == 'unit' else ''
+        if v: ids[f] = v
+    measured = acres_of(rings) if rings else 0.0
+    npts = sum(len(r) for r in rings)
+    coarse = bool(rings) and ((ac > 0 and measured > 0 and abs(measured - ac) > COARSE_OFF * ac) or (measured < COARSE_SMALL and npts <= 5))
     return {'names': {name_key(n) for n in names if not generic(n)}, 'rings': rings, 'box': box_of(rings) or rec.get('_bx') or rec.get('_bb'),
-            'acres': ac, 'ids': {k: v for k, v in ids.items() if v}}
+            'acres': ac, 'measured': measured, 'coarse': coarse, 'ids': ids}
 
 
 def prove(a, b, id_fields=()):
@@ -193,24 +252,26 @@ def prove(a, b, id_fields=()):
             return None, 'different agency id (' + ', '.join(f"{f} {va['ids'][f]} / {vb['ids'][f]}" for f in same_f if va['ids'][f] != vb['ids'][f]) + ')'
         if near:
             note = ''
-            sa, sb = va['acres'] or acres_of(va['rings']), vb['acres'] or acres_of(vb['rings'])
+            sa, sb = va['acres'] or va['measured'], vb['acres'] or vb['measured']
             if sa and sb and max(sa, sb) / min(sa, sb) > SIZE_JUMP: note = 'same id, size changed'
             return 'id', note or f"{same_f[0]} {va['ids'][same_f[0]]}"
     if not near: return None, 'different place'
-    sh = shares(va['rings'], vb['rings'])
+    # grade 25 Nov (M4): an outline too rough for its size (the key's 0.001-degree saved copy) cannot say 'different ground'
+    sh = None if (va['coarse'] or vb['coarse']) else shares(va['rings'], vb['rings'], va['measured'] or None, vb['measured'] or None)
     if sh is not None:
         small, big = (max(sh), min(sh))
         if small >= OVERLAP_SMALL and big >= OVERLAP_LARGE: return 'overlap', f'{round(small * 100)}% / {round(big * 100)}% shared'
         # a piece: the names do not say two different places (both named, no name in common = two designations on one
         # ground, such as a waterfowl production area inside a refuge's outline: never a piece of it)
-        if small >= PIECE_IN and not (va['names'] and vb['names'] and not (va['names'] & vb['names'])):
+        # S1 (grade 25 Nov): a piece needs a name in common (a 'Unit 4' or an unnamed parcel never takes a whole unit's id)
+        if small >= PIECE_IN and va['names'] & vb['names']:
             return 'piece', f'{round(small * 100)}% of the smaller record inside the larger'
         if small < DIFFERENT_GROUND: return None, f'different ground ({round(small * 100)}% shared)'
     if va['names'] & vb['names']:
         if va['acres'] > 0 and vb['acres'] > 0:
             sa, sb = va['acres'], vb['acres']
         else:
-            sa, sb = acres_of(va['rings']), acres_of(vb['rings'])
+            sa, sb = va['measured'], vb['measured']
         if sa > 0 and sb > 0 and abs(sa - sb) <= SIZE_TOL * max(sa, sb) + 0.5:
             return 'name_size', 'same name, size within 10%'
         return None, 'same name, size differs'
@@ -239,8 +300,8 @@ def pick(a, cands, id_fields=(), cache=False, own=None):
         vc = cached_view(k, c, id_fields) if cache else view(c, id_fields)
         lv, note = prove(va, vc, id_fields)
         if lv: got.setdefault(lv, []).append((k, note, vc))
-        elif note.startswith('different agency id') and not conflict:
-            sh = shares(va['rings'], vc['rings'])
+        elif note.startswith('different agency id') and not conflict and not (va['coarse'] or vc['coarse']):
+            sh = shares(va['rings'], vc['rings'], va['measured'] or None, vc['measured'] or None)
             conflict = bool(sh) and max(sh) >= DIFFERENT_GROUND
     for lv in LEVELS:
         hits = got.get(lv) or []
@@ -251,7 +312,7 @@ def pick(a, cands, id_fields=(), cache=False, own=None):
             return best[0], lv, best[1] + ' (pieces of one unit)'
         # two records proven at the same level (PAD-US often holds one refuge twice, fee and designation): the one that also
         # carries a's own number breaks the tie. The number never proves anything alone; here both are already proven.
-        if own is not None:
+        if own is not None and lv in ('id', 'overlap'):   # M2 (grade 25 Nov): never at piece or name + size
             same = [h for h in hits if str(h[0]) == str(own)]
             if len(same) == 1: return same[0][0], lv, same[0][1] + ' (two fits; the same number breaks the tie)'
         return None, None, f'two fits ({lv})'
@@ -260,44 +321,51 @@ def pick(a, cands, id_fields=(), cache=False, own=None):
 
 def selftest():
     sq = lambda x, y, d: {'rings': [[[x, y], [x + d, y], [x + d, y + d], [x, y + d], [x, y]]]}
-    ok = True
-    ok &= generic('Unit 1') and generic('Tract 3B') and generic('Wildlife Management Area') and not generic('Lost Valley Prairie')
-    ok &= norm_id('SNA 01041') == 'SNA01041' == norm_id('sna-01041') and norm_id(1041.0) == '1041' == norm_id('1041.0')
+    ok, bad = True, []
+    def t(name, cond):
+        nonlocal ok
+        ok &= bool(cond)
+        if not cond: bad.append(name)
+    t('generic', generic('Unit 1') and generic('Tract 3B') and generic('Wildlife Management Area') and not generic('Lost Valley Prairie'))
+    t('norm ids', norm_id('SNA 01041') == 'SNA1041' == norm_id('sna-01041') == norm_id('SNA1041') and norm_id(1041.0) == '1041' == norm_id('1041.0'))
     ac = acres_of(rings_of(sq(-92.8, 44.8, 0.01)))
-    ok &= 205 < ac < 225            # 0.01 degree square at 44.8 N: about 789 m x 1,106 m = 216 acres
-    old = {'OBJECTID': 'sgmnc55', 'Unit_Nm': 'Lost Valley Prairie', 'GIS_Acres': 319.5, '_g': sq(-92.83, 44.80, 0.01)}
-    new = {'_nm': 'Lost Valley Prairie', '_ac': 319.49, '_g': sq(-92.8301, 44.8001, 0.01)['rings'], 'pgrm_project': 'SNA01041'}
+    t('acres', 205 < ac < 225)            # 0.01 degree square at 44.8 N: about 789 m x 1,106 m = 216 acres
+    old = {'OBJECTID': 'sgmnc55', 'Unit_Nm': 'Lost Valley Prairie', 'GIS_Acres': 216, '_g': sq(-92.83, 44.80, 0.01)}
+    new = {'_nm': 'Lost Valley Prairie', '_ac': 216, '_g': sq(-92.8301, 44.8001, 0.01)['rings'], 'pgrm_project': 'SNA01041'}
     other = {'_nm': 'Crystal Spring', '_ac': 40, '_g': sq(-92.70, 44.70, 0.003)['rings'], 'pgrm_project': 'SNA01022'}
-    lv, note = prove(old, new); ok &= lv == 'overlap'
-    k, lv, _ = pick(old, {'sgmnc210': new, 'sgmnc55': other}); ok &= (k, lv) == ('sgmnc210', 'overlap')   # the number means nothing
-    # agency id first; a different id of the same field is never the same record
+    t('overlap', prove(old, new)[0] == 'overlap')
+    k, lv, _ = pick(old, {'sgmnc210': new, 'sgmnc55': other}); t('number means nothing', (k, lv) == ('sgmnc210', 'overlap'))
     a = dict(old, SA={'pgrm_project': 'SNA 01041'})
-    ok &= prove(a, new, ['pgrm_project'])[0] == 'id'
-    ok &= prove(a, dict(new, pgrm_project='SNA09999'), ['pgrm_project'])[0] is None
-    # a piece: a small record inside a big one
+    t('unit id', prove(a, new, ['pgrm_project'])[0] == 'id')
+    t('other unit id', prove(a, dict(new, pgrm_project='SNA09999'), ['pgrm_project'])[0] is None)
+    t('leading zeros are one id', prove(a, dict(new, pgrm_project='SNA1041'), ['pgrm_project'])[0] == 'id')
+    web = {'url': ('web', [r'dec\.ny\.gov/(?:lands|outdoor)/(\d+)\.html'])}
+    w1, w2 = dict(old, SA={'URL': 'http://www.dec.ny.gov/lands/8139.html'}), dict(new, URL='https://dec.ny.gov/lands/8139.html')
+    t('http / https: one web id', prove(w1, w2, web)[0] == 'id')
+    t('a record-id field never refuses', prove(dict(old, SA={'su_id': 1}), dict(new, su_id=2), {'su_id': ('record', [])})[0] == 'overlap')
     whole = {'_nm': 'Big Forest', '_g': sq(-93, 45, 0.1)['rings']}
-    piece = {'Unit_Nm': 'Unit 4', '_g': sq(-92.95, 45.05, 0.01)}
-    ok &= prove(piece, whole)[0] == 'piece'
-    # name + size with no outline on one side; a generic name never counts; name alone never counts
+    t('a named piece', prove({'Unit_Nm': 'Big Forest', '_g': sq(-92.95, 45.05, 0.01)}, whole)[0] == 'piece')
+    t('Unit 4 is no piece', prove({'Unit_Nm': 'Unit 4', '_g': sq(-92.95, 45.05, 0.01)}, whole)[0] is None)
+    t('unnamed is no piece', prove({'Unit_Nm': '', '_g': sq(-92.95, 45.05, 0.01)}, whole)[0] is None)
+    wpa = {'Unit_Nm': 'Otter Tail County Waterfowl Production Area', '_g': sq(-92.95, 45.05, 0.01)}
+    t('two designations', prove(wpa, dict(whole, _nm='Northern Tallgrass Prairie National Wildlife Refuge'))[0] is None)
     n1 = {'Unit_Nm': 'Mud Lake WMA', 'GIS_Acres': 100, '_bb': [-90, 40, -89.99, 40.01]}
     n2 = {'_nm': 'Mud Lake WMA', '_ac': 105, '_bx': [-90, 40, -89.99, 40.01]}
-    ok &= prove(n1, n2)[0] == 'name_size'
-    ok &= prove(n1, dict(n2, _ac=150))[0] is None
-    ok &= prove(dict(n1, Unit_Nm='Unit 2'), dict(n2, _nm='Unit 2'))[0] is None
-    # same name, but the outlines lie on different ground: not the same land
-    g1 = {'Unit_Nm': 'Mud Lake WMA', 'GIS_Acres': 190, '_g': sq(-90, 40, 0.01)}
-    g2 = {'_nm': 'Mud Lake WMA', '_ac': 190, '_g': sq(-89.993, 40.0, 0.01)['rings']}
-    ok &= prove(g1, g2)[0] is None
-    # two fits with different ids = not proven; two pieces of one unit = one answer
+    t('name and size', prove(n1, n2)[0] == 'name_size')
+    t('size off', prove(n1, dict(n2, _ac=150))[0] is None)
+    t('generic name', prove(dict(n1, Unit_Nm='Unit 2'), dict(n2, _nm='Unit 2'))[0] is None)
+    t('name + size tie is never broken by the number', pick(n1, {'sgxx20': n2, 'sgxx31': dict(n2, _ac=102)}, own='sgxx31')[0] is None)
+    g1 = {'Unit_Nm': 'Mud Lake WMA', 'GIS_Acres': 216, '_g': sq(-90, 40, 0.01)}
+    g2 = {'_nm': 'Mud Lake WMA', '_ac': 216, '_g': sq(-89.993, 40.0, 0.01)['rings']}
+    t('different ground', prove(g1, g2)[0] is None)
+    t('a coarse outline is cannot-tell, then name + size', prove(dict(g1, GIS_Acres=400), dict(g2, _ac=410))[0] == 'name_size')
     p1 = {'_nm': 'X', '_g': sq(-92.83, 44.80, 0.01)['rings'], 'sft': 'SFT1'}
     p2 = {'_nm': 'X', '_g': sq(-92.8302, 44.8002, 0.01)['rings'], 'sft': 'SFT2'}
-    ok &= pick(old, {'a': p1, 'b': p2}, ['sft'])[0] is None
-    ok &= pick(old, {'a': p1, 'b': dict(p2, sft='SFT1')}, ['sft'])[0] in ('a', 'b')
-    wpa = {'Unit_Nm': 'Otter Tail County Waterfowl Production Area', '_g': sq(-92.95, 45.05, 0.01)}
-    ok &= prove(wpa, dict(whole, _nm='Northern Tallgrass Prairie National Wildlife Refuge'))[0] is None
+    t('two fits', pick(old, {'a': p1, 'b': p2}, ['sft'])[0] is None)
+    t('pieces of one unit', pick(old, {'a': p1, 'b': dict(p2, sft='SFT1')}, ['sft'])[0] in ('a', 'b'))
     q1, q2 = {'_nm': 'Agassiz NWR', '_g': sq(-92.83, 44.80, 0.01)['rings']}, {'_nm': 'Agassiz NWR', '_g': sq(-92.83, 44.80, 0.01)['rings']}
-    ok &= pick(old, {'3569': q1, '9999': q2})[0] is None and pick(old, {'3569': q1, '9999': q2}, own='3569')[0] == '3569'
-    print('selftest', 'ALL PASS' if ok else 'FAIL')
+    t('overlap tie by the number', pick(old, {'3569': q1, '9999': q2})[0] is None and pick(old, {'3569': q1, '9999': q2}, own='3569')[0] == '3569')
+    print('selftest', 'ALL PASS' if ok else 'FAIL ' + ', '.join(bad))
     return 0 if ok else 1
 
 

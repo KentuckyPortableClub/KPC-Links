@@ -25,9 +25,16 @@ for f in ('kpc_same_land.py', 'kpc_store_attrs.py'):
     check(f'{f} self-test', 'ALL PASS' in r.stdout)
 
 src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
-start = src.index('RA_USED = {}'); end = src.index('\ndef _maiden6')
-ns = {'os': os, 're': re, 'json': json, 'gzip': gzip, 'math': math, 'KR': KR, 'MC': MC, 'SF': SF, 'OVR': {}, 'notice': lambda *a: None}
-exec(src[start:end], ns)
+# the key's whole helper part (everything before the build starts), as the real build runs it
+os.environ.setdefault('GEO_CACHE_MODE', 'only'); os.environ.setdefault('KPC_KEY_OFFLINE', '1')
+_cwd = os.getcwd(); os.chdir(ROOT)
+ns = {'__file__': str(ROOT / '.github/scripts/kpc_us_key.py'), '__name__': 'kpc_us_key_helpers'}
+import contextlib, io  # noqa: E402
+with contextlib.redirect_stdout(io.StringIO()):
+    exec(compile(src[:src.index('\nidx = {}\n')], ns['__file__'], 'exec'), ns)
+os.chdir(_cwd)
+ns['OVR'].clear(); ns['notice'] = lambda *a: None
+KR, MC, SF = ns['KR'], ns['MC'], ns['SF']
 
 
 def sq(x, y, d):
@@ -35,46 +42,70 @@ def sq(x, y, d):
 
 
 # the MN case: the store read numbers Lost Valley Prairie 210; the key's older copy has it as 55, and its 210 is other land
-lost_store = {'pgrm_project': 'SNA01041', '_nm': 'Lost Valley Prairie', '_ac': 319.49, '_bx': [-92.83, 44.80, -92.82, 44.81], '_g': sq(-92.83, 44.80, 0.01)}
-ns['_RA'][0] = {}
+lost_store = {'pgrm_project': 'SNA01041', '_nm': 'Lost Valley Prairie', '_ac': 216, '_bx': [-92.83, 44.80, -92.82, 44.81],
+              '_g': sq(-92.83, 44.80, 0.01), '_st': 'US-MN', '_rd': '2026-11-21'}
+ns['_RA'][0] = {'207720': {'_nm': 'Lost Valley Prairie State Scientific and Natural Area', '_ac': 216, '_bx': [-92.83, 44.80, -92.82, 44.81],
+                           '_g': sq(-92.83, 44.80, 0.01), '_st': 'US-MN', '_pad': {'Des_Tp': 'SCA', 'Own_Type': 'STAT', 'Mang_Name': 'SDNR'}}}
 ns['_RA_RF'][0] = {'sgmnc210': lost_store,
-                   'sgmne7': {'su_id': 900, '_nm': 'SCHOOLCRAFT', '_bx': [-94.0, 47.0, -93.99, 47.01], '_g': sq(-94.0, 47.0, 0.01)}}
+                   'sgmnb7': {'sft': 'SFT00900', '_nm': 'Schoolcraft', '_ac': 216, '_bx': [-94.0, 47.0, -93.99, 47.01], '_g': sq(-94.0, 47.0, 0.01), '_st': 'US-MN'}}
+ns['_SL_IDX'][1] = None
 slf = ns['same_land_fields']
-key55 = {'OBJECTID': 'sgmnc55', 'Unit_Nm': 'Lost Valley Prairie', 'GIS_Acres': 319.49, '_g': {'rings': sq(-92.8301, 44.8001, 0.01)}}
-key210 = {'OBJECTID': 'sgmnc210', 'Unit_Nm': 'Crystal Spring', 'GIS_Acres': 40, '_g': {'rings': sq(-92.70, 44.70, 0.003)}}
+key55 = {'OBJECTID': 'sgmnc55', 'Unit_Nm': 'Lost Valley Prairie', 'GIS_Acres': 216, '_g': {'rings': sq(-92.8301, 44.8001, 0.01)}, '_k': {'snp'}}
+key210 = {'OBJECTID': 'sgmnc210', 'Unit_Nm': 'Crystal Spring', 'GIS_Acres': 40, '_g': {'rings': sq(-92.70, 44.70, 0.003)}, '_k': {'snp'}}
 check('the renumbered record finds its fresh twin by shared ground, with the agency id',
       slf('sgmnc55', key55) == ('overlap', {'pgrm_project': 'SNA01041'}))
 check("the key's record 210 is other land: it never takes record 210's fields (the number proves nothing)", slf('sgmnc210', key210)[0] == 'none')
-same_place_other_id = {'OBJECTID': 'sgmne3', 'Unit_Nm': 'SCHOOLCRAFT', 'SA': {'su_id': 555}, '_g': {'rings': sq(-94.0, 47.0, 0.01)}}
-orig_keep = SF.keep_fields
-SF.keep_fields = lambda lay, fields=None, path=None: ['su_id'] if lay == 'sgmne' else []
-check('a fresh record with ANOTHER agency id on the same ground: conflict, no fields', slf('sgmne3', same_place_other_id) == ('conflict', None))
-check('the same agency id: proven by id', slf('sgmne3', dict(same_place_other_id, SA={'su_id': '900.0'}))[0] == 'id')
-SF.keep_fields = orig_keep
+other_id = {'OBJECTID': 'sgmnb3', 'Unit_Nm': 'Schoolcraft', 'GIS_Acres': 216, 'SA': {'sft': 'SFT00555'}, '_g': {'rings': sq(-94.0, 47.0, 0.01)}}
+check('a fresh record with ANOTHER unit id on the same ground: conflict, no fields', slf('sgmnb3', other_id) == ('conflict', None))
+check('the same unit id (leading zeros aside): proven by id', slf('sgmnb3', dict(other_id, SA={'sft': 'SFT900'}))[0] == 'id')
 check('no store record of the layer near it: none', slf('sgzza1', {'OBJECTID': 'sgzza1', 'Unit_Nm': 'X', '_g': {'rings': sq(-80, 40, 0.01)}}) == ('none', None))
 
-# the gate: proof or the pin
+# the fresh source: today's store records stand in for the old saved copy
+ns['CUR_ST']['st'] = 'MN'
+old_recs = [key55, key210, {'OBJECTID': 207720, 'Unit_Nm': 'Lost Valley Prairie State Scientific and Natural Area', 'GIS_Acres': 216,
+                            '_g': {'rings': sq(-92.83, 44.80, 0.01)}, 'Des_Tp': 'SCA', '_k': {'snp'}}]
+for a in old_recs: a['_bb'] = ns['bbox'](a['_g'])
+out, alias = ns['fresh_records']('MN', old_recs, {})
+ids = {str(a['OBJECTID']): a for a in out}
+check('the old record 55 is proven to the fresh 210 and dropped; the fresh record stands in with its own outline and id fields',
+      alias.get('sgmnc55') == 'sgmnc210' and ids['sgmnc210'].get('_fresh') and ids['sgmnc210']['SA'] == {'pgrm_project': 'SNA01041'}
+      and ids['sgmnc210']['Unit_Nm'] == 'Lost Valley Prairie' and 'snp' in ids['sgmnc210']['_k'])
+check("the old record 210 (other land) becomes a hint under another id: it never shares the fresh record's number",
+      'sgmnc210~old' in ids and ids['sgmnc210~old'].get('_hint') and ids['sgmnc210~old']['Unit_Nm'] == 'Crystal Spring')
+check('a fresh PAD-US record keeps its own PAD-US words', ids['207720'].get('_fresh') and ids['207720'].get('Des_Tp') == 'SCA')
+ns['OVR'].update({'K-9': {'join': ['sgmnc55'], 'fp': {'sgmnc55': ['Lost Valley Prairie', 216]}, 'no': ['sgmnc210']}})
+ns['repoint_saved']('MN', {'K-9': []}, alias, {a for a in ids if ids[a].get('_fresh')})
+o9 = ns['OVR']['K-9']
+check("a saved join follows its land to the fresh record (proven), with its fingerprint; a NO on unproven land stays on the old copy",
+      o9['join'] == ['sgmnc210'] and 'sgmnc210' in o9['fp'] and o9['no'] == ['sgmnc210~old']
+      and any(x[1:5] == ['K-9', 'join', 'sgmnc55', 'sgmnc210'] for x in ns['REPOINTS']))
+
+# the gate: proof or the pin, from fresh records only
 gate = ns['proven_only_gate']
-ns['SAME_STATE'].clear(); ns['SAME_STATE'].update({'sg1': 'overlap', 'sg2': 'conflict'})
-byid = {'sg1': {'OBJECTID': 'sg1', 'Unit_Nm': 'Alpha WMA', 'GIS_Acres': 100}, 'sg2': {'OBJECTID': 'sg2', 'Unit_Nm': 'Beta WMA', 'GIS_Acres': 50},
-        'sg3': {'OBJECTID': 'sg3', 'Unit_Nm': 'Gamma Forest', 'GIS_Acres': 900}, 'sg4': {'OBJECTID': 'sg4', 'Unit_Nm': 'Delta Lake', 'GIS_Acres': 20},
-        'sg5': {'OBJECTID': 'sg5', 'Unit_Nm': 'Echo Marsh', 'GIS_Acres': 70}}
+ns['SAME_STATE'].clear(); ns['SAME_STATE'].update({'sg2': 'conflict'})
+F = lambda i, n, ac: {'OBJECTID': i, 'Unit_Nm': n, 'GIS_Acres': ac, '_fresh': True, '_bb': [-90, 40, -89.99, 40.01]}
+byid = {'sg1': F('sg1', 'Alpha WMA', 100), 'sg2': F('sg2', 'Beta WMA', 50), 'sg3': F('sg3', 'Gamma Forest', 900),
+        'sg4': F('sg4', 'Delta Lake', 20), 'sg5': F('sg5', 'Echo Marsh', 70), 'sg6': F('sg6', 'Golf State Park', 410),
+        'sg7': dict(F('sg7', 'Hotel WMA', 30), _fresh=False, _hint=True)}
 ns['OVR'].update({'K-3': {'join': ['sg3'], 'fp': {'sg3': ['Gamma Forest', 880]}},
                   'K-4': {'join': ['sg4'], 'fp': {'sg4': ['Old Name Tract', 20]}},
                   'K-5': {'join': ['sg5'], 'no': ['sg2']}})
+facts = {'K-8': {'name': 'Golf State Park', 'size': {'acres': 400, 'witness': 'agency_document'}}}
 parks = {'K-1': {'m': [['sg1', 'Alpha WMA', 100, 'name']], 'match': {'status': 'outlined'}, 'g': 'official'},
          'K-2': {'m': [['sg1', 'Alpha WMA', 100, 'name'], ['sg2', 'Beta WMA', 50, 'name']], 'match': {'status': 'confirmed', 'by': 'id'}, 'g': 'official'},
          'K-3': {'m': [['sg3', 'Gamma Forest', 900, 'reviewed']], 'match': {'status': 'outlined'}, 'g': 'official'},
          'K-4': {'m': [['sg4', 'Delta Lake', 20, 'reviewed']], 'match': {'status': 'confirmed', 'by': 'size'}, 'g': 'official'},
          'K-5': {'m': [['sg5', 'Echo Marsh', 70, 'reviewed']], 'match': {'status': 'outlined'}, 'g': 'official'},
          'K-6': {'m': [['nps1', 'Foxtrot NM', 10, 'NPS unit code']], 'match': {'status': 'outlined'}, 'g': 'official'},
-         'K-7': {'m': [['sg1', 'Alpha WMA', 100, 'name']], 'match': {'status': 'outlined'}, 'g': 'official'}}
-res = gate('ZZ', parks, byid, skip={'K-7'})
-check('an outlined park with a name row only: pin only, the row marked for the code to fix',
+         'K-7': {'m': [['sg1', 'Alpha WMA', 100, 'name']], 'match': {'status': 'outlined'}, 'g': 'official'},
+         'K-8': {'n': 'Golf State Park', 'm': [['sg6', 'Golf State Park', 410, 'name']], 'match': {'status': 'outlined'}, 'g': 'official'},
+         'K-10': {'m': [['sg7', 'Hotel WMA', 30, 'name']], 'match': {'status': 'confirmed', 'by': 'link'}, 'g': 'official'}}
+res = gate('MN', parks, byid, skip={'K-7'}, facts=facts)
+check('an outlined park with a name row only: pin only, the row marked for the code to fix, the park listed',
       parks['K-1']['m'] == [] and parks['K-1']['g'] == 'pin' and parks['K-1']['match']['status'] == 'pin'
-      and parks['K-1']['c'][0][3].startswith('check (code to fix: not proven'))
-check('a confirmed park keeps its proven row and loses the one a fresh record with another agency id holds',
-      [q[0] for q in parks['K-2']['m']] == ['sg1'] and 'different agency id' in parks['K-2']['c'][0][3])
+      and parks['K-1']['c'][0][3].startswith('check (code to fix: not proven') and any(x[:2] == ['MN', 'K-1'] for x in ns['PIN_ONLY']))
+check('a confirmed park keeps BOTH rows; the one a fresh record with another agency id holds is listed, not dropped (M3)',
+      [q[0] for q in parks['K-2']['m']] == ['sg1', 'sg2'] and any(x[1:3] == ['K-2', 'sg2'] for x in ns['LISTED']))
 check("a person's join whose fingerprint still fits draws (even on an outlined park)", [q[0] for q in parks['K-3']['m']] == ['sg3'])
 check("a person's join whose fingerprint no longer fits never draws (other land holds the number)",
       parks['K-4']['m'] == [] and "other land holds this record number" in parks['K-4']['c'][0][3])
@@ -83,16 +114,21 @@ check("a person's join with no fingerprint on an unproven park: pin, and listed 
 check('a NO with no fingerprint is still applied and listed for the owner', any(x[1:4] == ['K-5', 'no', 'sg2'] for x in ns['FP_PROPOSALS']))
 check('a code row (Park Service unit code) stays', [q[0] for q in parks['K-6']['m']] == ['nps1'])
 check('a park the gate skips (official trail line) is left alone', parks['K-7']['m'] and parks['K-7']['g'] == 'official')
-check('the counts', res['rows'] == 4 and res['parks'] == 4 and res['pin_now'] == 3)
+check("the park's own name and its official size within 10% keep its outline (M4: the owner's proof 3 at park level)",
+      [q[0] for q in parks['K-8']['m']] == ['sg6'] and parks['K-8']['match'].get('by') == 'name and official size')
+check('an old-copy hint never draws, even on a confirmed park (fresh data only)',
+      parks['K-10']['m'] == [] and 'only in the old saved copy' in parks['K-10']['c'][0][3])
+check('the counts', res['rows'] == 4 and res['pin_now'] == 4 and res['by_name_size'] == 1 and res['listed'] == 1)
 
 # switches: MN and NY only (the owner's test order); never Kentucky yet
-for sw in ('KPC_SAME_LAND', 'KPC_PROVEN_ONLY'):
+for sw in ('KPC_SAME_LAND', 'KPC_PROVEN_ONLY', 'KPC_STORE_FRESH'):
     check(f'{sw}: on for MN and NY, off for KY and OH', KR.on(sw, area='MN') and KR.on(sw, area='NY') and not KR.on(sw, area='KY') and not KR.on(sw, area='OH'))
 import kpc_key_freeze as KF  # noqa: E402
 check('kpc_same_land.py is a US rule file (it moves the US hash)', '.github/scripts/kpc_same_land.py' in KF.RULE_FILES['us-key'])
 check('the one line per state: by agency id, by shared ground, pieces, by name and size, not proven',
       all(w in src for w in ("by agency id {_sh.get('id', 0)}", "by shared ground", "by name and size", "not proven {_sh.get('unproven', 0)}", 'now pin only')))
 kt = (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8')
-check('the PC test remakes its id file before format 6 and saves the owner list', 'fmt < 6' in kt and 'saved-answers-no-fingerprint.csv' in kt)
+check('the PC test remakes its id file before format 7 and saves the owner lists',
+      'fmt < 7' in kt and all(w in kt for w in ('saved-answers-no-fingerprint.csv', 'pin-only-parks.csv', 'saved-answers-moved.csv', 'rows-kept-but-listed.csv')))
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
