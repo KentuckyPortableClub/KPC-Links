@@ -117,7 +117,7 @@ def notices(log):
     out = []
     for ln in log.splitlines():
         m = re.search(r'::notice title=(?:US key [A-Z]{2}|Canada key[^:]*)::(match checks: .*)', ln)
-        if m: out.append('  ' + m.group(1)[:900])
+        if m: out.append('  ' + m.group(1)[:3000])   # 24 Nov (F2): was cut at 900
         elif ln.startswith('Recreation.gov saved copy') and not any('Recreation.gov' in o for o in out): out.append('  ' + ln.strip()[:160])
         elif '::notice title=Boundary check::' in ln: out.append('  pins: ' + ln.split('::', 2)[-1].replace('%25', '%').strip()[:300])
         elif re.search(r'::(error|warning) title=', ln) or 'golden cases' in ln or 'US key STOPPED' in ln:
@@ -238,21 +238,143 @@ def run_build(st, rep, attrs):
     return p.returncode, ''.join(kept)
 
 
+def sha(p):
+    import hashlib
+    return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
+
+
+def _built_list():
+    try:
+        x = json.loads((ORIG / 'built-files.json').read_text(encoding='utf-8'))
+        return [h for h in x if isinstance(h, str)] if isinstance(x, list) else []
+    except Exception: return []  # noqa: BLE001
+
+
+def built_files():
+    return set(_built_list())
+
+
+def remember_built(st):
+    """K4: fingerprint every key file this PC left in links\\ for this state (after the builder AND after the join check / Canada
+    keep rewrote it; finished, failed or stopped early). Kept in time order; only the oldest are dropped (25 Nov grade fix)."""
+    have = [h for h in _built_list()]
+    for kf in keyfiles(st):
+        if kf.is_file():
+            h = sha(kf)
+            if h in have: have.remove(h)
+            have.append(h)
+    ORIG.mkdir(exist_ok=True)
+    (ORIG / 'built-files.json').write_text(json.dumps(have[-20000:]), encoding='utf-8')
+
+
+def not_built_reason(st, log):
+    """K1 (grade fix): the builder can exit 0 and write nothing: no park file, FAILED, a gate (Canada's 'GATE FAIL' is in the
+    notice TITLE), or the golden cases ('US key STOPPED ... NO keys were written'). Also: every key file is still byte for byte
+    the website copy. '' when the state was built."""
+    m = re.search(r'::notice title=(?:US key ' + st + r'|Canada key[^:]*)::(FAILED: .*|no park file, skipped.*|.*GATE FAIL.*)', log)
+    if m: return m.group(1)
+    m = re.search(r'::notice title=(?:Canada key GATE FAIL|US key STOPPED)[^:]*::(.*)', log)
+    if m: return m.group(1) or 'the build stopped'
+    files = [kf for kf in keyfiles(st) if (ORIG / kf.name).is_file()]
+    if files and all(kf.is_file() and kf.read_bytes() == (ORIG / kf.name).read_bytes() for kf in files):
+        return 'every key file is still the website copy (nothing was written)'
+    return ''
+
+
+def join_check_lines(st):
+    """24 Nov (B2): kpc_join_check.py's holds (a person's NO carried under an old id, far joins), as the GitHub build applies them.
+    The answer sheet is links\\data\\answer-sheet (a kit update brings it) or ANSWER_SHEET; without it more joins are held."""
+    cwd = os.getcwd()
+    try:
+        os.chdir(LINKS)
+        if str(LINKS / '.github' / 'scripts') not in sys.path: sys.path.insert(0, str(LINKS / '.github' / 'scripts'))
+        import kpc_join_check as JC
+        kind = 'ca' if st == 'CANADA' else 'us'
+        ok, sheet = JC.approvals(str(LINKS), kind, dict(os.environ))
+        off = JC.official_acres(str(LINKS / 'data' / 'acres.json'))
+        near = {}   # grade fix: as JC.run(), a park in several area files is measured to the NEAREST part of its whole outline
+        d_, pat = JC.DIRS[kind]
+        mine = {kf.name for kf in keyfiles(st)}
+        for x in (LINKS / d_).glob(pat):
+            if x.name not in mine and (ORIG / x.name).is_file(): x = ORIG / x.name   # other areas: the website copy, as GitHub reads
+            for ref, p in ((load(x) or {}).get('parks') or {}).items():
+                if isinstance(p, dict) and JC.joined(p) and JC.pin_km(p) is not None: near[ref] = min(near.get(ref, 1e9), JC.pin_km(p))
+        nh, no_prev = 0, 0
+        for kf in keyfiles(st):
+            prev = (load(ORIG / kf.name) or {}).get('parks') or {} if (ORIG / kf.name).is_file() else {}
+            no_prev += not (ORIG / kf.name).is_file()
+            _r, h, _c = JC.mark_file(str(kf), off, mode='hold', ok=ok, near=near, prev=prev, root=str(LINKS))
+            nh += len(h)
+        return [f'  join check (as on GitHub): {nh} join(s) held' + ('' if sheet else '; NO answer sheet found, so more holds than GitHub')
+                + (f'; {no_prev} file(s) had no website copy (checked with no previous key, as GitHub would)' if no_prev else '')]
+    except Exception as e:  # noqa: BLE001
+        return [f'  JOIN CHECK NOT RUN ({type(e).__name__}: {str(e)[:120]}): do not compare this state 1:1 with the website']
+    finally:
+        os.chdir(cwd)
+
+
+def canada_keep_lines():
+    """24 Nov (K3): a hard look is a live read, so a store-mode build makes none; GitHub keeps main's hard-look joins after the
+    build (kpc_ca_store_keep.py keep). Same rule here, from the website copy: a park the build left with no join gets its old entry."""
+    try:
+        if str(LINKS / '.github' / 'scripts') not in sys.path: sys.path.insert(0, str(LINKS / '.github' / 'scripts'))
+        import kpc_ca_store_keep as HK
+        kept = 0
+        for kf in keyfiles('CANADA'):
+            o, n = load(ORIG / kf.name), load(kf)
+            if not o or not n: continue
+            k0, parks = kept, n.get('parks') or {}
+            for ref, p in (o.get('parks') or {}).items():
+                if HK.hl_joined(p) and ref in parks and not (parks[ref] or {}).get('m'):
+                    parks[ref] = p; kept += 1
+            if kept > k0: kf.write_text(json.dumps(n, ensure_ascii=False), encoding='utf-8')
+        return [f'  Canada hard look: {kept} join(s) kept from the website key (as GitHub store mode keeps them)']
+    except Exception as e:  # noqa: BLE001
+        return [f'  CANADA HARD LOOK NOT KEPT ({type(e).__name__}: {str(e)[:120]}): its parks show as pins']
+
+
 def run_state(st, rep, attrs, tot):
     ORIG.mkdir(exist_ok=True); LAST.mkdir(exist_ok=True)
-    for kf in keyfiles(st):   # the website's key, kept once, and put back before each build so every test starts the same
-        if kf.is_file() and not (ORIG / kf.name).is_file(): shutil.copy2(kf, ORIG / kf.name)
-        if (ORIG / kf.name).is_file(): shutil.copy2(ORIG / kf.name, kf)
+    mark = ORIG / f'build-running-{st}.txt'   # 25 Nov (grade fix): a test killed mid-build leaves this, so its files are not trusted
+    killed = mark.is_file()
+    for kf in keyfiles(st):   # the website's key, put back before each build so every test starts the same
+        o = ORIG / kf.name
+        # 24 Nov (K4, grade fix): a NEW website key from a kit update replaces the kept copy. A file this PC's own tests wrote
+        # (every one is fingerprinted in built-files.json, after the join check too) never does, nor one left by a killed test.
+        if kf.is_file() and not killed and (not o.is_file() or (kf.read_bytes() != o.read_bytes() and sha(kf) not in built_files())):
+            shutil.copy2(kf, o)
+        if o.is_file(): shutil.copy2(o, kf)
+    mark.write_text(datetime.datetime.now().isoformat(), encoding='utf-8')
+    try:
+        return _run_state(st, rep, attrs, tot)
+    finally:
+        remember_built(st)   # K4-2: fingerprint what is left in links\ AFTER the join check / Canada keep rewrote it
+        try: mark.unlink()
+        except OSError: pass
+
+
+def _run_state(st, rep, attrs, tot):
     say(f'  building {st} ... (its progress lines show below)')
     t0 = time.time()
     rc, log = run_build(st, rep, attrs)
     if rc is None: return [log]
+    remember_built(st)   # K4: whatever the builder left in links\ is this PC's, never a new website copy
     mins = (time.time() - t0) / 60
     lines = [f'{st}: built in {mins:.1f} minutes (exit {rc}).']
     tot['minutes'] = tot.get('minutes', 0) + mins
     if rc != 0:
         tail = [l for l in log.splitlines() if l.strip()][-4:]
         return lines + ['  it stopped with an error; the last lines of its log:'] + ['    ' + re.sub(r'(US|CA)-\d{3,5}', r'\1-####', l)[:300] for l in tail]
+    # 24 Nov (K1): the builder can end with exit 0 and still not build (no park file, FAILED, a gate): say so, compare nothing
+    _nb = not_built_reason(st, log)
+    if _nb:
+        return lines + ['  NOT BUILT: ' + re.sub(r'(US|CA)-\d{3,5}', r'\1-####', _nb)[:300],
+                        '  (the key file is still the website copy: there is nothing to compare, and the last-test copy is not changed)']
+    if st == 'CANADA':   # 24 Nov (K3): Canada's hard-look joins kept from the website key, as kpc-ca-key.yml 'keep' does in store
+        lines += canada_keep_lines()   # mode; BEFORE the join check, in the workflow's order (keep :178, join check :225)
+    if st != 'KY':   # 24 Nov (B2): the join check, as the workflows run it after the builder, with the WEBSITE key as 'previous'
+        lines += join_check_lines(st)   # (the PC folder is not a git checkout, so the check's own git read would find nothing)
+    tot['compared'] = tot.get('compared', 0) + 1
     for kf in keyfiles(st):
         tag = kf.stem
         if (ORIG / kf.name).is_file():
@@ -275,6 +397,10 @@ def main(argv):
     for a in want:
         for s in (US_ALL if a == 'US' else ['CANADA'] if a in ('CA', 'CANADA') else [a]):
             if s not in order: order.append(s)
+    if any(s != 'KY' for s in order) and subprocess.run([sys.executable, '-c', 'import shapely, pyproj, shapefile'], capture_output=True).returncode:
+        say('STOPPED: the map packages (shapely, pyproj, pyshp) are not installed for this Python, so the keys would not match GitHub. '
+            'Run START-HERE.bat again, or tell Claude.')   # 24 Nov (K2): without shapely the keys differ with no warning
+        return
     rep = HERE / 'reports' / ('test-' + datetime.datetime.now().strftime('%Y-%m-%d-%H%M'))
     rep.mkdir(parents=True, exist_ok=True)
     attrs = store_attrs() if any(s != 'KY' for s in order) else ''
@@ -296,6 +422,9 @@ def main(argv):
                 f'{tot.get("minutes", 0):.0f} minutes in all.']
     out += [''] + check_row_collapse_lines([LINKS / 'data' / 'us-key', LINKS])
     (rep / 'REPORT.txt').write_text('\n'.join(out) + '\n', encoding='utf-8')
+    _h = next((re.search(r'US ([0-9a-f]{12})', l).group(1) for l in out if l.startswith('Rules on this PC: US ') and re.search(r'US ([0-9a-f]{12})', l)), '')
+    if _h and tot.get('compared'):   # 24 Nov (F3): read by the next test; only when at least one state was built and compared
+        LAST.mkdir(exist_ok=True); (LAST / 'RULES.txt').write_text(_h + '\n', encoding='utf-8')
     say(''); [say(l) for l in out]
     say(f'\nThe report is in {rep / "REPORT.txt"}. Send that file to Claude.')
 
