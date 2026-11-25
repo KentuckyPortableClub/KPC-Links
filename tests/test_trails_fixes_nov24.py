@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """24 Nov 2026 (owner t2067u 8:32 PM CT 'I agree work on it'): the trail fixes from the check of 787 loose-name confirms.
 (1) built-only hand picks for US-8313 and US-12717 (data/trails-hand.json), read from a saved copy with their filter;
-(2) a state line read before Nov 2 (or with no read date) is stale: not reused, and a shorter line may replace it;
-owner call: closed segments are not drawn; owner call: a line more than 1 km (0.6 mi) from POTA's pin goes to a person;
+(2) a state line read before Nov 2 (or with no read date) is stale: not reused, and a new line may replace it only when
+it is at least half the saved length (anything shorter keeps the old line and goes to a person);
+owner call: closed segments are not drawn, except 'closed to' phrases on an allow list that leave the trail usable on foot;
+owner call: a line more than 1 km (0.6 mi) from POTA's pin goes to a person;
 (4) no found line under 1 km (0.6 mi) on an area park (kpc_finds_lines.py / kpc_us_trails.py).
 Synthetic data only. No network. kpc_state_trails.py / kpc_us_trails.py are not imported (both start work at import).
 Prints PASS / FAIL, ends ALL PASS or SOME FAILED."""
@@ -39,7 +41,7 @@ if a > 0 and b > a: exec(compile(SRC[a + 1:b], 'top', 'exec'), ns)
 a, b = SRC.find('\ndef trail_line_stats('), SRC.find('\n# ---------------------------------------------------------------- run')
 if a > 0 and b > a: exec(compile(SRC[a + 1:b], 'helpers', 'exec'), ns)
 need = ('saved_record', 'keep_saved_reason', 'stale_read', 'closed', 'not_drawn', 'osm_closed', 'pin_check_reason',
-        'line_near_km', 'where_test', 'saved_part_lines')
+        'short_replace_reason', 'line_near_km', 'where_test', 'saved_part_lines')
 missing = [n for n in need if not callable(ns.get(n))]
 check(not missing, f'kpc_state_trails.py defines the 24 Nov helpers (missing: {missing})')
 G = lambda n: ns.get(n) or (lambda *a, **k: None)
@@ -87,8 +89,8 @@ with tempfile.TemporaryDirectory() as t:
     write_line(d, 'US-S', 100, 100)
     old = {'US-S': {'ref': 'US-S', 'read': '2026-10-28', 'official': True, 'source': 'official', 'by': 'US Forest Service', 'km': 100}}
     s_old = SR('US-S', old, {}, str(d)) or {}
-    check(s_old.get('stale') is True and KR(s_old, True, 40, 30) is None,
-          'fix 2: a shorter official line may replace a stale saved line (read Oct 28)')
+    check(s_old.get('stale') is True and KR(s_old, True, 60, 50) is None,
+          'fix 2: a shorter official line at least half as long may replace a stale saved line (read Oct 28)')
     new = {'US-S': dict(old['US-S'], read='2026-11-04')}
     s_new = SR('US-S', new, {}, str(d)) or {}
     check(not s_new.get('stale') and 'kept' in (KR(s_new, True, 40, 30) or ''),
@@ -99,12 +101,40 @@ with tempfile.TemporaryDirectory() as t:
 check("if stale_read(x.get('read')): return False" in SRC, 'fix 2: fresh() does not reuse a stale line for 60 days')
 check('REUSE_DAYS' in SRC and '75%' in SRC, 'fix 2: the 60-day reuse and 75% guards are still there')
 
+# ---------------------------------------------------------------- grade: replacement must be at least half the saved length
+SRH = G('short_replace_reason')
+MI = ns.get('MI_PER_KM') or 0.621371
+def _km(mi):
+    return mi / MI
+s100 = {'exists': True, 'official': True, 'km': _km(100), 'pts': 80, 'stale': True, 'by': 'US Forest Service'}
+why5, hold5 = KR(s100, True, _km(5), 10), SRH(s100, _km(5))
+check(why5 is not None and 'kept' in (why5 or '') and 'half' in (why5 or '') and hold5 and '5.0 mi' in hold5 and '100.0 mi' in hold5 and 'person checks' in hold5,
+      'grade: a 5-mile new line against a 100-mile stale line is held for a person; the old line is kept')
+check(KR(s100, True, _km(60), 50) is None and SRH(s100, _km(60)) is None,
+      'grade: a 60-mile new line replaces a 100-mile stale line')
+check(KR(s100, True, _km(50), 40) is None and SRH(s100, _km(50)) is None,
+      'grade: the replacement floor is exactly 50% (a 50-mile line may replace a 100-mile stale line)')
+check(KR(s100, True, _km(49.9), 40) is not None and SRH(s100, _km(49.9)),
+      'grade: just under 50% of the saved length is held for a person')
+check(SRH(dict(s100, stale=False), _km(5)) is None and SRH(s100, _km(5), True) is None,
+      'grade: a non-stale saved line and a hand pick are not held by the half-length floor')
+after = SRC.split('why = keep_saved_reason', 1)[-1].split('xs = [p[0]', 1)[0]
+check('short_replace_reason(' in after and 'PIN_HELD.append(ref)' in after and "report.setdefault('check'" in after,
+      'grade: a short replacement keeps the old line and goes to the same check list as a line far from the pin')
+
 # ---------------------------------------------------------------- owner call: closed segments are not drawn
 C, ND, OC = G('closed'), G('not_drawn'), G('osm_closed')
 check(C({'TRAILSTAT': 'Closed'}) and C({'STATUS': 'Decommissioned'}) and ND({'CONDITION': 'Abandoned'}),
       'closed: a segment whose status says closed / decommissioned / abandoned is not drawn')
 check(not C({'STATUS': 'Closed to motor vehicles'}) and not C({'STATUS': 'Seasonal closure'}) and not C({'STATUS': 'Open'})
       and not C({'NAME': 'Closed Loop Trail'}), 'closed: a partial or seasonal closure, an open trail, or a name is drawn')
+check(C({'STATUS': 'Closed to the public'}) and C({'STATUS': 'closed'}),
+      "closed: 'closed to the public' or a plain 'closed' is not drawn")
+check(not C({'STATUS': 'Closed to vehicles'}) and not C({'STATUS': 'Closed to bikes'})
+      and not C({'STATUS': 'Closed to horses'}) and not C({'STATUS': 'Closed to OHV'}),
+      "closed: only allow-list 'closed to' phrases that leave the trail usable on foot are drawn")
+check('CLOSED_TO_OK' in SRC and 'CLOSED_TO_OK_RE' in SRC,
+      "closed: the 'closed to' exceptions are an explicit allow list, not a blanket 'closed to'")
 check(OC({'access': 'no'}) and OC({'abandoned:highway': 'path'}) and not OC({'access': 'yes', 'highway': 'path'}),
       'closed: an OpenStreetMap way marked access=no or abandoned is not drawn')
 check(SRC.count('not_drawn(') >= 4 and 'osm_closed(' in SRC.split('def osm_closed', 1)[1],

@@ -25,8 +25,11 @@ Nov 16: before writing, the bot checks both index-state.json and index.json. A n
 OpenStreetMap line. A hand-picked line always gets written. Between two official lines, only a shorter or rougher new one
 is blocked (under 75% of the saved length, or under half the saved points). A skip is logged with the reason.
 24 Nov 2026 (owner t2067u 'I agree work on it'): (1) a line in index-state.json read before Nov 2 (the no-planned rule), or with no
-read date, is STALE: not reused for 60 days, and a shorter or rougher new line may replace it; (2) closed segments (a status field
-says closed / decommissioned / abandoned / obliterated; OpenStreetMap access=no, abandoned, disused) are not drawn; (3) a trail line
+read date, is STALE: not reused for 60 days, and a new line may replace it only when it is at least half the saved length (anything
+shorter keeps the saved line and goes to a person, same 'check' list as a line far from the pin); (2) closed segments (a status field
+says closed / decommissioned / abandoned / obliterated, or 'closed to the public' / a plain closed; OpenStreetMap access=no, abandoned,
+disused) are not drawn — only closures that still leave the trail usable on foot (closed to motor vehicles, vehicles, bikes, horses,
+or OHV) and seasonal / temporary closures are drawn; (3) a trail line
 more than 1 km (0.6 mi) from POTA's pin is not used automatically: it goes to the state report's 'check' list for a person (a hand
 pick and a wild and scenic river are not held); (4) a hand-picked part may name 'saved', a saved copy of a layer on a host the
 bots never contact, read from disk with the part's where filter."""
@@ -50,11 +53,27 @@ def planned(A):
     """Nov 2 (PR 4): a segment that is only planned / proposed (a status-like field says so) is not drawn."""
     return any(re.search(r'stat|phase|exist|cond|build|constr', str(k), re.I) and isinstance(v, str) and PLANNED.search(v) for k, v in (A or {}).items())
 # 24 Nov 2026 (owner t2067u 'I agree': closed trail segments are not drawn). A status-like field that says the segment is closed,
-# decommissioned, abandoned or obliterated; a seasonal or partial closure ('closed to motor vehicles', 'closed in winter') is not.
+# decommissioned, abandoned or obliterated is not drawn, including 'closed to the public' and a plain 'closed'. Closures that still
+# leave the trail usable on foot are drawn: an explicit allow list of 'closed to …' phrases (motor vehicles, vehicles, bikes, horses,
+# OHV). A seasonal or temporary closure ('closed in winter') is also drawn.
 CLOSED = re.compile(r'\b(closed|decommissioned|abandoned|obliterated)\b', re.I)
-CLOSED_NOT = re.compile(r'season|winter|spring|summer|autumn|\bfall\b|temporar|closed to\b|hunt|night|dusk|dawn|motor|vehicle|\batv\b|\bohv\b|snow|bike|horse|equestrian', re.I)
+CLOSED_TO_OK = (
+    'motor vehicles', 'motor vehicle',
+    'vehicles', 'vehicle',
+    'bikes', 'bike',
+    'horses', 'horse',
+    'ohvs', 'ohv',
+)
+CLOSED_TO_OK_RE = re.compile(r'closed to\s+(' + '|'.join(re.escape(x) for x in CLOSED_TO_OK) + r')\b', re.I)
+CLOSED_SEASON = re.compile(r'season|winter|spring|summer|autumn|\bfall\b|temporar|hunt|night|dusk|dawn|snow', re.I)
 def closed(A):
-    return any(re.search(r'stat|phase|exist|cond|open|clos', str(k), re.I) and isinstance(v, str) and CLOSED.search(v) and not CLOSED_NOT.search(v)
+    def shut(v):
+        if not isinstance(v, str) or not CLOSED.search(v):
+            return False
+        if CLOSED_TO_OK_RE.search(v) or CLOSED_SEASON.search(v):
+            return False
+        return True
+    return any(re.search(r'stat|phase|exist|cond|open|clos', str(k), re.I) and shut(v)
                for k, v in (A or {}).items())
 def not_drawn(A):
     """Planned / proposed (Nov 2) or closed (24 Nov) segments are not drawn."""
@@ -487,7 +506,8 @@ def saved_record(ref, idx_state, idx_nat, outdir):
 
 
 # 24 Nov 2026 (owner t2067u 'I agree'): a line read before the Nov 2 no-planned rule may still carry planned trail, so it is STALE:
-# it is not reused for 60 days, and a shorter or rougher new line may replace it. Lines read on or after Nov 2 keep both guards.
+# it is not reused for 60 days, and a new line may replace it only when it is at least half the saved length. Anything shorter keeps
+# the saved line and goes to a person (the same 'check' list as a line far from the pin). Lines read on or after Nov 2 keep both guards.
 STALE_BEFORE = '2026-11-02'
 # 24 Nov 2026 (owner t2067u): a trail line more than 1 km (about 0.6 mi) from POTA's pin is not used automatically: it goes to
 # the 'check' list in the state report for a person. A line picked by hand (data/trails-hand.json) is a person's pick and a wild
@@ -582,12 +602,32 @@ def saved_part_lines(part, bases=None):
     return out
 
 
+REPLACE_MIN = 0.5   # 24 Nov grade: a replacement line must be at least half the saved length
+
+
+def short_replace_reason(saved, new_km, new_hand=False):
+    """Why a new line under half a stale saved line's length goes to a person instead of the map.
+    None when it may replace, when there is no stale saved line, or when the new line is a hand pick."""
+    if new_hand or not saved or not saved.get('exists') or not saved.get('stale'):
+        return None
+    skm = float(saved.get('km') or 0)
+    if not skm or new_km >= REPLACE_MIN * skm:
+        return None
+    def _len(k):
+        mi = k * MI_PER_KM
+        return f'{mi:.1f} mi' if mi >= 0.95 else f'{k * FT_PER_KM:,.0f} ft'
+    return (f"new line is {_len(new_km)}, under half the saved {_len(skm)}: "
+            f"not used automatically, a person checks")
+
+
 def keep_saved_reason(saved, new_official, new_km, new_pts, new_hand=False):
     """Why the saved line must be kept, or None if the new line may be written.
 
     A new official line always beats a saved OpenStreetMap line. A hand-picked line
     always gets written. Between two official lines, only a shorter or rougher new
     one is blocked (under 75% of the saved length, or under half the saved points).
+    A stale saved line (read before Nov 2) may be replaced only when the new line is
+    at least half as long; anything shorter is kept and goes to a person.
     """
     if new_hand:
         return None
@@ -600,7 +640,10 @@ def keep_saved_reason(saved, new_official, new_km, new_pts, new_hand=False):
                 f"a new OpenStreetMap line ({new_km:.0f} km) does not replace it")
     if new_official and not saved.get('official'):
         return None
-    if saved.get('stale'):   # 24 Nov: read before Nov 2 = stale; a shorter or rougher new line may replace it
+    if saved.get('stale'):   # 24 Nov grade: a new line may replace a stale one only at or above half the saved length
+        if short_replace_reason(saved, new_km, new_hand):
+            return (f"saved line is kept ({skm:.0f} km, {spts} points); "
+                    f"the new line ({new_km:.0f} km, {new_pts} points) is under half the saved length")
         return None
     if saved.get('official') and new_official:
         if spts and new_pts < .5 * spts:
@@ -846,7 +889,11 @@ for st, cand in jobs():
         why = keep_saved_reason(saved, off, total, sum(len(l) for l in lines), from_hand)
         if why:   # Nov 16: official beats OSM; hand-picked is always written; official vs official blocks only shorter or rougher
             KEPT.append(ref); note(ref, f'{name}: {why}')
-            report['found'].append([ref, name, stc, (saved or {}).get('by', ''), (saved or {}).get('km', 0), round(near, 1)]); got += 1; continue
+            report['found'].append([ref, name, stc, (saved or {}).get('by', ''), (saved or {}).get('km', 0), round(near, 1)]); got += 1
+            sr = short_replace_reason(saved, total, from_hand)
+            if sr:   # 24 Nov grade: under half the stale saved length: keep the old line and send it to a person (same path as a far pin)
+                report.setdefault('check', []).append([ref, name, stc, sr]); PIN_HELD.append(ref); note(ref, f'{name}: {sr}')
+            continue
         xs = [p[0] for l in lines for p in l]; ys = [p[1] for l in lines for p in l]
         src = 'official' if off else 'osm'
         wat = bool((HAND.get(ref) or {}).get('water')) or bool(WATER.search(name + ' ' + typ))
@@ -868,7 +915,7 @@ for _k in ('found', 'missing', 'noline', 'check'): report[_k] = sorted(report.ge
 save_json(f'{OUT}/state-report.json', report, indent=1)
 note('State trails done', f"{len(report['found'])} drawn, {len(report['missing'])} not drawn (see data/trails/state-report.json); "
                           f"{len(REUSED)} official lines reused, {len(KEPT)} saved lines kept over shorter ones; "
-                          f"{len(PIN_HELD)} lines over 0.6 mi from POTA's pin sent to a person (state-report 'check'); "
+                          f"{len(PIN_HELD)} lines sent to a person (state-report 'check': over 0.6 mi from POTA's pin, or a new line under half a stale saved length); "
                           f"{sum(1 for x in IDX.values() if not x.get('official'))} still unofficial (OpenStreetMap); OpenStreetMap fallback {'ON' if OSM_ON else 'OFF'}")
 # Nov 2 (PR 4): every index row says where its line came from (source official / osm; unofficial rows carry the one label)
 for _x in IDX.values():
