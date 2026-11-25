@@ -150,6 +150,34 @@ with tempfile.TemporaryDirectory() as td:
     check('R6: the gate lists the old rows of a park that lost rows (old id, layer, why)',
           any(x[1] == 'US-9100' and x[2] == 'sgzzd10' for x in ns['PROOF_ROWS']))
 
+# ---- owner 25 Nov 12:07 PM ('Delete any holds they maybe wrong idk'): saved answers are hints only (KPC_SAVED_HINTS_ONLY) ----
+sw = json.load(open(ROOT / '.github/key-switches.json', encoding='utf-8'))['switches'].get('KPC_SAVED_HINTS_ONLY') or {}
+check('the switch KPC_SAVED_HINTS_ONLY is on for MN and NY only', sorted(sw.get('on') or []) == ['MN', 'NY'])
+i_ = src.index('def run(st):'); runsrc = src[i_:src.index('\ndef ', i_ + 10)]
+check("run() sets the state's saved answers aside (OVR.pop into SAVED_HINTS) right at the start, before any matching; the files are not touched",
+      "if _r in OVR: SAVED_HINTS[_r] = OVR.pop(_r)" in runsrc and runsrc.index('SAVED_HINTS[_r]') < runsrc.index('load_cache(st)')
+      and "and not _kr('KPC_SAVED_HINTS_ONLY')" in src[src.index('if SHEET and SHEET.get(ref)') - 5: src.index('if SHEET and SHEET.get(ref)') + 200])
+with tempfile.TemporaryDirectory() as td:
+    td = pathlib.Path(td); ns['OUT'] = td
+    (td / 'US-ZZ.json').write_text(json.dumps({'parks': {}}))
+    for on in (False, True):
+        ns['_kr'] = (lambda n, on=on: n == 'KPC_STORE_FRESH' or (on and n == 'KPC_SAVED_HINTS_ONLY'))
+        ns['OVR'] = {} if on else {'US-9200': {'join': ['sgzzh5'], 'fp': {'sgzzh5': ['Hotel Marsh', 70]}}}
+        ns['SAVED_HINTS'].clear()
+        if on: ns['SAVED_HINTS']['US-9200'] = {'join': ['sgzzh5', 'Hotel Marsh'], 'fp': {'sgzzh5': ['Hotel Marsh', 70]}}
+        del ns['PIN_ONLY'][:]; del ns['FP_PROPOSALS'][:]
+        byid2 = {'sgzzh5': {'Unit_Nm': 'Hotel Marsh', 'GIS_Acres': 70, '_bb': [-91.0, 46.0, -90.99, 46.01], '_fresh': True}}
+        pk = {'US-9200': {'n': 'Hotel Marsh WMA', 't': 'Wildlife Management Area', 'm': [['sgzzh5', 'Hotel Marsh', 70, 'reviewed']],
+                          'match': {'status': 'outlined'}, 'g': 'official'}}
+        ns['proven_only_gate']('ZZ', pk, byid2, set(), {})
+        if not on:
+            check("switch OFF: a person's saved join whose fingerprint fits still draws (today's rule elsewhere)", [q[0] for q in pk['US-9200']['m']] == ['sgzzh5'])
+        else:
+            pr = [x for x in ns['PIN_ONLY'] if x[1] == 'US-9200']
+            check('switch ON: the same saved join is a hint only: not proven by fresh data = pin only, its saved id listed to prove later',
+                  pk['US-9200']['m'] == [] and pk['US-9200']['g'] == 'pin' and pr and pr[0][5] == 'sgzzh5' and 'not proven' in pr[0][3])
+            check('switch ON: no question goes to the owner (nothing in the no-fingerprint list)', ns['FP_PROPOSALS'] == [])
+
 # ---- R5: wetland district tracts from the layer file (source check: the filter on the fws records' realty fields) ----------
 check("R5: the district rule reads the layer file's fws records (CMPXNAME, RSL_TYPE 'WPA', INTTYPE1 'O') before any live read",
       "_lay_fws = [a for a in recs if a.get('_fresh') and _sl_layer(_oid(a)) == 'fws' and (a.get('SA') or {}).get('CMPXNAME')]" in src

@@ -35,6 +35,7 @@
     "KPC_CONFIRM_SIZE_HOLD": {"on": []},
     "KPC_SAME_LAND": {"on": ["MN", "NY"]},
     "KPC_PROVEN_ONLY": {"on": ["MN", "NY"]},
-    "KPC_STORE_FRESH": {"on": ["MN", "NY"]}
+    "KPC_STORE_FRESH": {"on": ["MN", "NY"]},
+    "KPC_SAVED_HINTS_ONLY": {"on": ["MN", "NY"]}
   }
 }

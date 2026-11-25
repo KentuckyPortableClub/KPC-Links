@@ -87,6 +87,8 @@ check("a saved join follows its land to the fresh record (proven), with its fing
 
 # the gate: proof or the pin, from fresh records only
 gate = ns['proven_only_gate']
+_kr0 = ns['_kr']; ns['_kr'] = lambda n, _k=_kr0: n != 'KPC_SAVED_HINTS_ONLY' and _k(n)   # these checks are the rules with saved answers
+# obeyed (the switch OFF); owner 12:07 PM's hints-only rule (ON for MN and NY) is tested in test_round10_nov25.py
 ns['SAME_STATE'].clear(); ns['SAME_STATE'].update({'sg2': 'conflict'})
 F = lambda i, n, ac: {'OBJECTID': i, 'Unit_Nm': n, 'GIS_Acres': ac, '_fresh': True, '_bb': [-90, 40, -89.99, 40.01]}
 byid = {'sg1': F('sg1', 'Alpha WMA', 100), 'sg2': F('sg2', 'Beta WMA', 50), 'sg3': F('sg3', 'Gamma Forest', 900),

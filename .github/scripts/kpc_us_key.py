@@ -2354,6 +2354,7 @@ def _fp_state(ref, rid, rec, key='fp'):
     return 'ok' if rec is not None and KR.saved_row_ok([rid, fp[0], fp[1] if len(fp) > 1 else 0], rec) else 'nofit'
 
 
+SAVED_HINTS = {}   # owner 25 Nov 12:07 PM (KPC_SAVED_HINTS_ONLY): {park: its old saved answer}, set aside, never obeyed; listed only
 PIN_ONLY = []      # [state, park, rows that left the map, why]: every park the gate leaves with its pin only (the PC report lists them)
 LISTED = []        # [state, park, record id, why]: rows the gate keeps but lists (a confirmed park, a fresh record with another id)
 SIZE_TOL_PARK = 0.10
@@ -2477,6 +2478,7 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
         keep, gone = [], []
         for q in p['m']:
             rid, cls = str(q[0]), MC.row_class(q)
+            if cls == 'person' and _kr('KPC_SAVED_HINTS_ONLY'): cls = 'name'   # owner 12:07 PM: a saved answer is a hint, never proof
             rec = byid.get(rid)
             why = None
             fps = _fp_state(ref, rid, rec) if cls == 'person' else ''
@@ -2500,11 +2502,11 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
             if not why and SAME_STATE.get(rid) == 'conflict':
                 LISTED.append([st, ref, rid, 'kept on a confirmed park, but a fresh record with another agency id holds this ground'])
                 out['listed'] += 1
-            if cls == 'person' and fps == 'nofp':
+            if cls == 'person' and fps == 'nofp' and not _kr('KPC_SAVED_HINTS_ONLY'):   # 12:07 PM: no questions to the owner
                 FP_PROPOSALS.append([st, ref, 'join', rid, MC.rec_name(rec or {}), round(float((rec or {}).get('GIS_Acres') or 0)),
                                      'kept: the park is confirmed' if not why else 'not drawn: ' + why])
             (gone if why else keep).append((q, why))
-        for i_ in [str(x) for x in (OVR.get(ref) or {}).get('no') or []]:
+        for i_ in ([] if _kr('KPC_SAVED_HINTS_ONLY') else [str(x) for x in (OVR.get(ref) or {}).get('no') or []]):
             if _fp_state(ref, i_, byid.get(i_), 'nofp') == 'nofp' and byid.get(i_) is not None:
                 FP_PROPOSALS.append([st, ref, 'no', i_, MC.rec_name(byid[i_]), round(float(byid[i_].get('GIS_Acres') or 0)),
                                      "a NO with no fingerprint: still applied (it can only take land away)"])
@@ -2526,7 +2528,9 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
             mt['status'] = 'pin'; mt['why'] = sorted(set(list(mt.get('why') or []) + [FIX]))
             out['pin_now'] += 1
             ws = sorted({w for _q, w in gone})
-            PIN_ONLY.append([st, ref, len(gone), '; '.join(ws), 'no' if any(w.startswith('layer not in store') for w in ws) else 'yes'])
+            _h = SAVED_HINTS.get(ref) or {}
+            PIN_ONLY.append([st, ref, len(gone), '; '.join(ws), 'no' if any(w.startswith('layer not in store') for w in ws) else 'yes',
+                             ' '.join(str(x) for x in (_h.get('join') or []) if re.fullmatch(r'\d+|[a-z]+\d+', str(x)))[:200]])   # the saved hint, to prove at the end
     for lay, (n, refs) in sorted(nostore.items()):
         NOSTORE_LAYERS.append([st, lay, n, len(refs)])
     out['layers_not_in_store'] = {lay: n for lay, (n, _r) in nostore.items()}
@@ -3008,6 +3012,15 @@ def run(st):
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']; P_ALL.clear(); P_ALL.update(P)
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
     progress(st, f'state build started ({len(P):,} parks)', start=True)
+    if _kr('KPC_SAVED_HINTS_ONLY'):
+        # KPC owner, 25 Nov 12:07 PM: 'Delete any holds they maybe wrong idk.' Old saved answers (a person's joins, NOs, blocked
+        # ids, tracts, aliases, answer-sheet NOs: everything overrides*.json holds for this state's parks) are no longer obeyed:
+        # they are set aside as HINTS (listed with the pin-only parks), never deleted (the files are not touched). Fresh agency
+        # proof decides every park; what it cannot prove shows its pin. No question goes to the owner.
+        _n = 0
+        for _r in list(P):
+            if _r in OVR: SAVED_HINTS[_r] = OVR.pop(_r); _n += 1
+        notice(f'US key {st}', f'saved answers set aside as hints only (owner 25 Nov 12:07 PM): {_n} park(s); fresh proof decides')
     try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}   # Oct 29: retired numbers leave the key (issue #17)
     except Exception: pass  # noqa: BLE001
     got = load_cache(st) if CMODE in ('use', 'only') else None
@@ -3312,7 +3325,7 @@ def run(st):
                         if _was is not None: _was[3] = _how
                         else: m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), _how])   # Oct 22: 'approx' = a person picked the closest official land, but it is bigger or shaped differently: the tools label it Approximate
         _sct, _sfirst = [], False   # Nov 3 answer sheet (read only; nothing here runs unless KPC_ANSWER_SHEET is add / first)
-        if SHEET and SHEET.get(ref) and not ov.get('none'):
+        if SHEET and SHEET.get(ref) and not ov.get('none') and not _kr('KPC_SAVED_HINTS_ONLY'):   # 12:07 PM: the answer sheet is a saved answer too
             _sno = {str(x) for x in ov.get('no', [])}
             _sby = {_oid(a): a for a in recs}
             _stag = 'reviewed-sheet' if SHEET_GREEN else 'answer sheet (nightly check not green)'
@@ -4357,7 +4370,8 @@ def run(st):
                       + ', '.join(f'{v} {w}' for w, v in sorted((_po.get('why') or {}).items(), key=lambda x: -x[1]))
                       + f"; saved answers with no fingerprint: {sum(1 for x in FP_PROPOSALS if x[0] == st)}")
         notice(f'US key {st}', _line)
-        for _env, _rows, _head in (('KPC_PIN_ONLY_LIST', PIN_ONLY, ['state', 'park', 'rows that left the map', 'why', 'layer_in_store']),
+        for _env, _rows, _head in (('KPC_PIN_ONLY_LIST', PIN_ONLY, ['state', 'park', 'rows that left the map', 'why', 'layer_in_store',
+                                                                    'old saved answer (hint only, to prove from agency data)']),
                                    ('KPC_NOSTORE_LIST', NOSTORE_LAYERS, ['state', 'layer', 'joined rows', 'parks']),
                                    ('KPC_PROOF_LIST', PROOF_ROWS, ['state', 'park', 'old id', 'layer', 'rough outline', 'best fresh candidate',
                                                                    'level or why', 'left the map']),   # R6
