@@ -44,6 +44,17 @@ Expected: MN builds (all joined layers complete); NY builds once Catskill is com
 4. Then, only on the owner's word: LAYER-RECORDS for every US + Canada area (choice 2, many hours), switches on for more states,
    the owner's quoted OK on the rules line (marks APPROVED), merge.
 
+## The move to the new PC (owner 25 Nov 9:15 AM: "We come back to that tonight")
+- Not started. The plan is on his PC: `D:\KPC GITHUB TOOL and MOre\Tools\MOVE-PREP\MOVE-LIST.txt` (24 Nov; he said yes at 8:02 PM):
+  about 29 GB to copy (Layers-TIDY 19.4 GB, the US store 4.4 GB, the world store 2.3 GB, page reader, ID crosswalk, trace test, test kit
+  basics); download fresh on the new PC (repos, links, park facts, Python 3.12 + packages); leave old kit zips and old tool copies behind
+  only after the new PC passes its checks. Nothing on the old PC is deleted first. BACKUP-TO-DRIVE.bat and MAKE-LAYER-GUIDE.bat are there.
+- After the move: heavy work on the PC (store rebuilds, LAYER-RECORDS downloads, key builds once the hold is lifted, 2-fers, trace test,
+  page reader); GitHub keeps the website, posts, small feeding bots and the keeper's light nightly check. Each move needs his OK.
+- GitHub size clean-up comes after the move, its own GO: full backup first, then old branches, then a history reset one repo at a time.
+- NEW since the list was made: the full layer files (results\layer-files + results\store\*.layer-records.json.gz) live in the US store
+  folder; they move with it (or are downloaded again by LAYER-RECORDS.bat).
+
 ## House rules that bit today
 - Never push to main (branch + draft PR; author KPC owner, message ends "KPC owner, <date>", no trailers).
 - Touched tests only, Python 3.12. Rule changes need the owner's quoted OK; data/** only with his OK for that exact edit.
