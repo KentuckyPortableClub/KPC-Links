@@ -2196,8 +2196,11 @@ def _saved_no(ref, rid, a):
 
 RA_USED = {}
 RA_BRIDGED = {}
+RA_REFUSED = {}   # 24 Nov 2026 (B1, #379): re-found store records whose fields were NOT used (another record under that number)
 _RA = [None]
 _RA_BY = [{}]
+_RA_RF = [{}]     # 'refound' of kpc_store_attrs format 5: re-found store records, with their name, size and key_record_id
+_RA_KID = [{}]    # key_record_id -> the refound entries that name it
 def record_attrs():
     """{record id: {id field: value}} from KPC_RECORD_ATTRS (kpc_store_attrs.py), or {} when the switch has no file."""
     if _RA[0] is None:
@@ -2208,6 +2211,10 @@ def record_attrs():
                 with gzip.open(f, 'rt', encoding='utf-8') as fh: doc = json.load(fh)
                 _RA[0] = doc.get('records') or {}
                 _RA_BY[0] = doc.get('by_name') or {}
+                _RA_RF[0] = doc.get('refound') or {}
+                _RA_KID[0] = {}
+                for k_, v_ in _RA_RF[0].items():
+                    if v_.get('_kid'): _RA_KID[0].setdefault(v_['_kid'], []).append(k_)
             except Exception as e:  # noqa: BLE001
                 notice('US key', f'store id fields not read ({e}); the id checks use the saved copies only')
     return _RA[0]
@@ -2232,7 +2239,29 @@ def record_attrs_by_name(i, a):
         b = e[2]
         return b[0] <= bb[2] + 0.01 and bb[0] <= b[2] + 0.01 and b[1] <= bb[3] + 0.01 and bb[1] <= b[3] + 0.01
     hits = {e[1] for e in by.get(nm) or [] if abs(float(e[0]) - ac) <= 0.01 * ac and _meets(e)}
-    return (_RA[0] or {}).get(next(iter(hits))) if len(hits) == 1 else None
+    if len(hits) != 1: return None
+    h = next(iter(hits))
+    if h.endswith('@'):   # B1: a re-found record's entry (kpc_store_attrs format 4); its helper keys never reach the checks
+        x = (_RA_RF[0] or {}).get(h[:-1])
+        return {k: v for k, v in x.items() if k not in ('_nm', '_ac', '_kid')} if x else None
+    return (_RA[0] or {}).get(h)
+
+
+def store_fields(i, a):
+    """24 Nov 2026 (B1, #379): the outline store's id fields for saved record i (a = the record), and how: ('id', fields) a plain
+    store record of that number; ('refound', fields) a re-found store record (under that number, or naming i as its key_record_id)
+    used only when it is provably the same record (saved_row_ok, D1's test: same name, size within 10%; no name = not proven);
+    ('refused', None) only re-found records that are another record; ('', None) nothing. Neither the number nor key_record_id is
+    trusted alone: the key's saved copy can be renumbered after the store was built (MN, 25 Nov 4:08 AM PC test)."""
+    x = (_RA[0] or {}).get(i)
+    if x: return 'id', x
+    rf = _RA_RF[0] or {}
+    cands = [k for k in [i] + list((_RA_KID[0] or {}).get(i) or []) if k in rf]
+    for k in cands:
+        y = rf[k]
+        if y.get('_nm') and KR.saved_row_ok([i, y['_nm'], y.get('_ac') or 0], a):
+            return 'refound', {k_: v for k_, v in y.items() if k_ not in ('_nm', '_ac', '_kid')}
+    return ('refused', None) if cands else ('', None)
 
 
 def _maiden6(la, lo):
@@ -2341,15 +2370,18 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
     _ra = record_attrs()
     if _ra:
         nb = 0
+        nu = nr = 0
         for i, a in list(byid.items()):
-            x = _ra.get(i)
+            how, x = store_fields(i, a)   # B1 (#379): a re-found record's fields only when it is the same record
+            nu += how in ('id', 'refound'); nr += how == 'refused'
             if not x and not (a.get('SA') or {}):
                 x = record_attrs_by_name(i, a)
                 nb += bool(x)
             if x:
                 byid[i] = dict(a, SA=dict(x, **(a.get('SA') or {})))
-        RA_USED[st] = sum(1 for i in byid if i in _ra)
+        RA_USED[st] = nu   # B1: only records that really got fields by their number (a refused one is not counted)
         RA_BRIDGED[st] = nb
+        RA_REFUSED[st] = nr
 
     def _pins_of(ref):
         r = P.get(ref) or []
@@ -3784,7 +3816,7 @@ def run(st):
                                   + ', '.join(f'{v} {w}' for w, v in (_mc.get('second_name_near') or {}).items()) if 'second_name' in _mc else '')
                                # 22 Nov 2026: the new witnesses, counted
                                + f"; by id {_mc.get('by_id', 0)}, by page point {_mc.get('by_page point', 0)}, pieces kept by a page point "
-                                 f"{_mc.get('kept_by_page_point', 0)}; store id fields on {RA_USED.get(st, 0)} record(s) (+{RA_BRIDGED.get(st, 0)} by name and size); POTA grid square "
+                                 f"{_mc.get('kept_by_page_point', 0)}; store id fields on {RA_USED.get(st, 0)} record(s) (+{RA_BRIDGED.get(st, 0)} by name and size; {RA_REFUSED.get(st, 0)} refused: another record); POTA grid square "
                                  f"differs from the pin: {_mc.get('grid_differs', 0)}; pin-only parks given a page-point check row: "
                                  f"{_mc.get('page_point_checks', 0)}"
                                # 23 Nov 2026: the page's own name and its map link, counted
