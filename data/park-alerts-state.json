@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20 12:57",
+ "updated": "2026-11-25 14:22",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -244,6 +244,19 @@
    "runs": 2,
    "missing": 0,
    "announced": true,
+   "refs": []
+  },
+  "nps-7D7904D7-8EA3-4604-AD54-8880062E8FF1": {
+   "who": "FODO",
+   "title": "Facilities will close for Thanksgiving Day. Park will be accessible for visitors.",
+   "text": "The park Visitor Center, historic Dover Hotel, Carriage House, and park Comfort Station will be closed for Thanksgiving Day holiday on November 26, 2026. The National Park grounds, trails, and roads will be open, 8:00 am - 4:30 pm.",
+   "link": "https://www.nps.gov/",
+   "routine": true,
+   "cat": "information",
+   "first": "2026-11-25",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
    "refs": []
   }
  },
