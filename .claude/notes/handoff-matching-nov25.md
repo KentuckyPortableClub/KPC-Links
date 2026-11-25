@@ -14,6 +14,10 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   fresh_store.layer_file (kpc_store_attrs format 9); the cutter HOLDS (exit 3) on another download, no identity, or a fresh id missing
   from the file; drops only for not publishable / no shape. Canada '<label>:<n>' ids now counted in skipped_ids. US rules -> **d8e396b4cb51**
   (NOT YET APPROVED). The PC test does not run the cutter, so the 25n MN + NY test (0d015ade5a34) still stands for matching; kit 25o later.
+  **Graded PASS 9:42 AM CT, no must-fixes.** Before any real cut: kpc_store_attrs, the key and the cut from ONE layer download.
+- **PC test 9:11 AM (kit 25n):** MN built: outlines 315 -> 294, 17 parks pin only, 2,500 rows of 93 parks left the map. SUSPECT: whole
+  state parks (US-2485, US-2520, US-2483, US-6463, US-12388) lost rows that match by name + acres on complete layers; most are sgmne
+  pieces. Next: read the MN fresh layer files (needs the owner's OK for the store folder). NY held: sgnyd (Catskill) 0 records.
 
 ## The rules now (owner's words 25 Nov)
 - 6:20 / 6:28 AM: match by proof from fresh data: agency (unit) id, then shared ground (80% / 50%; piece 90% with a shared name),
