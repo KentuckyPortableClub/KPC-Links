@@ -39,6 +39,11 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   ducking number changes I do not have to approve you all to fix this.'). Kit 25s on the PC, read back equal. The other builder
   grades and merges after the owner's MN/NY PC test. Never ask the owner about hashes, holds or parks.
 
+- **Round 14 (b23214b grader + ab6b118 data, ~2:30 PM CT): US rules 03c3525be24b.** state-gis.json NY entry 3 (sgnyc) = APA
+  BluelinePolygon (fixed name 'Adirondack Park'). KPC-Store 544ca01 on the PC (read back equal): layer-url-overrides.csv (sgnyc),
+  verified row fetch yes / publish no, an old-address file is downloaded again. Kit 25u on the PC. Owner next: LAYER-RECORDS 1 + Y
+  (downloads only the Adirondack polygon), START-HERE MN NY expecting US 03c3525be24b.
+
 ## The rules now (owner's words 25 Nov)
 - 6:20 / 6:28 AM: match by proof from fresh data: agency (unit) id, then shared ground (80% / 50%; piece 90% with a shared name),
   then real name + size within 10%; never a row number; unproven = POTA pin + "code to fix", no hand-offs to the reps.
