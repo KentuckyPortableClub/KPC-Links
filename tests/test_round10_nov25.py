@@ -61,6 +61,23 @@ check('R2: the same, no name in common: never a piece', SL.prove(rough, big_othe
 check('R2: the edge allowance counts a point just outside the fresh edge (0.0005 degree), not one 0.002 off',
       SL._near_edge(-93.0005, 45.005, SL.rings_of(fine['_g']), SL.EDGE) and not SL._near_edge(-93.002, 45.005, SL.rings_of(fine['_g']), SL.EDGE))
 
+# ---- S1 (grade of round 10): the edge allowance never reaches a neighbour parcel --------------------------------------------
+def sqm(x, y, side_m, n=4):
+    """A square of side_m metres at about 45 N (1 deg lat = 111 km; 1 deg lon = 78.7 km)."""
+    return [[[x, y], [x + side_m / 78700, y], [x + side_m / 78700, y + side_m / 111000], [x, y + side_m / 111000], [x, y]]] if n == 1 else \
+        [[[x + side_m / 78700 * t, y] for t in (0, .25, .5, .75)] + [[x + side_m / 78700, y + side_m / 111000 * t] for t in (0, .25, .5, .75)]
+         + [[x + side_m / 78700 * (1 - t), y + side_m / 111000] for t in (0, .25, .5, .75)] + [[x, y + side_m / 111000 * (1 - t)] for t in (0, .25, .5, .75)] + [[x, y]]]
+tiny_old = {'Unit_Nm': 'PARCEL A', 'GIS_Acres': 0.02, '_g': sqm(-93.5, 45.0, 9, 1)}                 # 0.02 acre, 5 points: rough
+for gap_ft in (100, 180):
+    nb = {'_nm': 'PARCEL B', '_ac': 0.02, '_g': sqm(-93.5 + (9 + gap_ft * 0.3048) / 78700, 45.0, 9)}
+    check(f'S1: a 0.02-acre rough parcel and a differently named 0.02-acre parcel {gap_ft} ft away: not proven ({SL.prove(tiny_old, nb)})',
+          SL.prove(tiny_old, nb)[0] is None)
+acre_old = {'Unit_Nm': 'PARCEL C', 'GIS_Acres': 1.5, '_g': sqm(-93.4, 45.0, 64, 1)}                 # ~1 acre drawn, 1.5 stated: rough
+nb = {'_nm': 'PARCEL D', '_ac': 1.0, '_g': sqm(-93.4 + (64 + 9.1) / 78700, 45.0, 64)}
+check(f'S1: a 1-acre rough parcel and a differently named one 30 ft away: not proven ({SL.prove(acre_old, nb)})', SL.prove(acre_old, nb)[0] is None)
+same = {'_nm': 'PARCEL Q', '_ac': 1.5, '_g': sqm(-93.4 + 1.5 / 78700, 45.0, 64)}                   # the same parcel, 5 ft off
+check(f'S1: the real same parcel (5 ft off, another spelling) still proves ({SL.prove(acre_old, same)})', SL.prove(acre_old, same)[0] == 'overlap')
+
 # ---- R3: two fits by name + size, broken by shared ground ------------------------------------------------------------------
 c_on = {'_nm': 'ALPHA', '_ac': 400, '_g': sq(-93.0, 45.004, 0.01, 8)}      # 60% of the old ground
 c_next = {'_nm': 'ALPHA', '_ac': 400, '_g': sq(-93.0, 44.99, 0.01, 8)}     # the square below: only the edge allowance
@@ -99,12 +116,21 @@ with tempfile.TemporaryDirectory() as td:
             'sgzzd42': {'Unit_Nm': 'Gamma Falls', 'GIS_Acres': 91, '_bb': bx(-91.0, 47.0, 0.01), '_fresh': True},
             'sgzzf9': {'Unit_Nm': 'Gamma Falls', 'GIS_Acres': 88, '_bb': bx(-91.0, 47.0, 0.01), '_fresh': True},
             'sgzzf10': {'Unit_Nm': 'Gamma Falls', 'GIS_Acres': 300, '_bb': bx(-91.0, 47.0, 0.01), '_fresh': True}}
+    ns['OLD_BOX'].update({'sgzzd10': bx(-91.3, 47.4, 0.1), '209818': bx(-91.3, 47.4, 0.1), 'sgzzd42': bx(-91.0, 47.0, 0.01)})   # the OLD copy
     p1 = {'n': 'Alpha Beta State Park', 't': 'State Park', 'm': [['sgzzd10', 'Alpha H. Beta', 6161, 'name'], ['209818', 'Alpha H. Beta State Park', 6143, 'name']]}
     r, st_ = ns['park_name_and_size']('US-9100', p1, byid, {}, 'ZZ')
     check(f'R4: no official size: the named fresh records match the old joined land within 10%: proven ({r})', st_ == 'ok' and r.startswith('name and old joined size'))
     p1h = dict(p1, m=[['sgzzd10', 'x', 6161, 'name'], ['209818', 'x', 6143, 'name']])
     byh = dict(byid); byh['sgzzd10'] = dict(byid['sgzzd10'], _fresh=False, _hint=True); byh['209818'] = dict(byid['209818'], _fresh=False, _hint=True)
     check('R4: old-copy hints never prove (fresh records only)', ns['park_name_and_size']('US-9100', p1h, byh, {}, 'ZZ')[1] != 'ok')
+    # S2 (grade of round 10): an old row number now carried by a FRESH record of other land (renumbered layer) never stands in
+    # for the old land: only the old copy's own box counts. Old 'sgzzd10' is far away in the old copy -> the fresh named records
+    # do not lie in the old land's boxes -> not proven by the old size
+    _ob = dict(ns['OLD_BOX']); ns['OLD_BOX'].clear(); ns['OLD_BOX'].update({'sgzzd10': bx(-80.0, 30.0, 0.1), '209818': bx(-80.0, 30.0, 0.1)})
+    r2, st2 = ns['park_name_and_size']('US-9100', p1, byid, {}, 'ZZ')
+    check(f'S2: the old land comes from the old copy only; old boxes elsewhere = not proven by the old size ({r2 or st2})',
+          not r2.startswith('name and old joined size'))
+    ns['OLD_BOX'].clear(); ns['OLD_BOX'].update(_ob)
     p2 = {'n': 'Gamma Falls Unique Area', 't': 'Unique Area', 'm': [['sgzzd42', 'Gamma Falls', 91, 'name'], ['sgzzf9', 'Gamma Falls', 88, 'name']]}
     r, st_ = ns['park_name_and_size']('US-9101', p2, byid, {}, 'ZZ')
     check(f"owner's pick: two official sources (layers d and f) carry the name and agree within 10%: proven ({r})", st_ == 'ok' and r.startswith('name in two official sources'))

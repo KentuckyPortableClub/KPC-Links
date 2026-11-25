@@ -2407,12 +2407,13 @@ def park_name_no_witness(ref, p, byid, st=None):
         rec = byid.get(str(q[0])) or {}
         if rec.get('_fresh') and not rec.get('_read_now') and real_name(pn, MC.rec_name(rec) or '', kind): named.append(q)
     if not named: return '', 'no witness'   # the counts keep 'no tagged official size' as the reason (M3)
-    box_of = lambda i: (byid.get(i) or byid.get(i + '~old') or {}).get('_bb')
+    box_of = lambda i: (byid.get(i) or {}).get('_bb') if (byid.get(i) or {}).get('_fresh') else None   # the named FRESH rows
+    old_box = lambda i: OLD_BOX.get(i)   # S2: the old land only from the old copy, never a fresh record of that number
     layer_of = lambda i: _sl_layer(i)
     got = MC.size_once({'twin': p.get('twin') or []}, named, box_of, layer_of)
     w = web_park(st, ref) if st else {}
-    old_ac = w.get('ac') or (MC.size_once({'twin': w.get('twin') or []}, w.get('m') or [], box_of, layer_of) if w.get('m') else 0)
-    obx = [b for b in (box_of(str(q[0])) for q in w.get('m') or []) if b]
+    old_ac = w.get('ac') or (MC.size_once({'twin': w.get('twin') or []}, w.get('m') or [], old_box, layer_of) if w.get('m') else 0)
+    obx = [b for b in (old_box(str(q[0])) for q in w.get('m') or []) if b]
     if old_ac and got and obx and abs(got - old_ac) <= SIZE_TOL_PARK * old_ac and \
             all(any(SL.boxes_overlap(box_of(str(q[0])), b, 0.01) for b in obx) for q in named if box_of(str(q[0]))):
         return f'name and old joined size ({round(got):,} of {round(old_ac):,} acres)', 'ok'
@@ -2562,6 +2563,7 @@ def _write_list(env, rows, head, st):
         w.writerows(x for x in rows if x[0] == st)
 
 
+OLD_BOX = {}       # S2 (grade of round 10): {old id: box} from the OLD saved copy, made before fresh_records swaps any record in
 PROOF = {}         # R6 (grade 25 Nov 9:51 AM): old record id -> (layer, pick's trace: rough, best candidate, level or why)
 PROOF_ROWS = []    # [state, park, old id, layer, rough, best candidate, level or why, left the map]: rows of parks the gate touched
 
@@ -2577,6 +2579,10 @@ def fresh_records(st, recs, P):
     The fresh records carry '_fresh'. Returns (records, {old id: fresh id}). Nothing is fetched."""
     record_attrs()
     area = f'US-{st}'
+    OLD_BOX.clear()   # S2: the old land's boxes, by the old copy's own ids (a fresh record that now carries a number never stands in)
+    for a in recs:
+        b_ = a.get('_bb') or SL.box_of(SL.rings_of(a.get('_g')))
+        if b_: OLD_BOX[_oid(a)] = b_
     # 25 Nov 2026 (owner 8:48 AM, 'simplest path'): the FULL LAYER FILES the PC downloads (KPC-Store kpc_layer_records.py: every
     # record of every layer the keys join) are the fresh source. The park-by-park store is no longer the source of truth: only
     # layer-file records ('_src' layer) stand in for the old saved copy.

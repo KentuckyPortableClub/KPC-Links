@@ -236,15 +236,20 @@ def _near_edge(x, y, rings, d):
     return False
 
 
-def ground_share(va, vb, n=GRID_FINE):
-    """R2: the share of a's grid points (inside a's outline) on b's ground or within EDGE of b's edge; None when it cannot be
-    told (no outline, fewer than MIN_HITS points inside a)."""
+STRICT_MIN = 0.50      # S1 (grade of round 10): a rough overlap or piece also needs half of a's points STRICTLY inside b
+
+
+def ground_shares2(va, vb, n=GRID_FINE):
+    """R2 + S1: (share of a's grid points on b's ground or within the edge allowance of b's edge, share STRICTLY inside b), or
+    None when it cannot be told (no outline, fewer than MIN_HITS points inside a). The allowance is EDGE (0.001 degree) but
+    never more than 10% of the shorter side of a's box, so a tiny parcel never reaches its neighbour (S1)."""
     ra, rb = va.get('rings'), vb.get('rings')
     if not ra or not rb: return None
     bx = box_of(ra); bb = box_of(rb)
-    if not boxes_overlap(bx, bb, EDGE): return 0.0
+    edge = min(EDGE, 0.1 * min(bx[2] - bx[0], bx[3] - bx[1]))
+    if not boxes_overlap(bx, bb, edge): return (0.0, 0.0)
     sa_, sb_ = [box_of([r]) for r in ra], [box_of([r]) for r in rb]
-    ins = on = 0
+    ins = on = strict = 0
     dx, dy = (bx[2] - bx[0]) / n, (bx[3] - bx[1]) / n
     for i in range(n):
         x = bx[0] + (i + 0.5) * dx
@@ -252,19 +257,28 @@ def ground_share(va, vb, n=GRID_FINE):
             y = bx[1] + (j + 0.5) * dy
             if not _inside(x, y, ra, sa_): continue
             ins += 1
-            if boxes_overlap([x, y, x, y], bb, EDGE) and (_inside(x, y, rb, sb_) or _near_edge(x, y, rb, EDGE)): on += 1
+            if not boxes_overlap([x, y, x, y], bb, edge): continue
+            if _inside(x, y, rb, sb_): on += 1; strict += 1
+            elif edge > 0 and _near_edge(x, y, rb, edge): on += 1
     if ins < MIN_HITS: return None
-    return on / ins
+    return on / ins, strict / ins
+
+
+def ground_share(va, vb, n=GRID_FINE):
+    """R2: the share of a's grid points on b's ground (with the edge allowance); None when it cannot be told."""
+    g = ground_shares2(va, vb, n)
+    return None if g is None else g[0]
 
 
 def point_shares(va, vb):
     """R2: (share of a on b's ground, share of b on a's ground) from a's grid points; the second by the sizes (stated acres
     first: a rough outline's measured area is off). None when it cannot be told."""
-    s_a = ground_share(va, vb)
-    if s_a is None: return None
+    g = ground_shares2(va, vb)
+    if g is None: return None
+    s_a, strict = g
     za, zb = (va['acres'] or va['measured']), (vb['acres'] or vb['measured'])
     if za <= 0 or zb <= 0: return None
-    return (s_a, min(1.0, s_a * za / zb))
+    return (s_a, min(1.0, s_a * za / zb), strict)
 
 
 # ---- one record -----------------------------------------------------------------------------------------------------------
@@ -328,7 +342,9 @@ def prove(a, b, id_fields=()):
     sh = None if rough else shares(va['rings'], vb['rings'], va['measured'] or None, vb['measured'] or None)
     if sh is None and rough:   # R2: the old record's grid points against the fresh outline, edge allowance EDGE
         sh = point_shares(va, vb)
+        if sh is not None and sh[2] < STRICT_MIN: sh = None   # S1: under half of a strictly on b's ground: never overlap / piece
         if sh is not None:
+            sh = sh[:2]
             small, big = (max(sh), min(sh))
             if small >= OVERLAP_SMALL and big >= OVERLAP_LARGE: return 'overlap', f'{round(small * 100)}% / {round(big * 100)}% shared (rough outline, grid points)'
             if small >= PIECE_IN and va['names'] & vb['names']:
