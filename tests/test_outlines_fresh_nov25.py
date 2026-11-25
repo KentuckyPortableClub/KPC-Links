@@ -66,10 +66,16 @@ with tempfile.TemporaryDirectory() as t:
     check('no store file: the run exits 3 (kpc-us-key.yml: the file is as it was; the sync marks the state HELD)', rc == 3)
     O.M.save_area, O.M.load_area = _sv, _la
     store0 = t / 'store0'; store0.mkdir()
-    store_file0 = store0 / 'US-ZZ.kpcstore.json.gz'
-    with gzip.open(store_file0, 'wt', encoding='utf-8') as f: json.dump({'area': 'US-ZZ', 'parks': []}, f)
+    store_file0 = store0 / 'US-ZZ.layer-records.json.gz'
+    with gzip.open(store_file0, 'wt', encoding='utf-8') as f: json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'manifest': {}, 'records': []}, f)
     added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store0)
-    check('with the store file there: a park joined only to saved-copy records is still cut as before; a fresh one not in the store is skipped',
+    check('G2: a joined fresh layer with no manifest (or not complete): the whole area is HELD, nothing cut, nothing dropped',
+          not added and 'does not hold these joined layers complete: sgzzc' in dict(skipped).get('*', ''))
+    with gzip.open(store_file0, 'wt', encoding='utf-8') as f:
+        json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'manifest': {'sgzzc': {'complete': True, 'source_count': 1, 'store_count': 1}},
+                   'records': [{'key': 'sgzzc999', 'layer': 'sgzzc', 'record_id': '999', 'q': 6, 'publishable': True, 'rings': [[-70000000, 40000000, 10000, 0, 0, 10000, -10000, 0, 0, -10000]]}]}, f)
+    added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store0)
+    check('a complete layer file: a park joined only to saved-copy records is still cut as before; a fresh id the complete layer lacks is skipped',
           'US-9002' in {r['ref'] for r in added} and 'not in the store' in dict(skipped).get('US-9001', ''))
 
 def enc(ring, q=6):   # the store's ring spelling: first point, then steps, as q-digit integers
@@ -80,10 +86,15 @@ def enc(ring, q=6):   # the store's ring spelling: first point, then steps, as q
 
 
 def store_file(folder, publishable=True):
-    park = {'ref': 'US-9001', 'records': [
-        {'key': 'sgzzc@210', 'layer': 'sgzzc', 'record_id': '210', 'record_name': 'Lost Valley Prairie', 'q': 6, 'agency_label': 'ZZ DNR (store)',
-         'read': '2026-11-21T10:00:00-06:00', 'publishable': publishable, 'rings': [enc(sq(-92.83, 44.80, 0.01)[0])]}]}
-    with gzip.open(folder / 'US-ZZ.kpcstore.json.gz', 'wt', encoding='utf-8') as f: json.dump({'area': 'US-ZZ', 'parks': [park]}, f)
+    # 25 Nov (owner 8:48 AM): the cutter reads the FULL LAYER FILE (<area>.layer-records.json.gz), never the park-by-park store
+    recs = [{'key': 'sgzzc210', 'layer': 'sgzzc', 'record_id': '210', 'record_name': 'Lost Valley Prairie', 'q': 6, 'agency_label': 'ZZ DNR (store)',
+             'read': '2026-11-21', 'publishable': publishable, 'rings': [enc(sq(-92.83, 44.80, 0.01)[0])]}]
+    with gzip.open(folder / 'US-ZZ.layer-records.json.gz', 'wt', encoding='utf-8') as f:
+        json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'manifest': {'sgzzc': {'complete': True, 'source_count': 1, 'store_count': 1}}, 'records': recs}, f)
+    # a park-store file with OTHER land under the same id is never read
+    with gzip.open(folder / 'US-ZZ.kpcstore.json.gz', 'wt', encoding='utf-8') as f:
+        json.dump({'area': 'US-ZZ', 'parks': [{'ref': 'US-9001', 'records': [{'key': 'sgzzc@210', 'layer': 'sgzzc', 'record_id': '210', 'q': 6,
+                   'publishable': True, 'rings': [enc(sq(-80.0, 30.0, 0.01)[0])]}]}]}, f)
 
 
 with tempfile.TemporaryDirectory() as t:
@@ -99,8 +110,8 @@ with tempfile.TemporaryDirectory() as t:
     added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store)
     r = {x['ref']: x for x in added}.get('US-9001') or {}
     txt = json.dumps(r)
-    check('a fresh park is cut from the STORE outline (the right land, near -92.83), marked store:, read date from the store',
-          bool(r) and '-92.83' in txt and '-94.7' not in txt and 'store:US-ZZ.kpcstore.json.gz' in txt and '2026-11-21' in txt)
+    check('a fresh park is cut from the FULL LAYER FILE (the right land, near -92.83; the park store is not read), marked store:, read date from the file',
+          bool(r) and '-92.83' in txt and '-94.7' not in txt and '-80.0' not in txt and 'store:US-ZZ.layer-records.json.gz' in txt and '2026-11-21' in txt)
     store_file(store, publishable=False)
     added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store)
     check('a store record that is not publishable: not cut, listed (fail closed)',
@@ -143,11 +154,30 @@ with tempfile.TemporaryDirectory() as t:
     check('a park joined only to a layer record is cut from the store (store:, the store read date), never dropped',
           'store:' in json.dumps(r) and '2026-11-25' in json.dumps(r) and '-95.8' in json.dumps(r))
     with gzip.open(store / 'US-ZZ.layer-records.json.gz', 'wt', encoding='utf-8') as f:
-        json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'records': [{'key': 'fws4026', 'layer': 'fws', 'record_id': '4026', 'q': 6,
+        json.dump({'kpcstore_layers': 1, 'area': 'US-ZZ', 'manifest': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1}},
+                   'records': [{'key': 'fws4026', 'layer': 'fws', 'record_id': '4026', 'q': 6,
                    'publishable': False, 'rings': [enc(sq(-95.8, 46.8, 0.01)[0])]}]}, f)
     added, skipped = O.build_state('ZZ', cache, dry=True, root=outl, key_dir=keys, say=lambda *a: None, store=store)
     check('a layer record that is not publishable is not cut (the same publishable-is-True rule)', not added and 'not publishable' in dict(skipped).get('US-9358', ''))
     O.M.save_area, O.M.load_area = _sv, _la
+
+# a broken full layer file: the area is HELD with the reason (exit 3), never a crash, nothing saved
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    cache, keys, outl, store = t / 'cache', t / 'keys', t / 'outlines', t / 'store'
+    for d in (cache, keys, outl, store): d.mkdir()
+    with gzip.open(cache / 'US-ZZ.json.gz', 'wt', encoding='utf-8') as f: json.dump({'st': 'ZZ', 'recs': []}, f)
+    (keys / 'US-ZZ.json').write_text(json.dumps({'st': 'ZZ', 'fresh_store': {'ids': ['fws4026']}, 'parks': {
+        'US-9358': {'n': 'X', 'g': 'official', 'm': [['fws4026', 'Rothi WPA', 1, 'reviewed']]}}}))
+    (store / 'US-ZZ.layer-records.json.gz').write_bytes(b'broken, not gzip')
+    calls = []
+    _sv = O.M.save_area; O.M.save_area = lambda *a, **k: calls.append(1)
+    import contextlib, io  # noqa: E402
+    with contextlib.redirect_stdout(io.StringIO()) as buf:
+        rc = O.main(['--cache', str(cache), '--states', 'ZZ', '--root', str(outl), '--key', str(keys), '--store', str(store)])
+    O.M.save_area = _sv
+    check('a broken full layer file: HELD with the reason, nothing saved, exit 3 (never a crash)',
+          rc == 3 and not calls and 'cannot be read' in buf.getvalue() and 'HELD' in buf.getvalue())
 
 # the report-only tools: kpc_master.joined_missing and kpc_outline_score
 import importlib, os, subprocess  # noqa: E402
@@ -165,9 +195,9 @@ with tempfile.TemporaryDirectory() as t:
         'US-9003': {'n': 'Alpha National Wildlife Refuge', 't': 'National Wildlife Refuge', 'm': [[207720, 'Alpha National Wildlife Refuge', 500, 'name']]}}}))
     with gzip.open(t / 'cache' / 'US-ZZ.json.gz', 'wt') as f:
         json.dump({'recs': [{'OBJECTID': 207720, 'Unit_Nm': 'Somewhere Else Park', 'Mang_Name': 'CITY', 'Mang_Type': 'LOC', '_r': sq(-80, 30, 0.01)}]}, f)
-    with gzip.open(t / 'store' / 'US-ZZ.kpcstore.json.gz', 'wt') as f:
-        json.dump({'parks': [{'records': [{'key': '207720', 'layer': 'PAD-US', 'record_id': '207720', 'q': 6, 'rings': [enc(sq(-92.8, 44.8, 0.01)[0])],
-                                           'attributes': {'Unit_Nm': 'Alpha National Wildlife Refuge', 'Mang_Name': 'FWS', 'Mang_Type': 'FED', 'GIS_Acres': 500}}]}]}, f)
+    with gzip.open(t / 'store' / 'US-ZZ.layer-records.json.gz', 'wt') as f:
+        json.dump({'kpcstore_layers': 1, 'records': [{'key': '207720', 'layer': 'PAD-US', 'record_id': '207720', 'q': 6, 'rings': [enc(sq(-92.8, 44.8, 0.01)[0])],
+                                                      'attributes': {'Unit_Nm': 'Alpha National Wildlife Refuge', 'Mang_Name': 'FWS', 'Mang_Type': 'FED', 'GIS_Acres': 500}}]}, f)
     (t / 'data' / 'us-key' / 'US-ZY.json').write_text(json.dumps({'fresh_store': {'ids': ['fws4026']}, 'parks': {
         'US-9358': {'n': 'Detroit Lakes Wetland Management District', 't': 'National Wildlife Refuge', 'm': [['fws4026', 'Rothi WPA', 1231, 'reviewed']]}}}))
     with gzip.open(t / 'store' / 'US-ZY.layer-records.json.gz', 'wt') as f:

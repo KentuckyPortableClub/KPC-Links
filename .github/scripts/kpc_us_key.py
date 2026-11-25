@@ -2450,6 +2450,42 @@ LAYER_KEEP = ('Own_Type', 'Mang_Type', 'Mang_Name', 'Loc_Mang', 'Des_Tp', 'Categ
               'FeatClass', 'Agg_Src', 'Water')
 
 
+GAPS = []          # [state, layer, records in the source, records saved, why]: joined layers the fresh layer files lack
+
+
+def joined_layers(st, P):
+    """The layers this state's key joins: the layers of the records joined in the key on the website today (data/us-key/US-XX.json)
+    and of every id a person's saved answer joins. Trail lines are not land layers."""
+    out = set()
+    try:
+        with open(OUT / f'US-{st}.json', encoding='utf-8') as fh: kd = json.load(fh)
+    except (OSError, ValueError):
+        kd = {}
+    ids = [x[0] for p_ in (kd.get('parks') or {}).values() for x in p_.get('m') or [] if isinstance(x, list) and x]
+    ids += [w for ref in P for w in ((OVR.get(ref) or {}).get('join') or [])]
+    for i in ids:
+        if isinstance(i, int) or str(i).isdigit(): out.add('padus'); continue
+        m = re.fullmatch(r'([a-z]+)\d+', str(i))
+        if m and m.group(1) not in ('trl',): out.add(m.group(1))
+    return out
+
+
+def fresh_gap(st, P, man):
+    """The joined layers whose full layer file is missing or not complete (sorted)."""
+    return sorted(lay for lay in joined_layers(st, P) if not (man.get(lay) or {}).get('complete'))
+
+
+def _write_list(env, rows, head, st):
+    fn = os.environ.get(env) or ''
+    if not fn or not any(x[0] == st for x in rows): return
+    import csv as _csv
+    new = not os.path.isfile(fn)
+    with open(fn, 'a', encoding='utf-8', newline='') as fh:
+        w = _csv.writer(fh)
+        if new: w.writerow(head)
+        w.writerows(x for x in rows if x[0] == st)
+
+
 def fresh_records(st, recs, P):
     """25 Nov 2026 (KPC owner, 7:18 AM: 'Use today's store records as the FRESH source for both matching and drawing outlines, not
     the Nov 11-12 saved copies. Old copies are hints only.'; switch KPC_STORE_FRESH). The outline store's records of this state
@@ -2461,10 +2497,23 @@ def fresh_records(st, recs, P):
     The fresh records carry '_fresh'. Returns (records, {old id: fresh id}). Nothing is fetched."""
     record_attrs()
     area = f'US-{st}'
+    # 25 Nov 2026 (owner 8:48 AM, 'simplest path'): the FULL LAYER FILES the PC downloads (KPC-Store kpc_layer_records.py: every
+    # record of every layer the keys join) are the fresh source. The park-by-park store is no longer the source of truth: only
+    # layer-file records ('_src' layer) stand in for the old saved copy.
     ents = {}
     for d_ in (_RA[0] or {}, _RA_RF[0] or {}):
         for k, e in d_.items():
-            if e.get('_st') == area and e.get('_g') and re.fullmatch(r'[a-z]*\d+', k): ents[k] = e
+            if e.get('_st') == area and e.get('_src') == 'layer' and e.get('_g') and re.fullmatch(r'[a-z]*\d+', k): ents[k] = e
+    man = (_RA_MAN[0] or {}).get(area) or {}
+    # ... and a key build for an area STOPS and lists the gap when any layer it joins is not complete in those files
+    gap = fresh_gap(st, P, man)
+    if gap:
+        GAPS.extend([st, lay, (man.get(lay) or {}).get('source_count'), (man.get(lay) or {}).get('store_count'),
+                     'no layer file' if lay not in man else 'not complete'] for lay in gap)
+        _write_list('KPC_GAP_LIST', GAPS, ['state', 'layer', 'records in the source', 'records saved', 'why'], st)
+        KR.hold_state(st, 'the fresh layer files are not complete for joined layer(s) ' + ', '.join(
+            f"{lay} ({(man.get(lay) or {}).get('store_count', 0)} of {(man.get(lay) or {}).get('source_count', '?')})" for lay in gap)
+            + ' (run LAYER-RECORDS.bat on the PC)', True)
     if not ents:
         FRESH[st] = {'fresh': 0, 'hints': len(recs)}
         return [dict(a, _hint=True) for a in recs], {}
@@ -2476,7 +2525,6 @@ def fresh_records(st, recs, P):
     # N3 (grade of round 5): a layer is 'in the store' only when the store's manifest says it is COMPLETE (every record of the
     # layer, linked to a park or not: KPC-Store kpc_layer_records.py). A partial layer, or one with no manifest, is handled like
     # a layer not in the store: its proven old records still give way to their fresh twin, the others are kept (never hints).
-    man = (_RA_MAN[0] or {}).get(area) or {}
     held_layers = {_sl_layer(k) for k in ents}
     store_layers = {lay for lay in held_layers if (man.get(lay) or {}).get('complete')}
     this_run = CMODE != 'only'

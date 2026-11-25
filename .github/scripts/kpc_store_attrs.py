@@ -171,7 +171,7 @@ def run(store, out, gh=None, today=None):
                 # 25 Nov 2026 (format 6, the better matcher): every record also carries its name(s), size, box and a light outline,
                 # so the key can PROVE which of its records is the same land (kpc_same_land.py) instead of trusting a row number.
                 # Helper keys start with '_' and never reach the id checks.
-                helper = {'_nm': str(r.get('record_name') or r.get('record_name_in_source') or '')}
+                helper = {'_nm': str(r.get('record_name') or r.get('record_name_in_source') or ''), '_src': 'layer' if is_layers else 'park'}
                 nms = sorted({str(x) for x in (r.get('record_name'), r.get('record_name_in_source'), r.get('tract_name')) if x} - {helper['_nm']})
                 if nms: helper['_nms'] = nms
                 if record_acres(r): helper['_ac'] = round(record_acres(r), 3)
@@ -249,7 +249,7 @@ def selftest():
         plain = {k: {f: v for f, v in x.items() if not f.startswith('_')} for k, x in d['records'].items() if k != 'fws4026'}
         ok = plain == {'sgzza7': {'URL': 'https://dec.ny.gov/lands/123.html'}, '3422': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST'},
                               'sgzzd9': {'URL': 'https://example.org/plain'}}   # B1: re-found records are never filed as plain ones
-        ok = ok and {k: {f: x for f, x in v.items() if f not in ('_st', '_rd')} for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
+        ok = ok and {k: {f: x for f, x in v.items() if f not in ('_st', '_rd', '_src')} for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
                                          'sgzzc30': {'URL': 'https://example.org/alpha', '_nm': 'Alpha Forest', '_ac': 50.0, '_kid': 'sgzzc12'},
                                          'sgzzd5': {'URL': 'https://example.org/refound', '_nm': '', '_kid': 'sgzzd9'}}
         ok = ok and d.get('format') == 8 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
@@ -259,6 +259,7 @@ def selftest():
         ok = ok and d['manifest'] == {'US-ZZ': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1, 'in_file': 1, 'read': None},
                                                  'padus': {'complete': False, 'source_count': 9, 'store_count': 2, 'in_file': 0, 'read': None}}}
         ok = ok and (d['records'].get('fws4026') or {}).get('_nm') == 'Rothi WPA'   # format 8: a layer record that no park links
+        ok = ok and d['records']['fws4026'].get('_src') == 'layer' and d['records']['sgzza7'].get('_src') == 'park'   # which source
         # P3: 'complete' with counts that disagree with the records in the file = partial; P2: a broken file = no manifest, loud
         with gzip.open(os.path.join(st, 'US-YY.layer-records.json.gz'), 'wt') as f:
             json.dump({'kpcstore_layers': 1, 'area': 'US-YY', 'manifest': {'fws': {'complete': True, 'source_count': 2, 'store_count': 2},

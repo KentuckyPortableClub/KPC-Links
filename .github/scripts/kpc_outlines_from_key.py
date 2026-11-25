@@ -16,7 +16,7 @@ outline that was there is unchanged (a park the key grades pin may be gone), eve
   python3 .github/scripts/kpc_outlines_from_key.py --cache DIR --states "CT DC ..." [--only-refs US-4512 ...] [--dry-run]
   python3 .github/scripts/kpc_outlines_from_key.py --verify --states AK [--ref HEAD]
 KPC owner, 2026-11-11 (planner: shape files for the states with none)."""
-import argparse, datetime, gzip, json, os, pathlib, shutil, subprocess, sys, tempfile
+import argparse, datetime, gzip, json, os, pathlib, re, shutil, subprocess, sys, tempfile
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_master as M  # noqa: E402
 
@@ -53,6 +53,29 @@ def union_geometry(rs):
 def npts(g): return sum(len(r) for p in M.polys_of(g) for r in p)
 
 
+def layer_manifest(store, area):
+    """{layer: {'complete', 'source_count', 'store_count'}} of the area's full layer file ('padus' for PAD-US); complete only when the
+    file says so AND the layer's own count, the stored count and its records in the file agree, above 0 (P3)."""
+    f = pathlib.Path(store) / f'{area}.layer-records.json.gz'
+    if not f.is_file(): return {}
+    try:
+        with gzip.open(f, 'rt', encoding='utf-8') as fh: d = json.load(fh)
+    except Exception as e:  # noqa: BLE001
+        raise StoreUnreadable(f'{f.name} cannot be read ({type(e).__name__}: {str(e)[:120]})') from e
+    n = {}
+    for r in d.get('records') or []: n[str(r.get('layer') or '')] = n.get(str(r.get('layer') or ''), 0) + 1
+    out = {}
+    for lay, m in (d.get('manifest') or {}).items():
+        src, sto = m.get('source_count'), m.get('store_count')
+        out['padus' if lay == 'PAD-US' else lay] = {'complete': bool(m.get('complete')) and isinstance(src, int) and src > 0 and src == sto == n.get(lay, 0),
+                                                   'source_count': src, 'store_count': sto}
+    return out
+
+
+class StoreUnreadable(Exception):
+    """The area's full layer file is there but cannot be read: the area is HELD (nothing changed, exit 3), never a crash."""
+
+
 def store_records(store, area):
     """25 Nov 2026 (KPC-Links #380, the other builder's next fix): the outline store's own records of one area, by record id as
     the key spells it ('sgmnc210', a PAD-US number), at the store's full detail: {id: {'_r': rings, 'Loc_Mang', 'publishable',
@@ -60,12 +83,15 @@ def store_records(store, area):
     if not store: return {}
     import kpc_store_attrs as SA
     out = {}
-    # P1 (grade of round 6): the park store AND the layer records (every record of a layer, linked to a park or not; KPC-Store
-    # kpc_layer_records.py) are both the store. A park record wins when both hold the same id.
+    # 25 Nov 2026 (owner 8:48 AM, 'simplest path'): the FULL LAYER FILES (every record of a layer, linked to a park or not; KPC-Store
+    # kpc_layer_records.py) are the fresh source; the park-by-park store is no longer read here.
     groups = []
-    for f in (pathlib.Path(store) / f'{area}.layer-records.json.gz', pathlib.Path(store) / f'{area}.kpcstore.json.gz'):
+    for f in (pathlib.Path(store) / f'{area}.layer-records.json.gz',):
         if not f.is_file(): continue
-        with gzip.open(f, 'rt', encoding='utf-8') as fh: d = json.load(fh)
+        try:
+            with gzip.open(f, 'rt', encoding='utf-8') as fh: d = json.load(fh)
+        except Exception as e:  # noqa: BLE001
+            raise StoreUnreadable(f'{f.name} cannot be read ({type(e).__name__}: {str(e)[:120]})') from e
         groups += [p.get('records') or [] for p in d.get('parks') or []] + [d.get('records') or []]
     for recs_ in groups:
         for r in recs_:
@@ -121,14 +147,26 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
     # drew old 210, about 140 miles off). Fail closed: a park with any such record is skipped (kept as it is, listed), never
     # cut from the saved copy. Cutting it from the store is a later step.
     fresh = {str(i) for i in ((key.get('fresh_store') or {}).get('ids') or [])}
-    srecs = store_records(store, area) if fresh else {}
     drop_fresh = []
     # M1 (grade of round 4): no store file for this area = this run cannot tell what the fresh records look like. It changes
     # NOTHING here: no save, every old outline kept, the reason listed, and the caller exits 3 (the workflow then says the file
     # is as it was and the sync marks the state HELD). Only with the store file present is an old outline ever dropped.
-    if fresh and not (store and any((pathlib.Path(store) / f'{area}.{x}.json.gz').is_file() for x in ('kpcstore', 'layer-records'))):
-        return [], [('*', f'{len(fresh)} fresh store record id(s) in the key, but no outline store file for {area} '
+    if fresh and not (store and (pathlib.Path(store) / f'{area}.layer-records.json.gz').is_file()):
+        return [], [('*', f'{len(fresh)} fresh store record id(s) in the key, but no full layer file for {area} '
                           f'(--store / KPC_STORE_DIR): nothing changed, nothing saved, every old outline kept (HELD)')]
+    try: srecs = store_records(store, area) if fresh else {}
+    except StoreUnreadable as e:   # 25 Nov (grade of round 7): a broken layer file = HELD with the reason, nothing changed, exit 3
+        return [], [('*', f'{e}: nothing changed, nothing saved, every old outline kept (HELD)')]
+    if fresh:
+        # G2 (round 8): a layer of the key's fresh records that the full layer file does not hold COMPLETE (P3: complete is true and
+        # the layer's own count = stored = records in the file, above 0) = the whole area is HELD (exit 3), no outline dropped
+        man = layer_manifest(store, area)
+        lays = sorted({'padus' if i.isdigit() else re.match(r'[a-z]+', i).group(0) for i in fresh if re.fullmatch(r'[a-z]*\d+', i)})
+        bad = [l for l in lays if not (man.get(l) or {}).get('complete')]
+        if bad:
+            return [], [('*', f'the full layer file for {area} does not hold these joined layers complete: '
+                              + ', '.join(f"{l} ({(man.get(l) or {}).get('store_count', 0)} of {(man.get(l) or {}).get('source_count', '?')})" for l in bad)
+                              + ': nothing changed, nothing saved, every old outline kept (HELD)')]
     for ref, q in sorted((key.get('parks') or {}).items()):
         if only and ref not in only: continue
         if ref in have and not stale(ref, have[ref], q): continue
@@ -159,7 +197,7 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
             agency = '; '.join(sorted({srecs[i]['Loc_Mang'] for i in ids} - {''}))[:300]
             gk = q.get('g') if q.get('g') in M.RANK else 'official'
             rd = min((srecs[i]['read'] for i in ids if srecs[i]['read']), default='') or str(q.get('read') or today)
-            r = M.make_record(ref, q.get('n') or ref, gk, g, agency, f'store:{area}.kpcstore.json.gz', ids, 0, rd, '', 'key', layers=lay)
+            r = M.make_record(ref, q.get('n') or ref, gk, g, agency, f'store:{area}.layer-records.json.gz', ids, 0, rd, '', 'key', layers=lay)
             M.assert_public_safe(r); added.append(r)
             if ref in have: replaced.append(ref)
             say(f'  {"would write" if dry else "write"} {ref} {gk:<11} {len(ids)} store record(s) {npts(g):>8,} points  {(q.get("n") or "")[:60]}')

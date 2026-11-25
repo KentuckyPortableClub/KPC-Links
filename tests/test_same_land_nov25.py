@@ -63,6 +63,10 @@ check('no store record of the layer near it: none', slf('sgzza1', {'OBJECTID': '
 # the fresh source: today's store records stand in for the old saved copy (N3: only layers the store's manifest says are complete)
 ns['CUR_ST']['st'] = 'MN'
 ns['_RA_MAN'][0] = {'US-MN': {'sgmnc': {'complete': True}, 'padus': {'complete': True}, 'sgmnb': {'complete': False}}}
+for d_ in (ns['_RA'][0], ns['_RA_RF'][0]):   # these stand for the full layer files (owner 8:48 AM: the only fresh source)
+    for e_ in d_.values(): e_['_src'] = 'layer'
+_real_joined = ns['joined_layers']
+ns['joined_layers'] = lambda st, P: set()   # the gap stop is tested on its own below
 old_recs = [key55, key210, {'OBJECTID': 207720, 'Unit_Nm': 'Lost Valley Prairie State Scientific and Natural Area', 'GIS_Acres': 216,
                             '_g': {'rings': sq(-92.83, 44.80, 0.01)}, 'Des_Tp': 'SCA', '_k': {'snp'}}]
 for a in old_recs: a['_bb'] = ns['bbox'](a['_g'])
@@ -172,6 +176,22 @@ check('the one line per state: by agency id, by shared ground, pieces, by name a
 kt = (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8')
 check('the PC test remakes its id file before format 8 and saves the owner lists',
       'fmt < 8' in kt and all(w in kt for w in ('saved-answers-no-fingerprint.csv', 'pin-only-parks.csv', 'saved-answers-moved.csv', 'rows-kept-but-listed.csv', 'layers-not-in-store.csv')))
+# owner 8:48 AM: a key build for an area STOPS and lists the gap when any layer it joins is not complete in the full layer files
+ns['joined_layers'] = lambda st, P: {'sgmnc', 'fws', 'sgmnb'}
+try:
+    ns['fresh_records']('MN', old_recs, {})
+    stopped = False
+except Exception as e_:   # noqa: BLE001
+    stopped = 'not complete for joined layer(s) fws' in str(e_) and 'sgmnb' in str(e_) and 'held' in str(e_)
+check('a joined layer missing or not complete in the full layer files stops the state (held, no key written) and names it',
+      stopped and any(x[:2] == ['MN', 'fws'] and x[4] == 'no layer file' for x in ns['GAPS']) and any(x[:2] == ['MN', 'sgmnb'] for x in ns['GAPS']))
+ns['joined_layers'] = lambda st, P: set()
+check("only full-layer-file records stand in: a park-store record (_src park) is never a fresh record",
+      "e.get('_src') == 'layer'" in src)
+ns['OVR']['K-20'] = {'join': ['fws123', 'trl9', 207720]}
+check('the joined layers come from the website key and the saved answers (never trail lines)',
+      {'fws', 'padus'} <= _real_joined('ZZ', {'K-20': []}) and 'trl' not in _real_joined('ZZ', {'K-20': []}))
+
 # P2 (grade of round 6): a failed id-file run stops the PC test; it never falls back to an older record-attrs file
 import importlib.util  # noqa: E402
 spec = importlib.util.spec_from_file_location('kpc_test_keys_p2', ROOT / 'tools/pc-keys/kpc_test_keys.py')

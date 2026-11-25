@@ -226,7 +226,8 @@ def run_build(st, rep, attrs):
             env = dict(common, STATES=st, GEO_CACHE=str(LINKS / 'cache' / 'us'),
                        KPC_FP_PROPOSALS=str(rep / 'saved-answers-no-fingerprint.csv'),   # 25 Nov: the owner's lists (never data/)
                        KPC_PIN_ONLY_LIST=str(rep / 'pin-only-parks.csv'), KPC_REPOINTS=str(rep / 'saved-answers-moved.csv'),
-                       KPC_LISTED=str(rep / 'rows-kept-but-listed.csv'), KPC_NOSTORE_LIST=str(rep / 'layers-not-in-store.csv'))
+                       KPC_LISTED=str(rep / 'rows-kept-but-listed.csv'), KPC_NOSTORE_LIST=str(rep / 'layers-not-in-store.csv'),
+                       KPC_GAP_LIST=str(rep / 'layers-not-complete.csv'))   # 25 Nov (owner 8:48 AM): a state stops on a gap
             cmd = [sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py']
     kept = []
     with open(rep / f'{st}.log', 'w', encoding='utf-8', errors='replace') as lf:

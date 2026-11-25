@@ -116,8 +116,8 @@ def store_index(store=None):
     by_id, by_name = {}, {}
     if not store or not pathlib.Path(store).is_dir(): return by_id, by_name
     import kpc_store_attrs as SA
-    # P1 (grade of round 6): the layer records (every record of a layer, linked to a park or not) first, the park store over them
-    for f in sorted(pathlib.Path(store).glob('US-*.layer-records.json.gz')) + sorted(pathlib.Path(store).glob('US-*.kpcstore.json.gz')):
+    # 25 Nov 2026 (owner 8:48 AM): the full layer files are the fresh source; the park-by-park store is no longer read here
+    for f in sorted(pathlib.Path(store).glob('US-*.layer-records.json.gz')):
         if '.prev.' in f.name: continue
         try:
             with gzip.open(f, 'rt', encoding='utf-8') as fh: d = json.load(fh)
