@@ -1138,6 +1138,23 @@ XS = with_state_layers(XS, _AT['XS'])   # D6: + the layers read for listed state
 # skipped like any other. Entries marked 'auto:' were found by the bot and not yet checked by a person, and are used
 # all the same: the key's name + kind rules decide, and the website labels the result like any other join.
 SGK = {'park': {'sp'}, 'wild': {'wma'}, 'forest': {'sf'}, 'preserve': {'snp'}, 'land': set()}
+FIXED_NAME = {}   # prefix -> the table's fixed 'name' for a layer with no name field (round 14)
+
+
+def no_id(i):
+    """KPC owner, 25 Nov 2026 (round 14, NY 1:32 PM test: the website key joined 'sgnycNone' to Adirondack State Park): a record
+    with no id of its own (a hand file stitched from 107 line pieces had no OBJECTID; str(None) made 'sgnycNone') is never a
+    record: it is not saved, not loaded from an old copy and never joined."""
+    return bool(re.fullmatch(r'[a-z]*(?:None|null|nan|undefined)?', str('' if i is None else i).strip()))
+
+
+def not_area(g):
+    """True for a line or a point (Esri 'paths' / 'x', GeoJSON LineString / Point): never a park's land (round 14)."""
+    if not isinstance(g, dict) or not g: return False
+    if g.get('rings') or g.get('type') in ('Polygon', 'MultiPolygon'): return False
+    return bool(g.get('paths') or 'x' in g or g.get('type') in ('LineString', 'MultiLineString', 'Point', 'MultiPoint'))
+
+
 try:
     _sg = json.load(open('data/state-gis.json')).get('states') or {}
     _have = {x[1].split('/query')[0].rstrip('/') for x in XS}
@@ -1158,9 +1175,12 @@ try:
         if _st not in ALL: continue          # Oct 25: province codes (ON, QC…) are the Canada key's
         for _i, _l in enumerate(_lays):
             _u = str(_l.get('url') or '').rstrip('/')
-            if not _u or not _l.get('nm') or _u in _have or not re.search(r'/\d+$', _u): continue
+            # round 14 (NY 1:32 PM test, Adirondack Park): a layer with no name field (APA's one-polygon Blue Line) names its record
+            # with the table's fixed 'name'
+            if not _u or not (_l.get('nm') or _l.get('name')) or _u in _have or not re.search(r'/\d+$', _u): continue
             # prefix = letters only ('sgfla'): the website splits an id into prefix + number with /^[a-z]+/
-            XS.append((_pre(_st, _u), _u + '/query', _l['nm'], '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st},
+            if _l.get('name'): FIXED_NAME[_pre(_st, _u)] = str(_l['name']).strip()
+            XS.append((_pre(_st, _u), _u + '/query', _l.get('nm') or '', '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st},
                        {'water': bool(_l.get('water')), 'where': _l.get('where') or '1=1', 'nm2': _l.get('nm2') or '', 'what': _l.get('what') or ''}))
 except Exception as _e: print(f'state-gis.json not read: {_e}', flush=True)  # noqa: BLE001
 RESOLVED = {}
@@ -1408,12 +1428,15 @@ def extra_state(st, have, only=None):
                 continue
             if how.get('short_page'):
                 notice(f'US key {st}', f"{label}: short pages without exceededTransferLimit: the layer was read window by window to its count ({how['count']})")
+        _bad = {'no id': 0, 'line or point': 0}
         for f in fs:
             a = {k.lower(): v for k, v in (f.get('attributes') or {}).items()}
+            if no_id(a.get(oidf.lower())): _bad['no id'] += 1; continue   # round 14: never 'sgnycNone'
+            if not_area(f.get('geometry')): _bad['line or point'] += 1; continue
             if a.get(oidf.lower()) in seen_ids: continue
             seen_ids.add(a.get(oidf.lower()))
             if LAYER_OUT is not None: RAWF.setdefault(pre, []).append(f)
-            nm = (a.get(nf.lower()) or '').strip()
+            nm = str((a.get(nf.lower()) if nf else '') or '').strip() or FIXED_NAME.get(pre, '')
             if not nm: continue
             _rt = rec_type(a)   # KPC owner, 2026-11-16 (item 5): the record's own type field, when the layer has one (Category, TYPE ...)
             # Oct 20: an 'easement' record is private land with public access, never joined by name alone. Oct 29 (Brandon 2:22 PM:
@@ -1433,6 +1456,9 @@ def extra_state(st, have, only=None):
                         **({'Water': 1} if opt.get('water') else {}), **({'Rec_Type': _rt} if _rt else {}),
                         **saved_attrs(a, _sfx)})
             n += 1
+        if any(_bad.values()):
+            notice(f'US key {st}', f"{label}: records left out, never joined: " + ', '.join(f'{v} {k}' for k, v in _bad.items() if v)
+                   + (f" (a layer of lines: the table needs the agency's polygon layer)" if _bad['line or point'] and not n else ''))
         XCOUNT[pre] = XCOUNT.get(pre, 0) + n
     return out
 
@@ -1813,8 +1839,9 @@ def load_cache(st):
         with gzip.open(p, 'rt', encoding='utf-8') as f: blob = json.load(f)
     except Exception as e:  # noqa: BLE001
         notice(f'US key {st}', f'saved shapes unreadable ({e}); fetching'); return None
-    recs = []
+    recs, _noid = [], []
     for r in blob.get('recs') or []:
+        if no_id(r.get('OBJECTID')): _noid.append(str(r.get('OBJECTID'))); continue   # round 14: an old copy's 'sgnycNone'
         a = {k: v for k, v in r.items() if k not in ('_r', '_k')}
         a['_g'] = {'rings': r.get('_r') or []}
         a['_bb'] = bbox(a['_g'])
@@ -1824,6 +1851,7 @@ def load_cache(st):
         a['_k'] = set(r.get('_k') or [])
         a['rd'] = r.get('rd') or blob.get('saved') or ''
         recs.append(a)
+    if _noid: notice(f'US key {st}', f"saved copy: {len(_noid)} record(s) with no id left out, never joined ({', '.join(sorted(set(_noid))[:5])})")
     return recs, blob.get('seen', len(recs)), blob.get('detail')
 
 
@@ -2368,8 +2396,54 @@ def real_name(park_name, rec_name, kind=''):
     if MC.exact_name(park_name, rec_name, kind): return True
     def bare(t): return [w for w in MC.full(t).split() if len(w) > 1]
     a, b, b2 = bare(park_name), bare(rec_name), bare(f'{rec_name} {kind}') if kind else []
+    if kind_swap(park_name, rec_name): return True
     if len([w for w in a if w not in SL.KIND_WORDS]) < 2: return False
     return a == b or (bool(b2) and a == b2)
+
+
+# KPC owner, 25 Nov 2026 (round 14, NY 1:32 PM test: Canandaigua Lake / Honeoye Lake State Park pin only): the agency's own
+# name for a state park can carry another PARK-family type word than POTA's ('Canandaigua Lake Marine Park' is POTA's
+# 'Canandaigua Lake State Park'). Only these swaps, only in full (the same words before the type words, at least one real
+# word of 4+ letters), never across families (a forest, a wildlife area or a trail is never a park).
+KIND_SWAPS = {'state park': ('state marine park', 'marine park'), 'state trail': ('trail',)}   # 'Black Diamond Trail' (NY State Parks) = POTA's 'Black Diamond State Trail'
+
+
+PLACE_WORDS = {'lake', 'lakes', 'river', 'creek', 'pond', 'bay', 'beach', 'island', 'point', 'hill', 'mountain', 'falls', 'harbor', 'north', 'south', 'east', 'west'}
+
+
+def kind_swap(park_name, rec_name):
+    a, b = MC.full(park_name), MC.full(rec_name)
+    for pk, rks in KIND_SWAPS.items():
+        if not a.endswith(' ' + pk): continue
+        core = a[:-len(pk) - 1].strip()
+        if not any(len(w) >= 4 and w not in SL.KIND_WORDS and w not in PLACE_WORDS for w in core.split()): continue   # 'Lake Marine Park' says nothing
+        if any(b == f'{core} {rk}' for rk in rks): return True
+    return False
+
+
+def rec_names(rec):
+    """The record's names: its name and its second name (NY State Parks: Name 'Honeoye Marine Park', Label 'Honeoye Lake
+    Marine Park'); the real-name tests read both."""
+    return [n for n in ((rec or {}).get('Unit_Nm'), (rec or {}).get('Loc_Nm')) if n]
+
+
+def real_name_rec(park_name, rec, kind=''):
+    return any(real_name(park_name, n, kind) for n in rec_names(rec))
+
+
+def held_part(p, rid, rec):
+    """A3 / B12: a record the park holds only in part ('parts' {record id: [boxes]}, Robert Moses (Long Island) and (Thousand
+    Islands) share PAD-US 237576) is the park's land only where its parts lie: -> (box of the parts, acres of the record's
+    rings inside them), or None when the park holds the whole record (or the record has no rings to measure)."""
+    bxs = (p.get('parts') or {}).get(str(rid))
+    if not bxs: return None
+    rs = MC.rec_rings(rec or {})
+    if not rs: return None
+    inb = lambda r: any(SL.boxes_overlap(MC.ring_box(r), b, 0.0) for b in bxs)
+    mine = [r for r in rs if inb(r)]
+    if not mine: return None
+    bb = [min(b[0] for b in bxs), min(b[1] for b in bxs), max(b[2] for b in bxs), max(b[3] for b in bxs)]
+    return bb, MC._ring_acres(mine)
 
 
 _WEB = {}
@@ -2418,12 +2492,24 @@ def park_name_no_witness(ref, p, byid, st=None):
     pn = p.get('n') or ''
     if not MC.full(pn) or SL.generic(pn): return '', 'no witness'   # as before: the official size is looked for first
     kind = p.get('t') or ''
-    named = []
+    r_ = _name_proofs(ref, p, byid, st, pn, kind, wide=False)   # the round 10 test as it was: a park it proved stays proven
+    return r_ if r_[1] == 'ok' else _name_proofs(ref, p, byid, st, pn, kind, wide=True)
+
+
+def _name_proofs(ref, p, byid, st, pn, kind, wide):
+    """park_name_no_witness's two proofs. wide=False: the record's own name (Unit_Nm), whole records, one record per source
+    (round 10). wide=True (round 14, NY 1:32 PM test): the record's second name too (NY State Parks' Label, PAD-US Loc_Nm), a
+    shared record measured only on the parts the park holds (held_part), and one source's several records added up against
+    the other's (see below). Tried after the narrow test, so it can only prove more parks, never fewer."""
+    named, part = [], {}
     for q in p.get('m') or []:
         rec = byid.get(str(q[0])) or {}
-        if rec.get('_fresh') and not rec.get('_read_now') and real_name(pn, MC.rec_name(rec) or '', kind): named.append(q)
+        if rec.get('_fresh') and not rec.get('_read_now') and (real_name_rec(pn, rec, kind) if wide else real_name(pn, MC.rec_name(rec) or '', kind)):
+            hp = held_part(p, q[0], rec) if wide else None   # round 14: a shared record counts only where the park holds it
+            if hp: part[str(q[0])] = hp; q = list(q[:2]) + [hp[1]] + list(q[3:])
+            named.append(q)
     if not named: return '', 'no witness'   # the counts keep 'no tagged official size' as the reason (M3)
-    box_of = lambda i: (byid.get(i) or {}).get('_bb') if (byid.get(i) or {}).get('_fresh') else None   # the named FRESH rows
+    box_of = lambda i: part[i][0] if i in part else ((byid.get(i) or {}).get('_bb') if (byid.get(i) or {}).get('_fresh') else None)   # the named FRESH rows
     old_box = lambda i: OLD_BOX.get(i)   # S2: the old land only from the old copy, never a fresh record of that number
     layer_of = lambda i: _sl_layer(i)
     got = MC.size_once({'twin': p.get('twin') or []}, named, box_of, layer_of)
@@ -2437,9 +2523,30 @@ def park_name_no_witness(ref, p, byid, st=None):
         for b_ in named[i_ + 1:]:
             ia, ib = str(a_[0]), str(b_[0])
             if layer_of(ia) == layer_of(ib) or not SL.boxes_overlap(box_of(ia), box_of(ib)): continue
-            sa, sb = float((byid.get(ia) or {}).get('GIS_Acres') or a_[2] or 0), float((byid.get(ib) or {}).get('GIS_Acres') or b_[2] or 0)
+            ac_ = lambda i, q: part[i][1] if i in part else float((byid.get(i) or {}).get('GIS_Acres') or q[2] or 0)
+            sa, sb = ac_(ia, a_), ac_(ib, b_)
             if sa > 0 and sb > 0 and abs(sa - sb) <= SIZE_TOL_PARK * max(sa, sb):
                 return f'name in two official sources ({ia} {round(sa):,} and {ib} {round(sb):,} acres)', 'ok'
+    if not wide: return '', 'no witness'
+    # round 14 (NY 1:32 PM test, Robert Moses (Thousand Islands)): one source may hold the park as ONE record and the other as
+    # SEVERAL (PAD-US 237576's 2,623-acre part = NY State Parks' 914 + 907 + 888). One layer's named records that lie on the
+    # other layer's named ground are added up (each counted once) and the two sums must agree within 10%; a record of either
+    # layer off the other's ground is not counted, and each layer must bring at least one record.
+    by_lay = {}
+    for q in named:
+        i = str(q[0])
+        if box_of(i): by_lay.setdefault(layer_of(i), []).append(q)
+    lays = sorted(by_lay, key=str)
+    for i_, la in enumerate(lays):
+        for lb in lays[i_ + 1:]:
+            A = [q for q in by_lay[la] if any(SL.boxes_overlap(box_of(str(q[0])), box_of(str(r[0]))) for r in by_lay[lb])]
+            B = [q for q in by_lay[lb] if any(SL.boxes_overlap(box_of(str(q[0])), box_of(str(r[0]))) for r in by_lay[la])]
+            if not A or not B or (len(A) == 1 and len(B) == 1): continue   # one and one: the test above
+            ac_ = lambda q: part[str(q[0])][1] if str(q[0]) in part else float((byid.get(str(q[0])) or {}).get('GIS_Acres') or q[2] or 0)
+            sa, sb = sum(ac_(q) for q in A), sum(ac_(q) for q in B)
+            if sa > 0 and sb > 0 and abs(sa - sb) <= SIZE_TOL_PARK * max(sa, sb):
+                return (f'name in two official sources ({la or "padus"} {len(A)} record(s) {round(sa):,} and {lb or "padus"} '
+                        f'{len(B)} record(s) {round(sb):,} acres)'), 'ok'
     return '', 'no witness'
 
 
@@ -2495,7 +2602,7 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
             elif status != 'confirmed' and cls == 'name':
                 why = "not proven: no agency id, shared ground, name and size or park page agrees"
             elif ns_ok and any(ns.startswith(w_) for w_ in NEW_PROOFS) and cls == 'name' and rec is not None and \
-                    MC.rec_name(rec) and not SL.generic(MC.rec_name(rec)) and not real_name(p.get('n') or '', MC.rec_name(rec), p.get('t') or ''):
+                    MC.rec_name(rec) and not SL.generic(MC.rec_name(rec)) and not real_name_rec(p.get('n') or '', rec, p.get('t') or ''):
                 why = 'not proven: the park was proven by its named records, and this record carries another name'
             elif status != 'confirmed' and cls == 'person' and fps == 'nofp':
                 why = "a person's saved join with no fingerprint, and nothing else proves it"
@@ -2673,7 +2780,7 @@ def fresh_records(st, recs, P):
         nms = [n for n in e.get('_nms') or [] if n and n != e.get('_nm')]
         pad = e.get('_pad') or {}
         rec['OBJECTID'] = int(k) if k.isdigit() else k
-        rec['Unit_Nm'] = pad.get('Unit_Nm') or e.get('_nm') or base.get('Unit_Nm') or ''
+        rec['Unit_Nm'] = pad.get('Unit_Nm') or e.get('_nm') or (globals().get('FIXED_NAME') or {}).get(lay) or base.get('Unit_Nm') or ''   # round 14: the table's fixed name
         rec['Loc_Nm'] = pad.get('Loc_Nm') or (nms[0] if nms else '') or ''
         if rec['Loc_Nm'] == rec['Unit_Nm']: rec['Loc_Nm'] = ''
         rec['_g'] = {'rings': e['_g']}
