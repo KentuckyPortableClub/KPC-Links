@@ -122,9 +122,12 @@ def store_index(store=None):
         try:
             with gzip.open(f, 'rt', encoding='utf-8') as fh: d = json.load(fh)
         except Exception: continue  # noqa: BLE001
-        for p in list(d.get('parks') or []) + [{'records': d.get('records') or []}]:
+        _grp = list(d.get('parks') or []) + [{'records': d.get('records') or []}]
+        _all = [r for p in _grp for r in p.get('records') or []]
+        _pk = {id(r): k_ for r, k_ in zip(_all, SA.publish_keys(_all))}   # batch 16 item 1: the key's spelling (agency id)
+        for p in _grp:
             for r in p.get('records') or []:
-                k = SA.record_key(r)
+                k = _pk.get(id(r), '')
                 if not k: continue
                 a = r.get('attributes') or {}
                 x = {'OBJECTID': int(k) if k.isdigit() else k, 'Unit_Nm': a.get('Unit_Nm') or r.get('record_name') or '',

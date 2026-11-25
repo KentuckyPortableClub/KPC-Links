@@ -31,9 +31,9 @@ check("A: a Minnesota DNR parcel's own 'su_acres' is its size (not its section-s
 check("A: GIS_Acres still wins when a record has it; a FWS 'SUM_GISACRES' is read; no acres field = None",
       ra({'attributes': {'GIS_Acres': 40, 'su_acres': 16.4}}) == 40 and ra({'attributes': {'SUM_GISACRES': 779.5}}) == 779.5
       and ra({'attributes': {'NAME': 'X'}}) is None and ra({'attributes': {'su_acres': 0}}) is None and ra({'attributes': {'su_acres': 'n/a'}}) is None)
-check('A: the id file is format 11 and the PC test remakes an older one',
-      "'format': 11" in (ROOT / '.github/scripts/kpc_store_attrs.py').read_text(encoding='utf-8')
-      and 'fmt < 11' in (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8'))
+check('A: the id file is format 11 or newer and the PC test remakes an older one',
+      re.search(r"'format': 1[1-9],", (ROOT / '.github/scripts/kpc_store_attrs.py').read_text(encoding='utf-8'))
+      and 'fmt < 12' in (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8'))
 
 # ---- B ----------------------------------------------------------------------------------------------------------------------
 src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')

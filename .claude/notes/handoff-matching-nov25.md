@@ -57,6 +57,18 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   Left for later: NY US-2137 Schunnemunk Mountain SP (records say 'Schunnemunk State Park': name rule misses 'Mountain'), US-8319
   Palisades (old land included 'Palisades Park' 2,218 ac), MN US-2506/7148 (one PAD-US record, two POTA parks), the hint records'
   same-land step (~21 of MN's 49 minutes, the last ~480 records), MN wsrc listed 'not in store' though its file has 4 of 4.
+- **25v test (4:32 PM) + the bad website copy (25 Nov ~5:30 PM):** MN check rows 1,136 -> 713, D1 rows gone; US-7145 still pin
+  because the PC's originals\US-MN.json / US-NY.json were a key a TEST built ~7:30 AM (match_checks block; 290 MN / 836 NY parks
+  differ from main 90e4014e; 7145 ac 8,300 vs 6,226). Restored from main (md5 read back), bad copies kept as
+  originals\old-US-*-test-copy-nov25.bak. All 66 originals now match main's sha256. Owner rerunning MN NY on 25v.
+- **Batch 16 (branch prep/batch16-nov25 off #380, NOT on #380 until the rerun is graded): US rules 8f54b4480d28.** (1) published
+  key record ids use the agency's own id where every record has one (sgmne su_id, sgmna uniqueid): kpc_store_attrs.publish_keys,
+  used by the store reader, kpc_outlines_from_key and kpc_outline_score; no agency id / a shared one = the row spelling;
+  store_fields never finds an agency-keyed record ('_agk') by a row number; id file format 12; (2) _sane_ac on fresh acres;
+  (3) KPC_KEY_ONLY_PARKS through fresh_old_parks; (4) kpc_test_keys: originals is READ ONLY, checked against the kit's
+  links\.kit-website-keys\sha256.json (tools/pc-keys/make_kit_website_keys.py), a bad copy = that state NOT BUILT with one line;
+  no built-files.json / marker in originals any more. Tests: test_batch16_nov25, test_pc_kit_nov24 (rewritten K4 part).
+  Pre-existing fails (same before the batch): test_keys_store_mode_nov16 (2), test_pin_outlines_parts_nov11 (3).
 
 ## The rules now (owner's words 25 Nov)
 - 6:20 / 6:28 AM: match by proof from fresh data: agency (unit) id, then shared ground (80% / 50%; piece 90% with a shared name),
