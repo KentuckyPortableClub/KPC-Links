@@ -2243,8 +2243,13 @@ def record_attrs_by_name(i, a):
     h = next(iter(hits))
     if h.endswith('@'):   # B1: a re-found record's entry (kpc_store_attrs format 4); its helper keys never reach the checks
         x = (_RA_RF[0] or {}).get(h[:-1])
-        return {k: v for k, v in x.items() if k not in ('_nm', '_ac', '_kid')} if x else None
-    return (_RA[0] or {}).get(h)
+        return _plain(x) or None
+    return _plain((_RA[0] or {}).get(h)) or None
+
+
+def _plain(x):
+    """A store entry's id fields without its helper keys ('_nm', '_ac', '_kid', and format 6's '_nms', '_bx', '_g')."""
+    return {k: v for k, v in (x or {}).items() if not str(k).startswith('_')}
 
 
 def store_fields(i, a):
@@ -2253,15 +2258,133 @@ def store_fields(i, a):
     used only when it is provably the same record (saved_row_ok, D1's test: same name, size within 10%; no name = not proven);
     ('refused', None) only re-found records that are another record; ('', None) nothing. Neither the number nor key_record_id is
     trusted alone: the key's saved copy can be renumbered after the store was built (MN, 25 Nov 4:08 AM PC test)."""
-    x = (_RA[0] or {}).get(i)
+    x = _plain((_RA[0] or {}).get(i))
     if x: return 'id', x
     rf = _RA_RF[0] or {}
     cands = [k for k in [i] + list((_RA_KID[0] or {}).get(i) or []) if k in rf]
     for k in cands:
         y = rf[k]
         if y.get('_nm') and KR.saved_row_ok([i, y['_nm'], y.get('_ac') or 0], a):
-            return 'refound', {k_: v for k_, v in y.items() if k_ not in ('_nm', '_ac', '_kid')}
+            return 'refound', _plain(y)
     return ('refused', None) if cands else ('', None)
+
+
+import kpc_same_land as SL  # noqa: E402  (KPC owner, 25 Nov 2026: the better matcher; a US rule file)
+SAME_HOW = {}     # state -> {proof level or 'conflict' / 'unproven' / 'none': count} (KPC_SAME_LAND)
+SAME_OF = {}      # record id -> (proof level, store key) for the state being built (the gate reads it)
+_SL_IDX = [None, None]   # [the store entries' grid index by layer, the index's source]
+SL_CELL = 0.1
+
+
+def _sl_layer(k):
+    return re.match(r'[a-z]*', str(k)).group(0) or 'padus'
+
+
+def _sl_index():
+    """The store's records (plain and re-found alike: the number is never trusted) by layer, in 0.1-degree squares."""
+    src = (id(_RA[0]), id(_RA_RF[0]))
+    if _SL_IDX[1] != src:
+        idx = {}
+        for d_ in (_RA[0] or {}, _RA_RF[0] or {}):
+            for k, e in d_.items():
+                b = e.get('_bx')
+                if not b: continue
+                g = idx.setdefault(_sl_layer(k), {})
+                for cx in range(int(math.floor(b[0] / SL_CELL)), int(math.floor(b[2] / SL_CELL)) + 1):
+                    for cy in range(int(math.floor(b[1] / SL_CELL)), int(math.floor(b[3] / SL_CELL)) + 1):
+                        g.setdefault((cx, cy), {})[k] = e
+        _SL_IDX[0], _SL_IDX[1] = idx, src
+    return _SL_IDX[0]
+
+
+def same_land_fields(i, a):
+    """25 Nov 2026 (KPC owner, 6:20 AM 'a better matcher', 6:28 AM 'accuracy first'; switch KPC_SAME_LAND): the outline
+    store's id fields for the key's record i, taken from the ONE fresh store record PROVEN to be the same land
+    (kpc_same_land.pick: agency id, shared ground, a piece, name + size; the record numbers of the two reads are never
+    trusted). Returns (level, fields) with level one of kpc_same_land.LEVELS; ('conflict', None) a store record with a
+    different agency id lies on the same ground; ('unproven', None) store records nearby, none proven; ('none', None) no
+    store record of this layer near it. Store entries made before format 6 carry no outline: name + size only."""
+    g = (_sl_index() or {}).get(_sl_layer(i))
+    if not g: return 'none', None
+    rs = SL.rings_of(a.get('_g'))
+    bb = SL.box_of(rs) or a.get('_bb')
+    if not bb: return 'none', None
+    cands = {}
+    for cx in range(int(math.floor(bb[0] / SL_CELL)), int(math.floor(bb[2] / SL_CELL)) + 1):
+        for cy in range(int(math.floor(bb[1] / SL_CELL)), int(math.floor(bb[3] / SL_CELL)) + 1):
+            for k, e in (g.get((cx, cy)) or {}).items():
+                if k not in cands and SL.boxes_overlap(bb, e.get('_bx'), 0.001): cands[k] = e
+    if not cands: return 'none', None
+    lay = _sl_layer(i)
+    k, lv, why = SL.pick(a, cands, SF.keep_fields(lay) if lay != 'padus' else ('unit_code',), cache=True, own=i)
+    if not k: return ('conflict' if why == 'conflict' else 'unproven'), None
+    SAME_OF[i] = (lv, k)
+    return lv, {f: v for f, v in cands[k].items() if not str(f).startswith('_')}
+
+
+SAME_STATE = {}   # record id -> same_land_fields' answer for the state being built ('conflict' is the one the gate reads)
+FP_PROPOSALS = []  # [state, park, 'join' / 'no', record id, name now, acres now, why]: saved answers with no fingerprint
+FIX = 'code to fix'
+
+
+def _fp_state(ref, rid, rec, key='fp'):
+    """A person's saved row (join: 'fp'; NO: 'nofp') against this read's record: 'ok' (the fingerprint fits: same name, size
+    within 10%), 'nofit' (it does not: other land now holds this number), 'nofp' (no fingerprint was saved with it)."""
+    fp = ((OVR.get(ref) or {}).get(key) or {}).get(str(rid))
+    if not fp or not fp[0]: return 'nofp'
+    return 'ok' if rec is not None and KR.saved_row_ok([rid, fp[0], fp[1] if len(fp) > 1 else 0], rec) else 'nofit'
+
+
+def proven_only_gate(st, parks, byid, skip=()):
+    """25 Nov 2026 (KPC owner, 6:28 AM: 'Settle every park in code with real proof from fresh data ... If it can't be proven,
+    show the POTA pin only (no guessed outline) and mark it for the code to fix. No hand-offs to the reps for matching.';
+    switch KPC_PROVEN_ONLY). After the match checks, a joined row stays on the map only with proof:
+      - the park is CONFIRMED (agency id from POTA's link, a tagged official size, the park's own agency page, ...), or the
+        row is a code row (Park Service unit code, official line, link id), or a person's saved join whose fingerprint
+        still fits this read;
+      - and no fresh store record with a DIFFERENT agency id lies on the row's ground (SAME_STATE 'conflict');
+      - and a person's saved join whose fingerprint no longer fits (other land holds the number now) never draws.
+    Every other row leaves the outline for the park's check rows, worded 'check (code to fix: why)': a job for the code,
+    never a person's. A park left with no row shows its pin. Saved answers with no fingerprint are listed in FP_PROPOSALS
+    (the owner OKs each new fingerprint; nothing is written to data/). Returns the counts."""
+    out = {'rows': 0, 'parks': 0, 'pin_now': 0, 'why': {}}
+    for ref, p in parks.items():
+        if ref in skip or not p.get('m'): continue
+        status = (p.get('match') or {}).get('status')
+        keep, gone = [], []
+        for q in p['m']:
+            rid, cls = str(q[0]), MC.row_class(q)
+            rec = byid.get(rid)
+            why = None
+            fps = _fp_state(ref, rid, rec) if cls == 'person' else ''
+            if SAME_STATE.get(rid) == 'conflict':
+                why = 'a fresh agency record on this ground carries a different agency id'
+            elif fps == 'nofit':
+                why = "a person's saved join, but other land holds this record number now"
+            elif status != 'confirmed' and cls == 'name':
+                why = "not proven: no agency id, shared ground, name and size or park page agrees"
+            elif status != 'confirmed' and cls == 'person' and fps == 'nofp':
+                why = "a person's saved join with no fingerprint, and nothing else proves it"
+            if cls == 'person' and fps == 'nofp':
+                FP_PROPOSALS.append([st, ref, 'join', rid, MC.rec_name(rec or {}), round(float((rec or {}).get('GIS_Acres') or 0)),
+                                     'kept: the park is confirmed' if not why else 'not drawn: ' + why])
+            (gone if why else keep).append((q, why))
+        for i_ in [str(x) for x in (OVR.get(ref) or {}).get('no') or []]:
+            if _fp_state(ref, i_, byid.get(i_), 'nofp') == 'nofp' and byid.get(i_) is not None:
+                FP_PROPOSALS.append([st, ref, 'no', i_, MC.rec_name(byid[i_]), round(float(byid[i_].get('GIS_Acres') or 0)),
+                                     "a NO with no fingerprint: still applied (it can only take land away)"])
+        if not gone: continue
+        p['m'] = [q for q, _w in keep]
+        have = {str(x[0]) for x in p.get('c') or []}
+        p['c'] = [list(q[:3]) + [f'check ({FIX}: {w})'] for q, w in gone if str(q[0]) not in have] + list(p.get('c') or [])
+        out['rows'] += len(gone); out['parks'] += 1
+        for _q, w in gone: out['why'][w] = out['why'].get(w, 0) + 1
+        if not p['m']:
+            p['g'] = 'pin'
+            mt = p.setdefault('match', {})
+            mt['status'] = 'pin'; mt['why'] = sorted(set(list(mt.get('why') or []) + [FIX]))
+            out['pin_now'] += 1
+    return out
 
 
 def _maiden6(la, lo):
@@ -2368,7 +2491,20 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
     # fields; the outline store's own records do (kpc_store_attrs.py -> KPC_RECORD_ATTRS). Their id fields are added to a COPY
     # of each record the match checks read (SA), never to the record the key draws.
     _ra = record_attrs()
-    if _ra:
+    if (_ra or _RA_RF[0]) and _kr('KPC_SAME_LAND'):
+        # 25 Nov 2026 (KPC owner: 'never use a row number alone between two reads'): each record's store fields come from the
+        # store record PROVEN to be the same land (same_land_fields); counted by proof for the state's report line.
+        SAME_OF.clear(); SAME_STATE.clear()
+        cnt = {}
+        for i, a in list(byid.items()):
+            how, x = same_land_fields(i, a)
+            cnt[how] = cnt.get(how, 0) + 1
+            SAME_STATE[i] = how
+            if x:
+                byid[i] = dict(a, SA=dict(x, **(a.get('SA') or {})))
+        SAME_HOW[st] = cnt
+        RA_USED[st] = sum(cnt.get(k, 0) for k in SL.LEVELS)
+    elif _ra:
         nb = 0
         nu = nr = 0
         for i, a in list(byid.items()):
@@ -2421,6 +2557,8 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
     _grid_notes(st, parks, P, res)
     _page_point_checks(st, parks, byid, facts, res)
     _map_name_checks(st, parks, byid, facts, res)
+    if _kr('KPC_PROVEN_ONLY'):   # 25 Nov 2026 (KPC owner, 6:28 AM): proof or the pin; no hand-offs
+        res['proven_only'] = proven_only_gate(st, parks, byid, set(TRL))
     res['facts'] = MC.facts_stamp(PFR.find())   # which park facts file decided (plan L6: a changed file is visible)
     for h in hits:
         MATCH_HIT.append([st] + h)
@@ -3804,6 +3942,23 @@ def run(st):
     except Exception as _e: notice(f'US key {st}', f'one-record-two-parks pass skipped: {KR.pass_error(st, _e, _kr("KPC_HOLD_ON_PASS_ERROR"))}')  # noqa: BLE001
     # KPC owner, 20 Nov 2026 (APPROVED): match by more than name. Raises (the state is held) on a missing facts file or an error.
     _mc = match_checks_pass(st, parks, recs, P, used)
+    if st in SAME_HOW or 'proven_only' in (_mc or {}):   # 25 Nov 2026: the better matcher's one line per state
+        _sh, _po = SAME_HOW.get(st) or {}, (_mc or {}).get('proven_only') or {}
+        notice(f'US key {st}', 'same land (key record to fresh store record): '
+               f"by agency id {_sh.get('id', 0)}, by shared ground {_sh.get('overlap', 0)}, pieces {_sh.get('piece', 0)}, "
+               f"by name and size {_sh.get('name_size', 0)}, not proven {_sh.get('unproven', 0)}, other agency id on the same ground "
+               f"{_sh.get('conflict', 0)}, no store record near {_sh.get('none', 0)}"
+               + (f"; proof or the pin: {_po.get('rows', 0)} row(s) of {_po.get('parks', 0)} park(s) left the map ({FIX}), "
+                  f"{_po.get('pin_now', 0)} park(s) now pin only; saved answers with no fingerprint: "
+                  f"{sum(1 for x in FP_PROPOSALS if x[0] == st)}" if _po or _kr('KPC_PROVEN_ONLY') else ''))
+        _fpf = os.environ.get('KPC_FP_PROPOSALS') or ''
+        if _fpf and any(x[0] == st for x in FP_PROPOSALS):   # the PC test's list for the owner (never data/)
+            import csv as _csv
+            _new = not os.path.isfile(_fpf)
+            with open(_fpf, 'a', encoding='utf-8', newline='') as _fh:
+                _w = _csv.writer(_fh)
+                if _new: _w.writerow(['state', 'park', 'row', 'record id', 'name now', 'acres now', 'what happened'])
+                _w.writerows(x for x in FP_PROPOSALS if x[0] == st)
     if _mc:
         _still = {str(x[0]) for p_ in parks.values() for x in p_.get('m') or []}
         _hit = {h[3] for h in MATCH_HIT if h[0] == st}

@@ -17,7 +17,8 @@ real = json.load(open(ROOT / '.github/key-switches.json'))
 EIGHT = ['AR', 'DE', 'GA', 'MD', 'MI', 'OH', 'RI', 'TN']
 import kpc_area_hash as _AH
 USALL = sorted(x for x in _AH.US_ALL if x != 'KY')
-check(all(v['on'] in ([], EIGHT, USALL) for v in real['switches'].values()), "the committed file has each switch off, or on for the owner's states (17 Nov: every US state the US key builds)")
+TEST_ORDER = {'KPC_SAME_LAND': ['MN', 'NY'], 'KPC_PROVEN_ONLY': ['MN', 'NY']}   # 25 Nov 2026 (KPC owner): MN first, then NY
+check(all(v['on'] in ([], EIGHT, USALL) or v['on'] == TEST_ORDER.get(k) for k, v in real['switches'].items()), "the committed file has each switch off, or on for the owner's states (17 Nov: every US state the US key builds; 25 Nov: the better matcher on MN and NY only)")
 check(set(real['switches']) == {k for k, v in KR.DEFAULTS.items() if v == '0'}, 'every OFF-by-default switch is in the file (and only those)')
 check(KR.on('KPC_NO_ALL_PATHS', env={}, area='OH'), 'the default-ON switch (a NO on every path) stays on')
 

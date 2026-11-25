@@ -9,7 +9,7 @@ Every new chat reads `.claude/CLAUDE.md` (house rules) by itself. Paste ONE star
 - Practice calls K4TEST / W4KIDS (app tests: Q-prefix calls). Never a real call as an example.
 - No POTA/SOTA/WWFF logos; footer independence line. '2-fer' = two overlapping POTA parks only.
 - Never ask for keys/passwords in chat. Never write the member password anywhere.
-- Push: `git fetch && git reset --hard origin/main` before editing, commit, `git push origin HEAD:main`.
+- Push: `git fetch`, branch from `origin/main`, commit, push the BRANCH and open a draft PR. Never push to main (Brandon Nov 25).
 - Test at 390 px (phone) and desktop with Playwright before pushing.
 - QRZ bios: no 4-byte emoji (QRZ cuts the bio off at the first one).
 

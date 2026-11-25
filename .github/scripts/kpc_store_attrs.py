@@ -55,24 +55,55 @@ def name_key(s):
     return re.sub(r'[^a-z0-9]', '', str(s or '').lower())
 
 
-def record_box(r):
-    """[minx, miny, maxx, maxy] of a store record's shape (rings are q-digit integers, first point then steps), rounded to
-    0.001 degree; None when the record has no rings. Exchange check 24 Nov: name + size alone hit the wrong piece of a
-    many-piece park once in 1,101 New York bridges; the box must also overlap."""
+def record_rings(r):
+    """A store record's rings in degrees ([[[lon, lat], ...], ...]); [] when it has none. Store rings are q-digit integers:
+    the first point, then steps."""
     rg = r.get('rings')
     if isinstance(rg, str):
         try: rg = json.loads(rg)
-        except ValueError: return None
+        except ValueError: return []
     try: q = 10 ** int(r.get('q') or 6)
     except (TypeError, ValueError): q = 10 ** 6
-    xs, ys = [], []
+    out = []
     for ring in rg or []:
         if not isinstance(ring, list) or len(ring) < 2: continue
-        x, y = ring[0], ring[1]; xs.append(x); ys.append(y)
+        x, y = ring[0], ring[1]; pts = [[x / q, y / q]]
         for i in range(2, len(ring) - 1, 2):
-            x += ring[i]; y += ring[i + 1]; xs.append(x); ys.append(y)
-    if not xs: return None
-    return [round(min(xs) / q, 3), round(min(ys) / q, 3), round(max(xs) / q, 3), round(max(ys) / q, 3)]
+            x += ring[i]; y += ring[i + 1]; pts.append([x / q, y / q])
+        if len(pts) >= 3: out.append(pts)
+    return out
+
+
+def record_box(r):
+    """[minx, miny, maxx, maxy] of a store record's shape, rounded to 0.001 degree; None when the record has no rings.
+    Exchange check 24 Nov: name + size alone hit the wrong piece of a many-piece park once in 1,101 New York bridges."""
+    rs = record_rings(r)
+    if not rs: return None
+    xs = [p[0] for x in rs for p in x]; ys = [p[1] for x in rs for p in x]
+    return [round(min(xs), 3), round(min(ys), 3), round(max(xs), 3), round(max(ys), 3)]
+
+
+LIGHT_STEP = 0.00005     # 25 Nov (better matcher): about 5 m; enough to measure shared ground at 80% / 50%
+LIGHT_MAX = 2000         # points per record at most (a bigger record is thinned more)
+
+
+def light_rings(r):
+    """25 Nov 2026 (owner 6:20 AM: 'the outlines overlap on the map (area overlap, not just bounding boxes)'): the record's
+    outline, thinned (a point closer than LIGHT_STEP to the last kept one is dropped, more when it would pass LIGHT_MAX
+    points), 5 decimals. Only for the key's same-land test (kpc_same_land.py); never drawn."""
+    rs = record_rings(r)
+    n = sum(len(x) for x in rs)
+    step = LIGHT_STEP
+    while True:
+        out = []
+        for ring in rs:
+            kept = [ring[0]]
+            for p in ring[1:-1]:
+                if abs(p[0] - kept[-1][0]) >= step or abs(p[1] - kept[-1][1]) >= step: kept.append(p)
+            kept.append(ring[-1])
+            if len(kept) >= 4: out.append([[round(p[0], 5), round(p[1], 5)] for p in kept])
+        if sum(len(x) for x in out) <= LIGHT_MAX or not n: return out
+        step *= 2
 
 
 def record_acres(r):
@@ -106,7 +137,16 @@ def run(store, out, gh=None, today=None):
                 a = r.get('attributes') or {}
                 got = {str(n): v for n, v in a.items() if str(n).lower() in want and v not in (None, '', ' ')
                        and isinstance(v, (str, int, float)) and not isinstance(v, bool) and len(str(v)) <= MAX_TEXT}
-                if got:
+                # 25 Nov 2026 (format 6, the better matcher): every record also carries its name(s), size, box and a light outline,
+                # so the key can PROVE which of its records is the same land (kpc_same_land.py) instead of trusting a row number.
+                # Helper keys start with '_' and never reach the id checks.
+                helper = {'_nm': str(r.get('record_name') or r.get('record_name_in_source') or '')}
+                nms = sorted({str(x) for x in (r.get('record_name'), r.get('record_name_in_source'), r.get('tract_name')) if x} - {helper['_nm']})
+                if nms: helper['_nms'] = nms
+                if record_acres(r): helper['_ac'] = round(record_acres(r), 3)
+                bx0 = record_box(r)
+                if bx0: helper['_bx'] = bx0; helper['_g'] = light_rings(r)
+                if got or helper.get('_g'):
                     # 24 Nov 2026 (B1, #379): a re-found store record ('sgmnb@20') is not proven to be the key's record 20 (the
                     # agency renumbered its layer), nor the record the store's key_record_id names (that is the key's id when the
                     # STORE was built; the key's saved copy has been renumbered since: MN, 25 Nov 4:08 AM test). So it is kept
@@ -114,12 +154,10 @@ def run(store, out, gh=None, today=None):
                     # that is provably the same record (name + size). A plain record always wins.
                     kid = str(r.get('key_record_id') or '')
                     if '@' in str(r.get('key') or ''):
-                        refound.setdefault(k, {}).update(dict(got, _nm=str(r.get('record_name') or r.get('record_name_in_source') or ''),
-                                                               **({'_ac': round(record_acres(r), 3)} if record_acres(r) else {}),
-                                                               **({'_kid': kid} if re.fullmatch(r'[a-z]+\d+', kid) else {})))
+                        refound.setdefault(k, {}).update(dict(got, **helper, **({'_kid': kid} if re.fullmatch(r'[a-z]+\d+', kid) else {})))
                         k = k + '@'   # the bridge's entry for this record (below)
                     else:
-                        recs.setdefault(k, {}).update(got)
+                        recs.setdefault(k, {}).update(dict(got, **helper))
                     # 24 Nov: agencies renumber their records when they republish a layer (New York DEC between our early-
                     # November saved copies and the store's later read), so the record number alone cannot find a saved
                     # record's fields. Also index them by layer + name + size; the key takes a hit only when it is the ONE
@@ -132,7 +170,7 @@ def run(store, out, gh=None, today=None):
                             by_name.setdefault(lay, {}).setdefault(nm, []).append([round(ac, 3), k] + ([bx] if bx else []))
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 5, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'format': 6, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
            'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
                              for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
@@ -153,7 +191,9 @@ def selftest():
             {'key': 'sgzzd@5', 'layer': 'sgzzd', 'record_id': '5', 'key_record_id': 'sgzzd9', 'attributes': {'URL': 'https://example.org/refound'}},
             {'key': 'sgzzd9', 'layer': 'sgzzd', 'record_id': '9', 'attributes': {'URL': 'https://example.org/plain'}},
             {'key': '3422', 'layer': 'PAD-US', 'record_id': '3422', 'attributes': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST', 'GIS_Acres': 4}},
-            {'key': 'point-circle', 'layer': 'point-circle', 'record_id': '', 'attributes': {'URL': 'x'}}]}
+            {'key': 'point-circle', 'layer': 'point-circle', 'record_id': '', 'attributes': {'URL': 'x'}},
+            {'key': 'sgzze@4', 'layer': 'sgzze', 'record_id': '4', 'record_name': 'Lost Valley Prairie', 'q': 6,
+             'rings': [[-92830000, 44800000, 10000, 0, 0, 10000, -10000, 0, 0, -10000]], 'attributes': {'gis_acres': 216.0}}]}
         with gzip.open(os.path.join(st, 'US-ZZ.kpcstore.json.gz'), 'wt') as f: json.dump({'parks': [park]}, f)
         with gzip.open(os.path.join(st, 'US-ZZ.kpcstore.prev.json.gz'), 'wt') as f: json.dump({'parks': [{'records': [{'key': 'sgold1', 'layer': 'sgold', 'record_id': '1', 'attributes': {'URL': 'old'}}]}]}, f)
         gh = os.path.join(t, 'gh'); os.mkdir(gh)
@@ -161,14 +201,17 @@ def selftest():
         json.dump({'ties': [{'field': 'URL'}]}, open(os.path.join(gh, 'link-id-ties.json'), 'w'))
         o = os.path.join(t, 'a.json.gz'); run(st, o, gh, '2026-11-22')
         d = json.load(gzip.open(o, 'rt'))
-        ok = d['records'] == {'sgzza7': {'URL': 'https://dec.ny.gov/lands/123.html'}, '3422': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST'},
+        plain = {k: {f: v for f, v in x.items() if not f.startswith('_')} for k, x in d['records'].items()}
+        ok = plain == {'sgzza7': {'URL': 'https://dec.ny.gov/lands/123.html'}, '3422': {'Comments': 'parks.ca.gov/?page_id=9', 'Loc_Nm': 'TEST'},
                               'sgzzd9': {'URL': 'https://example.org/plain'}}   # B1: re-found records are never filed as plain ones
-        ok = ok and d.get('refound') == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
+        ok = ok and {k: v for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
                                          'sgzzc30': {'URL': 'https://example.org/alpha', '_nm': 'Alpha Forest', '_ac': 50.0, '_kid': 'sgzzc12'},
                                          'sgzzd5': {'URL': 'https://example.org/refound', '_nm': '', '_kid': 'sgzzd9'}}
-        ok = ok and d.get('format') == 5 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
+        ok = ok and d.get('format') == 6 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
         ok = ok and d['by_name'].get('sgzzc', {}).get('alphaforest') == [[50.0, 'sgzzc30@']]
-    print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']))
+        e = d['refound'].get('sgzze4') or {}   # format 6: name, size, box and a light outline, for the same-land proof
+        ok = ok and e.get('_nm') == 'Lost Valley Prairie' and e.get('_bx') == [-92.83, 44.8, -92.82, 44.81] and len((e.get('_g') or [[]])[0]) == 5
+    print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']) + ' ' + json.dumps(d.get('refound')))
     return 0 if ok else 1
 
 

@@ -5,7 +5,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 
 - `.claude/notes/handoff-app-lounges-nov19.md`: where the APP + LOUNGES stand (Nov 19), what waits on Brandon, the carbon-copy rule. Read first in a new app/Lounge chat.
 - `.claude/notes/handoff-matching-nov23.md`: where MATCHING + ACCURACY stand (Nov 23), the next jobs in order, what waits on Brandon, how to bring his PC test kit up to date after a change. Read first in a new matching chat.
-- `.claude/notes/rule-sheet-stable-ids-nov25.md`: DRAFT rule sheet: row numbers (OBJECTID) are not ids; when two reads hold the same record (agency id field, else name + size + box). Grey areas G1-G4 wait on Brandon.
+- `.claude/notes/rule-sheet-stable-ids-nov25.md`: rule sheet: row numbers (OBJECTID) are not ids; THE BETTER MATCHER (Brandon Nov 25 6:20 + 6:28 AM): same land by agency id, shared ground, name + size (kpc_same_land.py); proof or the pin, no hand-offs (KPC_PROVEN_ONLY). G1-G4 ruled Nov 25.
 - `.claude/notes/handoff-official-links-nov23.md`: the OWN-PAGE FINDER for parks with no link or a dead one (Nov 23): what exists, the plan, rule sheet L, done. Read first for the official-links job.
 **Notes are split by topic (Oct 20, to save usage). Read ONLY the file for the job at hand:**
 - `.claude/notes/mapping.md`: boundaries + answer keys (KY/US/Canada/world), trip planners, Park Control/Commander, Am I in the Park, Kit, Info Finder, Map Rep/Suggest, 2-fers, KY park data + access points, trails, boundary bots.
@@ -76,8 +76,8 @@ When you add a note, put it in the right topic file (one short bullet, dated, Br
 - Must work at phone width (390px) with no sideways scroll. Test with Playwright (Chromium is preinstalled; use `NODE_PATH=$(npm root -g)`) against `python3 -m http.server 8765`.
 
 ## Pushing
-- Before editing: `git fetch && git reset --hard origin/main`, because the bots commit too.
-- Commit, then `git push origin HEAD:main`.
+- Before editing: `git fetch`, then start a new branch from `origin/main` (`git checkout -B <branch> origin/main`), because the bots commit too.
+- **NEVER PUSH TO MAIN (Brandon Nov 25):** commit on the branch (author `KPC owner <KentuckyPortableClub@users.noreply.github.com>`, message ends `KPC owner, <date>`, no trailers), push the branch, open a PR (`gh api repos/KentuckyPortableClub/KPC-Links/pulls -f title=... -f head=<branch> -f base=main -F draft=true`). Brandon merges. Notes and inbox changes go through a PR too.
 - Check the deploy: `gh run list -R KentuckyPortableClub/KPC-Links --workflow=pages-deploy.yml -L 1` (switched to GitHub Actions as the Pages source Oct 28; the old `-w 372361621` branch-deploy pipeline is retired). A notes/inbox-only push (only `.claude/**`) doesn't trigger it at all.
 - Getting Actions results: `gh run view --log` is blocked here. Scripts print `::notice title=...::` lines, so read them with `gh api repos/KentuckyPortableClub/KPC-Links/check-runs/<job id>/annotations`. GitHub keeps only the FIRST 10 notices of a step (Fable 19 Nov: a 13-state measure run showed Alaska only), so for a step that prints more, read the whole job log: `gh api repos/KentuckyPortableClub/KPC-Links/actions/jobs/<job id>/logs` (works from the chat box).
 - Use REST rather than GraphQL for issues.

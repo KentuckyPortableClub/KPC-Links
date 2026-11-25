@@ -76,6 +76,8 @@ RULE_FILES['world-key'].append('data/world-key/area-tables.json')
 # layers from data/state-gis.json (which layer, its name field, its kind), so adding, dropping or re-pointing a layer changes
 # what the key can join; each layer also carries 'what' (owned / designation / water / register / compilation). No new rule file.
 RULE_FILES['us-key'].append('data/state-gis.json')
+# 25 Nov 2026 (KPC owner, the better matcher): the same-land proof decides which fresh record a key record is.
+RULE_FILES['us-key'].append('.github/scripts/kpc_same_land.py')
 # Nov 12 (KPC owner, 2026-11-12; Quality must-fix M2): the official pin-fill helper decides
 # which pin a park is joined by, so it is a Canada and world rule file. The Japan A10
 # crosswalk helper is a world rule file. A later edit to either moves the hash.

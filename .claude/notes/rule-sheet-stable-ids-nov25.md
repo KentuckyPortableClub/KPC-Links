@@ -29,7 +29,7 @@ Nothing new on the map. The report says per state: "same record by agency id N, 
 - MN US-10722 Lost Valley Prairie: our row 55, server row 210 (Nov 14): same SNA01041 -> same record.
 - MN sgmne: 3,080 pieces re-found twice (Nov 14 and Nov 21): every republish renumbers; with the agency id the key would not notice at all.
 - MN sgmnc@97 St. Croix Savanna: a 14-acre piece of a 140-acre record: size test fails, agency id would pass (G2).
-- NY sgnya: 1,509 store id fields; NY's numbers did not move; nothing changes.
+- NY sgnya: 1,509 store id fields; NY's row numbers DID move (the reviewer's re-grade, 25 Nov; first written wrongly as 'did not move'); no NY result changed.
 - A saved answer (overrides `join: ["sgmnb20"]`) made before a republish: after it, row 20 is another forest -> today D1 refuses it by name + size; with the table, it is re-pointed to the record with the same agency id (G3).
 - PAD-US (national): its own `OBJECTID` changes between releases (4.0 -> 4.1) and between the GDB download and the web service: test 2 only.
 
@@ -53,3 +53,14 @@ T8. Process: data/us-key/stable-ids.json is data: each batch needs the owner's O
 
 ## FIRST REAL CASE: Illinois (25 Nov)
 The key's Illinois conservation layer (sgilc, 6,908 records, numbers up to 9,197, read 11 Nov) now answers "Invalid URL". The owner's hand download of the same compiler's newer list (2,171 records, numbered 1-2,171) has the parks by name (Chain O'Lakes, Channahon, Illini, Gebhard Woods, Illinois Beach...) but none of the numbers. The store already has the tool for this: replacement-layers.csv, fetch "hand", match "by-name" (exact name, exactly one record, keeps both ids, never publishable without its own licence row).
+
+## THE BETTER MATCHER (KPC owner, 25 Nov 6:20 AM "APPROVED, one PR" + 6:28 AM "Accuracy first ... no hand-offs to the reps")
+What we trust: the fresh agency layers (the outline store's reads), POTA's list and pages (pin, official link), the agency's own pages. Old saved copies, old saved answers and old store notes are HINTS: used only where fresh data backs them.
+What we found (25 Nov, real MN data): our 12 Nov saved copy and the store's 14 Nov read number the SAME records differently on three MN layers (state forests 57 of 59, natural areas 12 of 12, state land 64 of 66), while names, sizes (to 8 decimals) and outlines match. Wildlife areas, the federal layers and PAD-US kept their numbers. So row numbers do change between reads; the agency's own codes (SFT00065, SNA01041) do not.
+1. Same land, record to record (kpc_same_land.py, switch KPC_SAME_LAND), best proof first: (a) the agency id field (keep-record-fields.json, one list per layer), normalised, boxes overlap; a different id of the same field = never the same record; (b) shared ground on the outlines: 80% of the smaller and 50% of the larger; (c) a piece: 90% of the smaller inside the larger (not when both carry different specific names: a waterfowl area inside a refuge is not a piece of it); (d) the same non-generic name and size within 10%, never when the outlines show different ground. Never the row number; it only breaks a tie between two records already proven.
+2. Proof or the pin (switch KPC_PROVEN_ONLY): a joined row draws only when the park is confirmed (POTA link id, tagged official size, the park's own page...), or it is a code row, or a person's join whose fingerprint still fits. Never when a fresh record with another agency id holds its ground. Every other row: 'check (code to fix: why)' and the POTA pin. A code job, never the reps'.
+3. Saved answers: a join whose fingerprint no longer fits never draws. A join with no fingerprint draws only if the park is otherwise confirmed. A NO with no fingerprint is still applied (it can only take land away). Every saved answer with no fingerprint is listed for the owner (PC test: saved-answers-no-fingerprint.csv); new fingerprints go into data/ only with his OK.
+4. One line per state: by agency id, by shared ground, pieces, by name and size, not proven, other id on the same ground, no store record near; rows that left the map; parks now pin only.
+5. Test order: MN, then NY (switches on for those two only). Kentucky later, after its own handling is sorted.
+MN dry run on the saved files (25 Nov, before the gate): of the store's 552 MN records, every renumbered state record found its twin (forests 59 by shared ground, natural areas 12, state land 64 by agency id su_id); 0 two-fits left after the tie rule; 3 'another agency id on the same ground'.
+

@@ -138,7 +138,7 @@ def store_attrs():
             import gzip
             with gzip.open(out, 'rt', encoding='utf-8') as fh: fmt = int(json.load(fh).get('format') or 0)
         except Exception: fmt = 0  # noqa: BLE001
-    if not out.is_file() or out.stat().st_mtime < newest or fmt < 5:   # 25 Nov (B1, #379): format 5 keeps every re-found record apart, with its name and size
+    if not out.is_file() or out.stat().st_mtime < newest or fmt < 6:   # 25 Nov (better matcher): format 6 adds each record's name, size, box and light outline
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
         subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS)
@@ -221,7 +221,8 @@ def run_build(st, rep, attrs):
         else:
             if not (LINKS / 'cache' / 'us' / f'US-{st}.json.gz').is_file():
                 return None, f'{st}: no saved copy in links\\cache\\us (US-{st}.json.gz); skipped'
-            env = dict(common, STATES=st, GEO_CACHE=str(LINKS / 'cache' / 'us'))
+            env = dict(common, STATES=st, GEO_CACHE=str(LINKS / 'cache' / 'us'),
+                       KPC_FP_PROPOSALS=str(rep / 'saved-answers-no-fingerprint.csv'))   # 25 Nov: the owner's list (never data/)
             cmd = [sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py']
     kept = []
     with open(rep / f'{st}.log', 'w', encoding='utf-8', errors='replace') as lf:
