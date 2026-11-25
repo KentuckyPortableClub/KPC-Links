@@ -2453,26 +2453,30 @@ LAYER_KEEP = ('Own_Type', 'Mang_Type', 'Mang_Name', 'Loc_Mang', 'Des_Tp', 'Categ
 GAPS = []          # [state, layer, records in the source, records saved, why]: joined layers the fresh layer files lack
 
 
-def joined_layers(st, P):
+def joined_layers(st, P, layers_read=None):
     """The layers this state's key joins: the layers of the records joined in the key on the website today (data/us-key/US-XX.json)
-    and of every id a person's saved answer joins. Trail lines are not land layers."""
+    and of the ids a person's saved answer joins on a layer THIS state reads (layers_read: the layers of its own records; a saved
+    answer naming another state's layer, such as a border park's Iowa record from Minnesota, is not joined here). Trail lines are
+    not land layers."""
     out = set()
     try:
         with open(OUT / f'US-{st}.json', encoding='utf-8') as fh: kd = json.load(fh)
     except (OSError, ValueError):
         kd = {}
-    ids = [x[0] for p_ in (kd.get('parks') or {}).values() for x in p_.get('m') or [] if isinstance(x, list) and x]
-    ids += [w for ref in P for w in ((OVR.get(ref) or {}).get('join') or [])]
-    for i in ids:
-        if isinstance(i, int) or str(i).isdigit(): out.add('padus'); continue
+    def lay(i):
+        if isinstance(i, int) or str(i).isdigit(): return 'padus'
         m = re.fullmatch(r'([a-z]+)\d+', str(i))
-        if m and m.group(1) not in ('trl',): out.add(m.group(1))
+        return m.group(1) if m and m.group(1) not in ('trl',) else None
+    for i in [x[0] for p_ in (kd.get('parks') or {}).values() for x in p_.get('m') or [] if isinstance(x, list) and x]:
+        if lay(i): out.add(lay(i))
+    for i in [w for ref in P for w in ((OVR.get(ref) or {}).get('join') or [])]:
+        if lay(i) and (layers_read is None or lay(i) in layers_read): out.add(lay(i))
     return out
 
 
-def fresh_gap(st, P, man):
+def fresh_gap(st, P, man, layers_read=None):
     """The joined layers whose full layer file is missing or not complete (sorted)."""
-    return sorted(lay for lay in joined_layers(st, P) if not (man.get(lay) or {}).get('complete'))
+    return sorted(lay for lay in joined_layers(st, P, layers_read) if not (man.get(lay) or {}).get('complete'))
 
 
 def _write_list(env, rows, head, st):
@@ -2506,7 +2510,7 @@ def fresh_records(st, recs, P):
             if e.get('_st') == area and e.get('_src') == 'layer' and e.get('_g') and re.fullmatch(r'[a-z]*\d+', k): ents[k] = e
     man = (_RA_MAN[0] or {}).get(area) or {}
     # ... and a key build for an area STOPS and lists the gap when any layer it joins is not complete in those files
-    gap = fresh_gap(st, P, man)
+    gap = fresh_gap(st, P, man, {_sl_layer(_oid(a)) for a in recs})
     if gap:
         GAPS.extend([st, lay, (man.get(lay) or {}).get('source_count'), (man.get(lay) or {}).get('store_count'),
                      'no layer file' if lay not in man else 'not complete'] for lay in gap)
