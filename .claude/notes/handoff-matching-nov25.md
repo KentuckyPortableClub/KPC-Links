@@ -29,6 +29,11 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   old land from the old copy only). US rules -> **57cffee74bdd**. Kit **25p** on the PC, read back equal. Catskill (Nov 11 DEC file
   from D:\DOWNLOADS!) is in layer-files\hand\US-NY\sgnyd\; the owner says a newer download exists somewhere: newest file there wins.
 
+- **11:27 AM MN gap 'sgiaa 0 of ?' (KPC-Store 839ce5e, on the PC, read back equal):** LAYER-RECORDS read only links\\data\\us-key,
+  which each key test rewrites; it now also reads key builder files\\originals, counts saved joins, never drops a downloaded
+  layer, warns on a layer with no address, and ends with a layer / source / stored / complete list. Round 12 (8c2bc3d, kit 25q,
+  US 8ec9ea21fa07): district tract rows are code rows. Owner next: LAYER-RECORDS 1 + Y, then START-HERE MN NY.
+
 ## The rules now (owner's words 25 Nov)
 - 6:20 / 6:28 AM: match by proof from fresh data: agency (unit) id, then shared ground (80% / 50%; piece 90% with a shared name),
   then real name + size within 10%; never a row number; unproven = POTA pin + "code to fix", no hand-offs to the reps.
