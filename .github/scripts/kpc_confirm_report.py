@@ -123,6 +123,8 @@ def rule_changes_since(last_hash=None, kind='us-key', root=None):
             seen = True
         if seen:
             ids.append(ch.get('id') or '')
+    if not seen:   # 25 Nov: the last test ran rules this tree never recorded (a test kit of an unmerged change): never say "none"
+        return [f'the last test ran rules not recorded here ({last_hash}; this run {now}), so the changes cannot be listed']
     return [x for x in ids if x]
 
 
