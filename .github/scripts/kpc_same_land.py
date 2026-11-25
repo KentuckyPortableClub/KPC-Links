@@ -170,6 +170,50 @@ def _inside(x, y, rings, rboxes):
     return c
 
 
+BANDS = 64            # speed (KPC owner, 25 Nov 2026): point-in-outline looks only at the edges in the point's band
+
+
+def _band_index(rings, rboxes):
+    """Per ring: its edges filed under each of up to BANDS horizontal bands their y span touches. Only a speed-up: an edge
+    that can flip _inside's count for a point ((yi > y) != (yj > y)) always spans the point's y, so it is filed under the
+    point's band; the count runs over the same edges with the same test, so the answer is the same."""
+    out = []
+    for r, b in zip(rings, rboxes):
+        c = max((b[3] - b[1]) / BANDS, 1e-12)
+        bands = {}
+        j = len(r) - 1
+        for i in range(len(r)):
+            e = (r[i], r[j]); j = i
+            lo, hi = min(e[0][1], e[1][1]), max(e[0][1], e[1][1])
+            for k in range(int(math.floor((lo - b[1]) / c)), int(math.floor((hi - b[1]) / c)) + 1):
+                bands.setdefault(k, []).append(e)
+        out.append((c, bands))
+    return out
+
+
+_BIX = {}
+
+
+def _bands(rings, rboxes):
+    """_band_index of rings, kept while the same rings are measured again (the store's cached records)."""
+    got = _BIX.get(id(rings))
+    if got is not None and got[0] is rings: return got[1]
+    if len(_BIX) > 20000: _BIX.clear()
+    ix = _band_index(rings, rboxes)
+    _BIX[id(rings)] = (rings, ix)   # the rings are kept with it, so the id cannot be taken by another list meanwhile
+    return ix
+
+
+def _inside_ix(x, y, rings, rboxes, ix):
+    """_inside over the edges in (x, y)'s band of each ring."""
+    c = False
+    for b, (h, bands) in zip(rboxes, ix):
+        if y < b[1] or y > b[3] or x > b[2]: continue
+        for (xi, yi), (xj, yj) in bands.get(int(math.floor((y - b[1]) / h)), ()):
+            if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / ((yj - yi) or 1e-300) + xi: c = not c
+    return c
+
+
 def acres_of(rings):
     """Area in acres measured on the outline (even-odd: a ring inside an odd number of others is a hole)."""
     if not rings: return 0.0
@@ -204,6 +248,7 @@ def shares(ra, rb, acres_a=None, acres_b=None):
     bx = box_of(small)
     if not boxes_overlap(bx, box_of(big)):
         return (0.0, 0.0)
+    six, bix = _bands(small, sb_), _bands(big, bb_)
     def _count(n):
         ins = both = 0
         dx, dy = (bx[2] - bx[0]) / n, (bx[3] - bx[1]) / n
@@ -211,9 +256,9 @@ def shares(ra, rb, acres_a=None, acres_b=None):
             x = bx[0] + (i + 0.5) * dx
             for j in range(n):
                 y = bx[1] + (j + 0.5) * dy
-                if _inside(x, y, small, sb_):
+                if _inside_ix(x, y, small, sb_, six):
                     ins += 1
-                    if _inside(x, y, big, bb_): both += 1
+                    if _inside_ix(x, y, big, bb_, bix): both += 1
         return ins, both
     ins, both = _count(GRID)
     if ins < MIN_HITS or any(abs(both / ins - t) < NEAR_EDGE for t in (OVERLAP_SMALL, PIECE_IN, DIFFERENT_GROUND) if ins):
@@ -236,6 +281,38 @@ def _near_edge(x, y, rings, d):
     return False
 
 
+EIX_CELLS = 64        # speed (KPC owner, 25 Nov 2026): the edge allowance looks only at the edges filed under the point's cell
+
+
+def _edge_index(rings):
+    """Every edge of the rings filed under each cell its box, widened by EDGE, touches; a grid of at most EIX_CELLS a side
+    over the rings' box. Only a speed-up: _near_edge_ix checks each filed edge exactly as _near_edge does, and an edge
+    _near_edge could accept (d <= EDGE) is always filed under the point's cell, so the answer is the same."""
+    bx = box_of(rings)
+    x0, y0 = bx[0] - EDGE, bx[1] - EDGE
+    c = max((bx[2] - bx[0] + 2 * EDGE) / EIX_CELLS, (bx[3] - bx[1] + 2 * EDGE) / EIX_CELLS, EDGE)
+    cells = {}
+    for r in rings:
+        for e in zip(r, r[1:] + r[:1]):
+            (x1, y1), (x2, y2) = e
+            for i in range(int(math.floor((min(x1, x2) - EDGE - x0) / c)), int(math.floor((max(x1, x2) + EDGE - x0) / c)) + 1):
+                for j in range(int(math.floor((min(y1, y2) - EDGE - y0) / c)), int(math.floor((max(y1, y2) + EDGE - y0) / c)) + 1):
+                    cells.setdefault((i, j), []).append(e)
+    return x0, y0, c, cells
+
+
+def _near_edge_ix(x, y, ix, d):
+    """_near_edge over the edges filed under (x, y)'s cell (d <= EDGE)."""
+    x0, y0, c, cells = ix
+    d2 = d * d
+    for (x1, y1), (x2, y2) in cells.get((int(math.floor((x - x0) / c)), int(math.floor((y - y0) / c))), ()):
+        if min(x1, x2) - d > x or max(x1, x2) + d < x or min(y1, y2) - d > y or max(y1, y2) + d < y: continue
+        dx, dy = x2 - x1, y2 - y1
+        t = 0.0 if dx == dy == 0 else max(0.0, min(1.0, ((x - x1) * dx + (y - y1) * dy) / (dx * dx + dy * dy)))
+        if (x1 + t * dx - x) ** 2 + (y1 + t * dy - y) ** 2 <= d2: return True
+    return False
+
+
 STRICT_MIN = 0.50      # S1 (grade of round 10): a rough overlap or piece also needs half of a's points STRICTLY inside b
 
 
@@ -250,16 +327,22 @@ def ground_shares2(va, vb, n=GRID_FINE):
     if not boxes_overlap(bx, bb, edge): return (0.0, 0.0)
     sa_, sb_ = [box_of([r]) for r in ra], [box_of([r]) for r in rb]
     ins = on = strict = 0
+    ix = None
+    aix, bix = _bands(ra, sa_), _bands(rb, sb_)
     dx, dy = (bx[2] - bx[0]) / n, (bx[3] - bx[1]) / n
     for i in range(n):
         x = bx[0] + (i + 0.5) * dx
         for j in range(n):
             y = bx[1] + (j + 0.5) * dy
-            if not _inside(x, y, ra, sa_): continue
+            if not _inside_ix(x, y, ra, sa_, aix): continue
             ins += 1
             if not boxes_overlap([x, y, x, y], bb, edge): continue
-            if _inside(x, y, rb, sb_): on += 1; strict += 1
-            elif edge > 0 and _near_edge(x, y, rb, edge): on += 1
+            if _inside_ix(x, y, rb, sb_, bix): on += 1; strict += 1
+            elif edge > 0:
+                if ix is None:
+                    ix = vb.get('_eix')
+                    if ix is None: ix = vb['_eix'] = _edge_index(rb)   # once per fresh record (views are cached)
+                if _near_edge_ix(x, y, ix, edge): on += 1
     if ins < MIN_HITS: return None
     return on / ins, strict / ins
 

@@ -2224,6 +2224,21 @@ def record_attrs():
     return _RA[0]
 
 
+PROGRESS_EVERY = 500
+_T0 = {}
+
+
+def progress(st, what, n=None, total=None, start=False):
+    """Speed (KPC owner, 25 Nov 2026: MN took 49.7 min and printed nothing during the state build, so it looked stalled): one
+    plain line, flushed, every PROGRESS_EVERY rows / parks of a long loop and at each big layer join, with the minutes since the
+    state began. Report only: nothing is decided by it."""
+    if n is not None and n % PROGRESS_EVERY and n != total: return
+    import time as tm_   # here, so the tests that run parts of this file need nothing more
+    if start: _T0[st] = tm_.time()
+    t = (tm_.time() - _T0.get(st, tm_.time())) / 60
+    print(f'US key {st}: {what}' + (f' {n:,} of {total:,}' if n is not None else '') + f' ({t:.1f} min)', flush=True)
+
+
 def record_attrs_by_name(i, a):
     """24 Nov 2026 (owner 4:19 AM 'fix your part'; store id fields by name): the store's id fields for a saved record whose
     number the store does not know (the agency renumbered its layer after our saved copy was made: New York DEC). Taken only
@@ -2447,7 +2462,8 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
            'name_size': {'tried': 0, 'no witness': 0, 'generic': 0, 'name': 0, 'size': 0, 'ok': 0}}
     fresh_on = _kr('KPC_STORE_FRESH')
     nostore = {}
-    for ref, p in parks.items():
+    for _pgn, (ref, p) in enumerate(parks.items(), 1):
+        progress(st, 'proven-only gate: parks', _pgn, len(parks))
         if ref in skip or not p.get('m'): continue
         status = (p.get('match') or {}).get('status')
         ns_ok = False
@@ -2547,6 +2563,7 @@ def joined_layers(st, P, layers_read=None):
     return out
 
 
+
 def fresh_gap(st, P, man, layers_read=None):
     """The joined layers whose full layer file is missing or not complete (sorted)."""
     return sorted(lay for lay in joined_layers(st, P, layers_read) if not (man.get(lay) or {}).get('complete'))
@@ -2614,7 +2631,9 @@ def fresh_records(st, recs, P):
     held_layers = {_sl_layer(k) for k in ents}
     store_layers = {lay for lay in held_layers if (man.get(lay) or {}).get('complete')}
     this_run = CMODE != 'only'
-    for a in recs:
+    progress(st, f'same-land proof: {len(recs):,} old records against {len(ents):,} fresh layer-file records')
+    for _pgn, a in enumerate(recs, 1):
+        progress(st, 'same-land proof: old records', _pgn, len(recs))
         i = _oid(a)
         lay = _sl_layer(i)
         if lay not in held_layers: PROOF[i] = (lay, {'why': 'layer not in the layer file'}); continue
@@ -2823,7 +2842,8 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
         # store record PROVEN to be the same land (same_land_fields); counted by proof for the state's report line.
         SAME_OF.clear(); SAME_STATE.clear()
         cnt = {}
-        for i, a in list(byid.items()):
+        for _pgn, (i, a) in enumerate(list(byid.items()), 1):
+            progress(st, 'store fields by proof: records', _pgn, len(byid))
             if a.get('_fresh'):   # the store's own record: its id fields are its own (KPC_STORE_FRESH)
                 cnt['fresh'] = cnt.get('fresh', 0) + 1; SAME_STATE[i] = 'fresh'
                 continue
@@ -2987,6 +3007,7 @@ def run(st):
     if _rd: KR.hold_state(st, 'rule data missing or unreadable: ' + ', '.join(f'{p} {w}' for p, w in _rd), _kr('KPC_HOLD_ON_PASS_ERROR'))
     try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']; P_ALL.clear(); P_ALL.update(P)
     except Exception: notice(f'US key {st}', 'no park file, skipped'); return None  # noqa: BLE001
+    progress(st, f'state build started ({len(P):,} parks)', start=True)
     try: P = {k: v for k, v in P.items() if k not in set(json.load(open('data/retired-refs.json')).get('refs') or {})}   # Oct 29: retired numbers leave the key (issue #17)
     except Exception: pass  # noqa: BLE001
     got = load_cache(st) if CMODE in ('use', 'only') else None
@@ -3093,7 +3114,9 @@ def run(st):
             recs, seen, used_detail = old; CACHE_USED.append(st)
         elif CMODE in ('use', 'refresh') and not (st in FAILED_READ and old is None and cache_file(st).exists()): save_cache(st, recs, seen)
     if _kr('KPC_STORE_FRESH'):   # 25 Nov 2026 (owner 7:18 AM): today's store records are the fresh source; the old copy = hints
+        progress(st, f'joining the fresh layer files ({len(recs):,} old saved records)')
         recs, _alias = fresh_records(st, recs, P)
+        progress(st, 'fresh layer files joined')
         repoint_saved(st, P, _alias, {_oid(a) for a in recs if a.get('_fresh') and not a.get('_read_now')}, set((FRESH.get(st) or {}).get('store_layers') or []))
         _fr = FRESH.get(st) or {}
         notice(f'US key {st}', f"fresh source (the outline store's own read): {_fr.get('fresh', 0)} fresh record(s); "
@@ -3105,6 +3128,7 @@ def run(st):
                f"{' '.join(_fr.get('partial_layers') or []) or 'none'}" + (' (no layer manifest: run the store\'s layer-records step)' if _fr.get('no_manifest') else '') + "; saved answers moved to their "
                f"fresh record {sum(1 for x in REPOINTS if x[0] == st and x[4])}, left on the old copy {sum(1 for x in REPOINTS if x[0] == st and not x[4])}")
     recs = prefer_state_layer(st, recs, P)
+    progress(st, f'state layer preferred ({len(recs):,} records)')
     if _kr('KPC_SAVED_NEXT_STATE'):
         # 23 Nov 2026 (owner 9:20 AM, job 7): a saved answer of this state's park whose record only a bordering state's saved
         # copy holds (a park across the state line) gets that record from the neighbour's copy; saved copies only, nothing fetched
@@ -3183,7 +3207,9 @@ def run(st):
     # then looks only at the records in its pin's square plus the records of its own cleaned name (the far same-name rule),
     # in the same order as before, so every answer is the same; it just skips the records that could never join.
     near_idx = RecordGrid(recs, pad=.6)
-    for ref, r in sorted(P.items()):
+    progress(st, f'matching parks to {len(recs):,} records')
+    for _pgn, (ref, r) in enumerate(sorted(P.items()), 1):
+        progress(st, 'matching: parks', _pgn, len(P))
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
         if la is None and ref in pins(): la, lo = pins()[ref]
         kp = kinds(name) | kinds(typ)
@@ -4307,7 +4333,9 @@ def run(st):
     # is held (no key file written, its saved copy on main kept). OFF: it hands back the error and the notice reads as before.
     except Exception as _e: notice(f'US key {st}', f'one-record-two-parks pass skipped: {KR.pass_error(st, _e, _kr("KPC_HOLD_ON_PASS_ERROR"))}')  # noqa: BLE001
     # KPC owner, 20 Nov 2026 (APPROVED): match by more than name. Raises (the state is held) on a missing facts file or an error.
+    progress(st, 'match checks (store fields, proven-only gate)')
     _mc = match_checks_pass(st, parks, recs, P, used)
+    progress(st, 'match checks done')
     if st in SAME_HOW or 'proven_only' in (_mc or {}):   # 25 Nov 2026: the better matcher's one line per state
         _sh, _po = SAME_HOW.get(st) or {}, (_mc or {}).get('proven_only') or {}
         _line = ('same land (key record to fresh store record): '
@@ -4373,7 +4401,7 @@ def run(st):
                                  f"page names, moved to check: {_mc.get('county_moved', 0)}"
                                # 24 Nov 2026 plan B: auto-confirm by rule, size flag, restock stamp (report only)
                                + '; ' + CR.match_checks_extra(_mc, RA_USED.get(st, 0), RA_BRIDGED.get(st, 0),
-                                                              CR.restock_stamp(st)))
+                                                              CR.restock_stamp(st, layer_files=_RA_LF[0] if os.environ.get('KPC_RECORD_ATTRS') else None)))
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
@@ -4445,6 +4473,7 @@ def run(st):
     _fs_owned_note(parks)
     _tract_store(st, parks, recs)
     save_json(OUT / f'US-{st}.json', out)
+    progress(st, 'state build done')
     return counts
 
 
@@ -4495,8 +4524,9 @@ if REFILL_ONLY:
     notice('US key refill', f"saved copies re-saved: {' '.join(CACHE_SAVED) or 'none'}")
     sys.exit(0)
 try:
+    _lfs = (record_attrs(), _RA_LF[0])[1] if os.environ.get('KPC_RECORD_ATTRS') else None   # the full layer files' dates too
     for _ln in CR.header_lines(facts_path=PFR.find(), cache_dir=os.environ.get('GEO_CACHE'),
-                               states=STATES, last_rules=os.environ.get('KPC_LAST_TEST_RULES')):
+                               states=STATES, last_rules=os.environ.get('KPC_LAST_TEST_RULES'), layer_files=_lfs):
         notice('US key', _ln)
 except Exception as _e:  # noqa: BLE001
     notice('US key', f'report header stamps skipped: {type(_e).__name__}: {str(_e)[:160]}')

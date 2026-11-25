@@ -183,6 +183,7 @@ def kit_lines():
         states = [s for s in (os.environ.get('STATES') or '').upper().replace(',', ' ').split() if s and s not in ('US', 'CA', 'KY', 'CANADA')]
         extra = _CR.header_lines(root=LINKS, facts_path=park_facts(),
                                  cache_dir=str(LINKS / 'cache' / 'us'),
+                                 store_dir=str(STORE),   # 25 Nov: the full layer files' dates (LAYER-RECORDS), not only the Nov 12 copy
                                  states=states or None,
                                  last_rules=os.environ.get('KPC_LAST_TEST_RULES') or last)
         # drop the rules line (kit_lines already printed it) and keep the rest
