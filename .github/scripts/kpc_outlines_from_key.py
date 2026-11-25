@@ -88,6 +88,11 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         have_ids = M.outline_record_ids(rec)
         return sorted(have_ids) != sorted(ids)
     added, skipped, replaced = [], [], []
+    # 25 Nov 2026 (KPC-Links #380 grade, must-fix): a key built from the outline store's own records (KPC_STORE_FRESH) lists
+    # them in 'fresh_store'. Their shapes are NOT in the saved copy: the same number there can be other land (fresh sgmnc210
+    # drew old 210, about 140 miles off). Fail closed: a park with any such record is skipped (kept as it is, listed), never
+    # cut from the saved copy. Cutting it from the store is a later step.
+    fresh = {str(i) for i in ((key.get('fresh_store') or {}).get('ids') or [])}
     for ref, q in sorted((key.get('parks') or {}).items()):
         if only and ref not in only: continue
         if ref in have and not stale(ref, have[ref], q): continue
@@ -95,6 +100,9 @@ def build_state(st, cache, only=None, dry=False, root=None, key_dir=None, say=pr
         ids = [i for i in ids if M.prefix_of(i) != 'trl']   # a trail line is drawn by the trails layer, not as an outline
         if not ids: continue
         if q.get('g') == 'pin': continue   # KPC owner, 2026-11-11: a park the key grades pin never gets an outline
+        _fr = [i for i in ids if i in fresh]
+        if _fr: skipped.append((ref, f'{len(_fr)} of {len(ids)} joined records are fresh store records ({" ".join(_fr[:4])}): '
+                                     'their shapes are in the store, not the saved copy; not cut (fail closed)')); continue
         if not recs: skipped.append((ref, 'no saved copy (cannot rebuild this outline this run)')); continue
         miss = [i for i in ids if i not in recs]
         if miss: skipped.append((ref, f'{len(miss)} of {len(ids)} joined records not in the saved copy ({" ".join(miss[:4])})')); continue

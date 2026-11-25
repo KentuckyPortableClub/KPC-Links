@@ -4202,6 +4202,14 @@ def run(st):
            'bk_about': KF.ABOUT, 'bk_kinds': {c: t for c, t in _bkk.items() if c != t},   # links-10
            'easement_name_joins': sorted(EASEMENT_KEPT)}   # KPC owner, 2026-11-16 (item 5): existing name-alone easement joins, for review
     if _mc: out['match_checks'] = _mc   # KPC owner, 20 Nov 2026: the pass counts and the park facts file that decided
+    if _kr('KPC_STORE_FRESH'):
+        # 25 Nov 2026 (grade of #380 round 2, must-fix): the joined ids of fresh store records. The outline cutter
+        # (kpc_outlines_from_key.py) cuts by id from the OLD saved copy, where the same number can be other land
+        # (fresh sgmnc210 = Lost Valley Prairie, old 210 = another place, about 140 miles off): it must never cut these there.
+        _fr_ids = {_oid(a) for a in recs if a.get('_fresh')}
+        out['fresh_store'] = {'about': "joined record ids that are the outline store's own records (KPC_STORE_FRESH): "
+                                       'their shapes are in the store, never in the saved copy',
+                              'ids': sorted({str(x[0]) for p_ in parks.values() for x in p_.get('m') or [] if str(x[0]) in _fr_ids})}
     # plain-words review page for this state (GitHub shows .md files nicely)
     R = OUT / 'review'; R.mkdir(exist_ok=True)
     L = [f'# {st}: POTA parks vs official land (USGS PAD-US)', '', f"Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **{counts['matched']} of {counts['parks']}** parks joined to official land "
