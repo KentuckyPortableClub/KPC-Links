@@ -3635,7 +3635,9 @@ def run(st):
                 if KR.is_no(OVR.get(ref) or {}, a['OBJECTID'], nm_, ac_): wmd_no += 1; continue
                 a.update({'Unit_Nm': nm_ or a.get('Unit_Nm') or '', 'Category': 'Fee', '_k': set(a.get('_k') or set()) | {'nwr'},
                           'Loc_Mang': 'U.S. Fish & Wildlife Service (own realty map, fee tracts)'})
-                m.append([a['OBJECTID'], a['Unit_Nm'], round(float(ac_ or 0)), 'reviewed: the district = FWS fee (owned) tracts only, easements left out (Brandon Oct 29)'])
+                # R5 fix (owner's 10:21 AM test: 984 tracts listed as 'saved answers with no fingerprint', US-0365 sent to the pin):
+                # these rows are the agency's OWN realty records naming the district (a code row, 'official'), never a person's answer
+                m.append([a['OBJECTID'], a['Unit_Nm'], round(float(ac_ or 0)), 'official: the district = FWS fee (owned) tracts only, its own realty records, easements left out (Brandon Oct 29)'])
             if m:
                 parks[ref]['m'] = sorted(m, key=lambda x: -x[2]); parks[ref].pop('c', None); nwmd += 1
             continue
