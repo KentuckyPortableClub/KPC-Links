@@ -10,6 +10,11 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   The other builder cannot see KPC-Store (no access): the owner reviews it.
 - **KPC-Data #199**: revert of the US-4501 acres edit. Graded MERGE-READY; the owner merges when he likes.
 
+- **Round 9 (ee666da, 25 Nov ~9:35 AM CT): the grade's Q1.** The key writes the layer file's identity (sha256 + made) in
+  fresh_store.layer_file (kpc_store_attrs format 9); the cutter HOLDS (exit 3) on another download, no identity, or a fresh id missing
+  from the file; drops only for not publishable / no shape. Canada '<label>:<n>' ids now counted in skipped_ids. US rules -> **d8e396b4cb51**
+  (NOT YET APPROVED). The PC test does not run the cutter, so the 25n MN + NY test (0d015ade5a34) still stands for matching; kit 25o later.
+
 ## The rules now (owner's words 25 Nov)
 - 6:20 / 6:28 AM: match by proof from fresh data: agency (unit) id, then shared ground (80% / 50%; piece 90% with a shared name),
   then real name + size within 10%; never a row number; unproven = POTA pin + "code to fix", no hand-offs to the reps.
