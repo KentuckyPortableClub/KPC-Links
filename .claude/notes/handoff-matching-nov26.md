@@ -66,6 +66,24 @@ Owner (Brandon, 26 Nov 1:41 AM): "new pc is taking over tomorrow". The new PC's 
 - **The owner's look for every tool screen** (26 Nov 11:08 + 11:39 AM): like the sort tool and the nightly screen. Title box, what it does
   and never does in plain words, short aligned table, a clear DONE line, a progress bar on slow jobs.
 
+## Done 26 Nov afternoon (owner's GO 1:02 PM: "1 go, 2 go 3 go 4 go and go for all this")
+- #382, #383, #384 MERGED by the grader (10:20-10:22 AM). Owner ruled "no terms use it": sgaki, sgutc, sgwae, St. John's Planning 5,
+  federal DFRP 4 = fetch yes (PC verified-layers.csv + KPC-Store PR #38; owner-decisions.csv row).
+- GitHub backup on the PC: F:\KPC-BACKUP\github-2026-11-26 (mirrors of all 3 repos, fsck ok; boundary-cache copied to
+  5-ANSWER-KEY-TEST\links\cache\boundary-cache). The 2 GB history-20261102 release would not download: it STAYS on GitHub.
+- Paused in KPC-Data (owner OK, Sonnet check: nothing the site, keys or 2-fers read): kpc-engine, kpc-workshop, kpc-hardlook,
+  kpc-pile-solver (convert-layers and fetch-files were already off). Park page reader off earlier.
+- KPC-Data size: tools-out trimmed 9,966 -> 1,194 files (engine, audit, pulloffs, picture-trace, watch, links2, site-check, fers,
+  convert except report.csv), intake-files 182 -> 105 (69 world file-* layers, hand-downloads, pc-upload); then kpc-history-restart
+  SQUASH dispatched (run 45887208901). Leads worth a look later (in the F: backup): engine SURE+STRONG outlines for 69 pin-only parks
+  (US 27, CA 30, GB 12), engine blocked.csv (1,398 layers), data/truth "off" list (853 parks).
+- Release + branch deletions need the owner's PC (this session may not delete): 6-TOOLS\HOUSEKEEPING\11-GITHUB-CLEAN-UP.bat
+  (43 GB fers-bundles, app-beta-0.7.9, 7 old backups, 204 old branches; checks each against the F: backup first).
+- GitHub size goal (GitHub: ideally under 1 GB): Links 0.81 OK; Data 1.69 and Store 1.85 to trim. Store: replace store-data with one
+  commit after the keeper moves to the PC. A main history reset frees little while old pull-request refs keep the history alive.
+- 76 tool screens redone in the owner's look (helper; read back); 4 small bugs fixed (START-HERE Enter, 2-fer RUN-ALL pause,
+  crosswalk >nul). Next: progress bars (store fetch/build, layer download, key test per state, page reader, 2-fer finder).
+
 ## Next (in order)
 1. 27 Nov: read the first nightly run with the keeper list (results\logs\nightly-layers-*.log, nightly-last.txt). If right, ask the
    owner's OK to switch off the GitHub keeper's downloading (keep its light change check).
