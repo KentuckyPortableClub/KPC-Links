@@ -74,6 +74,10 @@ ns['REPOINTS'] = []
 ns['repoint_saved']('MN', ['US-4815'], {'sgmnb14': 'sgmnb6', 'sgmnb36': 'sgmnb36'}, {'sgmnb6', 'sgmnb36'}, None, {_r['OBJECTID']: _r for _r in recs})
 check(f"a saved answer whose fingerprint names other land never follows to it; one that fits does ({ns['OVR']['US-4815']['join']})",
       ns['OVR']['US-4815']['join'] == ['sgmnb14~old', 'sgmnb36'])
+ns['OVR'] = {'US-4821': {'join': ['sgmnb6', 'sgmnb42'], 'no': ['sgmnb6']}}
+ns['repoint_saved']('MN', ['US-4821'], {'sgmnb6': 'sgmnb57', 'sgmnb42': 'sgmnb42'}, {'sgmnb57', 'sgmnb42'}, None, {_r['OBJECTID']: _r for _r in recs})
+check(f"a saved join with no fingerprint never follows its number to another record; the same id stays; a NO still follows ({ns['OVR']['US-4821']})",
+      ns['OVR']['US-4821']['join'] == ['sgmnb6~old', 'sgmnb42'] and ns['OVR']['US-4821']['no'] == ['sgmnb57'])
 gate = src[src.index('def proven_only_gate') if 'def proven_only_gate' in src else src.index("fresh_on = _kr('KPC_STORE_FRESH')"):]
 check('the gate checks every drawn fresh row with the same test, whatever proved the park',
       "elif fresh_on and rec is not None and rec.get('_fresh') and not carry_fits(q, rec):" in src)

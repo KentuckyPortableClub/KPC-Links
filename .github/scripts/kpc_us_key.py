@@ -2941,6 +2941,12 @@ def repoint_saved(st, P, alias, fresh_ids, store_layers=None, by=None):
                 if fp_ and fp_[0] and r_ is not None and not carry_fits([x_, fp_[0], fp_[1] if len(fp_) > 1 else 0], r_):
                     REPOINTS.append([st, ref, kind, x_, '', "the fresh record it would follow does not fit the answer's own name: stays on the old copy (a hint, never drawn)"])
                     return x_ + '~old'
+                if kind == 'join' and not (fp_ and fp_[0]) and alias[x_] != x_:
+                    # 26 Nov 3:52 PM (owner: 'why are we waiting to fix the id numbers?'; grade of #387): a saved JOIN with no
+                    # fingerprint cannot show which day's numbering it was saved against, so it never follows its number to
+                    # another record (a NO still follows: it can only take land away)
+                    REPOINTS.append([st, ref, kind, x_, '', 'a saved join with no fingerprint: its number is not followed (a hint, never drawn)'])
+                    return x_ + '~old'
                 if alias[x_] != x_: REPOINTS.append([st, ref, kind, x_, alias[x_], 'proven same land'])
                 return int(alias[x_]) if alias[x_].isdigit() else alias[x_]
             if store_layers is not None and _sl_layer(x_) not in store_layers and x_ not in fresh_ids:

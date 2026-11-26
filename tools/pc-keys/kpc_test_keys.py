@@ -463,14 +463,19 @@ def wrong_land_lines(kf, rep):
             if not isinstance(x, (list, tuple)) or len(x) < 2 or not nk(x[1]): continue
             by_id.setdefault(str(x[0]), {}).setdefault(nk(x[1]), []).append((ref, str(x[1])))
     two = [f'  {i}: ' + '; '.join(f'{r} "{n}"' for v in names.values() for r, n in v[:3]) for i, names in sorted(by_id.items()) if len(names) > 1]
+    # 26 Nov 3:52 PM (grade of #387): one id on two parks under the SAME name is listed to look at (it can be right: one land,
+    # two park numbers), never a PROBLEM
+    same = [f'  {i}: ' + '; '.join(f'{r} "{n}"' for v in names.values() for r, n in v[:4]) for i, names in sorted(by_id.items())
+            if len(names) == 1 and len({r for v in names.values() for r, _ in v}) > 1]
     tag = kf.stem
     (rep / f'WRONG-LAND-{tag}.txt').write_text('\n'.join(
-        [f'{tag}: one record id on two parks under two names ({len(two)}): one of them is other land. FIX BEFORE ANY BUILD.'] + two) + '\n',
-        encoding='utf-8')
+        [f'{tag}: one record id on two parks under two names ({len(two)}): one of them is other land. FIX BEFORE ANY BUILD.'] + two
+        + ['', f'{tag}: one record id on two parks under the same name ({len(same)}): look at these (one land, two park numbers is fine).'] + same)
+        + '\n', encoding='utf-8')
     st = tag.split('-')[-1]
     cf = rep / 'old-rows-not-carried.csv'
     nc = sum(1 for l in cf.read_text(encoding='utf-8').splitlines()[1:] if l.startswith(st + ',')) if cf.is_file() else 0
-    out = [f'  wrong-land check: one id on two parks under two names {len(two)} (list: WRONG-LAND-{tag}.txt); '
+    out = [f'  wrong-land check: one id on two parks under two names {len(two)}, under the same name {len(same)} (list: WRONG-LAND-{tag}.txt); '
            f'old rows refused because their name did not fit that record {nc} (list: old-rows-not-carried.csv)']
     if two: out.append(f'  PROBLEM: {len(two)} record id(s) sit on two parks under two names. Tell Claude.')
     return out
