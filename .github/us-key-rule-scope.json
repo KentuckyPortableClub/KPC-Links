@@ -1008,6 +1008,20 @@
     "parks": []
    },
    "approved": "APPROVED, decided_by KPC owner, 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'; 9:45 PM 'ALL OF THEM'"
+  },
+  {
+   "id": "2026-11-26-speed",
+   "when": "2026-11-26",
+   "from": "2b181efdb282",
+   "why": "Speed only: an outline of many rings files its rings by box on a grid, and an old record's own grid points are worked out once per record. The same tests on the same points: on 300 random old MN PAD-US records the same-land step went from 148 s to 9 s with every answer, note and best try the same (sgmne and sgmna samples too).",
+   "scope": {
+    "states": [
+     "MN",
+     "NY"
+    ],
+    "parks": []
+   },
+   "approved": "APPROVED, decided_by KPC owner, 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'; grade 26 Nov 1:09 AM: the speed work may be built once a side-by-side test shows the same answers"
   }
  ]
 }
