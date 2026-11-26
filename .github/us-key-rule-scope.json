@@ -995,6 +995,19 @@
     ]
    },
    "approved": "APPROVED, decided_by KPC owner, 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'; 9:08 PM 'Do all you can to help.'"
+  },
+  {
+   "id": "2026-11-25-batch18",
+   "when": "2026-11-25",
+   "from": "3b4a7d2fa8fb",
+   "why": "Batch 18: Minnesota DNR's own ids for state forests (sft) and state parks (pgrm_project) prove and spell records like su_id / uniqueid; publish_keys undoes every clash and keeps a clashing layer's row spelling whole; the field name in any case.",
+   "scope": {
+    "states": [
+     "MN"
+    ],
+    "parks": []
+   },
+   "approved": "APPROVED, decided_by KPC owner, 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'; 9:45 PM 'ALL OF THEM'"
   }
  ]
 }

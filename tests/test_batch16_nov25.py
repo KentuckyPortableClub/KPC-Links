@@ -65,7 +65,7 @@ with tempfile.TemporaryDirectory() as td:
     check('1: the store reader keys the parcel by its su_id and marks it (never found by a row number)',
           'sgmne89125' in r_ and r_['sgmne89125'].get('_agk') == 1 and r_['sgmne89125'].get('su_id') == 89125.0 and 'sgmne3046' not in r_
           and 'sgmne15' in r_ and not r_['sgmne15'].get('_agk'))
-    check('1: the id file is format 13 (the PC test remakes an older one)', d.get('format') == 13)
+    check('1: the id file is format 14 (the PC test remakes an older one)', d.get('format') == 14)
     import kpc_outlines_from_key as OK_
     sr = OK_.store_records(str(td), 'US-ZZ')
     check('1: the outline cutter spells the same file the same way (the key ids and the outline ids agree)',

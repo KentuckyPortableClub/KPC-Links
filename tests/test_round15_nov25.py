@@ -33,7 +33,7 @@ check("A: GIS_Acres still wins when a record has it; a FWS 'SUM_GISACRES' is rea
       and ra({'attributes': {'NAME': 'X'}}) is None and ra({'attributes': {'su_acres': 0}}) is None and ra({'attributes': {'su_acres': 'n/a'}}) is None)
 check('A: the id file is format 11 or newer and the PC test remakes an older one',
       re.search(r"'format': 1[1-9],", (ROOT / '.github/scripts/kpc_store_attrs.py').read_text(encoding='utf-8'))
-      and 'fmt < 13' in (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8'))
+      and 'fmt < 14' in (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8'))
 
 # ---- B ----------------------------------------------------------------------------------------------------------------------
 src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
