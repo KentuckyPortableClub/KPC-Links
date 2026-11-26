@@ -116,13 +116,13 @@ def notices(log):
     """The builder's own count lines for the report (never a park name)."""
     out = []
     for ln in log.splitlines():
-        m = re.search(r'::notice title=(?:US key [A-Z]{2}|Canada key[^:]*)::(match checks: .*)', ln)
+        m = re.search(r'::notice title=(?:US key [A-Z]{2}|Canada key[^:]*)::(match checks: .*|same land .*|fresh source .*)', ln)   # 25 Nov: the matcher's lines
         if m: out.append('  ' + m.group(1)[:3000])   # 24 Nov (F2): was cut at 900
         elif ln.startswith('Recreation.gov saved copy') and not any('Recreation.gov' in o for o in out): out.append('  ' + ln.strip()[:160])
         elif '::notice title=Boundary check::' in ln: out.append('  pins: ' + ln.split('::', 2)[-1].replace('%25', '%').strip()[:300])
         elif re.search(r'::(error|warning) title=', ln) or 'golden cases' in ln or 'US key STOPPED' in ln:
             out.append('  ' + re.sub(r'(US|CA)-\d{3,5}', r'\1-####', ln.strip())[:300])
-    return out[:16]
+    return out[:20]
 
 
 def store_attrs():
@@ -131,17 +131,19 @@ def store_attrs():
     if not STORE.is_dir():
         say(f'  (the outline store folder is not at {STORE}: the id checks use the saved copies only)')
         return ''
-    newest = max((p.stat().st_mtime for p in STORE.glob('*.kpcstore.json.gz')), default=0)
+    newest = max((p.stat().st_mtime for p in list(STORE.glob('*.kpcstore.json.gz')) + list(STORE.glob('*.layer-records.json.gz'))), default=0)   # 25 Nov: and every layer record
     fmt = 0
     if out.is_file():   # 24 Nov: a file made before the '@' fix and the name-and-size index with map boxes (format 3) is made again
         try:
             import gzip
             with gzip.open(out, 'rt', encoding='utf-8') as fh: fmt = int(json.load(fh).get('format') or 0)
         except Exception: fmt = 0  # noqa: BLE001
-    if not out.is_file() or out.stat().st_mtime < newest or fmt < 5:   # 25 Nov (B1, #379): format 5 keeps every re-found record apart, with its name and size
+    if not out.is_file() or out.stat().st_mtime < newest or fmt < 11:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest; 9 each layer file's identity (Q1); 10 the agency record ids and FWS realty fields (R1, R5); 11 the layer's own acres field (round 15)
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
-        subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS)
+        rc = subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS).returncode
+        if rc != 0:   # P2 (grade of round 6): a failed run never falls back to an older id file
+            return None
     return str(out) if out.is_file() else ''
 
 
@@ -181,6 +183,7 @@ def kit_lines():
         states = [s for s in (os.environ.get('STATES') or '').upper().replace(',', ' ').split() if s and s not in ('US', 'CA', 'KY', 'CANADA')]
         extra = _CR.header_lines(root=LINKS, facts_path=park_facts(),
                                  cache_dir=str(LINKS / 'cache' / 'us'),
+                                 store_dir=str(STORE),   # 25 Nov: the full layer files' dates (LAYER-RECORDS), not only the Nov 12 copy
                                  states=states or None,
                                  last_rules=os.environ.get('KPC_LAST_TEST_RULES') or last)
         # drop the rules line (kit_lines already printed it) and keep the rest
@@ -221,7 +224,12 @@ def run_build(st, rep, attrs):
         else:
             if not (LINKS / 'cache' / 'us' / f'US-{st}.json.gz').is_file():
                 return None, f'{st}: no saved copy in links\\cache\\us (US-{st}.json.gz); skipped'
-            env = dict(common, STATES=st, GEO_CACHE=str(LINKS / 'cache' / 'us'))
+            env = dict(common, STATES=st, GEO_CACHE=str(LINKS / 'cache' / 'us'),
+                       KPC_FP_PROPOSALS=str(rep / 'saved-answers-no-fingerprint.csv'),   # 25 Nov: the owner's lists (never data/)
+                       KPC_PIN_ONLY_LIST=str(rep / 'pin-only-parks.csv'), KPC_REPOINTS=str(rep / 'saved-answers-moved.csv'),
+                       KPC_LISTED=str(rep / 'rows-kept-but-listed.csv'), KPC_NOSTORE_LIST=str(rep / 'layers-not-in-store.csv'),
+                       KPC_GAP_LIST=str(rep / 'layers-not-complete.csv'),
+                       KPC_PROOF_LIST=str(rep / 'row-proof.csv'))   # R6: why each old row of a park that lost rows did or did not prove   # 25 Nov (owner 8:48 AM): a state stops on a gap
             cmd = [sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py']
     kept = []
     with open(rep / f'{st}.log', 'w', encoding='utf-8', errors='replace') as lf:
@@ -404,6 +412,10 @@ def main(argv):
     rep = HERE / 'reports' / ('test-' + datetime.datetime.now().strftime('%Y-%m-%d-%H%M'))
     rep.mkdir(parents=True, exist_ok=True)
     attrs = store_attrs() if any(s != 'KY' for s in order) else ''
+    if attrs is None:
+        say('STOPPED: the agency id fields could not be read from the outline store (kpc_store_attrs.py failed; see above). '
+            'The test never uses an older id file. Tell Claude.')
+        return
     if any(s != 'KY' for s in order): official_sizes()
     out = [f'KPC test keys, {datetime.datetime.now():%d %b %Y %I:%M %p}. Saved copies only: nothing was downloaded or uploaded.',
            'Counts only, no park names. "website" = the key on the website today; "last test" = this PC\'s previous test of that state.',

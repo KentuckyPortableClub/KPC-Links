@@ -14,7 +14,8 @@ come from POTA's pin:
 
 HIGH = 5 or more; MEDIUM = 3-4; LOW = 0-2. 'POTA PIN OFF' = the pin is outside but name + a second witness say the
 outline is right: we KEEP the outline and list the park so the pin can be reported to POTA. Only LOW parks go to the
-good-bot worklists. Reads data/us-key + the saved PAD-US copy (cache/us). Writes data/boundary-score.json. Changes no key.
+good-bot worklists. Reads data/us-key + the saved PAD-US copy (cache/us); a key's fresh store ids (KPC_STORE_FRESH) are
+scored against the outline store (KPC_STORE_DIR), never the saved copy. Writes data/boundary-score.json. Changes no key.
 Never fails."""
 import gzip, json, math, os, pathlib, re, sys, time
 sys.path.insert(0, os.path.dirname(__file__))
@@ -105,6 +106,38 @@ def pad_index():
     return by_id, by_name
 
 
+STORE = os.environ.get('KPC_STORE_DIR') or ''
+
+
+def store_index(store=None):
+    """25 Nov 2026 (KPC-Links #380): the outline store's own records, for keys built from them (KPC_STORE_FRESH lists their ids
+    in the key file's 'fresh_store'): by id as the key spells it, and PAD-US ones by name core. ({}, {}) with no store folder."""
+    store = store if store is not None else STORE
+    by_id, by_name = {}, {}
+    if not store or not pathlib.Path(store).is_dir(): return by_id, by_name
+    import kpc_store_attrs as SA
+    # 25 Nov 2026 (owner 8:48 AM): the full layer files are the fresh source; the park-by-park store is no longer read here
+    for f in sorted(pathlib.Path(store).glob('US-*.layer-records.json.gz')):
+        if '.prev.' in f.name: continue
+        try:
+            with gzip.open(f, 'rt', encoding='utf-8') as fh: d = json.load(fh)
+        except Exception: continue  # noqa: BLE001
+        for p in list(d.get('parks') or []) + [{'records': d.get('records') or []}]:
+            for r in p.get('records') or []:
+                k = SA.record_key(r)
+                if not k: continue
+                a = r.get('attributes') or {}
+                x = {'OBJECTID': int(k) if k.isdigit() else k, 'Unit_Nm': a.get('Unit_Nm') or r.get('record_name') or '',
+                     'Loc_Nm': a.get('Loc_Nm') or '', 'Mang_Name': a.get('Mang_Name') or '', 'Mang_Type': a.get('Mang_Type') or '',
+                     'GIS_Acres': SA.record_acres(r) or 0, '_bb': SA.record_box(r)}
+                by_id[k] = x
+                if k.isdigit():
+                    for nm in (x['Unit_Nm'], x['Loc_Nm']):
+                        c = core(nm)
+                        if c: by_name.setdefault(c, []).append(x)
+    return by_id, by_name
+
+
 def near(la, lo, bb, pad):
     return bb and bb[0] - pad <= lo <= bb[2] + pad and bb[1] - pad <= la <= bb[3] + pad
 
@@ -112,11 +145,18 @@ def near(la, lo, bb, pad):
 def main():
     by_id, by_name = pad_index()
     have_pad = bool(by_id)
+    s_id, s_name = store_index()
     out, states, pin_off, lowl, weak = {}, {}, [], [], []
     for f in sorted(pathlib.Path('data/us-key').glob('US-*.json')):
         st = f.stem
-        try: key = json.load(open(f))['parks']
+        try: kd = json.load(open(f)); key = kd['parks']
         except Exception: continue  # noqa: BLE001
+        # a key built from the store's own records: those ids are scored against the STORE, never the old saved copy (the same
+        # number there can be other land); with no store in this run they give no PAD-US witness at all
+        fresh = {str(i) for i in ((kd.get('fresh_store') or {}).get('ids') or [])}
+        def pad_of(i):
+            return s_id.get(str(i)) if str(i) in fresh else by_id.get(i)
+        names_of = (lambda c: s_name.get(c, [])) if fresh else (lambda c: by_name.get(c, []))
         try: info = json.load(open(f'data/parkinfo/{st}.json'))['parks']
         except Exception: info = {}  # noqa: BLE001
         S = states.setdefault(st, {'outlines': 0, 'high': 0, 'medium': 0, 'low': 0, 'pota_pin_off': 0, 'no_outline': 0})
@@ -138,7 +178,7 @@ def main():
             worst = min(name_score(name, x[1]) for x in m)
             if worst == 0 and len(m) > 1 and not any(str(x[3]).startswith('reviewed') for x in m if len(x) > 3):
                 weak.append([ref, name, st, next(x[1] for x in m if name_score(name, x[1]) == 0), acts])   # one piece whose name says another place
-            pads = [by_id.get(x[0]) for x in m if isinstance(x[0], int) and by_id.get(x[0])]
+            pads = [pad_of(x[0]) for x in m if isinstance(x[0], int) and pad_of(x[0])]
             fits = [agency_fits(typ, r.get('Mang_Name'), r.get('Mang_Type')) for r in pads]
             fits += [agency_fits(typ, *label_agency(x[0])) for x in m if isinstance(x[0], str)]
             ag = 1 if any(x is True for x in fits) else 0
@@ -149,7 +189,7 @@ def main():
                 # joined to a state layer: does PAD-US have the same place, near, of a similar size?
                 our = sum(x[2] or 0 for x in strs)
                 for x in strs:
-                    for r in by_name.get(core(x[1]), []):
+                    for r in names_of(core(x[1])):
                         if not near(la, lo, r.get('_bb'), .3): continue
                         a = r.get('GIS_Acres') or 0
                         agree = max(agree, (1 if same_src(x, r) else 2) if our and a and .5 <= a / our <= 2 else 1)
@@ -157,7 +197,7 @@ def main():
             elif len(pads) > 1 and len({core(r.get('Unit_Nm')) for r in pads}) == 1:
                 agree = 1                                 # two PAD-US records (fee + designation) of the same place
             if pads and strs: agree = max(agree, 1 if all(same_src(x, r) for x in strs for r in pads) else 2)
-            why.append(f'second map {agree}/2' + ('' if have_pad else ' (no saved PAD-US copy in this run)'))
+            why.append(f'second map {agree}/2' + ('' if (s_id if fresh else have_pad) else ' (no store in this run)' if fresh else ' (no saved PAD-US copy in this run)'))
             far = p.get('far')
             pin = 0 if far in ('well outside', 'no shape to check against') else 1 if far == 'edge' else 2
             why.append({2: 'POTA pin inside', 1: 'POTA pin just outside', 0: 'POTA pin well outside'}[pin])

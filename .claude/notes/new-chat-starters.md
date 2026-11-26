@@ -9,7 +9,7 @@ Every new chat reads `.claude/CLAUDE.md` (house rules) by itself. Paste ONE star
 - Practice calls K4TEST / W4KIDS (app tests: Q-prefix calls). Never a real call as an example.
 - No POTA/SOTA/WWFF logos; footer independence line. '2-fer' = two overlapping POTA parks only.
 - Never ask for keys/passwords in chat. Never write the member password anywhere.
-- Push: `git fetch && git reset --hard origin/main` before editing, commit, `git push origin HEAD:main`.
+- Push: `git fetch`, branch from `origin/main`, commit, push the BRANCH and open a draft PR. Never push to main (Brandon Nov 25).
 - Test at 390 px (phone) and desktop with Playwright before pushing.
 - QRZ bios: no 4-byte emoji (QRZ cuts the bio off at the first one).
 
@@ -291,3 +291,4 @@ MORNING QUEUE:
 - Page reader + matching helper (Fable, from 23 Nov): "Read .claude/notes/mapping.md rule sheet W (W4 to W6, rulings W-G4 to W-G10) and the last LEDGER lines of 23 Nov. Then: (1) read the owner's overnight run result (PC Tools\KPC-PC-BOTS-NOV21: town points line, upload pack), (2) build W6 county check as planned there, (3) KPC-Links draft PR #350 waits for the owner's review."
 - Matching and accuracy, next pieces (Opus; owner 23 Nov 5:53 AM 'make a hand off for opus'): "Read KPC-Links .claude/CLAUDE.md, then .claude/notes/handoff-matching-nov23.md, then .claude/RULES-NOW.md. Tell me in plain words which job is next and what you need from me. After any merged change, update my PC kit the way the hand-off says."
 - Official links, the own-page finder (Opus; owner 23 Nov 7:30 AM): "Read KPC-Links .claude/CLAUDE.md, then .claude/notes/handoff-official-links-nov23.md. Do step 1 (the count) and tell me the numbers in plain words before you build anything."
+- Matching (Nov 25): `Read .claude/notes/handoff-matching-nov25.md on branch prep/better-matcher-nov25 (KPC-Links #380) and continue.`

@@ -117,11 +117,24 @@ def approvals(root, kind, env):
     return ok, sheet
 
 
-def exempt(ref, p, ok):
-    """Why a far join is NOT held ('' = it is held)."""
+def hints_only(f):
+    """KPC_SAVED_HINTS_ONLY (KPC owner 25 Nov 12:07 PM 'Delete any holds they maybe wrong idk.'): for a state whose key sets the
+    old saved answers aside as hints, this check obeys none of them either: no hold for a person's old NO, no 'unsigned on a
+    signed park' drop, no far-join exemption for a saved join. Only US area files (US-XX); a switch file that cannot be read =
+    False (as before)."""
+    m = re.fullmatch(r'US-([A-Z]{2})', pathlib.Path(f).stem)
+    if not m: return False
+    try:
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import kpc_key_rules as KR
+        return KR.on('KPC_SAVED_HINTS_ONLY', area=m.group(1))
+    except Exception: return False  # noqa: BLE001
+
+
+def exempt(ref, p, ok, signed=True):
+    """Why a far join is NOT held ('' = it is held). signed=False: a saved override exempts nothing (KPC_SAVED_HINTS_ONLY)."""
     m = [x for x in (p.get('m') or []) if isinstance(x, list) and x]
     if linear(p): return 'trail / linear feature (nearest part of the line measured)'
-    sg = SIGNED.get(ref) or set()
+    sg = (SIGNED.get(ref) or set()) if signed else set()
     if any(str(x[0]) in sg or (len(x) > 1 and str(x[1]) in sg) for x in m):
         return f"signed override in overrides.json (decided_by {SIGNED_BY.get(ref, 'a person')})"
     if any(str(x[3] if len(x) > 3 else '').lower().startswith('reviewed') for x in m):   # v2.1: a 'chat 11 YES' how no longer exempts
@@ -264,11 +277,12 @@ def mark_file(f, official, plain=False, mode='hold', ok=None, dry=False, near=No
     ({} = none; None = read it from git HEAD)."""
     d = json.load(open(f, encoding='utf-8')); rows, held, changed = [], [], False
     if prev is None: prev = previous(f, root)
+    ho = hints_only(f)   # 25 Nov 12:07 PM: the state's old saved answers (NOs, signed joins) are hints only, never obeyed here
     for ref, p in (d.get('parks') or {}).items():
         if not isinstance(p, dict): continue
         if joined(p) and mode == 'hold':
             pv = prev.get(ref) if prev else None
-            nos = no_carried(ref, p, pv)
+            nos = [] if ho else no_carried(ref, p, pv)
             if nos:   # must-fix 1: the whole park back to a pin until a person signs
                 r = 'a person said NO to this land under its old id (' + ', '.join(f'{i} = {o} "{n}"' for i, n, o in nos) + ')'
                 ids, nm, ga, km0 = [x[0] for x in p['m'] if isinstance(x, list) and x], [str(x[1]) for x in p['m'] if isinstance(x, list) and len(x) > 1], p.get('g'), pin_km(p)
@@ -277,7 +291,7 @@ def mark_file(f, official, plain=False, mode='hold', ok=None, dry=False, near=No
                              'held_ids': ' | '.join(map(str, ids)), 'held_names': ' | '.join(nm), 'reason': r, 'decided_by': DECIDED_BY,
                              'to_keep_it': "a person signs the new id in overrides.json 'join' (with decided_by)"})
                 continue
-            un = unsigned_on_signed(ref, p, pv)
+            un = [] if ho else unsigned_on_signed(ref, p, pv)
             if un:    # should-fix 3: only the signed ids are exempt
                 r = 'not signed in overrides.json; the previous key had it out (' + '; '.join(f'{i}: {w}' for i, w in un) + ')'
                 drop_ids(p, [i for i, _ in un], r); changed = True
@@ -293,7 +307,7 @@ def mark_file(f, official, plain=False, mode='hold', ok=None, dry=False, near=No
         was = p.get('suspect')
         nw = new_ids(p, prev.get(ref) or {}) if prev else None
         far = km is not None and (km > FAR_KM or (bool(nw) and km > NEW_KM))   # must-fix 2: 5 km for a NEW join, 15 km for the rest
-        ex = exempt(ref, p, ok or {}) if far else ''
+        ex = exempt(ref, p, {} if ho else (ok or {}), signed=not ho) if far else ''
         if why:
             p['suspect'] = '; '.join(why) + (f' (not held: {ex})' if ex else '')
             rows.append({'park': ref, 'area': pathlib.Path(f).stem, 'name': p.get('n') or '', 'outline_ac': '' if ac is None else round(ac),

@@ -5,7 +5,7 @@ Park-facts hash, page-reader version, per-state restock stamp, and 'rule changes
 since the last test'. Counts and IDs only: never a park name. Decides no join
 (kpc_key_freeze.NOT_RULES). Standard library only.
 """
-import hashlib, json, os, pathlib, sys
+import hashlib, json, os, pathlib, re, sys
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -75,8 +75,41 @@ def official_size_count(path=None):
         return 0
 
 
-def restock_stamp(st, cache_dir=None, root=None):
-    """Per-state saved-copy stamp: the copy's own 'saved' date and a short file hash, or ''."""
+def layer_file_stamp(st, layer_files=None, store_dir=None):
+    """25 Nov 2026 (the owner's MN test: the stamp showed only the Nov 12 saved copy, so it looked stale): the full layer file
+    the build reads (KPC-Store's <area>.layer-records.json.gz): its 'made' stamp, from the store id fields file's layer_files
+    (the key) or the file itself in the store folder (the PC test), plus the file's own date. '' when neither is given."""
+    area = f'US-{str(st or "").upper()}'
+    lf = (layer_files or {}).get(area) or {}
+    made, fdate, name = str(lf.get('made') or ''), '', str(lf.get('file') or '')
+    sd = store_dir or os.environ.get('KPC_LAYER_RECORDS_DIR') or ''
+    f = pathlib.Path(sd) / (name or f'{area}.layer-records.json.gz') if sd else None
+    if f is not None and f.is_file():
+        import datetime
+        fdate = datetime.datetime.fromtimestamp(f.stat().st_mtime).strftime('%Y-%m-%d %H:%M')
+        if not made:
+            try:
+                import gzip
+                with gzip.open(f, 'rt', encoding='utf-8') as fh: head = fh.read(4000)
+                m = re.search(r'"made":\s*"([^"]+)"', head)
+                made = m.group(1) if m else ''
+            except (OSError, EOFError, ValueError):
+                made = ''
+    elif not lf:
+        return 'no layer file' if (layer_files is not None or sd) else ''
+    if not (made or fdate): return 'layer file (no date)'
+    return 'layer file ' + ' '.join(x for x in (f'made {made}' if made else '', f'(file date {fdate})' if fdate else '') if x)
+
+
+def restock_stamp(st, cache_dir=None, root=None, layer_files=None, store_dir=None):
+    """Per-state saved-copy stamp: the copy's own 'saved' date and a short file hash, or ''; plus the full layer file's date
+    (layer_file_stamp) when the layer files are known."""
+    ls = layer_file_stamp(st, layer_files, store_dir)
+    s = _saved_stamp(st, cache_dir)
+    return f'{s}; {ls}' if s and ls else (s or ls)
+
+
+def _saved_stamp(st, cache_dir=None):
     cache_dir = cache_dir or os.environ.get('GEO_CACHE') or ''
     if not cache_dir:
         return ''
@@ -128,7 +161,7 @@ def rule_changes_since(last_hash=None, kind='us-key', root=None):
     return [x for x in ids if x]
 
 
-def header_lines(root=None, facts_path=None, cache_dir=None, states=None, last_rules=None):
+def header_lines(root=None, facts_path=None, cache_dir=None, states=None, last_rules=None, layer_files=None, store_dir=None):
     """Plain header lines for a key run or a PC test report. Counts only; no park names."""
     root = pathlib.Path(root) if root else ROOT
     facts_path = facts_path or os.environ.get('PARK_FACTS') or ''
@@ -156,7 +189,7 @@ def header_lines(root=None, facts_path=None, cache_dir=None, states=None, last_r
         lines.append('Rule changes since the last test: not given (set KPC_LAST_TEST_RULES to the last test\'s US hash).')
     stamps = []
     for st in states or []:
-        s = restock_stamp(st, cache_dir, root)
+        s = restock_stamp(st, cache_dir, root, layer_files, store_dir)
         if s:
             stamps.append(f'{st} {s}')
     if stamps:
