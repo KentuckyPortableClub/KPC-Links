@@ -47,7 +47,20 @@ MIN_HITS = 12          # fewer grid points than this inside the smaller record: 
 LEVELS = ('id', 'overlap', 'piece', 'name_size')
 # R1 (grade 25 Nov 9:51 AM): the agency's own record id fields, by layer (the 12 Nov saved copy holds them in 'SA': sgmne su_id on
 # 13,295 records, sgmna uniqueid on 1,751). Proof only with the place and a name or the size agreeing; a different value never refuses.
-AGENCY_RECORD_IDS = {'sgmne': ('su_id',), 'sgmna': ('uniqueid',)}
+AGENCY_RECORD_IDS = {'sgmne': ('su_id',), 'sgmna': ('uniqueid',),
+    # batch 18 (owner 25 Nov: 'ALL OF THEM'; the 249-layer agency id check, 25 Nov): Minnesota DNR's state forests 'sft'
+    # ('SFT00002' -> 'sgmnb2') and state parks 'pgrm_project' (two letter prefixes, SPK / SRA, so only the proof uses it): 100%
+    # filled and 100% different on the store's own files. Only MINNESOTA layers for now: the published key spells a record by
+    # this id, and only MN and NY build from the store's fresh records (KPC_STORE_FRESH). A layer of another state (or a national
+    # one such as wilderness 'wildernessid') would change its record ids while that state's key still reads the old row numbers.
+    # The other 26 checked layers wait until their state is switched to the fresh store: AGENCY_ID_LATER.
+    'sgmnb': ('sft',), 'sgmnd': ('pgrm_project',)}
+AGENCY_ID_LATER = {   # not used yet (see above): the field for each layer, checked 100% filled and 100% different on 25 Nov
+    'sgtna': 'tsp_uid', 'sgtnb': 'tsp_uid', 'sgtng': 'tsp_uid', 'sgtnj': 'tsp_uid', 'tnd': 'tsp_uid', 'sgmaa': 'os_id',
+    'sgmad': 'os_id', 'sgflf': 'owned_land_key', 'wld': 'wildernessid', 'wsrc': 'river_id', 'ncg': 'gamelandid',
+    'sgncb': 'gamelandid', 'sgcta': 'dep_id', 'sgmea': 'cl_uniqueid', 'sgmec': 'cl_uniqueid', 'nep': 'park_id',
+    'sgnec': 'park_id', 'sgida': 'wmaid', 'sgarb': 'park_num', 'sgmta': 'siteid', 'sgmtb': 'siteid', 'sgmtc': 'siteid',
+    'sgnva': 'landid', 'sgnvj': 'dsl_id', 'sgpaa': 'icsorg', 'sgwie': 'fr_prop_code', 'sgwvb': 'kronos'}
 EDGE = 0.001           # R2: a grid point this close (degrees) to the fresh outline's edge counts as on its ground
 
 KIND_WORDS = {'state', 'national', 'county', 'city', 'regional', 'public', 'park', 'parks', 'forest', 'forests', 'wildlife',

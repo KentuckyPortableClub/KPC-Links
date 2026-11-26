@@ -82,7 +82,7 @@ def _agency_num(r, fld):
     digits gives its digits when publish_keys finds every record of the layer carries the same letters (Minnesota DNR wildlife
     areas: 'WMA0038200' -> '38200'). Returns (digits, letters)."""
     a = r.get('attributes') or {}
-    v = next((a[k] for k in (fld, fld.upper(), fld.lower()) if k in a and a[k] not in (None, '')), None)
+    v = next((a[k] for k in a if str(k).lower() == fld.lower() and a[k] not in (None, '')), None)   # batch 18: any case ('GameLandID')
     if isinstance(v, bool) or v is None: return '', ''
     if isinstance(v, (int, float)):
         x = float(v)
@@ -112,13 +112,32 @@ def publish_keys(records):
     # two different ids): 'WMA0038200' and 'WMA0012900' -> 'sgmna38200', 'sgmna12900'
     cand = [lay + n if n and len(letters.get(lay) or ()) == 1 else '' for lay, n, lt in got]
     out = [c or k for c, k in zip(cand, base)]
-    for _ in range(3):   # an agency key equal to another record's key: both fall back to record_key (never two records, one key)
-        seen = {}
-        for k in out:
-            if k: seen[k] = seen.get(k, 0) + 1
-        dup = {k for k, v in seen.items() if v > 1}
-        if not dup: break
-        out = [b if (o in dup and c) else o for o, b, c in zip(out, base, cand)]
+    # an agency key equal to another record's key: the agency-spelled ones fall back to record_key (never two records, one key).
+    # Batch 18: until none is left, with a work list (a fall-back can make a new clash, which is handled in turn); it ends because
+    # each step only falls back and row keys never repeat. Florida's 79,700 state lands needed more than the old 3 rounds.
+    at = {}
+    for i, k in enumerate(out):
+        if k: at.setdefault(k, set()).add(i)
+    todo = [k for k, v in at.items() if len(v) > 1]
+    while todo:
+        k = todo.pop()
+        if len(at.get(k) or ()) < 2: continue
+        for i in [i for i in at[k] if cand[i] and out[i] != base[i]]:
+            at[k].discard(i); out[i] = base[i]
+            if base[i]:
+                at.setdefault(base[i], set()).add(i)
+                if len(at[base[i]]) > 1: todo.append(base[i])
+    # batch 18: a layer keeps its agency spelling only when nearly all of it survives (90% of the records that had one, or no
+    # more than 5 fell back: a few shared ids are normal); else
+    # its agency numbers share the row numbers' range (Florida's OWNED_LAND_KEY 1..80,000 against OBJECTID 1..80,000), most
+    # would fall back, and a half-and-half layer is worse than the plain row spelling: that layer keeps record_key whole (the
+    # id still proves the same land in kpc_same_land).
+    for lay in {g[0] for g in got if g[0]}:
+        idx = [i for i, g in enumerate(got) if g[0] == lay and cand[i]]
+        kept = sum(1 for i in idx if out[i] == cand[i])
+        if idx and kept < 0.9 * len(idx) and len(idx) - kept > 5:
+            for i, g in enumerate(got):
+                if g[0] == lay: out[i] = base[i]
     return out
 
 
@@ -337,7 +356,7 @@ def run(store, out, gh=None, today=None):
               f"skipped_ids): {', '.join(f'{l} {n:,}' for l, n in sorted(sk.items()))}", flush=True)
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 13, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'format': 14, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
            'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
                              for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
@@ -379,7 +398,7 @@ def selftest():
         ok = ok and {k: {f: x for f, x in v.items() if f not in ('_st', '_rd', '_src')} for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
                                          'sgzzc30': {'URL': 'https://example.org/alpha', '_nm': 'Alpha Forest', '_ac': 50.0, '_kid': 'sgzzc12'},
                                          'sgzzd5': {'URL': 'https://example.org/refound', '_nm': '', '_kid': 'sgzzd9'}}
-        ok = ok and d.get('format') == 13 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
+        ok = ok and d.get('format') == 14 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
         ok = ok and d['by_name'].get('sgzzc', {}).get('alphaforest') == [[50.0, 'sgzzc30@']]
         e = d['refound'].get('sgzze4') or {}   # format 6: name, size, box and a light outline, for the same-land proof
         ok = ok and e.get('_nm') == 'Lost Valley Prairie' and e.get('_bx') == [-92.83, 44.8, -92.82, 44.81] and len((e.get('_g') or [[]])[0]) == 5
