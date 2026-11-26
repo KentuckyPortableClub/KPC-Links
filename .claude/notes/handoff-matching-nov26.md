@@ -90,6 +90,8 @@ Owner (Brandon, 26 Nov 1:41 AM): "new pc is taking over tomorrow". The new PC's 
 
 - **Finding 1 fixed: KPC-Links #387 (draft), US rules 5b6caa7b7e90 -> b9d5bd15d732.** An old number never crosses alone (carry, saved answers with a fingerprint, every drawn fresh row in the gate); PC test adds WRONG-LAND-<state>.txt (15 of the 16 found on the 26a key). Kit 26b + TEST-ORDER 'MN NY' are on the PC for the 2:41 AM run. Not done: Fable's separate agency-id spelling (own PR + rule sheet if the grader still wants it), thin-rule length test, district rule on parks with rows (US-0356), DEVIL'S apostrophe (US-12389), evidence block old ids. KPC-Data reset: main was NOT reset (a repo rule blocks force-push to main); side branches squashed; size 760 MB, under 1 GB.
 
+- **#387 graded YES (26 Nov 3:50 PM), merge after the 27 Nov MN NY report.** The report should show: US b9d5bd15d732, the 16 forests on their own land, US-4792 and US-4798 with their forest record back, WRONG-LAND 0, the refused-rows list naming the bad carries. Later, from the grade: (a) repoint_saved checks only saved answers WITH a fingerprint (one without can still follow the alias); (b) WRONG-LAND could also list one id on two parks with matching names, and one id on one park whose name is not the record's (it missed US-4788 Buena Vista on sgmnb20).
+
 ## Next (in order)
 1. 27 Nov: read the first nightly run with the keeper list (results\logs\nightly-layers-*.log, nightly-last.txt). If right, ask the
    owner's OK to switch off the GitHub keeper's downloading (keep its light change check).
