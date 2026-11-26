@@ -44,6 +44,37 @@ Owner (Brandon, 26 Nov 1:41 AM): "new pc is taking over tomorrow". The new PC's 
   4-FIX-PATHS (tools find each other by place; re-add the folder in the Claude app). Numbered inner folders need kit changes (panel FOLDERS,
   kpc_test_keys STORE, LAYER-RECORDS climb, crosswalk / page-reader / trace climbs): later.
 
+## Done later on 26 Nov (10 AM - 12:30 PM CT, builder chat)
+- **Kit 26a test PASSED** (reports\test-2026-11-26-0951, US 5b6caa7b7e90). MN 46 -> 5.5 min, NY 9.8 -> 3.9 min. MN same counts;
+  NY 820 -> 823 outlined (US-0481, US-10040, US-2071 back, checked). Grader paste sent; #382 -> #383 -> #384 wait for the grader.
+- **New folder layout on the PC** (REORGANIZE.bat, undo with UNDO-REORGANIZE.bat): 1-MAP-LAYERS, 2-NEW-DOWNLOADS, 3-MAP-STORE-US-CA,
+  4-MAP-STORE-WORLD, 5-ANSWER-KEY-TEST, 6-TOOLS, 7-NOTES, ARCHIVE, TEMP. Every tool tries the new name first, then the old one.
+  Open the panel with C:\KPC\CONTROL-PANEL.bat. Settings rewritten; old copies in ARCHIVE.
+- **Tidy:** duplicates removed 9.2 GB; clean-ups moved 4.9 GB to ARCHIVE (nothing deleted); backup on F:\KPC-BACKUP (29.6 GB).
+  C:\KPC 41.0 -> 26.8 GB. New buttons in 6-TOOLS\HOUSEKEEPING: 8-WHERE-IS-THE-SPACE, 9-UNPACK-NOV13-ZIP.
+- **Nov 13 zip** (Archive-pieces, 42 pieces, 462 files) was never unpacked: unpacked + sorted by SORT-NEW-LAYERS (392 files filed,
+  266 to Originals). Pieces go to ARCHIVE by step 3 of 9-UNPACK (needs the owner's YES).
+- **Nightly layer download on the PC:** Windows task "KPC nightly layers", 2:41 AM, wakes the PC (SETUP/STOP-NIGHTLY-LAYERS.bat in
+  3-MAP-STORE-US-CA). Downloads missing whole layers AND the keeper's out-of-date list (kpc_keeper_requests.py reads
+  store/layer-requests.json on store-data with the owner's gh sign-in; 145 rows on 26 Nov). First run 26 Nov 11:03: 66 areas, MN and
+  NY complete. kpc_layer_records.py: --again-urls, count asked 3 times, hand-file-names.csv (KPC-Store draft PR #38, updated).
+- **Robots check** (CHECK-ROBOTS.bat, results\report\robots-check.csv): really blocked = BC x3 + Yukon parks (open-data downloads
+  instead); certificate problems = NB, federal DFRP, NS, WA Ecology (hand download in a browser). HAND-DOWNLOADS-NOV26.txt lists them
+  with ready folders; ADD-ALASKA-PADUS.bat (5-ANSWER-KEY-TEST) turns the USGS Alaska file into the store's hand file.
+- **GitHub:** the owner signed in on the PC (gh + Git for Windows). Park page reader on GitHub (KPC-Data kpc-park-pages.yml)
+  SWITCHED OFF 26 Nov 11:5x AM with the owner's OK ("K switch off park page reader"); the PC page reader does that job.
+- **The owner's look for every tool screen** (26 Nov 11:08 + 11:39 AM): like the sort tool and the nightly screen. Title box, what it does
+  and never does in plain words, short aligned table, a clear DONE line, a progress bar on slow jobs.
+
+## Next (in order)
+1. 27 Nov: read the first nightly run with the keeper list (results\logs\nightly-layers-*.log, nightly-last.txt). If right, ask the
+   owner's OK to switch off the GitHub keeper's downloading (keep its light change check).
+2. Owner rulings waiting (licence list): NPS historic places sgaki (12 states, federal public domain, marked "not a park layer"),
+   UT sgutc, St. John's and federal DFRP ("not a park layer"), WA sgwae (no terms found). AZ x2 and ID idw stay out (terms bar copying).
+3. Tool screens in the owner's look, one folder at a time: control panel, START-HERE, LAYER-RECORDS, housekeeping, then the rest.
+4. KPC-Data bots one at a time: PC version runs once, then the owner's OK. Biggest: park-info engine 49 h/week, workshop 19 h/week.
+5. GitHub size clean-up: its own GO (backup first).
+
 ## Who does what
 - This chat is the **BUILDER**, not the grader. The owner said twice: "your the builder not the grader". For every grader handoff, give the owner a **zip**: FOR-THE-GRADER.md, the patches and the tests. The grader grades; the owner merges.
 - **PC first, PR last** (agreed 25 Nov): a fix goes to the PC as a kit update and the owner tests it; one PR per batch that passed.
