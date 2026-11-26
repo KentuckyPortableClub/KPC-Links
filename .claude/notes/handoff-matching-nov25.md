@@ -97,7 +97,7 @@ Expected: MN builds (all joined layers complete); NY builds once Catskill is com
 - **Copy:** `D:\KPC GITHUB TOOL and MOre` -> `G:\KPC GITHUB TOOL and MOre` (same folder name, same layout), with BACKUP-TO-DRIVE.bat.
   The move folder `Tools\MOVE-PREP` (MOVE-LIST.txt, BACKUP-TO-DRIVE.bat, MAKE-LAYER-GUIDE.bat) is on G: too. Not yet confirmed
   finished: check the end of `BACKUP-LOG.txt` (Failed = 0). D: stays as it is; nothing on D: is deleted.
-- **Python:** 3.12 + add-ons installed 26 Nov 1:26 AM by SETUP-PYTHON.bat (saved in G:\\...\\Tools; one click; Python on C:, user install):
+- **Python:** 3.12 + add-ons installed 26 Nov 1:26 AM by SETUP-PYTHON.bat (saved in G:\...\Tools; one click; Python on C:, user install):
   shapely 2.2.0, pyproj 3.8.0, pyshp 3.1.9, numpy 2.5.5, opencv-python-headless 5.1.0.95, pillow 13.0.0, openpyxl 3.1.5.
   It ended "ALL ADD-ONS LOAD: READY". The "not on PATH" warnings (f2py.exe, pyproj.exe) are harmless: no tool uses them.
 - **Paths, checked 26 Nov:** the tools find each other by their place inside the folder (control panel `ROOT` = its own folder;
