@@ -177,7 +177,7 @@ check('the one line per state: by agency id, by shared ground, pieces, by name a
       all(w in src for w in ("by agency id {_sh.get('id', 0)}", "by shared ground", "by name and size", "not proven {_sh.get('unproven', 0)}", 'now pin only')))
 kt = (ROOT / 'tools/pc-keys/kpc_test_keys.py').read_text(encoding='utf-8')
 check('the PC test remakes its id file before format 11 and saves the owner lists',
-      'fmt < 12' in kt and all(w in kt for w in ('saved-answers-no-fingerprint.csv', 'pin-only-parks.csv', 'saved-answers-moved.csv', 'rows-kept-but-listed.csv', 'layers-not-in-store.csv')))
+      'fmt < 13' in kt and all(w in kt for w in ('saved-answers-no-fingerprint.csv', 'pin-only-parks.csv', 'saved-answers-moved.csv', 'rows-kept-but-listed.csv', 'layers-not-in-store.csv')))
 # owner 8:48 AM: a key build for an area STOPS and lists the gap when any layer it joins is not complete in the full layer files
 ns['joined_layers'] = lambda st, P, layers_read=None: {'sgmnc', 'fws', 'sgmnb'}
 try:

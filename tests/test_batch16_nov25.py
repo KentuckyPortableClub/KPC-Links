@@ -48,6 +48,12 @@ check("1: every key in the file is different (an su_id 3033 parcel is 'sgmne3033
 pk2 = SA.publish_keys([rec(15), rec(700, 15)])
 check("1: an su_id equal to a record's row key that stays (no su_id) falls back: no two records ever share a key",
       pk2 == ['sgmne15', 'sgmne700'])
+def wrec(oid, u):
+    return {'key': f'sgmna{oid}', 'layer': 'sgmna', 'record_id': str(oid), 'attributes': {'objectid': oid, 'uniqueid': u}}
+check("1: a DNR wildlife area is spelled by its uniqueid ('WMA0038200' -> 'sgmna38200'), the same letters on every record",
+      SA.publish_keys([wrec(1, 'WMA0038200'), wrec(2, 'WMA0012900'), wrec(3, None)]) == ['sgmna38200', 'sgmna12900', 'sgmna3'])
+check('1: ids with different letters on one layer are never cut to digits (two ids could become one): the row spelling',
+      SA.publish_keys([wrec(1, 'WMA0038200'), wrec(2, 'AMA0038201')]) == ['sgmna1', 'sgmna2'])
 with tempfile.TemporaryDirectory() as td:
     td = pathlib.Path(td)
     doc = {'area': 'US-ZZ', 'kpcstore_layers': True, 'made': '2026-11-25', 'records': rs[:6],
@@ -59,7 +65,7 @@ with tempfile.TemporaryDirectory() as td:
     check('1: the store reader keys the parcel by its su_id and marks it (never found by a row number)',
           'sgmne89125' in r_ and r_['sgmne89125'].get('_agk') == 1 and r_['sgmne89125'].get('su_id') == 89125.0 and 'sgmne3046' not in r_
           and 'sgmne15' in r_ and not r_['sgmne15'].get('_agk'))
-    check('1: the id file is format 12 (the PC test remakes an older one)', d.get('format') == 12)
+    check('1: the id file is format 13 (the PC test remakes an older one)', d.get('format') == 13)
     import kpc_outlines_from_key as OK_
     sr = OK_.store_records(str(td), 'US-ZZ')
     check('1: the outline cutter spells the same file the same way (the key ids and the outline ids agree)',
@@ -88,11 +94,15 @@ new = ns['fresh_old_parks'](old, {'sgmne3045': 'sgmne89125'}, recs)['US-9200']['
 check(f"1: an old row-number id follows its proven parcel to the agency id, never the parcel whose su_id is that number ({new[0][:2]})",
       new[0][0] == 'sgmne89125' and new[0][2] == 16 and new[1][0] == 'sgmne9001~old')
 
-# ---- 2: _sane_ac on the fresh acres ---------------------------------------------------------------------------------------------
+# ---- 2: _sane_ac on the fresh acres (the store reader's record_acres, and fresh_records)  ---------------------------------------------------------------------------------------------
 fr = src[src.index('def fresh_records('):src.index('\ndef fresh_old_parks(')]
 check('2: the fresh records size goes through the live reader check (square feet / metres)',
       "rec['GIS_Acres'] = _sane_ac(float(e.get('_ac') or pad.get('GIS_Acres') or 0), rec['_bb'])" in fr)
 exec(src[src.index('def _sane_ac('):src.index('\n_SAVED_NAMED')], ns)
+r40 = rec(9, 1)
+check("2: the store reader's record_acres: 40 acres stays, 1,742,400 (square feet) becomes 40, an impossible size = None (measured)",
+      SA.record_acres(dict(r40, attributes={'su_acres': 40})) == 40 and SA.record_acres(dict(r40, attributes={'su_acres': 1742400})) == 40.0
+      and SA.record_acres(dict(r40, attributes={'su_acres': 9e12})) is None)
 bb = [-93.5, 44.7, -93.49, 44.71]   # about 0.8 x 1.1 km = ~220 acres
 check('2: a 40-acre parcel stays; 1,742,400 (square feet) becomes 40; an impossible size is left out (0 = measured)',
       ns['_sane_ac'](40, bb) == 40 and ns['_sane_ac'](1742400, bb) == 40.0 and ns['_sane_ac'](9e12, bb) == 0)
@@ -114,6 +124,36 @@ finally:
 bl = [x[0] for x in hs['XS'] if 'BluelinePolygon' in x[1]]
 check(f"4: the APA polygon layer keeps the prefix its store records carry ('sgnyc', not a new one: {bl}) and its fixed name",
       bl == ['sgnyc'] and hs['FIXED_NAME'].get('sgnyc') == 'Adirondack Park' and sorted(x[0] for x in hs['XS'] if x[0].startswith('sgny')) == ['sgnya', 'sgnyb', 'sgnyc', 'sgnyd'])
+
+# ---- 5: a fresh record carries its layer's second name (US-2077 Honeoye Lake State Park) -----------------------------------------
+with tempfile.TemporaryDirectory() as td:
+    td = pathlib.Path(td)
+    hr = rec(361, None, 'Honeoye Marine Park', 'sgnyb', -77.5078)
+    hr['attributes'] = {'OBJECTID': 361, 'Name': 'Honeoye Marine Park', 'Label': 'Honeoye Lake Marine Park', 'Acreage': 8.818, 'Total_acre': 9}
+    hr['layer_url'] = 'https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0/query'
+    doc = {'area': 'US-YY', 'kpcstore_layers': True, 'made': '2026-11-25', 'records': [hr],
+           'manifest': {'sgnyb': {'complete': True, 'source_count': 1, 'store_count': 1, 'read': '2026-11-25'}}}
+    with gzip.open(td / 'US-YY.layer-records.json.gz', 'wt', encoding='utf-8') as fh: json.dump(doc, fh)
+    SA.run(str(td), str(td / 'attrs.json.gz'), today='2026-11-25')
+    with gzip.open(td / 'attrs.json.gz', 'rt', encoding='utf-8') as fh: e = json.load(fh)['records'].get('sgnyb361') or {}
+check(f"5: NY State Parks' Label is the fresh record's second name, as the live reader reads it (nm2) ({e.get('_nms')}, {e.get('_ac')} ac)",
+      e.get('_nm') == 'Honeoye Marine Park' and e.get('_nms') == ['Honeoye Lake Marine Park'] and abs(e.get('_ac', 0) - 8.818) < 0.01)
+check("5: the second-name fields come from data/state-gis.json's nm2 (by layer address)",
+      SA.second_name_fields().get('https://services.arcgis.com/1xfzptkn1wkc6poa/arcgis/rest/services/nys_park_polygons/featureserver/0') == 'Label')
+
+# ---- 6: W-G13, a national unit is the federal land whatever its link names (US-4518 Finger Lakes National Forest) -------------
+state_link = {'name': 'Finger Lakes National Forest', 'link': {'website': 'dec.ny.gov', 'agency': 'NY Dept of Environmental Conservation',
+              'site': 'agency (known)', 'usable': True}}
+usfs = {'OBJECTID': 3042, 'Unit_Nm': 'Finger Lakes National Forest', 'Mang_Name': 'USFS', 'Mang_Type': 'FED', 'Own_Type': 'FED', 'Des_Tp': 'NF'}
+la = MC.link_agency(state_link, 'NY')
+check(f"6: POTA's link names the state ({la}); the Forest Service's record with the forest's own name agrees (W-G13)",
+      la == 'STATE' and MC.agency_check(state_link, usfs, 'NY') == 'agrees')
+check('6: a federal record with ANOTHER name still differs; a non-federal record still differs',
+      MC.agency_check(state_link, dict(usfs, Unit_Nm='Hector Ranger District Office'), 'NY') == 'differs'
+      and MC.agency_check(state_link, dict(usfs, Mang_Name='NGO', Mang_Type='NGO', Own_Type='NGO'), 'NY') == 'differs')
+wma = dict(state_link, name='St. Francis National Forest Wildlife Management Area')
+check("6: only when the park's own KIND is the national unit (a state WMA inside a national forest is not)",
+      not MC.FED_UNIT.search(wma['name']) and MC.FED_UNIT.search('Finger Lakes National Forest'))
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

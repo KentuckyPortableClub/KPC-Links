@@ -91,6 +91,15 @@ with tempfile.TemporaryDirectory() as t:
     out = K.run_state('ZZ', t, '', {})
     check("the kit's own website copy (sha matches) is used, and links\\ starts from it", K.web_copy(kf) == K.LINKS / K.KITWEB_NAME / kf.name and kf.read_text() == web)
     check('originals is still untouched', snap() == o1)
+    # batch 16 item 4: ANY of the listed website copies wrong = the whole test stops before building (main(), first step)
+    (K.LINKS / K.KITWEB_NAME / 'sha256.json').write_text(json.dumps({'files': {'US-ZZ.json': web_sha, 'US-YY.json': 'f' * 64}}))
+    check('one wrong (or missing) website copy of the 66 is found before anything is built', K.website_copies_check() == ['US-YY.json'])
+    (K.LINKS / K.KITWEB_NAME / 'sha256.json').write_text(json.dumps({'files': {'US-ZZ.json': web_sha}}))
+    check('all listed copies good = nothing to stop', K.website_copies_check() == [])
+    msrc = (ROOT / 'tools' / 'pc-keys' / 'kpc_test_keys.py').read_text(encoding='utf-8')
+    mm = msrc[msrc.index('def main(argv):'):]
+    check('main() checks every website copy first and stops with nothing built',
+          mm.index('website_copies_check()') < mm.index('store_attrs()') < mm.index('run_state(') and 'Nothing was built.' in mm)
     K.run_build, K.say = real_build, real_say
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

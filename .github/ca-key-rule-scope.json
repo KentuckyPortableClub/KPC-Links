@@ -158,6 +158,14 @@
    "why": "Only because kpc_match_checks.py (a Canada rule file too) gains the US auto-confirm guards A1 to A4 and the NY bracket-twin cut. The Canada pass (canada_pass) does not use them, so no Canada result changes. Scope none.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-24 (t2067u 8:32 PM CT 'I agree work on it': the fixes from the check of 787 loose-name confirms); shared helper, Canada pass unchanged"
+  },
+  {
+   "id": "2026-11-25-batch16-shared",
+   "when": "2026-11-25",
+   "from": "48b7323c1c43",
+   "why": "Only because kpc_match_checks.py and kpc_store_attrs.py (Canada rule files too) change for the US: W-G13 lives in agency_check, which the Canada pass (canada_pass) does not run; publish_keys, sane_acres and the second-name field touch only US layer files (no Canada layer has an agency record id field or a state-gis nm2). No Canada result changes. Scope none.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'; shared helper, Canada pass unchanged"
   }
  ]
 }

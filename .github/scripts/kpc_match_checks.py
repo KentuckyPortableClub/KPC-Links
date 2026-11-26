@@ -1395,6 +1395,15 @@ def same_park_name(park_name, rec_name):
     return bool(bare_name(park_name)) and bare_name(park_name) == bare_name(rec_name) and bool(kinds(a) & kinds(b))
 
 
+# W-G13 (grade of #380 batch 16, 25 Nov 2026, US-4518 Finger Lakes National Forest: POTA's link is a NY DEC page, so the link
+# said STATE and the Forest Service's own record of the forest was sent to check): a park whose OWN name says it is a national
+# unit (the official sources settle the agency: a national forest is the Forest Service's land) is the federal land, whatever the
+# link names; the link is only a link. Only when the link names a NON-federal agency (a federal link is still compared agency
+# by agency), and only for a FEDERAL record carrying the park's own name (same_park_name).
+FED_UNIT = re.compile(r'\bnational (forest|grassland|wildlife refuge|park|monument|recreation area|seashore|lakeshore|preserve|'
+                      r'historical park|historic site|battlefield|military park|memorial|wild and scenic river|scenic riverway)s?\s*$', re.I)   # the park's KIND (its name ends with it)
+
+
 def agency_check(fact, rec, st='', table=None):
     """'agrees' | 'differs' | 'no data'.
     W-G11: a state link agrees with a national-list record the STATE OWNS, whatever its manager label says (Oregon: state park
@@ -1403,6 +1412,9 @@ def agency_check(fact, rec, st='', table=None):
     the federal agency's lake land); any other name still differs."""
     a, b = link_agency(fact, st), record_agency(rec, table)
     if a is None or b is None: return 'no data'
+    pn = (fact or {}).get('name') or ''
+    if a not in FEDERAL and not str(a).startswith('FED:') and (b in FEDERAL or str(b).startswith('FED:')) and FED_UNIT.search(pn) and same_park_name(pn, (rec or {}).get('Unit_Nm')):
+        return 'agrees'   # W-G13: the park's own name says it is a national unit; the record is that federal land
     if a == 'FED': return 'agrees' if (b in FEDERAL or b.startswith('FED:')) else 'differs'
     if a == 'STATE':
         if b == 'STATE' or owner_family(rec) == 'STATE': return 'agrees'

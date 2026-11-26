@@ -139,7 +139,7 @@ def store_attrs():
             import gzip
             with gzip.open(out, 'rt', encoding='utf-8') as fh: fmt = int(json.load(fh).get('format') or 0)
         except Exception: fmt = 0  # noqa: BLE001
-    if not out.is_file() or out.stat().st_mtime < newest or fmt < 12:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest; 9 each layer file's identity (Q1); 10 the agency record ids and FWS realty fields (R1, R5); 11 the layer's own acres field (round 15); 12 the agency's own record ids (batch 16)
+    if not out.is_file() or out.stat().st_mtime < newest or fmt < 13:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest; 9 each layer file's identity (Q1); 10 the agency record ids and FWS realty fields (R1, R5); 11 the layer's own acres field (round 15); 12 the agency's own record ids, 13 the layer's second name (batch 16)
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
         rc = subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS).returncode
@@ -275,6 +275,13 @@ def web_copy(kf):
             if c.is_file() and sha(c) == want: return c
         return None
     return ORIG / name if (ORIG / name).is_file() else None
+
+
+def website_copies_check():
+    """Batch 16 item 4 (grade of #380, 25 Nov): before ANY state is built, every website key file the kit lists (66: the US
+    states, Canada's provinces, Kentucky) must have a trusted copy (web_copy: the kit's own copy or originals, sha256 equal to
+    main's). Returns the names that differ or are missing ([] = all good; also [] for an older kit that lists none)."""
+    return sorted(n for n in _web_shas() if not web_copy(n))
 
 
 def web_copy_problem(kf):
@@ -416,6 +423,14 @@ def main(argv):
         return
     rep = HERE / 'reports' / ('test-' + datetime.datetime.now().strftime('%Y-%m-%d-%H%M'))
     rep.mkdir(parents=True, exist_ok=True)
+    bad = website_copies_check()
+    if bad:   # batch 16 item 4: one wrong website copy and nothing is built (originals is never changed by this test)
+        msg = [f'STOPPED: {len(bad)} of the {len(_web_shas())} saved website copies in originals are not the website\'s key files '
+               f"(their sha256 differs from the website's, or the file is missing): {', '.join(bad[:12])}{' ...' if len(bad) > 12 else ''}.",
+               'Nothing was built. The kit update that brings links\\.kit-website-keys with these files fixes it; tell Claude.']
+        (rep / 'REPORT.txt').write_text('\n'.join(msg) + '\n', encoding='utf-8')
+        [say(l) for l in msg]
+        return
     attrs = store_attrs() if any(s != 'KY' for s in order) else ''
     if attrs is None:
         say('STOPPED: the agency id fields could not be read from the outline store (kpc_store_attrs.py failed; see above). '
