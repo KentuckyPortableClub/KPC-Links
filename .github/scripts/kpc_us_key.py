@@ -2885,6 +2885,85 @@ def fresh_records(st, recs, P):
 OUTER_LINE = {   # layer prefix -> why its records never draw (rule 1b: an outer line is not the park's land)
     'sgmnb': "a state forest's statutory line (Minnesota DNR: 'State Forest boundaries often include private land'): "
              "drawn from the state's own land only (rule 1b)"}
+LOCK_TOL = 0.05   # a lock's records may differ from today's by at most 5% in total size (and never by name)
+LOCKS = {}        # state -> {'used': n, 'broken': n, 'written': n}
+LOCK_ROWS = {}    # park -> its rows from a verified lock (this state's build)
+LOCK_BROKEN = []  # [state, park, layer, id kind, id value, why]: locks that did not hold today (the park was matched as usual)
+
+
+def lock_path(st): return OUT / 'locks' / f'US-{st}.json'
+
+
+def _lock_kind(s):
+    """'MN DNR unit id SFT00036' -> ('MN DNR unit id', 'SFT00036'); (None, None) for anything that is not one of the stable agency
+    id kinds the match checks know (MC.ID_KINDS, the Park Service unit code)."""
+    for k in sorted(MC.ID_KINDS, key=len, reverse=True):
+        if str(s or '').startswith(k + ' '): return k, str(s)[len(k) + 1:].strip()
+    return None, None
+
+
+def lock_check(st, recs, doc):
+    """26 Nov 2026 (owner 5:30 PM 'Confirmed-park fast path against the store room (agency-ID proof only)'; switch KPC_ID_LOCK).
+    doc = this state's lock file ({'parks': {park: {'layer', 'kind', 'value', 'names', 'acres'}}}). A lock HOLDS when today's
+    layer files (the fresh records, never a hint or an old copy) still carry that agency id in that layer, every saved name is
+    still among those records' names, their total size is within LOCK_TOL, and no other park holds the same id. Then the park
+    takes ALL of today's records carrying that id (an agency renumbering its rows changes nothing: the id, not the row, is the
+    key) and is confirmed by id with no further matching. Anything else: the lock is broken and listed, the park is matched
+    as usual. Returns ({park: rows}, [broken rows]). Reads local files only."""
+    locks = (doc or {}).get('parks') or {}
+    want = {(L.get('layer'), L.get('kind'), str(L.get('value'))) for L in locks.values()}
+    lays = {w[0] for w in want}
+    by = {}
+    for a in recs:
+        if not a.get('_fresh') or a.get('_hint') or a.get('_nostore'): continue
+        lay = _sl_layer(_oid(a))
+        if lay not in lays or lay in OUTER_LINE: continue
+        for k, v in MC.ids_from(a).items():
+            if (lay, k, str(v)) in want: by.setdefault((lay, k, str(v)), []).append(a)
+    holders = {}
+    for ref, L in locks.items(): holders.setdefault((L.get('layer'), L.get('kind'), str(L.get('value'))), []).append(ref)
+    used, broken = {}, []
+    for ref, L in sorted(locks.items()):
+        key = (L.get('layer'), L.get('kind'), str(L.get('value')))
+        why = ''
+        hits = by.get(key) or []
+        if key[0] in OUTER_LINE: why = 'an outer line never locks'
+        elif len(holders[key]) > 1: why = 'another park holds the same agency id: ' + ' '.join(r for r in holders[key] if r != ref)
+        elif not hits: why = "the agency id is not in today's layer file"
+        else:
+            names = {SL.name_key(n) for a in hits for n in (a.get('Unit_Nm'), a.get('Loc_Nm'), a.get('_nm')) if n}
+            if not all(SL.name_key(n) in names for n in L.get('names') or []): why = 'renamed: a saved name is not on the record any more'
+            else:
+                ac = sum(float(a.get('GIS_Acres') or 0) for a in hits)
+                la = float(L.get('acres') or 0)
+                if not (la > 0 and ac > 0 and abs(ac - la) <= LOCK_TOL * la + 1): why = f'resized: {la:.0f} acres saved, {ac:.0f} today'
+        if why:
+            broken.append([st, ref, key[0], key[1], key[2], why]); continue
+        used[ref] = [[a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', round(float(a.get('GIS_Acres') or 0)),
+                      f"id: lock: {key[1]} {key[2]} (agency id, checked in today's layer file)"] for a in sorted(hits, key=lambda x: str(_oid(x)))]
+    return used, broken
+
+
+def lock_write(st, parks, byid):
+    """26 Nov 2026: this run's agency-id proofs, for the next run's fast path: every park confirmed BY ID (never by a name rule,
+    a page, a size or a person) whose joined records carry that id in one layer, from today's layer files. Returns the doc."""
+    out = {}
+    for ref, p in sorted(parks.items()):
+        mt = p.get('match') or {}
+        if mt.get('status') != 'confirmed' or mt.get('by') != 'id' or not mt.get('id'): continue
+        k, v = _lock_kind(mt['id'])
+        if not k: continue
+        recs_ = [byid.get(str(q[0])) for q in p.get('m') or [] if isinstance(q, (list, tuple)) and q]
+        recs_ = [a for a in recs_ if a is not None and a.get('_fresh') and not a.get('_hint') and str(MC.ids_from(a).get(k) or '') == str(v)]
+        lays = {_sl_layer(_oid(a)) for a in recs_}
+        if not recs_ or len(lays) != 1 or next(iter(lays)) in OUTER_LINE: continue
+        out[ref] = {'layer': next(iter(lays)), 'kind': k, 'value': str(v),
+                    'names': sorted({a.get('Unit_Nm') or a.get('Loc_Nm') or '' for a in recs_} - {''}),
+                    'acres': round(sum(float(a.get('GIS_Acres') or 0) for a in recs_))}
+    return {'about': 'Agency-id locks (KPC_ID_LOCK, 26 Nov 2026): parks confirmed by a stable agency id, checked again in each run\'s own layer files.',
+            'state': st, 'parks': out}
+
+
 CARRY_ST = ['']   # the state fresh_records last joined (fresh_old_parks runs right after it for the same state)
 CARRY_REFUSED = []   # 26 Nov 2026: [state, park, old id, the old row's name, the fresh id it would have named, that record's name]
 
@@ -3171,13 +3250,13 @@ def match_checks_pass(st, parks, recs, P, used, on=None, facts=None):
         return MC.rings_near(rings(a['_g']), other) if other else None
 
     hits = []
-    res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL), st, MC.load_nps_units(), hits, _holds, table,
+    res = MC.pass_state(parks, byid, facts, _place, _url_of, _saved_no, set(TRL) | set(LOCK_ROWS), st, MC.load_nps_units(), hits, _holds, table,
                         page_holds_fn=_page_holds, near_fn=_near, size_hold=_kr('KPC_CONFIRM_SIZE_HOLD'))
     _grid_notes(st, parks, P, res)
     _page_point_checks(st, parks, byid, facts, res)
     _map_name_checks(st, parks, byid, facts, res)
     if _kr('KPC_PROVEN_ONLY'):   # 25 Nov 2026 (KPC owner, 6:28 AM): proof or the pin; no hand-offs
-        res['proven_only'] = proven_only_gate(st, parks, byid, set(TRL), facts)
+        res['proven_only'] = proven_only_gate(st, parks, byid, set(TRL) | set(LOCK_ROWS), facts)
     res['facts'] = MC.facts_stamp(PFR.find())   # which park facts file decided (plan L6: a changed file is visible)
     for h in hits:
         MATCH_HIT.append([st] + h)
@@ -3492,9 +3571,20 @@ def run(st):
     # in the same order as before, so every answer is the same; it just skips the records that could never join.
     near_idx = RecordGrid(recs, pad=.6)
     progress(st, f'matching parks to {len(recs):,} records')
+    LOCK_ROWS.clear()
+    if _kr('KPC_ID_LOCK') and _kr('KPC_STORE_FRESH'):
+        try: _ld = json.load(open(lock_path(st), encoding='utf-8'))
+        except (OSError, ValueError): _ld = {}
+        _lu, _lb = lock_check(st, recs, _ld)
+        LOCK_ROWS.update(_lu); LOCK_BROKEN.extend(_lb)
+        LOCKS[st] = {'used': len(_lu), 'broken': len(_lb)}
     for _pgn, (ref, r) in enumerate(sorted(P.items()), 1):
         progress(st, 'matching: parks', _pgn, len(P))
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
+        if ref in LOCK_ROWS:   # 26 Nov (KPC_ID_LOCK): proven by its agency id, checked in today's layer file: no further matching
+            parks[ref] = {'n': name, 't': typ, 'm': [list(x) for x in LOCK_ROWS[ref]], 'c': []}
+            for x in LOCK_ROWS[ref]: used.add(x[0])
+            continue
         if la is None and ref in pins(): la, lo = pins()[ref]
         kp = kinds(name) | kinds(typ)
         m, c, farm = [], [], []
@@ -4672,7 +4762,17 @@ def run(st):
     except Exception as _e: notice(f'US key {st}', f'one-record-two-parks pass skipped: {KR.pass_error(st, _e, _kr("KPC_HOLD_ON_PASS_ERROR"))}')  # noqa: BLE001
     # KPC owner, 20 Nov 2026 (APPROVED): match by more than name. Raises (the state is held) on a missing facts file or an error.
     progress(st, 'match checks (store fields, proven-only gate)')
+    for _ref, _rows in LOCK_ROWS.items():   # 26 Nov (KPC_ID_LOCK): a locked park keeps exactly its agency-id records
+        if _ref in parks:
+            parks[_ref]['m'] = [list(x) for x in _rows]; parks[_ref]['c'] = []
+            parks[_ref].pop('kept_ids', None)
     _mc = match_checks_pass(st, parks, recs, P, used)
+    for _ref, _rows in LOCK_ROWS.items():
+        if _ref in parks:
+            _k, _v = str(_rows[0][3]).split('lock: ', 1)[1].split(' (agency id')[0].rsplit(' ', 1)
+            parks[_ref]['m'] = [list(x) for x in _rows]
+            parks[_ref]['match'] = {'status': 'confirmed', 'by': 'id', 'id': f'{_k} {_v}', 'why': [],
+                                    'lock': "agency id checked in today's layer file (KPC_ID_LOCK)"}
     # 26 Nov 2026 (grade of #388): an outer line never draws, with or without the proven-only gate
     _ol = 0
     for _ref, _p in parks.items():
@@ -4681,6 +4781,17 @@ def run(st):
         _p['m'] = [x for x in _p['m'] if x not in _ox]; _ol += len(_ox)
         _p['c'] = list(_p.get('c') or []) + [[x[0], x[1], x[2], 'check: ' + OUTER_LINE[_sl_layer(x[0])]] for x in _ox]
     if _ol: notice(f'US key {st}', f'{_ol} outer-line row(s) taken off (rule 1b: drawn from the agency\'s own land only)')
+    if _kr('KPC_ID_LOCK') and _kr('KPC_STORE_FRESH'):
+        try:
+            _doc = lock_write(st, parks, {_oid(a): a for a in recs})
+            lock_path(st).parent.mkdir(parents=True, exist_ok=True)
+            with open(lock_path(st), 'w', encoding='utf-8') as _fh: json.dump(_doc, _fh, indent=1, sort_keys=True, ensure_ascii=False)
+            LOCKS.setdefault(st, {'used': 0, 'broken': 0})['written'] = len(_doc['parks'])
+        except Exception as _e:  # noqa: BLE001
+            notice(f'US key {st}', f'agency-id locks not written ({str(_e)[:120]})')
+        _lk = LOCKS.get(st) or {}
+        notice(f'US key {st}', f"agency-id locks: locked_used {_lk.get('used', 0)}, locked_broken {_lk.get('broken', 0)}, "
+               f"written for the next run {_lk.get('written', 0)}")
     progress(st, 'match checks done')
     if st in SAME_HOW or 'proven_only' in (_mc or {}):   # 25 Nov 2026: the better matcher's one line per state
         _sh, _po = SAME_HOW.get(st) or {}, (_mc or {}).get('proven_only') or {}
@@ -4713,6 +4824,7 @@ def run(st):
                                                                    'level or why', 'left the map']),   # R6
                                    ('KPC_REPOINTS', REPOINTS, ['state', 'park', 'saved row', 'old id', 'fresh id', 'how']),
                                    ('KPC_LISTED', LISTED, ['state', 'park', 'record id', 'why']),
+                                   ('KPC_LOCK_LIST', LOCK_BROKEN, ['state', 'park', 'layer', 'id kind', 'id value', 'why the lock did not hold']),
                                    ('KPC_CARRY_LIST', sorted({tuple(x) for x in CARRY_REFUSED}), ['state', 'park', 'old id', "the old row's name",
                                                                    'fresh id it would have named', "that record's name", 'why'])):
             _fn = os.environ.get(_env) or ''

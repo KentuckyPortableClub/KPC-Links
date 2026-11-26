@@ -304,7 +304,8 @@ def run_build(st, rep, attrs):
                        KPC_PIN_ONLY_LIST=str(rep / 'pin-only-parks.csv'), KPC_REPOINTS=str(rep / 'saved-answers-moved.csv'),
                        KPC_LISTED=str(rep / 'rows-kept-but-listed.csv'), KPC_NOSTORE_LIST=str(rep / 'layers-not-in-store.csv'),
                        KPC_GAP_LIST=str(rep / 'layers-not-complete.csv'),
-                       KPC_CARRY_LIST=str(rep / 'old-rows-not-carried.csv'),   # 26 Nov: old rows whose name does not fit the fresh record of that number
+                       KPC_CARRY_LIST=str(rep / 'old-rows-not-carried.csv'),
+                       KPC_LOCK_LIST=str(rep / 'locks-broken.csv'),   # 26 Nov: agency-id locks that did not hold today   # 26 Nov: old rows whose name does not fit the fresh record of that number
                        KPC_PROOF_LIST=str(rep / 'row-proof.csv'))   # R6: why each old row of a park that lost rows did or did not prove   # 25 Nov (owner 8:48 AM): a state stops on a gap
             cmd = [sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py']
     kept = []

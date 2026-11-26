@@ -189,6 +189,11 @@ behaviour defaults to what the bots do today (OFF), so applying the patch change
   KPC_FRESH_ONLY 0 (26 Nov 2026, grade of #388; owner 4:18 PM 'efficiency in all aspects'): with no website-key carry and saved
     answers as hints only, the key is built strictly from today's layer files: the old-to-fresh same-land proof loop is skipped and
     every old record of a complete layer is a hint (never drawn). MN and NY first, after KPC_NO_WEBSITE_CARRY tested clean.
+  KPC_ID_LOCK 0 (26 Nov 2026, owner 5:30 PM 'Confirmed-park fast path against the store room (agency-ID proof only)'): a park
+    confirmed BY a stable agency id (MC.ID_KINDS: Park Service unit code, MN DNR unit id; never a row number, a name rule or a person)
+    is saved in data/us-key/locks/US-<st>.json (layer, id kind and value, names, acres). The next run checks the lock in its own
+    layer files: the id still there, the names unchanged, the size within 5%, no other park holding it -> the park takes all of
+    today's records with that id and skips the matching; else the lock is listed as broken and the park is matched as usual.
   KPC_PROVEN_ONLY 0 (25 Nov 2026, KPC owner 6:28 AM 'proof or the pin, no hand-offs'): after the match checks, a row draws
                           only when the park is confirmed, the row is a code row or a person's join whose fingerprint fits;
                           never when a fresh record with another agency id holds its ground. Else 'check (code to fix: why)'
@@ -209,7 +214,7 @@ DEFAULTS = {'KPC_NO_ALL_PATHS': '1', 'KPC_NO_BY_NAME': '0', 'KPC_ID_JOIN_NAME': 
             'KPC_NO_OFFICE_JOIN': '0', 'KPC_SAVED_ID_LAND': '0', 'KPC_ONE_RECORD_ONE_PARK': '0', 'KPC_ANSWER_HOLDERS': '0', 'KPC_NO_LEASE_BY_NAME': '0', 'KPC_LAKE_ONLY_IF_LAKE': '0', 'KPC_DESIGNATION_SPLIT': '0',
             'KPC_NPS_UNIT_CODE': '0', 'KPC_FS_RIVER_NAMES': '0', 'KPC_G8_OTHER_PLACE': '0',
             'KPC_MEASURED_ACRES': '0', 'KPC_CA_NONE_KEPT': '0', 'KPC_CA_SAVED_ID_LAND': '0', 'KPC_JP_A10_NAMES': '0', 'KPC_MK_LAYER_93': '0', 'KPC_AGENCY_TIE': '0', 'KPC_STATE_COPY': '0', 'KPC_WORLD_NEAR_NAME': '0', 'KPC_HOLD_ON_PASS_ERROR': '0', 'KPC_NO_FOLLOWS_FP': '0', 'KPC_SAVED_ANSWERS_SAY': '0', 'KPC_SAVED_NEXT_STATE': '0', 'KPC_SAVED_ALL_PARCELS': '0',
-            'KPC_MATCH_CHECKS': '0', 'KPC_CONFIRM_SIZE_HOLD': '0', 'KPC_SAME_LAND': '0', 'KPC_PROVEN_ONLY': '0', 'KPC_STORE_FRESH': '0', 'KPC_SAVED_HINTS_ONLY': '0', 'KPC_NO_WEBSITE_CARRY': '0', 'KPC_FRESH_ONLY': '0',
+            'KPC_MATCH_CHECKS': '0', 'KPC_CONFIRM_SIZE_HOLD': '0', 'KPC_SAME_LAND': '0', 'KPC_PROVEN_ONLY': '0', 'KPC_STORE_FRESH': '0', 'KPC_SAVED_HINTS_ONLY': '0', 'KPC_NO_WEBSITE_CARRY': '0', 'KPC_FRESH_ONLY': '0', 'KPC_ID_LOCK': '0',
             'KPC_APPROX_PIN': '1', 'KPC_PRESERVE_APART': '1', 'KPC_FAR_JOIN': '1', 'KPC_PRESERVE_WITH_PARK': '1'}
 
 
