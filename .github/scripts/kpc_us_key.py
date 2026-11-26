@@ -1178,6 +1178,12 @@ try:
             # round 14 (NY 1:32 PM test, Adirondack Park): a layer with no name field (APA's one-polygon Blue Line) names its record
             # with the table's fixed 'name'
             if not _u or not (_l.get('nm') or _l.get('name')) or _u in _have or not re.search(r'/\d+$', _u): continue
+            # batch 16 (owner's 5:43 PM NY test: Adirondack State Park lost its outline): a layer whose address changed keeps the
+            # prefix its records are saved under when the table says so ('prefix': the outline store's layer-url-overrides.csv
+            # gives the same layer the same name); without it the new address got a NEW prefix ('sgnye') while the store's record
+            # is 'sgnyc1', so the record never got its fixed name and never joined
+            if re.fullmatch(r'[a-z]+', str(_l.get('prefix') or '')) and _u not in _byurl:
+                _byurl[_u] = str(_l['prefix']); _taken.add(str(_l['prefix']))
             # prefix = letters only ('sgfla'): the website splits an id into prefix + number with /^[a-z]+/
             if _l.get('name'): FIXED_NAME[_pre(_st, _u)] = str(_l['name']).strip()
             XS.append((_pre(_st, _u), _u + '/query', _l.get('nm') or '', '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st},

@@ -103,5 +103,17 @@ i = run_.index("_old = json.load(open(OUT / f'US-{st}.json')).get('parks', {}); 
 check('3: the KPC_KEY_ONLY_PARKS keep path reads the website key through fresh_old_parks',
       "if _kr('KPC_STORE_FRESH'): _old = fresh_old_parks(_old, _alias, recs)" in run_[i:i + 400] and run_.count('fresh_old_parks(') == 3)
 
+# ---- 4: a layer whose address changed keeps its saved prefix (Adirondack Park, NY 5:43 PM test) ------------------------------
+_cwd = os.getcwd(); os.chdir(ROOT)
+try:
+    hs = {'__name__': 'kpc_us_key_part', '__file__': str(ROOT / '.github/scripts/kpc_us_key.py')}
+    import contextlib, io
+    with contextlib.redirect_stdout(io.StringIO()): exec(compile(src[:src.index('\nidx = {}')], 'kpc_us_key.py', 'exec'), hs)
+finally:
+    os.chdir(_cwd)
+bl = [x[0] for x in hs['XS'] if 'BluelinePolygon' in x[1]]
+check(f"4: the APA polygon layer keeps the prefix its store records carry ('sgnyc', not a new one: {bl}) and its fixed name",
+      bl == ['sgnyc'] and hs['FIXED_NAME'].get('sgnyc') == 'Adirondack Park' and sorted(x[0] for x in hs['XS'] if x[0].startswith('sgny')) == ['sgnya', 'sgnyb', 'sgnyc', 'sgnyd'])
+
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
