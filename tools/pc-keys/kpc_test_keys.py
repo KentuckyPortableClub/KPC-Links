@@ -18,7 +18,7 @@ updates this test ran, so a report can always be matched to the rules on GitHub.
 kit did not are now given the same way: the Recreation.gov saved copy (data/access-leads), the official sizes file made
 from the park facts (data/acres.json, made fresh each run), and Canada's official pins file (KPC_OFFICIAL_PINS).
 """
-import datetime, json, os, pathlib, re, shutil, subprocess, sys, time
+import datetime, gzip, json, os, pathlib, re, shutil, subprocess, sys, time
 
 HERE = pathlib.Path(__file__).resolve().parent
 LINKS = HERE / 'links'
@@ -41,8 +41,60 @@ def keyfiles(st):
 
 
 def load(p):
-    try: return json.loads(pathlib.Path(p).read_text(encoding='utf-8'))
-    except (OSError, ValueError): return None
+    try:
+        p = pathlib.Path(p)
+        if p.suffix == '.gz':
+            with gzip.open(p, 'rt', encoding='utf-8') as f: return json.load(f)
+        return json.loads(p.read_text(encoding='utf-8'))
+    except (OSError, ValueError, EOFError): return None
+
+
+def keep_key(kf, rep):
+    """25 Nov 2026 (owner: 'YOU HAVE 10 MN AND NY FROM TODAY TO COMPARE TOO'): every test keeps its own key files, zipped,
+    in its report folder (keys\\<name>.gz), so any later test can be compared with it park by park."""
+    d = rep / 'keys'; d.mkdir(parents=True, exist_ok=True)
+    with open(kf, 'rb') as f, gzip.open(d / (kf.name + '.gz'), 'wb') as g: shutil.copyfileobj(f, g)
+    return d / (kf.name + '.gz')
+
+
+def earlier_tests(kf, rep, n=3):
+    """The newest earlier tests (report folder name = date and time) that kept this key file, newest first."""
+    out = []
+    for r in sorted((HERE / 'reports').glob('test-*'), reverse=True):
+        if r.name >= rep.name: continue
+        k = r / 'keys' / (kf.name + '.gz')
+        if k.is_file(): out.append((r.name, k))
+        if len(out) >= n: break
+    return out
+
+
+def park_changes(label, old, new):
+    """Park by park (owner 25 Nov: 'WHY ARE WE DROPPING STUFF ALL THE TIME'): every park that went outline -> pin, pin ->
+    outline, or changed records, with the records before and after and the builder's own reason (its best try and the first
+    check row). For CHANGES-<state>.txt in the report folder: it stays on this PC unless the owner sends it."""
+    o = (load(old) or {}).get('parks') or {}; n = (load(new) or {}).get('parks') or {}
+    def ids(row): return [(str(x[0]), str(x[1])[:50]) for x in (row or {}).get('m') or [] if isinstance(x, (list, tuple)) and len(x) > 1]
+    def why(row):
+        row = row or {}; bk = row.get('bk') or []; c = row.get('c') or []
+        w = []
+        if bk and bk[0] is not None: w.append(f'best try {bk[0]} ({" ".join(str(x) for x in bk[2:] if x)})')
+        elif len(bk) > 4: w.append(f'best try none ({bk[4]})')
+        if c and isinstance(c[0], (list, tuple)) and len(c[0]) > 3: w.append(f'first check row {c[0][0]} {str(c[0][1])[:40]}: {str(c[0][3])[:140]}')
+        return '; '.join(w) or 'no reason written'
+    groups = {'OUTLINE TO PIN': [], 'PIN TO OUTLINE': [], 'RECORDS CHANGED': []}
+    for ref in sorted(set(o) | set(n)):
+        a, b = ids(o.get(ref)), ids(n.get(ref))
+        if {x[0] for x in a} == {x[0] for x in b}: continue
+        name = str((n.get(ref) or o.get(ref) or {}).get('n') or '')[:60]
+        g = 'OUTLINE TO PIN' if a and not b else 'PIN TO OUTLINE' if b and not a else 'RECORDS CHANGED'
+        line = f'  {ref} {name}: before {a or "pin"} ; now {b or "pin"}'
+        if g != 'PIN TO OUTLINE': line += f'\n      why: {why(n.get(ref))}'
+        groups[g].append(line)
+    out = [f'{label}: outline to pin {len(groups["OUTLINE TO PIN"])}, pin to outline {len(groups["PIN TO OUTLINE"])}, '
+           f'records changed {len(groups["RECORDS CHANGED"])}']
+    for g, ls in groups.items():
+        if ls: out += [f' {g}:'] + ls
+    return out + ['']
 
 
 def joins(p):
@@ -427,6 +479,17 @@ def _run_state(st, rep, attrs, tot):
         if (LAST / kf.name).is_file():
             lines += compare(f"{tag} against this PC's last test", LAST / kf.name, kf)[0]
         shutil.copy2(kf, LAST / kf.name)
+        try:   # 25 Nov: this test keeps its key; compare park by park with the website and the last 3 tests that kept one
+            kept = keep_key(kf, rep)
+            ch = [f'{tag}, built {rep.name}. Park numbers and names: this file stays on this PC unless you send it.', '']
+            if web_copy(kf): ch += park_changes('Against the website', web_copy(kf), kept)
+            for nm, k in earlier_tests(kf, rep):
+                l, _ = compare(f'{tag} against {nm}', k, kept); lines += l
+                ch += park_changes(f'Against {nm}', k, kept)
+            (rep / f'CHANGES-{tag}.txt').write_text('\n'.join(ch) + '\n', encoding='utf-8')
+            lines.append(f'  park by park: CHANGES-{tag}.txt in the report folder')
+        except Exception as e:  # noqa: BLE001
+            lines.append(f'  park-by-park list not written ({type(e).__name__}: {str(e)[:120]})')
     return lines + notices(log)
 
 
