@@ -48,5 +48,8 @@ check('C: the state forest statutory line is an outer line, and the gate removes
 
 check('D: KPC_FRESH_ONLY skips the old-to-fresh proof loop; the outer line is also taken off after the match checks (gate or not)',
       "for _pgn, a in enumerate([] if _fresh_only else recs, 1):" in src and src.index('_mc = match_checks_pass(st, parks, recs, P, used)') < src.index("outer-line row(s) taken off"))
+fr_ = src[src.index('def fresh_records('):src.index('def fresh_old_parks(')]
+check('D: with KPC_FRESH_ONLY an old record of a complete layer is never offered to the matcher (no hints)',
+      "if _fresh_only:" in fr_ and "return out + nostore, alias" in fr_)
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

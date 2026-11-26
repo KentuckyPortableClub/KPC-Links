@@ -2879,6 +2879,12 @@ def fresh_records(st, recs, P):
                       'read_now': sum(1 for a in nostore if a.get('_read_now')), 'store_layers': sorted(store_layers),
                       'partial_layers': sorted(held_layers - store_layers), 'no_manifest': not man},
                      **{'by_' + k_: v for k_, v in lv_n.items()})
+    if _fresh_only:
+        # 26 Nov 2026 (the owner's 1716 PC test of fresh only: 8,304 MN rows joined to old hints only for the gate to take them off,
+        # and a hint beside today's record of the same land pushed parks to a pin: Catskill Park, Wallkill River NWR): with the key
+        # built strictly from today's layer files, an old record of a complete layer is not offered to the matcher at all.
+        FRESH[st]['hints_dropped'] = len(hints)
+        return out + nostore, alias
     return out + nostore + hints, alias
 
 
