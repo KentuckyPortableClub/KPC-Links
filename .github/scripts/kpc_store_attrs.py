@@ -251,7 +251,7 @@ def record_acres(r):
     return sane_acres(v, rs) if rs else v
 
 
-def run(store, out, gh=None, today=None):
+def run(store, out, gh=None, today=None, areas=None):
     want = wanted_fields(gh)
     NM2 = second_name_fields()
     recs, files, by_name, refound = {}, 0, {}, {}
@@ -260,6 +260,9 @@ def run(store, out, gh=None, today=None):
     paths_ = sorted(glob.glob(os.path.join(store, '*.kpcstore.json.gz'))) + sorted(glob.glob(os.path.join(store, '*.layer-records.json.gz')))
     for path in paths_:
         if '.prev.' in os.path.basename(path):
+            continue
+        # 26 Nov 2026 (grade 4:22 PM, speed): a test of a few states reads only those areas and their neighbours, not all 132 files
+        if areas and os.path.basename(path).split('.')[0] not in areas:
             continue
         is_layers = path.endswith('.layer-records.json.gz')
         try:
@@ -356,7 +359,7 @@ def run(store, out, gh=None, today=None):
               f"skipped_ids): {', '.join(f'{l} {n:,}' for l, n in sorted(sk.items()))}", flush=True)
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 14, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'format': 14, 'areas': sorted(areas) if areas else 'all', 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
            'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
                              for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
@@ -437,5 +440,6 @@ def selftest():
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--store'); ap.add_argument('--out', default='record-attrs.json.gz'); ap.add_argument('--selftest', action='store_true')
+    ap.add_argument('--areas', default='', help="only these areas' store files ('US-MN,US-NY,...'); default every area")
     a = ap.parse_args()
-    sys.exit(selftest() if a.selftest else run(a.store, a.out))
+    sys.exit(selftest() if a.selftest else run(a.store, a.out, areas={x.strip() for x in a.areas.split(',') if x.strip()} or None))

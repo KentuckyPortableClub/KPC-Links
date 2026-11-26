@@ -450,6 +450,29 @@ def mean_width_m(rings):
     return 2 * acres_of(rings) * 4046.86 / per if per > 0 else 0.0
 
 
+SNAP_M = 90.0           # the key's saved copy is drawn to 0.001 degree (about 90 m): narrower than this is never measurable
+LONG_RATIO = 6.0        # 26 Nov (Fable's review finding 3): a 'thin' shape must also be LONG (half its outline at least 6 times
+                        # its width): a compact square parcel under 40 acres is no longer 'thin', so 'different ground' can say no
+
+
+def too_thin(rings):
+    """Batch 17 + 26 Nov: True when a shape cannot be measured against another read: on average narrower than THIN_M and either a
+    long strip (its biggest piece: half its outline at least LONG_RATIO times its width; Old Croton Aqueduct, a 26-mile strip about
+    20 m wide) or narrower than the saved copy's own drawing step (SNAP_M). A compact 30-acre square (about 350 m a side, width
+    about 175 m by this measure) is measurable."""
+    mw = mean_width_m(rings)
+    if not 0 < mw < THIN_M: return False
+    if mw < SNAP_M: return True
+    big = max(rings, key=lambda r: acres_of([r]))
+    w = mean_width_m([big])
+    if w <= 0: return False
+    per = 0.0
+    for (x1, y1), (x2, y2) in zip(big, big[1:] + big[:1]):
+        k = math.cos(math.radians((y1 + y2) / 2))
+        per += math.hypot((x2 - x1) * 111320.0 * k, (y2 - y1) * 110574.0)
+    return per / 2 >= LONG_RATIO * w
+
+
 def view(rec, id_fields=()):
     """The parts of a record the proof reads. rec: a key record ({'Unit_Nm', 'Loc_Nm', 'GIS_Acres', '_g', 'SA'}) or a store
     entry from kpc_store_attrs ({'_nm', '_ac', '_g', field: value}). id_fields: id_spec(layer), or a plain list of unit-id
@@ -475,7 +498,7 @@ def view(rec, id_fields=()):
     measured = acres_of(rings) if rings else 0.0
     npts = sum(len(r) for r in rings)
     coarse = bool(rings) and ((ac > 0 and measured > 0 and abs(measured - ac) > COARSE_OFF * ac) or (measured < COARSE_SMALL and npts <= 5)
-                              or 0 < mean_width_m(rings) < THIN_M)   # batch 17: too thin to measure is 'can't tell' too
+                              or too_thin(rings))   # batch 17: too thin to measure is 'can't tell' too (26 Nov: long strips only)
     return {'names': {name_key(n) for n in names if not generic(n)}, 'rings': rings, 'box': box_of(rings) or rec.get('_bx') or rec.get('_bb'),
             'acres': ac, 'measured': measured, 'coarse': coarse, 'ids': ids, 'arecs': arecs}
 

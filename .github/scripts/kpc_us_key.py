@@ -2618,7 +2618,13 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
             rec = byid.get(rid)
             why = None
             fps = _fp_state(ref, rid, rec) if cls == 'person' else ''
-            if fresh_on and rec is not None and rec.get('_nostore'):
+            if _sl_layer(rid) in OUTER_LINE:
+                # 26 Nov 2026 (owner 4:18 PM 'we want accuracy'; rule 1b of the 2-fer rules for the whole world, Oct 27: an 'agency-land'
+                # designation covers only the agency's own land inside its outer line): Minnesota DNR says of its state forest layer
+                # 'these data do not represent public ownership ... State Forest boundaries often include private land'. The line
+                # never draws; the park is drawn from the state's own land (PAD-US, DNR management units) or stays a pin.
+                why = OUTER_LINE[_sl_layer(rid)]
+            elif fresh_on and rec is not None and rec.get('_nostore'):
                 lay = _sl_layer(rid)
                 nostore.setdefault(lay, [0, set()]); nostore[lay][0] += 1; nostore[lay][1].add(ref)
                 if cls != 'code': why = 'layer not in store (or not complete there): only the old saved copy reads this record'
@@ -2849,6 +2855,9 @@ def fresh_records(st, recs, P):
     return out + nostore + hints, alias
 
 
+OUTER_LINE = {   # layer prefix -> why its records never draw (rule 1b: an outer line is not the park's land)
+    'sgmnb': "a state forest's statutory line (Minnesota DNR: 'State Forest boundaries often include private land'): "
+             "drawn from the state's own land only (rule 1b)"}
 CARRY_ST = ['']   # the state fresh_records last joined (fresh_old_parks runs right after it for the same state)
 CARRY_REFUSED = []   # 26 Nov 2026: [state, park, old id, the old row's name, the fresh id it would have named, that record's name]
 
@@ -2897,7 +2906,9 @@ def fresh_old_parks(old, alias, recs):
             if not isinstance(x, (list, tuple)) or not x: m.append(x); continue
             n = mp(x[0])
             if n is None:
-                CARRY_REFUSED.append([CARRY_ST[0], ref, str(x[0]), str(x[1]) if len(x) > 1 else '', str(x[0]), MC.rec_name(by.get(str(x[0])) or {})])
+                CARRY_REFUSED.append([CARRY_ST[0], ref, str(x[0]), str(x[1]) if len(x) > 1 else '', str(x[0]), MC.rec_name(by.get(str(x[0])) or {}),
+                                      'no proven twin; a fresh record carries this number' + (' (same name: the key matches it again by its own rules)'
+                                                                                              if carry_fits(x, by.get(str(x[0])) or {}) else ' (another name: other land)')])
                 continue
             # 26 Nov 2026 (owner 2:54 PM 'fix as in this will not happen anywhere else either'; Fable's review finding 1): the
             # website key and the old saved copy were read on different days and number their rows differently (MN forests: the
@@ -2906,7 +2917,7 @@ def fresh_old_parks(old, alias, recs):
             # hint ('~old', never drawn) or leaves. Every state, every layer, every old number.
             r0 = by.get(n)
             if r0 is not None and r0.get('_fresh') and not carry_fits(x, r0):
-                CARRY_REFUSED.append([CARRY_ST[0], ref, str(x[0]), str(x[1]) if len(x) > 1 else '', n, MC.rec_name(r0)])
+                CARRY_REFUSED.append([CARRY_ST[0], ref, str(x[0]), str(x[1]) if len(x) > 1 else '', n, MC.rec_name(r0), 'its name does not fit that record: other land'])
                 h_ = str(x[0]) + '~old'
                 if h_ not in by: continue
                 n = h_
@@ -3880,7 +3891,11 @@ def run(st):
     # Oct 29 (HQ 10:40 AM, Brandon 10:39 AM GO: 'wetland districts = owned tracts only'): a Wetland Management District (and any
     # scattered-tract FWS park the same way) = ALL the tracts the Fish and Wildlife Service OWNS in fee in that district, from its
     # own realty layer (INTTYPE1 = 'F'), one multi-part outline; EASEMENT tracts (private farmland) are never part of it
-    wmd = [ref for ref, p in parks.items() if re.search(r'wetland management district', p.get('n') or '', re.I) and not p.get('m')]
+    # 26 Nov 2026 (Fable's review finding 4, US-0356 Big Stone): with today's FWS realty layer file on hand, EVERY district is
+    # drawn from the agency's own fee tracts, also one that already has rows (before: only a district with no rows, so a park
+    # that came in with a few old rows never got its other tracts). Without the layer file (the live read) it stays as it was.
+    _lay_fws_all = [a for a in recs if a.get('_fresh') and _sl_layer(_oid(a)) == 'fws' and (a.get('SA') or {}).get('CMPXNAME')]
+    wmd = [ref for ref, p in parks.items() if re.search(r'wetland management district', p.get('n') or '', re.I) and (_lay_fws_all or not p.get('m'))]
     nwmd = wmd_no = 0
     for ref in wmd:
         core = re.sub(r'\s*(wpa\s+)?wetland management district.*$', '', parks[ref]['n'], flags=re.I).strip().upper().replace("'", "''")
@@ -3894,7 +3909,7 @@ def run(st):
         # R5 (grade 25 Nov 9:51 AM): the realty layer sits on a saved-copy-only host, so the live read below always got 0. With the
         # full layer file's fws records (FWS realty fields kept by kpc_store_attrs) the district's tracts come from them, the SAME
         # filter: complex = '<core> WETLAND MANAGEMENT DISTRICT', a Waterfowl Production Area, owned in fee ('O'; never 'E').
-        _lay_fws = [a for a in recs if a.get('_fresh') and _sl_layer(_oid(a)) == 'fws' and (a.get('SA') or {}).get('CMPXNAME')]
+        _lay_fws = _lay_fws_all   # read once for every district (speed)
         if _lay_fws:
             _cx = re.compile(re.escape(core.replace("''", "'")) + r'.*WETLAND MANAGEMENT DISTRICT', re.I)
             m = []
@@ -3913,6 +3928,7 @@ def run(st):
             if m:
                 parks[ref]['m'] = sorted(m, key=lambda x: -x[2]); parks[ref].pop('c', None); nwmd += 1
             continue
+        if parks[ref].get('m'): continue   # the live read below only for a district with no rows (as before)
         while True:
             try: j, _pg = fetch_geo(FWS, dict(q, resultOffset=off_))
             except Exception as e: notice(f'US key {st}', f'{ref} wetland district tracts not read ({str(e)[:60]})'); bad_ = True; break  # noqa: BLE001
@@ -4301,6 +4317,9 @@ def run(st):
     # that HAD an outline keeps it when NONE of its old land is in what this run read. A join the new rules turned down
     # (its land is here, just not matched) is not kept; a person's 'no' always wins.
     try:
+        # 26 Nov 2026 (grade 4:22 PM, KPC_NO_WEBSITE_CARRY): the website key's rows were read on another day; with this switch on
+        # they are never carried into the new key (they stay a comparison in the PC report). Today's layer files decide.
+        if _kr('KPC_NO_WEBSITE_CARRY'): raise FileNotFoundError
         old = json.load(open(OUT / f'US-{st}.json')).get('parks', {})
         if _kr('KPC_STORE_FRESH'): old = fresh_old_parks(old, _alias, recs)   # round 15: old row numbers are not ids
         ids_here = {_oid(a) for a in recs}; kept = 0
@@ -4355,6 +4374,7 @@ def run(st):
     # change asks to re-match saved ids (KPC_KEY_REMATCH_IDS=1, from .github/us-key-rule-scope.json 'saved_ids': true).
     if os.environ.get('KPC_KEY_REMATCH_IDS') != '1':
         try:
+            if _kr('KPC_NO_WEBSITE_CARRY'): raise FileNotFoundError   # 26 Nov: no website-key carry
             old = json.load(open(OUT / f'US-{st}.json')).get('parks', {})
             _fresh_map = _kr('KPC_STORE_FRESH')
             if _fresh_map: old = fresh_old_parks(old, _alias, recs)   # round 15: old row numbers are not ids
@@ -4409,7 +4429,7 @@ def run(st):
     # Nov 9 evening (KZ4CP 5:41 PM CST): a park-scoped rule change re-reads this state only for the parks it names; every other park
     # here keeps its last published result (a person's override still applies as it is).
     _only = set((os.environ.get('KPC_KEY_ONLY_PARKS') or '').split())
-    if _only and st in (os.environ.get('KPC_KEY_ONLY_STATES') or '').split():
+    if _only and st in (os.environ.get('KPC_KEY_ONLY_STATES') or '').split() and not _kr('KPC_NO_WEBSITE_CARRY'):
         try:
             _old = json.load(open(OUT / f'US-{st}.json')).get('parks', {}); _kept = 0
             if _kr('KPC_STORE_FRESH'): _old = fresh_old_parks(_old, _alias, recs)   # round 16: old row numbers are not ids here either
@@ -4607,7 +4627,8 @@ def run(st):
                       + ', '.join(f'{v} {w}' for w, v in sorted((_po.get('why') or {}).items(), key=lambda x: -x[1]))
                       + f"; saved answers with no fingerprint: {sum(1 for x in FP_PROPOSALS if x[0] == st)}")
         _cr = {tuple(x) for x in CARRY_REFUSED if x[0] == st}
-        _line += f"; old rows not carried because their name does not fit the fresh record of that number: {len(_cr)}"
+        _crw = sum(1 for x in _cr if 'other land' in x[-1])
+        _line += f"; old rows not carried: {len(_cr)} ({_crw} would have named other land, {len(_cr) - _crw} the same record, matched again by the key's own rules)"
         notice(f'US key {st}', _line)
         for _env, _rows, _head in (('KPC_PIN_ONLY_LIST', PIN_ONLY, ['state', 'park', 'rows that left the map', 'why', 'layer_in_store',
                                                                     'old saved answer (hint only, to prove from agency data)']),
@@ -4617,7 +4638,7 @@ def run(st):
                                    ('KPC_REPOINTS', REPOINTS, ['state', 'park', 'saved row', 'old id', 'fresh id', 'how']),
                                    ('KPC_LISTED', LISTED, ['state', 'park', 'record id', 'why']),
                                    ('KPC_CARRY_LIST', sorted({tuple(x) for x in CARRY_REFUSED}), ['state', 'park', 'old id', "the old row's name",
-                                                                   'fresh id it would have named', "that record's name"])):
+                                                                   'fresh id it would have named', "that record's name", 'why'])):
             _fn = os.environ.get(_env) or ''
             if _fn and any(x[0] == st for x in _rows):   # the PC test's lists for the owner (never data/)
                 import csv as _csv
