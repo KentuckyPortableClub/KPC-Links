@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T14:06:40+00:00",
+ "updated": "2026-11-26T14:06:46+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
@@ -68,28 +68,6 @@
    "la": 36.1373,
    "lo": -82.3537,
    "found": "2026-11-21"
-  },
-  {
-   "ref": "US-13669",
-   "prog": "pota",
-   "name": "Clear Creek Greenway BLM Recreation Management Area",
-   "st": [
-    "CA"
-   ],
-   "la": 40.4938,
-   "lo": -122.467,
-   "found": "2026-11-19"
-  },
-  {
-   "ref": "US-13668",
-   "prog": "pota",
-   "name": "Quanduck Brook Wildlife Management Area",
-   "st": [
-    "CT"
-   ],
-   "la": 41.8324,
-   "lo": -71.811,
-   "found": "2026-11-19"
   }
  ]
 }
