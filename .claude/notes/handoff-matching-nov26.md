@@ -2,6 +2,41 @@
 
 Owner (Brandon, 26 Nov 1:41 AM): "new pc is taking over tomorrow". The new PC's folder is `C:\KPC_Map_Builder_Program`. The old chat was tied to the old PC (D:\KPC GITHUB TOOL and MOre), so a new chat starts on the new PC.
 
+## Done in the first new-PC chat (26 Nov ~1:45-3:00 AM CT)
+- **The copy is on C:, not G:.** Working folder `C:\KPC_Map_Builder_Program\KPC GITHUB TOOL and MOre`; Python 3.12 user install in
+  `C:\Users\brand\AppData\Local\Programs\Python\Python312`. The #380 note's move part says G:; the owner ran from C:.
+- **Copy checked (read only), all equal to the old PC:** 66 website keys + layers.json = sha256.json (ref main 31101d04); kit 25x
+  (.kit-main.txt, .done marker, all 41 zip files equal to what is installed); layer-records for all 66 areas, MN 11 / NY 8 layers complete;
+  layer-files 1,367 files 4.5 GB incl. 63 hand files; have\ MA/OH/ME hand files + .kpc-source.json; shapely 2.2.0, pyproj 3.8.0, pyshp 3.1.9,
+  numpy 2.5.5 (no pyogrio: only for Alaska). Leftovers in originals\: built-files.json, build-running-MN.txt (from before 25x; nothing
+  reads them; not in the sha list; left alone).
+- **MN test after the move (reports\test-2026-11-26-0153, kit 25x) = test-2026-11-25-2245** (MN REPORT block word for word, pin-only 3 same,
+  row-proof 239 rows same). **29.8 min vs 46.2 min** (same-land step 22.6 -> 14.2 min).
+- **Kit 26a on the PC, read back equal** (`kpc-kit-update-2026-11-26a.zip`, sha256 74003b3b4534...; sorts after 25x): #382 + #383 + #384 from
+  prep/speed-nov26 51e77372; US 5b6caa7b7e90, CA d0352dfc270b, world 167bf55f79a8; the 41-file layout of 25x, .kit-website-keys kept from 25x.
+  3.12 tests ALL PASS: batch16/17/18, speed_nov26, pc_kit_keep_nov25, same_land (+ selftest), round15, b1_refound, pc_kit_nov24.
+  **Owner next: START-HERE MN NY; REPORT must say US 5b6caa7b7e90. Compare park by park with test-2026-11-25-2245.**
+- **Housekeeping (owner 2:30 AM: "go ahead I approve ... make it nice and work great and dont let it get bloated"), on the PC, 25 files read
+  back equal; nothing was moved or deleted:**
+  - New `Tools\HOUSEKEEPING` (stdlib only): 1-SIZES (one line, sizes.csv kept to 200 lines), 2-CLEAN-UP (shows the list, YES, MOVES to
+    ARCHIVE, never deletes: added kit zips but the newest 2, reports but the newest 6 + test-2026-11-25-2245, .before copies but the newest per
+    file, top MOVE-PREP only when every file's sha256 equals Tools\MOVE-PREP, LAYER-GUIDE2.csv, 3 retired folders, old TO-CLAUDE zips),
+    3-UNDO-CLEAN-UP, 4-FIX-PATHS (D:\... or last-root.txt -> its own root; old lines in fix-paths-log.txt), 5-LAYER-GUIDE (kpc_layer_guide.py
+    v2: + whole-layer records/complete/made from the manifests, hand files, Layers-TIDY; LAYER-GUIDE.csv + searchable LAYER-GUIDE.html, saved
+    over), 6-BACK-UP (robocopy, relative). settings.txt: archive folder (the second drive goes here) and the counts. Never touched: Layers-TIDY,
+    Layers, originals, last-test, links, store results, have, PRIVATE. TEMP in the KPC folder empties files older than 7 days at panel start.
+  - `Tools\kpc_control_panel.py` 2026-11-26a: + LAYER-RECORDS button (it had none), section "7. Keep it tidy", size line in the header
+    (refreshed when a tool finishes), "kit waiting" hint; clean-up / undo / fix paths run alone. Same file as tools/pc-keys:
+    **PR it (+ the housekeeping folder) after the 26a test passes.**
+  - **D: paths -> C: (12 files):** store + world have-folders.txt, saved-outlines-folder.txt, open-data-portals.json local_folders
+    (kpc_research's default said D:), 2-fer settings.json, crosswalk agency-lists-folder.txt, old fers store-folder.txt, tidy folders.txt
+    (D:\layers now a note), hand helper originals-folder.txt (new; its default said D:), Tools\MOVE-PREP 3 bats. Heartbeat task (if used):
+    run 2-HEARTBEAT-ON once.
+- **Owner's call, not touched:** Layers-TIDY\Archive-pieces holds the same 4.15 GB zip twice; KPC-ID-crosswalk has 2 older store copies.
+- **Layout, after the 26a test:** rename `C:\KPC_Map_Builder_Program\KPC GITHUB TOOL and MOre` to one short name (e.g. `C:\KPC`), then
+  4-FIX-PATHS (tools find each other by place; re-add the folder in the Claude app). Numbered inner folders need kit changes (panel FOLDERS,
+  kpc_test_keys STORE, LAYER-RECORDS climb, crosswalk / page-reader / trace climbs): later.
+
 ## Who does what
 - This chat is the **BUILDER**, not the grader. The owner said twice: "your the builder not the grader". For every grader handoff, give the owner a **zip**: FOR-THE-GRADER.md, the patches and the tests. The grader grades; the owner merges.
 - **PC first, PR last** (agreed 25 Nov): a fix goes to the PC as a kit update and the owner tests it; one PR per batch that passed.
@@ -18,16 +53,16 @@ Owner (Brandon, 26 Nov 1:41 AM): "new pc is taking over tomorrow". The new PC's 
   - **#382** batch 17, base main. US -> 3b4a7d2fa8fb. Thin shapes are can't-tell (Old Croton), twin PAD-US copies are one land (Wertheim), same-ground records count once (Helen McNitt). Tool-only commits: each PC test keeps its keys and writes CHANGES-<area>.txt; kpc_padus_gdb.py (stays out of the kit until it has run once).
   - **#383** batch 18, base #382. US -> 2b181efdb282. MN DNR's own ids for state forests and parks; publish_keys clash fix (Florida sgflf had repeated keys); id file format 14. 26 more agency-id layers wait in AGENCY_ID_LATER until their state builds from the fresh store.
   - **#384** speed, base #383. US -> 5b6caa7b7e90. Same answers, much faster (MN PAD-US 300 records: 148 s -> 9 s). Rings filed by box, and grid points worked out once.
-- **No kit holds #382–#384 yet.** The next kit (25y or 26a) should hold all three for the owner's test on the new PC.
+- **Kit 26a holds #382–#384** (see above).
 
 ## First jobs on the new PC
-1. **Check what he copied** into C:\KPC_Map_Builder_Program against the old PC:
+1. DONE 26 Nov (see above). **Check what he copied** into C:\KPC_Map_Builder_Program against the old PC:
    - the 66 website keys + layers.json (sha256 list in links\.kit-website-keys\sha256.json)
    - kit version 25x
    - the store (kpc-outline-store-full\results\layer-files, plus have\)
    - originals\ (never written)
    - Python add-ons: shapely, pyproj, pyshp, numpy
-2. **Make the next kit** (#382 + #383 + #384). The owner runs START-HERE MN NY. Compare with test-2026-11-25-2245, park by park.
+2. DONE: kit 26a. **Make the next kit** (#382 + #383 + #384). The owner runs START-HERE MN NY. Compare with test-2026-11-25-2245, park by park.
 3. **Hand files in the store's have\:**
    - US-MA-sgmaa.geojson.gz, US-OH-sgoha/b/c.geojson, US-ME-sgmec.geojson, each with a .kpc-source.json.
    - Made from the owner's own downloads (Sonnet on his PC). The grader settled them as his downloads.
