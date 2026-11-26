@@ -433,6 +433,19 @@ def selftest():
         ok = ok and "::warning title=Store id fields::US-YY: 1 record id(s) not in the key's spelling" in buf.getvalue()
         for f_ in ('US-YY.layer-records.json.gz', 'US-XX.layer-records.json.gz'): os.remove(os.path.join(st, f_))
         ok = ok and e.get('_st') == 'US-ZZ' and d['records']['3422'].get('_pad') == {'Loc_Nm': 'TEST', 'GIS_Acres': 4}   # format 7
+        # 26 Nov (speed, grade of #388): --areas reads only the named areas' files; the doc says which
+        with gzip.open(os.path.join(st, 'US-WW.layer-records.json.gz'), 'wt') as f:
+            json.dump({'kpcstore_layers': 1, 'area': 'US-WW', 'manifest': {'fws': {'complete': True, 'source_count': 1, 'store_count': 1}},
+                       'records': [{'key': 'fws9', 'layer': 'fws', 'record_id': '9', 'record_name': 'Other WPA', 'q': 6,
+                                    'rings': [[-95700000, 46700000, 10000, 0, 0, 10000, -10000, 0, 0, -10000]], 'attributes': {}}]}, f)
+        o3 = os.path.join(t, 'c.json.gz')
+        with contextlib.redirect_stdout(io.StringIO()): run(st, o3, gh, '2026-11-26', areas={'US-ZZ'})
+        d3 = json.load(gzip.open(o3, 'rt'))
+        ok = ok and d3.get('areas') == ['US-ZZ'] and 'fws4026' in d3['records'] and 'fws9' not in d3['records'] and 'US-WW' not in d3['manifest']
+        o4 = os.path.join(t, 'd.json.gz')
+        with contextlib.redirect_stdout(io.StringIO()): run(st, o4, gh, '2026-11-26')
+        d4 = json.load(gzip.open(o4, 'rt'))
+        ok = ok and d4.get('areas') == 'all' and 'fws9' in d4['records']
     print('selftest', 'ALL PASS' if ok else 'FAIL ' + json.dumps(d['records']) + ' ' + json.dumps(d.get('refound')))
     return 0 if ok else 1
 

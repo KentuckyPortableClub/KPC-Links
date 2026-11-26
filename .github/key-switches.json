@@ -37,6 +37,7 @@
     "KPC_PROVEN_ONLY": {"on": ["MN", "NY"]},
     "KPC_STORE_FRESH": {"on": ["MN", "NY"]},
     "KPC_SAVED_HINTS_ONLY": {"on": ["MN", "NY"]},
-    "KPC_NO_WEBSITE_CARRY": {"on": ["MN", "NY"]}
+    "KPC_NO_WEBSITE_CARRY": {"on": ["MN", "NY"]},
+    "KPC_FRESH_ONLY": {"on": ["MN", "NY"]}
   }
 }

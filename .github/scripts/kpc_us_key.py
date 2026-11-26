@@ -2783,7 +2783,12 @@ def fresh_records(st, recs, P):
     store_layers = {lay for lay in held_layers if (man.get(lay) or {}).get('complete')}
     this_run = CMODE != 'only'
     progress(st, f'same-land proof: {len(recs):,} old records against {len(ents):,} fresh layer-file records')
-    for _pgn, a in enumerate(recs, 1):
+    # 26 Nov 2026 (grade of #388; owner 4:18 PM 'efficiency in all aspects'; switch KPC_FRESH_ONLY): with no website-key carry and
+    # saved answers as hints only, nothing needs an old record's fresh twin: the key is built strictly from today's layer files and
+    # every old record of a complete layer is a hint (never drawn). The old-to-fresh proof loop (24,669 proofs in MN) is skipped.
+    _fresh_only = _kr('KPC_FRESH_ONLY')
+    if _fresh_only: progress(st, 'fresh only: old records are hints, no old-to-fresh proof')
+    for _pgn, a in enumerate([] if _fresh_only else recs, 1):
         progress(st, 'same-land proof: old records', _pgn, len(recs))
         i = _oid(a)
         lay = _sl_layer(i)
@@ -4605,6 +4610,14 @@ def run(st):
     # KPC owner, 20 Nov 2026 (APPROVED): match by more than name. Raises (the state is held) on a missing facts file or an error.
     progress(st, 'match checks (store fields, proven-only gate)')
     _mc = match_checks_pass(st, parks, recs, P, used)
+    # 26 Nov 2026 (grade of #388): an outer line never draws, with or without the proven-only gate
+    _ol = 0
+    for _ref, _p in parks.items():
+        _ox = [x for x in _p.get('m') or [] if isinstance(x, (list, tuple)) and x and _sl_layer(x[0]) in OUTER_LINE]
+        if not _ox: continue
+        _p['m'] = [x for x in _p['m'] if x not in _ox]; _ol += len(_ox)
+        _p['c'] = list(_p.get('c') or []) + [[x[0], x[1], x[2], 'check: ' + OUTER_LINE[_sl_layer(x[0])]] for x in _ox]
+    if _ol: notice(f'US key {st}', f'{_ol} outer-line row(s) taken off (rule 1b: drawn from the agency\'s own land only)')
     progress(st, 'match checks done')
     if st in SAME_HOW or 'proven_only' in (_mc or {}):   # 25 Nov 2026: the better matcher's one line per state
         _sh, _po = SAME_HOW.get(st) or {}, (_mc or {}).get('proven_only') or {}
