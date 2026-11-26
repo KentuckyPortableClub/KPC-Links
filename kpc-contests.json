@@ -1,64 +1,6 @@
 {
- "updated": "2026-11-25T11:09:39Z",
+ "updated": "2026-11-25T20:12:15Z",
  "week": [
-  {
-   "name": "A1Club AWT",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003grtsr",
-   "when": "1145Z-1300Z, Nov 25",
-   "segs": [
-    [
-     "2026-11-25T11:45Z",
-     "2026-11-25T13:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ggoea",
-   "when": "1300Z-1400Z, Nov 25",
-   "segs": [
-    [
-     "2026-11-25T13:00Z",
-     "2026-11-25T14:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 40",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gsonr",
-   "when": "1700Z-1759Z, Nov 25",
-   "segs": [
-    [
-     "2026-11-25T17:00Z",
-     "2026-11-25T17:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 80",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gtjiw",
-   "when": "1800Z-1859Z, Nov 25",
-   "segs": [
-    [
-     "2026-11-25T18:00Z",
-     "2026-11-25T18:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "CWops Test (CWT)",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ghj9e",
@@ -1964,7 +1906,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (25)",
+  "WA7BNM": "ok (21)",
   "CORRAL": "ok (44)"
  }
 }

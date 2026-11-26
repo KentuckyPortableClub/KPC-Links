@@ -800,6 +800,11 @@
    "d": "2026-11-11",
    "src": "world"
   },
+  "FR-4491": {
+   "n": "Du Cheiron Biological Reserve",
+   "d": "2026-11-25",
+   "src": "world"
+  },
   "FR-4503": {
    "n": "Gare D'Argol Biological Reserve",
    "d": "2026-11-13",
@@ -10302,5 +10307,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-24"
+ "updated": "2026-11-25"
 }
