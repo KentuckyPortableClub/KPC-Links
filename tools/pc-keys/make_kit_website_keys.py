@@ -5,7 +5,7 @@ website copies (key builder files\\originals) before it builds. Run from the KPC
   python3 tools/pc-keys/make_kit_website_keys.py <out folder> [--ref origin/main] [--copy US-MN.json US-NY.json ...]
 
 Writes <out>/sha256.json = {'ref': <commit>, 'files': {name: sha256}} for every website key file at that commit (data/us-key/US-*.json,
-data/ca-key/CA-*.json, data/ky-answer-key.json), and a copy of each file named after --copy (the states whose PC copy is wrong or
+data/ca-key/CA-*.json, data/ky-answer-key.json) and the layer prefix table (layers.json, always copied), and a copy of each file named after --copy (the states whose PC copy is wrong or
 missing). Reads git only; writes only into <out>."""
 import hashlib, json, pathlib, subprocess, sys
 
@@ -26,6 +26,9 @@ def main(argv):
         b = subprocess.check_output(['git', 'show', f'{commit}:{path}'])
         files[nm] = hashlib.sha256(b).hexdigest()
         if nm in copy: (out / nm).write_bytes(b)
+    # the layer prefix table (data/us-key/layers.json): a build writes it; every test starts from the website's (batch 16)
+    b = subprocess.check_output(['git', 'show', f'{commit}:data/us-key/layers.json'])
+    files['layers.json'] = hashlib.sha256(b).hexdigest(); (out / 'layers.json').write_bytes(b)
     (out / 'sha256.json').write_text(json.dumps({'ref': commit, 'files': files}, indent=1, sort_keys=True), encoding='utf-8')
     print(f'{len(files)} website key file(s) listed at {commit[:8]}; copies: {", ".join(c for c in copy if c in files) or "none"}')
 

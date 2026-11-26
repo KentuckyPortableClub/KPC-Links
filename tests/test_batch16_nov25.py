@@ -122,8 +122,25 @@ try:
 finally:
     os.chdir(_cwd)
 bl = [x[0] for x in hs['XS'] if 'BluelinePolygon' in x[1]]
+# the owner's PC: a build had written layers.json with the polygon as 'sgnye'; the table's prefix must still win
+with tempfile.TemporaryDirectory() as td:
+    td = pathlib.Path(td)
+    import shutil as _sh
+    _sh.copytree(ROOT / 'data', td / 'data', ignore=_sh.ignore_patterns('*.gz', 'outlines', 'trails', 'world-key', 'ca-key', 'access*', 'pota', 'tracts'))
+    lj = json.loads((td / 'data/us-key/layers.json').read_text())
+    lj['sgnye'] = ['https://services2.arcgis.com/8krRUWgifzA4cgL3/ArcGIS/rest/services/BluelinePolygon/FeatureServer/0/query', '', 'x']
+    (td / 'data/us-key/layers.json').write_text(json.dumps(lj))
+    os.chdir(td)
+    try:
+        hs2 = {'__name__': 'kpc_us_key_part', '__file__': str(ROOT / '.github/scripts/kpc_us_key.py')}
+        with contextlib.redirect_stdout(io.StringIO()): exec(compile(src[:src.index('\nidx = {}')], 'kpc_us_key.py', 'exec'), hs2)
+    finally:
+        os.chdir(_cwd)
+bl2 = [x[0] for x in hs2['XS'] if 'BluelinePolygon' in x[1]]
 check(f"4: the APA polygon layer keeps the prefix its store records carry ('sgnyc', not a new one: {bl}) and its fixed name",
       bl == ['sgnyc'] and hs['FIXED_NAME'].get('sgnyc') == 'Adirondack Park' and sorted(x[0] for x in hs['XS'] if x[0].startswith('sgny')) == ['sgnya', 'sgnyb', 'sgnyc', 'sgnyd'])
+check(f"4: ... also when a build's layers.json already names the polygon 'sgnye' (the owner's PC): still 'sgnyc' ({bl2})",
+      bl2 == ['sgnyc'] and hs2['FIXED_NAME'].get('sgnyc') == 'Adirondack Park')
 
 # ---- 5: a fresh record carries its layer's second name (US-2077 Honeoye Lake State Park) -----------------------------------------
 with tempfile.TemporaryDirectory() as td:

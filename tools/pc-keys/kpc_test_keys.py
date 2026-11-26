@@ -277,6 +277,28 @@ def web_copy(kf):
     return ORIG / name if (ORIG / name).is_file() else None
 
 
+def links_path(name):
+    """Where a website key file lives in links\\ (as on GitHub)."""
+    if name == 'layers.json' or name.startswith('US-'): return LINKS / 'data' / 'us-key' / name
+    if name.startswith('CA-'): return LINKS / 'data' / 'ca-key' / name
+    return LINKS / 'data' / name
+
+
+def put_back_website_copies():
+    """Batch 16 (the owner's PC, 25 Nov evening: links\\data\\us-key still held the 24 Nov all-states test's keys of the other 49
+    areas, and layers.json as the 2:28 PM test wrote it, so a MN / NY build read them: cross-state marks, layer prefixes). Before
+    anything is built, EVERY website file the kit lists goes back into links\\ from its trusted copy (web_copy), so each test
+    starts from the website's state, as GitHub does. Returns how many were put back. originals is only read."""
+    n = 0
+    for name in _web_shas():
+        w = web_copy(name)
+        if not w: continue
+        dst = links_path(name)
+        if dst.is_file() and dst.read_bytes() == w.read_bytes(): continue
+        dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(w, dst); n += 1
+    return n
+
+
 def website_copies_check():
     """Batch 16 item 4 (grade of #380, 25 Nov): before ANY state is built, every website key file the kit lists (66: the US
     states, Canada's provinces, Kentucky) must have a trusted copy (web_copy: the kit's own copy or originals, sha256 equal to
@@ -431,6 +453,8 @@ def main(argv):
         (rep / 'REPORT.txt').write_text('\n'.join(msg) + '\n', encoding='utf-8')
         [say(l) for l in msg]
         return
+    _pb = put_back_website_copies()   # batch 16: every test starts from the website's files, not an earlier test's
+    if _pb: say(f'  {_pb} file(s) put back to the website copy before the build (an earlier test had changed them)')
     attrs = store_attrs() if any(s != 'KY' for s in order) else ''
     if attrs is None:
         say('STOPPED: the agency id fields could not be read from the outline store (kpc_store_attrs.py failed; see above). '

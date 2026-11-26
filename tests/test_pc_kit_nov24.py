@@ -96,10 +96,22 @@ with tempfile.TemporaryDirectory() as t:
     check('one wrong (or missing) website copy of the 66 is found before anything is built', K.website_copies_check() == ['US-YY.json'])
     (K.LINKS / K.KITWEB_NAME / 'sha256.json').write_text(json.dumps({'files': {'US-ZZ.json': web_sha}}))
     check('all listed copies good = nothing to stop', K.website_copies_check() == [])
+    # batch 16: before building, EVERY listed website file goes back into links\ (other areas, layers.json), not only the built state
+    other = K.LINKS / 'data' / 'us-key' / 'US-YY.json'; other_web = json.dumps({'parks': {'Y-1': park(['yy1'], 0.1)}})
+    (K.ORIG / 'US-YY.json').write_text(other_web); other.write_text('{"parks": {}}')   # an earlier test's output
+    lj_web = '{"sgzza": ["https://x.example/0/query", "NAME", "x"]}'
+    (K.LINKS / K.KITWEB_NAME / 'layers.json').write_text(lj_web); (K.LINKS / 'data' / 'us-key' / 'layers.json').write_text('{"sgzzb": []}')
+    sha_ = lambda t: __import__('hashlib').sha256(t.encode()).hexdigest()
+    (K.LINKS / K.KITWEB_NAME / 'sha256.json').write_text(json.dumps({'files': {'US-ZZ.json': web_sha, 'US-YY.json': sha_(other_web), 'layers.json': sha_(lj_web)}}))
+    o2 = snap()
+    n = K.put_back_website_copies()
+    check(f'every listed website file is put back before the build: another area and layers.json ({n})',
+          other.read_text() == other_web and (K.LINKS / 'data' / 'us-key' / 'layers.json').read_text() == lj_web and n == 2)
+    check('putting back never writes into originals', snap() == o2)
     msrc = (ROOT / 'tools' / 'pc-keys' / 'kpc_test_keys.py').read_text(encoding='utf-8')
     mm = msrc[msrc.index('def main(argv):'):]
     check('main() checks every website copy first and stops with nothing built',
-          mm.index('website_copies_check()') < mm.index('store_attrs()') < mm.index('run_state(') and 'Nothing was built.' in mm)
+          mm.index('website_copies_check()') < mm.index('put_back_website_copies()') < mm.index('store_attrs()') < mm.index('run_state(') and 'Nothing was built.' in mm)
     K.run_build, K.say = real_build, real_say
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
