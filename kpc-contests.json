@@ -1,68 +1,6 @@
 {
- "updated": "2026-11-25T20:12:15Z",
+ "updated": "2026-11-26T11:20:00Z",
  "week": [
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ghj9e",
-   "when": "1900Z-2000Z, Nov 25",
-   "segs": [
-    [
-     "2026-11-25T19:00Z",
-     "2026-11-25T20:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "UKEICC 80m Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fagef",
-   "when": "2000Z-2100Z, Nov 25",
-   "segs": [
-    [
-     "2026-11-25T20:00Z",
-     "2026-11-25T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gie4i",
-   "when": "0300Z-0400Z, Nov 26",
-   "segs": [
-    [
-     "2026-11-26T03:00Z",
-     "2026-11-26T04:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gj8zm",
-   "when": "0700Z-0800Z, Nov 26",
-   "segs": [
-    [
-     "2026-11-26T07:00Z",
-     "2026-11-26T08:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "RSGB 80m Autumn Series, CW",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g7w0a",
@@ -308,6 +246,130 @@
     ]
    ],
    "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QRP Fox Hunt",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gy1eu",
+   "when": "0200Z-0330Z, Dec 2",
+   "segs": [
+    [
+     "2026-12-02T02:00Z",
+     "2026-12-02T03:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Phone Weekly Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hj9cx",
+   "when": "0230Z-0300Z, Dec 2",
+   "segs": [
+    [
+     "2026-12-02T02:30Z",
+     "2026-12-02T03:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "A1Club AWT",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hkc17",
+   "when": "1145Z-1300Z, Dec 2",
+   "segs": [
+    [
+     "2026-12-02T11:45Z",
+     "2026-12-02T13:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003h8jhe",
+   "when": "1300Z-1400Z, Dec 2",
+   "segs": [
+    [
+     "2026-12-02T13:00Z",
+     "2026-12-02T14:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003h2jki",
+   "when": "1700Z-2100Z, Dec 2",
+   "segs": [
+    [
+     "2026-12-02T17:00Z",
+     "2026-12-02T21:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 40",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hlelz",
+   "when": "1700Z-1759Z, Dec 2",
+   "segs": [
+    [
+     "2026-12-02T17:00Z",
+     "2026-12-02T17:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 80",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hmh6w",
+   "when": "1800Z-1859Z, Dec 2",
+   "segs": [
+    [
+     "2026-12-02T18:00Z",
+     "2026-12-02T18:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003h9m2a",
+   "when": "1900Z-2000Z, Dec 2",
+   "segs": [
+    [
+     "2026-12-02T19:00Z",
+     "2026-12-02T20:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
    "kinds": [],
    "src": "WA7BNM"
   }
@@ -1071,24 +1133,6 @@
    "src": "CORRAL",
    "bands": "3.5-28",
    "exch": "RS(T), age (avg age for multiops)"
-  },
-  {
-   "name": "UKEICC 80m Contest",
-   "url": "https://www.ukeicc.com",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-25T20:00Z",
-     "2026-11-25T21:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5",
-   "exch": "6-char grid"
   },
   {
    "name": "RSGB 80m Autumn Series, CW",
@@ -1906,7 +1950,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (21)",
-  "CORRAL": "ok (44)"
+  "WA7BNM": "ok (25)",
+  "CORRAL": "ok (43)"
  }
 }
