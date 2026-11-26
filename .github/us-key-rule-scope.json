@@ -1022,6 +1022,20 @@
     "parks": []
    },
    "approved": "APPROVED, decided_by KPC owner, 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'; grade 26 Nov 1:09 AM: the speed work may be built once a side-by-side test shows the same answers"
+  },
+  {
+   "id": "2026-11-26-old-number-never-alone",
+   "when": "2026-11-26",
+   "from": "5b6caa7b7e90",
+   "why": "Fable's review finding 1 (26 Nov): 16 MN state forests drew another forest's land in the PC test (US-4815 Northwest Angle on Big Fork's record sgmnb6). Old key rows (the website key, read on another day) carry row numbers; since batch 18 the fresh MN forest records are spelled with the agency number (SFT00006 -> sgmnb6), so an old number could name another forest. Now an old number never crosses alone, in every state and layer: (1) fresh_old_parks: an old row lands on a fresh record only when the row's own name is one of the record's names (unnamed: size within 10%); else it names its old hint or leaves; an old number with no proven twin that a fresh record now carries never names it (the same test as repoint_saved); (2) the proven-only gate checks EVERY drawn fresh row the same way, whatever proved the park (before: only parks proven by name); (3) the same-land view cache is keyed by the record too. Refused rows are listed (KPC_CARRY_LIST) and counted. Proof or the pin: a refused row leaves the map, the key's own matching still finds the right record.",
+   "scope": {
+    "states": [
+     "MN",
+     "NY"
+    ],
+    "parks": []
+   },
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 2:54 PM: 'do you want to fix it or just talk about it??' and 'Fix as in this will not happen anywhere else either...'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }

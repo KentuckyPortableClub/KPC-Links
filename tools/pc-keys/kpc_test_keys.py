@@ -282,6 +282,7 @@ def run_build(st, rep, attrs):
                        KPC_PIN_ONLY_LIST=str(rep / 'pin-only-parks.csv'), KPC_REPOINTS=str(rep / 'saved-answers-moved.csv'),
                        KPC_LISTED=str(rep / 'rows-kept-but-listed.csv'), KPC_NOSTORE_LIST=str(rep / 'layers-not-in-store.csv'),
                        KPC_GAP_LIST=str(rep / 'layers-not-complete.csv'),
+                       KPC_CARRY_LIST=str(rep / 'old-rows-not-carried.csv'),   # 26 Nov: old rows whose name does not fit the fresh record of that number
                        KPC_PROOF_LIST=str(rep / 'row-proof.csv'))   # R6: why each old row of a park that lost rows did or did not prove   # 25 Nov (owner 8:48 AM): a state stops on a gap
             cmd = [sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py']
     kept = []
@@ -448,6 +449,33 @@ def run_state(st, rep, attrs, tot):
     return _run_state(st, rep, attrs, tot)
 
 
+def wrong_land_lines(kf, rep):
+    """26 Nov 2026 (owner 2:54 PM; Fable's review: cheap checks that would have caught the 16 MN forests). On the NEW key:
+    (1) one record id on two parks under two different names (a record has one name, so one of them is other land): a PROBLEM;
+    (2) how many old rows the builder refused because their name did not fit the fresh record of that number (its own check on
+    every drawn row: old-rows-not-carried.csv). Lists go to WRONG-LAND-<tag>.txt; the report gets the counts."""
+    d = load(kf) or {}
+    def nk(t): return re.sub(r'[^a-z0-9]', '', str(t or '').lower())
+    by_id = {}
+    for ref, row in sorted((d.get('parks') or {}).items()):
+        if not isinstance(row, dict): continue
+        for x in row.get('m') or []:
+            if not isinstance(x, (list, tuple)) or len(x) < 2 or not nk(x[1]): continue
+            by_id.setdefault(str(x[0]), {}).setdefault(nk(x[1]), []).append((ref, str(x[1])))
+    two = [f'  {i}: ' + '; '.join(f'{r} "{n}"' for v in names.values() for r, n in v[:3]) for i, names in sorted(by_id.items()) if len(names) > 1]
+    tag = kf.stem
+    (rep / f'WRONG-LAND-{tag}.txt').write_text('\n'.join(
+        [f'{tag}: one record id on two parks under two names ({len(two)}): one of them is other land. FIX BEFORE ANY BUILD.'] + two) + '\n',
+        encoding='utf-8')
+    st = tag.split('-')[-1]
+    cf = rep / 'old-rows-not-carried.csv'
+    nc = sum(1 for l in cf.read_text(encoding='utf-8').splitlines()[1:] if l.startswith(st + ',')) if cf.is_file() else 0
+    out = [f'  wrong-land check: one id on two parks under two names {len(two)} (list: WRONG-LAND-{tag}.txt); '
+           f'old rows refused because their name did not fit that record {nc} (list: old-rows-not-carried.csv)']
+    if two: out.append(f'  PROBLEM: {len(two)} record id(s) sit on two parks under two names. Tell Claude.')
+    return out
+
+
 def _run_state(st, rep, attrs, tot):
     say(f'  building {st} ... (its progress lines show below)')
     t0 = time.time()
@@ -476,6 +504,10 @@ def _run_state(st, rep, attrs, tot):
             for k, v in n.items(): tot[k] = tot.get(k, 0) + v
         else:
             lines.append(f'  {tag}: no website key to compare with')
+        try:
+            lines += wrong_land_lines(kf, rep)
+        except Exception as e:  # noqa: BLE001
+            lines.append(f'  wrong-land check not run ({type(e).__name__}: {str(e)[:120]})')
         if (LAST / kf.name).is_file():
             lines += compare(f"{tag} against this PC's last test", LAST / kf.name, kf)[0]
         shutil.copy2(kf, LAST / kf.name)

@@ -2624,6 +2624,10 @@ def proven_only_gate(st, parks, byid, skip=(), facts=None):
                 if cls != 'code': why = 'layer not in store (or not complete there): only the old saved copy reads this record'
             elif fresh_on and (rec is None or not rec.get('_fresh')) and cls != 'code':
                 why = 'only in the old saved copy: no fresh store record proves this land'
+            elif fresh_on and rec is not None and rec.get('_fresh') and not carry_fits(q, rec):
+                # 26 Nov 2026 (owner 2:54 PM; Fable finding 1, check 2): every drawn row, however it got here and whatever
+                # proved the park: the row's own name must be this record's name (unnamed: its size), else other land holds it
+                why = "the row's name is not this record's name: other land holds this number now"
             elif fps == 'nofit':
                 why = "a person's saved join, but other land holds this record number now"
             elif SAME_STATE.get(rid) == 'conflict' and status != 'confirmed':
@@ -2736,6 +2740,7 @@ def fresh_records(st, recs, P):
     The fresh records carry '_fresh'. Returns (records, {old id: fresh id}). Nothing is fetched."""
     record_attrs()
     area = f'US-{st}'
+    CARRY_ST[0] = st
     OLD_BOX.clear()   # S2: the old land's boxes, by the old copy's own ids (a fresh record that now carries a number never stands in)
     for a in recs:
         b_ = a.get('_bb') or SL.box_of(SL.rings_of(a.get('_g')))
@@ -2844,6 +2849,28 @@ def fresh_records(st, recs, P):
     return out + nostore + hints, alias
 
 
+CARRY_ST = ['']   # the state fresh_records last joined (fresh_old_parks runs right after it for the same state)
+CARRY_REFUSED = []   # 26 Nov 2026: [state, park, old id, the old row's name, the fresh id it would have named, that record's name]
+
+
+def carry_fits(x, rec):
+    """26 Nov 2026 (owner 2:54 PM; Fable finding 1): may an OLD key row x ([id, name, acres, ...]) stand on fresh record rec? Only
+    when the row's own name is one of the record's names (spelling aside, or one holds the other, 6 letters or more), or, when
+    the row has no real name, when its size is within 10% of the record's. A number alone never decides (rule sheet: row
+    numbers are not ids)."""
+    nm = str(x[1]) if len(x) > 1 and x[1] is not None else ''
+    names = {SL.name_key(v) for v in (rec.get('Unit_Nm'), rec.get('Loc_Nm'), rec.get('_nm')) if v and not SL.generic(v)}
+    names |= {SL.name_key(v) for v in (rec.get('_nms') or []) if v and not SL.generic(v)}
+    if nm and not SL.generic(nm):
+        k = SL.name_key(nm)
+        return any(k == v or (min(len(k), len(v)) >= 6 and (k in v or v in k)) for v in names)
+    try:
+        a0, a1 = float(x[2] or 0) if len(x) > 2 else 0.0, float(rec.get('GIS_Acres') or 0)
+    except (TypeError, ValueError):
+        return False
+    return a0 > 0 and a1 > 0 and abs(a0 - a1) <= 0.10 * max(a0, a1) + 0.5
+
+
 def fresh_old_parks(old, alias, recs):
     """Round 15 (KPC owner, 25 Nov 2026, 2:28 PM MN test: Minnesota Valley SRA US-7145 lost 339 pieces; 419 'check (D1): this saved
     record id now holds other land' rows): the website key's rows carry the OLD copy's row numbers, and an agency's row numbers move
@@ -2851,12 +2878,15 @@ def fresh_old_parks(old, alias, recs):
     (the saved-id carry, t915u; the keep-last-good guard) follow each old row to its PROVEN fresh record (alias: old id -> fresh id,
     kpc_same_land) with that record's own size; an old row with no proven twin names its old HINT record ('<id>~old' when a fresh
     record took its number), so the gate never draws it. The park's 'twin' ids follow the same way. Returns a new dict."""
-    if not alias: return old
     by = {_oid(a): a for a in recs}
+    if not alias and not any(a.get('_fresh') for a in recs): return old
     def mp(i):
         i = str(i)
         if i in alias: return alias[i]
         if i + '~old' in by: return i + '~old'
+        # 26 Nov (grade, finding 1): the same test as repoint_saved: an old number with no proven twin that a FRESH record now
+        # carries (an agency id spelled like an old row number) never names that record; with no hint to name, the row leaves
+        if (by.get(i) or {}).get('_fresh'): return None
         return i
     out = {}
     for ref, op in (old or {}).items():
@@ -2866,6 +2896,20 @@ def fresh_old_parks(old, alias, recs):
         for x in op['m']:
             if not isinstance(x, (list, tuple)) or not x: m.append(x); continue
             n = mp(x[0])
+            if n is None:
+                CARRY_REFUSED.append([CARRY_ST[0], ref, str(x[0]), str(x[1]) if len(x) > 1 else '', str(x[0]), MC.rec_name(by.get(str(x[0])) or {})])
+                continue
+            # 26 Nov 2026 (owner 2:54 PM 'fix as in this will not happen anywhere else either'; Fable's review finding 1): the
+            # website key and the old saved copy were read on different days and number their rows differently (MN forests: the
+            # website's row 14 is Northwest Angle, the saved copy's row 14 is Big Fork), so an old number never crosses alone. A row
+            # lands on a fresh record only when the row's OWN name (or, unnamed, its size) fits that record; else it names its old
+            # hint ('~old', never drawn) or leaves. Every state, every layer, every old number.
+            r0 = by.get(n)
+            if r0 is not None and r0.get('_fresh') and not carry_fits(x, r0):
+                CARRY_REFUSED.append([CARRY_ST[0], ref, str(x[0]), str(x[1]) if len(x) > 1 else '', n, MC.rec_name(r0)])
+                h_ = str(x[0]) + '~old'
+                if h_ not in by: continue
+                n = h_
             if n in seen: continue   # two old rows proven to ONE fresh record: the land once
             seen.add(n)
             r = by.get(n)
@@ -4548,6 +4592,8 @@ def run(st):
                       + f"; {_po.get('listed', 0)} row(s) kept but listed (another agency id on the ground); why rows left: "
                       + ', '.join(f'{v} {w}' for w, v in sorted((_po.get('why') or {}).items(), key=lambda x: -x[1]))
                       + f"; saved answers with no fingerprint: {sum(1 for x in FP_PROPOSALS if x[0] == st)}")
+        _cr = {tuple(x) for x in CARRY_REFUSED if x[0] == st}
+        _line += f"; old rows not carried because their name does not fit the fresh record of that number: {len(_cr)}"
         notice(f'US key {st}', _line)
         for _env, _rows, _head in (('KPC_PIN_ONLY_LIST', PIN_ONLY, ['state', 'park', 'rows that left the map', 'why', 'layer_in_store',
                                                                     'old saved answer (hint only, to prove from agency data)']),
@@ -4555,7 +4601,9 @@ def run(st):
                                    ('KPC_PROOF_LIST', PROOF_ROWS, ['state', 'park', 'old id', 'layer', 'rough outline', 'best fresh candidate',
                                                                    'level or why', 'left the map']),   # R6
                                    ('KPC_REPOINTS', REPOINTS, ['state', 'park', 'saved row', 'old id', 'fresh id', 'how']),
-                                   ('KPC_LISTED', LISTED, ['state', 'park', 'record id', 'why'])):
+                                   ('KPC_LISTED', LISTED, ['state', 'park', 'record id', 'why']),
+                                   ('KPC_CARRY_LIST', sorted({tuple(x) for x in CARRY_REFUSED}), ['state', 'park', 'old id', "the old row's name",
+                                                                   'fresh id it would have named', "that record's name"])):
             _fn = os.environ.get(_env) or ''
             if _fn and any(x[0] == st for x in _rows):   # the PC test's lists for the owner (never data/)
                 import csv as _csv

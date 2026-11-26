@@ -62,7 +62,7 @@ check("B: an old row with no proven twin names its old HINT ('~old' when a fresh
       any(x[0] == 'sgzze9001~old' for x in m))
 check('B: a PAD-US id stays a number; the twin ids follow the same way; a park with no rows is left alone',
       any(x[0] == 237576 and x[2] == 900 for x in m) and new['US-9200']['twin'] == ['sgzze3050'] and new['US-9201'] == old['US-9201'])
-check('B: nothing moves when there is no fresh source (no alias)', fop(old, {}, recs) is old)
+check('B: nothing moves when there is no fresh source (no alias, no fresh record)', fop(old, {}, [dict(a, _fresh=False) for a in recs]) is old)
 run_ = src[src.index('def run(st):'):]
 check('B: the keep-last-good guard and the saved-id carry both read the website key through fresh_old_parks',
       run_.count('fresh_old_parks(old, _alias, recs)') == 2 and '_alias = {}' in run_[:run_.index("recs, _alias = fresh_records(")])

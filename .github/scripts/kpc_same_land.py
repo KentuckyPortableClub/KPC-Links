@@ -539,9 +539,9 @@ _VIEWS = {}
 
 def cached_view(key, rec, id_fields=()):
     """view() of a record that is looked at many times (the store's records), kept by key."""
-    k = (key, tuple(id_fields))
-    if k not in _VIEWS: _VIEWS[k] = view(rec, id_fields)
-    return _VIEWS[k]
+    k = (key, tuple(id_fields), id(rec))   # 26 Nov (Fable finding 1): two records under one key never share a view
+    if k not in _VIEWS: _VIEWS[k] = (rec, view(rec, id_fields))   # rec kept alive, so its id is never reused
+    return _VIEWS[k][1]
 
 
 _WHY_RANK = ('two fits', 'conflict', 'different agency id', 'same name, size differs', 'different ground', 'not proven', 'different place')
