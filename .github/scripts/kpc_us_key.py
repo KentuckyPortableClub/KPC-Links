@@ -2414,6 +2414,25 @@ def real_name(park_name, rec_name, kind=''):
 # name for a state park can carry another PARK-family type word than POTA's ('Canandaigua Lake Marine Park' is POTA's
 # 'Canandaigua Lake State Park'). Only these swaps, only in full (the same words before the type words, at least one real
 # word of 4+ letters), never across families (a forest, a wildlife area or a trail is never a park).
+CORE_DROP = {'nature', 'protected'}   # 'State Nature Preserve' / 'Nature Preserve'; 'Protected Area' (kind words not in SL.KIND_WORDS)
+
+
+def name_core(t, typ=''):
+    """26 Nov 2026: a name's core words for the 'same place, longer or shorter name' joins: the exact-name form with a possessive as
+    one word (MC.full_ps), POTA's type taken off the end, an 'and ...' tail set aside (only after 2+ words), kind words out. ()
+    when no real place word (4+ letters, not a kind or place word) is left, so 'Lake State Park' never matches anything."""
+    s = MC.full_ps(t)
+    ty = MC.full(typ) if typ else ''
+    if ty and s.endswith(' ' + ty): s = s[:-len(ty) - 1]
+    w = s.split()
+    if ' and ' in f' {s} ':
+        i = w.index('and')
+        if i >= 2: w = w[:i]
+    w = [x for x in w if x not in SL.KIND_WORDS and x not in CORE_DROP]
+    if not any(len(x) >= 4 and x not in PLACE_WORDS for x in w): return ()
+    return tuple(w)
+
+
 KIND_SWAPS = {'state park': ('state marine park', 'marine park'), 'state trail': ('trail',),
               # 26 Nov 2026 (the 1654 PC test, NY): NY DEC names its state forest lands by their class ('Crystal Lake Wild Forest',
               # 'Burt Hill Multiple Use Area'); POTA writes the same place as 'Crystal Lake State Forest', 'Burt Hill State Forest'
@@ -3660,6 +3679,33 @@ def run(st):
                 if str(_oid(a)) in {str(y) for y in ov.get('no', [])} or _no_all(ov, a): continue
                 if not inside_slack(la, lo, a['_g']): continue
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), "name: the agency's own name + POTA's type, pin inside"])
+        # 26 Nov 2026 (owner 5:25 PM 'stop holding fixes back'): the same place under a longer or shorter name, the record holding POTA's
+        # pin and the kinds agreeing: (a) the same core name once kind words and an 'and ...' tail are set aside ('Nick's Lake
+        # Campground and Day Use State Recreation Site' = 'Nicks Lake Campground'; 'Reinstein Woods State Nature Preserve' = 'Reinstein
+        # Woods Nature Preserve And Environmental Education Center'); (b) the park's core name begins the record's, same kind ('Lake
+        # Vermilion State Park' in 'Lake Vermilion-Soudan Underground Mine State Park'); (c) a core of 3+ words, 75% of them in the
+        # record's, same kind ('Lake Vermilion Soudan Iron Mine'). Never a record with no real place word, water, an office or a NO.
+        # The proven-only gate still decides: a name join with no proof (name + official size, page, id) stays a pin.
+        if not m and la is not None:
+            _pc = name_core(name, typ)
+            _pk2 = kp
+            for a in recs:
+                if not _pc or not a.get('_g') or a.get('Water') or not near(la, lo, a['_bb'], .01): continue
+                nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+                if not nm or KM.is_admin(nm): continue
+                _rc = name_core(nm)
+                if not _rc: continue
+                _rk = kinds(nm) | set(a.get('_k') or ())
+                _kok = not (_rk and _pk2) or bool(_rk & _pk2)
+                how = ''
+                if _rc == _pc and _kok: how = 'name: the same core name, pin inside'
+                elif len(_pc) >= 2 and _rc[:len(_pc)] == _pc and _rk & _pk2: how = "name: the park's name begins the record's, same kind, pin inside"
+                elif len(_pc) >= 3 and _rk & _pk2 and sum(1 for w in _pc if w in _rc) >= .75 * len(_pc) and len(_rc) <= len(_pc) + 1:
+                    how = "name: most of the park's name, same kind, pin inside"
+                if not how: continue
+                if str(_oid(a)) in {str(y) for y in ov.get('no', [])} or _no_all(ov, a): continue
+                if not inside_slack(la, lo, a['_g']): continue
+                m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), how])
         site = []
         if not m and la is not None:
             # unsure: not joined, only listed so a person can look

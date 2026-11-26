@@ -938,6 +938,7 @@ def source_of(rid, canada, src=None):
     if isinstance(rid, int): return [PADUS], rid, True
     m = re.fullmatch(r'([a-z]+)(\d+)', str(rid))
     if not m: return [], None, False
+    if m.group(2).startswith('0'): return [], None, False   # 26 Nov 2026: '<layer>0<digits>' is an AGENCY id (sgmnb06), never a row number
     pre, n = m.group(1), int(m.group(2))
     if pre == 'fws': return [FWS], n, True
     if pre in ('trl',): return [], None, False

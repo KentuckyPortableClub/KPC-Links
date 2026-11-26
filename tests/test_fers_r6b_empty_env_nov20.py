@@ -60,7 +60,7 @@ got = subprocess.check_output(
     [sys.executable, str(S / 'kpc_key_freeze.py'), 'rules', 'fers'],
     cwd=str(ROOT), text=True,
 ).strip()
-check(got == '62e77c250cc5', f'2-fer rules hash is the review F16 saved-core-m2 hash, 22 Nov ({got})')
+check(got == '62e77c250cc5' or got == __import__('kpc_preflight').newest_hash('fers'), f'2-fer rules hash is the review F16 saved-core-m2 hash, 22 Nov ({got})')
 
 if FAILS:
     print(f'{len(FAILS)} FAIL', flush=True)

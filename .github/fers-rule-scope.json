@@ -433,6 +433,14 @@
    "scope": "none",
    "scope_note": "No pair is remeasured. Decide-time counts a saved 25-to-50-yard overlap that has no core_m2.",
    "approved": "APPROVED, decided_by KPC owner, 2026-11-22"
+  },
+  {
+   "id": "2026-11-26-agency-id-not-a-row",
+   "when": "2026-11-26",
+   "from": "62e77c250cc5",
+   "why": "With the agency spelling of 26 Nov ('<layer>0<agency digits>', sgmnb06), the 2-fer live check's row lookup must never read an agency id as a row number (sgmnb06 is not row 6): a zero-led id gets no live row lookup. No 2-fer is built or changed by this (no 2-fer run is allowed now).",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:25 PM: 'stop holding fixes back unless it is a real one that could make things go side ways'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }

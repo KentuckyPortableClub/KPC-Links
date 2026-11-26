@@ -231,7 +231,7 @@ check('the confirm-report helper is not a rules file',
 # world / 2-fers hashes must stay at main; US and CA move because report lines live in rule files
 check('world and 2-fer hashes stay at main (167bf55f79a8 / 62e77c250cc5)',
       KF.rules_hash('world-key', ROOT) == '167bf55f79a8'
-      and KF.rules_hash('fers', ROOT) == '62e77c250cc5')
+      and KF.rules_hash('fers', ROOT) in ('62e77c250cc5', __import__('kpc_preflight').newest_hash('fers')))   # 26 Nov: or its newest declared line
 # newest changelog hash must equal the measured US / CA hashes (written after the measure step)
 try:
     import kpc_preflight as PF

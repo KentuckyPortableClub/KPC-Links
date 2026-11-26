@@ -41,5 +41,20 @@ blk = src[src.index("# 26 Nov 2026 (owner 5:18 PM 'no more putting stuff off'; t
 check('D: the new join needs the pin inside, no water, no office, no NO, and the park kind for a bare name',
       'inside_slack(la, lo, a[\'_g\'])' in blk and "a.get('Water')" in blk and 'KM.is_admin(nm)' in blk and '_no_all(ov, a)' in blk
       and "not kinds(nm) and not (set(a.get('_k') or ()) & kp)" in blk)
+ns2 = {'MC': MC, 'SL': SL, 're': re}
+a_ = src.index('PLACE_WORDS = {'); exec(src[a_:src.index('\n', a_)], ns2)
+a_ = src.index('CORE_DROP = {'); exec(src[a_:src.index('KIND_SWAPS = {')], ns2)
+nc = ns2['name_core']
+check("E: core names: Nick's Lake and Reinstein Woods equal their records; Lake Vermilion begins the DNR park's name; 'Lake State Park' has no core",
+      nc('Nick\u2019s Lake Campground and Day Use State Recreation Site', 'State Recreation Site') == nc('Nicks Lake Campground')
+      and nc('Reinstein Woods State Nature Preserve', 'State Nature Preserve') == nc('Reinstein Woods Nature Preserve And Environmental Education Center')
+      and nc('Lake Vermilion-Soudan Underground Mine State Park')[:2] == nc('Lake Vermilion State Park', 'State Park')
+      and nc('Lake State Park', 'State Park') == ())
+blk2 = src[src.index("# 26 Nov 2026 (owner 5:25 PM 'stop holding fixes back')"):src.index("        site = []\n        if not m and la is not None:")]
+check('F: the core-name joins need the pin inside and agreeing kinds, never water, an office or a NO',
+      "inside_slack(la, lo, a['_g'])" in blk2 and "a.get('Water')" in blk2 and 'KM.is_admin(nm)' in blk2 and '_no_all(ov, a)' in blk2
+      and '_rk & _pk2' in blk2)
+fs = (ROOT / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
+check("G: the 2-fer live check never reads an agency id ('sgmnb06') as row 6", "if m.group(2).startswith('0'): return [], None, False" in fs)
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
