@@ -27,6 +27,7 @@ for f in ('kpc_same_land.py', 'kpc_store_attrs.py'):
 src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
 # the key's whole helper part (everything before the build starts), as the real build runs it
 os.environ.setdefault('GEO_CACHE_MODE', 'only'); os.environ.setdefault('KPC_KEY_OFFLINE', '1')
+os.environ['KPC_FRESH_ONLY'] = '0'   # 26 Nov: this test proves the old-to-fresh loop itself (switched off for MN and NY by KPC_FRESH_ONLY)
 _cwd = os.getcwd(); os.chdir(ROOT)
 ns = {'__file__': str(ROOT / '.github/scripts/kpc_us_key.py'), '__name__': 'kpc_us_key_helpers'}
 import contextlib, io  # noqa: E402
