@@ -38,9 +38,9 @@ same = {'Unit_Nm': 'Smith WMA', 'GIS_Acres': 44, '_g': {'rings': rect(-92.80002,
 k, lv, _ = SL.pick(a, {'s': same})
 check(f'A: the same parcel read again still proves ({k}, {lv})', k == 's')
 
-check("B: DEVIL'S TRACK FALLS = Devils Track Falls (match checks and key rules); O'Brien keeps its two words",
-      MC.full("DEVIL'S TRACK FALLS") == MC.full('Devils Track Falls') and KR._full("Devil's Track") == KR._full('Devils Track')
-      and MC.full("O'Brien") == 'o brien')
+check("B: DEVIL'S TRACK FALLS is the exact name of Devils Track Falls (a second try); Knox's keeps 'knox s' for the single-letter rule",
+      MC.exact_name('Devils Track Falls', "DEVIL'S TRACK FALLS") and MC.exact_name("Devil's Track Falls State Park", 'Devils Track Falls', 'State Park')
+      and MC.full("Knox's Headquarters") == 'knox s headquarters' and not MC.exact_name('Devils Lake', "Devil's Track"))
 
 src = (ROOT / '.github/scripts/kpc_us_key.py').read_text(encoding='utf-8')
 check('C: the state forest statutory line is an outer line, and the gate removes it first, for every park',

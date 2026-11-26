@@ -93,18 +93,25 @@ def full(name):
     import unicodedata
     s = unicodedata.normalize('NFKD', str(name or '')).encode('ascii', 'ignore').decode().lower()
     s = re.sub(r'\(.*?\)', ' ', s).replace('&', ' and ')
-    s = re.sub(r"['\u2019`]s\b", 's', s)   # 26 Nov (Fable's review, US-12389): a possessive is one word: DEVIL'S = DEVILS, not 'devil s'
     s = re.sub(r"[^a-z0-9 ]+", ' ', s)
     w = [SHORT.get(x, x) for x in s.split() if x != 'the']
     return ' '.join(' '.join(w).split())
 
 
+def full_ps(name):
+    """26 Nov 2026 (Fable's review, US-12389): full() with a possessive written as one word (DEVIL'S = DEVILS). Only a second
+    try: full() itself keeps 'knox s' so the single-letter rule still ties Knox's Headquarters to 'Knox Headquarters'."""
+    return full(re.sub(r"(?i)(?<=[a-z])['\u2019`]s\b", 's', str(name or '')))
+
+
 def exact_name(park_name, list_name, park_kind=''):
     """True when the list's name IS the park's full name, as written or as its bare name plus the park's kind word
-    ('X' + 'State Park' = 'X State Park'). 'X' never ties 'X Lake'."""
-    a, b = full(park_name), full(list_name)
-    if not a or not b: return False
-    return a == b or (bool(park_kind) and full(f'{list_name} {park_kind}') == a)
+    ('X' + 'State Park' = 'X State Park'). 'X' never ties 'X Lake'. 26 Nov: a possessive as one word is a second try."""
+    for f_ in (full, full_ps):
+        a, b = f_(park_name), f_(list_name)
+        if not a or not b: continue
+        if a == b or (bool(park_kind) and f_(f'{list_name} {park_kind}') == a): return True
+    return False
 
 
 def how_word(row):

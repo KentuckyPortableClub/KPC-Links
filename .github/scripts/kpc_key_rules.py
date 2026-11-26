@@ -816,7 +816,6 @@ def _full(t):
     """A full name for D9: case and accents aside, brackets and punctuation out, spaces squeezed."""
     import re as _re
     s = nf(_re.sub(r'\(.*?\)', ' ', str(t or '')))
-    s = _re.sub(r"['\u2019`]s\b", 's', s)   # 26 Nov: a possessive is one word (DEVIL'S = DEVILS)
     return ' '.join(_re.sub(r"[^\w ]+", ' ', s).split())
 
 
