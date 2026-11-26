@@ -92,6 +92,8 @@ Owner (Brandon, 26 Nov 1:41 AM): "new pc is taking over tomorrow". The new PC's 
 
 - **#387 graded YES (26 Nov 3:50 PM), merge after the 27 Nov MN NY report.** The report should show: US b9d5bd15d732, the 16 forests on their own land, US-4792 and US-4798 with their forest record back, WRONG-LAND 0, the refused-rows list naming the bad carries. Later, from the grade: (a) repoint_saved checks only saved answers WITH a fingerprint (one without can still follow the alias); (b) WRONG-LAND could also list one id on two parks with matching names, and one id on one park whose name is not the record's (it missed US-4788 Buena Vista on sgmnb20).
 
+- **#387 PC test PASSED (26 Nov 4:06 PM, report test-2026-11-26-1555, US 09b88495b01a):** all 16 MN forests on their own sgmnb record; WRONG-LAND 0 (MN, NY); Big Stone US-0356 got its 23 WPA tracts back; NY unchanged against the last test. Still open: US-4792 Crow Wing and US-4798 General C.C. Andrews keep their outline (PAD-US + sgmnf) but the key never adds their forest boundary record (sgmnb14 / sgmnb20); 939 'refused' rows are mostly same id + same name with no proven twin, re-found by the key's own matching (list is noisy; mark those apart).
+
 ## Next (in order)
 1. 27 Nov: read the first nightly run with the keeper list (results\logs\nightly-layers-*.log, nightly-last.txt). If right, ask the
    owner's OK to switch off the GitHub keeper's downloading (keep its light change check).
