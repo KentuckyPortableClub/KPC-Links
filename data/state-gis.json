@@ -1339,6 +1339,7 @@
     "what": "owned",
     "ag": "NYS Adirondack Park Agency (Adirondack Park boundary polygon)",
     "name": "Adirondack Park",
+    "prefix": "sgnyc",
     "url": "https://services2.arcgis.com/8krRUWgifzA4cgL3/ArcGIS/rest/services/BluelinePolygon/FeatureServer/0",
     "host": "agol",
     "note": "KPC owner, 2026-11-25 (round 14): the APA's own POLYGON layer 'Adirondack Park Boundary Polygon' (1 record, no name field: the fixed name above). Was the Blue Line LINE layer (AdirondackParkBoundary, 107 segments, no ids), which joined as 'sgnycNone'"

@@ -108,9 +108,11 @@ def store_records(store, area):
         except Exception as e:  # noqa: BLE001
             raise StoreUnreadable(f'{f.name} cannot be read ({type(e).__name__}: {str(e)[:120]})') from e
         groups += [p.get('records') or [] for p in d.get('parks') or []] + [d.get('records') or []]
+    _all = [r for recs_ in groups for r in recs_]
+    _pk = {id(r): k_ for r, k_ in zip(_all, SA.publish_keys(_all))}   # batch 16 item 1: spelled as the key spells it (agency id)
     for recs_ in groups:
         for r in recs_:
-            k = SA.record_key(r)
+            k = _pk.get(id(r), '')
             if not k: continue
             rs = SA.record_rings(r)
             if not rs: continue

@@ -9,7 +9,7 @@ own fields) and writes one small file the key reads with KPC_RECORD_ATTRS:
 Record ids: a PAD-US record by its number, any other by its layer letters + number (sgtxd124), the same as the key.
 Never a WDPA field. Reads files only; nothing is fetched.
   python kpc_store_attrs.py --store <store results folder> --out record-attrs.json.gz     (--selftest)"""
-import argparse, datetime, glob, gzip, hashlib, json, os, re, sys, tempfile
+import argparse, datetime, glob, gzip, hashlib, json, math, os, re, sys, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WDPA = re.compile(r'wdpa', re.I)
@@ -50,6 +50,23 @@ def wanted_fields(gh=None):
     return {f for f in out if f and not WDPA.search(f)}
 
 
+def second_name_fields(root=None):
+    """Batch 16 (grade of #380: US-2077 Honeoye Lake State Park stayed a pin): {layer address: its second-name field} from
+    data/state-gis.json ('nm2': NY State Parks 'Label', the DNR 'subunit', ALT_NAME), the field the key's live reader takes a
+    record's second name from (kpc_us_key XS 'nm2'). The fresh record carries it as one of its names, as the old copy did
+    ('Honeoye Lake Marine Park' is sgnyb361's Label; its Name is 'Honeoye Marine Park')."""
+    p = os.path.join(root or os.path.join(HERE, '..', '..'), 'data', 'state-gis.json')
+    out = {}
+    try:
+        for lays in (json.load(open(p, encoding='utf-8')).get('states') or {}).values():
+            for l in lays or []:
+                u, f = str(l.get('url') or '').split('/query')[0].rstrip('/').lower(), str(l.get('nm2') or '')
+                if u and f: out[u] = f
+    except (OSError, ValueError):
+        pass
+    return out
+
+
 def record_key(r):
     layer, rid = str(r.get('layer') or ''), str(r.get('record_id') or '')
     if layer == 'PAD-US':
@@ -58,6 +75,51 @@ def record_key(r):
     # 'sgnya68990'. The '@' made every state-layer record fall out (New York DEC: 1,161 records, 0 reached the id checks).
     k = str(r.get('key') or '').replace('@', '')
     return k if re.fullmatch(r'[a-z]+\d+', k) else ''
+
+
+def _agency_num(r, fld):
+    """The record's own agency id in field fld as plain digits, or ''. A number ('89125' from 89125.0); an id of letters and
+    digits gives its digits when publish_keys finds every record of the layer carries the same letters (Minnesota DNR wildlife
+    areas: 'WMA0038200' -> '38200'). Returns (digits, letters)."""
+    a = r.get('attributes') or {}
+    v = next((a[k] for k in (fld, fld.upper(), fld.lower()) if k in a and a[k] not in (None, '')), None)
+    if isinstance(v, bool) or v is None: return '', ''
+    if isinstance(v, (int, float)):
+        x = float(v)
+        return (str(int(x)), '') if x > 0 and x.is_integer() else ('', '')
+    m = re.fullmatch(r'([A-Za-z]*)0*(\d+)', str(v).strip())
+    return (m.group(2), m.group(1).upper()) if m and int(m.group(2)) > 0 else ('', '')
+
+
+def publish_keys(records):
+    """Batch 16 item 1 (grade of #380 round 15, 25 Nov 2026: 'published key record ids use the agency's own id (MN sgmne + su_id),
+    not OBJECTID'). A layer whose agency gives every record its own id (kpc_same_land.AGENCY_RECORD_IDS: Minnesota DNR state lands
+    su_id, DNR wildlife areas uniqueid 'WMA0038200') is spelled '<layer><agency id>' ('sgmne89125', 'sgmna38200'); OBJECTID is only the row the server
+    happened to give it, and it moves when the agency republishes (all 339 Minnesota Valley parcels moved on 25 Nov). A record with
+    no agency id, or one whose agency id another record of the same file also carries, keeps record_key's spelling, so no two
+    records ever share a key. The key builder, the outline cutter and the outline scorer all spell the same file with this, so
+    the key's ids and the outlines' ids agree. records = every record of ONE file; returns one key per record ('' = not spellable)."""
+    import kpc_same_land as SL_
+    base = [record_key(r) for r in records]
+    got, letters = [], {}
+    for r, k in zip(records, base):
+        lay = re.match(r'[a-z]*', k).group(0) if k else ''
+        flds = SL_.AGENCY_RECORD_IDS.get(lay) or ()
+        n, lt = _agency_num(r, flds[0]) if flds else ('', '')
+        got.append((lay, n, lt))
+        if n: letters.setdefault(lay, set()).add(lt)
+    # an id with letters is used only when every record of its layer carries the SAME letters (else the digits alone could be
+    # two different ids): 'WMA0038200' and 'WMA0012900' -> 'sgmna38200', 'sgmna12900'
+    cand = [lay + n if n and len(letters.get(lay) or ()) == 1 else '' for lay, n, lt in got]
+    out = [c or k for c, k in zip(cand, base)]
+    for _ in range(3):   # an agency key equal to another record's key: both fall back to record_key (never two records, one key)
+        seen = {}
+        for k in out:
+            if k: seen[k] = seen.get(k, 0) + 1
+        dup = {k for k, v in seen.items() if v > 1}
+        if not dup: break
+        out = [b if (o in dup and c) else o for o, b, c in zip(out, base, cand)]
+    return out
 
 
 def name_key(s):
@@ -121,7 +183,7 @@ def light_rings(r):
 ACRE_FIELD = re.compile(r'acre', re.I)
 
 
-def record_acres(r):
+def _raw_acres(r):
     a = r.get('attributes') or {}
     for k in ('GIS_Acres', 'ACRES', 'Acres', 'acres', 'GISACRES', 'Shape_Acres'):
         try:
@@ -147,8 +209,32 @@ def record_acres(r):
     return None
 
 
+def sane_acres(ac, rings):
+    """Batch 16 item 2 (grade of #380 round 15): the key's live reader's check (kpc_us_key._sane_ac, Oct 29: Standing Boy Creek SP
+    '68,840,167 acres' was square FEET) on the store's sizes. A size bigger than the record's own outline box can hold is
+    converted (square feet, square metres) when that makes it fit, else left out (None: the size is measured from the outline).
+    The box is the record's own unrounded box."""
+    if not ac or not rings: return ac or None
+    xs = [p[0] for ring in rings for p in ring]; ys = [p[1] for ring in rings for p in ring]
+    k = math.cos(math.radians((min(ys) + max(ys)) / 2))
+    box = max((max(xs) - min(xs)) * 111.32 * k, .01) * max((max(ys) - min(ys)) * 110.57, .01) * 247.105 * 1.6
+    if ac <= box: return ac
+    for div in (43560.0, 4046.86):        # square feet, square metres
+        if ac / div <= box: return round(ac / div, 1) or None
+    return None
+
+
+def record_acres(r):
+    """A store record's own size in acres (its agency's field), checked against its outline (sane_acres); None = none on file."""
+    v = _raw_acres(r)
+    if not v: return None
+    rs = record_rings(r)
+    return sane_acres(v, rs) if rs else v
+
+
 def run(store, out, gh=None, today=None):
     want = wanted_fields(gh)
+    NM2 = second_name_fields()
     recs, files, by_name, refound = {}, 0, {}, {}
     manifest, broken = {}, set()
     layer_files, skipped = {}, {}   # Q1 (grade of #380 round 8): each area's layer file identity; ids record_key cannot spell, counted
@@ -189,9 +275,11 @@ def run(store, out, gh=None, today=None):
                     'complete': full, 'source_count': src, 'store_count': sto, 'in_file': in_file.get(lay, 0), 'read': m.get('read')}
         groups = d.get('parks') or []
         if d.get('records'): groups = list(groups) + [{'records': d['records']}]
+        _all = [r for p in groups for r in p.get('records') or []]
+        _pk = {id(r): k_ for r, k_ in zip(_all, publish_keys(_all))}   # batch 16 item 1: the agency's own id where it has one
         for p in groups:
             for r in p.get('records') or []:
-                k = record_key(r)
+                k = _pk.get(id(r), '')
                 if not k:
                     # 25 Nov (grade of round 8, later item): an id the key cannot spell (Canada's '<label>:<n>') is not silently lost
                     if re.search(r'\d', str(r.get('key') or r.get('record_id') or '')):   # a real id (not a 'point-circle')
@@ -204,14 +292,18 @@ def run(store, out, gh=None, today=None):
                 # so the key can PROVE which of its records is the same land (kpc_same_land.py) instead of trusting a row number.
                 # Helper keys start with '_' and never reach the id checks.
                 helper = {'_nm': str(r.get('record_name') or r.get('record_name_in_source') or ''), '_src': 'layer' if is_layers else 'park'}
-                nms = sorted({str(x) for x in (r.get('record_name'), r.get('record_name_in_source'), r.get('tract_name')) if x} - {helper['_nm']})
+                _f2 = NM2.get(str(r.get('layer_url') or '').split('/query')[0].rstrip('/').lower())   # batch 16: the layer's own second name
+                _n2 = str(a.get(_f2) or '').strip() if _f2 else ''
+                nms = sorted({str(x) for x in (r.get('record_name'), r.get('record_name_in_source'), r.get('tract_name'), _n2) if x} - {helper['_nm']})
                 if nms: helper['_nms'] = nms
-                if record_acres(r): helper['_ac'] = round(record_acres(r), 3)
+                _ra_ = record_acres(r)
+                if _ra_: helper['_ac'] = round(_ra_, 3)
                 bx0 = record_box(r)
                 if bx0: helper['_bx'] = bx0; helper['_g'] = light_rings(r)
                 # 25 Nov 2026 (owner 7:18 AM: 'Use today's store records as the FRESH source for both matching and drawing'):
                 # the area, the date the store read the record, and for PAD-US its own describing fields, so the key can
                 # stand the fresh record in for its old saved copy (kpc_us_key fresh_records)
+                if k != record_key(r): helper['_agk'] = 1   # batch 16: keyed by the agency's own id, never found by a row number
                 if area: helper['_st'] = area
                 if r.get('read'): helper['_rd'] = str(r.get('read'))[:10]
                 if str(r.get('layer') or '') == 'PAD-US':
@@ -233,7 +325,7 @@ def run(store, out, gh=None, today=None):
                     # November saved copies and the store's later read), so the record number alone cannot find a saved
                     # record's fields. Also index them by layer + name + size; the key takes a hit only when it is the ONE
                     # store record of that layer with that name and a size within 1% (kpc_us_key, 'store id fields by name').
-                    ac = record_acres(r)
+                    ac = _ra_
                     lay = re.match(r'[a-z]*', k).group(0)
                     if lay and ac:
                         bx = record_box(r)
@@ -245,7 +337,7 @@ def run(store, out, gh=None, today=None):
               f"skipped_ids): {', '.join(f'{l} {n:,}' for l, n in sorted(sk.items()))}", flush=True)
     doc = {'about': 'Agency id fields of the outline store\'s records, for the key\'s match checks (kpc_store_attrs.py). '
                     'Only the fields the id checks read; never WDPA. Collects, does not decide.',
-           'format': 11, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
+           'format': 13, 'manifest': manifest, 'layer_files': layer_files, 'skipped_ids': skipped, 'refound': refound, 'made': today or datetime.date.today().isoformat(), 'store_files': files, 'records': recs,
            'by_name': {lay: {nm: [[x[0], x[1]] + ([list(x[2])] if x[2] else []) for x in sorted({(x[0], x[1], tuple(x[2]) if len(x) > 2 else ()) for x in v})]
                              for nm, v in d_.items()} for lay, d_ in by_name.items()}}
     tmp = out + '.tmp'
@@ -287,7 +379,7 @@ def selftest():
         ok = ok and {k: {f: x for f, x in v.items() if f not in ('_st', '_rd', '_src')} for k, v in d.get('refound', {}).items() if k != 'sgzze4'} == {'sgzzb8': {'URL': 'https://dec.ny.gov/lands/456.html', '_nm': 'Mud Lake Wildlife Area', '_ac': 100.0},
                                          'sgzzc30': {'URL': 'https://example.org/alpha', '_nm': 'Alpha Forest', '_ac': 50.0, '_kid': 'sgzzc12'},
                                          'sgzzd5': {'URL': 'https://example.org/refound', '_nm': '', '_kid': 'sgzzd9'}}
-        ok = ok and d.get('format') == 11 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
+        ok = ok and d.get('format') == 13 and d['by_name'].get('sgzzb', {}).get('mudlakewildlifearea') == [[100.0, 'sgzzb8@']]
         ok = ok and d['by_name'].get('sgzzc', {}).get('alphaforest') == [[50.0, 'sgzzc30@']]
         e = d['refound'].get('sgzze4') or {}   # format 6: name, size, box and a light outline, for the same-land proof
         ok = ok and e.get('_nm') == 'Lost Valley Prairie' and e.get('_bx') == [-92.83, 44.8, -92.82, 44.81] and len((e.get('_g') or [[]])[0]) == 5

@@ -1178,6 +1178,14 @@ try:
             # round 14 (NY 1:32 PM test, Adirondack Park): a layer with no name field (APA's one-polygon Blue Line) names its record
             # with the table's fixed 'name'
             if not _u or not (_l.get('nm') or _l.get('name')) or _u in _have or not re.search(r'/\d+$', _u): continue
+            # batch 16 (owner's 5:43 PM NY test: Adirondack State Park lost its outline): a layer whose address changed keeps the
+            # prefix its records are saved under when the table says so ('prefix': the outline store's layer-url-overrides.csv
+            # gives the same layer the same name); without it the new address got a NEW prefix ('sgnye') while the store's record
+            # is 'sgnyc1', so the record never got its fixed name and never joined
+            # The table's 'prefix' always wins, also over a layers.json that a build wrote with the new prefix (the owner's PC:
+            # the 2:28 PM test had saved BluelinePolygon as 'sgnye'; 'not in _byurl' then kept 'sgnye' and the fix did nothing)
+            if re.fullmatch(r'[a-z]+', str(_l.get('prefix') or '')):
+                _byurl[_u] = str(_l['prefix']); _taken.add(str(_l['prefix']))
             # prefix = letters only ('sgfla'): the website splits an id into prefix + number with /^[a-z]+/
             if _l.get('name'): FIXED_NAME[_pre(_st, _u)] = str(_l['name']).strip()
             XS.append((_pre(_st, _u), _u + '/query', _l.get('nm') or '', '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st},
@@ -2305,7 +2313,8 @@ def store_fields(i, a):
     used only when it is provably the same record (saved_row_ok, D1's test: same name, size within 10%; no name = not proven);
     ('refused', None) only re-found records that are another record; ('', None) nothing. Neither the number nor key_record_id is
     trusted alone: the key's saved copy can be renumbered after the store was built (MN, 25 Nov 4:08 AM PC test)."""
-    x = _plain((_RA[0] or {}).get(i))
+    _e = (_RA[0] or {}).get(i)
+    x = _plain(_e) if not (_e or {}).get('_agk') else {}   # batch 16: a record keyed by its agency id is never found by a row number
     if x: return 'id', x
     rf = _RA_RF[0] or {}
     cands = [k for k in [i] + list((_RA_KID[0] or {}).get(i) or []) if k in rf]
@@ -2796,7 +2805,7 @@ def fresh_records(st, recs, P):
         if rec['Loc_Nm'] == rec['Unit_Nm']: rec['Loc_Nm'] = ''
         rec['_g'] = {'rings': e['_g']}
         rec['_bb'] = bbox(rec['_g'])
-        try: rec['GIS_Acres'] = float(e.get('_ac') or pad.get('GIS_Acres') or 0) or round(SL.acres_of(SL.rings_of(e['_g'])), 1)
+        try: rec['GIS_Acres'] = _sane_ac(float(e.get('_ac') or pad.get('GIS_Acres') or 0), rec['_bb']) or round(SL.acres_of(SL.rings_of(e['_g'])), 1)   # round 16: the live reader's check (square feet / metres)
         except (TypeError, ValueError): rec['GIS_Acres'] = round(SL.acres_of(SL.rings_of(e['_g'])), 1)
         kk_ = kinds(rec['Unit_Nm']) | set().union(*[set(o.get('_k') or set()) - kinds(o.get('Unit_Nm') or '') for o in olds]) if olds else \
             kinds(rec['Unit_Nm']) | ({max(lay_kinds[lay], key=lay_kinds[lay].get)} if lay_kinds.get(lay) else set())
@@ -4336,6 +4345,7 @@ def run(st):
     if _only and st in (os.environ.get('KPC_KEY_ONLY_STATES') or '').split():
         try:
             _old = json.load(open(OUT / f'US-{st}.json')).get('parks', {}); _kept = 0
+            if _kr('KPC_STORE_FRESH'): _old = fresh_old_parks(_old, _alias, recs)   # round 16: old row numbers are not ids here either
             for ref, op in _old.items():
                 if ref in parks and ref not in _only and ref not in OVR: parks[ref] = op; _kept += 1
             notice(f'US key {st}', f"park-scoped rule change: only {' '.join(sorted(_only & set(parks)))} re-matched; {_kept} other park(s) kept their result")

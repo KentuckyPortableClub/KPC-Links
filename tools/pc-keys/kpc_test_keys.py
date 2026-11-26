@@ -24,6 +24,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 LINKS = HERE / 'links'
 ORIG = HERE / 'originals'          # the website's key, kept once per state, so every test compares with the same thing
 LAST = HERE / 'last-test'          # this PC's last test of each state, to see what the newest change did
+KITWEB_NAME = '.kit-website-keys'  # batch 16: the website's key files (main) and their sha256, brought by the kit (read only)
 STORE = HERE.parent / 'Tools' / 'KPC-TOOLS-NOV14' / '1-STORE-TOOL' / 'kpc-outline-store-full' / 'results' / 'store'
 US_ALL = ('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA '
           'RI SC SD TN TX UT VT VA WA WV WI WY').split()
@@ -138,7 +139,7 @@ def store_attrs():
             import gzip
             with gzip.open(out, 'rt', encoding='utf-8') as fh: fmt = int(json.load(fh).get('format') or 0)
         except Exception: fmt = 0  # noqa: BLE001
-    if not out.is_file() or out.stat().st_mtime < newest or fmt < 11:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest; 9 each layer file's identity (Q1); 10 the agency record ids and FWS realty fields (R1, R5); 11 the layer's own acres field (round 15)
+    if not out.is_file() or out.stat().st_mtime < newest or fmt < 13:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest; 9 each layer file's identity (Q1); 10 the agency record ids and FWS realty fields (R1, R5); 11 the layer's own acres field (round 15); 12 the agency's own record ids, 13 the layer's second name (batch 16)
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
         rc = subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS).returncode
@@ -251,28 +252,69 @@ def sha(p):
     return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
 
 
-def _built_list():
-    try:
-        x = json.loads((ORIG / 'built-files.json').read_text(encoding='utf-8'))
-        return [h for h in x if isinstance(h, str)] if isinstance(x, list) else []
-    except Exception: return []  # noqa: BLE001
+def kitweb():
+    return LINKS / KITWEB_NAME
 
 
-def built_files():
-    return set(_built_list())
+def _web_shas():
+    d = load(kitweb() / 'sha256.json')
+    return (d.get('files') or {}) if isinstance(d, dict) else {}
 
 
-def remember_built(st):
-    """K4: fingerprint every key file this PC left in links\\ for this state (after the builder AND after the join check / Canada
-    keep rewrote it; finished, failed or stopped early). Kept in time order; only the oldest are dropped (25 Nov grade fix)."""
-    have = [h for h in _built_list()]
-    for kf in keyfiles(st):
-        if kf.is_file():
-            h = sha(kf)
-            if h in have: have.remove(h)
-            have.append(h)
-    ORIG.mkdir(exist_ok=True)
-    (ORIG / 'built-files.json').write_text(json.dumps(have[-20000:]), encoding='utf-8')
+def web_copy(kf):
+    """Batch 16 (grade of #380, 25 Nov 2026: the PC's 'website copy' of MN and NY in originals was a key a test had built that
+    morning, and every MN / NY test after it compared against it). The trusted website copy of a key file, READ ONLY:
+      - the kit lists main's sha256 for each website key file (links\\.kit-website-keys\\sha256.json); a copy counts only when its
+        bytes match: the kit's own copy first, then originals;
+      - a file the kit lists no sha for (an older kit): originals as before, not checked.
+    None = no trusted copy. This test never writes into originals."""
+    name = pathlib.Path(kf).name
+    want = _web_shas().get(name)
+    if want:
+        for c in (kitweb() / name, ORIG / name):
+            if c.is_file() and sha(c) == want: return c
+        return None
+    return ORIG / name if (ORIG / name).is_file() else None
+
+
+def links_path(name):
+    """Where a website key file lives in links\\ (as on GitHub)."""
+    if name == 'layers.json' or name.startswith('US-'): return LINKS / 'data' / 'us-key' / name
+    if name.startswith('CA-'): return LINKS / 'data' / 'ca-key' / name
+    return LINKS / 'data' / name
+
+
+def put_back_website_copies():
+    """Batch 16 (the owner's PC, 25 Nov evening: links\\data\\us-key still held the 24 Nov all-states test's keys of the other 49
+    areas, and layers.json as the 2:28 PM test wrote it, so a MN / NY build read them: cross-state marks, layer prefixes). Before
+    anything is built, EVERY website file the kit lists goes back into links\\ from its trusted copy (web_copy), so each test
+    starts from the website's state, as GitHub does. Returns how many were put back. originals is only read."""
+    n = 0
+    for name in _web_shas():
+        w = web_copy(name)
+        if not w: continue
+        dst = links_path(name)
+        if dst.is_file() and dst.read_bytes() == w.read_bytes(): continue
+        dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(w, dst); n += 1
+    return n
+
+
+def website_copies_check():
+    """Batch 16 item 4 (grade of #380, 25 Nov): before ANY state is built, every website key file the kit lists (66: the US
+    states, Canada's provinces, Kentucky) must have a trusted copy (web_copy: the kit's own copy or originals, sha256 equal to
+    main's). Returns the names that differ or are missing ([] = all good; also [] for an older kit that lists none)."""
+    return sorted(n for n in _web_shas() if not web_copy(n))
+
+
+def web_copy_problem(kf):
+    """'' when the website copy of kf is trusted (or the kit lists none); else one plain line for the report."""
+    name = pathlib.Path(kf).name
+    want = _web_shas().get(name)
+    if not want or web_copy(kf): return ''
+    o = ORIG / name
+    have = f'its sha256 is {sha(o)[:12]}' if o.is_file() else 'there is none'
+    return (f"the saved website copy of {name} in originals is not the website's key ({have}; the website's is {want[:12]}). "
+            f"Nothing was built for this state. A kit update that brings {KITWEB_NAME}\\{name} fixes it.")
 
 
 def not_built_reason(st, log):
@@ -283,8 +325,8 @@ def not_built_reason(st, log):
     if m: return m.group(1)
     m = re.search(r'::notice title=(?:Canada key GATE FAIL|US key STOPPED)[^:]*::(.*)', log)
     if m: return m.group(1) or 'the build stopped'
-    files = [kf for kf in keyfiles(st) if (ORIG / kf.name).is_file()]
-    if files and all(kf.is_file() and kf.read_bytes() == (ORIG / kf.name).read_bytes() for kf in files):
+    files = [kf for kf in keyfiles(st) if web_copy(kf)]
+    if files and all(kf.is_file() and kf.read_bytes() == web_copy(kf).read_bytes() for kf in files):
         return 'every key file is still the website copy (nothing was written)'
     return ''
 
@@ -304,13 +346,13 @@ def join_check_lines(st):
         d_, pat = JC.DIRS[kind]
         mine = {kf.name for kf in keyfiles(st)}
         for x in (LINKS / d_).glob(pat):
-            if x.name not in mine and (ORIG / x.name).is_file(): x = ORIG / x.name   # other areas: the website copy, as GitHub reads
+            if x.name not in mine and web_copy(x): x = web_copy(x)   # other areas: the website copy, as GitHub reads
             for ref, p in ((load(x) or {}).get('parks') or {}).items():
                 if isinstance(p, dict) and JC.joined(p) and JC.pin_km(p) is not None: near[ref] = min(near.get(ref, 1e9), JC.pin_km(p))
         nh, no_prev = 0, 0
         for kf in keyfiles(st):
-            prev = (load(ORIG / kf.name) or {}).get('parks') or {} if (ORIG / kf.name).is_file() else {}
-            no_prev += not (ORIG / kf.name).is_file()
+            prev = (load(web_copy(kf)) or {}).get('parks') or {} if web_copy(kf) else {}
+            no_prev += not web_copy(kf)
             _r, h, _c = JC.mark_file(str(kf), off, mode='hold', ok=ok, near=near, prev=prev, root=str(LINKS))
             nh += len(h)
         return [f'  join check (as on GitHub): {nh} join(s) held' + ('' if sheet else '; NO answer sheet found, so more holds than GitHub')
@@ -329,7 +371,7 @@ def canada_keep_lines():
         import kpc_ca_store_keep as HK
         kept = 0
         for kf in keyfiles('CANADA'):
-            o, n = load(ORIG / kf.name), load(kf)
+            o, n = (load(web_copy(kf)) if web_copy(kf) else None), load(kf)
             if not o or not n: continue
             k0, parks = kept, n.get('parks') or {}
             for ref, p in (o.get('parks') or {}).items():
@@ -342,23 +384,16 @@ def canada_keep_lines():
 
 
 def run_state(st, rep, attrs, tot):
-    ORIG.mkdir(exist_ok=True); LAST.mkdir(exist_ok=True)
-    mark = ORIG / f'build-running-{st}.txt'   # 25 Nov (grade fix): a test killed mid-build leaves this, so its files are not trusted
-    killed = mark.is_file()
-    for kf in keyfiles(st):   # the website's key, put back before each build so every test starts the same
-        o = ORIG / kf.name
-        # 24 Nov (K4, grade fix): a NEW website key from a kit update replaces the kept copy. A file this PC's own tests wrote
-        # (every one is fingerprinted in built-files.json, after the join check too) never does, nor one left by a killed test.
-        if kf.is_file() and not killed and (not o.is_file() or (kf.read_bytes() != o.read_bytes() and sha(kf) not in built_files())):
-            shutil.copy2(kf, o)
-        if o.is_file(): shutil.copy2(o, kf)
-    mark.write_text(datetime.datetime.now().isoformat(), encoding='utf-8')
-    try:
-        return _run_state(st, rep, attrs, tot)
-    finally:
-        remember_built(st)   # K4-2: fingerprint what is left in links\ AFTER the join check / Canada keep rewrote it
-        try: mark.unlink()
-        except OSError: pass
+    """Batch 16: originals is only READ. The website's key (web_copy: its sha256 checked against the kit's list) is put back into
+    links\\ before each build, so every test starts the same; a state with no trusted website copy is not built (one plain line)."""
+    LAST.mkdir(exist_ok=True)
+    probs = [p for p in (web_copy_problem(kf) for kf in keyfiles(st)) if p]
+    if probs:
+        return [f'{st}: NOT BUILT: ' + probs[0]]
+    for kf in keyfiles(st):
+        w = web_copy(kf)
+        if w: kf.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(w, kf)
+    return _run_state(st, rep, attrs, tot)
 
 
 def _run_state(st, rep, attrs, tot):
@@ -366,7 +401,6 @@ def _run_state(st, rep, attrs, tot):
     t0 = time.time()
     rc, log = run_build(st, rep, attrs)
     if rc is None: return [log]
-    remember_built(st)   # K4: whatever the builder left in links\ is this PC's, never a new website copy
     mins = (time.time() - t0) / 60
     lines = [f'{st}: built in {mins:.1f} minutes (exit {rc}).']
     tot['minutes'] = tot.get('minutes', 0) + mins
@@ -385,8 +419,8 @@ def _run_state(st, rep, attrs, tot):
     tot['compared'] = tot.get('compared', 0) + 1
     for kf in keyfiles(st):
         tag = kf.stem
-        if (ORIG / kf.name).is_file():
-            l, n = compare(f'{tag} against the website', ORIG / kf.name, kf); lines += l
+        if web_copy(kf):
+            l, n = compare(f'{tag} against the website', web_copy(kf), kf); lines += l
             for k, v in n.items(): tot[k] = tot.get(k, 0) + v
         else:
             lines.append(f'  {tag}: no website key to compare with')
@@ -411,6 +445,16 @@ def main(argv):
         return
     rep = HERE / 'reports' / ('test-' + datetime.datetime.now().strftime('%Y-%m-%d-%H%M'))
     rep.mkdir(parents=True, exist_ok=True)
+    bad = website_copies_check()
+    if bad:   # batch 16 item 4: one wrong website copy and nothing is built (originals is never changed by this test)
+        msg = [f'STOPPED: {len(bad)} of the {len(_web_shas())} saved website copies in originals are not the website\'s key files '
+               f"(their sha256 differs from the website's, or the file is missing): {', '.join(bad[:12])}{' ...' if len(bad) > 12 else ''}.",
+               'Nothing was built. The kit update that brings links\\.kit-website-keys with these files fixes it; tell Claude.']
+        (rep / 'REPORT.txt').write_text('\n'.join(msg) + '\n', encoding='utf-8')
+        [say(l) for l in msg]
+        return
+    _pb = put_back_website_copies()   # batch 16: every test starts from the website's files, not an earlier test's
+    if _pb: say(f'  {_pb} file(s) put back to the website copy before the build (an earlier test had changed them)')
     attrs = store_attrs() if any(s != 'KY' for s in order) else ''
     if attrs is None:
         say('STOPPED: the agency id fields could not be read from the outline store (kpc_store_attrs.py failed; see above). '

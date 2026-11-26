@@ -39,15 +39,6 @@ with tempfile.TemporaryDirectory() as t:
     kf.write_text(json.dumps({'parks': dict(web['parks'], **{'K-9': park(['zz9'], 0.1)})}))
     check('a written key with a normal log = built', K.not_built_reason('ZZ', '::notice title=US key ZZ::match checks: 1 confirmed') == '')
 
-    # K4
-    K.remember_built('ZZ')
-    check("this PC's own build output is fingerprinted", K.sha(kf) in K.built_files())
-    before = (K.ORIG / kf.name).read_bytes()
-    for f in K.keyfiles('ZZ'):   # the start of run_state: the kept copy must NOT become the built (or crashed) file
-        o = K.ORIG / f.name
-        if f.is_file() and (not o.is_file() or (f.read_bytes() != o.read_bytes() and K.sha(f) not in K.built_files())): shutil.copy2(f, o)
-    check('a file this PC built is never taken as a new website copy', (K.ORIG / kf.name).read_bytes() == before)
-
     # join check: K-2 is 40 km off (held); K-3 is 30 km off here but has a piece 1 km away in another state file (kept)
     kf.write_text(json.dumps(web))
     (K.LINKS / 'data' / 'us-key' / 'US-YY.json').write_text(json.dumps({'parks': {'K-3': park(['yy3'], 1.0)}}))
@@ -62,33 +53,65 @@ with tempfile.TemporaryDirectory() as t:
     kf.write_text(json.dumps(web))
     check('a key file with no website copy is still checked, and said', 'no website copy' in K.join_check_lines('ZZ')[0])
 
-# 25 Nov (grade K4-2): through run_state with a fake builder: a join-check hold rewrites the key; the next run must keep the website copy
+# Batch 16 (grade of #380, 25 Nov: the PC's website copy of MN / NY was a test-built key): originals is only READ, and checked
 with tempfile.TemporaryDirectory() as t:
     t = pathlib.Path(t)
     K.LINKS, K.ORIG, K.LAST = t / 'links', t / 'originals', t / 'last-test'
-    (K.LINKS / 'data' / 'us-key').mkdir(parents=True)
+    (K.LINKS / 'data' / 'us-key').mkdir(parents=True); K.ORIG.mkdir()
     os.symlink(ROOT / '.github', K.LINKS / '.github')
     kf = K.LINKS / 'data' / 'us-key' / 'US-ZZ.json'
-    kf.write_text(json.dumps({'parks': {'K-1': park(['zz1'], 0.2)}})); web_bytes = kf.read_bytes()
+    web = json.dumps({'parks': {'K-1': park(['zz1'], 0.2)}}); web_sha = __import__('hashlib').sha256(web.encode()).hexdigest()
+    (K.ORIG / kf.name).write_text(web); kf.write_text(web)
     def fake_build(st, rep, attrs):   # writes a new far join, which the join check then holds (an in-place rewrite)
         kf.write_text(json.dumps({'parks': {'K-1': park(['zz1'], 0.2), 'K-2': park(['zz2'], 40.0)}}))
         return 0, '::notice title=US key ZZ::match checks: 1 confirmed'
     real_build, real_say = K.run_build, K.say
     K.run_build, K.say = fake_build, (lambda *a: None)
+    snap = lambda: sorted((p.name, p.read_bytes()) for p in K.ORIG.iterdir())
+    o0 = snap()
     out = K.run_state('ZZ', t, '', {})
-    check('run_state: the join check held the far join', any('1 join(s) held' in l for l in out))
-    check('run_state: the final (rewritten) key file is fingerprinted', K.sha(kf) in K.built_files())
+    check('run_state (no kit list, an older kit): originals is read as before, the far join held', any('1 join(s) held' in l for l in out))
+    check('run_state never writes into originals (no copy, no fingerprint list, no marker)', snap() == o0)
     K.run_build = lambda st, rep, attrs: (None, 'stop after the restore step')
     K.run_state('ZZ', t, '', {})
-    check("the next run keeps the website copy in originals (the PC's own key never replaces it)", (K.ORIG / kf.name).read_bytes() == web_bytes)
-    # a test killed mid-build: the marker stays, so the next run does not trust links\
-    kf.write_text(json.dumps({'parks': {'K-7': park(['zz7'], 0.1)}}))
-    (K.ORIG / 'build-running-ZZ.txt').write_text('x')
-    K.run_state('ZZ', t, '', {})
-    check('a killed test (marker left) is never taken as a new website copy', (K.ORIG / kf.name).read_bytes() == web_bytes)
-    check('the marker is cleared after the run', not (K.ORIG / 'build-running-ZZ.txt').is_file())
-    for i in range(3): K.remember_built('ZZ')
-    check('the fingerprint list keeps time order (newest last)', K._built_list()[-1] == K.sha(kf))
+    check("the next run starts again from the website copy (links\\ put back from originals)", kf.read_text() == web)
+    # the kit lists the website's sha256: a bad originals copy stops the state; the kit's own copy is used when it matches
+    (K.LINKS / K.KITWEB_NAME).mkdir()
+    (K.LINKS / K.KITWEB_NAME / 'sha256.json').write_text(json.dumps({'files': {'US-ZZ.json': web_sha}}))
+    check('a good originals copy is trusted', K.web_copy(kf) == K.ORIG / kf.name and K.web_copy_problem(kf) == '')
+    bad = json.dumps({'parks': {'K-9': park(['zz9'], 0.1)}}); (K.ORIG / kf.name).write_text(bad); o1 = snap()
+    kf.write_text(bad)
+    K.run_build = lambda st, rep, attrs: (_ for _ in ()).throw(AssertionError('must not build'))
+    out = K.run_state('ZZ', t, '', {})
+    check(f'a bad originals copy: the state is NOT BUILT, with one plain line ({out[0][:70]}...)',
+          len(out) == 1 and 'NOT BUILT' in out[0] and "is not the website's key" in out[0] and 'US-ZZ.json' in out[0])
+    check('a bad originals copy is left as it is (never fixed or overwritten by the test)', snap() == o1 and kf.read_text() == bad)
+    (K.LINKS / K.KITWEB_NAME / kf.name).write_text(web)
+    K.run_build = lambda st, rep, attrs: (None, 'stop after the restore step')
+    out = K.run_state('ZZ', t, '', {})
+    check("the kit's own website copy (sha matches) is used, and links\\ starts from it", K.web_copy(kf) == K.LINKS / K.KITWEB_NAME / kf.name and kf.read_text() == web)
+    check('originals is still untouched', snap() == o1)
+    # batch 16 item 4: ANY of the listed website copies wrong = the whole test stops before building (main(), first step)
+    (K.LINKS / K.KITWEB_NAME / 'sha256.json').write_text(json.dumps({'files': {'US-ZZ.json': web_sha, 'US-YY.json': 'f' * 64}}))
+    check('one wrong (or missing) website copy of the 66 is found before anything is built', K.website_copies_check() == ['US-YY.json'])
+    (K.LINKS / K.KITWEB_NAME / 'sha256.json').write_text(json.dumps({'files': {'US-ZZ.json': web_sha}}))
+    check('all listed copies good = nothing to stop', K.website_copies_check() == [])
+    # batch 16: before building, EVERY listed website file goes back into links\ (other areas, layers.json), not only the built state
+    other = K.LINKS / 'data' / 'us-key' / 'US-YY.json'; other_web = json.dumps({'parks': {'Y-1': park(['yy1'], 0.1)}})
+    (K.ORIG / 'US-YY.json').write_text(other_web); other.write_text('{"parks": {}}')   # an earlier test's output
+    lj_web = '{"sgzza": ["https://x.example/0/query", "NAME", "x"]}'
+    (K.LINKS / K.KITWEB_NAME / 'layers.json').write_text(lj_web); (K.LINKS / 'data' / 'us-key' / 'layers.json').write_text('{"sgzzb": []}')
+    sha_ = lambda t: __import__('hashlib').sha256(t.encode()).hexdigest()
+    (K.LINKS / K.KITWEB_NAME / 'sha256.json').write_text(json.dumps({'files': {'US-ZZ.json': web_sha, 'US-YY.json': sha_(other_web), 'layers.json': sha_(lj_web)}}))
+    o2 = snap()
+    n = K.put_back_website_copies()
+    check(f'every listed website file is put back before the build: another area and layers.json ({n})',
+          other.read_text() == other_web and (K.LINKS / 'data' / 'us-key' / 'layers.json').read_text() == lj_web and n == 2)
+    check('putting back never writes into originals', snap() == o2)
+    msrc = (ROOT / 'tools' / 'pc-keys' / 'kpc_test_keys.py').read_text(encoding='utf-8')
+    mm = msrc[msrc.index('def main(argv):'):]
+    check('main() checks every website copy first and stops with nothing built',
+          mm.index('website_copies_check()') < mm.index('put_back_website_copies()') < mm.index('store_attrs()') < mm.index('run_state(') and 'Nothing was built.' in mm)
     K.run_build, K.say = real_build, real_say
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

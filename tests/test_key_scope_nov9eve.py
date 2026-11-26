@@ -138,7 +138,8 @@ with tempfile.TemporaryDirectory() as t:
     parks = {'US-1': {'m': [['9']]}, 'US-2': {'m': [['8']]}, 'US-3': {'m': [['7']]}, 'US-4': {'m': [['6']]}}
     old = {k: os.environ.get(k) for k in ('KPC_KEY_ONLY_PARKS', 'KPC_KEY_ONLY_STATES')}
     os.environ.update(KPC_KEY_ONLY_PARKS='US-1', KPC_KEY_ONLY_STATES='TN')
-    try: exec(blk2, {'os': os, 'json': json, 'OUT': t, 'st': 'TN', 'parks': parks, 'OVR': {'US-3': {}}, 'notice': lambda *a: None})
+    try: exec(blk2, {'os': os, 'json': json, 'OUT': t, 'st': 'TN', 'parks': parks, 'OVR': {'US-3': {}}, 'notice': lambda *a: None,
+                     '_kr': lambda name: False})   # batch 16: the block reads KPC_STORE_FRESH (off here: the website key as it is)
     finally:
         for k, v in old.items():
             if v is None: os.environ.pop(k, None)
