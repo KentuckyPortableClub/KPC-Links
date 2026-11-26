@@ -38,6 +38,7 @@ def wanted_fields(gh=None):
         sys.path.insert(0, HERE)
         import kpc_same_land as SL_   # R1: the agency record id fields (sgmne su_id, sgmna uniqueid)
         for flds in SL_.AGENCY_RECORD_IDS.values(): out |= {str(f).lower() for f in flds}
+        out |= {str(f).lower() for f in SL_.AGENCY_ID_LATER.values()}   # 26 Nov: read for every layer, used only in a fresh state
     except Exception:  # noqa: BLE001
         pass
     try:
@@ -91,28 +92,36 @@ def _agency_num(r, fld):
     return (m.group(2), m.group(1).upper()) if m and int(m.group(2)) > 0 else ('', '')
 
 
-def publish_keys(records):
+def publish_keys(records, area=None):
     """Batch 16 item 1 (grade of #380 round 15, 25 Nov 2026: 'published key record ids use the agency's own id (MN sgmne + su_id),
     not OBJECTID'). A layer whose agency gives every record its own id (kpc_same_land.AGENCY_RECORD_IDS: Minnesota DNR state lands
-    su_id, DNR wildlife areas uniqueid 'WMA0038200') is spelled '<layer><agency id>' ('sgmne89125', 'sgmna38200'); OBJECTID is only the row the server
-    happened to give it, and it moves when the agency republishes (all 339 Minnesota Valley parcels moved on 25 Nov). A record with
-    no agency id, or one whose agency id another record of the same file also carries, keeps record_key's spelling, so no two
-    records ever share a key. The key builder, the outline cutter and the outline scorer all spell the same file with this, so
-    the key's ids and the outlines' ids agree. records = every record of ONE file; returns one key per record ('' = not spellable)."""
+    su_id, DNR wildlife areas uniqueid 'WMA0038200') is spelled by that id; OBJECTID is only the row the server happened to give
+    it, and it moves when the agency republishes (all 339 Minnesota Valley parcels moved on 25 Nov).
+    26 Nov 2026 (agency spelling; owner 5:17 PM): the agency spelling is '<layer>0<agency digits>' ('SFT00006' -> 'sgmnb06',
+    'WMA0038200' -> 'sgmna038200'): a leading zero marks it. A row number is written with str(int) and never starts with 0, so an
+    agency key can NEVER equal a row key ('sgmnb6' = row 6, 'sgmnb06' = agency forest 6; before, 16 Minnesota forests took another
+    forest's land). It still matches [a-z]+\d+, and the layer prefix (re.match('[a-z]*')) is the same. PAD-US ids (pure digits) are
+    never touched. area ('US-MN' / 'MN'): a layer in AGENCY_ID_LATER is spelled by its agency id only when the area is switched to
+    the fresh store (KPC_STORE_FRESH); area None = the Minnesota layers only (kpc_same_land.agency_fields).
+    A record with no agency id, or one whose agency id another record of the same file also carries (the only clash left), keeps
+    record_key's row spelling, so no two records ever share a key. The key builder, the outline cutter and the outline scorer all
+    spell the same file with this, so the key's ids and the outlines' ids agree. records = every record of ONE file; returns one
+    key per record ('' = not spellable)."""
     import kpc_same_land as SL_
     base = [record_key(r) for r in records]
     got, letters = [], {}
     for r, k in zip(records, base):
         lay = re.match(r'[a-z]*', k).group(0) if k else ''
-        flds = SL_.AGENCY_RECORD_IDS.get(lay) or ()
+        flds = SL_.agency_fields(lay, area)
         n, lt = _agency_num(r, flds[0]) if flds else ('', '')
         got.append((lay, n, lt))
         if n: letters.setdefault(lay, set()).add(lt)
     # an id with letters is used only when every record of its layer carries the SAME letters (else the digits alone could be
     # two different ids): 'WMA0038200' and 'WMA0012900' -> 'sgmna38200', 'sgmna12900'
-    cand = [lay + n if n and len(letters.get(lay) or ()) == 1 else '' for lay, n, lt in got]
+    cand = [lay + '0' + n if n and len(letters.get(lay) or ()) == 1 else '' for lay, n, lt in got]
     out = [c or k for c, k in zip(cand, base)]
-    # an agency key equal to another record's key: the agency-spelled ones fall back to record_key (never two records, one key).
+    # an agency key equal to another record's key (with the '0' marker only two records of one file with the SAME agency id can
+    # still clash; a row key never starts with 0): the agency-spelled ones fall back to record_key (never two records, one key).
     # Batch 18: until none is left, with a work list (a fall-back can make a new clash, which is handled in turn); it ends because
     # each step only falls back and row keys never repeat. Florida's 79,700 state lands needed more than the old 3 rounds.
     at = {}
@@ -128,10 +137,10 @@ def publish_keys(records):
                 at.setdefault(base[i], set()).add(i)
                 if len(at[base[i]]) > 1: todo.append(base[i])
     # batch 18: a layer keeps its agency spelling only when nearly all of it survives (90% of the records that had one, or no
-    # more than 5 fell back: a few shared ids are normal); else
-    # its agency numbers share the row numbers' range (Florida's OWNED_LAND_KEY 1..80,000 against OBJECTID 1..80,000), most
-    # would fall back, and a half-and-half layer is worse than the plain row spelling: that layer keeps record_key whole (the
-    # id still proves the same land in kpc_same_land).
+    # more than 5 fell back: a few shared ids are normal); else a layer whose agency id is shared by many records (Florida's
+    # OWNED_LAND_KEY repeats) would be half agency, half row spelling, which is worse than the plain row spelling: that layer
+    # keeps record_key whole (the id still proves the same land in kpc_same_land). Since 26 Nov the '0' marker means an agency key
+    # never meets a row key, so only shared agency ids still make a record fall back.
     for lay in {g[0] for g in got if g[0]}:
         idx = [i for i, g in enumerate(got) if g[0] == lay and cand[i]]
         kept = sum(1 for i in idx if out[i] == cand[i])
@@ -298,7 +307,7 @@ def run(store, out, gh=None, today=None, areas=None):
         groups = d.get('parks') or []
         if d.get('records'): groups = list(groups) + [{'records': d['records']}]
         _all = [r for p in groups for r in p.get('records') or []]
-        _pk = {id(r): k_ for r, k_ in zip(_all, publish_keys(_all))}   # batch 16 item 1: the agency's own id where it has one
+        _pk = {id(r): k_ for r, k_ in zip(_all, publish_keys(_all, area))}   # batch 16 item 1: the agency's own id where it has one
         for p in groups:
             for r in p.get('records') or []:
                 k = _pk.get(id(r), '')

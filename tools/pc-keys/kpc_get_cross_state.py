@@ -100,7 +100,7 @@ def saved_answer_list(want):
     for lf in sorted(tests[-1].glob('??.log')):
         st = lf.stem
         if want and st not in want: continue
-        for m in re.finditer(r'not found: US-\d+ ([a-z]+)(\d+) fingerprint', lf.read_text(encoding='utf-8', errors='replace')):
+        for m in re.finditer(r'not found: US-\d+ ([a-z]+)([1-9]\d*) fingerprint', lf.read_text(encoding='utf-8', errors='replace')):
             if isinstance(lj.get(m.group(1)), list) and lj[m.group(1)]: need.setdefault((st, m.group(1)), set()).add(int(m.group(2)))
     for (st, pre), ids in sorted(need.items()):
         have = saved_ids(st) or set()

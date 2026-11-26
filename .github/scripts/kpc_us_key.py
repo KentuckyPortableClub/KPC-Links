@@ -2372,7 +2372,7 @@ def same_land_fields(i, a):
                 if k not in cands and SL.boxes_overlap(bb, e.get('_bx'), 0.001): cands[k] = e
     if not cands: return 'none', None
     lay = _sl_layer(i)
-    k, lv, why = SL.pick(a, cands, SL.id_spec(lay), cache=True, own=i)
+    k, lv, why = SL.pick(a, cands, SL.id_spec(lay, CUR_ST['st']), cache=True, own=i)
     if not k: return ('conflict' if why == 'conflict' else 'unproven'), None
     SAME_OF[i] = (lv, k)
     return lv, {f: v for f, v in cands[k].items() if not str(f).startswith('_')}
@@ -2806,7 +2806,7 @@ def fresh_records(st, recs, P):
                     if k in ents and k not in cands and SL.boxes_overlap(bb, e.get('_bx'), 0.001): cands[k] = e
         if not cands: PROOF[i] = (lay, {'why': 'not near: no fresh record of this layer near it'}); continue
         tr_ = {}
-        k, lv, _w = SL.pick(a, cands, SL.id_spec(lay), cache=True, own=i, trace=tr_)
+        k, lv, _w = SL.pick(a, cands, SL.id_spec(lay, CUR_ST['st']), cache=True, own=i, trace=tr_)
         PROOF[i] = (lay, tr_)   # R6: the per-row proof list
         if k: alias[i] = k; lv_n[lv] = lv_n.get(lv, 0) + 1
     by_old = {_oid(a): a for a in recs}

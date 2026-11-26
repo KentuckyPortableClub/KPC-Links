@@ -39,19 +39,19 @@ def rec(oid, su=None, name='MINNESOTA VALLEY', layer='sgmne', x=-93.5):
 rs = [rec(3033, 89125.0), rec(3046, 89126), rec(15), rec(500, 777), rec(501, 777), rec(600, 3033),
       {'key': '237576', 'layer': 'PAD-US', 'record_id': '237576', 'record_name': 'Some Park', 'attributes': {'su_id': 5}, 'rings': []}]
 pk = SA.publish_keys(rs)
-check(f"1: a DNR parcel is spelled by its su_id, not its row number ({pk[0]}, {pk[1]})", pk[0] == 'sgmne89125' and pk[1] == 'sgmne89126')
+check(f"1: a DNR parcel is spelled by its su_id with a leading zero, not its row number ({pk[0]}, {pk[1]})", pk[0] == 'sgmne089125' and pk[1] == 'sgmne089126')
 check('1: a record with no su_id keeps its row spelling; PAD-US is untouched (its own Unit id field is not an agency record id)',
       pk[2] == 'sgmne15' and pk[6] == '237576')
 check('1: two records with ONE su_id both keep their row spelling (never two records, one key)', pk[3] == 'sgmne500' and pk[4] == 'sgmne501')
-check("1: every key in the file is different (an su_id 3033 parcel is 'sgmne3033' once the row-3033 parcel took its own su_id)",
-      pk[5] == 'sgmne3033' and len(set(pk)) == len(pk))
+check("1: every key in the file is different (an su_id 3033 parcel is 'sgmne03033', never row 3033's key)",
+      pk[5] == 'sgmne03033' and len(set(pk)) == len(pk))
 pk2 = SA.publish_keys([rec(15), rec(700, 15)])
-check("1: an su_id equal to a record's row key that stays (no su_id) falls back: no two records ever share a key",
-      pk2 == ['sgmne15', 'sgmne700'])
+check("1: an su_id equal to a record's row number never clashes: 'sgmne015' (agency 15) and 'sgmne15' (row 15)",
+      pk2 == ['sgmne15', 'sgmne015'])
 def wrec(oid, u):
     return {'key': f'sgmna{oid}', 'layer': 'sgmna', 'record_id': str(oid), 'attributes': {'objectid': oid, 'uniqueid': u}}
-check("1: a DNR wildlife area is spelled by its uniqueid ('WMA0038200' -> 'sgmna38200'), the same letters on every record",
-      SA.publish_keys([wrec(1, 'WMA0038200'), wrec(2, 'WMA0012900'), wrec(3, None)]) == ['sgmna38200', 'sgmna12900', 'sgmna3'])
+check("1: a DNR wildlife area is spelled by its uniqueid ('WMA0038200' -> 'sgmna038200'), the same letters on every record",
+      SA.publish_keys([wrec(1, 'WMA0038200'), wrec(2, 'WMA0012900'), wrec(3, None)]) == ['sgmna038200', 'sgmna012900', 'sgmna3'])
 check('1: ids with different letters on one layer are never cut to digits (two ids could become one): the row spelling',
       SA.publish_keys([wrec(1, 'WMA0038200'), wrec(2, 'AMA0038201')]) == ['sgmna1', 'sgmna2'])
 with tempfile.TemporaryDirectory() as td:
@@ -63,13 +63,13 @@ with tempfile.TemporaryDirectory() as td:
     with gzip.open(td / 'attrs.json.gz', 'rt', encoding='utf-8') as fh: d = json.load(fh)
     r_ = d['records']
     check('1: the store reader keys the parcel by its su_id and marks it (never found by a row number)',
-          'sgmne89125' in r_ and r_['sgmne89125'].get('_agk') == 1 and r_['sgmne89125'].get('su_id') == 89125.0 and 'sgmne3046' not in r_
+          'sgmne089125' in r_ and r_['sgmne089125'].get('_agk') == 1 and r_['sgmne089125'].get('su_id') == 89125.0 and 'sgmne3046' not in r_
           and 'sgmne15' in r_ and not r_['sgmne15'].get('_agk'))
     check('1: the id file is format 14 (the PC test remakes an older one)', d.get('format') == 14)
     import kpc_outlines_from_key as OK_
     sr = OK_.store_records(str(td), 'US-ZZ')
     check('1: the outline cutter spells the same file the same way (the key ids and the outline ids agree)',
-          set(sr) == set(pk[:6]) and 'sgmne89125' in sr)
+          set(sr) == set(pk[:6]) and 'sgmne089125' in sr)
     import kpc_outline_score as OS_
     by_id, _bn = OS_.store_index(str(td))
     check('1: the outline scorer too', set(by_id) == set(pk[:6]))
