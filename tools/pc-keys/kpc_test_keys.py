@@ -25,7 +25,9 @@ LINKS = HERE / 'links'
 ORIG = HERE / 'originals'          # the website's key, kept once per state, so every test compares with the same thing
 LAST = HERE / 'last-test'          # this PC's last test of each state, to see what the newest change did
 KITWEB_NAME = '.kit-website-keys'  # batch 16: the website's key files (main) and their sha256, brought by the kit (read only)
-STORE = HERE.parent / 'Tools' / 'KPC-TOOLS-NOV14' / '1-STORE-TOOL' / 'kpc-outline-store-full' / 'results' / 'store'
+STORE = next((p for p in (HERE.parent / '3-MAP-STORE-US-CA' / 'results' / 'store',   # 26 Nov: the new folder name first
+                          HERE.parent / 'Tools' / 'KPC-TOOLS-NOV14' / '1-STORE-TOOL' / 'kpc-outline-store-full' / 'results' / 'store') if p.is_dir()),
+             HERE.parent / 'Tools' / 'KPC-TOOLS-NOV14' / '1-STORE-TOOL' / 'kpc-outline-store-full' / 'results' / 'store')
 US_ALL = ('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA '
           'RI SC SD TN TX UT VT VA WA WV WI WY').split()
 
