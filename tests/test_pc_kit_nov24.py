@@ -111,7 +111,7 @@ with tempfile.TemporaryDirectory() as t:
     msrc = (ROOT / 'tools' / 'pc-keys' / 'kpc_test_keys.py').read_text(encoding='utf-8')
     mm = msrc[msrc.index('def main(argv):'):]
     check('main() checks every website copy first and stops with nothing built',
-          mm.index('website_copies_check()') < mm.index('put_back_website_copies()') < mm.index('store_attrs()') < mm.index('run_state(') and 'Nothing was built.' in mm)
+          mm.index('website_copies_check()') < mm.index('put_back_website_copies()') < mm.index('store_attrs(') < mm.index('run_state(') and 'Nothing was built.' in mm)
     K.run_build, K.say = real_build, real_say
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

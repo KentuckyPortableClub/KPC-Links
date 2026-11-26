@@ -166,6 +166,14 @@
    "why": "Only because kpc_match_checks.py and kpc_store_attrs.py (Canada rule files too) change for the US: W-G13 lives in agency_check, which the Canada pass (canada_pass) does not run; publish_keys, sane_acres and the second-name field touch only US layer files (no Canada layer has an agency record id field or a state-gis nm2). No Canada result changes. Scope none.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'; shared helper, Canada pass unchanged"
+  },
+  {
+   "id": "2026-11-26-key-batch-shared",
+   "when": "2026-11-26",
+   "from": "d0352dfc270b",
+   "why": "Shared rule files change for the US key batch of 26 Nov (kpc_match_checks.py, kpc_key_rules.py, kpc_same_land.py): a possessive written as one word is a second try in the exact-name test (DEVIL'S = DEVILS), a held id counts only while it is one of the park's joined records, and a thin shape must be long. Canada names with a possessive can now match where they did not; nothing else in the Canada pass reads these. Scope none: no Canada area is rebuilt for it now; the next full Canada build reads it.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 4:18 PM: 'your only job is to find and fix problems with keys...we want accuracy more matches more confirmed matches'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }

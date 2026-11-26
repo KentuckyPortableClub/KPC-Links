@@ -98,12 +98,20 @@ def full(name):
     return ' '.join(' '.join(w).split())
 
 
+def full_ps(name):
+    """26 Nov 2026 (Fable's review, US-12389): full() with a possessive written as one word (DEVIL'S = DEVILS). Only a second
+    try: full() itself keeps 'knox s' so the single-letter rule still ties Knox's Headquarters to 'Knox Headquarters'."""
+    return full(re.sub(r"(?i)(?<=[a-z])['\u2019`]s\b", 's', str(name or '')))
+
+
 def exact_name(park_name, list_name, park_kind=''):
     """True when the list's name IS the park's full name, as written or as its bare name plus the park's kind word
-    ('X' + 'State Park' = 'X State Park'). 'X' never ties 'X Lake'."""
-    a, b = full(park_name), full(list_name)
-    if not a or not b: return False
-    return a == b or (bool(park_kind) and full(f'{list_name} {park_kind}') == a)
+    ('X' + 'State Park' = 'X State Park'). 'X' never ties 'X Lake'. 26 Nov: a possessive as one word is a second try."""
+    for f_ in (full, full_ps):
+        a, b = f_(park_name), f_(list_name)
+        if not a or not b: continue
+        if a == b or (bool(park_kind) and f_(f'{list_name} {park_kind}') == a): return True
+    return False
 
 
 def how_word(row):
@@ -487,6 +495,20 @@ def held_id_of(p):
     if bk and bk[0] is not None:
         return str(bk[0])
     return ''
+
+
+def evidence_id_of(p):
+    """26 Nov 2026 (Fable's review finding 6): the record the evidence block reads. A held id counts only while it is still one of
+    the park's joined records (a website-key id read on another day can name other land: Northwest Angle's held 'sgmnb14' is
+    Crow Wing's forest in the fresh file); else this run's best try ('bk'), if joined; else the first joined record."""
+    in_m = [str(q[0]) for q in p.get('m') or [] if isinstance(q, (list, tuple)) and q]
+    held = p.get('held') or {}
+    for i in (held.get('ids') or []) if isinstance(held, dict) else []:
+        if str(i) in in_m: return str(i)
+    bk = p.get('bk') or [None]
+    if bk and bk[0] is not None and str(bk[0]) in in_m: return str(bk[0])
+    return in_m[0] if in_m else ''
+
 
 
 def kinds_clash(p, rec, table=None):
@@ -2082,7 +2104,7 @@ def pass_state(parks, recs, facts, place_fn, url_of=lambda a: '', is_no=lambda r
         ev, name_how = None, ''
         if st_ == 'confirmed' and how:
             pin_ = (facts.get(ref) or {}).get('pin')
-            hid = held_id_of(p) or held_id_for_pass(ref, p, recs, pin_, lambda _r, i: holds(i))
+            hid = evidence_id_of(p) or held_id_for_pass(ref, p, recs, pin_, lambda _r, i: holds(i))   # 26 Nov: finding 6
             ev = confirm_evidence(ref, p, recs, facts, hid, pin=pin_)
             if how == 'held name and pin':
                 rec_ = recs.get(hid) or recs.get(str(hid or '')) or {}

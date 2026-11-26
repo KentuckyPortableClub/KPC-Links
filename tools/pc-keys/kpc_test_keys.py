@@ -178,9 +178,30 @@ def notices(log):
     return out[:20]
 
 
-def store_attrs():
-    """The outline store's agency id fields for the match checks (KPC_RECORD_ATTRS); '' when the store is not on this PC."""
-    out = LINKS / '.pf' / 'record-attrs.json.gz'
+def test_areas(order):
+    """26 Nov 2026 (grade 4:22 PM, speed): the store areas a test needs: each state, the states it borders (a park across the
+    line), and every Canadian file for Canada. None = every area (a test of the whole US)."""
+    if 'US' in order or len([s for s in order if s not in ('KY', 'CANADA')]) > 20: return None
+    try:
+        nb = json.load(open(LINKS / 'data' / 'us-key' / 'area-tables.json', encoding='utf-8')).get('US_NEIGHBOURS') or {}
+    except Exception: nb = {}  # noqa: BLE001
+    out = set()
+    for s in order:
+        if s == 'CANADA':
+            out |= {p.name.split('.')[0] for p in STORE.glob('CA-*.layer-records.json.gz')} | {p.name.split('.')[0] for p in STORE.glob('CA-*.kpcstore.json.gz')}
+        elif s != 'KY':
+            _n = nb.get(s) or []
+            out |= {f'US-{s}'} | {f'US-{x}' for x in (_n.split() if isinstance(_n, str) else _n)}
+    return out
+
+
+def store_attrs(order=None):
+    """The outline store's agency id fields for the match checks (KPC_RECORD_ATTRS); '' when the store is not on this PC.
+    26 Nov: only the test's areas and their neighbours (one file per set of areas, kept until the store changes)."""
+    import hashlib
+    areas = test_areas(order or [])
+    tag = hashlib.sha1(','.join(sorted(areas)).encode()).hexdigest()[:8] if areas else 'all'
+    out = LINKS / '.pf' / f'record-attrs-{tag}.json.gz'
     if not STORE.is_dir():
         say(f'  (the outline store folder is not at {STORE}: the id checks use the saved copies only)')
         return ''
@@ -194,7 +215,8 @@ def store_attrs():
     if not out.is_file() or out.stat().st_mtime < newest or fmt < 14:   # 25 Nov (better matcher): 6 adds each record's name, size, box and light outline; 7 its area, read date, PAD-US words; 8 the layer records + manifest; 9 each layer file's identity (Q1); 10 the agency record ids and FWS realty fields (R1, R5); 11 the layer's own acres field (round 15); 12 the agency's own record ids, 13 the layer's second name (batch 16), 14 more agency id layers (batch 18)
         say('  reading the agency id fields from the outline store (once, about a minute)...')
         out.parent.mkdir(exist_ok=True)
-        rc = subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)], cwd=LINKS).returncode
+        rc = subprocess.run([sys.executable, '-X', 'utf8', '.github/scripts/kpc_store_attrs.py', '--store', str(STORE), '--out', str(out)]
+                            + (['--areas', ','.join(sorted(areas))] if areas else []), cwd=LINKS).returncode
         if rc != 0:   # P2 (grade of round 6): a failed run never falls back to an older id file
             return None
     return str(out) if out.is_file() else ''
@@ -474,9 +496,9 @@ def wrong_land_lines(kf, rep):
         + '\n', encoding='utf-8')
     st = tag.split('-')[-1]
     cf = rep / 'old-rows-not-carried.csv'
-    nc = sum(1 for l in cf.read_text(encoding='utf-8').splitlines()[1:] if l.startswith(st + ',')) if cf.is_file() else 0
+    nc = sum(1 for l in cf.read_text(encoding='utf-8').splitlines()[1:] if l.startswith(st + ',') and 'other land' in l) if cf.is_file() else 0
     out = [f'  wrong-land check: one id on two parks under two names {len(two)}, under the same name {len(same)} (list: WRONG-LAND-{tag}.txt); '
-           f'old rows refused because their name did not fit that record {nc} (list: old-rows-not-carried.csv)']
+           f'old rows that would have named other land, refused {nc} (list: old-rows-not-carried.csv)']
     if two: out.append(f'  PROBLEM: {len(two)} record id(s) sit on two parks under two names. Tell Claude.')
     return out
 
@@ -555,7 +577,7 @@ def main(argv):
         return
     _pb = put_back_website_copies()   # batch 16: every test starts from the website's files, not an earlier test's
     if _pb: say(f'  {_pb} file(s) put back to the website copy before the build (an earlier test had changed them)')
-    attrs = store_attrs() if any(s != 'KY' for s in order) else ''
+    attrs = store_attrs(order) if any(s != 'KY' for s in order) else ''
     if attrs is None:
         say('STOPPED: the agency id fields could not be read from the outline store (kpc_store_attrs.py failed; see above). '
             'The test never uses an older id file. Tell Claude.')

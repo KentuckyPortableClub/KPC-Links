@@ -82,7 +82,7 @@ gate = src[src.index('def proven_only_gate') if 'def proven_only_gate' in src el
 check('the gate checks every drawn fresh row with the same test, whatever proved the park',
       "elif fresh_on and rec is not None and rec.get('_fresh') and not carry_fits(q, rec):" in src)
 check('the PC test gets the refused rows as a list and a count',
-      "'KPC_CARRY_LIST'" in src and 'old rows not carried because their name does not fit' in src)
+      "'KPC_CARRY_LIST'" in src and 'old rows not carried: ' in src and 'would have named other land' in src)
 check('two records under one key never share a cached view',
       SL.cached_view('k1', {'Unit_Nm': 'A'})['names'] != SL.cached_view('k1', {'Unit_Nm': 'B'})['names'])
 
