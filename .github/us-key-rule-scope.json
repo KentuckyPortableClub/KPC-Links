@@ -1058,6 +1058,20 @@
     "parks": []
    },
    "approved": "APPROVED, decided_by KPC owner, 26 Nov 4:18 PM: 'we want accuracy more matches more confirmed matches and efficiency in all aspects'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
+  },
+  {
+   "id": "2026-11-26-name-gaps",
+   "when": "2026-11-26",
+   "from": "f1021178821d",
+   "why": "Owner 5:18 PM 'no more putting stuff off': the outline-to-pin parks of the 1654 PC test that were name gaps. (1) A record whose own name, alone or + the park's POTA type, IS the park's full name (MC.exact_name) and that holds POTA's pin joins ('Inspiration Peak State Wayside' + 'State Natural Site'; 'Toad River AMA (Becker/Otter Tail)' + 'State Conservation Area'); never water, an office or a NO; a bare name needs the park's kind; the proven-only gate still decides. (2) FWS 'National Wildlife and Fish Refuge' = POTA's 'National Wildlife Refuge' in the exact-name test (US-4236 Upper Mississippi). (3) NY DEC's class names 'Wild Forest' and 'Multiple Use Area' swap with POTA's 'State Forest' (US-12060 Crystal Lake; Burt Hill), only with a real place word left.",
+   "scope": {
+    "states": [
+     "MN",
+     "NY"
+    ],
+    "parks": []
+   },
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:18 PM: 'yeah no more putting stuff off so it does not get dropped'; 4:18 PM: 'we want accuracy more matches more confirmed matches'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }

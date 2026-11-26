@@ -93,6 +93,7 @@ def full(name):
     import unicodedata
     s = unicodedata.normalize('NFKD', str(name or '')).encode('ascii', 'ignore').decode().lower()
     s = re.sub(r'\(.*?\)', ' ', s).replace('&', ' and ')
+    s = re.sub(r'\bwildlife and fish refuge\b', 'wildlife refuge', s)   # 26 Nov: FWS 'Upper Mississippi River National Wildlife and Fish Refuge' = POTA's '... National Wildlife Refuge'
     s = re.sub(r"[^a-z0-9 ]+", ' ', s)
     w = [SHORT.get(x, x) for x in s.split() if x != 'the']
     return ' '.join(' '.join(w).split())

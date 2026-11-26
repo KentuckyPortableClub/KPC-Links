@@ -2414,7 +2414,10 @@ def real_name(park_name, rec_name, kind=''):
 # name for a state park can carry another PARK-family type word than POTA's ('Canandaigua Lake Marine Park' is POTA's
 # 'Canandaigua Lake State Park'). Only these swaps, only in full (the same words before the type words, at least one real
 # word of 4+ letters), never across families (a forest, a wildlife area or a trail is never a park).
-KIND_SWAPS = {'state park': ('state marine park', 'marine park'), 'state trail': ('trail',)}   # 'Black Diamond Trail' (NY State Parks) = POTA's 'Black Diamond State Trail'
+KIND_SWAPS = {'state park': ('state marine park', 'marine park'), 'state trail': ('trail',),
+              # 26 Nov 2026 (the 1654 PC test, NY): NY DEC names its state forest lands by their class ('Crystal Lake Wild Forest',
+              # 'Burt Hill Multiple Use Area'); POTA writes the same place as 'Crystal Lake State Forest', 'Burt Hill State Forest'
+              'state forest': ('wild forest', 'multiple use area')}   # 'Black Diamond Trail' (NY State Parks) = POTA's 'Black Diamond State Trail'
 
 
 PLACE_WORDS = {'lake', 'lakes', 'river', 'creek', 'pond', 'bay', 'beach', 'island', 'point', 'hill', 'mountain', 'falls', 'harbor', 'north', 'south', 'east', 'west'}
@@ -3643,6 +3646,20 @@ def run(st):
                       inside(la, lo, a['_g']) if la is not None and a.get('_g') else None] for a in recs
                      if _oid(a) in [str(w) for w in wants] or _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') in {_nf(w) for w in wants}]
             dbg(ref, 'A after joins+overrides', {'pin': [la, lo], 'm': [x[:4] for x in m], 'wants': wants, 'records with that id/name [id,name,ac,within0.6,pin inside]': seen_[:8], 'n_recs': len(recs)})
+        # 26 Nov 2026 (owner 5:18 PM 'no more putting stuff off'; the 1654 PC test's outline-to-pin parks): POTA often writes a park as
+        # the agency's own name + POTA's type ('Inspiration Peak State Wayside' + 'State Natural Site'; 'Toad River AMA (Becker/Otter
+        # Tail)' + 'State Conservation Area'). A record whose own name, alone or + the park's type, IS the park's full name
+        # (MC.exact_name: case, punctuation, brackets and short forms aside) and that holds POTA's pin joins: the agency's own name for
+        # this place. Never a water outline, an office, or a record a person said NO to; the proven-only gate still decides.
+        if not m and la is not None and typ:
+            for a in recs:
+                if not a.get('_g') or a.get('Water') or not near(la, lo, a['_bb'], .01): continue
+                nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
+                if not nm or KM.is_admin(nm) or not (MC.exact_name(name, nm, typ) or kind_swap(name, nm)): continue
+                if not kinds(nm) and not (set(a.get('_k') or ()) & kp): continue   # a bare name ('Pine Island'): its layer's kind must be the park's kind
+                if str(_oid(a)) in {str(y) for y in ov.get('no', [])} or _no_all(ov, a): continue
+                if not inside_slack(la, lo, a['_g']): continue
+                m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), "name: the agency's own name + POTA's type, pin inside"])
         site = []
         if not m and la is not None:
             # unsure: not joined, only listed so a person can look
