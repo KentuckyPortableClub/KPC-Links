@@ -109,7 +109,7 @@ def store_records(store, area):
             raise StoreUnreadable(f'{f.name} cannot be read ({type(e).__name__}: {str(e)[:120]})') from e
         groups += [p.get('records') or [] for p in d.get('parks') or []] + [d.get('records') or []]
     _all = [r for recs_ in groups for r in recs_]
-    _pk = {id(r): k_ for r, k_ in zip(_all, SA.publish_keys(_all))}   # batch 16 item 1: spelled as the key spells it (agency id)
+    _pk = {id(r): k_ for r, k_ in zip(_all, SA.publish_keys(_all, area))}   # batch 16 item 1: spelled as the key spells it (agency id)
     for recs_ in groups:
         for r in recs_:
             k = _pk.get(id(r), '')

@@ -61,6 +61,29 @@ AGENCY_ID_LATER = {   # not used yet (see above): the field for each layer, chec
     'sgncb': 'gamelandid', 'sgcta': 'dep_id', 'sgmea': 'cl_uniqueid', 'sgmec': 'cl_uniqueid', 'nep': 'park_id',
     'sgnec': 'park_id', 'sgida': 'wmaid', 'sgarb': 'park_num', 'sgmta': 'siteid', 'sgmtb': 'siteid', 'sgmtc': 'siteid',
     'sgnva': 'landid', 'sgnvj': 'dsl_id', 'sgpaa': 'icsorg', 'sgwie': 'fr_prop_code', 'sgwvb': 'kronos'}
+
+
+def _store_fresh(area):
+    """True when the area ('US-MN' or 'MN') is switched to the fresh store (KPC_STORE_FRESH 'on' in .github/key-switches.json)."""
+    try:
+        import kpc_key_rules as KR_
+        return bool(KR_.on('KPC_STORE_FRESH', area=re.sub(r'^US-', '', str(area or ''))))   # switches list 'MN'; a file's area is 'US-MN'
+    except Exception:  # noqa: BLE001
+        return False
+
+
+def agency_fields(layer, area=None):
+    """26 Nov 2026 (agency spelling): the agency record id fields a layer is spelled and proved by, as a tuple. A layer in
+    AGENCY_RECORD_IDS (the Minnesota ones) always. A layer in AGENCY_ID_LATER only for an AREA switched to the fresh store
+    (KPC_STORE_FRESH), one state at a time: a national layer (wld, wsrc) is in many states' files, and a state still on the
+    old copy keeps the row numbers. area None = the Minnesota layers only."""
+    f = AGENCY_RECORD_IDS.get(layer)
+    if f: return tuple(f)
+    later = AGENCY_ID_LATER.get(layer)
+    if later and area and _store_fresh(area): return (later,)
+    return ()
+
+
 EDGE = 0.001           # R2: a grid point this close (degrees) to the fresh outline's edge counts as on its ground
 
 KIND_WORDS = {'state', 'national', 'county', 'city', 'regional', 'public', 'park', 'parks', 'forest', 'forests', 'wildlife',
@@ -114,7 +137,7 @@ def _table(name):
     return _TABLES[name]
 
 
-def id_spec(layer):
+def id_spec(layer, area=None):
     """{field (lower case): (kind, [patterns])} for one layer. Only a UNIT id proves or refuses (grade 25 Nov, M3):
       'unit'  the id finder's 'unit id' fields and the crosswalk's SAME ID fields (.github/keep-record-fields.json);
       'web'   a web-address field: compared by the id INSIDE the address (.github/link-id-ties.json patterns), never as text,
@@ -133,7 +156,7 @@ def id_spec(layer):
         if fl in ties or 'web address' in why: out[fl] = ('web', ties.get(fl) or [])
         elif 'unit id' in why or 'crosswalk' in why: out[fl] = ('unit', [])
     for fl, rx in ties.items(): out.setdefault(fl, ('web', rx))
-    for fl in AGENCY_RECORD_IDS.get(layer, ()):   # R1: agency record ids (never 'unit': they never refuse)
+    for fl in agency_fields(layer, area):   # R1: agency record ids (never 'unit': they never refuse); a later layer only in a fresh state
         if fl not in out: out[fl] = ('arec', [])
     return out
 

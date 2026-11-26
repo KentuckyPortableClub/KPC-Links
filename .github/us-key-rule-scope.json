@@ -1058,6 +1058,20 @@
     "parks": []
    },
    "approved": "APPROVED, decided_by KPC owner, 26 Nov 4:18 PM: 'we want accuracy more matches more confirmed matches and efficiency in all aspects'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
+  },
+  {
+   "id": "2026-11-26-agency-spelling",
+   "when": "2026-11-26",
+   "from": "f1021178821d",
+   "why": "A record the agency numbers itself (Minnesota state forests, parks, state lands, wildlife areas) is now spelled with a leading zero: agency forest 6 is 'sgmnb06', row 6 stays 'sgmnb6', so the two can never be the same id (before, 16 Minnesota forests took another forest's land). The layer prefix and the [a-z]+digits shape do not change; PAD-US ids do not change. The 26 waiting layers (AGENCY_ID_LATER) are spelled and proved by their agency id only for a state switched to the fresh store (KPC_STORE_FRESH: MN and NY today), one state at a time; a national layer (wilderness, wild and scenic rivers) follows the area of each file.",
+   "scope": {
+    "states": [
+     "MN",
+     "NY"
+    ],
+    "parks": []
+   },
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:17 PM: 'did you make the agency code spelling fixes? have sonnet look at them and make it for you'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }

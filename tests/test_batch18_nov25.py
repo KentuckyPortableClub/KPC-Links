@@ -34,10 +34,10 @@ check('no GUID layer and no layer under 100% different (fsod, NPS UNIT_CODE laye
       not {'fsod', 'sgakd', 'sgmac'} & (set(_REAL) | set(SL.AGENCY_ID_LATER)))
 check('the id fields are read from the store for every listed layer', all(f in SA.wanted_fields() for v in SL.AGENCY_RECORD_IDS.values() for f in v)
       if hasattr(SA, 'wanted_fields') else True)
-check("one letter prefix for the whole layer: 'SFT00002' -> 'sgmnb2'",
-      SA.publish_keys([rec('sgmnb', 1, sft='SFT00002'), rec('sgmnb', 2, sft='SFT00058')]) == ['sgmnb2', 'sgmnb58'])
+check("one letter prefix for the whole layer: 'SFT00002' -> 'sgmnb02'",
+      SA.publish_keys([rec('sgmnb', 1, sft='SFT00002'), rec('sgmnb', 2, sft='SFT00058')]) == ['sgmnb02', 'sgmnb058'])
 check("the field name in any letter case ('GameLandID' for gamelandid)",
-      SA.publish_keys([rec('sgncb', 7, GameLandID=54), rec('sgncb', 8, GameLandID=55)]) == ['sgncb54', 'sgncb55'])
+      SA.publish_keys([rec('sgncb', 7, GameLandID=54), rec('sgncb', 8, GameLandID=55)]) == ['sgncb054', 'sgncb055'])
 check("two letter prefixes in one layer ('SPK', 'SRA'): the row spelling stays",
       SA.publish_keys([rec('sgmnd', 1, PGRM_PROJECT='SPK00139'), rec('sgmnd', 2, PGRM_PROJECT='SRA00304')]) == ['sgmnd1', 'sgmnd2'])
 check("an id with a dash ('TSP-0018') is never spelled into the key (the proof still uses it)",
@@ -46,12 +46,12 @@ check("an id with a dash ('TSP-0018') is never spelled into the key (the proof s
 ch = [rec('sgcta', i, DEP_ID=i + 1) for i in range(1, 30)] + [rec('sgcta', 30)]
 pk = SA.publish_keys(ch)
 check(f'a long chain of clashes ends with every key different ({len(set(pk))} of {len(pk)})', len(set(pk)) == len(pk))
-# agency numbers in the row numbers' range: most fall back, so the whole layer keeps its row spelling
+# agency ids most records share: most fall back, so the whole layer keeps its row spelling
 fl = [rec('sgflf', i, OWNED_LAND_KEY=(i % 40) + 1) for i in range(1, 81)]
 pk = SA.publish_keys(fl)
-check('a layer where most agency ids clash keeps the row spelling whole', pk == [f'sgflf{i}' for i in range(1, 81)])
+check('a layer where most agency ids are shared keeps the row spelling whole', pk == [f'sgflf{i}' for i in range(1, 81)])
 check('a few shared ids fall back alone; the rest of the layer keeps its agency spelling',
       SA.publish_keys([rec('sgmta', 1, SITEID=279882), rec('sgmta', 2, SITEID=279882), rec('sgmta', 3, SITEID=280032)])
-      == ['sgmta1', 'sgmta2', 'sgmta280032'])
+      == ['sgmta1', 'sgmta2', 'sgmta0280032'])
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
