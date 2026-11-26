@@ -530,7 +530,16 @@ def main(argv):
            'Counts only, no park names. "website" = the key on the website today; "last test" = this PC\'s previous test of that state.',
            f'Store id fields: {"used" if attrs else "not found (saved copies only)"}.'] + kit_lines() + ['']
     tot = {}
-    for st in order:
+    t0 = time.time()
+    for i, st in enumerate(order):
+        # 26 Nov (owner: "a progress bar or something on the long ones"): one bar line before each state
+        f = i / len(order)
+        left = ''
+        if i:
+            m = (time.time() - t0) / 60 / i * (len(order) - i)
+            left = f'   about {m:.0f} min left' if m >= 1 else '   less than a minute left'
+        say('')
+        say(f'  [{"#" * int(f * 30)}{"-" * (30 - int(f * 30))}] {f * 100:3.0f}%   state {i + 1} of {len(order)}: {st}{left}')
         say(f'{st}:')
         out += run_state(st, rep, attrs, tot) + ['']
         (rep / 'REPORT.txt').write_text('\n'.join(out) + '\n', encoding='utf-8')   # after every state: a closed window keeps what was done
@@ -541,6 +550,7 @@ def main(argv):
                 f'pin to outline {tot.get("from_pin", 0)}; check rows {tot.get("check", 0)} (before {tot.get("check_before", 0)}); '
                 f'outlined only with the pin over 5 km off {tot.get("far_outlined", 0)} (report only: the owner decides); '
                 f'{tot.get("minutes", 0):.0f} minutes in all.']
+    say(f'  [{"#" * 30}] 100%   all {len(order)} state(s) done in {(time.time() - t0) / 60:.0f} min')
     out += [''] + check_row_collapse_lines([LINKS / 'data' / 'us-key', LINKS])
     (rep / 'REPORT.txt').write_text('\n'.join(out) + '\n', encoding='utf-8')
     _h = next((re.search(r'US ([0-9a-f]{12})', l).group(1) for l in out if l.startswith('Rules on this PC: US ') and re.search(r'US ([0-9a-f]{12})', l)), '')
