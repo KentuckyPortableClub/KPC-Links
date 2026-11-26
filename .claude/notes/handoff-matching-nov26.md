@@ -33,6 +33,13 @@ Owner (Brandon, 26 Nov 1:41 AM): "new pc is taking over tomorrow". The new PC's 
     (D:\layers now a note), hand helper originals-folder.txt (new; its default said D:), Tools\MOVE-PREP 3 bats. Heartbeat task (if used):
     run 2-HEARTBEAT-ON once.
 - **Owner's call, not touched:** Layers-TIDY\Archive-pieces holds the same 4.15 GB zip twice; KPC-ID-crosswalk has 2 older store copies.
+- **26 Nov 9:21 AM (owner: "Make the change you can and yeah we can get rid of duplicate layers"), on the PC, read back equal:**
+  `C:\KPC_Map_Builder_Program\MOVE-TO-C-KPC.bat` (moves the folder to `C:\KPC` after YES, loose notes into important, SETUP-PYTHON.bat into
+  Tools, then fix-paths --go + sizes) and `Tools\HOUSEKEEPING\7-DUPLICATE-LAYERS.bat` (`kpc_housekeeping.py dupes`: Layers, Layers-TIDY
+  except Private, 11-14 new layers; same size then same sha256; keeps Originals first, then the cleaner name; removes the rest for good after
+  YES, re-checks the hash first; log duplicates-removed.csv). Panel button added (section "7. Keep it tidy"). Seen by name + size:
+  Archive-pieces 4.15 GB twice, Gordt EP.zip 217 MB x4, Wales SSSI p800 x3. The bridge cannot move or delete: the owner runs both.
+  After the move this session's folder is gone: the owner adds C:\KPC in the Claude app.
 - **Layout, after the 26a test:** rename `C:\KPC_Map_Builder_Program\KPC GITHUB TOOL and MOre` to one short name (e.g. `C:\KPC`), then
   4-FIX-PATHS (tools find each other by place; re-add the folder in the Claude app). Numbered inner folders need kit changes (panel FOLDERS,
   kpc_test_keys STORE, LAYER-RECORDS climb, crosswalk / page-reader / trace climbs): later.
