@@ -217,11 +217,42 @@ def _bands(rings, rboxes):
     return ix
 
 
+RING_CELLS = 32        # speed (26 Nov 2026): an outline of more than this many rings files its rings by box on a CELLS x CELLS grid
+CELLS = 64
+_RIX = {}
+
+
+def _ring_cells(rings, rboxes):
+    """Per grid cell of the outline's box: the rings whose box touches it. A point only needs the rings whose box holds it:
+    a ring whose box does not hold the point is crossed an even number of times by the point's ray (or not at all), so it
+    never changes the answer. PAD-US holds Minnesota records of up to 3,975 rings; each point looked at every one."""
+    got = _RIX.get(id(rings))
+    if got is not None and got[0] is rings: return got[1]
+    if len(_RIX) > 20000: _RIX.clear()
+    bx = [min(b[0] for b in rboxes), min(b[1] for b in rboxes), max(b[2] for b in rboxes), max(b[3] for b in rboxes)]
+    cw, ch = max((bx[2] - bx[0]) / CELLS, 1e-12), max((bx[3] - bx[1]) / CELLS, 1e-12)
+    cells = {}
+    for k, b in enumerate(rboxes):
+        for i in range(max(0, int((b[0] - bx[0]) / cw)), min(CELLS - 1, int((b[2] - bx[0]) / cw)) + 1):
+            for j in range(max(0, int((b[1] - bx[1]) / ch)), min(CELLS - 1, int((b[3] - bx[1]) / ch)) + 1):
+                cells.setdefault((i, j), []).append(k)
+    out = (bx, cw, ch, cells)
+    _RIX[id(rings)] = (rings, out)
+    return out
+
+
 def _inside_ix(x, y, rings, rboxes, ix):
-    """_inside over the edges in (x, y)'s band of each ring."""
+    """_inside over the edges in (x, y)'s band of each ring (of an outline of many rings: only the rings whose box can hold the point)."""
     c = False
-    for b, (h, bands) in zip(rboxes, ix):
-        if y < b[1] or y > b[3] or x > b[2]: continue
+    if len(rings) > RING_CELLS:
+        bx, cw, ch, cells = _ring_cells(rings, rboxes)
+        if x < bx[0] or x > bx[2] or y < bx[1] or y > bx[3]: return False
+        ks = cells.get((min(CELLS - 1, int((x - bx[0]) / cw)), min(CELLS - 1, int((y - bx[1]) / ch))), ())
+        pairs = ((rboxes[k], ix[k]) for k in ks)
+    else:
+        pairs = zip(rboxes, ix)
+    for b, (h, bands) in pairs:
+        if y < b[1] or y > b[3] or x > b[2] or x < b[0]: continue
         for (xi, yi), (xj, yj) in bands.get(int(math.floor((y - b[1]) / h)), ()):
             if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / ((yj - yi) or 1e-300) + xi: c = not c
     return c
@@ -337,6 +368,24 @@ def _near_edge_ix(x, y, ix, d):
 STRICT_MIN = 0.50      # S1 (grade of round 10): a rough overlap or piece also needs half of a's points STRICTLY inside b
 
 
+def _grid_in(va, ra, bx, sa_, n):
+    """Speed (26 Nov 2026): a's grid points that lie inside a, worked out ONCE per record and grid size and kept in its view.
+    pick() measures one old record against every fresh candidate near it, and each time the same n x n points of the same
+    outline were tested again (two thirds of the time of a big record). The same points with the same test: the same answer."""
+    got = va.get('_gin')
+    if got is not None and got[0] is ra and got[1] == n: return got[2]
+    aix = _bands(ra, sa_)
+    dx, dy = (bx[2] - bx[0]) / n, (bx[3] - bx[1]) / n
+    pts = []
+    for i in range(n):
+        x = bx[0] + (i + 0.5) * dx
+        for j in range(n):
+            y = bx[1] + (j + 0.5) * dy
+            if _inside_ix(x, y, ra, sa_, aix): pts.append((x, y))
+    va['_gin'] = (ra, n, pts)
+    return pts
+
+
 def ground_shares2(va, vb, n=GRID_FINE):
     """R2 + S1: (share of a's grid points on b's ground or within the edge allowance of b's edge, share STRICTLY inside b), or
     None when it cannot be told (no outline, fewer than MIN_HITS points inside a). The allowance is EDGE (0.001 degree) but
@@ -347,23 +396,19 @@ def ground_shares2(va, vb, n=GRID_FINE):
     edge = min(EDGE, 0.1 * min(bx[2] - bx[0], bx[3] - bx[1]))
     if not boxes_overlap(bx, bb, edge): return (0.0, 0.0)
     sa_, sb_ = [box_of([r]) for r in ra], [box_of([r]) for r in rb]
-    ins = on = strict = 0
+    on = strict = 0
     ix = None
-    aix, bix = _bands(ra, sa_), _bands(rb, sb_)
-    dx, dy = (bx[2] - bx[0]) / n, (bx[3] - bx[1]) / n
-    for i in range(n):
-        x = bx[0] + (i + 0.5) * dx
-        for j in range(n):
-            y = bx[1] + (j + 0.5) * dy
-            if not _inside_ix(x, y, ra, sa_, aix): continue
-            ins += 1
-            if not boxes_overlap([x, y, x, y], bb, edge): continue
-            if _inside_ix(x, y, rb, sb_, bix): on += 1; strict += 1
-            elif edge > 0:
-                if ix is None:
-                    ix = vb.get('_eix')
-                    if ix is None: ix = vb['_eix'] = _edge_index(rb)   # once per fresh record (views are cached)
-                if _near_edge_ix(x, y, ix, edge): on += 1
+    bix = _bands(rb, sb_)
+    pts = _grid_in(va, ra, bx, sa_, n)
+    ins = len(pts)
+    for x, y in pts:
+        if not boxes_overlap([x, y, x, y], bb, edge): continue
+        if _inside_ix(x, y, rb, sb_, bix): on += 1; strict += 1
+        elif edge > 0:
+            if ix is None:
+                ix = vb.get('_eix')
+                if ix is None: ix = vb['_eix'] = _edge_index(rb)   # once per fresh record (views are cached)
+            if _near_edge_ix(x, y, ix, edge): on += 1
     if ins < MIN_HITS: return None
     return on / ins, strict / ins
 
