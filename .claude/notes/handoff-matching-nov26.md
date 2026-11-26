@@ -84,6 +84,8 @@ Owner (Brandon, 26 Nov 1:41 AM): "new pc is taking over tomorrow". The new PC's 
 - 76 tool screens redone in the owner's look (helper; read back); 4 small bugs fixed (START-HERE Enter, 2-fer RUN-ALL pause,
   crosswalk >nul). Next: progress bars (store fetch/build, layer download, key test per state, page reader, 2-fer finder).
 
+- **Night key test (Brandon 26 Nov 2:48 PM: 'set a timer for it'):** NIGHTLY-LAYERS.bat now calls 5-ANSWER-KEY-TEST\NIGHT-TEST.bat after the downloads. It runs only when a TEST-ORDER.txt (one line of states) is there, renames it so it runs once, and writes NIGHT-TEST-last.txt. Saved copies only. Keep orders small: the Windows task stops at 6 hours.
+
 ## Next (in order)
 1. 27 Nov: read the first nightly run with the keeper list (results\logs\nightly-layers-*.log, nightly-last.txt). If right, ask the
    owner's OK to switch off the GitHub keeper's downloading (keep its light change check).
