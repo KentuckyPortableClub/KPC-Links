@@ -4,7 +4,7 @@ Owner: Brandon White, KZ4CP (brandonwhite42166@gmail.com). Plain-language answer
 Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from `main`, repo KentuckyPortableClub/KPC-Links).
 
 - `.claude/notes/handoff-app-lounges-nov19.md`: where the APP + LOUNGES stand (Nov 19), what waits on Brandon, the carbon-copy rule. Read first in a new app/Lounge chat.
-- `.claude/notes/handoff-matching-nov25.md`: NEWEST (Nov 25): the better matcher (#380), full layer files as the fresh source (KPC-Store #38), the owner's PC test, next jobs. Read first in a new matching chat.
+- `.claude/notes/handoff-matching-nov25.md`: NEWEST (Nov 25): the better matcher (#380), full layer files as the fresh source (KPC-Store #38), the owner's PC test, next jobs; the MOVE to drive G: + the folder/storage plan (Nov 26). Read first in a new matching chat.
 - `.claude/notes/handoff-matching-nov23.md`: where MATCHING + ACCURACY stand (Nov 23), the next jobs in order, what waits on Brandon, how to bring his PC test kit up to date after a change. Read first in a new matching chat.
 - `.claude/notes/rule-sheet-stable-ids-nov25.md`: rule sheet: row numbers (OBJECTID) are not ids; THE BETTER MATCHER (Brandon Nov 25 6:20 + 6:28 AM): same land by agency id, shared ground, name + size (kpc_same_land.py); proof or the pin, no hand-offs (KPC_PROVEN_ONLY). G1-G4 ruled Nov 25.
 - `.claude/notes/handoff-official-links-nov23.md`: the OWN-PAGE FINDER for parks with no link or a dead one (Nov 23): what exists, the plan, rule sheet L, done. Read first for the official-links job.

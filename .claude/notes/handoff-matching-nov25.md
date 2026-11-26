@@ -92,16 +92,43 @@ Expected: MN builds (all joined layers complete); NY builds once Catskill is com
 4. Then, only on the owner's word: LAYER-RECORDS for every US + Canada area (choice 2, many hours), switches on for more states,
    the owner's quoted OK on the rules line (marks APPROVED), merge.
 
-## The move to the new PC (owner 25 Nov 9:15 AM: "We come back to that tonight")
-- Not started. The plan is on his PC: `D:\KPC GITHUB TOOL and MOre\Tools\MOVE-PREP\MOVE-LIST.txt` (24 Nov; he said yes at 8:02 PM):
-  about 29 GB to copy (Layers-TIDY 19.4 GB, the US store 4.4 GB, the world store 2.3 GB, page reader, ID crosswalk, trace test, test kit
-  basics); download fresh on the new PC (repos, links, park facts, Python 3.12 + packages); leave old kit zips and old tool copies behind
-  only after the new PC passes its checks. Nothing on the old PC is deleted first. BACKUP-TO-DRIVE.bat and MAKE-LAYER-GUIDE.bat are there.
-- After the move: heavy work on the PC (store rebuilds, LAYER-RECORDS downloads, key builds once the hold is lifted, 2-fers, trace test,
-  page reader); GitHub keeps the website, posts, small feeding bots and the keeper's light nightly check. Each move needs his OK.
-- GitHub size clean-up comes after the move, its own GO: full backup first, then old branches, then a history reset one repo at a time.
-- NEW since the list was made: the full layer files (results\layer-files + results\store\*.layer-records.json.gz) live in the US store
-  folder; they move with it (or are downloaded again by LAYER-RECORDS.bat).
+## The move to the new drive (updated 26 Nov ~2:15 AM CT)
+**Owner, 26 Nov: he has NOT changed any file.** Everything on the new drive is a straight copy of the old folder.
+- **Copy:** `D:\KPC GITHUB TOOL and MOre` -> `G:\KPC GITHUB TOOL and MOre` (same folder name, same layout), with BACKUP-TO-DRIVE.bat.
+  The move folder `Tools\MOVE-PREP` (MOVE-LIST.txt, BACKUP-TO-DRIVE.bat, MAKE-LAYER-GUIDE.bat) is on G: too. Not yet confirmed
+  finished: check the end of `BACKUP-LOG.txt` (Failed = 0). D: stays as it is; nothing on D: is deleted.
+- **Python:** 3.12 + add-ons installed 26 Nov 1:26 AM by SETUP-PYTHON.bat (saved in G:\\...\\Tools; one click; Python on C:, user install):
+  shapely 2.2.0, pyproj 3.8.0, pyshp 3.1.9, numpy 2.5.5, opencv-python-headless 5.1.0.95, pillow 13.0.0, openpyxl 3.1.5.
+  It ended "ALL ADD-ONS LOAD: READY". The "not on PATH" warnings (f2py.exe, pyproj.exe) are harmless: no tool uses them.
+- **Paths, checked 26 Nov:** the tools find each other by their place inside the folder (control panel `ROOT` = its own folder;
+  kpc_test_keys `STORE = HERE.parent/'Tools'/...`; LAYER-RECORDS.bat `%~dp0..\..\..\..\key builder files`), so a new drive letter
+  or a new top-folder name is fine. Only these name the folder in full (still say D:, owner has not edited them):
+  `Tools\KPC-TOOLS-NOV14\1-STORE-TOOL\kpc-outline-store-full\have-folders.txt` (2 lines: Layers-TIDY\Originals, Layers-TIDY\Held),
+  `saved-outlines-folder.txt` (same folder, 2 lines) and `Tools\MOVE-PREP\BACKUP-TO-DRIVE.bat`. Edit in Notepad, not PowerShell 5
+  (it adds a BOM the reader trips on). A findstr search on G: also lists `cross-state-report.txt`, `data\status\kpc_test_keys.json`
+  and 81 world `store-missing-*.json`: old run outputs, rewritten next run, nothing to fix. Re-run that search once the copy is done.
+- **Next, in order:** copy finished -> owner edits the two txt files to G: -> START-HERE.bat for MN from G: -> same counts as the
+  last MN test = the move works. Do not rename or move folders inside before that.
+- **Drives:** keep the whole folder on the fastest drive (M.2) as one piece; the second SSD holds only what no tool reads (old kit
+  zips, backups, old reports). Layers-TIDY could live apart (only have-folders.txt names it) but only if space is short.
+
+## The plan for organizing and storage (owner 26 Nov 1:02 AM; PLAN ONLY, no moves until his GO)
+Owner's words: "organized simply laid out and named and keep growth down if possible", "save over files when it can", "temp folders
+that auto delete", "finish work to a different drive". Do it AFTER the MN test passes on G:, in a fresh chat (Opus is enough):
+1. Read every tool in the folder; list where each one reads and writes (fixed paths, relative paths, path text files).
+2. Propose one simple layout: one short top folder with no spaces (e.g. `G:\KPC`), a few numbered folders (layers, store, test keys,
+   tools, reports), short clear names.
+3. Results save over: keep the latest + one before, not a new folder per run.
+4. One temp folder that each tool empties of its own files older than 7 days when it starts.
+5. Finished work (reports and zips to keep) goes to the second drive.
+6. NEVER saved over or moved by a cleanup: the original layer files (Layers-TIDY\Originals) and their `.kpc-source.json`
+   fingerprints (they are the proof). Layers stay as they are (no converting to .gz; owner asked 25 Nov, answer was no).
+7. A one-line folder-size check after each run, so growth shows.
+8. Each tool's path change is one small kit update, tested by START-HERE for MN; the owner moves folders only after it passes.
+- Older: MOVE-LIST.txt (24 Nov) proposed `D:\KPC\` with LAYERS, 2-MAP-STORE, 1-COLLECT, 3-TEST-KEYS...; use it as the starting
+  draft. After the move: heavy work on the PC, GitHub keeps the website, posts, small feeding bots and the keeper's light check.
+  GitHub size clean-up is its own GO later: full backup first, then old branches, then a history reset one repo at a time.
+- Full layer files (results\layer-files + results\store\*.layer-records.json.gz) live in the US store folder and move with it.
 
 ## House rules that bit today
 - Never push to main (branch + draft PR; author KPC owner, message ends "KPC owner, <date>", no trailers).
