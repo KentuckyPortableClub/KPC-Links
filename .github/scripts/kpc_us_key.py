@@ -2563,6 +2563,15 @@ def _name_proofs(ref, p, byid, st, pn, kind, wide):
             B = [q for q in by_lay[lb] if any(SL.boxes_overlap(box_of(str(q[0])), box_of(str(r[0]))) for r in by_lay[la])]
             if not A or not B or (len(A) == 1 and len(B) == 1): continue   # one and one: the test above
             ac_ = lambda q: part[str(q[0])][1] if str(q[0]) in part else float((byid.get(str(q[0])) or {}).get('GIS_Acres') or q[2] or 0)
+            # batch 17 (US-2071 Helen L. McNitt State Park: PAD-US holds it twice, 143 and 135 acres on one box): one source's
+            # records on the SAME ground (boxes 80% the same) are counted once, the largest; different pieces still add up
+            def _once(Q):
+                kept = []
+                for q in sorted(Q, key=lambda q: -ac_(q)):
+                    if not any(SL.box_share(box_of(str(q[0])), box_of(str(k[0]))) >= 0.8 for k in kept): kept.append(q)
+                return kept
+            A, B = _once(A), _once(B)
+            if len(A) == 1 and len(B) == 1 and not (len(by_lay[la]) > 1 or len(by_lay[lb]) > 1): continue
             sa, sb = sum(ac_(q) for q in A), sum(ac_(q) for q in B)
             if sa > 0 and sb > 0 and abs(sa - sb) <= SIZE_TOL_PARK * max(sa, sb):
                 return (f'name in two official sources ({la or "padus"} {len(A)} record(s) {round(sa):,} and {lb or "padus"} '

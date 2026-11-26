@@ -214,6 +214,14 @@ def _inside_ix(x, y, rings, rboxes, ix):
     return c
 
 
+def box_share(a, b):
+    """The shared part of two boxes as a share of the smaller box (0 when they do not meet or a box is missing)."""
+    if not a or not b: return 0.0
+    w = max(0.0, min(a[2], b[2]) - max(a[0], b[0])); h = max(0.0, min(a[3], b[3]) - max(a[1], b[1]))
+    sm = min((a[2] - a[0]) * (a[3] - a[1]), (b[2] - b[0]) * (b[3] - b[1]))
+    return w * h / sm if sm > 0 else 0.0
+
+
 def acres_of(rings):
     """Area in acres measured on the outline (even-odd: a ring inside an odd number of others is a hole)."""
     if not rings: return 0.0
@@ -368,6 +376,20 @@ def point_shares(va, vb):
 
 COARSE_OFF = 0.20       # an outline whose measured area is more than 20% off its own acres is too rough to measure shared ground
 COARSE_SMALL = 20.0     # a record under 20 acres drawn with 5 points or fewer is too rough as well
+THIN_M = 200.0          # batch 17: a shape on average narrower than this (metres) cannot be measured against another read
+                        # (the key's saved copy is drawn to 0.001 degree, about 90 m): Old Croton Aqueduct, a 26-mile strip
+                        # about 20 m wide, showed '25% shared' with its own fresh record
+
+
+def mean_width_m(rings):
+    """A shape's average width in metres: 2 x area / perimeter (a long strip: its width). 0 when it cannot be told."""
+    if not rings: return 0.0
+    per = 0.0
+    for r in rings:
+        for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1]):
+            k = math.cos(math.radians((y1 + y2) / 2))
+            per += math.hypot((x2 - x1) * 111320.0 * k, (y2 - y1) * 110574.0)
+    return 2 * acres_of(rings) * 4046.86 / per if per > 0 else 0.0
 
 
 def view(rec, id_fields=()):
@@ -394,7 +416,8 @@ def view(rec, id_fields=()):
         if v: ids[f] = v
     measured = acres_of(rings) if rings else 0.0
     npts = sum(len(r) for r in rings)
-    coarse = bool(rings) and ((ac > 0 and measured > 0 and abs(measured - ac) > COARSE_OFF * ac) or (measured < COARSE_SMALL and npts <= 5))
+    coarse = bool(rings) and ((ac > 0 and measured > 0 and abs(measured - ac) > COARSE_OFF * ac) or (measured < COARSE_SMALL and npts <= 5)
+                              or 0 < mean_width_m(rings) < THIN_M)   # batch 17: too thin to measure is 'can't tell' too
     return {'names': {name_key(n) for n in names if not generic(n)}, 'rings': rings, 'box': box_of(rings) or rec.get('_bx') or rec.get('_bb'),
             'acres': ac, 'measured': measured, 'coarse': coarse, 'ids': ids, 'arecs': arecs}
 
@@ -500,6 +523,15 @@ def pick(a, cands, id_fields=(), cache=False, own=None, trace=None):
             win = [h for g_, h in gs if g_ is not None and g_ >= DIFFERENT_GROUND]
             if len(win) == 1 and all(g_ is not None and g_ < DIFFERENT_GROUND for g_, h in gs if h is not win[0]):
                 return _tr(trace, win[0][0], lv, win[0][1] + ' (two fits; shared ground breaks the tie)')
+        # R3b (batch 17, only at name + size, where the number may never break a tie; US-0481 Wertheim National Wildlife Refuge: PAD-US holds the refuge twice, 2,671 and 2,657 acres on one
+        # box): when EVERY tied record is the same land as every other (proven to each other, and their boxes 80% the same),
+        # the tie is no choice between two lands: the one closest to a's size is taken (then the lower key, never the number).
+        if lv == 'name_size' and all(prove(h[2], g[2], id_fields)[0] and box_share(h[2]['box'], g[2]['box']) >= OVERLAP_SMALL for h in hits for g in hits if h is not g):
+            sz = va['acres'] or va['measured']
+            best = min(hits, key=lambda h: (abs((h[2]['acres'] or h[2]['measured']) - sz), str(h[0])))
+            g_ = ground_share(va, best[2])   # never when the outlines say a's ground is elsewhere (R3: neither holds it)
+            if g_ is None or g_ >= DIFFERENT_GROUND:
+                return _tr(trace, best[0], lv, best[1] + f' (two fits that are one land: {len(hits)} records of the same ground)')
         return _tr(trace, None, None, f'two fits ({lv})', hits[0][0])
     why = 'conflict' if conflict else 'not proven'
     best = min(miss, key=lambda m: next((n for n, w in enumerate(_WHY_RANK) if m[1].startswith(w)), len(_WHY_RANK)), default=None)
@@ -549,7 +581,10 @@ def selftest():
     t('name and size', prove(n1, n2)[0] == 'name_size')
     t('size off', prove(n1, dict(n2, _ac=150))[0] is None)
     t('generic name', prove(dict(n1, Unit_Nm='Unit 2'), dict(n2, _nm='Unit 2'))[0] is None)
-    t('name + size tie is never broken by the number', pick(n1, {'sgxx20': n2, 'sgxx31': dict(n2, _ac=102)}, own='sgxx31')[0] is None)
+    n3 = dict(n2, _ac=102, _bx=[-89.995, 40.005, -89.985, 40.015])   # a second Mud Lake WMA, a quarter of the box apart
+    t('name + size tie is never broken by the number', pick(n1, {'sgxx20': n2, 'sgxx31': n3}, own='sgxx31')[0] is None)
+    t('R3b: two fits on ONE box are one land: the closest size, never the number',
+      pick(n1, {'sgxx20': dict(n2, _ac=102), 'sgxx31': n2}, own='sgxx31')[0] == 'sgxx20')
     g1 = {'Unit_Nm': 'Mud Lake WMA', 'GIS_Acres': 216, '_g': sq(-90, 40, 0.01)}
     g2 = {'_nm': 'Mud Lake WMA', '_ac': 216, '_g': sq(-89.993, 40.0, 0.01)['rings']}
     t('different ground', prove(g1, g2)[0] is None)

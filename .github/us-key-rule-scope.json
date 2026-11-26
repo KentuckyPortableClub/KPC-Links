@@ -977,6 +977,24 @@
     ]
    },
    "approved": "APPROVED, decided_by KPC owner, 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
+  },
+  {
+   "id": "2026-11-25-batch17",
+   "when": "2026-11-25",
+   "from": "daf204f039f0",
+   "why": "Batch 17 (the owner's 5:43 PM NY test): a shape on average narrower than 200 m is too thin to measure against another read ('can't tell': name + size decides; US-10040 Old Croton Aqueduct, ~20 m wide, showed 25% shared with its own fresh record); R3b: two name + size fits proven to each other on 80% of one box are one land, the closest size taken, never the number, never when a's ground is elsewhere (US-0481 Wertheim NWR, PAD-US holds it twice); the two-sources sum counts one source's records on the same ground once (US-2071 Helen L. McNitt SP, PAD-US 143 + 135 on one box).",
+   "scope": {
+    "states": [
+     "MN",
+     "NY"
+    ],
+    "parks": [
+     "US-0481",
+     "US-2071",
+     "US-10040"
+    ]
+   },
+   "approved": "APPROVED, decided_by KPC owner, 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'; 9:08 PM 'Do all you can to help.'"
   }
  ]
 }
