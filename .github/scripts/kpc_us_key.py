@@ -2921,7 +2921,7 @@ def fresh_old_parks(old, alias, recs):
     return out
 
 
-def repoint_saved(st, P, alias, fresh_ids, store_layers=None):
+def repoint_saved(st, P, alias, fresh_ids, store_layers=None, by=None):
     """The state's saved answers (overrides join / no / fp / nofp ids) follow their land to the fresh record (alias: old id -> fresh
     id, each one PROVEN by kpc_same_land). An id with no proven fresh twin now names its old hint record ('<id>~old' when a fresh
     record took its number), so it never lands on other land. Every move and every miss is listed in REPOINTS."""
@@ -2933,6 +2933,14 @@ def repoint_saved(st, P, alias, fresh_ids, store_layers=None):
             x_ = str(x)
             if not re.fullmatch(r'[a-z]*\d+', x_): return x       # a name, not an id: the name rules handle it
             if x_ in alias:
+                # 26 Nov 2026 (owner 2:54 PM; Fable finding 1): a saved answer was saved against some day's numbering; when it
+                # carries a fingerprint (the name and size it was saved for), the fresh record it would follow must fit it
+                fp_ = ((ov.get('fp') if kind == 'join' else ov.get('nofp') if kind == 'no' else None) or {})
+                fp_ = fp_.get(x_) if isinstance(fp_, dict) else None
+                r_ = (by or {}).get(alias[x_])
+                if fp_ and fp_[0] and r_ is not None and not carry_fits([x_, fp_[0], fp_[1] if len(fp_) > 1 else 0], r_):
+                    REPOINTS.append([st, ref, kind, x_, '', "the fresh record it would follow does not fit the answer's own name: stays on the old copy (a hint, never drawn)"])
+                    return x_ + '~old'
                 if alias[x_] != x_: REPOINTS.append([st, ref, kind, x_, alias[x_], 'proven same land'])
                 return int(alias[x_]) if alias[x_].isdigit() else alias[x_]
             if store_layers is not None and _sl_layer(x_) not in store_layers and x_ not in fresh_ids:
@@ -3349,7 +3357,7 @@ def run(st):
         progress(st, f'joining the fresh layer files ({len(recs):,} old saved records)')
         recs, _alias = fresh_records(st, recs, P)
         progress(st, 'fresh layer files joined')
-        repoint_saved(st, P, _alias, {_oid(a) for a in recs if a.get('_fresh') and not a.get('_read_now')}, set((FRESH.get(st) or {}).get('store_layers') or []))
+        repoint_saved(st, P, _alias, {_oid(a) for a in recs if a.get('_fresh') and not a.get('_read_now')}, set((FRESH.get(st) or {}).get('store_layers') or []), {_oid(a): a for a in recs})
         _fr = FRESH.get(st) or {}
         notice(f'US key {st}', f"fresh source (the outline store's own read): {_fr.get('fresh', 0)} fresh record(s); "
                f"{_fr.get('twins', 0)} old saved record(s) proven to one (by agency id {_fr.get('by_id', 0)}, by shared ground "

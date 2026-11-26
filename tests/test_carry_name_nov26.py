@@ -69,6 +69,11 @@ new2 = fop({'US-4797': {'n': 'Foot Hills State Forest', 'm': [['sgmnb7', 'Foot H
            {'x1': 'sgmnb36'}, recs + [{'OBJECTID': 'sgmnb7', 'Unit_Nm': 'Birch Lakes', 'GIS_Acres': 630, '_fresh': True}])
 check(f"an old number with no proven twin that a fresh record now carries never names it, even with the same size ({new2['US-4797']['m']})",
       new2['US-4797']['m'] == [] and ns['CARRY_REFUSED'][0][2] == 'sgmnb7')
+ns['OVR'] = {'US-4815': {'join': ['sgmnb14', 'sgmnb36'], 'fp': {'sgmnb14': ['Northwest Angle', 143388], 'sgmnb36': ['Northwest Angle', 144415]}}}
+ns['REPOINTS'] = []
+ns['repoint_saved']('MN', ['US-4815'], {'sgmnb14': 'sgmnb6', 'sgmnb36': 'sgmnb36'}, {'sgmnb6', 'sgmnb36'}, None, {_r['OBJECTID']: _r for _r in recs})
+check(f"a saved answer whose fingerprint names other land never follows to it; one that fits does ({ns['OVR']['US-4815']['join']})",
+      ns['OVR']['US-4815']['join'] == ['sgmnb14~old', 'sgmnb36'])
 gate = src[src.index('def proven_only_gate') if 'def proven_only_gate' in src else src.index("fresh_on = _kr('KPC_STORE_FRESH')"):]
 check('the gate checks every drawn fresh row with the same test, whatever proved the park',
       "elif fresh_on and rec is not None and rec.get('_fresh') and not carry_fits(q, rec):" in src)
