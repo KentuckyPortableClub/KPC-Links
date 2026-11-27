@@ -667,6 +667,87 @@
    "test": "test_stream_read_same",
    "fn": "slim_record",
    "stub": "identity"
+  },
+  {
+   "id": "size_in_hectares",
+   "step": "3",
+   "what": "a layer's own size field in hectares or km2 (size_fields, unit measured against the shapes) is the agency's acres (ha_acres, km2_acres)",
+   "why": "owner 26 Nov 9:53 PM: 'of course'",
+   "test": "test_size_in_hectares",
+   "fn": "size_field_acres",
+   "stub": "empty"
+  },
+  {
+   "id": "page_size_unit",
+   "step": "3",
+   "what": "an own-page size is read from its text as written, with its unit (size_text_units); a size whose unit cannot be told, or with two numbers, is not used",
+   "why": "round 8: the page reader saved square kilometres unconverted",
+   "test": "test_page_size_unit",
+   "fn": "size_from_text",
+   "stub": "empty"
+  },
+  {
+   "id": "two_language_kind",
+   "step": "3",
+   "what": "in Canada a record and a park whose names hold the same place words (accents and lang_small_words aside, never translated) and the same kind through lang_kinds (French kind first, English kind last, or both in one name) are the same name; a second proof (pin, size, two sources) is still needed and every refusal applies; match.by says 'two-language name+...'",
+   "why": "owner 26 Nov 9:53 PM: a French-only record may join an English-named park 'of course ... and some that be English and French mix'",
+   "test": "test_two_language_kind",
+   "fn": "kind_place",
+   "stub": "empty"
+  },
+  {
+   "id": "same_apostrophe",
+   "step": "3",
+   "what": "curly and straight apostrophes are one character wherever a name or an id is compared",
+   "why": "FACTS-AUDIT F13: CA-1846 failed its id check for it",
+   "test": "test_same_apostrophe",
+   "fn": "same_apostrophe",
+   "stub": "identity"
+  },
+  {
+   "id": "bad_pin",
+   "step": "load",
+   "what": "a pin with latitude outside -90..90, longitude outside -180..180, or 0,0, or missing, is no pin",
+   "why": "FACTS-AUDIT F2: 3 Manitoba pins have latitude over 90 (CA-2456 Maple Lake WMA [100.856, -49.514], CA-2538, CA-2395); 199 parks have 0,0 (198 Quebec)",
+   "test": "test_no_pin_park",
+   "fn": "pin_ok",
+   "stub": "true"
+  },
+  {
+   "id": "no_pin_proofs",
+   "step": "3",
+   "what": "a park with no pin can still be proven by an agency id whose record carries its full name, by name + size, or by name + two sources (its whole named group, no pin distance); never by a pin rule; else pin only with park_has_no_pin",
+   "why": "FACTS-AUDIT F2 (manager round 8 item 4b)",
+   "test": "test_no_pin_park",
+   "fn": "no_pin_group",
+   "stub": "empty"
+  },
+  {
+   "id": "two_sources_independent",
+   "step": "3",
+   "what": "the two sources of name+two_sources must come from two different map services (a layer's address up to MapServer / FeatureServer)",
+   "why": "round 8: CA-QC 'Québec prote' and 'Québec recog' are two layers of one register (Biodiversite/Aires_protegees) with the same records and sizes: with no pin, 147 parks would have been 'proven' by one source read twice",
+   "test": "test_two_sources_independent",
+   "fn": "other_services",
+   "stub": "true"
+  },
+  {
+   "id": "licence_kept",
+   "step": "gate",
+   "what": "every joined record keeps publishable, licence_class and publish_why from today's file; the key says per park share all / part / none and lists its private ids; v2-proof.csv ends with publishable and licence_class; the gate stops a key where a joined record has no publishable value (fail closed) or a private one has no class. Matching does not change.",
+   "why": "owner 26 Nov: 'we also care about terms and licenses: we don't want to get information that's not meant to be shared; we may use it privately but not share it'",
+   "test": "test_licence_kept",
+   "fn": "gate_licence",
+   "stub": "empty"
+  },
+  {
+   "id": "licence_share",
+   "step": "write",
+   "what": "a record may be shown only when its file says publishable true (no value = private)",
+   "why": "owner 26 Nov (terms and licences)",
+   "test": "test_licence_kept",
+   "fn": "may_show",
+   "stub": "true"
   }
  ],
  "values": {
@@ -729,6 +810,21 @@
    "value": 30.48,
    "why": "100 ft, the club's trail distance (POTA: activate within 100 feet of the trail; club 2-fer rule: lines = 100 ft from the edge). A line joins by name only with the pin this close to its nearest segment.",
    "test": "test_line_pin_distance"
+  },
+  "ha_acres": {
+   "value": 2.47105,
+   "why": "1 hectare = 2.47105 acres (owner 26 Nov 9:53 PM: Canadian sizes in hectares or km2 may be converted to acres 'of course')",
+   "test": "test_size_in_hectares"
+  },
+  "km2_acres": {
+   "value": 247.105,
+   "why": "1 square kilometre = 247.105 acres (owner 26 Nov 9:53 PM)",
+   "test": "test_size_in_hectares"
+  },
+  "mi2_acres": {
+   "value": 640.0,
+   "why": "1 square mile = 640 acres (page sizes written in square miles)",
+   "test": "test_page_size_unit"
   }
  },
  "tables": {
@@ -853,9 +949,65 @@
      "field": "web_url",
      "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
      "measured": "CA-NS 26 Nov: 151 parks; records with pin inside 121, within 5 km 97, farther 43"
+    },
+    {
+     "kind": "page address",
+     "layer": "maw",
+     "field": "Website",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "US-MA 26 Nov: 220 parks, 0 pages on two parks; record hits pin inside 170, within 5 km 51, far 1; record name shares a place word 212 of 222"
+    },
+    {
+     "kind": "page address",
+     "layer": "sggaa",
+     "field": "Website",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "US-GA 26 Nov: 118 parks, 0 pages on two parks; record hits inside 102, within 5 km 32, far 26 (pieces); name shares a word 148 of 160"
+    },
+    {
+     "kind": "page address",
+     "layer": "sgwic",
+     "field": "SNA_URL",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "US-WI 26 Nov: 24 parks; hits inside 16, within 5 km 8; name shares a word 24 of 24"
+    },
+    {
+     "kind": "page address",
+     "layer": "sgwif",
+     "field": "SNA_URL",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "US-WI 26 Nov: 24 parks; hits inside 16, within 5 km 14, far 9 (pieces); name shares a word 39 of 39"
+    },
+    {
+     "kind": "page address",
+     "layer": "sgwib",
+     "field": "INFO_URL",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "US-WI 26 Nov: 1 park; inside 1"
+    },
+    {
+     "kind": "page address",
+     "layer": "sgsca",
+     "field": "prop_page_url",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "US-SC 26 Nov: 19 parks; hits inside 14, within 5 km 6; name shares a word 18 of 20"
+    },
+    {
+     "kind": "page address",
+     "layer": "sgscd",
+     "field": "prop_page_url",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "US-SC 26 Nov: 19 parks; hits inside 14, within 5 km 17, far 6 (pieces); name shares a word 33 of 37"
+    },
+    {
+     "kind": "page address",
+     "layer": "sgnjb",
+     "field": "FACILITY_URL",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "US-NJ 26 Nov: 2 parks; hits inside 1, within 5 km 2"
     }
    ],
-   "why": "measured on the 26 Nov files (counts in each row); web-address ties come from .github/link-id-ties.json; round 7: the Canadian ties are the park's own page address in a record's web-address field (normalised: no http, no www, no trailing slash). Numeric Canadian ids (Parks Canada DFHD, Canada's Historic Places, NS protected areas, Sepaq code) were measured against every field of every CA layer: no field holds them (every numeric hit was a row number or a year, far from the pin).",
+   "why": "measured on the 26 Nov files (counts in each row); web-address ties come from .github/link-id-ties.json; round 7: the Canadian ties are the park's own page address in a record's web-address field (normalised: no http, no www, no trailing slash). Numeric Canadian ids (Parks Canada DFHD, Canada's Historic Places, NS protected areas, Sepaq code) were measured against every field of every CA layer: no field holds them (every numeric hit was a row number or a year, far from the pin).; round 8 (FACTS-AUDIT F3): US layers that hold the park's own page address (cleaned the same way: no scheme, no www, no trailing slash). US-CT sgctc Map_Link measured 0 parks here (its values are hunting-map PDFs), so it is not added.",
    "test": "test_id_ties_minnesota_valley"
   },
   "unit_fields": {
@@ -1256,7 +1408,8 @@
     "record_shared_with_another_park": "the record is held by another park, or two parks of different names claim it",
     "water_only": "only a lake or pond surface has this name",
     "office_only": "only an office has this name",
-    "record_layer_not_in_store": "a trail park: its trail line layer is not in the store's layer files (manager, 26 Nov; not yet on the rule sheet)"
+    "record_layer_not_in_store": "a trail park: its trail line layer is not in the store's layer files (manager, 26 Nov; not yet on the rule sheet)",
+    "park_has_no_pin": "the park has no usable pin (missing, 0,0 or impossible); its name was found but no agency id, size or two sources proves it"
    },
    "why": "rule sheet section 6, without layer_not_complete (a state with a gap is not built at all), plus record_layer_not_in_store (manager 26 Nov)",
    "test": "test_pin_only_reasons_fixed_list"
@@ -1802,6 +1955,309 @@
    },
    "why": "round 7, the one bilingual rule: these layers carry the English and the French name of one place in two fields of the same record (measured on the 26 Nov CA files); when one is the park's name the other is too. No translation tables, no guessing French from English.",
    "test": "test_bilingual_name"
+  },
+  "size_fields": {
+   "value": {
+    "CPCAD": [
+     "O_AREA_HA",
+     "ha"
+    ],
+    "Manitoba Par": [
+     "O_AREA",
+     "ha"
+    ],
+    "Manitoba pro": [
+     "AREA_HA",
+     "ha"
+    ],
+    "Manitoba wil": [
+     "AREA_HA",
+     "ha"
+    ],
+    "NB Parks_1": [
+     "Hectares",
+     "ha"
+    ],
+    "NB-PP Govern": [
+     "Hectares",
+     "ha"
+    ],
+    "New Brunswic": [
+     "HECTARES",
+     "ha"
+    ],
+    "NS HRM Parks": [
+     "HECTARES",
+     "ha"
+    ],
+    "NS NS_Lands_": [
+     "HA_OFFICIAL",
+     "ha"
+    ],
+    "NS NS_Lands__1": [
+     "HA_OFFICIAL",
+     "ha"
+    ],
+    "NS-PPA Nova": [
+     "HA_OFFICIAL",
+     "ha"
+    ],
+    "Nova Scotia": [
+     "ha_gis",
+     "ha"
+    ],
+    "Nova Scotia _2": [
+     "HA_OFFICIAL",
+     "ha"
+    ],
+    "PE Province": [
+     "O_AREA_HA",
+     "ha"
+    ],
+    "Saskatchewan_6": [
+     "AREA_HA",
+     "ha"
+    ],
+    "Qu_bec Parc _3": [
+     "SUPERFICIE_KM2",
+     "km2"
+    ],
+    "Qu_bec R_ser": [
+     "SUPERFICIE_KM2",
+     "km2"
+    ],
+    "Qu_bec Refug": [
+     "SUPERFICIE_KM2",
+     "km2"
+    ],
+    "Qu_bec Zone": [
+     "SUPERFICIE_KM2",
+     "km2"
+    ],
+    "Qu_bec ecolo": [
+     "HA_LEGAL",
+     "ha"
+    ],
+    "Qu_bec prote": [
+     "HA_LEGAL",
+     "ha"
+    ],
+    "Qu_bec recog": [
+     "HA_LEGAL",
+     "ha"
+    ]
+   },
+   "why": "owner 26 Nov 9:53 PM ('of course'): a Canadian layer's own size field, in the unit MEASURED against the record's shape on the 26 Nov files (scratch/ca_sizes.py, up to 400 records a layer: value x unit / measured acres within 0.67-1.5): every row 93-100% within, median 1.00-1.01, but NB Parks_1 Hectares 77% (108 of 140; median 1.01). Left out: NB-PP Govern AREA (square metres; its Hectares field is used), Qu_bec Parc _1 SUPERFICIE_KM2 (4 records, too few to measure), Manitoba wil_2 and New Brunswic_1 (no size field).",
+   "test": "test_size_in_hectares"
+  },
+  "size_text_units": {
+   "value": [
+    [
+     "km2|km²|\\bsq\\.? ?km\\b|square kilomet(?:er|re)s?",
+     "km2"
+    ],
+    [
+     "square miles?|\\bsq\\.? ?mi\\b|mi²",
+     "mi2"
+    ],
+    [
+     "\\bhectares?\\b|\\bha\\b",
+     "ha"
+    ],
+    [
+     "\\bacres?\\b|\\bac\\b",
+     "acres"
+    ]
+   ],
+   "why": "round 8: a page size is read from its text as written (page.sizes[].as), never from the saved acres: the page reader saved '12,000 square kilometres' as 12,000 acres (CA 25 sizes in 'square kilomet...' unconverted; km2 / ha / hectares were converted right). A text whose unit is not one of these is not used.",
+   "test": "test_page_size_unit"
+  },
+  "lang_kinds": {
+   "value": [
+    {
+     "kind": "national wildlife area",
+     "en": [
+      "National Wildlife Area"
+     ],
+     "fr": [
+      "Réserve nationale de faune"
+     ],
+     "proof": "CA-MB CPCAD 22211: 'Pope National Wildlife Area' / 'Réserve nationale de faune de Pope' (30 such records)"
+    },
+    {
+     "kind": "national park reserve",
+     "en": [
+      "National Park Reserve"
+     ],
+     "fr": [
+      "Réserve de parc national"
+     ],
+     "proof": "Parks Canada:49: 'Nááts'ihch'oh National Park Reserve' / 'Réserve de parc national Nááts'ihch'oh' (20)"
+    },
+    {
+     "kind": "national park",
+     "en": [
+      "National Park"
+     ],
+     "fr": [
+      "Parc national"
+     ],
+     "proof": "CA-NB CPCAD 10432: 'Gaspésie National Park (Québec)' / 'Parc national de la Gaspésie' (42)"
+    },
+    {
+     "kind": "ecological reserve",
+     "en": [
+      "Ecological Reserve"
+     ],
+     "fr": [
+      "Réserve écologique"
+     ],
+     "proof": "CA-MB CPCAD 17740: 'Cowan Bog Ecological Reserve' / 'Réserve écologique de Cowan Bog' (93)"
+    },
+    {
+     "kind": "provincial park",
+     "en": [
+      "Provincial Park"
+     ],
+     "fr": [
+      "Parc provincial"
+     ],
+     "proof": "CA-MB CPCAD 17781: 'Asessippi Provincial Park' / 'Parc provincial Asessippi' (93)"
+    },
+    {
+     "kind": "national historic site",
+     "en": [
+      "National Historic Site"
+     ],
+     "fr": [
+      "Lieu historique national"
+     ],
+     "proof": "CA-QC CPCAD 22059: 'Fort Lennox National Historic Site' / 'Lieu historique national du Fort-Lennox' (1)"
+    },
+    {
+     "kind": "bird sanctuary",
+     "en": [
+      "Migratory Bird Sanctuary",
+      "Bird Sanctuary"
+     ],
+     "fr": [
+      "Refuge d'oiseaux migrateurs",
+      "Refuge d'oiseaux"
+     ],
+     "proof": "CA-QC CPCAD 22079: 'Becketts Creek Migratory Bird Sanctuary' / 'Refuge d'oiseaux migrateurs de Becketts Creek' (3); CA-NB CPCAD 22282: 'Saint-Omer Bird Sanctuary' / 'Refuge d'oiseaux de Saint-Omer' (35); CPCAD 22133 'Grand Manan Migratory Bird Sanctuary' / 'Refuge d’oiseaux de Grand Manan'"
+    },
+    {
+     "kind": "nature reserve",
+     "en": [
+      "Nature Reserve",
+      "Nature Preserve"
+     ],
+     "fr": [
+      "Réserve naturelle"
+     ],
+     "proof": "CA-NB CPCAD 12188: 'Boisé-de-la-Pointe-Saint-Gilles Nature Reserve' / 'Réserve naturelle du Boisé-de-la-Pointe-Saint-Gilles' (220); CPCAD 3323 'Thomas B. Munro Nature Preserve' / 'Réserve naturelle Thomas B. Munro' (18)"
+    },
+    {
+     "kind": "wildlife management area",
+     "en": [
+      "Wildlife Management Area"
+     ],
+     "fr": [
+      "Zone de gestion de la faune"
+     ],
+     "proof": "CA-MB CPCAD 17818: 'Alonsa Wildlife Management Area' / 'Zone de gestion de la faune d'Alonsa' (98)"
+    },
+    {
+     "kind": "provincial forest",
+     "en": [
+      "Provincial Forest"
+     ],
+     "fr": [
+      "Forêt provinciale"
+     ],
+     "proof": "CA-MB Manitoba pro:1: 'Agassiz Provincial Forest' / 'Forêt provinciale d'Agassiz' (112)"
+    },
+    {
+     "kind": "marine protected area",
+     "en": [
+      "Marine Protected Area"
+     ],
+     "fr": [
+      "Zone de protection marine"
+     ],
+     "proof": "CA-NS CPCAD 21877: 'Gully Marine Protected Area' / 'Zone de protection marine du Gully' (26)"
+    },
+    {
+     "kind": "biodiversity reserve",
+     "en": [
+      "Biodiversity Reserve"
+     ],
+     "fr": [
+      "Réserve de biodiversité"
+     ],
+     "proof": "CA-NB CPCAD 12142: 'Karst-de-Saint-Elzéar Biodiversity Reserve' / 'Réserve de biodiversité du Karst-de-Saint-Elzéar' (18)"
+    },
+    {
+     "kind": "nature park",
+     "en": [
+      "Nature Park"
+     ],
+     "fr": [
+      "Parc naturel"
+     ],
+     "proof": "CA-MB CPCAD 17900: 'Rotary Prairie Nature Park' / 'parc naturel Rotary Prairie' (13)"
+    },
+    {
+     "kind": "natural area",
+     "en": [
+      "Natural Area"
+     ],
+     "fr": [
+      "Zone naturelle"
+     ],
+     "proof": "CA-QC CPCAD 17513: 'Boucher Natural Area' / 'Zone naturelle de Boucher' (38)"
+    },
+    {
+     "kind": "park reserve",
+     "en": [
+      "Park Reserve"
+     ],
+     "fr": [
+      "Réserve de parc"
+     ],
+     "proof": "CA-MB CPCAD 17765: 'Amisk Park Reserve' / 'Réserve de parc Amisk' (3)"
+    }
+   ],
+   "why": "owner 26 Nov 9:53 PM ('of course ... and some that be English and French mix'): the same kind in the two languages, each pair proven by real records that carry both names (scratch/ca_kind_proof.py on MB NB NS PE QC SK YT; count of such records in brackets). Not in the table, no record carries both: Réserve faunique = Wildlife Reserve, Refuge faunique = Wildlife Refuge, Parc régional = Regional Park, ZEC.",
+   "test": "test_two_language_kind"
+  },
+  "lang_small_words": {
+   "value": [
+    "de",
+    "du",
+    "des",
+    "d",
+    "l",
+    "le",
+    "la",
+    "les",
+    "of",
+    "the",
+    "and",
+    "et"
+   ],
+   "why": "owner's ruling 26 Nov: the small joining words of both languages are set aside when place words are compared (de, du, de la, des, d', l', le, la, les, of, the, and, et)",
+   "test": "test_two_language_kind"
+  },
+  "apostrophes": {
+   "value": [
+    "’",
+    "‘",
+    "ʼ",
+    "′"
+   ],
+   "why": "FACTS-AUDIT F13 (26 Nov): 26 park names carry a curly apostrophe (13 US, 13 CA); full('Pu’tlaqne’katik') was 'putlaqnekatik' but the straight spelling 'pu tlaqne katik', so CA-1846's id records failed the id guard. A curly, a left, a modifier-letter apostrophe and a prime are the straight one wherever a name or an id is compared.",
+   "test": "test_same_apostrophe"
   }
  },
  "notes": {

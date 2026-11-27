@@ -37,7 +37,7 @@ def poly(pts_m, lat=LAT, lon=LON):
 
 def rec(layer, key, name, rg=None, **attrs):
     return {'key': key, 'layer': layer, 'record_id': re.sub(r'^[a-z]+', '', key) or key, 'record_name': name,
-            'attributes': attrs, 'q': 6, 'rings': [rg if rg is not None else ring()]}
+            'attributes': attrs, 'q': 6, 'rings': [rg if rg is not None else ring()], 'publishable': True, 'licence_class': 'OPEN'}
 
 
 def path(pts_m, lat=LAT, lon=LON):
@@ -51,7 +51,7 @@ def path(pts_m, lat=LAT, lon=LON):
 def lrec(layer, key, name, pts=((-3000, 0), (3000, 0)), **attrs):
     """A LINE record in the agreed format: paths, shape 'line', no rings."""
     return {'key': key, 'layer': layer, 'record_id': re.sub(r'^[a-z]+', '', key) or key, 'record_name': name,
-            'attributes': attrs, 'q': 6, 'paths': [path(pts)], 'shape': 'line'}
+            'attributes': attrs, 'q': 6, 'paths': [path(pts)], 'shape': 'line', 'publishable': True, 'licence_class': 'OPEN'}
 
 
 def park(name, kind, dx_m=0.0, dy_m=0.0, link=None, size=None):
@@ -402,7 +402,7 @@ def test_line_pin_distance():
         finally: f.done()
     d, proof = case(20)                                        # 20 m off the line: within 100 ft
     k = d['parks']['US-1']
-    assert k['m'] == [['sgxx1', 'Root River', 0, 'name+pin']] and k.get('line') is True and proof[1].split(',')[-1] == 'line'
+    assert k['m'] == [['sgxx1', 'Root River', 0, 'name+pin']] and k.get('line') is True and proof[1].split(',')[-3] == 'line'
     d, _ = case(60)                                            # 60 m off: pin only
     assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'name_but_no_pin_or_size_proof'
     # two same-named lines 300 km apart, no unit value: never one trail
@@ -496,8 +496,8 @@ def test_bilingual_name():
     d = ca_one(en, 'National Wildlife Area', [both, reg])
     assert ids(d, 'CA-1') == ['Qu_bec prote:2872'] and by(d, 'CA-1') == 'name+pin'
     assert d['parks']['CA-1']['m'][0][1] == fr                              # the record's own name, never ''
-    # no record carrying both names: only the kind-word rule (ca_kind_words, longer or shorter name) can still see it
-    assert by(ca_one(en, 'National Wildlife Area', [reg]), 'CA-1') == 'longer or shorter name+pin'
+    # no record carrying both names: the two-language kind rule still sees it (same place words, same kind)
+    assert by(ca_one(en, 'National Wildlife Area', [reg]), 'CA-1') == 'two-language name+pin'
     reg2 = rec('Qu_bec prote', 'Qu_bec prote:9', '', TOPONYME='Réserve nationale de faune du Lac-Saint-François')
     one_name = rec('CPCAD', '22109', en, ring(9000), NAME_E=en, NAME_F='None')
     assert ca_one(en, 'National Wildlife Area', [one_name, reg2])['parks']['CA-1']['m'] == []   # never a guess
@@ -529,6 +529,129 @@ def test_stream_read_same():
         assert V.decode_rings(a['rings'], a['q']) == V.decode_rings(b['rings'], b['q'])
         assert V.decode_rings(got['records'][-1]['rings'], 6) == V.decode_rings([ring()], 6)
     finally: shutil.rmtree(d, ignore_errors=True)
+
+
+def test_size_in_hectares():
+    # owner 26 Nov 9:53 PM: Canadian sizes in hectares / km2 prove by size. Pin 3 km off: only the size can prove it.
+    sz = {'acres': 2471.05, 'witness': 'agency_document'}
+    d = ca_one('Cowan Bog Ecological Reserve', 'Ecological Reserve', [rec('CPCAD', '17740', 'Cowan Bog Ecological Reserve', ring(3000, half_w=1600), O_AREA_HA='1000')],
+               area='CA-MB')
+    assert d['parks']['CA-1']['m'] == []
+    f = Fix()
+    try:
+        f.parks['CA-1'] = dict(ca_park('Cowan Bog Ecological Reserve', 'Ecological Reserve', 'CA-MB'), size=sz)
+        f.files['CA-MB'] = [rec('CPCAD', '17740', 'Cowan Bog Ecological Reserve', ring(3000, half_w=1600), O_AREA_HA='1000'),
+                            rec('Qu_bec Zone', 'Qu_bec Zone:1', 'Zec Varin', ring(90000), SUPERFICIE_KM2='10')]
+        assert f.run(areas=['CA-MB']) == 0
+        d = f.key('CA-MB')
+        assert ids(d, 'CA-1') == ['17740'] and by(d, 'CA-1') == 'name+size' and d['parks']['CA-1']['m'][0][2] == 2471
+    finally: f.done()
+    pl = pool_of(rec('Qu_bec Zone', 'Qu_bec Zone:1', 'Zec Varin', ring(half_w=1600), SUPERFICIE_KM2='10'))
+    assert round(V.agency_acres(pl.recs[0], RULES)) == 2471
+
+
+def test_page_size_unit():
+    # FACTS-AUDIT F1: CA-0062 Nahanni "30,000 square kilometers" was saved as 30,000 acres; the text decides
+    assert round(V.size_from_text('30,000 square kilometers', RULES)) == 7413150
+    assert round(V.size_from_text('568.71 hectares', RULES), 1) == 1405.3 and V.size_from_text('12,388 acres', RULES) == 12388
+    assert round(V.size_from_text('1,245 km2', RULES)) == 307646 and V.size_from_text('240 square mile', RULES) == 153600
+    assert V.size_from_text('606 + 360 acres', RULES) is None and V.size_from_text('about 40', RULES) is None
+    assert V.size_from_text('1.5 million hectare', RULES) == 1.5e6 * 2.47105
+    p = {'name': 'X', 'page': {'own_page': 'own', 'sizes': [{'acres': 30000, 'as': '30,000 square kilometers', 'total': True, 'clean': True}]}}
+    assert [round(x) for x in V.size_witnesses(p, set(), RULES)] == [7413150]
+    p['page']['sizes'][0]['as'] = '30,000 parsecs'
+    assert V.size_witnesses(p, set(), RULES) == []                        # a unit it cannot tell: not used
+
+
+def test_two_language_kind():
+    rules = V.rules_for_area(RULES, 'CA-QC')
+    assert V.kind_place('Philipsburg Migratory Bird Sanctuary', rules) == V.kind_place("Refuge d'oiseaux migrateurs de Philipsburg", rules)
+    assert V.kind_place('Cap Tourmente National Wildlife Area', rules) == V.kind_place('Réserve nationale de faune du Cap-Tourmente', rules)
+    assert V.kind_place("Réserve naturelle de l'Archipel-du-Mitan Nature Reserve", rules) == V.kind_place('Archipel-du-Mitan Nature Reserve', rules)
+    assert V.kind_place('Grass River Provincial Park', rules) != V.kind_place('Parc provincial de la rivière Grass', rules)   # never translated
+    assert V.kind_place('Pope National Wildlife Area', rules) != V.kind_place('Parc national de Pope', rules)                # another kind
+    assert V.kind_place('Pope National Wildlife Area', RULES) is None                                                         # US areas: no
+    fr = rec('Qu_bec prote', 'Qu_bec prote:1', '', TOPONYME="Refuge d'oiseaux migrateurs de Philipsburg")
+    d = ca_one('Philipsburg Migratory Bird Sanctuary', 'Bird Sanctuary', [fr])
+    assert ids(d, 'CA-1') == ['Qu_bec prote:1'] and by(d, 'CA-1') == 'two-language name+pin'
+    assert ca_one('Philipsburg Migratory Bird Sanctuary', 'Bird Sanctuary', [dict(fr, rings=[ring(3000)])])['parks']['CA-1']['m'] == []
+    assert V.kind_place('Lac-des-Elfes Nature Reserve', rules)[1] == ('lac', 'elfes')
+
+
+def test_same_apostrophe():
+    fresh = dict(RULES, _full={})                                          # no memo from earlier calls
+    assert V.full('Pu\u2019tlaqne\u2019katik', fresh) == V.full("Pu'tlaqne'katik", fresh) == 'pu tlaqne katik'
+    assert V.norm_val('a\u2019b') == "A'B"
+    d = ca_one('Pu\u2019tlaqne\u2019katik (Shingle Lake) Nature Reserve', 'Nature Reserve',
+               [rec('CPCAD', '7', "Pu'tlaqne'katik Nature Reserve")], area='CA-NS')
+    assert ids(d, 'CA-1') == ['7']
+
+
+def test_no_pin_park():
+    assert V.pin_of({'pin': [100.856, -49.514]}) is None and V.pin_of({'pin': [0, 0]}) is None and V.pin_of({}) is None
+    assert V.pin_of({'pin': [45, -94]}) == (45.0, -94.0)
+    def case(records, link=None, size=None, pin=None):
+        f = Fix()
+        try:
+            f.parks['CA-1'] = dict(ca_park('Maple Lake Wildlife Management Area', 'Wildlife Management Area', 'CA-MB', link=link, size=size), pin=pin)
+            f.files['CA-MB'] = records
+            assert f.run(areas=['CA-MB']) == 0
+            return f.key('CA-MB')
+        finally: f.done()
+    r = rec('CPCAD', '9', 'Maple Lake Wildlife Management Area', ring(half_w=500), O_AREA_HA='100')
+    d = case([r], pin=[100.856, -49.514])                               # a pin that cannot be: no pin rule may prove it
+    assert d['parks']['CA-1']['m'] == [] and why(d, 'CA-1') == 'park_has_no_pin'
+    d = case([r], size={'acres': 247.1, 'witness': 'agency_document'}, pin=[0, 0])
+    assert ids(d, 'CA-1') == ['9'] and by(d, 'CA-1') == 'name+size'   # a size still can
+    lk = {'id_kind': 'page address', 'id_value': 'GOV.MB.CA/SD/PARKS/MAPLE.HTML'}
+    rid = rec('Manitoba Par', 'Manitoba Par:4', 'Maple Lake Wildlife Management Area', URL='https://www.gov.mb.ca/sd/parks/maple.html')
+    d = case([rid], link=lk)
+    assert ids(d, 'CA-1') == ['Manitoba Par:4'] and d['parks']['CA-1']['match']['evidence']['no_pin'] is True
+    other = rec('Manitoba Par', 'Manitoba Par:4', 'Other Place Park', URL='https://www.gov.mb.ca/sd/parks/maple.html')
+    assert case([other], link=lk)['parks']['CA-1']['m'] == []            # the id record must carry the park's full name
+
+
+def test_two_sources_independent():
+    a = rec('CPCAD', '1', 'Sault-à-la-Puce Nature Reserve', O_AREA_HA='10')
+    b = rec('Qu_bec prote', 'Qu_bec prote:1', '', ring(10), TOPONYME='Sault-à-la-Puce Nature Reserve', HA_LEGAL='10')
+    c = rec('Qu_bec recog', 'Qu_bec recog:1', '', ring(20), TOPONYME='Sault-à-la-Puce Nature Reserve', HA_LEGAL='10')
+    def case(recs, urls):
+        f = Fix()
+        try:
+            f.parks['CA-1'] = ca_park('Sault-à-la-Puce Nature Reserve', 'Nature Reserve', dx_m=3000)
+            f.files['CA-QC'] = recs; f.urls['CA-QC'] = urls
+            assert f.run(areas=['CA-QC']) == 0
+            return f.key('CA-QC')
+        finally: f.done()
+    qc = 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/'
+    d = case([b, c], {'Qu_bec prote': qc + '23/query', 'Qu_bec recog': qc + '12/query'})
+    assert d['parks']['CA-1']['m'] == []                                 # one register read twice is one source
+    d = case([a, b], {'CPCAD': 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0/query', 'Qu_bec prote': qc + '23/query'})
+    assert by(d, 'CA-1') == 'name+two_sources'
+
+
+def test_licence_kept():
+    f = Fix()
+    try:   # NY sgnyd (Catskill): allowed for matching, never for publishing
+        f.parks['US-1'] = park('Catskill Park', 'State Park')
+        f.parks['US-2'] = park('Crow Wing State Park', 'State Park', dx_m=50000)
+        f.files['US-MN'] = [dict(rec('sgnyd', 'sgnyd1', 'Catskill Park'), publishable=False, licence_class='OTHER RESTRICTED'),
+                            rec('PAD-US', '5', 'Catskill Park'),
+                            dict(rec('sgnyb', 'sgnyb9', 'Crow Wing', ring(50000)), publishable=False, licence_class='RESTRICTED IN WRITING')]
+        assert f.run() == 0
+        d = f.key()
+        assert d['parks']['US-1']['share'] == 'part' and d['parks']['US-1']['private'] == ['sgnyd1']
+        assert d['parks']['US-2']['share'] == 'none' and d['parks']['US-2']['private'] == ['sgnyb9']
+        rows = [l.split(',') for l in f.csv('v2-proof.csv')[1:]]
+        assert {(r[2], r[-2], r[-1]) for r in rows} == {('sgnyd1', 'false', 'OTHER RESTRICTED'), ('5', 'true', 'OPEN'),
+                                                        ('sgnyb9', 'false', 'RESTRICTED IN WRITING')}
+        info = f.info()
+        assert info['share'] == {'all': 0, 'part': 1, 'none': 1} and info['joined_by_licence']['OTHER RESTRICTED'] == 1
+        f.files['US-MN'][0] = {k: v for k, v in f.files['US-MN'][0].items() if k != 'publishable'}   # no value: fail closed
+        assert f.run() == 4 and f.info()['gate']['licence_kept'] == 1
+        f.files['US-MN'][0] = dict(f.files['US-MN'][0], publishable=False, licence_class='')
+        assert f.run() == 4 and f.info()['gate']['licence_kept'] == 1   # private with no class: refused
+    finally: f.done()
 
 
 # ------------------------------------------------------------------------------------------------------------- step 3
@@ -877,7 +1000,7 @@ def test_trail_park_reason():
 def test_pin_only_reasons_fixed_list():
     sheet = {'no_record_with_this_name', 'name_but_no_pin_or_size_proof', 'two_records_fit', 'record_shared_with_another_park',
              'water_only', 'office_only'}   # layer_not_complete left the list: a state with a gap is not built at all
-    assert set(RULES['pin_only_reasons']) == sheet | {'record_layer_not_in_store'}
+    assert set(RULES['pin_only_reasons']) == sheet | {'record_layer_not_in_store', 'park_has_no_pin'}
     assert why(one('Nowhere State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing')]), 'US-1') == 'no_record_with_this_name'
 
 
@@ -918,7 +1041,7 @@ def test_lock_holds_same_as_cold():
         assert open(f.p('cold/US-MN.json.gz'), 'rb').read() == open(f.p('warm/US-MN.json.gz'), 'rb').read()   # the key hides the lock
         assert f.info(out='warm')['locks'] == {'held': 1, 'broken': 0, 'new': 0} and f.info(out='cold')['locks']['new'] == 1
         rows = [l.split(',') for l in f.csv('v2-proof.csv', 'warm')[1:]]
-        assert {r[7] for r in rows} == {'2'} and {r[-2] for r in rows} == {'held'} and {r[-1] for r in rows} == {'area'}
+        assert {r[7] for r in rows} == {'2'} and {r[-4] for r in rows} == {'held'} and {r[-3] for r in rows} == {'area'} and {r[-2] for r in rows} == {'true'}
         row = json.load(open(f.p('cold/locks/US-MN.json')))['locks']['US-7145'][0]
         assert row['count'] == 3 and row['acres'] == 180 and row['agency_id'] == 'SRA00304' and row['layer'] == 'sgmne'
     finally: f.done()
@@ -1048,7 +1171,7 @@ def test_two_runs_same_bytes():
         assert f.run('a') == 0 and f.run('b') == 0
         for n in ('US-MN.json.gz', 'v2-proof.csv', 'v2-pin-only.csv', 'v2-id-other-names.csv'):
             assert open(f.p(f'a/{n}'), 'rb').read() == open(f.p(f'b/{n}'), 'rb').read(), n
-        assert f.csv('v2-proof.csv', 'a')[0] == 'ref,st,file_key,agency_id,layer,record_name,acres,step,by,evidence,file_area,lock,shape'
+        assert f.csv('v2-proof.csv', 'a')[0] == 'ref,st,file_key,agency_id,layer,record_name,acres,step,by,evidence,file_area,lock,shape,publishable,licence_class'
     finally: f.done()
 
 

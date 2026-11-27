@@ -28,7 +28,8 @@ TABLE_SHAPES = {
     'size_witness_tags': L, 'placeholders': L, 'drop_words': L, 'ca_kind_words': L,
     'easement_rx': RX, 'type_field_rx': RX, 'lease_name_rx': RX, 'water_park_kind_rx': RX, 'office_rx': RX,
     'trail_kind_rx': RX, 'line_park_kind_rx': RX, 'home_page_rx': RX, 'acre_field_rx': RX, 'roman_rx': RX,
-    'name_fields': {'*': [S]}, 'unit_fields': {'*': [S]}, 'bilingual_fields': {'*': [[S, S]]}, 'full_name_fields': {'*': [[S]]}, 'layer_kinds': {'*': [S]},
+    'name_fields': {'*': [S]}, 'unit_fields': {'*': [S]}, 'bilingual_fields': {'*': [[S, S]]}, 'size_fields': {'*': [S, S]},
+    'size_text_units': [[RX, S]], 'apostrophes': L, 'lang_kinds': [{'kind': S, 'en': [S], 'fr': [S], 'proof': S}], 'lang_small_words': L, 'full_name_fields': {'*': [[S]]}, 'layer_kinds': {'*': [S]},
     'piece_suffixes': [RX], 'kind_patterns': [[S, RX]], 'name_equivalences': [[RX, S]],
     'id_ties': [{'kind': S, 'layer': S, 'field': S, '?rx': RX, '?where': D, '?measured': S, '?glue': S}],
     'kind_swaps': [{'park_kind': S, 'record_kinds': [S], '?layer': S}],
@@ -40,7 +41,7 @@ TABLE_SHAPES = {
 }
 LINK_TIE_SHAPE = [{'kind': S, 'layer': S, 'field': S, 'rx': RX, '?glue': S}]
 VALUE_KEYS = ('size_tol', 'two_sources_tol', 'pin_m', 'near_km', 'lock_acres_tol', 'thin_m', 'long_ratio', 'acre_box_factor',
-              'same_ground_share', 'same_ground_tol', 'place_word_len', 'line_pin_m')
+              'same_ground_share', 'same_ground_tol', 'place_word_len', 'line_pin_m', 'ha_acres', 'km2_acres', 'mi2_acres')
 RULE_ROW = {'id': S, 'step': S, 'what': S, 'why': S, 'test': S, 'fn': S, 'stub': S}
 STEPS = {'load', '1', '2', '3', '4', 'gate', 'write'}
 STUBS = {'true', 'false', 'empty', 'identity', 'none'}
@@ -141,6 +142,7 @@ def load_rules(repo, path=None):
     r['_ties'] = {}
     for t in r['id_ties'] + web:
         r['_ties'].setdefault(t['layer'], []).append(dict(t, _rx=re.compile(t['rx'], re.I) if t.get('rx') else None))
+    r['_size_units'] = [(re.compile(x, re.I), u) for x, u in r['size_text_units']]
     r['_keep'] = keep_fields(r)
     return r
 
@@ -155,7 +157,7 @@ def keep_fields(r):
     for fs in r['unit_fields'].values(): k |= set(fs)
     for u in r['unit_pieces'].values(): k |= {u['project_field'], u['name_field']}
     for f in r['interest_fields'].values(): k.add(f['field'])
-    k |= {r['wetland_district']['field'], r['wetland_district']['type_field']}
+    k |= {r['wetland_district']['field'], r['wetland_district']['type_field']} | {f for f, _ in r['size_fields'].values()}
     return {x.lower() for x in k}
 
 
@@ -166,13 +168,19 @@ def wildlife_and_fish(s, rules):
     return s
 
 
+def same_apostrophe(t, rules):
+    """Rule same_apostrophe: a curly apostrophe (or a look-alike, table apostrophes) is the straight one."""
+    for c in rules['apostrophes']: t = t.replace(c, "'")
+    return t
+
+
 def full(name, rules):
     """Rule name_exact: lower case, accents and brackets out, '&' = and, the name equivalences, punctuation out, drop_words
     ('the') out, short forms written out."""
     memo = rules.setdefault('_full', {})
     key = (str(name or ''), wildlife_and_fish)
     if key not in memo:
-        t = unicodedata.normalize('NFKD', key[0]).encode('ascii', 'ignore').decode().lower()
+        t = unicodedata.normalize('NFKD', same_apostrophe(key[0], rules)).encode('ascii', 'ignore').decode().lower()
         t = wildlife_and_fish(re.sub(r'\(.*?\)', ' ', t).replace('&', ' and '), rules)
         t = re.sub(r'[^a-z0-9 ]+', ' ', t)
         memo[key] = ' '.join(rules['short_forms'].get(w, w) for w in t.split() if w not in rules['drop_words'])
@@ -409,7 +417,7 @@ def norm_val(v):
     if isinstance(v, float):
         if v != v: return ''
         if v.is_integer(): v = int(v)
-    return str(v).strip().upper()
+    return str(v).strip().upper().replace('\u2019', "'").replace('\u2018', "'")
 
 
 def is_placeholder(v, rules):
@@ -465,6 +473,8 @@ def agency_acres(rec, rules):
             if x > 0: v = x; break
         except (TypeError, ValueError):
             pass
+    if v is None and rec['layer'] in rules['size_fields']:
+        v = size_field_acres(a, rec['layer'], rules)
     if v is None:
         k = next((k for k in a if rules['_acre_field_rx'].search(str(k))), None)
         try: v = float(a[k]) if k is not None and float(a[k]) > 0 else None
@@ -477,6 +487,26 @@ def agency_acres(rec, rules):
         if v > cap: v = next((round(v / d, 1) for d in (43560.0, 4046.86) if v / d <= cap), None)
     rec['_aa'] = float(v) if v else None
     return rec['_aa']
+
+
+def size_field_acres(a, layer, rules):
+    """Rule size_in_hectares: the layer's own size field in the unit measured for it (ha or km2, size_fields), as acres."""
+    fld, unit = rules['size_fields'][layer]
+    try: x = float(attr(a, fld))
+    except (TypeError, ValueError): return None
+    return x * rules['numbers'][f'{unit}_acres'] if x > 0 else None
+
+
+def size_from_text(text, rules):
+    """Rule page_size_unit: a page size from its text as written ('568.71 hectares', '1,245 km2', '12,388 acres'): the number
+    times its unit (size_text_units). None when the unit cannot be told or the text holds two numbers ('606 + 360 acres')."""
+    t = str(text or '').lower().replace('\u00a0', ' ')
+    nums = re.findall(r'\d[\d,]*(?:\.\d+)?', re.sub(r'(km|mi)\s*[2\u00b2]', r'\1', t))
+    if len(nums) != 1: return None
+    x = float(nums[0].replace(',', '')) * (1e6 if re.search(r'\bmillion\b', t) else 1.0)
+    for rx, unit in rules['_size_units']:
+        if rx.search(t): return x * (1.0 if unit == 'acres' else rules['numbers'][f'{unit}_acres'])
+    return None
 
 
 def rec_acres(rec, rules):
@@ -590,6 +620,17 @@ def repeated_key(count, spelled):
     return count > 1 and not spelled
 
 
+def service_of(url):
+    """Rule two_sources_independent: the map service a layer comes from (its address up to MapServer / FeatureServer)."""
+    return re.sub(r'/(?:MapServer|FeatureServer)(?:/.*)?$', '', str(url or ''), flags=re.I).lower()
+
+
+def other_services(a, b):
+    """Rule two_sources_independent: two layers of one map service are one source (Québec's protected-areas register and
+    its recognised-reserves layer carry the same records and sizes)."""
+    return not (a.get('svc') and a.get('svc') == b.get('svc'))
+
+
 def layer_copies(manifest):
     """Rule layer_copy: a layer whose source (url and where) is another layer's of the same file is a second copy of it; the
     first label (sorted) is kept, the copies are dropped ('Québec prote' and 'Qu_bec prote' hold the same 5,611 records)."""
@@ -614,7 +655,7 @@ class Pool:
     def __init__(self, rules):
         self.rules, self.recs, self.dropped, self.by_ident = rules, [], {}, {}
         self.raw_ids, self.tie_ix, self.name_ix, self.piece_ix, self.core_ix, self.base_ix = {}, {}, {}, {}, {}, {}
-        self.layer_name_ix, self.lines = {}, {}
+        self.layer_name_ix, self.lines, self.kp_ix, self.services = {}, {}, {}, {}
 
     def rec_kinds(self, rec):
         """v1 record kinds: the kinds its names carry, its PAD-US designation type, its layer's kind (layer_kinds)."""
@@ -631,6 +672,8 @@ class Pool:
         rules, by_layer = self.rules, {}
         for r in doc.get('records') or []: by_layer.setdefault(str(r.get('layer') or ''), []).append(r)
         copies = layer_copies(doc.get('manifest') or {})
+        for lay, m in (doc.get('manifest') or {}).items():
+            if (m or {}).get('url'): self.services.setdefault(lay, service_of(m['url']))
         for layer in sorted(by_layer):
             if layer in copies:
                 self.drop(f'layer_copy {layer}', len(by_layer[layer])); continue
@@ -663,6 +706,7 @@ class Pool:
                'name': next((n for n in names if n.strip()), ''),
                'names': [n for n in dict.fromkeys(names) if n.strip()], 'full_names': [n for n in fulls if n.strip()],
                'a': a, 'q': r.get('q'), 'raw': r.get('rings')}
+        rec.update(pub=r.get('publishable'), lic=r.get('licence_class'), pub_why=r.get('publish_why'), svc=self.services.get(layer))
         if is_line(r):
             rec.update(line=True, paths=r.get('paths'))
             self.lines[layer] = self.lines.get(layer, 0) + 1
@@ -673,6 +717,8 @@ class Pool:
             if v: self.tie_ix.setdefault((t['kind'], v), []).append(i)
         for k in record_name_keys(rec['names'], layer, rules): self.name_ix.setdefault(k, []).append(i)
         for n in rec['names']:
+            kp = kind_place(n, rules)
+            if kp: self.kp_ix.setdefault(kp, set()).add(i)
             for w in set(name_core(n, '', rules)): self.core_ix.setdefault(w, []).append(i)
             fn = full(n, rules)
             self.layer_name_ix.setdefault((layer, fn), set()).add(i)
@@ -683,12 +729,19 @@ class Pool:
 
 # ---------------------------------------------------------------------------------------------------------------- parks
 def pin_of(p):
+    """The park's pin (lat, lon), or None: missing, 0,0, or a place that cannot be (rule bad_pin)."""
     pin = p.get('pin') or []
     try:
         la, lo = float(pin[0]), float(pin[1])
     except (TypeError, ValueError, IndexError):
         return None
-    return None if (la == 0 and lo == 0) else (la, lo)
+    return (la, lo) if pin_ok(la, lo) else None
+
+
+def pin_ok(la, lo):
+    """Rule bad_pin: a pin that cannot be a place (latitude outside -90..90, longitude outside -180..180, 0,0) is no pin
+    (FACTS-AUDIT F2: CA-2456 Maple Lake WMA [100.856, -49.514])."""
+    return -90 <= la <= 90 and -180 <= lo <= 180 and not (la == 0 and lo == 0)
 
 
 def wmd_ok(p, rec, rules):
@@ -759,8 +812,12 @@ def size_witnesses(p, shared_names, rules):
     for s in rows:
         if not isinstance(s, dict) or s.get('witness') not in tags or s.get('witness_counts') is False: continue
         if s.get('witness') == op['hand_copy'] and not re.match(op['source_rx'], str(s.get('source_url') or '')): continue
-        try: ac = float(s.get('acres'))
-        except (TypeError, ValueError): continue
+        if s.get('as') is not None and s.get('witness') == op['witness']:
+            ac = size_from_text(s['as'], rules)
+            if ac is None: continue
+        else:
+            try: ac = float(s.get('acres'))
+            except (TypeError, ValueError): continue
         if ac > 0: out.append(ac)
     return sorted(out)
 
@@ -816,6 +873,11 @@ def far_pin_waiver(p, rs, pool, rules):
     """Rule id_far_pin_listed_states: the id guard's pin and near_km are waived when POTA lists the park in more than one state
     and one of the id's records (found through a real tie) carries the park's full name under the exact-name rules."""
     if len(p.get('listed_in') or []) < 2: return False
+    return full_name_record(p, rs, pool, rules)
+
+
+def full_name_record(p, rs, pool, rules):
+    """Rules id_far_pin_listed_states / no_pin_proofs: one of the id's records carries the park's full name (exact rules)."""
     keys = park_name_keys(p.get('name'), p.get('type'), rules)
     return any(keys & record_name_keys(pool.recs[i]['names'], pool.recs[i]['layer'], rules) for i in rs)
 
@@ -859,13 +921,16 @@ def step_id(refs, ctx):
         rs = id_records(pool, p, k[0], k[1], rules, names_by_full)
         if not rs: note[ref] = 'id not in the layer files'; continue
         far = False
+        nopin = False
         if not id_guard(p, rs, pool, rules):
-            if not far_pin_waiver(p, rs, pool, rules): note[ref] = 'id records carry neither the park\'s name nor its pin'; continue
-            far = True
+            if pin_of(p) is None and full_name_record(p, rs, pool, rules): nopin = True
+            elif not far_pin_waiver(p, rs, pool, rules): note[ref] = 'id records carry neither the park\'s name nor its pin'; continue
+            else: far = True
         extra = id_unit_pieces(p, ref, rs, ctx)
         pieces.update(extra)
         want[ref], ev[ref] = sorted(set(rs) | set(extra)), {'id_kind': k[0], 'id_value': k[1]}
         if far: ev[ref].update(far_pin=True, listed_in=list(p.get('listed_in') or []))
+        if nopin: ev[ref]['no_pin'] = True
     claims = {}
     for ref, rs in want.items():
         for i in rs: claims.setdefault(i, []).append(ref)
@@ -1014,6 +1079,11 @@ def bilingual_aliases(keys, pool, rules):
     return out - keys
 
 
+def no_pin_group(rs):
+    """Rule no_pin_proofs: a park with no pin keeps its whole named group; only a size or two sources can prove it."""
+    return list(rs)
+
+
 def name_groups(p, ref, ctx):
     """Step 3 search for one park: -> (groups {gkey: [record i]}, notes set)."""
     pool, rules, pin, notes = ctx['pool'], ctx['rules'], pin_of(p), set()
@@ -1021,17 +1091,18 @@ def name_groups(p, ref, ctx):
     keys |= bilingual_aliases(keys, pool, rules)
     own = {i for k in keys for i in pool.name_ix.get(k, [])}
     page = {i for k in page_name_keys(p, rules) for i in pool.name_ix.get(k, [])} - own
+    lang = {i for kp in {kind_place(n, rules) for n in (p.get('name'),)} - {None} for i in pool.kp_ix.get(kp, ())} - own - page
     groups = {}
-    for i in sorted(own | page):
+    for i in sorted(own | page | lang):
         rec = pool.recs[i]
         no = refusal(p, ref, rec, i, ctx)
         if no: notes.add(no); continue
         uv = unit_value(rec, rules)
-        src = 'page' if i in page else 'name'
+        src = 'page' if i in page else 'lang' if i in lang else 'name'
         groups.setdefault((rec['layer'], 'unit', uv, src) if uv else (rec['layer'], 'name', full(rec['name'], rules), src), []).append(i)
     out = {}
     for g, rs in groups.items():
-        got = (rs if g[1] == 'unit' else chain_pieces(rs, pin, pool, rules)) if pin else []
+        got = (rs if g[1] == 'unit' else chain_pieces(rs, pin, pool, rules)) if pin else no_pin_group(rs)
         if len(got) < len(rs): notes.add('far')
         if got: out[g] = got
     return out, notes
@@ -1049,7 +1120,7 @@ def prove_group(p, rs, pool, rules, witnesses):
     pin = pin_of(p)
     for i in rs:
         if pin_near(pool.recs[i], pin, rules): return 'name+pin', pin_evidence(pool.recs[i], pin)
-    if pin is None or min(shape_km(pool.recs[i], pin) for i in rs) > rules['numbers']['near_km']: return None
+    if pin is not None and min(shape_km(pool.recs[i], pin) for i in rs) > rules['numbers']['near_km']: return None
     ac = group_acres(rs, pool, rules)
     return ('name+size', {'agency_acres': round(ac, 1), 'official_acres': witnesses}) if size_agrees(ac, witnesses, rules) else None
 
@@ -1057,16 +1128,15 @@ def prove_group(p, rs, pool, rules, witnesses):
 def two_sources_ok(a, b, rules):
     """Rule name_two_sources: two named records of different layers, boxes overlapping, agency sizes within two_sources_tol."""
     sa, sb = agency_acres(a, rules) or 0, agency_acres(b, rules) or 0
-    return a['layer'] != b['layer'] and box_share(a['_b'], b['_b']) > 0 and sa > 0 and sb > 0 \
+    return a['layer'] != b['layer'] and other_services(a, b) and box_share(a['_b'], b['_b']) > 0 and sa > 0 and sb > 0 \
         and abs(sa - sb) <= rules['numbers']['two_sources_tol'] * max(sa, sb)
 
 
 def two_sources(p, groups, pool, rules):
     """{group: ('name+two_sources', evidence)} for the named pairs that agree, near the pin."""
     pin, out = pin_of(p), {}
-    if pin is None: return out
     named = [(g, pool.recs[i]) for g in sorted(groups) for i in groups[g]
-             if km_to_box(pin[0], pin[1], rec_box(pool.recs[i])) <= rules['numbers']['near_km']]
+             if pin is None or km_to_box(pin[0], pin[1], rec_box(pool.recs[i])) <= rules['numbers']['near_km']]
     for x, (ga, a) in enumerate(named):
         for gb, b in named[x + 1:]:
             if two_sources_ok(a, b, rules):
@@ -1150,6 +1220,7 @@ def is_trail(p, rules):
 def reason_for(p, groups, notes, twice, rules):
     """Step 4: the one pin-only reason code for a park step 3 could not prove (fixed list)."""
     if twice: return 'two_records_fit'
+    if groups and pin_of(p) is None: return 'park_has_no_pin'
     if groups: return 'name_but_no_pin_or_size_proof'
     if notes & {'held', 'other_name', 'other_pin'}: return 'record_shared_with_another_park'
     if 'water' in notes: return 'water_only'
@@ -1159,7 +1230,7 @@ def reason_for(p, groups, notes, twice, rules):
 
 
 BY_ORDER = ('name+pin', 'name+size', 'name+two_sources', 'page name+pin', 'page name+size', 'page name+two_sources',
-            'longer or shorter name+pin')
+            'two-language name+pin', 'two-language name+size', 'two-language name+two_sources', 'longer or shorter name+pin')
 
 
 def step_name(refs, ctx):
@@ -1175,7 +1246,7 @@ def step_name(refs, ctx):
             r = prove_group(p, groups[g], pool, rules, wit)
             if r: (pinned if r[0] == 'name+pin' else sized)[g] = r
         sized.update(two_sources(p, {g: rs for g, rs in groups.items() if g not in pinned and g not in sized}, pool, rules))
-        page = lambda d: {g: (('page ' if g[3] == 'page' else '') + v[0], v[1]) for g, v in d.items()}
+        page = lambda d: {g: ({'page': 'page ', 'lang': 'two-language '}.get(g[3], '') + v[0], v[1]) for g, v in d.items()}
         pinned, sized = page(pinned), page(sized)
         twice = ambiguous_sizes(sized)
         proven = {**pinned, **{g: v for g, v in sized.items() if g not in twice}}
@@ -1292,16 +1363,40 @@ def gate_other_pin(res, parks, pool, rules):
     return bad
 
 
+def gate_licence(res, pool):
+    """Rule licence_kept: every joined record carries a publishable value read from today's file, and every private one its
+    licence class (a record may prove a match privately; it may never lose its terms)."""
+    bad = []
+    for ref, rs in sorted(res['joins'].items()):
+        for i in rs:
+            if not 0 <= i < len(pool.recs): continue   # not_in_file reports it
+            r = pool.recs[i]
+            if not isinstance(r.get('pub'), bool): bad.append(('licence_kept', ref, f"{r['id']} has no publishable value"))
+            elif not r['pub'] and not r.get('lic'): bad.append(('licence_kept', ref, f"{r['id']} is private with no licence class"))
+    return bad
+
+
 def gate(doc_parks, res, pool, rules, parks=None):
     """Step 5: the hard stop. -> {'ok', 'old_ids', 'two_name', 'not_in_file', 'id_mismatch', 'other_park_pin', 'bad'}."""
     bad = gate_old_ids(doc_parks) + gate_two_names(doc_parks) + gate_unresolved(res, pool) + gate_id_mismatch(res, pool, rules) \
-        + (gate_other_pin(res, parks, pool, rules) if parks else [])
-    out = {k: sum(1 for b in bad if b[0] == k) for k in ('old_ids', 'two_name', 'not_in_file', 'id_mismatch', 'other_park_pin')}
+        + (gate_other_pin(res, parks, pool, rules) if parks else []) + gate_licence(res, pool)
+    out = {k: sum(1 for b in bad if b[0] == k) for k in ('old_ids', 'two_name', 'not_in_file', 'id_mismatch', 'other_park_pin', 'licence_kept')}
     out['ok'], out['bad'] = not bad, [list(b) for b in bad]
     return out
 
 
 # ---------------------------------------------------------------------------------------------------------------- outputs
+def may_show(rec):
+    """Rule licence_kept: a record may be shown only when today's file says publishable true (no value = not: fail closed)."""
+    return rec.get('pub') is True
+
+
+def share_of(recs):
+    """Rule licence_kept: 'all' (every joined record may be shown), 'none' (proven only on private records), else 'part'."""
+    n = sum(1 for r in recs if may_show(r))
+    return 'all' if n == len(recs) else 'none' if n == 0 else 'part'
+
+
 def all_lines(recs):
     """Rule key_line_flag: every joined record is a line, so the map draws a line."""
     return bool(recs) and all(r.get('line') for r in recs)
@@ -1329,6 +1424,9 @@ def state_doc(st, refs, parks, res, pool, rules, layer_files, area=None, gaps=()
                         'match': {'status': 'confirmed', 'by': by, 'step': step, 'evidence': e, 'why': None},
                         'ac': round(max(per.values())), 'src': sorted(per)}
             if all_lines([pool.recs[i] for i in res['joins'][ref]]): out[ref]['line'] = True
+            recs = [pool.recs[i] for i in res['joins'][ref]]
+            out[ref]['share'] = share_of(recs)
+            out[ref]['private'] = sorted({r['id'] for r in recs if not may_show(r)})
         else:
             out[ref] = {'n': p.get('name'), 't': p.get('type'), 'm': [], 'c': [], 'ac': None, 'src': [],
                         'match': {'status': 'pin', 'by': None, 'step': 4, 'evidence': {}, 'why': res['why'].get(ref, 'no_record_with_this_name')}}
@@ -1379,7 +1477,8 @@ def proof_rows(st, res, pool, rules):
         for i in res['joins'][ref]:
             rec = pool.recs[i]
             out.append([ref, st, rec['key'], rec['id'] if rec['agency'] else '', rec['layer'], rec['name'], round(rec_acres(rec, rules), 1),
-                        step, by, ' '.join(f'{k}={e[k]}' for k in sorted(e)), rec['area'], lock, shape_word(rec)])
+                        step, by, ' '.join(f'{k}={e[k]}' for k in sorted(e)), rec['area'], lock, shape_word(rec),
+                        '' if rec.get('pub') is None else str(rec['pub']).lower(), rec.get('lic') or ''])
     return out
 
 
@@ -1415,7 +1514,7 @@ def slim_record(r, rules):
     the attributes some step reads (never the whole attributes dict)."""
     memo = rules.setdefault('_keep_memo', {})
     a = r.get('attributes') or {}
-    out = {k: r[k] for k in ('key', 'layer', 'record_name', 'q', 'shape') if k in r}
+    out = {k: r[k] for k in ('key', 'layer', 'record_name', 'q', 'shape', 'publishable', 'licence_class', 'publish_why') if k in r}
     keep = {}
     for k, v in a.items():
         ok = memo.get(k)
@@ -1509,9 +1608,33 @@ def park_states(repo, area):
 
 
 def rules_for_area(rules, area):
-    """Rule ca_kind_words: a Canadian area also counts the Canadian / French kind words (Provincial, Parc, Réserve ...)."""
+    """Rules ca_kind_words / two_language_kind: a Canadian area also counts the Canadian / French kind words (Provincial, Parc,
+    Réserve ...) and reads names through the two-language kind table."""
     if not area.startswith('CA-'): return rules
-    return dict(rules, _kind_words=rules['_kind_words'] | {full(w, rules) for w in rules['ca_kind_words']})
+    r = dict(rules, _kind_words=rules['_kind_words'] | {full(w, rules) for w in rules['ca_kind_words']})
+    small = {full(w, rules) for w in r['lang_small_words']} - {''}
+    words = lambda ph: tuple(x for x in full(ph.replace('\u2019', "'"), r).split() if x not in small)
+    kinds = [(k['kind'], 'fr', words(ph)) for k in r['lang_kinds'] for ph in k['fr']] + \
+            [(k['kind'], 'en', words(ph)) for k in r['lang_kinds'] for ph in k['en']]
+    r['_lang'] = {'small': small, 'kinds': sorted(kinds, key=lambda x: -len(x[2]))}
+    return r
+
+
+def kind_place(name, rules):
+    """Rule two_language_kind: (kind, place words) of a name: a French kind at its start and / or an English kind at its end
+    (from lang_kinds; both must be the same kind), the rest its place words, accents and the small joining words of both
+    languages (lang_small_words) set aside. Place words are never translated. None without a kind or a real place word."""
+    lg = rules.get('_lang')
+    if not lg: return None
+    w = tuple(x for x in full(str(name or '').replace('\u2019', "'").replace('\u2018', "'"), rules).split() if x not in lg['small'])
+    ks = next((k for k, side, ph in lg['kinds'] if side == 'fr' and len(w) > len(ph) and w[:len(ph)] == ph), None)
+    if ks: w = w[len(next(ph for k, side, ph in lg['kinds'] if k == ks and side == 'fr' and w[:len(ph)] == ph)):]
+    ke = next((k for k, side, ph in lg['kinds'] if side == 'en' and len(w) > len(ph) and w[-len(ph):] == ph), None)
+    if ke: w = w[:-len(next(ph for k, side, ph in lg['kinds'] if k == ke and side == 'en' and w[-len(ph):] == ph))]
+    if (ks and ke and ks != ke) or not (ks or ke) or not w or generic(' '.join(w), rules): return None
+    return (ks or ke, w)
+
+
 
 
 def build_state(area, a, rules, facts, layer_file, info):
@@ -1555,6 +1678,12 @@ def build_state(area, a, rules, facts, layer_file, info):
                            'new': sum(1 for r in id_parks if r not in res['lock_status'])},
                  'locked_broken': res['locked_broken'], 'seconds': round(time.time() - t0, 1)})
     info['lines'] = dict(sorted(pool.lines.items()))
+    shares = [p.get('share') for p in doc['parks'].values() if p.get('m')]
+    info['share'] = {'all': shares.count('all'), 'part': shares.count('part'), 'none': shares.count('none')}
+    lic = {}
+    for rs in res['joins'].values():
+        for i in rs: lic[str(pool.recs[i].get('lic') or 'NO CLASS')] = lic.get(str(pool.recs[i].get('lic') or 'NO CLASS'), 0) + 1
+    info['joined_by_licence'] = dict(sorted(lic.items()))
     if g['ok']: info['key_text_sha256'] = key_text_sha256(doc)
     if not g['ok']:
         print(f'{st}: GATE FAILED, key not written. {len(g["bad"])} broken row(s), listed in v2-run.json.'); return 4, [], [], []
@@ -1625,7 +1754,7 @@ def run(argv=None):
         later = {x for b in areas[n + 1:] for x in [b] + area_neighbours(b, rules)}
         for k in [k for k in cache if k not in later]: del cache[k]   # rule memory: keep only files a later area reads
     write_csv(os.path.join(a.out, 'v2-proof.csv'), ['ref', 'st', 'file_key', 'agency_id', 'layer', 'record_name', 'acres', 'step', 'by',
-                                                    'evidence', 'file_area', 'lock', 'shape'], proof_all)
+                                                    'evidence', 'file_area', 'lock', 'shape', 'publishable', 'licence_class'], proof_all)
     write_csv(os.path.join(a.out, 'v2-pin-only.csv'), ['ref', 'st', 'name', 'kind', 'reason_code', 'reason'], pin_all)
     write_csv(os.path.join(a.out, 'v2-id-other-names.csv'), ['ref', 'st', 'park_name', 'record_key', 'record_name', 'layer',
                                                              'km_from_pin'], other_all)
