@@ -156,6 +156,15 @@
    "stub": "empty"
   },
   {
+   "id": "name_other_spelling",
+   "step": "3",
+   "what": "a park may have one or two more EXACT spellings of its name in the table other_spellings (per park number). Each is read like an exact name (the plain name, then the possessive second try) and nothing else: no kind word taken off, no single letters set aside, no words run together, nothing fuzzy. It only says 'this is another way to write the name'; the pin or the size or two sources must still prove the land, and every refusal still applies. Used in the name step and in the far-pin name check.",
+   "why": "US-0474 Elizabeth A. Morton, US-2147 Sunken Meadow and US-4239 North Country: the agency spells the name another way and the exact-name check refused the record (rule sheet sections 11 and 12; owner said yes to the idea on 26 Nov). One row per park keeps it one place to look, with a reason and a date.",
+   "test": "test_other_spellings",
+   "fn": "other_spelling_keys",
+   "stub": "empty"
+  },
+  {
    "id": "name_possessive",
    "step": "3",
    "what": "first try: the plain name, and v1's single-letter rule (single letters set aside when 2 or more real words are left: 'knox s headquarters' = 'knox headquarters'); second try: a possessive written as one word (DEVIL'S TRACK = Devils Track)",
@@ -1047,6 +1056,38 @@
    "why": "pieces of one unit share this field (a list: the first that is not a placeholder); a name group with a unit is whole at any distance (rule unit_at_any_distance). fws: CMPXNAME (the district for WPA tracts), else LIT (measured MN NY and neighbours, 4,975 records: among records with CMPXNAME N/A, 161 LIT values, one ORGNAME each and one LIT per ORGNAME; ORGCODE was refused: 64581 spans 9 districts, 9999 is a placeholder). A layer not listed takes same-name pieces within near_km of the pin (far_pieces).",
    "test": "test_unit_at_any_distance"
   },
+  "other_spellings": {
+   "value": {
+    "US-0474": [
+     {
+      "name": "Elizabeth Alexandra Morton National Wildlife Refuge",
+      "why": "POTA writes 'Elizabeth A. Morton'; the Fish and Wildlife Service layer and PAD-US record it as 'Elizabeth Alexandra Morton National Wildlife Refuge' and its own page address says elizabeth-alexandra-morton (measured 27 Nov 2026 in the NY file: fws3289, fws3290, PAD-US 3806 and 4746)",
+      "date": "2026-11-27"
+     }
+    ],
+    "US-2147": [
+     {
+      "name": "Alfred E. Smith/Sunken Meadow State Park",
+      "why": "POTA writes 'Sunken Meadow State Park'; PAD-US 237441 is 'Alfred E. Smith/Sunken Meadow State Park' (the park's full official name; measured 27 Nov 2026 in the NY file)",
+      "date": "2026-11-27"
+     },
+     {
+      "name": "Alfred E. Smith/Sunken Meadow",
+      "why": "the NY State Parks layer (sgnyb645 to sgnyb647) names the same park without the kind word; one exact string, so the kind word is not taken off",
+      "date": "2026-11-27"
+     }
+    ],
+    "US-4239": [
+     {
+      "name": "North Country National Scenic Trail",
+      "why": "POTA writes 'North Country Trail National Scenic Trail'; the Park Service and the state layers write 'North Country National Scenic Trail' (rule sheet section 12)",
+      "date": "2026-11-27"
+     }
+    ]
+   },
+   "why": "other exact spellings of one park's name (rule name_other_spelling): per park number, each with its reason and date. Add a row only for a spelling a real record carries; the pin or the size must still prove the land. Never a pattern, never a shortened or lengthened name.",
+   "test": "test_other_spellings"
+  },
   "name_fields": {
    "value": {
     "PAD-US": [
@@ -1174,10 +1215,25 @@
     ],
     "PE-PP Govern": [
      "PARK"
+    ],
+    "AB Public La": [
+     "PLUZ_NAME"
+    ],
+    "AB-PLUZ Gove": [
+     "PLUZ_NAME"
+    ],
+    "Alberta publ": [
+     "PLREC_NAME"
+    ],
+    "Hard look~0": [
+     "ParkName"
+    ],
+    "BC BC Parks": [
+     "PROTECTED_LANDS_NAME"
     ]
    },
-   "why": "besides the file's record_name: PAD-US Unit_Nm / Loc_Nm (the legacy key's two names), NY State Parks Label (state-gis.json nm2), FWS complex and org names (the wetland district rule).; round 7: the name fields of the Canadian layers (measured 26 Nov on MB NB NS PE QC SK SP YT; many CA layers leave record_name empty). A layer copy (layer_copy) is named by its kept label.",
-   "test": "test_wildlife_and_fish_refuge"
+   "why": "besides the file's record_name: PAD-US Unit_Nm / Loc_Nm (the legacy key's two names), NY State Parks Label (state-gis.json nm2), FWS complex and org names (the wetland district rule).; round 7: the name fields of the Canadian layers (measured 26 Nov on MB NB NS PE QC SK SP YT; many CA layers leave record_name empty). A layer copy (layer_copy) is named by its kept label. 27 Nov 2026: Alberta and BC layers whose records the store room leaves unnamed (measured in the 25-26 Nov CA-AB and CA-BC files: AB Public La 61 of 61, AB-PLUZ Gove 61 of 61, Alberta publ 64 of 64, Hard look~0 45 of 45, BC BC Parks 929 of 929 had an empty record_name); the name is in PLUZ_NAME, PLREC_NAME, ParkName and PROTECTED_LANDS_NAME. The layer label 'Hard look~0' is the store room's own spelling today; if it changes the row must change too.",
+   "test": "test_name_fields_alberta_bc"
   },
   "full_name_fields": {
    "value": {

@@ -319,6 +319,35 @@ def joined_acres(p):
     return float(sum(s)) if s else None
 
 
+def licence_counts(parks):
+    """27 Nov 2026 (licence counts): how many outlined parks say share all / part / none (the key's own `share` word). A park with
+    no word, or a word that is none of the three, counts as none (fail closed) and is also counted as `unmarked`."""
+    out = {'all': 0, 'part': 0, 'none': 0, 'unmarked': 0}
+    for p in parks.values():
+        if not joined(p): continue
+        w = (p or {}).get('share')
+        if w in ('all', 'part'): out[w] += 1
+        else:
+            out['none'] += 1
+            if w != 'none': out['unmarked'] += 1
+    return out
+
+
+def licence_text(c, outlined=None):
+    """The counts in plain words, one line. `c` is licence_counts() or the sum of several."""
+    n = c['all'] + c['part'] + c['none']
+    t = f"Licence, what the club may show: share all {c['all']}, share part {c['part']}, share none {c['none']} (of {n if outlined is None else outlined} outlined parks)"
+    if c.get('unmarked'): t += f"; {c['unmarked']} had no licence word and count as none"
+    return t + '.'
+
+
+def licence_sum(items):
+    tot = {'all': 0, 'part': 0, 'none': 0, 'unmarked': 0}
+    for c in items:
+        for k in tot: tot[k] += int((c or {}).get(k) or 0)
+    return tot
+
+
 def official_sizes(fp):
     """The official sizes the park facts hold for a park: the agency's size (when its witness counts) and every page size marked total."""
     out = []
@@ -572,6 +601,7 @@ def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=Non
         d['c1'] = sum(len((p or {}).get('c') or []) for p in bp.values())
         d['c2'] = sum(len((p or {}).get('c') or []) for p in vp.values())
         d['old'] = old_ids(vp)
+        d['lic'] = licence_counts(vp)
         d['pdiff'], d['psame'], d['pshare'] = park_name_share(vp)
         for r_ in d['pshare']: r_['state'] = st
         d['two'], d['samename'] = two_name_count(vp)
@@ -758,6 +788,7 @@ def render(gates, S, states, notes, compared=''):
         L.append(f"  Check rows: v1 {d['c1']}, v2 {d['c2']}. Seconds: v1 {_sec(d['sec1'])}, v2 {_sec(d['sec2'])}. {lks}.")
         L.append(f"  Pin inside the land: v1 {fmt_pct(h1['pin_yes'], h1['pin_n'])} of {h1['pin_n']}, v2 {fmt_pct(h2['pin_yes'], h2['pin_n'])} of {h2['pin_n']}. "
                  f"Size agrees: v1 {fmt_pct(h1['size_yes'], h1['size_n'])} ({h1['size_yes']} of {h1['size_n']}), v2 {fmt_pct(h2['size_yes'], h2['size_n'])} ({h2['size_yes']} of {h2['size_n']}).")
+        L.append('  ' + licence_text(d['lic'], d['out2']))
         L.append(f"  Records not in today's file: v1 {h1['ids_missing']} of {h1['ids']} ({h1['ids_trail']} trail lines), v2 {h2['ids_missing']} of {h2['ids']}. "
                  f"Ids that fit two records (left out): v1 {h1['ids_fit2']}, v2 {h2['ids_fit2']}.")
         if d['nobase']:
@@ -767,6 +798,11 @@ def render(gates, S, states, notes, compared=''):
             L.append(f"  H3 same land as v1 (a report, not a gate), parks outlined by both {n}: v2 covers at least 90% of v1's land in {a}; v1 covers at least 90% of v2's land in {b}. list: v2-land-vs-base.csv")
         if d['other_names'] is not None:
             L.append(f"  Id joins that carry another name, for the owner's eyes: {d['other_names']} rows, list: v2-id-other-names.csv")
+    built = [s for s in states if not S[s]['nb']]
+    if built:
+        tot = licence_sum(S[s]['lic'] for s in built)
+        L.append(f"Total over {len(built)} built area{'s' if len(built) != 1 else ''}: " + licence_text(tot, sum(S[s]['out2'] for s in built)))
+        L.append('  (share all = every record of the park may be shown; share part = some may be; share none = only private records prove it.)')
     L += ['', 'Gates']
     L += [f"{gid} {'PASS' if ok else 'FAIL'} {text}" for gid, ok, text in gates]
     L += [''] + [f'Note: {n}.' for n in notes] + ['Park by park: v2-vs-base.csv.']
@@ -870,7 +906,7 @@ def main(argv=None):
     text = render(gates, S, states, notes, compared)
     nums = {st: {'parks': S[st]['same'][2], 'nobase': S[st]['nobase'], 'not_built': bool(S[st]['nb']), 'out1': S[st]['out1'], 'out2': S[st]['out2'], 'conf1': S[st]['conf1'], 'conf2': S[st]['conf2'],
                  'pin2': S[st]['pin2'], 'pin_yes': S[st]['h2']['pin_yes'], 'pin_n': S[st]['h2']['pin_n'], 'size_yes': S[st]['h2']['size_yes'], 'size_n': S[st]['h2']['size_n'],
-                 'pin_yes1': S[st]['h1']['pin_yes'], 'pin_n1': S[st]['h1']['pin_n'], 'why': S[st]['why2'], 'step': S[st]['step2'], 'gaps': S[st]['gaps'], 'sec2': S[st]['sec2'],
+                 'pin_yes1': S[st]['h1']['pin_yes'], 'pin_n1': S[st]['h1']['pin_n'], 'why': S[st]['why2'], 'step': S[st]['step2'], 'lic': S[st]['lic'], 'gaps': S[st]['gaps'], 'sec2': S[st]['sec2'],
                  'h3': (S[st]['land'][1:] if S[st]['land'] else None), 'gate_ok': (S[st]['run'].get('gate') or {}).get('ok') if S[st]['run'] else None} for st in states}
     (out / 'v2-score.json').write_text(json.dumps({'gates': [[g, ok, t] for g, ok, t in gates], 'areas': nums}, indent=1, ensure_ascii=False), encoding='utf-8')
     (out / 'V2-SCORECARD.txt').write_text(text, encoding='utf-8')

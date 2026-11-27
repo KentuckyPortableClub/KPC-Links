@@ -1270,6 +1270,79 @@ def test_selftest_runs():
     with contextlib.redirect_stdout(io.StringIO()): assert V.run(['--selftest']) == 0
 
 
+# 27 Nov 2026: rule name_other_spelling (the table other_spellings: US-0474, US-2147, US-4239)
+def spelling_case(ref, name, kind, rec_name, layer='PAD-US', dx=0.0, strip=None, link=None, listed=None, rg=None, **attrs):
+    """One park `ref` and one record; -> the park's key row. `strip` = park numbers whose rows are taken out of the table."""
+    f = Fix()
+    try:
+        if strip:
+            tp = f.p('repo/.github/us-key-v2-rules.json')
+            d = json.load(open(tp, encoding='utf-8'))
+            for r in strip: d['tables']['other_spellings']['value'].pop(r)
+            json.dump(d, open(tp, 'w', encoding='utf-8'))
+        f.parks[ref] = park(name, kind, link=link)
+        if listed: f.listed[ref] = listed
+        f.files['US-MN'] = [rec(layer, f'{layer[:6].lower()}1', rec_name, rg if rg is not None else ring(dx), **attrs)]
+        assert f.run() == 0
+        return f.key()['parks'][ref]
+    finally: f.done()
+
+
+def test_other_spellings():
+    t = RULES['other_spellings']
+    assert sorted(t) == ['US-0474', 'US-2147', 'US-4239'] and all(r['why'] and r['date'] for rs in t.values() for r in rs)
+    # US-0474: POTA 'A.', the agency spells the middle name out
+    n, kd = 'Elizabeth A. Morton National Wildlife Refuge', 'National Wildlife Refuge'
+    k = spelling_case('US-0474', n, kd, 'Elizabeth Alexandra Morton National Wildlife Refuge')
+    assert len(k['m']) == 1 and k['match']['by'] == 'name+pin'                     # the row lets the right record through
+    assert spelling_case('US-1', n, kd, 'Elizabeth Alexandra Morton National Wildlife Refuge')['m'] == []   # any other park number: no row
+    assert spelling_case('US-0474', n, kd, 'Elizabeth Alexandra Morton National Wildlife Refuge', strip=['US-0474'])['m'] == []   # row removed
+    for near in ('Elizabeth Alexander Morton National Wildlife Refuge', 'Elizabeth Alexandra Morton', 'Elizabeth Alexandra Morton NWR Unit',
+                 'Alexandra Morton National Wildlife Refuge'):
+        assert spelling_case('US-0474', n, kd, near)['m'] == [], near              # a near miss is still refused
+    assert spelling_case('US-0474', n, kd, 'Elizabeth Alexandra Morton National Wildlife Refuge', dx=3000)['m'] == []   # still needs its proof
+    # US-2147: two exact strings, one with and one without the kind word
+    n, kd = 'Sunken Meadow State Park', 'State Park'
+    assert len(spelling_case('US-2147', n, kd, 'Alfred E. Smith/Sunken Meadow State Park')['m']) == 1
+    assert len(spelling_case('US-2147', n, kd, 'Alfred E. Smith/Sunken Meadow', layer='sgnyb')['m']) == 1
+    assert spelling_case('US-2147', n, kd, 'Alfred E. Smith/Sunken Meadow', layer='sgnyb', strip=['US-2147'])['m'] == []
+    assert spelling_case('US-2147', n, kd, 'Alfred Smith/Sunken Meadow State Park')['m'] == []
+    assert spelling_case('US-2147', n, kd, 'Alfred E. Smith')['m'] == []
+    # US-4239: a trail in several states; the far-pin name check reads the other spelling too
+    n, kd, noco = 'North Country Trail National Scenic Trail', 'National Scenic Trail', {'id_kind': 'NPS unit code', 'id_value': 'NOCO'}
+    far = dict(link=noco, listed='US-MN,US-ND,US-WI', rg=ring(400000), Loc_Nm='NOCO', Mang_Name='NPS')
+    k = spelling_case('US-4239', n, kd, 'North Country National Scenic Trail', **far)
+    assert len(k['m']) == 1
+    assert k['match']['by'] == 'id' and k['match']['evidence']['far_pin'] is True
+    assert spelling_case('US-4239', n, kd, 'North Country National Scenic Trail', strip=['US-4239'], **far)['m'] == []
+    assert spelling_case('US-4239', n, kd, 'North Country Scenic Trail', **far)['m'] == []
+    assert spelling_case('US-4239', n, kd, 'North Country National Scenic Trail', **dict(far, listed='US-MN'))['m'] == []   # one state: never
+
+
+# 27 Nov 2026: name_fields rows for Alberta and BC (the store room leaves their record_name empty)
+def test_name_fields_alberta_bc():
+    test_wildlife_and_fish_refuge()                                  # the table's older rows (FWS complex names) are still read
+    rows = [('AB Public La', 'PLUZ_NAME', 'Elbow Falls Provincial Recreation Area'), ('AB-PLUZ Gove', 'PLUZ_NAME', 'Bluerock Wildland Provincial Park'),
+            ('Alberta publ', 'PLREC_NAME', 'Cataract Creek Provincial Recreation Area'), ('Hard look~0', 'ParkName', 'Lakeway Heights Park'),
+            ('BC BC Parks', 'PROTECTED_LANDS_NAME', 'Alice Lake Provincial Park')]
+    kinds = ['Provincial Recreation Area', 'Wildland Provincial Park', 'Provincial Recreation Area', 'Park', 'Provincial Park']
+    f = Fix()
+    try:
+        recs = []
+        for n, ((layer, field, name), kind) in enumerate(zip(rows, kinds)):
+            ref = f'US-{n + 1}'
+            f.parks[ref] = park(name, kind, dx_m=n * 5000)
+            recs.append(rec(layer, f'z{n}', '', ring(n * 5000), **{field: name}))        # record_name empty, the name only in the field
+        f.parks['US-9'] = park('Moose Hill Park', 'Park', dx_m=40000)
+        recs.append(rec('Some Other Layer', 'z9', '', ring(40000), PLUZ_NAME='Moose Hill Park'))   # a layer with no row: still no name
+        f.files['US-MN'] = recs
+        assert f.run() == 0
+        k = f.key()
+        for n in range(len(rows)): assert ids(k, f'US-{n + 1}') == [f'z{n}'] and by(k, f'US-{n + 1}') == 'name+pin', rows[n]
+        assert k['parks']['US-9']['m'] == []
+    finally: f.done()
+
+
 def test_every_rule_names_a_test():
     d = json.load(open(os.path.join(ROOT, '.github', 'us-key-v2-rules.json')))
     names = [r['test'] for r in d['rules']] + [v['test'] for part in ('values', 'tables') for v in d[part].values()]

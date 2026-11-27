@@ -702,6 +702,12 @@ with tempfile.TemporaryDirectory() as t:
           and all((run / a / x).exists() for a in ('US-MN', 'CA-ON') for x in ('cold', 'warm', 'V2-SCORECARD.txt')))
     check('build: progress lines say "1 of 3  MN  N s  built"', any(re.match(r'^1 of 3  MN  \d+ s  built', l) for l in out.splitlines()) and any(re.match(r'^3 of 3  SC  0 s  not built', l) for l in out.splitlines()))
     check('build: exit 1 when an area could not be built (SC), the others were built', rc == 1)
+    # 27 Nov 2026: licence counts on the build summary (the fake matcher's keys carry no licence word, so every outlined park counts as none)
+    check('build summary: each built area line carries its licence counts, and one total line follows with the plain-words legend',
+          'licence: share all 0, part 0, none 2' in mn and 'licence: share all 0, part 0, none 2' in ca
+          and any(l.startswith('Licence, what the club may show, total over 2 areas: share all 0, share part 0, share none 4 (of 4 outlined parks).') and '4 had no licence word' in l for l in sm)
+          and any('share all = every record of the park may be shown' in l for l in sm))
+    check('build summary: summary.csv has share_all, share_part, share_none per area', sc[0]['share_all'] == '0' and sc[0]['share_none'] == '2' and 'share_part' in sc[0])
 
 with tempfile.TemporaryDirectory() as t:
     t = pathlib.Path(t)
@@ -734,6 +740,28 @@ with tempfile.TemporaryDirectory() as t:
     check('Canadian keys: "NS HRM Parks:1" and the bare CPCAD number "88" are found by the file\'s own key in the area\'s file (CA-NS)',
           st.find('NS HRM Parks:1', ['CA-NS']) is not None and st.find('88', ['CA-NS'])['record_name'] == 'Kejimkujik' and st.find('89', ['CA-NS']) is None
           and SC.aname('CA-NS') == 'CA-NS' and SC.aname('MN') == 'US-MN')
+
+# ---- 27 Nov 2026: licence counts (share all / part / none) on the scorecard
+def marked(k, pr, po, r):
+    k['parks']['US-0001']['share'] = 'all'; k['parks']['US-0002']['share'] = 'part'; k['parks']['US-0003']['share'] = 'all'   # US-0003 is pin only: not counted
+
+
+score(marked, v1s={'MN': 100})
+txt = score.last[1]
+check('licence counts: one line per area in plain words, only outlined parks counted (pin only ignored)',
+      '  Licence, what the club may show: share all 1, share part 1, share none 0 (of 2 outlined parks).' in txt)
+check('licence counts: a total over the built areas and the legend (what all / part / none mean)',
+      'Total over 1 built area: Licence, what the club may show: share all 1, share part 1, share none 0 (of 2 outlined parks).' in txt and 'share none = only private records prove it' in txt)
+score(lambda k, pr, po, r: k['parks']['US-0001'].update(share='maybe'), v1s={'MN': 100})
+check('licence counts: a word that is not all / part / none, or no word, counts as none (fail closed) and the text says so',
+      'share all 0, share part 0, share none 2 (of 2 outlined parks); 2 had no licence word and count as none.' in score.last[1])
+c = SC.licence_counts({'a': {'m': [1], 'share': 'all'}, 'b': {'m': [1], 'share': 'part'}, 'c': {'m': [1], 'share': 'none'}, 'd': {'m': [1]}, 'e': {'m': [], 'share': 'all'}, 'f': None})
+check('licence counts: the function counts 1 all, 1 part, 2 none (one of them unmarked) and skips pin-only parks and empty rows', c == {'all': 1, 'part': 1, 'none': 2, 'unmarked': 1})
+check('licence counts: the totals add up (licence_sum)', SC.licence_sum([c, {'all': 2, 'part': 0, 'none': 5, 'unmarked': 0}, None]) == {'all': 3, 'part': 1, 'none': 7, 'unmarked': 1})
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    rc, out, text = cli(t, ['--no-base'], mut=marked)
+    check('licence counts: v2-score.json carries them per area for the build summary', json.load(open(out / 'v2-score.json'))['areas']['MN']['lic'] == {'all': 1, 'part': 1, 'none': 0, 'unmarked': 0})
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

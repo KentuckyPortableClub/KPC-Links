@@ -28,6 +28,7 @@ TABLE_SHAPES = {
     'size_witness_tags': L, 'placeholders': L, 'drop_words': L, 'ca_kind_words': L,
     'easement_rx': RX, 'type_field_rx': RX, 'lease_name_rx': RX, 'water_park_kind_rx': RX, 'office_rx': RX,
     'trail_kind_rx': RX, 'line_park_kind_rx': RX, 'home_page_rx': RX, 'acre_field_rx': RX, 'roman_rx': RX,
+    'other_spellings': {'*': [{'name': S, 'why': S, 'date': S}]},
     'name_fields': {'*': [S]}, 'unit_fields': {'*': [S]}, 'bilingual_fields': {'*': [[S, S]]}, 'size_fields': {'*': [S, S]},
     'size_text_units': [[RX, S]], 'apostrophes': L, 'lang_kinds': [{'kind': S, 'en': [S], 'fr': [S], 'proof': S}], 'lang_small_words': L, 'full_name_fields': {'*': [[S]]}, 'layer_kinds': {'*': [S]},
     'piece_suffixes': [RX], 'kind_patterns': [[S, RX]], 'name_equivalences': [[RX, S]],
@@ -280,6 +281,16 @@ def park_name_keys(name, kind, rules):
         if t and a.endswith(' ' + t) and not generic(a[:-len(t) - 1], rules): out.add(a[:-len(t) - 1].strip())
     out |= {single_letters_out(k, rules) for k in out} - {''}
     return out | {run_together(k, rules) for k in out}
+
+
+def other_spelling_keys(ref, rules):
+    """Rule name_other_spelling (27 Nov 2026): a park may have a few more exact spellings of its name in the table
+    other_spellings (US-0474, US-2147, US-4239). Each is one exact string, read like any exact name (full, then the possessive
+    second try): no kind word taken off, no single letters set aside, no run-together words, nothing fuzzy. It is only a way
+    to write the name: the pin or the size must still prove the land. -> a set of name keys (empty for any other park)."""
+    out = set()
+    for row in rules['other_spellings'].get(ref, []): out |= {full(row['name'], rules), full_ps(row['name'], rules)}
+    return out - {''}
 
 
 def page_name(p, rules):
@@ -885,16 +896,17 @@ def id_guard(p, rs, pool, rules):
     return False
 
 
-def far_pin_waiver(p, rs, pool, rules):
+def far_pin_waiver(p, rs, pool, rules, ref=''):
     """Rule id_far_pin_listed_states: the id guard's pin and near_km are waived when POTA lists the park in more than one state
     and one of the id's records (found through a real tie) carries the park's full name under the exact-name rules."""
     if len(p.get('listed_in') or []) < 2: return False
-    return full_name_record(p, rs, pool, rules)
+    return full_name_record(p, rs, pool, rules, ref)
 
 
-def full_name_record(p, rs, pool, rules):
-    """Rules id_far_pin_listed_states / no_pin_proofs: one of the id's records carries the park's full name (exact rules)."""
-    keys = park_name_keys(p.get('name'), p.get('type'), rules)
+def full_name_record(p, rs, pool, rules, ref=''):
+    """Rules id_far_pin_listed_states / no_pin_proofs: one of the id's records carries the park's full name (exact rules,
+    and its other spellings from the table other_spellings, rule name_other_spelling)."""
+    keys = park_name_keys(p.get('name'), p.get('type'), rules) | other_spelling_keys(ref, rules)
     return any(keys & record_name_keys(pool.recs[i]['names'], pool.recs[i]['layer'], rules) for i in rs)
 
 
@@ -939,8 +951,8 @@ def step_id(refs, ctx):
         far = False
         nopin = False
         if not id_guard(p, rs, pool, rules):
-            if pin_of(p) is None and full_name_record(p, rs, pool, rules): nopin = True
-            elif not far_pin_waiver(p, rs, pool, rules): note[ref] = 'id records carry neither the park\'s name nor its pin'; continue
+            if pin_of(p) is None and full_name_record(p, rs, pool, rules, ref): nopin = True
+            elif not far_pin_waiver(p, rs, pool, rules, ref): note[ref] = 'id records carry neither the park\'s name nor its pin'; continue
             else: far = True
         extra = id_unit_pieces(p, ref, rs, ctx)
         pieces.update(extra)
@@ -1103,7 +1115,7 @@ def no_pin_group(rs):
 def name_groups(p, ref, ctx):
     """Step 3 search for one park: -> (groups {gkey: [record i]}, notes set)."""
     pool, rules, pin, notes = ctx['pool'], ctx['rules'], pin_of(p), set()
-    keys = park_name_keys(p.get('name'), p.get('type'), rules)
+    keys = park_name_keys(p.get('name'), p.get('type'), rules) | other_spelling_keys(ref, rules)   # 27 Nov 2026: other spellings
     keys |= bilingual_aliases(keys, pool, rules)
     own = {i for k in keys for i in pool.name_ix.get(k, [])}
     page = {i for k in page_name_keys(p, rules) for i in pool.name_ix.get(k, [])} - own

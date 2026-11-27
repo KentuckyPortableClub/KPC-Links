@@ -284,5 +284,34 @@ bat = (ROOT / 'tools' / 'pc-keys' / 'V2-STATE-PREP.bat').read_bytes() if (ROOT /
 check('the .bat has CRLF line ends, asks for the states, tries Python 3.12 first, has no pip step',
       b'\r\n' in bat and b'\n' not in bat.replace(b'\r\n', b'') and b'States (for example SC, or MN NY SC, or US for every state):' in bat and b'py -3.12' in bat and b'pip' not in bat and b'kpc_v2_state_prep.py' in bat)
 
+# ---- 27 Nov 2026: web addresses are compared as addresses (scheme, www., host case, one trailing slash); nothing else is loosened
+SAME = [('http://www.parks.ny.gov/parks/sunkenmeadow/details.aspx', 'https://parks.ny.gov/parks/sunkenmeadow/details.aspx'),
+        ('HTTPS://WWW.DEC.NY.GOV/lands/5265.html/', 'dec.ny.gov/lands/5265.html'),
+        ('https://www.dnr.state.mn.us/state_parks/park.html?id=spk00228', 'http://dnr.state.mn.us/state_parks/park.html?id=spk00228'),
+        ('http://www.x.gov/a/', 'https://x.gov/a'), (' https://X.Gov/a ', 'x.gov/a'), ('https://www.fws.gov/refuge/wallkill-river/', 'fws.gov/refuge/wallkill-river')]
+DIFFERENT = [('https://dec.ny.gov/Lands/5265.html', 'https://dec.ny.gov/lands/5265.html'),                       # the path's case stays exact
+             ('https://dnr.state.mn.us/p.html?id=spk00228', 'https://dnr.state.mn.us/p.html?id=SPK00228'),         # so does the query
+             ('https://x.gov/a?x=1/', 'https://x.gov/a?x=1'), ('https://x.gov/a/#top', 'https://x.gov/a#top'),   # a slash before a query or fragment is not trimmed
+             ('https://x.gov/a', 'https://x.gov/b'), ('https://wwwx.gov/a', 'https://x.gov/a'), ('https://x.gov/a/b', 'https://x.gov/a'),
+             ('https://parks.ny.gov/a', 'https://parks.ny.gov.evil.example/a'), ('https://x.gov:8080/a', 'https://x.gov/a')]
+check('addresses: the scheme, www., the host\'s case and one trailing slash do not make a different address (6 real-looking pairs)',
+      all(P.norm_address(a) == P.norm_address(b) for a, b in SAME))
+check('addresses: the path\'s case, the query, a slash before a query or fragment, another path, another host or port stay different (9 pairs)',
+      all(P.norm_address(a) != P.norm_address(b) for a, b in DIFFERENT))
+check('addresses: a text that is not an address comes back as it was (only trimmed); None gives an empty text',
+      P.norm_address('SRA00304') == 'SRA00304' and P.norm_address(' Knox Headquarters ') == 'Knox Headquarters' and P.norm_address(None) == '' and P.norm_address('89125') == '89125')
+wants_ = {'US-2147': {'page address': P.norm_val(P.norm_address('https://www.parks.ny.gov/parks/sunkenmeadow/details.aspx/'))}, 'US-9': {'NPS unit code': 'SARA'}}
+recs_ = [rec('sgnyb', 1, 'Alfred E. Smith/Sunken Meadow', 0, 0, {'URL': 'http://WWW.parks.ny.gov/parks/sunkenmeadow/details.aspx/'}),
+         rec('sgnyb', 2, 'Other', 0, 0, {'URL': 'https://parks.ny.gov/parks/sunkenmeadow/details.aspx?x=1'}),
+         rec('sgnyb', 3, 'Third', 0, 0, {'URL': 'https://parks.ny.gov/parks/belmont/details.aspx'}), rec('sgnyb', 4, 'Id', 0, 0, {'CODE': 'SARA'})]
+hits_, _, _ = P.find_id_hits([('US-ZZ', recs_)], wants_, [])
+found_ = {(k[0], k[2], k[3]): {ri for s_ in d.values() for _, ri in s_} for k, d in hits_.items()}
+check('addresses: the id search finds the record whose web field is the same address in another spelling (and not a different query or path)',
+      found_.get(('page address', 'URL', 'whole value')) == {0} and found_.get(('NPS unit code', 'CODE', 'whole value')) == {3})
+w2_ = P.build_wants(['US-2147'], {'US-2147': {'link': {'usable': True, 'id_kind': 'page address', 'id_value': 'https://www.parks.ny.gov/parks/sunkenmeadow/details.aspx/'}}})
+w3_ = P.build_wants(['US-1'], {'US-1': {'link': {'usable': True, 'id_kind': 'NPS unit code', 'id_value': 'sara/'}}})
+check('addresses: the park\'s own page-address id is normalised too; an id of another kind is not touched (SARA/ keeps its slash)',
+      w2_['US-2147']['page address'] == 'PARKS.NY.GOV/PARKS/SUNKENMEADOW/DETAILS.ASPX' and w3_['US-1']['NPS unit code'] == 'SARA/')
+
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

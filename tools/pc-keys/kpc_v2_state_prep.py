@@ -167,6 +167,23 @@ def norm_val(v):
     return str(v).strip().upper()
 
 
+def norm_address(v):
+    """27 Nov 2026 (web addresses): two spellings of one address are the same address: `http://www.x.gov/a/` = `https://x.gov/a`.
+    Only these are loosened: the scheme (http / https), a leading `www.`, the upper / lower case of the HOST, and one trailing
+    slash when the address has no query or fragment. The path's case, the query and everything else stay exactly as written.
+    A text that is not an address comes back as it came (only trimmed)."""
+    t = str(v if v is not None else '').strip()
+    m = re.match(r'(?i)(?:https?:)?//', t)
+    if m: t = t[m.end():]
+    cut = re.search(r'[/?#]', t)
+    host, rest = (t[:cut.start()], t[cut.start():]) if cut else (t, '')
+    if not m and not re.fullmatch(r'(?:[A-Za-z0-9-]+\.)+[A-Za-z][A-Za-z0-9-]*(?::\d+)?', host): return str(v if v is not None else '').strip()   # not an address
+    host = host.lower()
+    if host.startswith('www.'): host = host[4:]
+    if rest.endswith('/') and not re.search(r'[?#]', rest): rest = rest.rstrip('/')
+    return host + rest
+
+
 def strip0(n): return re.sub(r'^([A-Z]*)0+(?=\d)', r'\1', n)
 
 
@@ -240,7 +257,8 @@ def build_wants(refs, facts):
         fp = facts.get(ref) or {}
         lk = fp.get('link') or {}
         d = {}
-        if lk.get('usable') and lk.get('id_value') and lk.get('id_kind'): d[str(lk['id_kind'])] = norm_val(lk['id_value'])
+        if lk.get('usable') and lk.get('id_value') and lk.get('id_kind'):
+            d[str(lk['id_kind'])] = norm_val(norm_address(lk['id_value']) if lk['id_kind'] == 'page address' else lk['id_value'])   # 27 Nov 2026
         nc = (fp.get('page') or {}).get('nps_code')
         if nc and 'NPS unit code' not in d: d['NPS unit code'] = norm_val(nc)
         out[ref] = {k: v for k, v in d.items() if v}
@@ -274,7 +292,7 @@ def find_id_hits(files, wants, link_ties):
             lay = str(r.get('layer') or '')
             for f, v in (r.get('attributes') or {}).items():
                 if v is None or v == '' or isinstance(v, bool): continue
-                n = norm_val(v)
+                n = norm_val(norm_address(v) if isinstance(v, str) and URLISH.search(v) else v)   # 27 Nov 2026: one address, any spelling
                 if not n: continue
                 got = whole.get(n)
                 if got:
@@ -807,7 +825,7 @@ def run(st, store, facts_file, v2dir, out_parent, repo, now=None, flat=False):
           f'  1. Fix the store room gaps first' + (f' ({", ".join(gaps)})' if gaps else ' (none)') + '.',
           '  2. Copy the real rule table. Add the PROPOSE rows from proposed-rows.json (each needs its why and its test). Look at the LOOK rows.',
           f'  3. Run the workbench: py -3.12 kpc_test_v2.py {st} --try <the copy>. Read which parks change.',
-          '  4. A row goes into the real table only with its why and its test, in a PR. The matcher does not read other_spellings yet.']
+          '  4. A row goes into the real table only with its why and its test, in a PR. An other-spelling row (table other_spellings) holds the park number, the exact spelling, a why and a date.']
     for n_ in notes: L.append(f'  Note: {n_}.')
     L.append(f'  ({time.time() - t0:.0f} s)')
     gen = Counter()
@@ -907,7 +925,7 @@ def merge_rows(per_state):
 NEXT = ['  1. Fix the store room gaps first (the layers named above).',
         '  2. Copy the real rule table. Add the PROPOSE rows from proposed-rows-all.json (each needs its why and its test). Look at the LOOK rows.',
         '  3. Run the workbench: py -3.12 kpc_test_v2.py <states> --try <the copy>. Read which parks change.',
-        '  4. A row goes into the real table only with its why and its test, in a PR. The matcher does not read other_spellings yet.']
+        '  4. A row goes into the real table only with its why and its test, in a PR. An other-spelling row (table other_spellings) holds the park number, the exact spelling, a why and a date.']
 
 
 def many(states, label, store, facts, repo, v2, out_parent, now=None, call=None, say=print):

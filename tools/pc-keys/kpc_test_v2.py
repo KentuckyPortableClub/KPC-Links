@@ -337,11 +337,20 @@ def build_summary(results, secs_total, run):
         if sc:
             line += f"  outlined {sc.get('out2')} of {sc.get('parks')}  pin inside {pct(sc.get('pin_yes', 0), sc.get('pin_n', 0))}"
             if sc.get('size_n'): line += f"  size agrees {pct(sc.get('size_yes', 0), sc.get('size_n', 0))}"
+            lic = sc.get('lic')      # 27 Nov 2026: licence counts, from the scorecard's own v2-score.json
+            if lic: line += f"  licence: share all {lic.get('all', 0)}, part {lic.get('part', 0)}, none {lic.get('none', 0)}"
             if not sc.get('nobase'): line += f"  v1 outlined {sc.get('out1')} pin {pct(sc.get('pin_yes1', 0), sc.get('pin_n1', 0))}  ({r.get('base')})"
             else: line += '  no v1 key to compare with'
         if r.get('gates_failed') and r['status'] != 'stopped': line += f"  gates failing: {' '.join(r['gates_failed'])}"
         line += f"  {r['seconds']:.0f} s" if r.get('seconds') is not None else ''
         L.append(line)
+    lics = [((r.get('score') or {}).get('areas', {}).get(r['label']) or {}).get('lic') for r in results]
+    lics = [x for x in lics if x]
+    if lics:
+        tot = {k: sum(int(x.get(k) or 0) for x in lics) for k in ('all', 'part', 'none', 'unmarked')}
+        L += ['', f"Licence, what the club may show, total over {len(lics)} area{'s' if len(lics) != 1 else ''}: share all {tot['all']}, share part {tot['part']}, share none {tot['none']} "
+                  f"(of {tot['all'] + tot['part'] + tot['none']} outlined parks)." + (f" {tot['unmarked']} had no licence word and count as none." if tot['unmarked'] else ''),
+              '  (share all = every record of the park may be shown; share part = some may be; share none = only private records prove it.)']
     L += ['', f'{len(results)} areas, {secs_total:.0f} s in all. Files: summary.csv, pin-only-all.csv (every pin-only park with its reason), keys\\ (the built keys), and a folder per area',
           'with its cold and warm runs and its own scorecard (V2-SCORECARD.txt).', 'Counts only here; the park names are in pin-only-all.csv and the per-area csv lists.']
     return L
@@ -367,14 +376,15 @@ def build_mode(tokens, store, facts, links, v2script, card, reports, out_root, c
     L = build_summary(results, time.time() - t0, run)
     (run / 'V2-BUILD-SUMMARY.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
     cols = ['area', 'status', 'detail', 'parks', 'outlined', 'confirmed', 'pin_only', 'pin_inside_yes', 'pin_inside_of', 'size_agrees_yes', 'size_agrees_of', 'v1_test', 'v1_outlined',
-            'gates_failed', 'seconds']
+            'share_all', 'share_part', 'share_none', 'gates_failed', 'seconds']
     with open(run / 'summary.csv', 'w', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, fieldnames=cols); w.writeheader()
         for r in results:
             sc = (r.get('score') or {}).get('areas', {}).get(r['label']) or {}
             w.writerow({'area': r['area'], 'status': r['status'], 'detail': r['detail'], 'parks': sc.get('parks'), 'outlined': sc.get('out2'), 'confirmed': sc.get('conf2'), 'pin_only': sc.get('pin2'),
                         'pin_inside_yes': sc.get('pin_yes'), 'pin_inside_of': sc.get('pin_n'), 'size_agrees_yes': sc.get('size_yes'), 'size_agrees_of': sc.get('size_n'),
-                        'v1_test': r.get('base', ''), 'v1_outlined': None if sc.get('nobase') else sc.get('out1'), 'gates_failed': ' '.join(r.get('gates_failed') or []),
+                        'v1_test': r.get('base', ''), 'v1_outlined': None if sc.get('nobase') else sc.get('out1'),
+                        'share_all': (sc.get('lic') or {}).get('all'), 'share_part': (sc.get('lic') or {}).get('part'), 'share_none': (sc.get('lic') or {}).get('none'), 'gates_failed': ' '.join(r.get('gates_failed') or []),
                         'seconds': None if r.get('seconds') is None else round(r['seconds'], 1)})
     po = pin_only_rows(run, results)
     with open(run / 'pin-only-all.csv', 'w', encoding='utf-8', newline='') as f:
