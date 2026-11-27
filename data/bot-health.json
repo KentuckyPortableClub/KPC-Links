@@ -3,7 +3,6 @@
   "KPC-Data/kpc-answer-sheet-check.yml",
   "KPC-Data/kpc-camp-weekly.yml",
   "KPC-Data/kpc-convert-layers.yml",
-  "KPC-Data/kpc-copy-from-links.yml",
   "KPC-Data/kpc-detective.yml",
   "KPC-Data/kpc-eu-alerts.yml",
   "KPC-Data/kpc-fetch-files.yml",
@@ -11,6 +10,7 @@
   "KPC-Data/kpc-helpers.yml",
   "KPC-Data/kpc-map-pictures.yml",
   "KPC-Data/kpc-pages-sync.yml",
+  "KPC-Data/kpc-park-pages.yml",
   "KPC-Data/kpc-scoreboard.yml",
   "KPC-Data/kpc-storage.yml",
   "KPC-Data/kpc-watch.yml",
@@ -20,12 +20,11 @@
   "kpc-band-alerts.yml",
   "kpc-boards.yml",
   "kpc-bot-queue.yml",
+  "kpc-discord-relay.yml",
   "kpc-discord-watch.yml",
   "kpc-fb-comments.yml",
-  "kpc-hunters.json",
-  "kpc-hunters.yml",
-  "kpc-park-alerts.yml",
   "kpc-pota-discord.yml",
+  "kpc-watchdog.yml",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
   "links:https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0",
@@ -381,7 +380,7 @@
   "refs:gone:trails:US-11232,US-11234,US-11954,US-4237,US-8324",
   "site:wide:kpc-live.html:desktop"
  ],
- "checked": "2026-11-26T19:16+00:00",
+ "checked": "2026-11-27T10:26+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -3290,7 +3289,7 @@
    "b": 38569625
   },
   "L:data/pota": {
-   "b": 10229987
+   "b": 10229834
   },
   "L:data/canada.json": {
    "b": 2558911
