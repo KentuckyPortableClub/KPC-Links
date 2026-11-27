@@ -1283,17 +1283,22 @@ def own_name_record(p, ref, rec, rules):
     words ('Twitchell Lake Primitive Area') is another unit's name."""
     keys = park_name_keys(p.get('name'), p.get('type'), rules) | other_spelling_keys(ref, rules)
     if keys & record_name_keys(rec['names'], rec['layer'], rules): return True
+    whole = {f(p.get('name'), rules) for f in (full, full_ps)} - {''}   # the park's whole name, then more words: its own piece
+    if any(full(n, rules).startswith(k + ' ') for n in rec['names'] for k in whole): return True   # 'Trout Brook Wilderness Area Addition'
     core = name_core(p.get('name'), None, rules)
     return bool(core) and any(name_core(part, None, rules) == core for n in rec['names'] for part in {n, n.split(' - ')[0]})
 
 
 def shared_page_own(p, ref, kind, rs, pool, rules):
     """Rule id_shared_page: when the records of one id of a page-address kind carry two or more different names, the id proves
-    only the records with the park's own name. -> (the records kept, True when the page was shared)."""
+    only the records with the park's own name, when at least one record has it. -> (the records kept, True when cut)."""
     if kind not in rules['shared_page_kinds']: return rs, False
     names = {name_core(pool.recs[i]['name'], None, rules) or (pool.recs[i]['name'],) for i in rs}
     if len(names) < 2: return rs, False
-    return [i for i in rs if own_name_record(p, ref, pool.recs[i], rules)], True
+    own = [i for i in rs if own_name_record(p, ref, pool.recs[i], rules)]
+    # no record carries the park's own name: the park is the whole page (Raquette Boreal Complex) or the agency spells it
+    # another way (Herbert Kirsh / 'Herbert Kirsch', 'Herb Kirsh'): the id is its only tie and proves the page as before
+    return (own, True) if own else (rs, False)
 
 
 def step_id(refs, ctx):

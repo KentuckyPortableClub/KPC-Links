@@ -362,12 +362,24 @@ def test_id_shared_page():
             [rec('sgnya', 'sgnya5', 'High Tor Wma', URL=u2), rec('sgnya', 'sgnya6', 'High Tor Wma - Clark Gully', ring(1500), URL=u2),
              rec('sgnya', 'sgnya7', 'Bluff Point Wma', ring(2500), URL=u2)], link={'id_kind': 'NY DEC page number', 'id_value': '24439'})
     assert ids(d, 'US-1') == ['sgnya5', 'sgnya6']
-    # no record carries the park's name: the page proves nothing (pin only)
+    # no record carries the park's name: the park is the whole page (the complex), the id proves it as before
     d = one('Raquette Boreal Complex State Preserve', 'State Preserve',
             [rec('sgnya', 'sgnya8', 'White Hill Wild Forest', URL='https://www.dec.ny.gov/lands/83175.html'),
              rec('sgnya', 'sgnya9', 'Raquette River Wild Forest', ring(3000), URL='https://www.dec.ny.gov/lands/83175.html')],
             link={'id_kind': 'NY DEC page number', 'id_value': '83175'})
-    assert ids(d, 'US-1') == [] and by(d, 'US-1') != 'id'
+    assert ids(d, 'US-1') == ['sgnya8', 'sgnya9'] and by(d, 'US-1') == 'id'
+    # the agency spells the park two other ways (the PC's South Carolina file, US-8153 Herbert Kirsh WMA): nothing is cut
+    us = 'https://www.dec.ny.gov/lands/777.html'
+    d = one('Herbert Kirsh Wildlife Management Area', 'Wildlife Management Area',
+            [rec('sgnya', 'sgnya10', 'Herbert Kirsch Wildlife Conservation Area', URL=us), rec('sgnya', 'sgnya11', 'Herb Kirsh Wildlife Conservation Area', ring(800), URL=us)],
+            link={'id_kind': 'NY DEC page number', 'id_value': '777'})
+    assert ids(d, 'US-1') == ['sgnya10', 'sgnya11']
+    # the park's whole name plus more words is its own piece (Nova Scotia, CA-1897 Trout Brook Wilderness Area Addition)
+    ut = 'https://www.dec.ny.gov/lands/778.html'
+    d = one('Trout Brook Wilderness Area', 'Wilderness Area',
+            [rec('sgnya', 'sgnya12', 'Trout Brook Wilderness Area', URL=ut), rec('sgnya', 'sgnya13', 'Trout Brook Wilderness Area Addition', ring(700), URL=ut),
+             rec('sgnya', 'sgnya14', 'Otter Pond Nature Reserve', ring(2500), URL=ut)], link={'id_kind': 'NY DEC page number', 'id_value': '778'})
+    assert ids(d, 'US-1') == ['sgnya12', 'sgnya13']
     # the MN DNR unit id is not a page: its second-name record stays (US-11024 Blanket Flower Prairie SNA, Ole Huseby Homestead)
     d = one('Blanket Flower Prairie SNA State Conservation Area', 'State Conservation Area',
             [rec('sgmnf', 'sgmnf1', 'Blanket Flower Prairie', PGRM_PROJECT='SNA02027'),
