@@ -5,6 +5,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 
 - `.claude/notes/handoff-app-lounges-nov19.md`: where the APP + LOUNGES stand (Nov 19), what waits on Brandon, the carbon-copy rule. Read first in a new app/Lounge chat.
 - `.claude/notes/handoff-matching-nov26.md`: NEWEST (Nov 26): the new PC (C:\KPC_Map_Builder_Program) takes over; #381 merged; #382-#384 waiting for the grader; first jobs on the new PC. Read first in a new matching chat.
+- `.claude/notes/handoff-key-builder-opus-nov27.md`: START HERE for a new key-builder chat (Nov 27): v2 only (v1 / #392 paused), Fable leads, the new SOP, goals, what is fixed, what is open, where everything is, the starter line.
 - `.claude/notes/what-changed-nov27.txt`: NEWEST (Nov 27): plain list of what each update did (v2 key, store room, page reader, site rule, old-key fixes) and what to run in what order. Same text on the PC: C:\KPC\7-NOTES\WHAT-CHANGED.txt. Add a block there when a tool changes.
 - `.claude/notes/handoff-matching-nov25.md`: (Nov 25): the better matcher (#380), full layer files as the fresh source (KPC-Store #38), the owner's PC test, next jobs. Read first in a new matching chat.
 - `.claude/notes/handoff-matching-nov23.md`: where MATCHING + ACCURACY stand (Nov 23), the next jobs in order, what waits on Brandon, how to bring his PC test kit up to date after a change. Read first in a new matching chat.
