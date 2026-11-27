@@ -1138,6 +1138,13 @@ def test_piece_suffix():
     assert V.piece_base('x state forest unit 2', RULES) == 'x state forest'
 
 
+def test_piece_park_no_siblings():
+    # 27 Nov 2026 (the PC's New Brunswick file): CA-4478 Partridge Valley East took Partridge Valley West, park CA-4479's land
+    rs = [rec('sgnya', 'sgnya1', 'Partridge Valley East'), rec('sgnya', 'sgnya2', 'Partridge Valley West', ring(3000))]
+    assert ids(one('Partridge Valley East Protected Area', 'Protected Area', rs), 'US-1') == ['sgnya1']
+    assert V.park_is_piece({'name': 'Otis Pike Pine Barrens State Forest', 'type': 'State Forest'}, RULES) is False
+
+
 def test_two_parks_one_record_two_names():
     f = Fix()
     try:

@@ -1741,10 +1741,18 @@ def core_records(p, ref, ctx):
     return proofs, groups
 
 
+def park_is_piece(p, rules):
+    """Rule piece_park_no_siblings (27 Nov 2026): the park's own name ends in a piece word (Partridge Valley East Protected
+    Area): the park is a piece itself, so the other pieces (Partridge Valley West) are not its land."""
+    return any(piece_base(k, rules) != k for k in park_name_keys(p.get('name'), p.get('type'), rules))
+
+
 def suffix_pieces(p, ref, rs, ctx):
     """Rule piece_suffix: records of the same layer whose name is a joined record's name but for a trailing piece word (East,
-    Unit 2, a number ...), within near_km of the pin or of a joined piece, every refusal applied. Never across layers."""
+    Unit 2, a number ...), within near_km of the pin or of a joined piece, every refusal applied. Never across layers. A park
+    that is a piece itself takes no sibling pieces (rule piece_park_no_siblings)."""
     pool, rules, pin = ctx['pool'], ctx['rules'], pin_of(p)
+    if park_is_piece(p, rules): return list(rs)
     cands = set()
     for i in rs:
         rec = pool.recs[i]

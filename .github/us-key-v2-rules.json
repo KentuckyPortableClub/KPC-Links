@@ -552,6 +552,15 @@
    "stub": "identity"
   },
   {
+   "id": "piece_park_no_siblings",
+   "step": "3",
+   "what": "a park whose own name ends in a piece word (East, West, Unit 2, a number ...) is a piece itself: it takes the records of its own name and never the sibling pieces of rule piece_suffix",
+   "why": "27 Nov 2026, the PC's New Brunswick layer file: CA-4478 Partridge Valley East Protected Area also took 'Partridge Valley West' (637 ac), the land of park CA-4479.",
+   "test": "test_piece_park_no_siblings",
+   "fn": "park_is_piece",
+   "stub": "false"
+  },
+  {
    "id": "stale_outputs_removed",
    "step": "write",
    "what": "a state's old key and lock file leave --out before it is built, so a not-built or gate-failed state leaves no stale key",

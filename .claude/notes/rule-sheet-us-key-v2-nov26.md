@@ -489,3 +489,11 @@ from Consumer's Energy") and US-3329 Tippy Dam get their outlines back, US-1487 
 out-after (all areas but AK): 41 id-joined records an id refusal could touch: 38 by the type field (25 "NPS Easement" rows: 23 in the VA key, the
 Cumberland Gap one also in KY and TN; the Appalachian Trail sgvae510687 in 5 areas, 8 Nova Scotia "Wilderness Area, Conservation Easement"), 3 by a lease name (the
 Michigan three), 0 by a Fish and Wildlife code. The 38 stay out. Name joins are unchanged (`easement_by_name`).
+
+## 34. 27 Nov 2026: a park named as a piece takes no sibling pieces
+Rule `piece_park_no_siblings`. Found by Fable's whole-country check on the PC's layer files, not in the grade.
+- Rule piece_suffix lets a park take the records named like its own record plus a piece word (East, West, Unit 2, a number).
+- When the park's OWN name ends in a piece word, the park is one of the pieces. It takes the records of its own name only.
+- Real case: CA-4478 Partridge Valley East Protected Area also took "Partridge Valley West" (637 ac), the land of park CA-4479.
+- A whole park (Otis Pike Pine Barrens State Forest) still takes its East and West pieces as before.
+
