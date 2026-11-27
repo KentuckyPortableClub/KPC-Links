@@ -1204,6 +1204,12 @@ def test_acres_same_ground_once():
     lb = poly([(1000, 1000), (1000, 330), (330, 330), (330, 1000)])
     ls = [rec('sgnya', 'sgnya1', 'Burnt-Rossman Hills State Forest', la, ACRES=124), rec('sgnya', 'sgnya2', 'Burnt-Rossman Hills State Forest', lb, ACRES=112)]
     assert V.land_acres(pool_of(*ls).recs, RULES) == {'sgnya': 236.0}
+    # 27 Nov 2026 (rule size_union_not_sum): the skip still decides which copy is counted; the union is measured on what is
+    # left. A copy of A (36.5, same name) is skipped; A and B (half on A) give 80 x 0.75 = 60. Without the skip: 116.5 x 0.5.
+    cp = [rec('PAD-US', '1', 'Helen L. McNitt', ring(0), GIS_Acres=40), rec('PAD-US', '2', 'Helen L. McNitt', ring(0, half_w=198), GIS_Acres=36.5),
+          rec('PAD-US', '3', 'McNitt Addition', ring(200), GIS_Acres=40)]
+    got = V.land_acres(pool_of(*cp).recs, RULES)['PAD-US']
+    assert abs(got - 60) < 0.3, got
 
 
 # ------------------------------------------------------------------------------------------------------------- step 1: locks
@@ -1630,6 +1636,60 @@ def test_acres_field_guard():
         assert k['parks']['US-sgzzaL']['m'] == []                                             # no size proof on a field that is switched off
         assert by(k, 'US-sgzzbL') == 'name+size' and by(k, 'US-sgzzcL') == 'name+size'        # an honest field, or too few to judge: as before
     finally: f.done()
+
+
+# 27 Nov 2026, rule size_union_not_sum (grader item 3: NJ sizes 1.89 times, NY US-10076 51 acres where 44 is right)
+def test_size_union_not_sum():
+    la = lambda *rs: V.land_acres(pool_of(*rs).recs, RULES)['PAD-US']
+    sq = (400 * 400) / 4046.8564224                                                    # a 400 m square: 39.54 acres
+    # the same outline under two names: counted once
+    assert abs(la(rec('PAD-US', '1', 'Pine Hill', GIS_Acres=40), rec('PAD-US', '2', 'Pine Hill Tract', GIS_Acres=40)) - 40) < 1e-6
+    # two squares, half on each other: 1.5 squares, not 2
+    got = la(rec('PAD-US', '1', 'A', ring(0)), rec('PAD-US', '2', 'B', ring(200)))
+    assert abs(got / (1.5 * sq) - 1) < 0.01, got
+    # three squares that do not overlap: exactly the old sum, bit for bit (two of them have overlapping boxes: L-shapes)
+    lx = poly([(0, 0), (1000, 0), (1000, 300), (300, 300), (300, 1000), (0, 1000)], lat=LAT + .1)
+    ly = poly([(1000, 1000), (1000, 330), (330, 330), (330, 1000)], lat=LAT + .1)
+    rs = [rec('PAD-US', '1', 'A', ring(0), GIS_Acres=10.1), rec('PAD-US', '2', 'B', lx, GIS_Acres=20.2), rec('PAD-US', '3', 'C', ly, GIS_Acres=30.3)]
+    assert la(*rs) == 30.3 + 20.2 + 10.1
+    # an outline with a hole: a square filling the hole adds its own ground; a square over the whole adds nothing
+    holed = rec('PAD-US', '1', 'A', poly([(-500, -500), (500, -500), (500, 500), (-500, 500)]))
+    holed['rings'].append(poly([(-250, -250), (-250, 250), (250, 250), (250, -250)]))
+    fill = rec('PAD-US', '2', 'B', ring(0, half_w=250))
+    assert la(holed, fill) == V.land_acres(pool_of(holed).recs, RULES)['PAD-US'] + V.land_acres(pool_of(fill).recs, RULES)['PAD-US']
+    whole = rec('PAD-US', '3', 'C', ring(0, half_w=500), GIS_Acres=247.1)
+    assert abs(la(holed, whole) - 247.1) < 0.5                                         # 185.3 + 247.1 -> 247.1
+    # US-10076: a 37-acre piece and the same thin 7-acre outline saved twice (other names): 44, not 51
+    strip = poly([(1000, 0), (2400, 0), (2400, 20), (1000, 20)])
+    us = [rec('PAD-US', '1', 'Big Pond', ring(0, half_w=193.5)), rec('PAD-US', '2', 'Big Pond Strip', strip), rec('PAD-US', '3', 'Big Pond Access', strip)]
+    assert round(la(*us[:1]) + 2 * la(*us[1:2])) == 51 and round(la(*us)) == 44
+    # a 10 m strip saved twice inside a 1 km outline: the lines must be close enough to find it (union_lines)
+    thin = poly([(-400, -5), (400, -5), (400, 5), (-400, 5)])
+    big = rec('PAD-US', '1', 'A', ring(0, half_w=500))
+    assert abs(la(big, rec('PAD-US', '2', 'B', thin), rec('PAD-US', '3', 'C', thin)) - la(big)) < 0.05
+    # a 0.5% overlap (two drawn edges crossing) keeps the plain sum; a 3% overlap does not (union_floor)
+    a, b = rec('PAD-US', '1', 'A', ring(0, half_w=500), GIS_Acres=247.1), rec('PAD-US', '2', 'B', ring(990, half_w=500), GIS_Acres=247.1)
+    assert la(a, b) == 247.1 + 247.1
+    a, b = rec('PAD-US', '1', 'A', ring(0, half_w=500), GIS_Acres=247.1), rec('PAD-US', '2', 'B', ring(940, half_w=500), GIS_Acres=247.1)
+    assert abs(la(a, b) - 494.2 * 0.97) < 0.5
+    # never below the largest record: a field smaller than its outline (MN sgmne: 0.02 acres on a 580-acre outline)
+    assert la(rec('PAD-US', '1', 'A', GIS_Acres=0.02), rec('PAD-US', '2', 'B', GIS_Acres=40)) == 40.0
+    # the same-ground skip already took the copy off: the union does not take it off again
+    sg = [rec('PAD-US', '1', 'Helen L. McNitt', GIS_Acres=40), rec('PAD-US', '2', 'Helen L. McNitt', GIS_Acres=39)]
+    assert la(*sg) == 40.0
+    # per class, as before: Fee and Designation are never added, each class measured on its own
+    got = la(rec('PAD-US', '1', 'A', ring(0), GIS_Acres=40, FeatClass='Fee'), rec('PAD-US', '2', 'B', ring(200), GIS_Acres=40, FeatClass='Fee'),
+             rec('PAD-US', '3', 'C', ring(0, half_w=300), GIS_Acres=55, FeatClass='Designation'))
+    assert abs(got - 60) < 0.6, got                                                    # Fee 80 x 0.75 = 60 beats Designation 55
+    # lines have no size, untouched
+    assert V.land_acres(pool_of(lrec('trl', 'trl1', 'A'), lrec('trl', 'trl2', 'B')).recs, RULES) == {'trl': 0.0}
+    # the size proof: official size = one copy; two overlapping copies of one name (sizes 1000 and 800, not the same ground
+    # by size) summed 1800 and failed; measured as ground they are 1000 and the size proves it
+    cp = [rec('PAD-US', '3040', 'Chippewa National Forest', ring(half_w=1300), GIS_Acres=1000),
+          rec('PAD-US', '3041', 'Chippewa National Forest', ring(half_w=1300), GIS_Acres=800)]
+    assert V.group_acres([0, 1], pool_of(*cp), RULES) == 1000.0
+    d = one('Chippewa National Forest', 'National Forest', cp, dx=2000, size={'acres': 1000.0, 'witness': 'agency_document'})
+    assert by(d, 'US-1') == 'name+size' and d['parks']['US-1']['ac'] == 1000
 
 
 def test_every_rule_names_a_test():

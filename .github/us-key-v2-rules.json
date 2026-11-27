@@ -874,6 +874,15 @@
    "test": "test_acres_field_guard",
    "fn": "acres_field_ok",
    "stub": "true"
+  },
+  {
+   "id": "size_union_not_sum",
+   "step": "write",
+   "what": "a park's size per class is the ground its records cover together, not the sum of their sizes: the records left after the same-ground skip are put in groups of overlapping boxes; per group the union of the outlines over their own sum is measured on union_lines lines of latitude, and the group's sum is cut by that share (never below its largest record); no overlapping boxes, or a share within union_floor of 1, leaves the sum exactly as it was; the same number is used in ac, acres_by_layer, the name+size proof and the lock",
+   "why": "grader 27 Nov 2026, grade item 3: PAD-US holds overlapping outlines of the same land, so sizes were counted twice: New Jersey sizes 1.89 times, Virginia 1.25, Pennsylvania 1.19; New York US-10076 holds the same thin outline twice and showed 51 acres where 44 is right. The land was right; only the measuring was wrong.",
+   "test": "test_size_union_not_sum",
+   "fn": "union_share",
+   "stub": "empty"
   }
  ],
  "values": {
@@ -981,6 +990,16 @@
    "value": 0.1,
    "why": "27 Nov 2026, rule two_sources_not_a_copy: two agency sizes closer than 0.1 acre are one record read twice, not two sources (grader: hma/sgnvi copies with identical acres)",
    "test": "test_two_sources_not_a_copy"
+  },
+  "union_lines": {
+   "value": 400,
+   "why": "27 Nov 2026, rule size_union_not_sum: the lines of latitude the union is measured on, evenly spaced across a group's joint box. Measured on the test shapes: two half-overlapping 64-sided circles give 0.80473 at 400 lines, the same to 5 places as at 40,000 lines (25 lines: 0.80533); squares and diamonds are exact at any number; but at 40 lines a 10 m strip inside a 1 km outline falls between the lines. One group of 300 overlapping 200-point outlines: 0.06 s.",
+   "test": "test_size_union_not_sum"
+  },
+  "union_floor": {
+   "value": 0.01,
+   "why": "27 Nov 2026, rule size_union_not_sum: a group whose outlines overlap by less than 1% keeps its plain sum, bit for bit: a sliver where two neighbours' drawn edges cross is not land counted twice, cannot move a 10% size proof, and would only churn the keys of MN NY ND VT AK.",
+   "test": "test_size_union_not_sum"
   }
  },
  "tables": {

@@ -327,6 +327,19 @@ and `two_sources_not_a_copy`:
   `rst` / `sgakg` / `sgnmc`: same kind of pair, same answer. Québec register read twice (round 8): still refused.
 - **Not measured on the real layer files here:** the 79 / 28 counts are the grader's; rerun the scorecard on the PC to see them go.
 
+## 21. 27 Nov 2026: a park's size is the ground it covers, not the sum of its records (grader item 3)
+PAD-US holds overlapping outlines of the same land, so sizes were counted twice: New Jersey 1.89 times, Virginia 1.25,
+Pennsylvania 1.19; New York US-10076 holds the same thin outline twice and showed 51 acres where 44 is right. The land was
+right; only the measuring was wrong. Rule `size_union_not_sum`:
+- Per layer and class (as before), after the "same ground, same name = once" skip, the records left are put in groups whose
+  boxes overlap. Per group: 400 lines of latitude (`union_lines`) across the group's box; on each line the inside stretches
+  of each outline (holes are outside) are merged; ground together / sum of the outlines = the group's share.
+- The group's sum of sizes is cut by that share, never below its largest record. A record skipped as the same ground is not
+  in any group, so nothing is taken off twice. The very same outline saved twice is a share of exactly 0.5.
+- No overlapping boxes, or less than 1% overlap (`union_floor`: two neighbours' drawn edges crossing), = the old sum, bit for bit.
+- The same number goes everywhere the size goes: `ac`, `acres_by_layer`, the name+size proof and the lock. Lines: no size, as before.
+- Not measured on real files yet (no layer files in this session): which keys change in MN NY ND VT AK, and NJ VA PA US-10076.
+
 ## 22. 27 Nov 2026: a pin-only park in an area with a store gap says so (grade item 7)
 Rule `reason_store_gap`, new reason code `no_record_store_gap`. Before, a park with no record of its name said `no_record_with_this_name` even when a layer of its area was missing from the store, which is untrue (the record may sit in the missing layer).
 - Used only where the old answer would be `no_record_with_this_name` AND the park's own area has at least one layer gap (the same list as `gaps` in the key). Plain meaning: no record with this name in the layers we have; a layer of this area is missing from the store, so look again after it is downloaded.

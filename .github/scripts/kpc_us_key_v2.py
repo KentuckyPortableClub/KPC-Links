@@ -15,7 +15,7 @@ Plain Python 3.12, no packages, no legacy modules.
 Exit codes: 0 built; 2 bad arguments / missing input / rule table refused; 3 a typed state not built (layer not complete);
 4 gate failed.
 """
-import argparse, array, csv, gzip, hashlib, io, json, math, os, re, sys, time, unicodedata
+import argparse, array, bisect, csv, gzip, hashlib, io, json, math, os, re, sys, time, unicodedata
 
 TOOL = 'kpc_us_key_v2 1 (2026-11-26)'
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -48,7 +48,8 @@ VALUE_KEYS = ('size_tol', 'two_sources_tol', 'pin_m', 'near_km', 'lock_acres_tol
               'same_ground_share', 'same_ground_tol', 'place_word_len', 'line_pin_m', 'ha_acres', 'km2_acres', 'mi2_acres',
               'acres_field_tol', 'acres_field_min_n', 'acres_field_sample', 'acres_field_min_acres',   # 27 Nov 2026, rule acres_field_guard
               'shared_record_share',   # 27 Nov 2026, rule shared_record_size
-              'two_sources_same_acres')   # 27 Nov 2026, rule two_sources_not_a_copy
+              'two_sources_same_acres',   # 27 Nov 2026, rule two_sources_not_a_copy
+              'union_lines', 'union_floor')   # 27 Nov 2026, rule size_union_not_sum
 RULE_ROW = {'id': S, 'step': S, 'what': S, 'why': S, 'test': S, 'fn': S, 'stub': S}
 STEPS = {'load', '1', '2', '3', '4', 'gate', 'write'}
 STUBS = {'true', 'false', 'empty', 'identity', 'none'}
@@ -701,8 +702,90 @@ def same_ground(v, a, kv, k, rules):
     return hits >= need
 
 
+def overlap_groups(recs):
+    """Rule size_union_not_sum (27 Nov 2026): the records whose boxes touch another record's box, in groups (a box that
+    overlaps no other box is no group). Boxes sorted by west edge, so a record is compared only with boxes still open."""
+    rs = sorted(recs, key=lambda r: rec_box(r)[0])
+    up = list(range(len(rs)))
+    def top(i):
+        while up[i] != i: up[i] = up[up[i]]; i = up[i]
+        return i
+    open_ = []
+    for i, r in enumerate(rs):
+        b = rec_box(r)
+        if open_ and min(rec_box(rs[j])[2] for j in open_) < b[0]: open_ = [j for j in open_ if rec_box(rs[j])[2] >= b[0]]
+        for j in open_:
+            if top(j) == top(i): continue   # already one group: no need to look
+            c = rec_box(rs[j])
+            if c[1] <= b[3] and b[1] <= c[3]: up[top(i)] = top(j)
+        open_.append(i)
+    out = {}
+    for i, r in enumerate(rs): out.setdefault(top(i), []).append(r)
+    return [g for g in out.values() if len(g) > 1]
+
+
+def union_share(recs, rules):
+    """Rule size_union_not_sum (27 Nov 2026): the ground the records' outlines cover together divided by the sum of their own
+    outlines (1.0 = no overlap; 0.5 = the same outline twice). Measured on union_lines evenly spaced lines of latitude across
+    their joint box: on each line each record's inside stretches (even-odd, so a hole is outside), merged across records;
+    each line weighted by the cosine of its latitude. A side is found only on the lines its two ends span (bisect), so the
+    work is the records' points plus their crossings, never lines x points. The very same outline saved twice is cut once."""
+    n = max(1, int(rules['numbers']['union_lines']))
+    bs = [rec_box(r) for r in recs]
+    y0, y1 = min(b[1] for b in bs), max(b[3] for b in bs)
+    if not y1 > y0: return 1.0
+    ys = [y0 + (y1 - y0) * (i + .5) / n for i in range(n)]
+    w = [math.cos(math.radians(y)) for y in ys]
+    shapes, times, seen = [], [], {}
+    for r in recs:
+        g = shape(r)
+        sig = (r.get('q'), len(g), tuple(g[0][:2]) if g and g[0] else (), sum(len(x) for x in g))   # cheap first look, then the real compare
+        k = next((s for s in seen.get(sig, ()) if r.get('raw') is not None and shapes[s][0].get('raw') == r.get('raw')), None)
+        if k is None: seen.setdefault(sig, []).append(len(shapes)); shapes.append((r, g)); times.append(1)
+        else: times[k] += 1
+    lines = [[] for _ in range(n)]   # per line: (start, end) of each inside stretch, every outline together
+    total = 0.0
+    for s, (r, g) in enumerate(shapes):
+        xs = {}
+        for ring in g:
+            for (xa, ya), (xb, yb) in zip(ring, ring[1:] + ring[:1]):
+                if ya == yb: continue
+                lo, hi = (ya, yb) if ya < yb else (yb, ya)
+                for i in range(bisect.bisect_left(ys, lo), bisect.bisect_left(ys, hi)):   # lo <= y < hi: the same as inside()
+                    xs.setdefault(i, []).append(xa + (ys[i] - ya) * (xb - xa) / (yb - ya))
+        for i, v in xs.items():
+            v.sort()
+            for a, b in zip(v[0::2], v[1::2]):
+                lines[i].append((a, b)); total += times[s] * (b - a) * w[i]
+    if total <= 0: return 1.0
+    cover = 0.0
+    for i, st in enumerate(lines):
+        end = None
+        for a, b in sorted(st):
+            if end is None or a > end: cover += (b - a) * w[i]; end = b
+            elif b > end: cover += (b - end) * w[i]; end = b
+    return min(1.0, cover / total)
+
+
+def union_total(kept, total, rules):
+    """Rule size_union_not_sum (27 Nov 2026): a class total measured as ground, not as a sum. kept = the [(acres, record)]
+    left after the same-ground skip (so nothing is taken off twice). Each group of overlapping boxes loses its double-counted
+    share: its sum x (1 - union_share), but never below its largest record (the ground together is at least the biggest piece,
+    even when an acres field holds less than its outline). No group, or every share within union_floor of 1: today's total,
+    the very same number."""
+    vs = {id(r): v for v, r in kept if v > 0}
+    cut = 0.0
+    for g in overlap_groups([r for v, r in kept if v > 0]):
+        share = union_share(g, rules)
+        if share >= 1 - rules['numbers']['union_floor']: continue
+        s = sum(vs[id(r)] for r in g)
+        cut += s - max(s * share, max(vs[id(r)] for r in g))
+    return total - cut if cut > 0 else total
+
+
 def land_acres(recs, rules, agency_only=False):
-    """{layer: acres}: per class, the largest class; same ground counted once. agency_only: the agency's acres only."""
+    """{layer: acres}: per class, the largest class; same ground counted once; overlapping outlines measured as the ground
+    they cover together (rule size_union_not_sum). agency_only: the agency's acres only."""
     groups = {}
     for rec in recs:
         if not line_has_no_size(rec): groups.setdefault(rec['layer'], {}).setdefault(class_of(rec, rules), []).append(rec)
@@ -715,6 +798,7 @@ def land_acres(recs, rules, agency_only=False):
             for v, _, name, r in sorted(vals, key=lambda x: (-x[0], x[1])):
                 if any(same_ground(v, r, kv, k, rules) for kv, k in kept.get(name, ())): continue
                 kept.setdefault(name, []).append((v, r)); total += v
+            total = union_total([x for ks in kept.values() for x in ks], total, rules)   # 27 Nov 2026, rule size_union_not_sum
             best = max(best, total)
         out[layer] = best
     return out
