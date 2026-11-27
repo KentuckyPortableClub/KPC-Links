@@ -22,6 +22,13 @@ grader's call, 5:47 AM). ORDER: 1, then 2, then 3. Each line below says what alr
   Approved rows go into the park facts or the rule table for the next run.
 - Exists already: `v2-pin-only.csv` and `pin-only-all.csv` (every pin-only park with its reason), `v2-id-other-names.csv`, the
   state prep tool (ids, name styles), the try-a-rule workbench. Build on these.
+- The OLD problem solver in GitHub (owner 8:26 AM: "not sure if it is a good starting point"): `kpc_problem_solver.py` (7 Nov,
+  1,521 lines), `kpc_solver_final_pass.py` (24 Nov), KPC-Data `kpc_pile_solver.py`. Looked at 27 Nov: built for v1. It reads v1
+  keys, v1 holds and the old saved-outline cache, and its fixes are `overrides.json` join rows, the after-the-fact patch item 1
+  forbids. So NOT the base. TAKE FROM IT: its checks (a sliver outline, land in another state than POTA lists, the ways a pin
+  looks wrong: one digit off, one coordinate off, a rounded pin), the final pass's guards (never another park's land, a
+  kind-of-land guard, a part never takes the whole), its plain verdict words, and its real examples as test cases (Windy Gap
+  US-9678, Little Pee Dee US-3917, Cedar Mesa US-11748, Owyhee River US-13039). Rewrite them to read today's layer files.
 - Fix first, or it sorts parks wrong:
   a. The reason list. v2's own list (rule sheet section 6): `no_record_with_this_name`, `name_but_no_pin_or_size_proof`,
      `two_records_fit`, `record_shared_with_another_park`, `water_only`, `office_only`, `layer_not_complete`,
