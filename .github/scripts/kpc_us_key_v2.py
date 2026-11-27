@@ -550,6 +550,73 @@ def class_of(rec, rules):
 GRID = 6   # the sample points per side of the smaller record's box (a measuring detail, not a rule)
 
 
+BAND_MIN = 64   # a ring with more points than this gets bands of latitude (a measuring detail, not a rule)
+
+
+def ring_bands(ring):
+    """27 Nov 2026: for a long ring, which of its sides reach each band of latitude. -> (y0, 1 / band height, bands).
+    A side is listed in every band its two ends span, so a point only has to try the sides of its own band: the same sides
+    the plain test could ever count (a side counts only when the point's latitude lies between its ends)."""
+    y0, y1 = min(y for _, y in ring), max(y for _, y in ring)
+    nb = min(2048, max(8, len(ring) // 16))
+    inv = nb / (y1 - y0) if y1 > y0 else 0.0
+    bands = [array.array('I') for _ in range(nb)]   # the side's first point only (4 bytes): its other end is the point before it
+    j = len(ring) - 1
+    for i in range(len(ring)):
+        ya, yb = ring[i][1], ring[j][1]
+        lo, hi = (ya, yb) if ya <= yb else (yb, ya)
+        for b in range(min(nb - 1, max(0, int((lo - y0) * inv))), min(nb - 1, max(0, int((hi - y0) * inv))) + 1): bands[b].append(i)
+        j = i
+    return y0, inv, bands
+
+
+def inside_boxed(lon, lat, rec):
+    """inside(lon, lat, shape(rec)) with the SAME answer (even-odd), measured faster (27 Nov 2026, the owner's Alaska build):
+    each ring's box is kept (_rb) and a ring whose box does not hold the point is passed over (such a point crosses the ring an
+    even number of times); a long ring is tried only on the sides of the point's own band of latitude (ring_bands, kept in _bd)."""
+    g = shape(rec)
+    if '_rb' not in rec:
+        rec['_rb'] = [(min(x for x, _ in r), min(y for _, y in r), max(x for x, _ in r), max(y for _, y in r)) if r else (0, 0, -1, -1) for r in g]
+        rec['_bd'] = {}
+        rec['_rk'] = None
+        if len(g) > BAND_MIN:   # a record of very many pieces (Yukon Delta: tens of thousands): the pieces by band of latitude too
+            ok = [b for b in rec['_rb'] if b[3] >= b[1]]
+            ky0, ky1 = min(b[1] for b in ok), max(b[3] for b in ok)
+            nb = min(2048, max(8, len(g) // 8)); inv = nb / (ky1 - ky0) if ky1 > ky0 else 0.0
+            bands = [[] for _ in range(nb)]
+            for n_, b in enumerate(rec['_rb']):
+                if b[3] < b[1]: continue
+                for q in range(min(nb - 1, max(0, int((b[1] - ky0) * inv))), min(nb - 1, max(0, int((b[3] - ky0) * inv))) + 1): bands[q].append(n_)
+            rec['_rk'] = (ky0, ky1, inv, bands)
+    c = False
+    if rec['_rk'] is None: todo = range(len(g))
+    else:
+        ky0, ky1, inv, bands = rec['_rk']
+        if lat < ky0 or lat > ky1: return False
+        todo = bands[min(len(bands) - 1, max(0, int((lat - ky0) * inv)))]
+    for n_ in todo:
+        ring = g[n_]; x0, y0, x1, y1 = rec['_rb'][n_]
+        if lon < x0 or lon > x1 or lat < y0 or lat > y1: continue
+        if len(ring) > BAND_MIN:
+            bd = rec['_bd'].get(n_)
+            if bd is None: bd = rec['_bd'][n_] = ring_bands(ring)
+            by0, inv, bands = bd
+            sides = bands[min(len(bands) - 1, max(0, int((lat - by0) * inv)))]
+        else:
+            sides = None
+        if sides is None:
+            j = len(ring) - 1
+            for i in range(len(ring)):
+                xi, yi = ring[i]; xj, yj = ring[j]
+                if (yi > lat) != (yj > lat) and lon < (xj - xi) * (lat - yi) / (yj - yi) + xi: c = not c
+                j = i
+        else:
+            for i in sides:
+                xi, yi = ring[i]; xj, yj = ring[i - 1]   # i - 1 = the point before; for i = 0 that is the ring's last point
+                if (yi > lat) != (yj > lat) and lon < (xj - xi) * (lat - yi) / (yj - yi) + xi: c = not c
+    return c
+
+
 def same_ground(v, a, kv, k, rules):
     """Rule acres_same_ground_once: two same-name records are the same ground when the sample points inside the smaller
     record's SHAPE lie at least same_ground_share inside the other's shape (boxes first), and the sizes agree."""
@@ -558,11 +625,25 @@ def same_ground(v, a, kv, k, rules):
     for r in (a, k):
         if '_m' not in r: r['_m'] = acres_of(shape(r))
     small, big = (a, k) if a['_m'] <= k['_m'] else (k, a)
-    b = small['_b']
-    pts = [(b[0] + (b[2] - b[0]) * (i + .5) / GRID, b[1] + (b[3] - b[1]) * (j + .5) / GRID) for i in range(GRID) for j in range(GRID)]
-    pts += [(sum(x for x, _ in r) / len(r), sum(y for _, y in r) / len(r)) for r in small['_g']]   # each piece's middle too
-    pts = [q for q in pts if inside(q[0], q[1], small['_g'])]
-    return bool(pts) and sum(1 for q in pts if inside(q[0], q[1], shape(big))) >= n['same_ground_share'] * len(pts)
+    # 27 Nov 2026 (the owner's 50-state build sat on Alaska for 14 minutes; it was 11 s the night before, when two Alaska layers
+    # were missing): the SAME test, measured faster. A record's own sample points are worked out once and kept (_sp); a point is
+    # only tried against the rings whose box holds it (inside_boxed: a point outside a ring's box crosses that ring an even
+    # number of times, so the answer cannot change); the count stops as soon as the answer is certain. No join changes.
+    if '_sp' not in small:
+        b = small['_b']
+        pts = [(b[0] + (b[2] - b[0]) * (i + .5) / GRID, b[1] + (b[3] - b[1]) * (j + .5) / GRID) for i in range(GRID) for j in range(GRID)]
+        pts += [(sum(x for x, _ in r) / len(r), sum(y for _, y in r) / len(r)) for r in small['_g']]   # each piece's middle too
+        small['_sp'] = [q for q in pts if inside_boxed(q[0], q[1], small)]
+    pts = small['_sp']
+    if not pts: return False
+    if not small.get('line') and small.get('raw') is not None and small.get('raw') == big.get('raw') and small.get('q') == big.get('q'):
+        return True   # 27 Nov 2026: the very same outline saved twice (Yukon Delta, 16 MB each): every sample point is inside, so no sums are needed
+    need, hits = n['same_ground_share'] * len(pts), 0
+    for i, q in enumerate(pts):
+        if inside_boxed(q[0], q[1], big): hits += 1
+        if hits >= need: return True
+        if hits + (len(pts) - i - 1) < need: return False
+    return hits >= need
 
 
 def land_acres(recs, rules, agency_only=False):
