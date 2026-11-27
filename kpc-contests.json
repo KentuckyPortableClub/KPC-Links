@@ -1,68 +1,6 @@
 {
- "updated": "2026-11-26T11:20:00Z",
+ "updated": "2026-11-27T13:48:34Z",
  "week": [
-  {
-   "name": "RSGB 80m Autumn Series, CW",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g7w0a",
-   "when": "2000Z-2130Z, Nov 26",
-   "segs": [
-    [
-     "2026-11-26T20:00Z",
-     "2026-11-26T21:30Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NCCC FT4 Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gv99x",
-   "when": "0100Z-0130Z, Nov 27",
-   "segs": [
-    [
-     "2026-11-27T01:00Z",
-     "2026-11-27T01:30Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Weekly RTTY Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gw45d",
-   "when": "0145Z-0215Z, Nov 27",
-   "segs": [
-    [
-     "2026-11-27T01:45Z",
-     "2026-11-27T02:15Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NCCC Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gudvg",
-   "when": "0230Z-0300Z, Nov 27",
-   "segs": [
-    [
-     "2026-11-27T02:30Z",
-     "2026-11-27T03:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "K1USN Slow Speed Test",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gl6kp",
@@ -365,6 +303,108 @@
     [
      "2026-12-02T19:00Z",
      "2026-12-02T20:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QRP ARCI Topband Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003h83td",
+   "when": "0000Z-0300Z, Dec 3",
+   "segs": [
+    [
+     "2026-12-03T00:00Z",
+     "2026-12-03T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "VHF-UHF FT8 Activity Contest-NA",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003h36sw",
+   "when": "0000Z-0500Z, Dec 3",
+   "segs": [
+    [
+     "2026-12-03T00:00Z",
+     "2026-12-03T05:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Walk for the Bacon QRP Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003h41ln",
+   "when": "0000Z-0100Z, Dec 3 and 0200Z-0300Z, Dec 4",
+   "segs": [
+    [
+     "2026-12-03T00:00Z",
+     "2026-12-03T01:00Z"
+    ],
+    [
+     "2026-12-04T02:00Z",
+     "2026-12-04T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003haon6",
+   "when": "0300Z-0400Z, Dec 3",
+   "segs": [
+    [
+     "2026-12-03T03:00Z",
+     "2026-12-03T04:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hbr82",
+   "when": "0700Z-0800Z, Dec 3",
+   "segs": [
+    [
+     "2026-12-03T07:00Z",
+     "2026-12-03T08:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "SKCC Sprint Europe",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003h243p",
+   "when": "2000Z-2200Z, Dec 3",
+   "segs": [
+    [
+     "2026-12-03T20:00Z",
+     "2026-12-03T22:00Z"
     ]
    ],
    "modes": [
@@ -1133,24 +1173,6 @@
    "src": "CORRAL",
    "bands": "3.5-28",
    "exch": "RS(T), age (avg age for multiops)"
-  },
-  {
-   "name": "RSGB 80m Autumn Series, CW",
-   "url": "https://www.rsgbcc.org",
-   "when": "",
-   "segs": [
-    [
-     "2026-11-26T20:00Z",
-     "2026-11-26T21:31Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5",
-   "exch": "RST, serial"
   },
   {
    "name": "ARRL EME Contest",
@@ -1950,7 +1972,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (25)",
-  "CORRAL": "ok (43)"
+  "WA7BNM": "ok (27)",
+  "CORRAL": "ok (42)"
  }
 }
