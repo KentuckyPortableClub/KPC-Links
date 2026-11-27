@@ -584,21 +584,11 @@
   "kpc-pota-discord.yml|2026-11-27T13:19:00+00:00": "2026-11-27T13:46+00:00 started",
   "kpc-ses.yml|2026-11-27T10:41:00+00:00": "2026-11-27T13:46+00:00 started",
   "kpc-social.yml|2026-11-27T13:07:00+00:00": "2026-11-27T13:46+00:00 skipped (not restarted)",
-  "pages-deploy.yml|2026-11-27T12:41:00+00:00": "2026-11-27T13:46+00:00 started"
+  "pages-deploy.yml|2026-11-27T12:41:00+00:00": "2026-11-27T13:46+00:00 started",
+  "kpc-research-helpers.yml|2026-11-27T13:23:00+00:00": "2026-11-27T14:10+00:00 skipped (not restarted)"
  },
- "last": "2026-11-27T13:46+00:00",
+ "last": "2026-11-27T14:10+00:00",
  "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 27 13:18 UTC)",
-  "kpc-boards.yml (missed Nov 27 13:14 UTC)",
-  "kpc-discord-watch.yml (missed Nov 27 12:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 27 12:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 27 13:07 UTC)",
-  "kpc-new-refs.yml (missed Nov 27 12:39 UTC)",
-  "kpc-park-alerts.yml (missed Nov 27 11:03 UTC)",
-  "kpc-park-notes.yml (missed Nov 27 12:41 UTC)",
-  "kpc-pota-discord.yml (missed Nov 27 13:19 UTC)",
-  "kpc-ses.yml (missed Nov 27 10:41 UTC)",
-  "kpc-social.yml (missed Nov 27 13:07 UTC, NOT restarted: its next scheduled run catches up)",
-  "pages-deploy.yml (missed Nov 27 12:41 UTC)"
+  "kpc-research-helpers.yml (missed Nov 27 13:23 UTC, NOT restarted: its next scheduled run catches up)"
  ]
 }
