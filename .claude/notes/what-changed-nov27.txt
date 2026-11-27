@@ -1,0 +1,66 @@
+KPC: WHAT CHANGED, AND WHAT EACH UPDATE DOES                    27 Nov 2026
+(newest at the top; one short block per change; the Control Panel shows the short version)
+
+WHAT TO RUN NOW, IN THIS ORDER (each one once)
+  1. 3-MAP-STORE-US-CA\LAYER-RECORDS.bat   choose 1 (status), then 2 (rebuild), then 3 (download what is missing)
+  2. 6-TOOLS\PAGE-READER\PAGE-READER.bat   choose 2 (re-read kept pages), then 3 (read what is missing; all night)
+     First time only: 0-INSTALL-PAGE-BROWSER.bat. The window must say the page browser is ON.
+  3. Send the upload pack the usual way, so the park facts are rebuilt with the new reads.
+  4. 5-ANSWER-KEY-TEST\V2-STATE-PREP.bat, then V2-BUILD.bat
+  If a status page looks wrong, stop and tell Claude. Do not run it again to see.
+
+---------------------------------------------------------------------------------------
+THE NEW KEY (v2)                                                  Fable, 26-27 Nov
+  What it is:   a new, simpler key builder beside the old one. It reads only today's layer
+                files, the park facts, the park list and ONE rule table. No old answers,
+                no hand holds, no switches. A fix is a row in the rule table plus a test.
+  Why:          the old key carried old answers forward (767 rows in MN + NY) and gave
+                29 parks another unit's land (about 402,000 acres, e.g. Red Lake WMA on
+                Red Lake State Forest, Bear Swamp land 134 km away).
+  Proof:        your PC run passed: MN 295 of 323 outlined, NY 819 of 851, 0 wrong land.
+                North Dakota 93 of 155. Canada: 8 provinces build.
+  New:          every park is marked share all / share part / share none. New York has
+                530 parks we may use privately but may NOT put on the public map.
+  Your rulings: Fish and Wildlife easements stay off parks; Lake Vermilion's two numbers
+                stay pins; the "fair count" sets apart 21 trail parks the store room lacks.
+  Where:        KPC-Links draft PR #393. Not live. The old key is not touched.
+
+THE STORE ROOM (layer downloader)                                 Fable, 26-27 Nov
+  One button: LAYER-RECORDS.bat  1 status / 2 rebuild / 3 download. One status page:
+  results\STORE-ROOM-STATUS.txt
+  Fixed:  one empty record blocked a whole state (Massachusetts 421 parks, North Carolina
+          253); the wrong id column (Iowa, MN, WI); Canada layers read twice (9,118 extra
+          records); Georgia and South Carolina blocked by a North Carolina copy; national
+          layers saved whole inside a state file; a failed download that still counted as
+          fresh; failure reasons now saved; first-time downloads never start by themselves.
+  Open:   trail lines are one file per park from the trail bot and are not read in yet,
+          so trail parks cannot be drawn by v2. Hand downloads still need copying in.
+  Where:  on the PC only. No GitHub PR yet.
+
+THE PAGE READER                                                   Fable + Claude, 26-27 Nov
+  One button: PAGE-READER.bat  1 status / 2 re-read kept pages / 3 read what is missing.
+  Fixed (Fable):  page headings saved as park names (989 parks, e.g. "Main navigation");
+          square kilometres saved as acres (Nahanni); two sizes that disagree both trusted;
+          a failed read could wipe good facts; a stopped run lost its kept pages.
+  Fixed (Claude): about 5,000 parks were counted as "read" when the site sent nothing
+          (BLM 897, NY DEC 567, Missouri 430, Forest Service 268), so they were never
+          read again; the overnight button never switched the page browser on; a site that
+          stops answering the plain reader is now read through the page browser.
+  Open:   355 parks whose saved page is another park's page (no wrong match, but no facts).
+  Where:  on the PC, and KPC-Data draft PR #202 (the PC copies, tests pass).
+
+THE SITE RULE (your rulings, 26-27 Nov)
+  Only a real robots.txt Disallow line is a "no". A 401 / 403 is that page only, for that
+  run. Five in a row from one site, or one 429, stops that site for the run. Nothing is
+  carried into the next run. About 3,100 park pages had been skipped by mistake.
+
+THE OLD KEY (v1) FIXES                                            Claude, 26 Nov
+  KPC-Links draft PR #392: agency-id locks (a park proven by its agency number is reused
+  next run, and a lock is only kept when the id rows are the whole park); the 7 fresh
+  switches on for 11 states; a layer's kind is only a fallback (the cause of Red Lake WMA
+  on Red Lake State Forest). Waits on the grader. The new key (v2) is the way forward.
+
+THE PARK FACTS (the file that feeds the matcher)                 still mostly open
+  Built on GitHub from the page reader's upload pack. Still to fix: it leans on the old key
+  for one size check, square km as acres, impossible pins, Kentucky agency ids (72 real ids
+  not read), no check that it was built from the newest reads.
