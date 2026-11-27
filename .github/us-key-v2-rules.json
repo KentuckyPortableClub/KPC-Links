@@ -606,6 +606,42 @@
    "stub": "true"
   },
   {
+   "id": "trail_bot_file",
+   "step": "3",
+   "what": "a record of a trail-bot layer (trail_bot_layers: the trail bot's own line file for one park, key trl<n>, ref US-<n>) joins ONLY the park whose number it carries, read from both its ref field and its key (they must agree), after steps 2 and 3, for every park: it adds the line to land step 2 or 3 proved, or it is the park's only record. The proof says 'the trail bot's file for this park (US-<n>.json), the pin N ft from the line', by 'trail bot file+pin'. Refused when the line holds the pin of another park with the same name. The gate re-measures it for an id-proven park. A trail park whose own file is in the store but too far from its pin says name_but_no_pin_or_size_proof, never record_layer_not_in_store. Dated 27 Nov 2026.",
+   "why": "owner 27 Nov 2026, 5:45 AM: \"Yes to trails\" (asked: is the trail bot's pick enough when the park's pin is within 100 ft of the line?). The name inside a trail-bot file is typed in the trail bot's own list (the club's label for that park number), not read from the agency, so the park number is the only thing the file proves. Real: US-4239 North Country (file named for the park, record name 'North Country National Scenic Trail', pin 18 ft from the line); US-11153 Matthew Lourey (pin 3,873 ft away: stays pin only).",
+   "test": "test_trail_bot_file",
+   "fn": "trail_file_ref",
+   "stub": "empty"
+  },
+  {
+   "id": "trail_bot_pin",
+   "step": "3",
+   "what": "the park's own trail-bot file joins only when the park's pin is within line_pin_m (100 ft) of its line; farther, it stays off (the park keeps any land it has)",
+   "why": "owner 27 Nov 2026, 5:45 AM: \"Yes to trails\" (asked: is the trail bot's pick enough when the park's pin is within 100 ft of the line?). Real: US-9388 Glacial Lakes (pin 112 ft from its line) and US-9383 Goodhue-Pioneer (282 ft) keep no line. Dated 27 Nov 2026.",
+   "test": "test_trail_bot_file",
+   "fn": "trail_file_pin_ok",
+   "stub": "true"
+  },
+  {
+   "id": "trail_bot_name_not_proof",
+   "step": "3",
+   "what": "a trail-bot record is never found by its name: it is in no name index (exact, other spellings, page name, longer or shorter, two-language, piece word, same-layer pieces) and in no id index, so it never joins another park by name and its name is never a name proof for anything",
+   "why": "review 27 Nov 2026: the name inside a trail-bot file is the trail bot's own label for the park number, so 'exact name' proves nothing for it; owner 27 Nov 2026, 5:45 AM: \"Yes to trails\" (asked: is the trail bot's pick enough when the park's pin is within 100 ft of the line?).",
+   "test": "test_trail_bot_file",
+   "fn": "name_indexed",
+   "stub": "true"
+  },
+  {
+   "id": "line_own_proof",
+   "step": "3",
+   "what": "a line (of any layer) joins only on its own proof: it carries the park's agency id itself, or it has the exact name with the pin within line_pin_m of it, or it is the park's own trail-bot file. It is a name group of its own (never grouped with land or other lines of the name, never by a unit value), never a piece-word piece, never a project piece or a piece of an id unit without the id. A line never comes along with a park's land.",
+   "why": "review 27 Nov 2026: a same-named line could ride in with a park's land through the name group (chain within near_km), a unit group, the piece-word step or the id-unit pieces, with no check against line_pin_m. Rule sheet section 12 says a line joins by its agency id or by the exact name with the pin within 100 ft. Lines of web layers that are not trail-bot files keep that rule. Dated 27 Nov 2026.",
+   "test": "test_line_own_proof",
+   "fn": "line_by_itself",
+   "stub": "false"
+  },
+  {
    "id": "key_line_flag",
    "step": "write",
    "what": "the key marks a park 'line': true when every joined record is a line; its m rows are [id, name, 0, how]",
@@ -2337,6 +2373,16 @@
    },
    "why": "owner 27 Nov 2026 (rule load_no_wait): the store room itself says the layer holds only points, so v2 needs no row per layer (VT vta: 483 records, none with a polygon, will carry this status after the rebuild if they are points).",
    "test": "test_not_land_layer_is_no_gap"
+  },
+  "trail_bot_layers": {
+   "value": {
+    "trl": {
+     "ref_field": "ref",
+     "key_rx": "^trl(\\d+)$"
+    }
+   },
+   "why": "the store room writes the trail bot's line files (KPC-Data data/trails/US-<n>.json) into the layer files as layer trl, key trl<n>, with the file's ref (US-<n>) and name as attributes (27 Nov 2026). The ref and the key must name the same park number. owner 27 Nov 2026, 5:45 AM: \"Yes to trails\" (asked: is the trail bot's pick enough when the park's pin is within 100 ft of the line?).",
+   "test": "test_trail_bot_file"
   }
  },
  "notes": {

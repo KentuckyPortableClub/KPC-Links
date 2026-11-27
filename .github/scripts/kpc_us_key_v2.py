@@ -6,6 +6,8 @@ Rule sheet: .claude/notes/rule-sheet-us-key-v2-nov26.md. Rule table: .github/us-
 function that carries it and the test that notices when it is gone).
 Steps, each for all parks before the next: load -> 2 agency id -> 3 name with pin, size or two sources -> 4 pin only -> 5 gate.
 Step 1: check the locks (a witness; it never decides). It compares the lock file with today's step 2 and reports held / broken.
+After steps 2 and 3 (27 Nov 2026, owner: "Yes to trails"): each park's own trail-bot file joins it when the pin is within 100 ft
+of the line; it is found by the park number only, never by name. A line of any layer joins only on its own proof.
 Plain Python 3.12, no packages, no legacy modules.
 
   python kpc_us_key_v2.py --states MN NY --store <folder> --facts <park-facts.json.gz> --out <folder>
@@ -39,6 +41,7 @@ TABLE_SHAPES = {
     'wetland_district': {'park_rx': RX, 'layer': S, 'field': S, 'fee': S, 'type_field': S, 'type': S},
     'page_name': {'page_kind': S, 'sites': [S], 'other_state': S, 'level': S},
     'own_page': {'own': S, 'sites': [S], 'source_rx': RX, 'witness': S, 'hand_copy': S},
+    'trail_bot_layers': {'*': {'ref_field': S, 'key_rx': RX}},
 }
 LINK_TIE_SHAPE = [{'kind': S, 'layer': S, 'field': S, 'rx': RX, '?glue': S}]
 VALUE_KEYS = ('size_tol', 'two_sources_tol', 'pin_m', 'near_km', 'lock_acres_tol', 'thin_m', 'long_ratio', 'acre_box_factor',
@@ -144,6 +147,7 @@ def load_rules(repo, path=None):
     for t in r['id_ties'] + web:
         r['_ties'].setdefault(t['layer'], []).append(dict(t, _rx=re.compile(t['rx'], re.I) if t.get('rx') else None))
     r['_size_units'] = [(re.compile(x, re.I), u) for x, u in r['size_text_units']]
+    r['_trail_key'] = {l: re.compile(t['key_rx']) for l, t in r['trail_bot_layers'].items()}
     r['_keep'] = keep_fields(r)
     return r
 
@@ -159,6 +163,7 @@ def keep_fields(r):
     for u in r['unit_pieces'].values(): k |= {u['project_field'], u['name_field']}
     for f in r['interest_fields'].values(): k.add(f['field'])
     k |= {r['wetland_district']['field'], r['wetland_district']['type_field']} | {f for f, _ in r['size_fields'].values()}
+    k |= {t['ref_field'] for t in r['trail_bot_layers'].values()}
     return {x.lower() for x in k}
 
 
@@ -637,6 +642,22 @@ def is_line(r):
     return not r.get('rings') and bool(r.get('paths')) and r.get('shape') == 'line'
 
 
+def trail_file_ref(rec, rules):
+    """Rule trail_bot_file (owner 27 Nov 2026, 5:45 AM: "Yes to trails"): the park number a trail-bot file carries, read from
+    BOTH its ref field and its key (trail_bot_layers: 'trl0197' = US-0197). '' when the layer is not a trail-bot layer, or when
+    the two disagree (then the file joins nobody). The name inside the file is the club's own label, so it is never a proof."""
+    t = rules['trail_bot_layers'].get(rec['layer'])
+    if not t: return ''
+    ref, m = norm_val(attr(rec['a'], t['ref_field'])), rules['_trail_key'][rec['layer']].fullmatch(str(rec['key']))
+    return ref if m and ref and ref.split('-', 1)[-1] == m.group(1) else ''
+
+
+def name_indexed(rec, rules):
+    """Rule trail_bot_name_not_proof (27 Nov 2026): a record is found by its name, unless it is a record of a trail-bot layer
+    (its name was typed in the trail bot's list, not read from the agency). Such a record is found by its park number only."""
+    return rec['layer'] not in rules['trail_bot_layers']
+
+
 def has_shape(r):
     """Rule load_no_shape."""
     return bool(r.get('rings')) or is_line(r)
@@ -683,6 +704,7 @@ class Pool:
         self.rules, self.recs, self.dropped, self.by_ident = rules, [], {}, {}
         self.raw_ids, self.tie_ix, self.name_ix, self.piece_ix, self.core_ix, self.base_ix = {}, {}, {}, {}, {}, {}
         self.layer_name_ix, self.lines, self.kp_ix, self.services = {}, {}, {}, {}
+        self.trail_ix = {}   # rule trail_bot_file: {park number: [record i]} of the trail-bot files
 
     def rec_kinds(self, rec):
         """v1 record kinds: the kinds its names carry, its PAD-US designation type, its layer's kind (layer_kinds)."""
@@ -734,11 +756,16 @@ class Pool:
                'names': [n for n in dict.fromkeys(names) if n.strip()], 'full_names': [n for n in fulls if n.strip()],
                'a': a, 'q': r.get('q'), 'raw': r.get('rings')}
         rec.update(pub=r.get('publishable'), lic=r.get('licence_class'), pub_why=r.get('publish_why'), svc=self.services.get(layer))
+        if r.get('source_file'): rec['source_file'] = str(r['source_file'])
         if is_line(r):
             rec.update(line=True, paths=r.get('paths'))
             self.lines[layer] = self.lines.get(layer, 0) + 1
         self.recs.append(rec); self.by_ident[(layer, rid)] = rec
         i = rec['i']
+        if not name_indexed(rec, rules):   # 27 Nov 2026: a trail-bot file is found by its park number only, never by name
+            ref = trail_file_ref(rec, rules)
+            if ref: self.trail_ix.setdefault(ref, []).append(i)
+            return
         for t in rules['_ties'].get(layer, []):
             v = tie_value(rec, t, rules)
             if v: self.tie_ix.setdefault((t['kind'], v), []).append(i)
@@ -793,6 +820,14 @@ def pin_near(rec, pin, rules):
     if pin is None or km_to_box(pin[0], pin[1], rec['_b']) * 1000 > n['pin_m']: return False
     if inside(pin[1], pin[0], g): return True
     return edge_m(pin[1], pin[0], g) <= (min(n['pin_m'], mean_width_m(g)) if too_thin(g, rules) else n['pin_m'])
+
+
+def line_by_itself(rec):
+    """Rule line_own_proof (27 Nov 2026, review of the trail run): a line is never a piece of a group. It joins only on its
+    own proof: it carries the park's agency id itself, or it has the exact name with the pin within line_pin_m of it (or it is
+    the park's own trail-bot file, rule trail_bot_file). It never comes along with a park's land, with a same-named group,
+    a unit group, a project, a piece word or a piece of an id unit."""
+    return bool(rec.get('line'))
 
 
 def line_pin_near(rec, pin, rules):
@@ -863,10 +898,12 @@ def resolve_claims(claims, parks, rules):
 def id_records(pool, p, kind, value, rules, names_by_full, layer=None):
     """All of today's records that carry the park's id (one layer when given), with their project pieces, after the
     wetland district and other-name rules."""
-    got = set(pool.tie_ix.get((kind, value), []))
+    carry = set(pool.tie_ix.get((kind, value), []))
+    got = set(carry)
     for i in list(got):
         up = rules['unit_pieces'].get(pool.recs[i]['layer'])
         if up: got.update(pool.piece_ix.get(piece_key(pool.recs[i], up), []))
+    got = {i for i in got if i in carry or not line_by_itself(pool.recs[i])}   # 27 Nov 2026: a line must carry the id itself
     return [i for i in sorted(got) if (not layer or pool.recs[i]['layer'] == layer)
             and wmd_ok(p, pool.recs[i], rules) and not other_park_name(p, pool.recs[i], names_by_full, rules)]
 
@@ -929,7 +966,7 @@ def id_unit_pieces(p, ref, rs, ctx):
         rec = pool.recs[i]
         for n in rec['names']: cands |= pool.layer_name_ix.get((rec['layer'], full(n, rules)), set())
     cands = sorted(i for i in cands - set(rs)
-                   if piece_id_empty(pool.recs[i], rules)
+                   if not line_by_itself(pool.recs[i]) and piece_id_empty(pool.recs[i], rules)
                    and not refusal(p, ref, pool.recs[i], i, dict(ctx, taken=set())))
     return [i for i in chain_pieces(cands, pin, pool, rules, seeds=list(rs)) if i not in rs] if cands and pin else []
 
@@ -1127,6 +1164,8 @@ def name_groups(p, ref, ctx):
         if no: notes.add(no); continue
         uv = unit_value(rec, rules)
         src = 'page' if i in page else 'lang' if i in lang else 'name'
+        if line_by_itself(rec):   # 27 Nov 2026: a line is a group of its own, so it is proven by its own pin or not at all
+            groups[(rec['layer'], 'line', rec['id'], src)] = [i]; continue
         groups.setdefault((rec['layer'], 'unit', uv, src) if uv else (rec['layer'], 'name', full(rec['name'], rules), src), []).append(i)
     out = {}
     for g, rs in groups.items():
@@ -1236,7 +1275,7 @@ def suffix_pieces(p, ref, rs, ctx):
         for n in rec['names']:
             base = piece_base(full(n, rules), rules)
             if not generic(base, rules): cands |= pool.base_ix.get((rec['layer'], base), set())
-    cands = sorted(i for i in cands - set(rs) if not refusal(p, ref, pool.recs[i], i, ctx))
+    cands = sorted(i for i in cands - set(rs) if not line_by_itself(pool.recs[i]) and not refusal(p, ref, pool.recs[i], i, ctx))
     return chain_pieces(cands, pin, pool, rules, seeds=list(rs)) if cands and pin else list(rs)
 
 
@@ -1245,11 +1284,13 @@ def is_trail(p, rules):
     return bool(rules['_trail_kind_rx'].search(f"{p.get('type') or ''} {p.get('name') or ''}"))
 
 
-def reason_for(p, groups, notes, twice, rules):
-    """Step 4: the one pin-only reason code for a park step 3 could not prove (fixed list)."""
+def reason_for(p, groups, notes, twice, rules, own_file=False):
+    """Step 4: the one pin-only reason code for a park step 3 could not prove (fixed list). own_file (27 Nov 2026): the park's
+    own trail-bot file is in the store, so record_layer_not_in_store would be untrue; the file carries the park's name and
+    number but the pin is too far from its line, which is what name_but_no_pin_or_size_proof says."""
     if twice: return 'two_records_fit'
-    if groups and pin_of(p) is None: return 'park_has_no_pin'
-    if groups: return 'name_but_no_pin_or_size_proof'
+    if (groups or own_file) and pin_of(p) is None: return 'park_has_no_pin'
+    if groups or own_file: return 'name_but_no_pin_or_size_proof'
     if notes & {'held', 'other_name', 'other_pin'}: return 'record_shared_with_another_park'
     if 'water' in notes: return 'water_only'
     if 'office' in notes: return 'office_only'
@@ -1259,6 +1300,43 @@ def reason_for(p, groups, notes, twice, rules):
 
 BY_ORDER = ('name+pin', 'name+size', 'name+two_sources', 'page name+pin', 'page name+size', 'page name+two_sources',
             'two-language name+pin', 'two-language name+size', 'two-language name+two_sources', 'longer or shorter name+pin')
+TRAIL_BY = 'trail bot file+pin'
+
+
+def trail_file_pin_ok(rec, pin, rules):
+    """Rule trail_bot_pin (owner 27 Nov 2026, 5:45 AM: "Yes to trails"): the park's own trail-bot file joins only when the pin
+    is within line_pin_m (100 ft) of its line."""
+    return line_pin_near(rec, pin, rules)
+
+
+def trail_file_ok(ref, p, rec, rules):
+    """Rules trail_bot_file / trail_bot_pin: the record is the trail bot's file for THIS park number and the pin is within
+    line_pin_m of the line. Used by the step and again by the gate."""
+    return trail_file_ref(rec, rules) == norm_val(ref) and trail_file_pin_ok(rec, pin_of(p), rules)
+
+
+def trail_proof(rec, pin):
+    """The plain proof words of a trail-bot join: the file for this park and the pin's distance to the line in feet."""
+    m = line_m(pin[1], pin[0], rec['_p'])
+    f = rec.get('source_file') or f"{rec['id']}"
+    return {'by': TRAIL_BY, 'layer': rec['layer'], 'pin_near': rec['id'], 'pin_m': round(m, 1), 'pin_ft': round(m / 0.3048),
+            'proof': f"the trail bot's file for this park ({f}), the pin {round(m / 0.3048)} ft from the line"}
+
+
+def step_trail_files(refs, ctx):
+    """Rule trail_bot_file (27 Nov 2026), after steps 2 and 3, for every park: the park's own trail-bot file (found by its park
+    number only, never by name) joins the park when the pin is within line_pin_m of its line. It adds the line to land that
+    step 2 or 3 proved, or it is the park's only record. It never joins another park, and its name proves nothing. Refused when
+    the line holds the pin of another park with the same name (the gate checks that too). -> {ref: {record i: proof}}."""
+    parks, pool, rules, out = ctx['parks'], ctx['pool'], ctx['rules'], {}
+    for ref in sorted(refs):
+        p = parks[ref]
+        for i in pool.trail_ix.get(norm_val(ref), []):
+            rec = pool.recs[i]
+            if not trail_file_ok(ref, p, rec, rules): continue
+            if holds_other_pin(ref, rec, ctx['same_name'].get(full(p.get('name'), rules), ()), parks, rules): continue
+            out.setdefault(ref, {})[i] = trail_proof(rec, pin_of(p))
+    return out
 
 
 def step_name(refs, ctx):
@@ -1285,7 +1363,7 @@ def step_name(refs, ctx):
             want[ref] = {g: suffix_pieces(p, ref, groups[g], ctx) for g in proven}
             ev[ref] = proven
         else:
-            why[ref] = reason_for(p, groups, notes, twice, rules)
+            why[ref] = reason_for(p, groups, notes, twice, rules, own_file=bool(pool.trail_ix.get(ref)))
     claims = {}
     for ref, gs in want.items():
         for i in {i for rs in gs.values() for i in rs}: claims.setdefault(i, []).append(ref)
@@ -1317,11 +1395,19 @@ def match_state(refs, parks, pool, rules, locks=None):
     ctx['taken'] = {i for rs in got.values() for i in rs}
     got3, by, why = step_name([r for r in refs if r not in joins], ctx)
     for ref, rs in got3.items(): joins[ref], how[ref] = rs, (3, by[ref][0], by[ref][1])
-    today = {ref: lock_rows(pool, joins[ref], how[ref][2]['id_value'], rules) for ref in sorted(joins) if how[ref][0] == 2}
+    today = {ref: lock_rows(pool, got[ref], how[ref][2]['id_value'], rules) for ref in sorted(got)}   # the id's records only
+    trail = step_trail_files(refs, ctx)   # 27 Nov 2026, owner: "Yes to trails"
+    for ref, got_t in sorted(trail.items()):
+        proofs = [got_t[i] for i in sorted(got_t)]
+        if ref not in joins:
+            joins[ref], how[ref] = sorted(got_t), (3, TRAIL_BY, {'proofs': proofs}); continue
+        joins[ref] = sorted(set(joins[ref]) | set(got_t))
+        step, b, e = how[ref]
+        how[ref] = (step, b, dict(e, proofs=e['proofs'] + proofs) if step == 3 else dict(e, trail_file_proofs=proofs))
     ctx.update(today=today, notes=notes, shared=shared_ids(refs, parks, rules))
     status, broken = compare_locks(locks or {}, ctx)
     return {'joins': joins, 'how': how, 'why': {r: c for r, c in why.items() if r not in joins}, 'locks_out': today, 'pieces': pieces,
-            'lock_status': status, 'locked_broken': broken}
+            'lock_status': status, 'locked_broken': broken, 'trail': trail}
 
 
 # ---------------------------------------------------------------------------------------------------------------- gate
@@ -1352,12 +1438,18 @@ def gate_unresolved(res, pool):
     return bad
 
 
-def gate_id_mismatch(res, pool, rules):
-    """Rule gate_id_mismatch: every id-proven park's records carry that id (or are project pieces of one that does)."""
+def gate_id_mismatch(res, pool, rules, parks=None):
+    """Rule gate_id_mismatch: every id-proven park's records carry that id (or are project pieces of one that does). The
+    park's own trail-bot file is checked on its own terms instead (rule trail_bot_file, re-measured here, 27 Nov 2026)."""
     bad = []
     for ref, rs in sorted(res['joins'].items()):
         step, by, e = res['how'][ref]
         if by != 'id': continue
+        own = set((res.get('trail') or {}).get(ref, {}))
+        if own:
+            if parks is None or not all(trail_file_ok(ref, parks[ref], pool.recs[i], rules) for i in own):
+                bad += [('id_mismatch', ref, pool.recs[i]['id']) for i in sorted(own)]
+            rs = [i for i in rs if i not in own]
         ties = [t for ts in rules['_ties'].values() for t in ts if t['kind'] == e.get('id_kind')]
         carry = [pool.recs[i] for i in rs if any(t['layer'] == pool.recs[i]['layer'] and tie_value(pool.recs[i], t, rules) == e.get('id_value')
                                                 for t in ties)]
@@ -1406,7 +1498,7 @@ def gate_licence(res, pool):
 
 def gate(doc_parks, res, pool, rules, parks=None):
     """Step 5: the hard stop. -> {'ok', 'old_ids', 'two_name', 'not_in_file', 'id_mismatch', 'other_park_pin', 'bad'}."""
-    bad = gate_old_ids(doc_parks) + gate_two_names(doc_parks) + gate_unresolved(res, pool) + gate_id_mismatch(res, pool, rules) \
+    bad = gate_old_ids(doc_parks) + gate_two_names(doc_parks) + gate_unresolved(res, pool) + gate_id_mismatch(res, pool, rules, parks) \
         + (gate_other_pin(res, parks, pool, rules) if parks else []) + gate_licence(res, pool)
     out = {k: sum(1 for b in bad if b[0] == k) for k in ('old_ids', 'two_name', 'not_in_file', 'id_mismatch', 'other_park_pin', 'licence_kept')}
     out['ok'], out['bad'] = not bad, [list(b) for b in bad]
@@ -1443,8 +1535,9 @@ def state_doc(st, refs, parks, res, pool, rules, layer_files, area=None, gaps=()
         if ref in res['joins']:
             step, by, e = res['how'][ref]
             tag = f"id {e.get('id_kind')} {e.get('id_value')}" if by == 'id' else by
+            own = (res.get('trail') or {}).get(ref, {})
             rows = sorted(([pool.recs[i]['id'], pool.recs[i]['name'], round(rec_acres(pool.recs[i], rules)),
-                            'piece of id unit' if i in res.get('pieces', ()) else tag]
+                            'piece of id unit' if i in res.get('pieces', ()) else TRAIL_BY if i in own else tag]
                            for i in res['joins'][ref]), key=lambda x: (-x[2], str(x[0])))
             per = land_acres([pool.recs[i] for i in res['joins'][ref]], rules)
             e = dict(e, ac_how='largest layer total', acres_by_layer={k: round(v) for k, v in sorted(per.items())})
@@ -1502,10 +1595,12 @@ def proof_rows(st, res, pool, rules):
     for ref in sorted(res['joins']):
         step, by, e = res['how'][ref]
         lock = res['lock_status'].get(ref, 'new') if step == 2 else ''
+        own = (res.get('trail') or {}).get(ref, {})
         for i in res['joins'][ref]:
             rec = pool.recs[i]
+            rb, re_ = (TRAIL_BY, own[i]) if i in own else (by, e)   # 27 Nov 2026: a trail-bot row shows its own proof words
             out.append([ref, st, rec['key'], rec['id'] if rec['agency'] else '', rec['layer'], rec['name'], round(rec_acres(rec, rules), 1),
-                        step, by, ' '.join(f'{k}={e[k]}' for k in sorted(e)), rec['area'], lock, shape_word(rec),
+                        step, rb, ' '.join(f'{k}={re_[k]}' for k in sorted(re_)), rec['area'], '' if i in own else lock, shape_word(rec),
                         '' if rec.get('pub') is None else str(rec['pub']).lower(), rec.get('lic') or ''])
     return out
 
@@ -1517,7 +1612,7 @@ def id_other_names(st, res, parks, pool, rules):
         if res['how'][ref][0] != 2: continue
         p, pin = parks[ref], pin_of(parks[ref])
         words = real_words(p.get('name'), rules)
-        for i in res['joins'][ref]:
+        for i in [i for i in res['joins'][ref] if i not in (res.get('trail') or {}).get(ref, {})]:   # trail files: not id records
             rec = pool.recs[i]
             if not any(words & real_words(n, rules) for n in rec['names']):
                 out.append([ref, st, p.get('name'), rec['id'], rec['name'], rec['layer'], round(shape_km(rec, pin), 2) if pin else ''])
@@ -1542,7 +1637,8 @@ def slim_record(r, rules):
     the attributes some step reads (never the whole attributes dict)."""
     memo = rules.setdefault('_keep_memo', {})
     a = r.get('attributes') or {}
-    out = {k: r[k] for k in ('key', 'layer', 'record_name', 'q', 'shape', 'publishable', 'licence_class', 'publish_why') if k in r}
+    out = {k: r[k] for k in ('key', 'layer', 'record_name', 'q', 'shape', 'publishable', 'licence_class', 'publish_why',
+                             'source_file') if k in r}
     keep = {}
     for k, v in a.items():
         ok = memo.get(k)
