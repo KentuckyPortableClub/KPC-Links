@@ -1021,3 +1021,8 @@ body.biglog #lgDock .chip{height:42px;font-size:15px}
 .vmodc{white-space:nowrap}#rdVmod{margin:6px 0}
 #scrRadio.sdr.fit #sdrA #rdVmod{width:100%;justify-content:center;margin:0 0 6px}
 .vmodb b,.vmodb small{display:block;width:100%;text-align:left}
+
+/* Nov 26 2026 (Brandon): the frequency on a spot row = a one-tap JUMP button (kpc-spots.js data-go) */
+.sp1 .f .spGo{font:700 12px var(--mono);color:var(--goldT,#ffcf7a);background:transparent;border:1px solid var(--gold,#e3a24a);border-radius:6px;padding:3px 6px;min-height:28px;cursor:pointer;white-space:nowrap}
+.sp1 .f .spGo:hover,.sp1 .f .spGo:focus-visible{background:var(--gold,#e3a24a);color:var(--onGold,#1a1208)}
+@media (pointer:coarse){.sp1 .f .spGo{min-height:34px;padding:4px 6px}}
