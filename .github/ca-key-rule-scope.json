@@ -179,7 +179,7 @@
    "id": "2026-11-26-name-gaps-shared",
    "when": "2026-11-26",
    "from": "bb5687fe3cbd",
-   "why": "Only because kpc_match_checks.py (a Canada rule file too) learns that FWS 'National Wildlife and Fish Refuge' = 'National Wildlife Refuge' in the exact-name test; Canada has no such name. Scope none.",
+   "why": "Only because kpc_match_checks.py (a Canada rule file too) learns that FWS 'National Wildlife and Fish Refuge' = 'National Wildlife Refuge' in the exact-name test; Canada has no such name; and 'page names the land' also reads the page reader's whole-page names (page.names), which no Canada park facts carry yet. Scope none.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:18 PM: 'yeah no more putting stuff off so it does not get dropped'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }

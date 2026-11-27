@@ -1027,8 +1027,15 @@ def page_names_land(fact, park_name, land_name, heading_count=None, names_in_sta
     pg = (fact or {}).get('page') or {}
     if pg.get('kind') != 'html': return False
     raw = str(pg.get('name_on_page') or '').strip()
-    if not raw or '\ufffd' in raw: return False
-    for part in [raw] + SECOND_NAME_SPLIT.split(raw):
+    if '\ufffd' in raw: raw = ''
+    # 26 Nov 2026 (owner 5:55 PM: 'can it do a search of the whole page to find possible real names'): every name the page reader
+    # found on the WHOLE page (park facts page.names: title, headings, og / schema name, 'also known as', kind phrases sharing a
+    # real word with POTA's name) is a candidate too, under the same guards (another POTA park's name is never one: a page that
+    # mentions 'Perkins-Cooley WMA' does not make Perkins WMA's land Perkins-Cooley's when Perkins-Cooley is its own park)
+    more = [str(x) for x in (pg.get('names') or []) if x and '\ufffd' not in str(x)][:12]
+    if not raw and not more: return False
+    parts_ = ([raw] + SECOND_NAME_SPLIT.split(raw) if raw else []) + more
+    for part in parts_:
         part = part.strip()
         n = full(part)
         if not n: continue

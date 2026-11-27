@@ -56,5 +56,11 @@ check('F: the core-name joins need the pin inside and agreeing kinds, never wate
       and '_rk & _pk2' in blk2)
 fs = (ROOT / '.github/scripts/kpc_fers.py').read_text(encoding='utf-8')
 check("G: the 2-fer live check never reads an agency id ('sgmnb06') as row 6", "if m.group(2).startswith('0'): return [], None, False" in fs)
+f_ = {'page': {'kind': 'html', 'own_page': 'own', 'name_on_page': 'Kentucky Department of Fish and Wildlife', 'host': 'fw.ky.gov',
+                'names': ['Perkins WMA', 'Perkins-Cooley WMA']}}
+check("H: a name found anywhere on the park's own page names the land; another POTA park's name never does; no names = as before",
+      MC.page_names_land(f_, 'Perkins Wildlife Management Area', 'Perkins WMA')
+      and not MC.page_names_land(f_, 'Perkins Wildlife Management Area', 'Perkins-Cooley WMA', names_in_state={MC.full('Perkins-Cooley WMA')})
+      and not MC.page_names_land({'page': dict(f_['page'], names=[])}, 'Perkins Wildlife Management Area', 'Perkins WMA'))
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
