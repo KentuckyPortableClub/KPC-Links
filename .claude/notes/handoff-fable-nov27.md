@@ -88,3 +88,21 @@ their work, and make it better than planned. Plain words, short reports. He is a
 - **New findings.** MN licence counts on today's file are 138 all / 97 part / 60 none (the notes said 217 / 78 / 0): all 6,712
   `sgmnf` records are now private ("NO TERMS STATED"). ND is 96 of 155 on today's files (was 93).
 - **Still open:** jobs 5, 7, 8; the report artifact has not been brought up to date with the lines above.
+
+## Added 27 Nov, 6:00 to 6:40 AM (Fable)
+- **CORRECTION.** The line above about US-11151, US-11154, US-9382 is WRONG: their pins are 72, 89 and 31 ft from the trail
+  line (measured twice from the layer file). 46 to 92 m was the distance to their LAND. No real park took a line past 100 ft.
+  Fable passed on a helper's number without measuring it; the grader's 5:47 AM call leaned on it.
+- **Trails, where they stand.** Owner 5:45 AM: "Yes to trails". 5:47 AM he passed on the grader: "NO for now", wait for an
+  official agency trail name / ID. He was asked which stands. Until then: nothing on the PC, nothing in #393. Built and held:
+  KPC-Links branch `feat/v2-trails-nov27` (rule sheet section 16, four rule rows; MN 306, NY 824 with trails, unchanged
+  without), KPC-Store #40, and `trail-files.zip` reading in the store room work copy (61 tests; not pushed).
+- **Licences, two blind looks by Opus** (60 layers with saved terms text + 113 trail sources; tables given to the owner).
+  Both say PRIVATE where the PC list says share: `sgokb`, `sgcoa`, `sgcob`, `ON-LSRCA`, `sggae`. 30 layers both say share;
+  11 the looks disagree (a missing licence field: "no terms" or "not read"? the owner's rule is needed); 44 layers have no
+  saved words. Trail sources: 28 share, 2 private, 72 cannot tell, 11 disagree; 42 of the unconfirmed are on file as
+  shareable. No list was changed.
+- **The MN layer that went private is `sgmnf`** (6,712 records): GitHub's list says share (reviewer, 20 Nov), the PC's list
+  has no row, today's layer file says private ("the park store's own records of this layer do not all agree").
+- KPC-Data #202 now has the PC's 4:58 AM `PAGE-READER.bat`.
+- The grader: hold the 3-item next-phase spec until the fresh PC v2 run is graded and #393 / Store #39 / Data #202, #203 are settled.
