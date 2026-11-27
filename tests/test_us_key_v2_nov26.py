@@ -123,11 +123,12 @@ def pool_of(*recs, area='US-MN'):
     pl = V.Pool(RULES); pl.add_file(area, {'records': list(recs)}); return pl
 
 
-def one(name, kind, records, dx=0.0, dy=0.0, link=None, size=None):
+def one(name, kind, records, dx=0.0, dy=0.0, link=None, size=None, urls=None):
     f = Fix()
     try:
         f.parks['US-1'] = park(name, kind, dx_m=dx, dy_m=dy, link=link, size=size)
         f.files['US-MN'] = records
+        if urls: f.urls['US-MN'] = urls   # {layer: url}: the layers' map services (rule two_sources_independent)
         assert f.run() == 0
         return f.key()
     finally: f.done()
@@ -732,7 +733,7 @@ def test_no_pin_park():
 
 def test_two_sources_independent():
     a = rec('CPCAD', '1', 'Sault-à-la-Puce Nature Reserve', O_AREA_HA='10')
-    b = rec('Qu_bec prote', 'Qu_bec prote:1', '', ring(10), TOPONYME='Sault-à-la-Puce Nature Reserve', HA_LEGAL='10')
+    b = rec('Qu_bec prote', 'Qu_bec prote:1', '', ring(10), TOPONYME='Sault-à-la-Puce Nature Reserve', HA_LEGAL='10.3')
     c = rec('Qu_bec recog', 'Qu_bec recog:1', '', ring(20), TOPONYME='Sault-à-la-Puce Nature Reserve', HA_LEGAL='10')
     def case(recs, urls):
         f = Fix()
@@ -745,8 +746,13 @@ def test_two_sources_independent():
     qc = 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/'
     d = case([b, c], {'Qu_bec prote': qc + '23/query', 'Qu_bec recog': qc + '12/query'})
     assert d['parks']['CA-1']['m'] == []                                 # one register read twice is one source
-    d = case([a, b], {'CPCAD': 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0/query', 'Qu_bec prote': qc + '23/query'})
+    cp = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0/query'
+    d = case([a, b], {'CPCAD': cp, 'Qu_bec prote': qc + '23/query'})
     assert by(d, 'CA-1') == 'name+two_sources'
+    e = d['parks']['CA-1']['match']['evidence']['proofs'][0]             # both services shown to the grader
+    assert {e['service_a'], e['service_b']} == {V.service_of(cp), V.service_of(qc + '23/query')}
+    assert case([a, b], {'CPCAD': cp})['parks']['CA-1']['m'] == []       # 27 Nov 2026: one service blank = unknown source, no proof
+    assert case([a, b], {})['parks']['CA-1']['m'] == []                  # both blank: no proof
 
 
 def test_licence_kept():
@@ -860,19 +866,50 @@ def test_name_and_size_join():
     finally: f.done()
 
 
+TWO_URLS = {'PAD-US': 'https://a.example.gov/arcgis/rest/services/PADUS/FeatureServer/0/query',     # two map services
+            'sgnyb': 'https://b.example.gov/arcgis/rest/services/NYS_Parks/FeatureServer/0/query'}
+
+
 def test_name_two_sources():
     rs = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=900), GIS_Acres=500),
           rec('sgnyb', 'sgnyb486', 'Harriman', ring(half_w=880), Acres=505)]
-    d = one('Harriman State Park', 'State Park', rs, dx=1500)
+    d = one('Harriman State Park', 'State Park', rs, dx=1500, urls=TWO_URLS)
     assert ids(d, 'US-1') == ['237514', 'sgnyb486'] and by(d, 'US-1') == 'name+two_sources'
+    e = d['parks']['US-1']['match']['evidence']['proofs'][0]
+    assert (e['service_a'], e['service_b']) == (V.service_of(TWO_URLS['PAD-US']), V.service_of(TWO_URLS['sgnyb']))
     rs = [rec('sgnyb', 'sgnyb1', 'Harriman', ring(half_w=900), Acres=500), rec('sgnyb', 'sgnyb2', 'Harriman', ring(half_w=880), Acres=505)]
     assert one('Harriman State Park', 'State Park', rs, dx=1500)['parks']['US-1']['m'] == []   # one layer is one source
     rs = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=900), GIS_Acres=500),
           rec('sgnyb', 'sgnyb486', 'Harriman', ring(half_w=880), Acres=575)]
-    assert one('Harriman State Park', 'State Park', rs, dx=1500)['parks']['US-1']['m'] == []   # sizes 15% apart: no
+    assert one('Harriman State Park', 'State Park', rs, dx=1500, urls=TWO_URLS)['parks']['US-1']['m'] == []   # sizes 15% apart: no
     rs = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=200), GIS_Acres=30),
-          rec('sgnyb', 'sgnyb486', 'Harriman', ring(1100, half_w=200), Acres=30)]
-    assert one('Harriman State Park', 'State Park', rs, dx=550)['parks']['US-1']['m'] == []    # boxes apart: no
+          rec('sgnyb', 'sgnyb486', 'Harriman', ring(1100, half_w=200), Acres=31)]
+    assert one('Harriman State Park', 'State Park', rs, dx=550, urls=TWO_URLS)['parks']['US-1']['m'] == []    # boxes apart: no
+
+
+def test_two_sources_not_a_copy():
+    """27 Nov 2026, grader: two copies of one record (hma/sgnvi) proved Nevada herd areas with the pin outside."""
+    def pair(sa, sb, ka='237514', kb='sgnyb486', urls=TWO_URLS):
+        rs = [rec('PAD-US', ka, 'Harriman State Park', ring(half_w=900), GIS_Acres=sa), rec('sgnyb', kb, 'Harriman', ring(half_w=880), Acres=sb)]
+        return one('Harriman State Park', 'State Park', rs, dx=1500, urls=urls)
+    d = pair(500, 505)
+    assert by(d, 'US-1') == 'name+two_sources'                                       # two services, sizes 1% apart: proof
+    e = d['parks']['US-1']['match']['evidence']['proofs'][0]
+    assert e['service_a'] and e['service_b'] and e['service_a'] != e['service_b']
+    assert by(pair(500, 500.5), 'US-1') == 'name+two_sources'                        # half an acre apart: two measures
+    assert pair(500, 500)['parks']['US-1']['m'] == []                                # identical acres: one record twice
+    assert pair(500, 500.05)['parks']['US-1']['m'] == []                             # closer than two_sources_same_acres
+    assert pair(500, 505, kb='237514')['parks']['US-1']['m'] == []                   # same record id in both layers
+    assert pair(500, 505, urls={'PAD-US': TWO_URLS['PAD-US']})['parks']['US-1']['m'] == []   # one service blank
+    assert pair(500, 505, urls={})['parks']['US-1']['m'] == []                       # both blank
+    # the same agency id (tie MN DNR unit id) on records of two layers: one record twice
+    u = {'sgmnd': 'https://a.example.gov/arcgis/rest/services/DNR_A/MapServer/0', 'sgmnf': 'https://b.example.gov/arcgis/rest/services/DNR_B/MapServer/0'}
+    def dnr(pa, pb):
+        rs = [rec('sgmnd', 'sgmnd1', 'Harriman State Park', ring(half_w=900), PGRM_PROJECT=pa, Acres=500),
+              rec('sgmnf', 'sgmnf2', 'Harriman State Park', ring(half_w=880), PGRM_PROJECT=pb, Acres=505)]
+        return one('Harriman State Park', 'State Park', rs, dx=1500, urls=u)
+    assert by(dnr('SPK00123', 'SPK00456'), 'US-1') == 'name+two_sources'
+    assert dnr('SPK00123', 'SPK00123')['parks']['US-1']['m'] == []
 
 
 def test_name_and_size_any_layer():

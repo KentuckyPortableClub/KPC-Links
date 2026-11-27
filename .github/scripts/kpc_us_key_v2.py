@@ -47,7 +47,8 @@ LINK_TIE_SHAPE = [{'kind': S, 'layer': S, 'field': S, 'rx': RX, '?glue': S}]
 VALUE_KEYS = ('size_tol', 'two_sources_tol', 'pin_m', 'near_km', 'lock_acres_tol', 'thin_m', 'long_ratio', 'acre_box_factor',
               'same_ground_share', 'same_ground_tol', 'place_word_len', 'line_pin_m', 'ha_acres', 'km2_acres', 'mi2_acres',
               'acres_field_tol', 'acres_field_min_n', 'acres_field_sample', 'acres_field_min_acres',   # 27 Nov 2026, rule acres_field_guard
-              'shared_record_share')   # 27 Nov 2026, rule shared_record_size
+              'shared_record_share',   # 27 Nov 2026, rule shared_record_size
+              'two_sources_same_acres')   # 27 Nov 2026, rule two_sources_not_a_copy
 RULE_ROW = {'id': S, 'step': S, 'what': S, 'why': S, 'test': S, 'fn': S, 'stub': S}
 STEPS = {'load', '1', '2', '3', '4', 'gate', 'write'}
 STUBS = {'true', 'false', 'empty', 'identity', 'none'}
@@ -809,9 +810,24 @@ def service_of(url):
 
 
 def other_services(a, b):
-    """Rule two_sources_independent: two layers of one map service are one source (Québec's protected-areas register and
-    its recognised-reserves layer carry the same records and sizes)."""
-    return not (a.get('svc') and a.get('svc') == b.get('svc'))
+    """Rule two_sources_independent: both records come from a known map service and the two services differ. Two layers of
+    one service are one source (Québec's register and its recognised-reserves layer); a blank service is an unknown source and
+    proves nothing (hma and sgnvi: one Nevada herd-area record in two layers, grader 27 Nov 2026)."""
+    return bool(a.get('svc') and b.get('svc') and a['svc'] != b['svc'])
+
+
+def record_ids(rec, rules):
+    """Rule two_sources_not_a_copy: the ids a record carries: its id and file key, and every agency id of its layer's ties."""
+    out = {('id', norm_val(rec.get('id'))), ('id', norm_val(rec.get('key')))}
+    out |= {(t['kind'], tie_value(rec, t, rules)) for t in rules['_ties'].get(rec['layer'], [])}
+    return {x for x in out if x[1]}
+
+
+def not_a_copy(a, b, rules):
+    """Rule two_sources_not_a_copy: never the same record twice. Refused when the two agency sizes are equal (within
+    two_sources_same_acres) or when the two records share any id (record id, file key or agency id of a tie)."""
+    sa, sb = agency_acres(a, rules) or 0, agency_acres(b, rules) or 0
+    return abs(sa - sb) >= rules['numbers']['two_sources_same_acres'] and not (record_ids(a, rules) & record_ids(b, rules))
 
 
 def layer_copies(manifest):
@@ -1385,7 +1401,7 @@ def two_sources_ok(a, b, rules):
     """Rule name_two_sources: two named records of different layers, boxes overlapping, agency sizes within two_sources_tol."""
     sa, sb = agency_acres(a, rules) or 0, agency_acres(b, rules) or 0
     return a['layer'] != b['layer'] and other_services(a, b) and box_share(a['_b'], b['_b']) > 0 and sa > 0 and sb > 0 \
-        and abs(sa - sb) <= rules['numbers']['two_sources_tol'] * max(sa, sb)
+        and abs(sa - sb) <= rules['numbers']['two_sources_tol'] * max(sa, sb) and not_a_copy(a, b, rules)
 
 
 def two_sources(p, groups, pool, rules):
@@ -1396,7 +1412,8 @@ def two_sources(p, groups, pool, rules):
     for x, (ga, a) in enumerate(named):
         for gb, b in named[x + 1:]:
             if two_sources_ok(a, b, rules):
-                e = {'source_a': a['id'], 'acres_a': agency_acres(a, rules), 'source_b': b['id'], 'acres_b': agency_acres(b, rules)}
+                e = {'source_a': a['id'], 'acres_a': agency_acres(a, rules), 'service_a': a['svc'],
+                     'source_b': b['id'], 'acres_b': agency_acres(b, rules), 'service_b': b['svc']}
                 out.setdefault(ga, ('name+two_sources', e)); out.setdefault(gb, ('name+two_sources', e))
     return out
 

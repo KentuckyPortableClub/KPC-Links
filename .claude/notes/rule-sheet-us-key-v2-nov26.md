@@ -313,6 +313,20 @@ Measured on Illinois: layer `sgild` writes its acres from a flat web map (Web Me
   files: 1.004 to 1.011. IL: 131 parks' key text changes (each holds an sgild record): record sizes only, a new `ac` for 129, no join changes; size agrees 7 -> 46 of 68 (the
   scorecard's own count). MN, NY, ND, VT, AK: keys byte for byte the same. Time: AK 75 -> 79 s, IL 1.8 -> 2.5 s.
 
+## 20. 27 Nov 2026 (grader, item 1): "two sources" means two real sources, never one record read twice
+Grader: 79 parks in the US build were proven only by `name+two_sources` from two copies of one record (a layer with a blank
+service address), 28 with the pin outside (20 Nevada BLM herd areas, up to 6.2 miles off). Rules `two_sources_independent`
+and `two_sources_not_a_copy`:
+- **Counts:** two named records of different layers, boxes overlapping, agency sizes within 10%, BOTH with a service address
+  (the layer's url up to MapServer / FeatureServer) and the two addresses different.
+- **Does not count:** a blank service on either side (unknown source); two layers of one service; agency sizes closer than
+  0.1 acre (`two_sources_same_acres`: one record twice); the same id on both (record id, file key, or an agency id of a tie).
+- **When unsure:** no proof, so pin only (or another proof: pin inside, id, official size).
+- **The grader sees:** `service_a` and `service_b` in the proof's evidence, beside `source_a/b` and `acres_a/b`.
+- **Examples:** NV `hma` / `sgnvi` (one herd-area record in two layers, same acres): no longer proof. `cow` / `sgcoa` and
+  `rst` / `sgakg` / `sgnmc`: same kind of pair, same answer. Québec register read twice (round 8): still refused.
+- **Not measured on the real layer files here:** the 79 / 28 counts are the grader's; rerun the scorecard on the PC to see them go.
+
 ## 22. 27 Nov 2026: a pin-only park in an area with a store gap says so (grade item 7)
 Rule `reason_store_gap`, new reason code `no_record_store_gap`. Before, a park with no record of its name said `no_record_with_this_name` even when a layer of its area was missing from the store, which is untrue (the record may sit in the missing layer).
 - Used only where the old answer would be `no_record_with_this_name` AND the park's own area has at least one layer gap (the same list as `gaps` in the key). Plain meaning: no record with this name in the layers we have; a layer of this area is missing from the store, so look again after it is downloaded.

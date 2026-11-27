@@ -788,10 +788,19 @@
   {
    "id": "two_sources_independent",
    "step": "3",
-   "what": "the two sources of name+two_sources must come from two different map services (a layer's address up to MapServer / FeatureServer)",
-   "why": "round 8: CA-QC 'Québec prote' and 'Québec recog' are two layers of one register (Biodiversite/Aires_protegees) with the same records and sizes: with no pin, 147 parks would have been 'proven' by one source read twice",
+   "what": "the two sources of name+two_sources must come from two different map services (a layer's address up to MapServer / FeatureServer); BOTH records must have a service address: a blank one (a layer whose manifest has no url) is an unknown source and proves nothing. match.evidence lists service_a and service_b",
+   "why": "round 8: CA-QC 'Québec prote' and 'Québec recog' are two layers of one register (Biodiversite/Aires_protegees) with the same records and sizes: with no pin, 147 parks would have been 'proven' by one source read twice. Grader 27 Nov 2026: 79 parks proven by two copies of one record with a blank service address, 28 with the pin outside (Nevada herd areas, hma/sgnvi)",
    "test": "test_two_sources_independent",
    "fn": "other_services",
+   "stub": "true"
+  },
+  {
+   "id": "two_sources_not_a_copy",
+   "step": "3",
+   "what": "never the same record twice: name+two_sources is refused when the two agency sizes are equal (closer than two_sources_same_acres) or when the two records share any id (record id, file key, or an agency id of a tie in id_ties)",
+   "why": "grader 27 Nov 2026: 79 parks proven by two copies of one record with a blank service address, 28 with the pin outside (Nevada herd areas, hma/sgnvi); the copies carry identical acres (also cow/sgcoa, rst/sgakg/sgnmc)",
+   "test": "test_two_sources_not_a_copy",
+   "fn": "not_a_copy",
    "stub": "true"
   },
   {
@@ -967,6 +976,11 @@
    "value": 0.5,
    "why": "27 Nov 2026, the grader's number passed on by the owner: \"if one park's official size is much smaller than the shared record (say under half the record's acres), it cannot inherit the whole surrounding polygon\".",
    "test": "test_shared_record_small_park"
+  },
+  "two_sources_same_acres": {
+   "value": 0.1,
+   "why": "27 Nov 2026, rule two_sources_not_a_copy: two agency sizes closer than 0.1 acre are one record read twice, not two sources (grader: hma/sgnvi copies with identical acres)",
+   "test": "test_two_sources_not_a_copy"
   }
  },
  "tables": {
