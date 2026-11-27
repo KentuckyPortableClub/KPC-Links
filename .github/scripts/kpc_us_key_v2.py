@@ -1473,10 +1473,12 @@ def is_trail(p, rules):
     return bool(rules['_trail_kind_rx'].search(f"{p.get('type') or ''} {p.get('name') or ''}"))
 
 
-def reason_for(p, groups, notes, twice, rules, own_file=False):
+def reason_for(p, groups, notes, twice, rules, own_file=False, gap=False):
     """Step 4: the one pin-only reason code for a park step 3 could not prove (fixed list). own_file (27 Nov 2026): the park's
     own trail-bot file is in the store, so record_layer_not_in_store would be untrue; the file carries the park's name and
-    number but the pin is too far from its line, which is what name_but_no_pin_or_size_proof says."""
+    number but the pin is too far from its line, which is what name_but_no_pin_or_size_proof says.
+    gap (27 Nov 2026, rule reason_store_gap): the park's own area has a layer gap; a park with no record of its name then says
+    no_record_store_gap (the record may sit in the missing layer). Every other reason, and a trail park, is unchanged."""
     if twice: return 'two_records_fit'
     if (groups or own_file) and pin_of(p) is None: return 'park_has_no_pin'
     if groups or own_file: return 'name_but_no_pin_or_size_proof'
@@ -1484,7 +1486,8 @@ def reason_for(p, groups, notes, twice, rules, own_file=False):
     if 'water' in notes: return 'water_only'
     if 'office' in notes: return 'office_only'
     if notes & {'far', 'not_fee', 'easement'}: return 'name_but_no_pin_or_size_proof'
-    return 'record_layer_not_in_store' if is_trail(p, rules) else 'no_record_with_this_name'
+    if is_trail(p, rules): return 'record_layer_not_in_store'
+    return 'no_record_store_gap' if gap else 'no_record_with_this_name'
 
 
 BY_ORDER = ('name+pin', 'name+size', 'name+two_sources', 'page name+pin', 'page name+size', 'page name+two_sources',
@@ -1552,7 +1555,7 @@ def step_name(refs, ctx):
             want[ref] = {g: suffix_pieces(p, ref, groups[g], ctx) for g in proven}
             ev[ref] = proven
         else:
-            why[ref] = reason_for(p, groups, notes, twice, rules, own_file=bool(pool.trail_ix.get(ref)))
+            why[ref] = reason_for(p, groups, notes, twice, rules, own_file=bool(pool.trail_ix.get(ref)), gap=bool(ctx.get('gaps')))
     claims = {}
     for ref, gs in want.items():
         for i in {i for rs in gs.values() for i in rs}: claims.setdefault(i, []).append(ref)
@@ -1570,7 +1573,7 @@ def step_name(refs, ctx):
     return out, by, why
 
 
-def match_state(refs, parks, pool, rules, locks=None):
+def match_state(refs, parks, pool, rules, locks=None, gaps=()):
     """Steps 2-4 for one state, then the lock witness. -> {'joins', 'how', 'why', 'id_notes', 'locks_out', 'lock_status',
     'locked_broken'}."""
     names_by_full, cnt = {}, {}
@@ -1578,7 +1581,7 @@ def match_state(refs, parks, pool, rules, locks=None):
     for ref in refs: cnt[full(parks[ref].get('name'), rules)] = cnt.get(full(parks[ref].get('name'), rules), 0) + 1
     same_name = {k: sorted(v) for k, v in names_by_full.items() if len(v) > 1}
     ctx = {'parks': parks, 'refs': set(refs), 'pool': pool, 'rules': rules, 'names_by_full': names_by_full,
-           'same_name': same_name, 'shared_names': {k for k, c in cnt.items() if c > 1}}
+           'same_name': same_name, 'shared_names': {k for k, c in cnt.items() if c > 1}, 'gaps': list(gaps)}
     ctx['taken'], ctx['same_land'] = set(), {}
     got, ev, notes, pieces = step_id(refs, ctx)
     joins = dict(got)
@@ -2030,7 +2033,7 @@ def build_state(area, a, rules, facts, layer_file, info):
     locks = {}
     if a.locks and os.path.isfile(os.path.join(a.locks, 'locks', f'{area}.json')):
         with open(os.path.join(a.locks, 'locks', f'{area}.json'), encoding='utf-8') as f: locks = json.load(f).get('locks') or {}
-    res = match_state(refs, parks, pool, rules, locks)
+    res = match_state(refs, parks, pool, rules, locks, gaps)   # the park's own area's gaps only, never neighbour_gaps
     doc = state_doc(st, refs, parks, res, pool, rules, layer_files, area, gaps)
     g = gate(doc['parks'], res, pool, rules, parks)
     id_parks = [r for r in res['joins'] if res['how'][r][0] == 2]

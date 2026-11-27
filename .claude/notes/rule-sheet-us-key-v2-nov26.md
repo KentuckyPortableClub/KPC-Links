@@ -312,3 +312,11 @@ Measured on Illinois: layer `sgild` writes its acres from a flat web map (Web Me
 - **Measured 27 Nov:** switched off: only IL `sgild` (median 1.731 on 100 records). Every other layer of the IL MN NY ND VT AK
   files: 1.004 to 1.011. IL: 131 parks' key text changes (each holds an sgild record): record sizes only, a new `ac` for 129, no join changes; size agrees 7 -> 46 of 68 (the
   scorecard's own count). MN, NY, ND, VT, AK: keys byte for byte the same. Time: AK 75 -> 79 s, IL 1.8 -> 2.5 s.
+
+## 22. 27 Nov 2026: a pin-only park in an area with a store gap says so (grade item 7)
+Rule `reason_store_gap`, new reason code `no_record_store_gap`. Before, a park with no record of its name said `no_record_with_this_name` even when a layer of its area was missing from the store, which is untrue (the record may sit in the missing layer).
+- Used only where the old answer would be `no_record_with_this_name` AND the park's own area has at least one layer gap (the same list as `gaps` in the key). Plain meaning: no record with this name in the layers we have; a layer of this area is missing from the store, so look again after it is downloaded.
+- Every other reason keeps its place and order. A trail park keeps `record_layer_not_in_store`. A park with a named record but no proof keeps `name_but_no_pin_or_size_proof`.
+- Only the park's own area's gaps count. `neighbour_gaps` (layers of neighbour areas that are read too) do not change any reason, and a park listed in two areas gets the reason of the area being built.
+- No gap = no change: keys of areas without a gap are byte for byte the same. Nothing is decided from the v1 key (owner, 27 Nov: v1 is no judge); the matcher cannot know which park is in the missing layer, so the reason says only what is true.
+- The reason's words are in the table `pin_only_reasons`; the reason counts in the build summary, scorecard and pin-only csv files are counted from the key, so the new code appears there by itself. The next tool should wait for the layer, not chase these as name problems.

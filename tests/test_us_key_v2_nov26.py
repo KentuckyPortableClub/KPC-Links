@@ -1116,10 +1116,33 @@ def test_trail_park_reason():
     assert why(one('Paul Bunyan State Trail', 'State Trail', [rec('sgmnd', 'sgmnd1', 'Crow Wing')]), 'US-1') == 'record_layer_not_in_store'
 
 
+def test_reason_store_gap():
+    """Rule reason_store_gap (27 Nov 2026): no record of the name + a gap in the park's own area = no_record_store_gap."""
+    def gapped(name, kind, records, dx=0.0, area_gap=True):
+        f = Fix()
+        try:
+            f.parks['US-1'] = park(name, kind, dx_m=dx)
+            f.files['US-MN'] = records
+            if area_gap: f.incomplete['US-MN'] = ['sgzzz']
+            assert f.run() == (3 if area_gap else 0)
+            return f.key()
+        finally: f.done()
+    other = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
+    assert why(gapped('Nowhere State Park', 'State Park', other, area_gap=False), 'US-1') == 'no_record_with_this_name'
+    d = gapped('Nowhere State Park', 'State Park', other)
+    assert why(d, 'US-1') == 'no_record_store_gap' and d['gaps'] == ['sgzzz']
+    # a named record without proof (pin 5 km off) keeps its reason even with a gap
+    far = [rec('sgmnd', 'sgmnd1', 'Elm Point State Park', ring(0, half_w=300))]
+    assert why(gapped('Elm Point State Park', 'State Park', far, dx=5000), 'US-1') == 'name_but_no_pin_or_size_proof'
+    # a trail park keeps record_layer_not_in_store
+    assert why(gapped('Paul Bunyan State Trail', 'State Trail', other), 'US-1') == 'record_layer_not_in_store'
+    assert 'no_record_store_gap' in RULES['pin_only_reasons']
+
+
 def test_pin_only_reasons_fixed_list():
     sheet = {'no_record_with_this_name', 'name_but_no_pin_or_size_proof', 'two_records_fit', 'record_shared_with_another_park',
              'water_only', 'office_only'}   # layer_not_complete left the list: a state with a gap is not built at all
-    assert set(RULES['pin_only_reasons']) == sheet | {'record_layer_not_in_store', 'park_has_no_pin'}
+    assert set(RULES['pin_only_reasons']) == sheet | {'record_layer_not_in_store', 'park_has_no_pin', 'no_record_store_gap'}
     assert why(one('Nowhere State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing')]), 'US-1') == 'no_record_with_this_name'
 
 

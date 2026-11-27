@@ -354,6 +354,15 @@
    "stub": "false"
   },
   {
+   "id": "reason_store_gap",
+   "step": "4",
+   "what": "a park with no record of its name, in an area with a layer gap, says no_record_store_gap (a trail park keeps record_layer_not_in_store)",
+   "why": "27 Nov grade item 7: about 100 of 135 store-gap parks said no_record_with_this_name, which is untrue when the record may sit in the missing layer. Only the park's own area's gaps count, not neighbour gaps.",
+   "test": "test_reason_store_gap",
+   "fn": "reason_for",
+   "stub": "false"
+  },
+  {
    "id": "gate_old",
    "step": "gate",
    "what": "no record id may end in ~old",
@@ -1588,6 +1597,7 @@
     "record_shared_with_another_park": "the record is held by another park, or two parks of different names claim it",
     "water_only": "only a lake or pond surface has this name",
     "office_only": "only an office has this name",
+    "no_record_store_gap": "no record with this name in the layers we have; a layer of this area is missing from the store, so look again after it is downloaded",
     "record_layer_not_in_store": "a trail park: its trail line layer is not in the store's layer files (manager, 26 Nov; not yet on the rule sheet)",
     "park_has_no_pin": "the park has no usable pin (missing, 0,0 or impossible); its name was found but no agency id, size or two sources proves it"
    },
