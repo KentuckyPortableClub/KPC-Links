@@ -1192,7 +1192,14 @@ def id_records(pool, p, kind, value, rules, names_by_full, layer=None):
         if up: got.update(pool.piece_ix.get(piece_key(pool.recs[i], up), []))
     got = {i for i in got if i in carry or not line_by_itself(pool.recs[i])}   # 27 Nov 2026: a line must carry the id itself
     return [i for i in sorted(got) if (not layer or pool.recs[i]['layer'] == layer)
-            and wmd_ok(p, pool.recs[i], rules) and not other_park_name(p, pool.recs[i], names_by_full, rules)]
+            and wmd_ok(p, pool.recs[i], rules) and not other_park_name(p, pool.recs[i], names_by_full, rules)
+            and not id_not_fee(pool.recs[i], rules)]
+
+
+def id_not_fee(rec, rules):
+    """Rule easement_not_by_id (27 Nov 2026, grade item 5): a record that is an easement (its type field says so, or its name
+    says lease or agreement) or whose interest is not fee-owned is never joined by an id either."""
+    return is_easement(rec, rules) or not_fee_interest(rec, rules)
 
 
 def shared_ids(refs, parks, rules):
@@ -2071,6 +2078,19 @@ def park_states(repo, area):
             for x in d.get('data') or [] if x.get('reference')}
 
 
+def pota_fallback(repo, area):
+    """Rule facts_fallback_pota_list (27 Nov 2026, grade item 6): {ref: {'name', 'pin'}} from POTA's own list, for a park the
+    park facts do not know yet (or know without a name)."""
+    d = read_gz_json(os.path.join(repo, 'data', 'pota', 'saved', 'parks', f'{area_of(area)}.json.gz'))
+    out = {}
+    for x in d.get('data') or []:
+        if not x.get('reference'): continue
+        row = {'name': str(x.get('name') or '').strip()}
+        if x.get('latitude') not in (None, '') and x.get('longitude') not in (None, ''): row['pin'] = [x['latitude'], x['longitude']]
+        out[str(x['reference'])] = row
+    return out
+
+
 def rules_for_area(rules, area):
     """Rules ca_kind_words / two_language_kind: a Canadian area also counts the Canadian / French kind words (Provincial, Parc,
     Réserve ...) and reads names through the two-language kind table."""
@@ -2129,6 +2149,10 @@ def build_state(area, a, rules, facts, layer_file, info):
     info['acres_field_off'], info['acres_field_checked'] = acres_field_check(pool, rules)
     listed = park_states(a.repo, area)
     parks = {r: dict(facts.get(r) or {'name': '', 'type': ''}, listed_in=listed.get(r) or []) for r in refs}
+    for r, row in pota_fallback(a.repo, area).items():   # 27 Nov 2026: facts without the park, or without its name: POTA's list
+        if r in parks and not str(parks[r].get('name') or '').strip():
+            parks[r]['name'] = row['name']
+            if not parks[r].get('pin') and row.get('pin'): parks[r]['pin'] = row['pin']
     for r, p in facts.items():
         if r not in parks and str(p.get('area') or '') in [area] + nbs: parks[r] = p
     locks = {}

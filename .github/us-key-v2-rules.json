@@ -230,11 +230,29 @@
   {
    "id": "easement_by_name",
    "step": "3",
-   "what": "a record whose type field says easement, or whose name says lease or agreement, is never joined by a name rule; an agency-id proof is unaffected",
+   "what": "a record whose type field says easement, or whose name says lease or agreement, is never joined by a name rule (27 Nov 2026: nor by an id, rule easement_not_by_id)",
    "why": "v1 KPC_NO_LEASE_BY_NAME and item 5 (owner Nov 16-17): US-10051 Olana took a 408-acre Conservation Easement record by name.",
    "test": "test_easement_by_name_refused",
    "fn": "is_easement",
    "stub": "false"
+  },
+  {
+   "id": "easement_not_by_id",
+   "step": "2",
+   "what": "a record that is an easement (its type field says so, or its name says lease or agreement) or whose interest is not fee-owned (Fish and Wildlife type E, R, A) is never joined by an agency id either; the other records of the same id still join",
+   "why": "grade 27 Nov 2026 item 5: 23 'NPS Easement' records (type 'Conservation Easement') joined Fredericksburg-Spotsylvania, Petersburg, Manassas, Prince William and Cumberland Gap by the NPS unit code in their page link, up to 24 km from the pin; an easement is private land the park does not own.",
+   "test": "test_easement_not_by_id",
+   "fn": "id_not_fee",
+   "stub": "false"
+  },
+  {
+   "id": "facts_fallback_pota_list",
+   "step": "load",
+   "what": "a park the park facts do not know (or know without a name) takes its name, and its pin when the facts have none, from POTA's own list; its type stays blank until the facts have it",
+   "why": "grade 27 Nov 2026 item 6: 11 parks new on POTA's list (US-13665 to US-13672, US-6253, US-6257, US-6274) were in no facts row, so the key printed a blank name for them.",
+   "test": "test_facts_fallback_pota_list",
+   "fn": "pota_fallback",
+   "stub": "empty"
   },
   {
    "id": "acres_any_layer",
@@ -1947,8 +1965,8 @@
    "test": "test_easement_by_name_refused"
   },
   "type_field_rx": {
-   "value": "^(category|des_tp|d_des_tp|rec_type|type|class|interest|inttype\\d*|prot_type|land_type|acq_type|feat_type|ownership_type|own_type_desc)$",
-   "why": "v1 TYPE_KEY_RX: the record fields that state its type, read by easement_rx",
+   "value": "^(category|des_tp|d_des_tp|rec_type|type|class|interest|inttype\\d*|prot_type|land_type|acq_type|feat_type|ownership_type|own_type_desc|matype)$",
+   "why": "v1 TYPE_KEY_RX: the record fields that state its type, read by easement_rx. 27 Nov 2026 (grade item 5): + matype, Virginia's protected-lands type field (sgvae: 'Conservation Easement' on every 'NPS Easement' record)",
    "test": "test_easement_by_name_refused"
   },
   "lease_name_rx": {

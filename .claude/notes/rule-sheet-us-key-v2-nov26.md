@@ -347,3 +347,22 @@ Rule `reason_store_gap`, new reason code `no_record_store_gap`. Before, a park w
 - Only the park's own area's gaps count. `neighbour_gaps` (layers of neighbour areas that are read too) do not change any reason, and a park listed in two areas gets the reason of the area being built.
 - No gap = no change: keys of areas without a gap are byte for byte the same. Nothing is decided from the v1 key (owner, 27 Nov: v1 is no judge); the matcher cannot know which park is in the missing layer, so the reason says only what is true.
 - The reason's words are in the table `pin_only_reasons`; the reason counts in the build summary, scorecard and pin-only csv files are counted from the key, so the new code appears there by itself. The next tool should wait for the layer, not chase these as name problems.
+
+## 26. 27 Nov 2026: an easement is not joined by an agency id either (grade item 5)
+Rule `easement_not_by_id` (function `id_not_fee`), plus the type field `matype` in the table `type_field_rx`.
+Before: rule `easement_by_name` kept an easement out of every NAME join, but said "an agency-id proof is unaffected". So when a park's id matched an easement record, the easement came in with the rest of the id's records. Real case: Virginia's `sgvae` layer holds "NPS Easement" records (type field `MATYPE` = "Conservation Easement", owner Private or NPS, 0 to 348 acres). Their page link names the park (`nps.gov/pete`), so the NPS unit code joined them to Petersburg, Fredericksburg-Spotsylvania, Manassas, Prince William Forest and Cumberland Gap, up to 24 km from the pin. An easement is not park land.
+- What counts: a record whose type field says easement (now incl. `MATYPE`), or whose name says lease / agreement, or a Fish and Wildlife record whose interest type is not fee (E, R, A).
+- What does not change: the other records of the same id still join. Fee-owned units ("National Park", "NPS Holding", "USFS Holding", "State Scenic Holding") stay.
+- Measured on the 27 Nov files (the new matcher against the same matcher without the rule): VA 9 parks change, TN 2, MN 0, NY 0.
+  VA: 23 "NPS Easement" records leave (Fredericksburg-Spotsylvania 14, Manassas 4, Petersburg 2, Prince William 2, Cumberland Gap 1 by the TN file); 17 refuge easements leave (Rappahannock River Valley NWR 17, 77 to 816 ac each; Eastern Shore of Virginia NWR 2) and Widewater State Park's 127-acre "DCR Easement"; one 46-acre easement leaves the Appalachian Trail. Acres: Rappahannock 9,294 -> 7,664, Widewater 1,315 -> 1,189.
+  All of them are `MATYPE` Conservation Easement, owner Private (or the agency holding the right), mostly "closed".
+- Every outline stays confirmed; no park lost its proof.
+- Which change did what: the 23 NPS and the Appalachian Trail records left through the id rule (they were id joins). The 17 + 2 refuge records and Widewater were NAME joins (step 3); they leave only because `matype` is now a type field, i.e. the older rule `easement_by_name` now sees them.
+- Grey area for the owner: the refuges' own easement records (Rappahannock, Eastern Shore) were shown as part of the refuge before; they leave too. Say if refuge easements should be shown.
+
+## 27. 27 Nov 2026: a park the facts do not know takes its name from POTA's list (grade item 6)
+Rule `facts_fallback_pota_list` (function `pota_fallback`).
+Before: a park on POTA's list with no row in the park facts (new parks) got an empty name and no pin in the key. Eleven parks: US-13665 to US-13672, US-6253, US-6257, US-6274 (and US-13670).
+- A listed park whose facts row is missing, or has no name, takes the name (and the pin, when the facts have none) from POTA's own saved list. A facts name is never overwritten. The type stays blank until the facts have it.
+- Measured on TN: the four TN parks (US-13670, US-6253, US-6257, US-6274) now carry their names; they are still pin only, "no record with this name", because the matcher found no record under those names (no size, no type known).
+- Kure Atoll US-0121 is not touched: POTA now lists it under US-KI, there is no US-KI layer file, so it is in no key (see the report; a ruling is needed).

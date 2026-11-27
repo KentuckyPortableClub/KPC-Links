@@ -71,6 +71,7 @@ class Fix:
             shutil.copy(os.path.join(SRC['github'], f), os.path.join(self.d, 'repo', '.github', f))
         os.makedirs(os.path.join(self.d, 'store'))
         self.parks, self.files, self.incomplete, self.lists, self.no_manifest, self.listed = {}, {}, {}, {}, {}, {}
+        self.pota = {}   # {ref: {'name', 'latitude', 'longitude'}}: extra columns of POTA's own list row
         self.urls = {}   # {area: {layer: url}}: manifest sources (rule layer_copy)
         self.man = {}    # {area: {layer: manifest row}}: rows written as given (rule load_no_wait)
 
@@ -81,7 +82,7 @@ class Fix:
             refs = self.lists.get(V.area_label(area), [r for r, p in self.parks.items() if p['area'] == area])
             os.makedirs(self.p('repo/data/pota/saved/parks'), exist_ok=True)
             with gzip.open(self.p(f'repo/data/pota/saved/parks/{area}.json.gz'), 'wt') as f:
-                json.dump({'data': [{'reference': r, 'locationDesc': self.listed.get(r, area)} for r in refs]}, f)
+                json.dump({'data': [dict({'reference': r, 'locationDesc': self.listed.get(r, area)}, **self.pota.get(r, {})) for r in refs]}, f)
         for area, recs in self.files.items():
             man = {r['layer']: dict({'complete': True}, **({'url': self.urls[area][r['layer']], 'where': '1=1'}
                                                            if r['layer'] in self.urls.get(area, {}) else {})) for r in recs}
@@ -1024,10 +1025,41 @@ def test_easement_by_name_refused():
     assert ids(one('Olana State Historic Site', 'State Historic Site', rs), 'US-1') == ['sgnyb407']
     assert one('Elm Creek Lease Area', '', [rec('PAD-US', '5', 'Elm Creek Lease Area')])['parks']['US-1']['m'] == []   # a lease
     f = Fix()
-    try:                                               # an agency-id proof is unaffected
+    try:                                               # 27 Nov 2026: nor is an easement joined by an agency id (rule easement_not_by_id)
         mn_valley(f)
-        for r in f.files['US-MN']: r['attributes']['Category'] = 'Easement'
-        assert f.run() == 0 and len(ids(f.key(), 'US-7145')) == 3
+        f.files['US-MN'][0]['attributes']['Category'] = 'Easement'
+        assert f.run() == 0 and ids(f.key(), 'US-7145') == ['sgmne0340002', 'sgmne0340003']
+    finally: f.done()
+    # Virginia's own type field (matype) says it too
+    assert V.is_easement(pool_of(rec('sgvae', 'sgvae1', 'NPS Easement', MATYPE='Conservation Easement')).recs[0], RULES)
+    assert not V.is_easement(pool_of(rec('sgvae', 'sgvae2', 'NPS Easement', MATYPE='NPS Holding')).recs[0], RULES)
+
+
+def test_easement_not_by_id():
+    # the Petersburg case: one NPS unit code on a page link; the fee land and a 'NPS Easement' record 8 km away (type Conservation Easement)
+    nps = lambda c: f'http://www.nps.gov/{c}/index.htm'
+    link = {'id_kind': 'NPS unit code', 'id_value': 'PETE'}
+    rs = [rec('sgvae', 'sgvae1', 'Petersburg National Battlefield Park', LANDLINK=nps('pete'), MATYPE='National Park'),
+          rec('sgvae', 'sgvae2', 'NPS Easement', ring(8000), LANDLINK=nps('pete'), MATYPE='Conservation Easement'),
+          rec('sgvae', 'sgvae3', 'Petersburg National Battlefield Park', ring(1500), LANDLINK=nps('pete'), MATYPE='NPS Holding')]
+    d = one('Petersburg National Battlefield', 'National Battlefield', rs, link=link)
+    assert by(d, 'US-1') == 'id' and ids(d, 'US-1') == ['sgvae1', 'sgvae3']   # the fee units stay, the easement leaves
+    assert V.id_not_fee(pool_of(*rs).recs[1], RULES) and not V.id_not_fee(pool_of(*rs).recs[0], RULES)
+    # a Fish and Wildlife record whose interest is not fee-owned
+    assert V.id_not_fee(pool_of(rec('fws', 'fws1', 'A', INTTYPE1='E')).recs[0], RULES) and not V.id_not_fee(pool_of(rec('fws', 'fws2', 'A', INTTYPE1='O')).recs[0], RULES)
+
+
+def test_facts_fallback_pota_list():
+    f = Fix()
+    try:   # a park the facts do not know: POTA's list gives the name and the pin; the type stays blank
+        f.parks['US-2'] = park('Oak Hill State Forest', 'State Forest')
+        f.lists['MN'] = ['US-1', 'US-2']
+        f.pota = {'US-1': {'name': 'Elm Ridge State Forest', 'latitude': LAT, 'longitude': LON}}
+        f.files['US-MN'] = [rec('sgnyb', 'sgnyb1', 'Elm Ridge State Forest', Category='State Forest')]
+        assert f.run() == 0
+        d = f.key()
+        assert d['parks']['US-1']['n'] == 'Elm Ridge State Forest' and not d['parks']['US-1']['t']
+        assert ids(d, 'US-1') == ['sgnyb1'] and d['parks']['US-2']['n'] == 'Oak Hill State Forest'   # a park the facts have is never overwritten
     finally: f.done()
 
 
