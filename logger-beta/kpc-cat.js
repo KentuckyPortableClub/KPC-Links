@@ -353,7 +353,9 @@
       if (r.ok) return found(r, i);
       failed(p, i, r);
     }
-    say('No port answered as a ' + (RADIO[S.radio] ? RADIO[S.radio].label : S.proto) + ' (' + tried.join(' · ') + '). Check: the radio type in MY RADIO, its CAT RATE menu = ' + (S.baud || 38400) + ', a data cable, and that no other program (WSJT-X, flrig) holds the port. PICK A DIFFERENT PORT lets you choose by hand.' + (YAE() && RTSSKIP ? ' A Yaesu with its CAT RTS menu ON only answers with RTS held up. On a cable that is not the radio\'s own USB the app only tries that on a port YOU pick (so it cannot key a radio through a Digirig): press PICK A DIFFERENT PORT and choose it, or switch the radio\'s CAT RTS menu OFF.' : ''), false);
+    say('No port answered as a ' + (RADIO[S.radio] ? RADIO[S.radio].label : S.proto) + ' (' + tried.join(' · ') + '). Check: the radio type in MY RADIO, its CAT RATE menu = ' + (S.baud || 38400) + ', a data cable, and that no other program (WSJT-X, flrig) holds the port. PICK A DIFFERENT PORT lets you choose by hand.' + (YAE() && RTSSKIP ? ((S.rtsPorts || {})[rtsKey()] === ''
+        ? ' Last time this radio answered with RTS down, so the app did not raise RTS this time. If its CAT RTS menu is ON now, press PICK A DIFFERENT PORT and choose the Enhanced port (the app then tries RTS up there and remembers it), or switch the radio\'s CAT RTS menu OFF.'   /* Nov 26 2026 (Brandon's FTDX10 on a new PC: CAT RTS ON, the app remembered 'answers with RTS down') */
+        : ' A Yaesu with its CAT RTS menu ON only answers with RTS held up. On a cable that is not the radio\'s own USB the app only tries that on a port YOU pick (so it cannot key a radio through a Digirig): press PICK A DIFFERENT PORT and choose it, or switch the radio\'s CAT RTS menu OFF.') : ''), false);
     return false;
   }
   const lastDial = () => lastRead;

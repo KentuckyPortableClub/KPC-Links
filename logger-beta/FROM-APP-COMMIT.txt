@@ -1,1 +1,1 @@
-app commit 93dd114 2026-11-19
+app commit ba6eb18 2026-11-26

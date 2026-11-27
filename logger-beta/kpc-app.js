@@ -140,11 +140,13 @@
     document.querySelector('.tabs [data-go="digi"]').classList.toggle('live', RUN);
     $('stStart').disabled = RUN; $('stStop').disabled = !RUN;
   }
-  let quietSince = 0, quietSaid = 0;
+  let quietSince = 0, quietSaid = 0, txQuietT = 0;
   function level(c) {
     const db = c.db, pct = Math.max(0, Math.min(100, (db + 80) / 80 * 100));
     /* nothing coming in for 8 s = almost always the wrong sound card picked (Brandon Oct 22: Windows did not decode) */
-    if (db > -70) quietSince = 0; else if (!quietSince) quietSince = Date.now(); else if (Date.now() - quietSince > 8000 && Date.now() - quietSaid > 120000) { quietSaid = Date.now(); toast('🔇 No sound is coming in (' + db.toFixed(0) + ' dB). Under STATION → Sound pick the radio\'s USB sound card as RADIO SOUND IN (not the ' + (N.native ? 'tablet' : 'PC') + ' microphone), press STOP then START LISTENING, and turn the radio\'s USB OUT level up.', 10000, 'bad'); }
+    /* Brandon Nov 26: the radio mutes its receive sound while transmitting: never count TX (or the 3 s after it) as 'no sound' */
+    if (c.tx || TXING) txQuietT = Date.now();
+    if (db > -70 || Date.now() - txQuietT < 3000) quietSince = 0; else if (!quietSince) quietSince = Date.now(); else if (Date.now() - quietSince > 8000 && Date.now() - quietSaid > 120000) { quietSaid = Date.now(); toast('🔇 No sound is coming in (' + db.toFixed(0) + ' dB). Under STATION → Sound pick the radio\'s USB sound card as RADIO SOUND IN (not the ' + (N.native ? 'tablet' : 'PC') + ' microphone), press STOP then START LISTENING, and turn the radio\'s USB OUT level up.', 10000, 'bad'); }
     /* Nov 18 full review (A1): band noise peaks 10-12 dB over its average, so the bar goes red on the PEAK (clipping), not only the average */
     const clip = +c.peak >= 0.98;
     const i = $('stLvl'); i.style.width = pct + '%'; i.className = db > -3 || clip ? 'bad' : '';
@@ -963,7 +965,7 @@
     saveFile,
     VER, S, save, toast, sheet, shut, go, on, fire, esc, utc, toGrid, vmodSheet, vmodName,
     myCall, myGrid, dist, distUnit, toUnit, pickSerial, portLabel, chipName, native: N.native, platform: N.platform,
-    devices, start, stop, soundLost, setDb, lvSet, dialNow, monSet, lvHtml, lvShow, pttOn, stopAll, stopAllBtn, lvlHelper, setup, txSince: () => TXT0, _resumed: resumed, catMsg: () => catLast, canKey, keyCheck, clock, stdCall,
+    devices, start, stop, soundLost, setDb, lvSet, dialNow, monSet, lvHtml, lvShow, pttOn, stopAll, stopAllBtn, lvlHelper, setup, txSince: () => TXT0, _resumed: resumed, _level: level, catMsg: () => catLast, canKey, keyCheck, clock, stdCall,
     running: () => RUN, txing: () => TXING, rigTips: () => TIPS, rigFam: id => rigFam(id),
     audio: A, rate: A.rate, bandPlan, net, report, can, backupText, restoreText, clockCheck: onlineClock, headless: HEADLESS, now, gps, pc: PC,
     cat: () => G.KPCCat || null, catConnected: () => !!(G.KPCCat && KPCCat.connected()),
