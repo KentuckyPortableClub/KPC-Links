@@ -1,8 +1,19 @@
 {
- "updated": "2026-11-26T14:06:46+00:00",
+ "updated": "2026-11-27T21:37:26+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13673",
+   "prog": "pota",
+   "name": "Chimney Point State Historic Site",
+   "st": [
+    "VT"
+   ],
+   "la": 44.036,
+   "lo": -73.4197,
+   "found": "2026-11-27"
+  },
   {
    "ref": "US-6274",
    "prog": "pota",
