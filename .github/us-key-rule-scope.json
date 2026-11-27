@@ -1114,6 +1114,17 @@
     "parks": []
    },
    "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:30 PM: 'Confirmed-park fast path against the store room (agency-ID proof only)'; 6:56 PM: 'idk how we still missing any'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
+  },
+  {
+   "id": "2026-11-26-switch-spread",
+   "when": "2026-11-26",
+   "from": "89f8d29174ab",
+   "why": "Owner 26 Nov 8:20 PM: 'We run mn and ny 100s of times 50 ish changes we not getting very far when the next state will be different'. The seven fresh-store switches (KPC_SAME_LAND, KPC_PROVEN_ONLY, KPC_STORE_FRESH, KPC_SAVED_HINTS_ONLY, KPC_NO_WEBSITE_CARRY, KPC_FRESH_ONLY, KPC_ID_LOCK) go on for nine more states with different agencies and land (CA, CO, FL, GA, ME, PA, TX, WA, WI) so one PC test shows what the next states need. No build: the PC test only.",
+   "scope": {
+    "states": ["CA", "CO", "FL", "GA", "ME", "MN", "NY", "PA", "TX", "WA", "WI"],
+    "parks": []
+   },
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 8:20 PM: 'We run mn and ny 100s of times ... when the next state will be different'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }

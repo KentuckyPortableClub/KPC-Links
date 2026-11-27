@@ -125,6 +125,6 @@ check('F: the build checks its new locks against the same day\'s layer files and
 check('D: locked parks skip the matching loop, the match checks and the gate',
       "if ref in LOCK_ROWS:" in run_ and 'set(TRL) | set(LOCK_ROWS)' in src and src.count('set(TRL) | set(LOCK_ROWS)') == 2)
 sw = json.load(open(ROOT / '.github/key-switches.json'))['switches'].get('KPC_ID_LOCK') or {}
-check('D: the switch is on for MN and NY only', sw.get('on') == ['MN', 'NY'])
+check('D: the switch is on for MN, NY and the nine spread-test states (owner 26 Nov 8:20 PM)', sw.get('on') == ['CA', 'CO', 'FL', 'GA', 'ME', 'MN', 'NY', 'PA', 'TX', 'WA', 'WI'])
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
