@@ -51,8 +51,7 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
    Morton, US-2147 Sunken Meadow / Alfred E. Smith/Sunken Meadow. A spelling row only says "another way to write the name"; the
    pin or the size must still prove the land. One table, one test, tried on the workbench first.
 3. SC as the control state once its layer is in (scratch run: 146 of 167 against v1's 161; the prep tool lists the SC name styles).
-4. Canada: the store has the CA layer files in the same format. Check for "US-" typed in the code, then one small province with
-   table rows only (agency id fields, kind words, French and English names).
+4. Canada: DONE in rounds 7-8 (see "Added 26 Nov night" below).
 5. Only when v2 beats v1 on the PC and the owner says so: v2 replaces v1, its file joins the US rule files, the hash moves once.
 
 ## Added later on 26 Nov (after the owner's PC run)
@@ -66,11 +65,40 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
   own page address for 118 parks.
 - **Trails and far pins are built in v2** (rule sheet section 12): line records, the 100 ft pin distance, the far-pin waiver
   for parks POTA lists in several states. Fixture-tested only for lines: no layer file holds a line.
-- **KPC-Store job, not started, the owner has not said go:** `kpc_layer_records.py` must keep the `trl` / `line` layers and
-  save line shapes as `paths` + `"shape": "line"`; and one shapeless record should not mark a whole layer "not complete"
-  (that alone blocks MA). Running it means a LAYER-RECORDS download: the owner's button.
+- **KPC-Store job: DONE on the PC** (see "Added 26 Nov night" below): lines kept, a shapeless record no longer blocks a layer.
 - **Small fixes still open in the tools:** the scorecard does not name the v1 test it compared with; the scorecard and the
   map side do not know lines yet; the "other spellings" table is not built.
+
+## Added 26 Nov night (rounds 7-8, the store room, the page reader, the audits)
+START HERE in a new chat. The owner's report of every bad finding: https://claude.ai/artifact/QpFeqpJkCUoxgjmazB6gNF
+- **v2 is not a test version any more** (owner, 26 Nov evening: "everything staying on pc till it is proven so let it do us and
+  Canada"). #393 is at `ff8b5c5`: any US state and Canada (`--areas US-MN CA-ON`), a store gap is built and flagged (exit 3),
+  `V2-BUILD.bat`, licence marks per park (`share: all | part | none`, fail closed), hectares and km2 to acres, 15 two-language
+  kind pairs, parks with no pin, page-address ties for MA GA WI SC NJ, apostrophes. MN 295 and NY 819 unchanged.
+- **Canada (Fable's run, round 8):** QC 361 of 837, NS 342 of 491, NB 238 of 549, SK 218 of 412, MB 197 of 309, YT 14 of 113,
+  PE 13 of 56, SP 1 of 1. Two random samples of 30 a province: no wrong land. NB, NS, YT still show store gaps (ghost layers).
+- **Licences:** MN 217 all / 78 part / 0 none; NY 54 / 235 / 530 (NY DEC `sgnya` and NY Parks `sgnyb` are "restricted in
+  writing"). Owner: private use yes, sharing no. Not yet on the scorecard or the build summary.
+- **Store room, fixed, ON THE PC ONLY** (`C:\KPC\3-MAP-STORE-US-CA`, backups `*.before-nov26-fix.*`, 45 tests): statuses said
+  apart, reuse of another area's file, the real object id, no ghost layers, national layers cut to the area, lines kept, failure
+  reasons saved, `LAYER-RECORDS.bat` 1 status / 2 rebuild / 3 download (list first, then Y), the nightly job never starts a
+  first-time download (`--no-new`). NO KPC-Store PR YET: stage the files from the PC before touching the GitHub copies.
+- **Page reader, fixed, ON THE PC ONLY** (`C:\KPC\6-TOOLS\PAGE-READER`, 26 files read back equal, 30 tests): one site-rule table
+  (`kpc_net_rule.py`), no verdict carried into the next run, junk-name table, size units, safe saves, `PAGE-READER.bat`
+  1 status / 2 re-read kept pages / 3 read what is missing. NO KPC-Data PR YET. Two values wait for the owner's yes or no
+  (`robots_challenge_page`, `robots_other_site_page`, both 'no-rules').
+- **The site rule** (owner's words, `net-rules-nov26.md`): only a real Disallow line is a no. About 3,100 pages were falsely
+  not read. Unanswered: should a 403 on the data stop that site for the run at all.
+- **Audits (read before touching either tool or the facts builder):** `audit-tools-nov26.md` (F1-F18 + section 6 false blocks),
+  `audit-facts-nov26.md` (the park-facts chain, F1-F16).
+- **Waiting on the owner's PC, in this order:** LAYER-RECORDS 1 (he says "status is done"; read
+  `results\STORE-ROOM-STATUS.txt` first), then 2, then 3; PAGE-READER 1, 2, 3; upload pack so the facts rebuild;
+  `V2-STATE-PREP.bat`, `V2-BUILD.bat`. One run each: never ask for a rerun to see.
+- **Open, not built:** a v2 table row so a "not land" layer (ND `sgaki`, VT `vta`) does not hold a state (owner's call); the
+  park-facts builder (drop `--key`, km2 guard, bad pins, Kentucky ids, freshness stamp, keep the page reader's new fields) and a
+  PC button for it; "other spellings" table (US-0474, US-2147, US-4239); prep tool address comparison (scheme / www); licence
+  counts on the scorecard; one front-door button for the whole chain; PA State Game Lands (308 parks, no record with their
+  name); 355 parks whose saved page is another park's; hand downloads do not reach the store room; GA US-9795 for the owner.
 
 ## For the other builder (#392 and later patches to v1)
 - "Full land kept" is not a pass mark where the land is another unit's: US-5106 Bear Swamp (Otsego): PAD-US 236421 holds about
