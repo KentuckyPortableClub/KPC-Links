@@ -1,0 +1,1368 @@
+{
+ "about": "The v2 US key matcher's rule table. A person may edit the values and the tables here (a number, a word list, a layer's field); the code holds no rule number of its own and has one path for every state. Every row says why (the real park or bug) and names its test in tests/test_us_key_v2_nov26.py. Every edit needs that test to pass and the MN + NY scorecard to pass before a merge. The matcher will not start if a key is unknown, a why or test is missing, or a value has the wrong type.",
+ "version": 1,
+ "rules": [
+  {
+   "id": "load_complete",
+   "step": "load",
+   "what": "a typed state builds only when every layer in its own file is complete; else it is not built (exit 3)",
+   "why": "SC's own file lists sgnca with 0 records on 26 Nov: a key made from half a layer loses parks without saying so.",
+   "test": "test_incomplete_layer_not_built",
+   "fn": "layer_gaps",
+   "stub": "empty"
+  },
+  {
+   "id": "load_drop_layers",
+   "step": "load",
+   "what": "layers in drop_layers are dropped at load",
+   "why": "sgmnb, the MN statutory state forest line, holds private land; 16 MN forests took other land before.",
+   "test": "test_drop_layer_never_matched",
+   "fn": "dropped_layer",
+   "stub": "false"
+  },
+  {
+   "id": "load_no_shape",
+   "step": "load",
+   "what": "a record with no shape is dropped at load and counted",
+   "why": "a record with no outline cannot be drawn or tested against a pin.",
+   "test": "test_record_without_shape_dropped",
+   "fn": "has_shape",
+   "stub": "true"
+  },
+  {
+   "id": "load_key_not_unique",
+   "step": "load",
+   "what": "a record whose file key repeats in its file (and that has no agency id) is dropped at load and counted",
+   "why": "the Iowa layer sgiaa in MN's file repeats 25 row keys (sgiaa247 is three different areas), so the key cannot name one record.",
+   "test": "test_repeated_row_key_dropped",
+   "fn": "repeated_key",
+   "stub": "false"
+  },
+  {
+   "id": "load_same_record_twice",
+   "step": "load",
+   "what": "a record already loaded from the state's own file is not loaded again from a neighbour's file; a different record under the same id is dropped from the neighbour file and counted",
+   "why": "national layers (fws, sgmng) sit in several state files; the same refuge must not be counted twice or carry one id for two pieces of land.",
+   "test": "test_neighbour_copy_not_loaded_twice",
+   "fn": "already_loaded",
+   "stub": "false"
+  },
+  {
+   "id": "spell_agency_id",
+   "step": "write",
+   "what": "a record of a layer in record_id_fields is named <layer>0<agency digits> when that field is filled, unique and of one letter prefix in the whole layer; else by the file's own key",
+   "why": "sgmnb06 (agency forest 6) was read as sgmnb6 (row 6): 16 MN forests took another forest's land.",
+   "test": "test_agency_spelling_zero_led",
+   "fn": "spell_layer",
+   "stub": "empty"
+  },
+  {
+   "id": "lock_holds",
+   "step": "1",
+   "what": "step 1, the witness: a lock row holds when today's step 2 proves the same park by the same id, with the same record count, the same names and summed acres within lock_acres_tol (measured from the shape when the layer has no acre field)",
+   "why": "the lock is a witness, not a shortcut (manager, round 4): step 2 always runs fresh; review 4 found a stale lock could stop a whole state.",
+   "test": "test_lock_holds_same_as_cold",
+   "fn": "lock_reason",
+   "stub": "true"
+  },
+  {
+   "id": "lock_zero_acres",
+   "step": "1",
+   "what": "no size both times = unchanged; a size on one side only = changed",
+   "why": "#392: four NY Park Service sites saved as 0 acres broke their lock.",
+   "test": "test_lock_zero_acres",
+   "fn": "acres_unchanged",
+   "stub": "false"
+  },
+  {
+   "id": "lock_broken",
+   "step": "1",
+   "what": "a lock row that does not hold is logged locked_broken with ONE reason: id not in today's file / record renamed / size changed / record count changed / id now claimed by a second park / the park's page id changed or is missing / the park is no longer in the list / step 2 no longer proves it",
+   "why": "on 25 Nov all 339 Minnesota Valley parcels moved; a broken lock is reported, never obeyed, and never stops a state.",
+   "test": "test_broken_lock_logged",
+   "fn": "lock_reason",
+   "stub": "empty"
+  },
+  {
+   "id": "id_tie",
+   "step": "2",
+   "what": "the park's own page id equals a record's agency unit id (id_ties here, and the web-address ties of .github/link-id-ties.json); all of today's records with that id are taken",
+   "why": "US-7145 Minnesota Valley SRA: all its state land pieces carry SRA00304 in mgtprgprj; row numbers moved. The PAD-US Loc_Nm tie needs Mang_Name NPS (non-NPS records use 4-letter Loc_Nm such as BACH).",
+   "test": "test_id_ties_minnesota_valley",
+   "fn": "tie_value",
+   "stub": "empty"
+  },
+  {
+   "id": "wma_project_pieces",
+   "step": "2",
+   "what": "unit_pieces rows: the park's id proves the sgmna record with that uniqueid; every sgmna record with the same lam_program_project_code AND the same unit_name joins by id too, and belongs to the lock; another unit name of that project does not",
+   "why": "US-12693 Swan Lake WMA: the page id names subunit 00 (163 acres); the wildlife area is the whole project (3,394 acres).",
+   "test": "test_wma_project_pieces",
+   "fn": "piece_key",
+   "stub": "empty"
+  },
+  {
+   "id": "id_unit_pieces",
+   "step": "2",
+   "what": "after an id proves the park, a record of the SAME layer under the same name as an id record, whose own id field is empty or a placeholder (never another real id) and that meets every tie's where-filter (a PAD-US record not managed by NPS is never a piece of an NPS unit), within near_km of the pin or of a joined piece, every refusal applied, joins as a 'piece of id unit'; never across layers; it counts in the lock",
+   "why": "v1 1654 key: US-5416 Michigan Hill (2 DEC records, 1,793 acres; v2 had 1, 1,199) and US-9099 Plantation Island (4 records; v2 had 2). Round 4 check: without the where-filter, city / private / state PAD-US land named 'St. Croix National Scenic Riverway' (US-0673) and NGO land on the Appalachian Trail (US-4556) joined as pieces.",
+   "test": "test_id_unit_pieces",
+   "fn": "id_unit_pieces",
+   "stub": "empty"
+  },
+  {
+   "id": "id_shared",
+   "step": "2",
+   "what": "an id two parks claim gives neither park its land by id; both go on to step 3",
+   "why": "US-2477 and US-4792 both link SPK00139; one id cannot prove two parks.",
+   "test": "test_shared_id_goes_to_name_step",
+   "fn": "shared_ids",
+   "stub": "empty"
+  },
+  {
+   "id": "wetland_district_fee",
+   "step": "2",
+   "what": "a park named Wetland Management District takes only fws Waterfowl Production Area records (RSL_TYPE WPA) of its district that are owned in fee (INTTYPE1 O); never easements, never another layer",
+   "why": "US-0356 Big Stone WMD: easement tracts are private farmland (owner, Oct 29).",
+   "test": "test_wetland_district_fee_only",
+   "fn": "wmd_ok",
+   "stub": "true"
+  },
+  {
+   "id": "other_park_name",
+   "step": "2",
+   "what": "a record carrying another park's full name is never joined (steps 1, 2 and 3)",
+   "why": "NY DEC page 8269 holds both Harris Hill and Hatch Creek State Forest; MN DNR 'Minnesota Valley' (State Recreation Area) fit US-9384 Minnesota Valley State Trail by its bare name.",
+   "test": "test_record_with_other_park_name_refused",
+   "fn": "other_park_name",
+   "stub": "false"
+  },
+  {
+   "id": "name_exact",
+   "step": "3",
+   "what": "names are equal after the plain-name rule (lower case, accents and brackets out, punctuation out, 'the' out, short forms written out), or the record's name plus the park's kind word is the park's name",
+   "why": "sgmnd 'Crow Wing' + 'State Park' is Crow Wing State Park; 'SRA' is State Recreation Area.",
+   "test": "test_exact_name_and_kind_word",
+   "fn": "park_name_keys",
+   "stub": "empty"
+  },
+  {
+   "id": "name_possessive",
+   "step": "3",
+   "what": "first try: the plain name, and v1's single-letter rule (single letters set aside when 2 or more real words are left: 'knox s headquarters' = 'knox headquarters'); second try: a possessive written as one word (DEVIL'S TRACK = Devils Track)",
+   "why": "v1 kpc_match_checks.exact_name + kpc_us_key.real_name (R4, 25 Nov): US-10048 Knox's Headquarters is PAD-US 'Knox Headquarters'; US-12389 DEVIL'S TRACK = Devils Track; 'Knox's' alone never joins 'Knox' (one real word).",
+   "test": "test_possessive_second_try",
+   "fn": "full_ps",
+   "stub": "identity"
+  },
+  {
+   "id": "name_wildlife_and_fish",
+   "step": "3",
+   "what": "'Wildlife and Fish Refuge' = 'Wildlife Refuge'",
+   "why": "US-4236 Upper Mississippi River National Wildlife and Fish Refuge is POTA's ... National Wildlife Refuge.",
+   "test": "test_wildlife_and_fish_refuge",
+   "fn": "wildlife_and_fish",
+   "stub": "identity"
+  },
+  {
+   "id": "name_ny_dec_class",
+   "step": "3",
+   "what": "kind_swaps rows: in the NY DEC layer 'Wild Forest' or 'Multiple Use Area' = 'State Forest' when a real place word (4+ letters, not a kind or place word) is shared",
+   "why": "US-12060 Crystal Lake State Forest is DEC's Crystal Lake Wild Forest.",
+   "test": "test_ny_dec_wild_forest",
+   "fn": "kind_swap_keys",
+   "stub": "empty"
+  },
+  {
+   "id": "name_kind_swaps",
+   "step": "3",
+   "what": "kind_swaps rows (v1 KIND_SWAPS): 'X Marine Park' / 'X State Marine Park' = 'X State Park'; 'X Trail' = 'X State Trail'; a real place word in X",
+   "why": "US-2026 Canandaigua Lake State Park is NY State Parks' Canandaigua Lake Marine Park; US-13624 Black Diamond State Trail is the Black Diamond Trail.",
+   "test": "test_name_kind_swaps",
+   "fn": "kind_swap_keys",
+   "stub": "empty"
+  },
+  {
+   "id": "name_compound",
+   "step": "3",
+   "what": "'X <kind A> and <kind B>' (both from compound_kinds) also reads 'X <kind A>' and 'X <kind B>'; a real place word in X; the usual second proof and the other-park-name refusal",
+   "why": "SC DNR files 'Buzzard Roost Heritage Preserve and Wildlife Management Area'; POTA lists US-3890 Buzzard Roost Heritage Preserve.",
+   "test": "test_name_compound",
+   "fn": "compound_keys",
+   "stub": "empty"
+  },
+  {
+   "id": "name_longer_or_shorter",
+   "step": "3",
+   "what": "tried only when the exact names proved nothing: a record holding the pin (inside, or within pin_m of its edge) whose core name (kind words and an 'and ...' tail set aside) is the park's with kinds compatible, or begins with the park's core of 2+ words, or holds 75% of a core of 3+ words (at most one word longer); the last two need a kind in common; the record's extra words may not be a water word (water_last_words)",
+   "why": "v1 PR #390 rule 5 (owner 26 Nov 5:25 PM): US-11861 Nick's Lake, US-5270 Reinstein Woods, US-2506 Lake Vermilion; never X State Forest to X State Park, never X to X Lake.",
+   "test": "test_name_longer_or_shorter",
+   "fn": "core_records",
+   "stub": "empty"
+  },
+  {
+   "id": "name_words_run_together",
+   "step": "3",
+   "what": "two names are the same when they are equal with the spaces between their place words removed; kind words stay words; a second proof is still needed",
+   "why": "US-5277 Roeliff Jansen Kill Multiple Use Area is DEC's Roeliff Jansenkill Multiple Use Area.",
+   "test": "test_name_words_run_together",
+   "fn": "run_together",
+   "stub": "identity"
+  },
+  {
+   "id": "easement_by_name",
+   "step": "3",
+   "what": "a record whose type field says easement, or whose name says lease or agreement, is never joined by a name rule; an agency-id proof is unaffected",
+   "why": "v1 KPC_NO_LEASE_BY_NAME and item 5 (owner Nov 16-17): US-10051 Olana took a 408-acre Conservation Easement record by name.",
+   "test": "test_easement_by_name_refused",
+   "fn": "is_easement",
+   "stub": "false"
+  },
+  {
+   "id": "acres_any_layer",
+   "step": "3",
+   "what": "the name+size proof compares an official size with each named layer's own total (after the no-double-count rules), not only the largest; match.evidence lists acres_by_layer",
+   "why": "US-4491 Superior NF: the forest boundary layer holds 3.89 M acres, PAD-US's fee land 2.09 M (official 2.09 M).",
+   "test": "test_name_and_size_any_layer",
+   "fn": "group_acres",
+   "stub": "empty"
+  },
+  {
+   "id": "page_name",
+   "step": "3",
+   "what": "the place name inside the park's own official page address is one more name for the park, only when the link bot rated it 'strong' (the address names the park in full); it still needs the pin, a size or two sources; match.by says 'page name+...'",
+   "why": "v1 link_name_agree: US-11983 Keystone WMA's own page is keystone-woods-wma, and the record is Keystone Woods WMA.",
+   "test": "test_page_name",
+   "fn": "page_name_keys",
+   "stub": "empty"
+  },
+  {
+   "id": "name_needs_proof",
+   "step": "3",
+   "what": "a name joins only with the pin inside a record of that unit or within pin_m of its edge, or by size, or by two official sources",
+   "why": "name alone joined wrong land many times (Washington has dozens of Lost Lakes); US-4236 Upper Mississippi: name fits, pin 350 m outside, no size: pin only.",
+   "test": "test_name_alone_never_joins",
+   "fn": "pin_near",
+   "stub": "true"
+  },
+  {
+   "id": "name_pin_near_edge",
+   "step": "3",
+   "what": "a pin within pin_m (100 m) of a named record's edge proves the name like a pin inside",
+   "why": "v1's ruled auto-confirm distance of 24 Nov ('held name and pin'): a pin on the park's road or lot sits just outside the line.",
+   "test": "test_pin_within_100_m",
+   "fn": "pin_near",
+   "stub": "true"
+  },
+  {
+   "id": "name_two_sources",
+   "step": "3",
+   "what": "two records of different layers carry the park's name, their boxes overlap, their agency sizes agree within size_tol, and they lie within near_km of the pin",
+   "why": "owner's pick of 25 Nov 9:50 AM 'Two sources agree' (v1 'name in two official sources').",
+   "test": "test_name_two_sources",
+   "fn": "two_sources_ok",
+   "stub": "true"
+  },
+  {
+   "id": "name_and_size",
+   "step": "3",
+   "what": "a name with the pin outside every record joins when the agency's own acres field agrees with a tagged official size (agency document or sourced hand copy) and the land is within near_km of the pin; never when two parks of the state share the name",
+   "why": "rule sheet V2-G2: size is proof; a shared name cannot pick its size.",
+   "test": "test_name_and_size_join",
+   "fn": "size_agrees",
+   "stub": "true"
+  },
+  {
+   "id": "thin_must_be_long",
+   "step": "3",
+   "what": "a thin long strip (narrower than thin_m on average and half its outline at least long_ratio times its width) gets an edge allowance no wider than the strip itself (its mean width, at most pin_m); a small square is not a strip",
+   "why": "Old Croton Aqueduct is a 26-mile strip about 20 m wide; a true 28-acre square must still count; US-9102 Swallow Bluffs WMA's pin is 4 m from its 55 m-wide strip.",
+   "test": "test_thin_strip_vs_small_square",
+   "fn": "too_thin",
+   "stub": "false"
+  },
+  {
+   "id": "water_only",
+   "step": "3",
+   "what": "a record whose last name word is lake, pond, ponds or reservoir is never joined by name unless the park's kind is a lake, pond, reservoir or river kind, or the agency's own full name of the record ends with the park's kind",
+   "why": "a park on someone else's lake never takes the lake (owner D4, Nov 17); MN DNR 'Greenleaf Lake' is filed by the agency as a State Recreation Area, not water.",
+   "test": "test_water_only_refused",
+   "fn": "is_water",
+   "stub": "false"
+  },
+  {
+   "id": "office",
+   "step": "3",
+   "what": "a record named as an office or district office is never joined",
+   "why": "PAD-US 2162 / 2165 are field offices, not parks.",
+   "test": "test_office_refused",
+   "fn": "is_office",
+   "stub": "false"
+  },
+  {
+   "id": "same_step_two_names",
+   "step": "3",
+   "what": "one record claimed in the same step by parks whose names differ as POTA writes them (brackets too) goes to neither; both say record_shared_with_another_park",
+   "why": "two parks, one record, two names: one of them is other land. PAD-US 236695 is ONE record holding both Pine Hill (Cattaraugus County) and Pine Hill (Delaware County) State Forests.",
+   "test": "test_two_parks_one_record_two_names",
+   "fn": "resolve_claims",
+   "stub": "empty"
+  },
+  {
+   "id": "stronger_step_wins",
+   "step": "3",
+   "what": "a record held by a lock or an id is not open to a name join",
+   "why": "Pine Hill: an id is stronger proof than a name.",
+   "test": "test_id_beats_name",
+   "fn": "held_by_stronger",
+   "stub": "false"
+  },
+  {
+   "id": "two_records_fit",
+   "step": "3",
+   "what": "two different same-layer units that both prove only by size give neither",
+   "why": "size alone cannot choose between two pieces of land of one name.",
+   "test": "test_two_records_fit",
+   "fn": "ambiguous_sizes",
+   "stub": "empty"
+  },
+  {
+   "id": "trail_layer_not_in_store",
+   "step": "4",
+   "what": "a trail park with no record of its name says record_layer_not_in_store",
+   "why": "v1 drew 28 MN, 8 NY and 2 SC trail parks from trail line layers that are not in the store's layer files.",
+   "test": "test_trail_park_reason",
+   "fn": "is_trail",
+   "stub": "false"
+  },
+  {
+   "id": "gate_old",
+   "step": "gate",
+   "what": "no record id may end in ~old",
+   "why": "US-0681 was joined to 3562~old in test 1716.",
+   "test": "test_gate_refuses_old_id",
+   "fn": "gate_old_ids",
+   "stub": "empty"
+  },
+  {
+   "id": "gate_not_in_file",
+   "step": "gate",
+   "what": "every joined record must be in today's layer file",
+   "why": "joins from old saved copies pointed at land that is gone.",
+   "test": "test_gate_refuses_missing_record",
+   "fn": "gate_unresolved",
+   "stub": "empty"
+  },
+  {
+   "id": "gate_two_name",
+   "step": "gate",
+   "what": "no record id may sit on two parks under two names (the PC test's wrong-land count, by record name and by park name)",
+   "why": "the 16 MN forests that took another forest's land.",
+   "test": "test_gate_refuses_two_name_share",
+   "fn": "gate_two_names",
+   "stub": "empty"
+  },
+  {
+   "id": "gate_id_mismatch",
+   "step": "gate",
+   "what": "every park confirmed by id has only records that carry that id",
+   "why": "an id join must be checkable from the record alone.",
+   "test": "test_gate_id_mismatch",
+   "fn": "gate_id_mismatch",
+   "stub": "empty"
+  },
+  {
+   "id": "same_in_same_out",
+   "step": "write",
+   "what": "two runs on the same files write the same bytes (sorted keys, fixed gzip time, 'made' from the layer file)",
+   "why": "Fable's extra gate: no answer may depend on dictionary order.",
+   "test": "test_two_runs_same_bytes",
+   "fn": "",
+   "stub": "none"
+  },
+  {
+   "id": "no_legacy_import",
+   "step": "load",
+   "what": "v2 imports none of the legacy matcher modules",
+   "why": "the legacy grew by patch on patch; v2 must stay one small file.",
+   "test": "test_no_legacy_import",
+   "fn": "",
+   "stub": "none"
+  },
+  {
+   "id": "acres_no_double_count",
+   "step": "write",
+   "what": "a layer listed in class_fields (PAD-US FeatClass) is totalled per class and the largest class is taken; acres are never added across classes; the same number is used in ac, the name+size proof and the lock",
+   "why": "US-0354 Agassiz NWR: PAD-US holds the refuge as Fee and as Designation; v2 showed 123,638 acres for a 61,441-acre refuge.",
+   "test": "test_acres_no_double_count",
+   "fn": "class_of",
+   "stub": "empty"
+  },
+  {
+   "id": "acres_same_ground_once",
+   "step": "write",
+   "what": "two joined records of one layer with the same name count once when the sample points inside the smaller record's shape lie at least same_ground_share inside the other's shape and the sizes are within same_ground_tol",
+   "why": "US-2071 Helen L. McNitt: PAD-US holds it twice on one box; US-5145 Burnt-Rossman Hills: six neighbouring DEC pieces with overlapping boxes are NOT one piece (10,634 acres, not 7,458).",
+   "test": "test_acres_same_ground_once",
+   "fn": "same_ground",
+   "stub": "false"
+  },
+  {
+   "id": "lock_is_witness",
+   "step": "1",
+   "what": "a lock never changes a join and never fails the gate; the key is the same bytes with or without locks; the lock path shows only in v2-run.json (locks held / broken / new) and v2-proof.csv (column lock)",
+   "why": "manager round 4 and review 4/12: a hand-edited lock pointing park A at park B's id held, and the gate failed the whole state.",
+   "test": "test_lock_never_changes_answer",
+   "fn": "lock_reason",
+   "stub": "empty"
+  },
+  {
+   "id": "id_guard",
+   "step": "2",
+   "what": "an id join stands only when one of its records holds the pin (inside or within pin_m, to the shape) or shares a real place word with the park's name or its strong page name, and its nearest land is within near_km of the pin (to the shape); otherwise the park goes to step 3",
+   "why": "review 5: 242 of 250 MN parks had another same-kind id with land within 10 km; US-5249 Pine Hill linked the Cattaraugus forest 300 km away.",
+   "test": "test_id_guard_name_or_pin",
+   "fn": "id_guard",
+   "stub": "true"
+  },
+  {
+   "id": "other_park_pin",
+   "step": "3",
+   "what": "a record is refused for a name join when it holds the pin (inside or within pin_m) of another park whose name, brackets aside, is the same, however that park was proven; reason record_shared_with_another_park",
+   "why": "review 1: PAD-US 236785 is one record holding US-12778 Tracy Creek (Steuben) and three rings 0-1 km from US-5342 Tracy Creek (Broome), 102 km away.",
+   "test": "test_other_park_pin_refused",
+   "fn": "holds_other_pin",
+   "stub": "false"
+  },
+  {
+   "id": "gate_other_park_pin",
+   "step": "gate",
+   "what": "no record of a name-proven park holds the pin of another park whose name, brackets aside, is the same (checked on its own, so a regression of the step rule is caught)",
+   "why": "review 1: the gate and the scorecard both passed the Pine Hill, Robert Moses and Tracy Creek records.",
+   "test": "test_gate_other_park_pin",
+   "fn": "gate_other_pin",
+   "stub": "empty"
+  },
+  {
+   "id": "name_single_letters",
+   "step": "3",
+   "what": "v1's single-letter rule: single letters are set aside when 2 or more real words are left ('Knox's Headquarters' = 'Knox Headquarters')",
+   "why": "v1 real_name R4 (25 Nov): US-10048.",
+   "test": "test_possessive_second_try",
+   "fn": "single_letters_out",
+   "stub": "empty"
+  },
+  {
+   "id": "size_shared_name",
+   "step": "3",
+   "what": "a name two parks of the state share never proves by size",
+   "why": "v1 size_witnesses: a full name two parks share ties neither (review 7 found this guard untested).",
+   "test": "test_name_and_size_join",
+   "fn": "name_shared_in_state",
+   "stub": "false"
+  },
+  {
+   "id": "fws_interest_by_name",
+   "step": "3",
+   "what": "a Fish and Wildlife record whose interest type (INTTYPE1) is not fee-owned is never joined by a name rule, to any park (grey area V2-G4, pending the owner)",
+   "why": "review 6: seven refuges took easement tracts (private land); US-0367 Northern Tallgrass Prairie had 35 (10,064 acres).",
+   "test": "test_fws_interest_by_name",
+   "fn": "not_fee_interest",
+   "stub": "false"
+  },
+  {
+   "id": "placeholder_not_unit",
+   "step": "3",
+   "what": "a placeholder ('N/A', 'none', 'unknown', empty, a bare home-page address) is never a unit id, a project or an id value",
+   "why": "review 6: the fws unit field CMPXNAME is \"N/A\", so every same-named fws record statewide became one unit; 119 NY DEC records carry the bare home page.",
+   "test": "test_placeholder_not_unit",
+   "fn": "is_placeholder",
+   "stub": "false"
+  },
+  {
+   "id": "far_pieces",
+   "step": "3",
+   "what": "records grouped by NAME alone (no unit field value) are pieces of one group only within near_km of the pin (to the shape) or of a piece already taken (box to box, a chain); a farther one is not joined by name",
+   "why": "review 6: US-0367's records reached 462 km from its pin.",
+   "test": "test_far_pieces_not_joined",
+   "fn": "chain_pieces",
+   "stub": "identity"
+  },
+  {
+   "id": "unit_at_any_distance",
+   "step": "3",
+   "what": "records found by the park's name that share a real unit_fields value are one unit at any distance (a wetland district's tracts, a refuge's LIT, a DEC page, a DNR project); every refusal still applies (fee only, other park's full name, other same-named park's pin, placeholders never a unit)",
+   "why": "round 5: rule far_pieces cut US-0373 Windom WMD 17,804 -> 4,498 and US-0356 Big Stone 4,414 -> 1,598; a district is scattered by nature.",
+   "test": "test_unit_at_any_distance",
+   "fn": "unit_value",
+   "stub": "empty"
+  },
+  {
+   "id": "piece_suffix",
+   "step": "3",
+   "what": "once a record joins by a name rule, records of the SAME layer whose name equals it but for a trailing piece word (East, West, North, South, Unit n, Tract n, Parcel n, Block n, a number, a roman numeral, a letter) join as pieces within near_km of the pin or of a joined piece, every refusal applied",
+   "why": "US-13270 Otis Pike Pine Barrens got only its West pieces (770 of 3,801 official acres).",
+   "test": "test_piece_suffix",
+   "fn": "piece_base",
+   "stub": "identity"
+  },
+  {
+   "id": "stale_outputs_removed",
+   "step": "write",
+   "what": "a state's old key and lock file leave --out before it is built, so a not-built or gate-failed state leaves no stale key",
+   "why": "review 10: a re-used --out kept an older US-MN.json.gz after exit 3.",
+   "test": "test_stale_key_removed",
+   "fn": "clear_old_outputs",
+   "stub": "false"
+  },
+  {
+   "id": "id_other_names_report",
+   "step": "write",
+   "what": "v2-id-other-names.csv lists every id-joined record that shares no real place word with the park's name; it changes no join",
+   "why": "review 13: Raquette Boreal's fishing access site, Mount Loretto's Butler Manor Woods: the owner looks at these.",
+   "test": "test_id_other_names_report",
+   "fn": "id_other_names",
+   "stub": "empty"
+  },
+  {
+   "id": "rule_table_checked",
+   "step": "load",
+   "what": "the rule table is refused (exit 2, one plain line) for an unknown key, a missing why / test / function / stub, a value of the wrong type, or a broken row inside any table",
+   "why": "review 9: an id_ties row with no field crashed with a traceback.",
+   "test": "test_rule_table_typo_refused",
+   "fn": "check_rules",
+   "stub": "false"
+  },
+  {
+   "id": "trial_rules",
+   "step": "load",
+   "what": "--rules <file> loads a trial rule table (same guards); v2-run.json records the file and its sha256, and the key's tool line says '(trial rules)'",
+   "why": "the owner's 'try a rule' workbench: a trial key must never be mistaken for a real one.",
+   "test": "test_trial_rules",
+   "fn": "tool_line",
+   "stub": "identity"
+  }
+ ],
+ "values": {
+  "size_tol": {
+   "value": 0.1,
+   "why": "legacy SIZE_TOL_PARK (10%); a name joins by size when the agency acres are within 10% of the official size",
+   "test": "test_name_and_size_join"
+  },
+  "two_sources_tol": {
+   "value": 0.1,
+   "why": "v1 'name in two official sources' (SIZE_TOL_PARK): the two agency sizes within 10%",
+   "test": "test_name_two_sources"
+  },
+  "pin_m": {
+   "value": 100.0,
+   "why": "v1's ruled auto-confirm distance of 24 Nov ('held name and pin'): the pin inside or within 100 m of the edge",
+   "test": "test_pin_within_100_m"
+  },
+  "near_km": {
+   "value": 10.0,
+   "why": "v2: an id or a size match must have land within 10 km of the pin (Pine Hill US-5249)",
+   "test": "test_id_guard_name_or_pin"
+  },
+  "lock_acres_tol": {
+   "value": 0.05,
+   "why": "rule sheet: a lock is broken when resized over 5%",
+   "test": "test_broken_lock_logged"
+  },
+  "thin_m": {
+   "value": 200.0,
+   "why": "legacy THIN_M: a shape narrower than this on average may be a strip",
+   "test": "test_thin_strip_vs_small_square"
+  },
+  "long_ratio": {
+   "value": 6.0,
+   "why": "legacy LONG_RATIO (26 Nov): a strip is long when half its outline is 6 times its width; a small square is not",
+   "test": "test_thin_strip_vs_small_square"
+  },
+  "acre_box_factor": {
+   "value": 1.6,
+   "why": "legacy kpc_us_key._sane_ac (Oct 29: Standing Boy Creek SP '68,840,167 acres' was square feet): a size over 1.6 times the record's box is converted or not used",
+   "test": "test_acres_square_feet_converted"
+  },
+  "same_ground_tol": {
+   "value": 0.1,
+   "why": "two records count once only when their sizes are within 10% too",
+   "test": "test_acres_same_ground_once"
+  },
+  "place_word_len": {
+   "value": 4,
+   "why": "v1 name_core / kind_swap: a real place word has 4 letters or more ('crystal', never 'oak' alone)",
+   "test": "test_ny_dec_wild_forest"
+  },
+  "same_ground_share": {
+   "value": 0.8,
+   "why": "two same-name records are the same ground when 80% of the sample points inside the smaller one's SHAPE lie inside the other (US-5145 Burnt-Rossman: neighbouring pieces with overlapping boxes were merged)",
+   "test": "test_acres_same_ground_once"
+  }
+ },
+ "tables": {
+  "drop_layers": {
+   "value": {
+    "sgmnb": "MN statutory state forest line: holds private land",
+    "sgnvg": "USFS administrative forest boundary (EDW_ForestSystemBoundaries): holds private and state land inside the line"
+   },
+   "why": "MN statutory state forest line holds private land; 16 MN forests took other land; round 5 land check: US-4491 Superior NF took sgnvg42 (3,886,760 acres) beside PAD-US 3082 (2,093,610, the official 2,092,769 NFS acres). Club 2-fer rule: a national forest is agency-owned land, never the proclamation or administrative line.",
+   "test": "test_drop_layer_never_matched"
+  },
+  "record_id_fields": {
+   "value": {
+    "sgmne": "su_id",
+    "sgmna": "uniqueid",
+    "sgmnb": "sft",
+    "sgmnd": "pgrm_project",
+    "wsrc": "river_id",
+    "wld": "wildernessid",
+    "ncg": "gamelandid",
+    "sgncb": "gamelandid",
+    "sgcta": "dep_id",
+    "sgmaa": "os_id",
+    "sgmad": "os_id",
+    "sgpaa": "icsorg",
+    "sgwie": "fr_prop_code",
+    "sgtna": "tsp_uid",
+    "sgmea": "cl_uniqueid",
+    "sgida": "wmaid",
+    "sgarb": "park_num",
+    "sgmta": "siteid",
+    "sgnva": "landid"
+   },
+   "why": "kpc_same_land AGENCY_RECORD_IDS + AGENCY_ID_LATER (checked 100% filled and unique on 25 Nov); v2 re-checks each layer of each file at load and uses the file key when the check fails (sgmnd: three letter prefixes; wsrc: two).",
+   "test": "test_agency_spelling_zero_led"
+  },
+  "id_ties": {
+   "value": [
+    {
+     "kind": "MN DNR unit id",
+     "layer": "sgmne",
+     "field": "mgtprgprj",
+     "measured": "MN: 68 parks, 7,364 records; pin inside 65, within 5 km 3, far 0"
+    },
+    {
+     "kind": "MN DNR unit id",
+     "layer": "sgmnd",
+     "field": "PGRM_PROJECT",
+     "measured": "MN: 68 parks, 68 records; pin inside 66, within 5 km 2, far 0"
+    },
+    {
+     "kind": "MN DNR unit id",
+     "layer": "sgmnf",
+     "field": "PGRM_PROJECT",
+     "measured": "MN: 142 parks, 144 records; pin inside 128, within 5 km 14, far 0"
+    },
+    {
+     "kind": "MN DNR unit id",
+     "layer": "sgmna",
+     "field": "uniqueid",
+     "measured": "MN: 103 parks, 103 records; pin inside 72, within 5 km 31, far 0 (lam_program_project_code: 0 parks)"
+    },
+    {
+     "kind": "MN DNR unit id",
+     "layer": "sgmnc",
+     "field": "pgrm_project",
+     "measured": "MN: 14 parks, 16 records; pin inside 7, within 5 km 7, far 0"
+    },
+    {
+     "kind": "NPS unit code",
+     "layer": "PAD-US",
+     "field": "Loc_Nm",
+     "where": {
+      "Mang_Name": "NPS"
+     },
+     "measured": "MN 4 parks (3 inside, 1 near), NY 22 (13 inside, 8 near, 1 far: US-4556 trail), SC 6 (6 inside); every hit Mang_Name NPS"
+    },
+    {
+     "kind": "NPS unit code",
+     "layer": "sgakd",
+     "field": "UNIT_CODE",
+     "measured": "NY: 23 parks, 23 records; pin inside 18, within 5 km 5, far 0; PA file 9 parks (7 inside, 2 near)"
+    }
+   ],
+   "why": "measured on the 26 Nov files (counts in each row); web-address ties come from .github/link-id-ties.json",
+   "test": "test_id_ties_minnesota_valley"
+  },
+  "unit_fields": {
+   "value": {
+    "sgmne": [
+     "mgtprgprj"
+    ],
+    "sgmna": [
+     "lam_program_project_code"
+    ],
+    "sgmnc": [
+     "pgrm_project"
+    ],
+    "sgmnd": [
+     "PGRM_PROJECT"
+    ],
+    "sgmnf": [
+     "PGRM_PROJECT"
+    ],
+    "sgnya": [
+     "URL"
+    ],
+    "fws": [
+     "CMPXNAME",
+     "LIT"
+    ]
+   },
+   "why": "pieces of one unit share this field (a list: the first that is not a placeholder); a name group with a unit is whole at any distance (rule unit_at_any_distance). fws: CMPXNAME (the district for WPA tracts), else LIT (measured MN NY and neighbours, 4,975 records: among records with CMPXNAME N/A, 161 LIT values, one ORGNAME each and one LIT per ORGNAME; ORGCODE was refused: 64581 spans 9 districts, 9999 is a placeholder). A layer not listed takes same-name pieces within near_km of the pin (far_pieces).",
+   "test": "test_unit_at_any_distance"
+  },
+  "name_fields": {
+   "value": {
+    "PAD-US": [
+     "Unit_Nm",
+     "Loc_Nm"
+    ],
+    "sgnyb": [
+     "Label"
+    ],
+    "fws": [
+     "CMPXNAME",
+     "ORGNAME"
+    ],
+    "sgmng": [
+     "ORGNAME"
+    ]
+   },
+   "why": "besides the file's record_name: PAD-US Unit_Nm / Loc_Nm (the legacy key's two names), NY State Parks Label (state-gis.json nm2), FWS complex and org names (the wetland district rule).",
+   "test": "test_wildlife_and_fish_refuge"
+  },
+  "full_name_fields": {
+   "value": {
+    "sgmnd": [
+     [
+      "LEGISLATIVE_NAME"
+     ],
+     [
+      "AREA_NAME",
+      "AREA_TYPE"
+     ]
+    ],
+    "sgmne": [
+     [
+      "mgtprjname",
+      "mgtprgname"
+     ]
+    ],
+    "sgmnf": [
+     [
+      "UNIT_NAME",
+      "UNIT_TYPE"
+     ]
+    ],
+    "sgmnc": [
+     [
+      "unit_name",
+      "unit_type"
+     ]
+    ]
+   },
+   "why": "the agency's own full name of a record (its name with its own kind word); read only by rule other_park_name, so Minnesota Valley State Trail never takes the land of Minnesota Valley State Recreation Area.",
+   "test": "test_record_with_other_park_name_refused"
+  },
+  "short_forms": {
+   "value": {
+    "np": "national park",
+    "nwr": "national wildlife refuge",
+    "sp": "state park",
+    "wma": "wildlife management area",
+    "sf": "state forest",
+    "nf": "national forest",
+    "nm": "national monument",
+    "nra": "national recreation area",
+    "sra": "state recreation area",
+    "shs": "state historic site",
+    "nhp": "national historical park",
+    "nhs": "national historic site",
+    "snp": "state nature preserve",
+    "sna": "state natural area",
+    "np&pres": "national park and preserve",
+    "npres": "national preserve",
+    "nmem": "national memorial",
+    "nhl": "national historic landmark",
+    "nsr": "national scenic river",
+    "nwsr": "national wild and scenic river",
+    "st": "saint",
+    "mt": "mount",
+    "ft": "fort",
+    "co": "county",
+    "cnty": "county"
+   },
+   "why": "legacy kpc_match_checks.SHORT: 'SRA' is State Recreation Area",
+   "test": "test_exact_name_and_kind_word"
+  },
+  "kind_words": {
+   "value": [
+    "state",
+    "national",
+    "county",
+    "city",
+    "regional",
+    "public",
+    "park",
+    "parks",
+    "forest",
+    "forests",
+    "wildlife",
+    "management",
+    "area",
+    "areas",
+    "natural",
+    "scientific",
+    "preserve",
+    "reserve",
+    "refuge",
+    "recreation",
+    "recreational",
+    "conservation",
+    "land",
+    "lands",
+    "unit",
+    "units",
+    "tract",
+    "tracts",
+    "parcel",
+    "parcels",
+    "access",
+    "site",
+    "sites",
+    "wma",
+    "wa",
+    "sna",
+    "sf",
+    "sp",
+    "nwr",
+    "nf",
+    "section",
+    "block",
+    "lot",
+    "zone",
+    "part",
+    "piece",
+    "the",
+    "of",
+    "and",
+    "acquisition",
+    "project",
+    "easement",
+    "fee",
+    "owned",
+    "dnr",
+    "dec",
+    "habitat",
+    "game",
+    "fish",
+    "hunting",
+    "fishing",
+    "trail",
+    "trails",
+    "property",
+    "properties",
+    "unknown",
+    "unnamed",
+    "none",
+    "na",
+    "n",
+    "a",
+    "no",
+    "name",
+    "other",
+    "misc",
+    "miscellaneous",
+    "admin",
+    "administrative",
+    "office",
+    "headquarters"
+   ],
+   "why": "legacy kpc_same_land.KIND_WORDS: a name of kind words only names no place",
+   "test": "test_exact_name_and_kind_word"
+  },
+  "place_words": {
+   "value": [
+    "lake",
+    "lakes",
+    "river",
+    "creek",
+    "pond",
+    "bay",
+    "beach",
+    "island",
+    "point",
+    "hill",
+    "mountain",
+    "falls",
+    "harbor",
+    "north",
+    "south",
+    "east",
+    "west"
+   ],
+   "why": "legacy PLACE_WORDS: 'Lake Wild Forest' says nothing; a real place word is needed",
+   "test": "test_ny_dec_wild_forest"
+  },
+  "water_last_words": {
+   "value": [
+    "lake",
+    "pond",
+    "ponds",
+    "reservoir"
+   ],
+   "why": "legacy WATER_LAST (owner F3, Nov 22): a record named for a lake or pond is water",
+   "test": "test_water_only_refused"
+  },
+  "water_park_kind_rx": {
+   "value": "fishing lake|reservoir|\\blakes?\\b|\\bponds?\\b|\\brivers?\\b|riverway",
+   "why": "legacy LAKE_TYPE_RX (owner D4, Nov 17) plus river kinds (rule sheet: unless the park is a lake or river park)",
+   "test": "test_water_only_refused"
+  },
+  "office_rx": {
+   "value": "\\b(field office|district office|ranger district|resource area|administrative unit|supervisor.?s office|management unit office)\\b",
+   "why": "legacy kpc_match.ADMIN (Nov 2, KPC_NO_OFFICE_JOIN)",
+   "test": "test_office_refused"
+  },
+  "trail_kind_rx": {
+   "value": "\\btrail\\b",
+   "why": "manager 26 Nov: trail parks whose line layer is not in the store",
+   "test": "test_trail_park_reason"
+  },
+  "wetland_district": {
+   "value": {
+    "park_rx": "wetland management district",
+    "layer": "fws",
+    "field": "INTTYPE1",
+    "fee": "O",
+    "type_field": "RSL_TYPE",
+    "type": "WPA"
+   },
+   "why": "US-0356 Big Stone WMD (owner Oct 29): fee-owned Waterfowl Production Areas only",
+   "test": "test_wetland_district_fee_only"
+  },
+  "acre_fields": {
+   "value": [
+    "GIS_Acres",
+    "ACRES",
+    "Acres",
+    "acres",
+    "GISACRES",
+    "Shape_Acres"
+   ],
+   "why": "legacy kpc_store_attrs._raw_acres field order, then the first field with acre in its name",
+   "test": "test_acres_square_feet_converted"
+  },
+  "size_witness_tags": {
+   "value": [
+    "agency_document",
+    "hand_copy"
+   ],
+   "why": "legacy kpc_match_checks.WITNESS_PROOF: the only two size tags that count",
+   "test": "test_name_and_size_join"
+  },
+  "pin_only_reasons": {
+   "value": {
+    "no_record_with_this_name": "no record in today's layer files has this park's name",
+    "name_but_no_pin_or_size_proof": "a record has the name, but the pin is not inside it and no official size agrees",
+    "two_records_fit": "two pieces of land of this name fit by size only",
+    "record_shared_with_another_park": "the record is held by another park, or two parks of different names claim it",
+    "water_only": "only a lake or pond surface has this name",
+    "office_only": "only an office has this name",
+    "record_layer_not_in_store": "a trail park: its trail line layer is not in the store's layer files (manager, 26 Nov; not yet on the rule sheet)"
+   },
+   "why": "rule sheet section 6, without layer_not_complete (a state with a gap is not built at all), plus record_layer_not_in_store (manager 26 Nov)",
+   "test": "test_pin_only_reasons_fixed_list"
+  },
+  "neighbours": {
+   "value": {
+    "AL": "FL GA MS TN",
+    "AZ": "CA CO NM NV UT",
+    "AR": "LA MO MS OK TN TX",
+    "CA": "AZ NV OR",
+    "CO": "AZ KS NE NM OK UT WY",
+    "CT": "MA NY RI",
+    "DC": "MD VA",
+    "DE": "MD NJ PA",
+    "FL": "AL GA",
+    "GA": "AL FL NC SC TN",
+    "ID": "MT NV OR UT WA WY",
+    "IL": "IA IN MO WI",
+    "IN": "IL MI OH",
+    "IA": "IL MN MO NE SD WI",
+    "KS": "CO MO NE OK",
+    "LA": "AR MS TX",
+    "ME": "NH",
+    "MD": "DC DE PA VA WV",
+    "MA": "CT NH NY RI VT",
+    "MI": "IN OH WI",
+    "MN": "IA ND SD WI",
+    "MS": "AL AR LA TN",
+    "MO": "AR IA IL KS NE OK TN",
+    "MT": "ID ND SD WY",
+    "NE": "CO IA KS MO SD WY",
+    "NV": "AZ CA ID OR UT",
+    "NH": "MA ME VT",
+    "NJ": "DE NY PA",
+    "NM": "AZ CO OK TX UT",
+    "NY": "CT MA NJ PA VT",
+    "NC": "GA SC TN VA",
+    "ND": "MN MT SD",
+    "OH": "IN MI PA WV",
+    "OK": "AR CO KS MO NM TX",
+    "OR": "CA ID NV WA",
+    "PA": "DE MD NJ NY OH WV",
+    "RI": "CT MA",
+    "SC": "GA NC",
+    "SD": "IA MN MT ND NE WY",
+    "TN": "AL AR GA MO MS NC VA",
+    "TX": "AR LA NM OK",
+    "UT": "AZ CO ID NM NV WY",
+    "VT": "MA NH NY",
+    "VA": "DC MD NC TN WV",
+    "WA": "ID OR",
+    "WV": "MD OH PA VA",
+    "WI": "IA IL MI MN",
+    "WY": "CO ID MT NE SD UT",
+    "AK": "",
+    "HI": ""
+   },
+   "why": "copied from data/us-key/area-tables.json US_NEIGHBOURS (23 Nov 2026), so v2 never opens data/us-key/",
+   "test": "test_neighbour_copy_not_loaded_twice"
+  },
+  "kind_swaps": {
+   "value": [
+    {
+     "park_kind": "state park",
+     "record_kinds": [
+      "state marine park",
+      "marine park"
+     ]
+    },
+    {
+     "park_kind": "state trail",
+     "record_kinds": [
+      "trail"
+     ]
+    },
+    {
+     "park_kind": "state forest",
+     "record_kinds": [
+      "wild forest",
+      "multiple use area"
+     ],
+     "layer": "sgnya"
+    }
+   ],
+   "why": "v1 kpc_us_key.KIND_SWAPS (25-26 Nov): the agency's kind word for the same place; the NY DEC row is for the DEC layer only (rule sheet, US-12060 Crystal Lake)",
+   "test": "test_name_kind_swaps"
+  },
+  "compound_kinds": {
+   "value": [
+    "heritage preserve",
+    "wildlife management area"
+   ],
+   "why": "SC DNR compound names (manager round 2, item G)",
+   "test": "test_name_compound"
+  },
+  "class_fields": {
+   "value": {
+    "PAD-US": "FeatClass"
+   },
+   "why": "PAD-US files one place in overlapping feature classes by design (US-0354 Agassiz double count)",
+   "test": "test_acres_no_double_count"
+  },
+  "unit_pieces": {
+   "value": {
+    "sgmna": {
+     "project_field": "lam_program_project_code",
+     "name_field": "unit_name"
+    }
+   },
+   "why": "US-12693 Swan Lake WMA: the project with its unit name is the wildlife area",
+   "test": "test_wma_project_pieces"
+  },
+  "page_name": {
+   "value": {
+    "page_kind": "own page",
+    "sites": [
+     "agency (known)",
+     "government site"
+    ],
+    "other_state": "OTHER",
+    "level": "strong"
+   },
+   "why": "v1 kpc_match_checks.link_name_agree: the park's own agency page in its own state, the address naming the park in full",
+   "test": "test_page_name"
+  },
+  "kind_patterns": {
+   "value": [
+    [
+     "wma",
+     "wildlife management area|\\bwma\\b|\\bswa\\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting|fishery area|fishing access|habitat area|wildlife and environmental area|(?<!recreation )(?<!herd )(?<!conservation )management area"
+    ],
+    [
+     "wsr",
+     "wild (and|&) scenic river|recreational river"
+    ],
+    [
+     "ca",
+     "conservation area|conservation reserve|\\baccess$"
+    ],
+    [
+     "snp",
+     "nature preserve|natural area|\\bsnp\\b|\\bsna\\b|natural heritage|\\bpreserve\\b|natural state conservation|natural reserve|scientific and natural|natural environment area|\\bnea\\b|\\bnrma\\b"
+    ],
+    [
+     "hist",
+     "historic(al)? (site|park|area)|\\bshs\\b"
+    ],
+    [
+     "sp",
+     "state (resort )?park|historic(al)? park|\\bsrp\\b|recreation(al)? area|state beach|state seashore"
+    ],
+    [
+     "nf",
+     "national forest|national grassland"
+    ],
+    [
+     "sf",
+     "state forest"
+    ],
+    [
+     "nwr",
+     "wildlife refuge|\\bnwr\\b"
+    ],
+    [
+     "nfh",
+     "hatchery|\\bnfh\\b|\\bfh\\b"
+    ],
+    [
+     "nps",
+     "national (park|monument|preserve|seashore|lakeshore|battlefield|military park|river|scenic river|parkway)"
+    ],
+    [
+     "wild",
+     "wilderness(?! study)"
+    ],
+    [
+     "wsa",
+     "wilderness study area|\\bwsa\\b"
+    ],
+    [
+     "hma",
+     "herd (management )?area|\\bhma\\b"
+    ],
+    [
+     "rma",
+     "recreation management area|\\bs?rma\\b|\\berma\\b|campground|recreation site|day use area"
+    ],
+    [
+     "air",
+     "airport|airstrip|air ?field|landing strip"
+    ],
+    [
+     "trh",
+     "trail ?head"
+    ]
+   ],
+   "why": "v1 kpc_match_checks.KINDS: the kind of place a name says (rule name_longer_or_shorter checks the kinds agree)",
+   "test": "test_name_longer_or_shorter"
+  },
+  "des_kinds": {
+   "value": {
+    "SP": "sp",
+    "SREC": "sp",
+    "SHCA": "hist",
+    "NWR": "nwr",
+    "NF": "nf",
+    "NG": "nf",
+    "NP": "nps",
+    "NM": "nps",
+    "NRA": "nps",
+    "NHS": "hist",
+    "WA": "wild",
+    "SW": "wma",
+    "SCA": "ca",
+    "WSR": "wsr",
+    "NCA": "rma",
+    "SRMA": "rma",
+    "RMA": "rma"
+   },
+   "why": "v1 kpc_match_checks.DES: the kind a PAD-US designation type (Des_Tp) stands for",
+   "test": "test_name_longer_or_shorter"
+  },
+  "layer_kinds": {
+   "value": {
+    "sgnyb": [
+     "sp"
+    ],
+    "sgnyc": [
+     "sp"
+    ],
+    "sgnyd": [
+     "sp"
+    ],
+    "sgmnd": [
+     "sp"
+    ],
+    "sgmna": [
+     "wma"
+    ],
+    "sgmnc": [
+     "snp"
+    ],
+    "sgscb": [
+     "sp"
+    ],
+    "sgsca": [
+     "wma"
+    ],
+    "sgscc": [
+     "snp"
+    ]
+   },
+   "why": "the kind of a layer whose records carry bare names ('Adirondack Park', 'Crow Wing'), from data/state-gis.json 'kind' (park / wild / preserve); v1 read it from its saved copies",
+   "test": "test_name_longer_or_shorter"
+  },
+  "core_drop": {
+   "value": [
+    "nature",
+    "protected"
+   ],
+   "why": "v1 CORE_DROP: 'State Nature Preserve' / 'Nature Preserve'; 'Protected Area'",
+   "test": "test_name_longer_or_shorter"
+  },
+  "fixed_names": {
+   "value": {
+    "sgnyc": "Adirondack Park",
+    "sgnyd": "Catskill Park"
+   },
+   "why": "one-record layers with no name field; their names from data/state-gis.json (owner 25 Nov round 14 and 11 Nov)",
+   "test": "test_name_longer_or_shorter"
+  },
+  "easement_rx": {
+   "value": "\\beasements?\\b|^\\s*(cone|ease)\\s*$",
+   "why": "v1 EASEMENT_RX (owner Oct 20 and Nov 16 item 5): a conservation easement is private land, never joined by a name",
+   "test": "test_easement_by_name_refused"
+  },
+  "type_field_rx": {
+   "value": "^(category|des_tp|d_des_tp|rec_type|type|class|interest|inttype\\d*|prot_type|land_type|acq_type|feat_type|ownership_type|own_type_desc)$",
+   "why": "v1 TYPE_KEY_RX: the record fields that state its type, read by easement_rx",
+   "test": "test_easement_by_name_refused"
+  },
+  "lease_name_rx": {
+   "value": "\\bagreement\\b|\\blease[ds]?\\b|cooperative (?:wildlife|management|area)",
+   "why": "v1 LEASE_RX (owner D5, Nov 17): land the agency does not own but uses is the easement family",
+   "test": "test_easement_by_name_refused"
+  },
+  "placeholders": {
+   "value": [
+    "n/a",
+    "na",
+    "none",
+    "null",
+    "unknown",
+    ""
+   ],
+   "why": "review 6: fws CMPXNAME \"N/A\" made every same-named fws record one unit",
+   "test": "test_placeholder_not_unit"
+  },
+  "home_page_rx": {
+   "value": "https?://[^/]+/?",
+   "why": "review 6: 119 NY DEC records carry the bare home page https://www.dec.ny.gov/ as their page",
+   "test": "test_placeholder_not_unit"
+  },
+  "drop_words": {
+   "value": [
+    "the"
+   ],
+   "why": "v1 full(): 'the' is no part of a name",
+   "test": "test_exact_name_and_kind_word"
+  },
+  "roman_rx": {
+   "value": "[ivxlc]+",
+   "why": "v1 generic(): 'Unit IV' names no place",
+   "test": "test_exact_name_and_kind_word"
+  },
+  "acre_field_rx": {
+   "value": "acre",
+   "why": "v1 kpc_store_attrs._raw_acres: the layer's first field with 'acre' in its name (MN state lands 'su_acres')",
+   "test": "test_acres_square_feet_converted"
+  },
+  "name_equivalences": {
+   "value": [
+    [
+     "\\bwildlife and fish refuge\\b",
+     "wildlife refuge"
+    ]
+   ],
+   "why": "US-4236 Upper Mississippi River National Wildlife and Fish Refuge = POTA's National Wildlife Refuge",
+   "test": "test_wildlife_and_fish_refuge"
+  },
+  "piece_suffixes": {
+   "value": [
+    "east",
+    "west",
+    "north",
+    "south",
+    "unit \\d+",
+    "tract \\d+",
+    "parcel \\d+",
+    "block \\d+",
+    "\\d+",
+    "[ivxlc]+",
+    "[a-z]"
+   ],
+   "why": "US-13270 Otis Pike Pine Barrens State Forest - East / - West (manager round 4)",
+   "test": "test_piece_suffix"
+  },
+  "interest_fields": {
+   "value": {
+    "fws": {
+     "field": "INTTYPE1",
+     "fee": [
+      "O"
+     ]
+    }
+   },
+   "why": "review 6 and grey area V2-G4: FWS interest type O = fee-owned; E easement, R, A are not the refuge's own land",
+   "test": "test_fws_interest_by_name"
+  },
+  "own_page": {
+   "value": {
+    "own": "own",
+    "sites": [
+     "agency (known)",
+     "government site"
+    ],
+    "source_rx": "^https?://\\S+\\.\\S+",
+    "witness": "agency_document",
+    "hand_copy": "hand_copy"
+   },
+   "why": "v1 own_page / page_size_witness / hand_copy_sourced: the park's own agency page's clean total counts as an agency document; a hand copy counts only when it names its page",
+   "test": "test_name_and_size_join"
+  }
+ },
+ "notes": {
+  "link_id_ties_measured": {
+   "about": "the web-address ties come from .github/link-id-ties.json (read as it is); measured on the 26 Nov files:",
+   "sgnya URL (NY DEC page number)": "NY: 518 parks, 1,119 records; pin inside 466, within 5 km 51, far 1 (US-5249, see id_far_from_pin)",
+   "sgmnf WEB_LINK1 (MN DNR unit id)": "MN: 57 parks, 57 records; pin inside 53, within 5 km 4, far 0",
+   "other rows": "their layers are not in the MN, NY or SC files (or no park of these states has that id kind)"
+  },
+  "id_ties_not_used": {
+   "NY State Parks number": "sgnyb MasterAreaID / WebAreaID hit 64 parks with the pin inside 0 times: not the same number",
+   "SC DNR managed land id": "sgsca / sgscc / sgscd ParentPropertyID and PropertyID hit 3-6 parks with the pin inside 0 times",
+   "page address": "no record field of these layers holds a page address (fws, sgmng carry none)",
+   "US Forest Service rec area id": "no layer in these files carries it",
+   "sgmnb sft": "58 MN parks hit, but sgmnb is a dropped layer",
+   "wsrc ADMINISTRATIVE_UNIT1": "names the Park Service unit that ADMINISTERS a river segment (Delaware Water Gap administers the Middle Delaware), not the unit itself; 4 parks hit, not used"
+  },
+  "dropped_round_4": {
+   "core_box_deg": "removed: a pre-filter only; the pin test (pin_near) already decides (mutation check found it changes no answer)"
+  }
+ }
+}
