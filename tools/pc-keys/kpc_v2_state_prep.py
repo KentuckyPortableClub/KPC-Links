@@ -14,7 +14,7 @@ Reads: the state's layer file and its neighbours (the rule table's neighbour lis
 Sections: 1 store room check, 2 id fields, 3 agency record ids, 4 name fields and name styles, 4b official names against POTA's names,
 5 what to do next. The idea and the table format come from kpc_id_finder / kpc_keep_fields (.github/keep-record-fields.json).
 """
-import argparse, csv, datetime, json, pathlib, re, sys, time, unicodedata
+import argparse, csv, datetime, gzip, json, pathlib, re, subprocess, sys, time, unicodedata
 from collections import Counter, defaultdict
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -581,22 +581,95 @@ def two_source_rows(rows4b, R):
 
 # ---------------------------------------------------------------- the run
 
-def run(st, store, facts_file, v2dir, out_parent, repo, now=None):
+_SHARED = {}
+
+
+def _squeeze(d):
+    """json object hook: a record's rings (lists of numbers, about 36 bytes a number) become one compact text, as soon as the record is read.
+    The scorecard's decoder reads that text too. This keeps a 37 MB layer file from needing 1.6 GB."""
+    # one copy of each field name (as json.load does for a whole file) and of each short repeated text value
+    d = {sys.intern(k): (_SHARED.setdefault(v, v) if isinstance(v, str) and len(v) <= 40 else v) for k, v in d.items()}
+    rg = d.get('rings')
+    if isinstance(rg, list) and rg and isinstance(rg[0], list): d['rings'] = json.dumps(rg, separators=(',', ':'))
+    return d
+
+
+def load_compact(p):
+    """The layer file, read once, in pieces: the records are read one at a time (rings squeezed as each is read) so the whole text of the
+    file is never held. Same result as json.load. None when the file is not there or not readable."""
+    try:
+        with gzip.open(pathlib.Path(p), 'rt', encoding='utf-8') as f: return _stream(f)
+    except (OSError, ValueError): return None
+
+
+def _stream(f, step=1 << 22):
+    dec = json.JSONDecoder(object_hook=_squeeze)
+    buf, pos, eof = '', 0, False
+
+    def more():
+        nonlocal buf, pos, eof
+        chunk = f.read(step)
+        if not chunk: eof = True; return
+        buf = buf[pos:] + chunk; pos = 0
+
+    def skip():
+        nonlocal pos
+        while True:
+            while pos < len(buf) and buf[pos] in ' \t\r\n,': pos += 1
+            if pos < len(buf) or eof: return
+            more()
+
+    def value():
+        nonlocal pos
+        while True:
+            skip()
+            try:
+                v, end = dec.raw_decode(buf, pos); pos = end; return v
+            except ValueError:
+                if eof: raise
+                more()
+    skip()
+    if not buf[pos:pos + 1] == '{':
+        more(); skip()
+    if buf[pos:pos + 1] != '{': raise ValueError('not an object')
+    pos += 1; out = {}
+    while True:
+        skip()
+        if pos >= len(buf): raise ValueError('cut short')
+        if buf[pos] == '}': return out
+        k = value(); skip()
+        if buf[pos] != ':': raise ValueError('no colon')
+        pos += 1; skip()
+        if k == 'records' and buf[pos] == '[':
+            pos += 1; recs = []
+            while True:
+                skip()
+                if buf[pos] == ']': pos += 1; break
+                recs.append(value())
+            out[k] = recs
+        else: out[k] = value()
+
+
+def run(st, store, facts_file, v2dir, out_parent, repo, now=None, flat=False):
     t0 = time.time()
     R = Rules(repo)
     facts = (SC.load_json(facts_file) or {}).get('parks') or {}
+    keep = {f'US-{st}'} | {f'US-{x}' for x in str(R.neighbours.get(st, '')).split()}
     lines, notes = [], []
     if not R.found: notes.append('the rule table (us-key-v2-rules.json) was not found: defaults and no table rows to compare with')
     if R.lim_note: notes.append(R.lim_note)
     refs, n = park_refs(repo, st, facts)
     if n: notes.append(n)
+    rset = set(refs)
+    facts = {r: p for r, p in facts.items() if r in rset or str((p or {}).get('area') or '') in keep}    # other states' parks are never looked at
     docs = {}
     stems = [f'US-{st}'] + [f'US-{x}' for x in sorted(str(R.neighbours.get(st, '')).split())]
     for s in stems:
-        d = SC.load_json(pathlib.Path(store) / f'{s}.layer-records.json.gz')
+        d = load_compact(pathlib.Path(store) / f'{s}.layer-records.json.gz')
         if isinstance(d, dict): docs[s] = d
+    _SHARED.clear()
     own = docs.get(f'US-{st}')
-    rep = pathlib.Path(out_parent) / f'v2-prep-{st}-{(now or datetime.datetime.now()):%Y-%m-%d-%H%M%S}'
+    rep = pathlib.Path(out_parent) if flat else pathlib.Path(out_parent) / f'v2-prep-{st}-{(now or datetime.datetime.now()):%Y-%m-%d-%H%M%S}'
     rep.mkdir(parents=True, exist_ok=True)
     details, proposed = [], {'about': 'PROPOSED rows only, from measurements. Nothing here is in the real rule table. A person decides each row; every row needs its why and its test.',
                              'state': st, 'tables': {}, 'link_id_ties': [], 'other_spellings': [], 'name_candidates': []}
@@ -647,7 +720,7 @@ def run(st, store, facts_file, v2dir, out_parent, repo, now=None):
                 'measured': meas, 'why': r['reason'], 'test': 'TODO', 'verdict': r['verdict'] + (' (already in link-id-ties.json)' if have else '')}); continue
         row = {'kind': r['kind'], 'layer': r['layer'], 'field': r['field']}
         if r.get('where'): row['where'] = r['where']
-        row.update({'measured': meas, 'why': r['reason'], 'way': r['way'], 'test': 'TODO', 'verdict': r['verdict']})
+        row.update({'measured': meas, 'why': r['reason'], 'way': r['way'], 'test': 'TODO', 'verdict': r['verdict'], 'parks_hit': r['parks']})
         if not any(t.get('kind') == row['kind'] and t.get('layer') == row['layer'] and t.get('field', '').lower() == row['field'].lower() for t in ties): ties.append(row)
     for t in ties:
         if any(x.get('kind') == t['kind'] and x.get('layer') == t['layer'] and str(x.get('field')).lower() == t['field'].lower() for x in R.id_ties): t['verdict'] += ' (already in the table)'
@@ -715,6 +788,11 @@ def run(st, store, facts_file, v2dir, out_parent, repo, now=None):
           '  4. A row goes into the real table only with its why and its test, in a PR. The matcher does not read other_spellings yet.']
     for n_ in notes: L.append(f'  Note: {n_}.')
     L.append(f'  ({time.time() - t0:.0f} s)')
+    gen = Counter()
+    for p_, c_ in pats.items():
+        if not (p_.startswith('no record under') or p_.startswith('the park has no')): gen[p_.split(':')[0]] += c_
+    proposed['counts'] = {'parks': len(refs), 'with_id': sum(1 for d_ in wants.values() if d_), 'can_build': not gaps, 'blockers': list(gaps), 'unproven': len(rows4),
+                          'id_propose': cnt['PROPOSE'], 'id_look': cnt['LOOK'], 'id_no': cnt['NO'], 'patterns': dict(gen), 'seconds': round(time.time() - t0, 1)}
     # files
     (rep / f'STATE-PREP-{st}.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
     (rep / 'proposed-rows.json').write_text(json.dumps(proposed, indent=1, ensure_ascii=False, sort_keys=True), encoding='utf-8')
@@ -732,19 +810,168 @@ def run(st, store, facts_file, v2dir, out_parent, repo, now=None):
     return 0, rep
 
 
+STATE_FILE = re.compile(r'^US-([A-Z]{2})\.layer-records\.json\.gz$')
+
+
+def store_states(store):
+    """Every state with a layer file in the store folder (US-<ST>.layer-records.json.gz), sorted."""
+    return sorted(m.group(1) for f in pathlib.Path(store).iterdir() for m in [STATE_FILE.match(f.name)] if m) if pathlib.Path(store).is_dir() else []
+
+
+def parse_states(tokens, store):
+    """(states, is_many). US or ALL = every state with a layer file."""
+    toks = [t.upper() for x in tokens for t in re.split(r'[,\s;]+', str(x)) if t]
+    if any(t in ('US', 'ALL') for t in toks):
+        return store_states(store), True
+    out = []
+    for t in toks:
+        if t not in out: out.append(t)
+    return out, len(out) > 1
+
+
+def child_prep(st, out, store, facts, repo, v2):
+    """One state in its own process (memory is given back when it ends). Returns (exit code, output text)."""
+    cmd = [sys.executable, '-X', 'utf8', str(pathlib.Path(__file__).resolve()), st, '--out', str(out), '--store', str(store), '--facts', str(facts), '--repo', str(repo), '--flat']
+    if v2: cmd += ['--v2', str(v2)]
+    r = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace')
+    return r.returncode, (r.stdout or '') + (r.stderr or '')
+
+
+def _gen(p): return p.split(':')[0]
+
+
+def merge_rows(per_state):
+    """per_state = {ST: proposed-rows dict}. Identical rows of several states appear once, with all their states and summed counts."""
+    def add(table, key, row, st, n=0):
+        if key not in table: table[key] = dict(row, states=[], parks_hit=0)
+        e = table[key]
+        if st not in e['states']: e['states'].append(st)
+        e['parks_hit'] += n
+        e.setdefault('measured_by_state', {})
+    out = {'id_ties': {}, 'link_id_ties': {}, 'record_id_fields': {}, 'full_name_fields': {}, 'name_candidates': {}}
+    other = []
+    for st, pr in per_state.items():
+        for kind in ('id_ties', 'link_id_ties'):
+            rows = (pr.get('tables', {}).get('id_ties', {}).get('value') if kind == 'id_ties' else pr.get('link_id_ties')) or []
+            for r in rows:
+                if not str(r.get('verdict', '')).startswith(('PROPOSE', 'LOOK')): continue
+                key = (r.get('kind'), r.get('layer'), str(r.get('field')).lower(), r.get('way', ''), json.dumps(r.get('where'), sort_keys=True))
+                add(out[kind], key, {k: v for k, v in r.items() if k not in ('measured', 'parks_hit')}, st, int(r.get('parks_hit') or 0))
+                out[kind][key]['measured_by_state'][st] = r.get('measured', '')
+        for lay, f in ((pr.get('tables', {}).get('record_id_fields') or {}).get('value') or {}).items():
+            add(out['record_id_fields'], (lay, str(f).lower()), {'layer': lay, 'field': f, 'verdict': 'PROPOSE', 'why': 'filled on 99 percent of the records, different on 99 percent, not the row number', 'test': 'TODO'}, st)
+        for lay, fl in ((pr.get('tables', {}).get('full_name_fields') or {}).get('value') or {}).items():
+            for f in fl:
+                f = f[0] if isinstance(f, list) else f
+                add(out['full_name_fields'], (lay, str(f).lower()), {'layer': lay, 'field': f, 'verdict': 'LOOK', 'why': 'holds the record name plus a kind word', 'test': 'TODO'}, st)
+        for c in pr.get('name_candidates') or []:
+            add(out['name_candidates'], _gen(c['pattern']), {k: v for k, v in c.items() if k not in ('parks', 'pattern')} | {'pattern': _gen(c['pattern'])}, st, int(c.get('parks') or 0))
+        other += [dict(x, state=st) for x in pr.get('other_spellings') or []]
+    res = {'about': 'PROPOSED rows only, every state together. Nothing here is in the real rule table. A row found in several states appears once with all its states. '
+                    'A person decides each row; every row needs its why and its test.', 'states': sorted(per_state)}
+    for k, v in out.items(): res[k] = sorted(v.values(), key=lambda e: (-len(e['states']), -e['parks_hit']))
+    res['other_spellings'] = other
+    return res
+
+
+NEXT = ['  1. Fix the store room gaps first (the layers named above).',
+        '  2. Copy the real rule table. Add the PROPOSE rows from proposed-rows-all.json (each needs its why and its test). Look at the LOOK rows.',
+        '  3. Run the workbench: py -3.12 kpc_test_v2.py <states> --try <the copy>. Read which parks change.',
+        '  4. A row goes into the real table only with its why and its test, in a PR. The matcher does not read other_spellings yet.']
+
+
+def many(states, label, store, facts, repo, v2, out_parent, now=None, call=None, say=print):
+    """Several states, one after another, each in its own process. Returns (exit code, parent folder)."""
+    call = call or child_prep
+    parent = pathlib.Path(out_parent) / f'v2-prep-{label}-{(now or datetime.datetime.now()):%Y-%m-%d-%H%M%S}'
+    parent.mkdir(parents=True, exist_ok=True)
+    res, failed, proposed, t0 = {}, {}, {}, time.time()
+    for i, st in enumerate(states, 1):
+        t1 = time.time()
+        sub = parent / st
+        if not (pathlib.Path(store) / f'US-{st}.layer-records.json.gz').is_file():
+            failed[st] = 'the layer file was not found'
+        else:
+            sub.mkdir(parents=True, exist_ok=True)
+            try: rc, text = call(st, sub, store, facts, repo, v2)
+            except Exception as e: rc, text = 1, f'could not start the child: {e!r}'
+            pj = sub / 'proposed-rows.json'
+            if rc == 0 and pj.is_file():
+                try:
+                    proposed[st] = json.loads(pj.read_text(encoding='utf-8')); res[st] = proposed[st].get('counts') or {}
+                except ValueError: rc = 1; text += '\nproposed-rows.json could not be read'
+            if st not in res:
+                (sub / 'prep-error.txt').write_text(f'Exit code {rc}\n{text[-6000:]}', encoding='utf-8')
+                failed[st] = f'the prep stopped with an error, see {st}\\prep-error.txt'
+        say(f'{i} of {len(states)}  {st}  {time.time() - t1:.0f} s' + ('' if st not in failed else f'  ({failed[st]})'))
+    L = summary_text(states, res, failed, time.time() - t0)
+    (parent / 'STATE-PREP-SUMMARY.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
+    cols = ['state', 'can_build', 'blockers', 'parks', 'with_id', 'id_propose', 'id_look', 'id_no', 'unproven', 'top_pattern', 'top_pattern_parks', 'seconds', 'problem']
+    with open(parent / 'summary.csv', 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=cols); w.writeheader()
+        for st in states:
+            c = res.get(st)
+            if c is None: w.writerow({'state': st, 'problem': failed.get(st, '')}); continue
+            tp = top_pattern(c)
+            w.writerow({'state': st, 'can_build': 'yes' if c.get('can_build') else 'no', 'blockers': ' '.join(c.get('blockers') or []), 'parks': c.get('parks'), 'with_id': c.get('with_id'),
+                        'id_propose': c.get('id_propose'), 'id_look': c.get('id_look'), 'id_no': c.get('id_no'), 'unproven': c.get('unproven'),
+                        'top_pattern': tp[0], 'top_pattern_parks': tp[1], 'seconds': c.get('seconds')})
+    (parent / 'proposed-rows-all.json').write_text(json.dumps(merge_rows(proposed), indent=1, ensure_ascii=False, sort_keys=True), encoding='utf-8')
+    pat, pst = Counter(), defaultdict(set)
+    for st, c in res.items():
+        for p_, n in (c.get('patterns') or {}).items(): pat[p_] += n; pst[p_].add(st)
+    with open(parent / 'name-patterns-all.csv', 'w', encoding='utf-8', newline='') as f:
+        w = csv.writer(f); w.writerow(['pattern', 'parks', 'states'])
+        for p_, n in pat.most_common(): w.writerow([p_, n, len(pst[p_])])
+    say('\n'.join(L[:12])); say(f'\nThe report is {parent / "STATE-PREP-SUMMARY.txt"}')
+    return (2 if not res else 1 if failed else 0), parent
+
+
+def top_pattern(c):
+    p = sorted(((n, p_) for p_, n in (c.get('patterns') or {}).items()), key=lambda x: (-x[0], x[1]))
+    return (p[0][1], p[0][0]) if p else ('', 0)
+
+
+def summary_text(states, res, failed, secs):
+    ok = [s for s in states if s in res and res[s].get('can_build')]
+    no = [s for s in states if s in res and not res[s].get('can_build')]
+    block = Counter(b for s in no for b in res[s].get('blockers') or [])
+    L = [f'v2 can build {len(ok)} of {len(states)} states today.',
+         f'v2 cannot build {len(no)}' + (': blocked by ' + ', '.join(f'{b} ({n})' for b, n in block.most_common(8)) + ('' if len(block) <= 8 else ', ...') if no else '') + '.']
+    if failed: L.append(f'{len(failed)} states could not be measured (listed below).')
+    L.append('')
+    for s in states:
+        c = res.get(s)
+        if c is None: L.append(f'{s}  {failed.get(s, "not measured")}'); continue
+        bl = c.get('blockers') or []
+        b = 'can build' if c.get('can_build') else 'cannot build (' + ', '.join(bl[:3]) + (', ...' if len(bl) > 3 else '') + ')'
+        tp = top_pattern(c)
+        L.append(f"{s}  {b}  parks {c.get('parks')}  with an id {c.get('with_id')}  id rows PROPOSE {c.get('id_propose')} LOOK {c.get('id_look')}  unproven {c.get('unproven')}"
+                 + (f'  top name pattern: {tp[0]} ({tp[1]})' if tp[1] else ''))
+    tot = lambda k: sum(int(res[s].get(k) or 0) for s in res)
+    L += ['', f"Totals over {len(res)} states: parks {tot('parks')}, with an id {tot('with_id')}, id rows PROPOSE {tot('id_propose')} LOOK {tot('id_look')}, unproven {tot('unproven')}. ({secs:.0f} s)",
+          'Files: summary.csv, proposed-rows-all.json, name-patterns-all.csv, and a folder per state with its own report.', '', 'WHAT TO DO NEXT'] + NEXT
+    return L
+
+
 def main(argv=None, here=None):
     here = pathlib.Path(here or HERE)
-    ap = argparse.ArgumentParser(description='Measure a state and propose rule-table rows.')
-    ap.add_argument('state', nargs='?'); ap.add_argument('--store'); ap.add_argument('--facts'); ap.add_argument('--v2'); ap.add_argument('--out'); ap.add_argument('--repo')
+    ap = argparse.ArgumentParser(description='Measure states and propose rule-table rows. One state, several (MN NY SC), or US / ALL for every state in the store folder.')
+    ap.add_argument('states', nargs='*'); ap.add_argument('--store'); ap.add_argument('--facts'); ap.add_argument('--v2'); ap.add_argument('--out'); ap.add_argument('--repo')
+    ap.add_argument('--flat', action='store_true', help='write the four files straight into --out (used for each state of a several-state run)')
     a = ap.parse_args(argv)
-    st = (a.state or input('State (for example SC): ').strip() or 'SC').upper()
     links = pathlib.Path(a.repo) if a.repo else T.find_links(here)
     store = pathlib.Path(a.store) if a.store else T.find_store(here)
     facts = pathlib.Path(a.facts) if a.facts else T.find_facts(here, links)
+    toks = a.states or [input('States (for example SC, or MN NY SC, or US for every state): ').strip() or 'SC']
     for what, p in (('the layer files folder', store), ('the park facts', facts)):
         if not p.exists(): print(f'Not found: {what} ({p}). Nothing was run.'); return 2
+    states, is_many = parse_states(toks, store)
+    if not states: print(f'No state to run: no US-<ST>.layer-records.json.gz in {store}. Nothing was run.'); return 2
     out = pathlib.Path(a.out) if a.out else here / 'reports'
-    return run(st, store, facts, a.v2, out, links)[0]
+    if not is_many: return run(states[0], store, facts, a.v2, out, links, flat=a.flat)[0]
+    label = 'US' if any(str(t).upper() in ('US', 'ALL') for t in toks) else '-'.join(states)
+    return many(states, label, store, facts, links, a.v2, out)[0]
 
 
 if __name__ == '__main__':

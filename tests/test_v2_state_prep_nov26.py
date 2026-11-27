@@ -197,9 +197,71 @@ with tempfile.TemporaryDirectory() as t:
     check('the two-sources rule alone: a page and a web address that write it alike (run together) count; unlike official names do not; a source that equals POTA does not',
           [x['ref'] for x in P.two_source_rows(rows, R)] == ['A'])
 
+# ---- several states / US: one child process each, a parent folder, a summary, merged rows
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    repo, store, facts = make_world(t)
+    wjson(store / 'US-ZX.layer-records.json.gz', json.load(gzip.open(store / 'US-ZZ.layer-records.json.gz', 'rt', encoding='utf-8')))   # a second, same-looking state
+    wjson(repo / 'data' / 'pota' / 'saved' / 'parks' / 'US-ZX.json.gz', {'data': [{'reference': r} for r in json.load(gzip.open(facts, 'rt'))['parks']]})
+    (store / 'NOTES.txt').write_text('x'); wjson(store / 'US-ZZZ.layer-records.json.gz', {})   # not states
+    check('US (and ALL) pick exactly the states that have a layer file', P.parse_states(['US'], store) == (['ZX', 'ZY', 'ZZ'], True) and P.parse_states(['all'], store)[0] == ['ZX', 'ZY', 'ZZ'])
+    check('typed states: commas and spaces both work, a repeat is dropped; one state is not "many"', P.parse_states(['zz, zx', 'ZZ'], store) == (['ZZ', 'ZX'], True) and P.parse_states(['ZZ'], store) == (['ZZ'], False))
+    calls = []
+    real_run = subprocess_run = P.subprocess.run
+
+    class Done:
+        def __init__(s, rc, out): s.returncode, s.stdout, s.stderr = rc, out, ''
+
+    def fake(cmd, **kw):
+        calls.append(cmd)
+        st = cmd[cmd.index('--out') - 1]
+        if st == 'ZY': return Done(1, 'Traceback: boom')
+        with contextlib.redirect_stdout(io.StringIO()): rc, _ = P.run(st, store, facts, None, pathlib.Path(cmd[cmd.index('--out') + 1]), repo, flat=True)
+        return Done(rc, '')
+    P.subprocess.run = fake
+    msgs = []
+    out = t / 'out'
+    try:
+        before = {str(p.relative_to(t)) for p in t.rglob('*')}
+        rc, parent = P.many(['ZZ', 'ZY', 'ZX', 'QQ'], 'ZZ-ZY-ZX-QQ', store, facts, repo, None, out, say=msgs.append)
+    finally: P.subprocess.run = real_run
+    new = {str(p.relative_to(t)) for p in t.rglob('*')} - before
+    check('each state runs in its own child process, one after another (python -X utf8 <this file> <ST> --out <parent>/<ST> ... --flat)',
+          len(calls) == 3 and all(c[0] == sys.executable and c[1:3] == ['-X', 'utf8'] and c[3].endswith('kpc_v2_state_prep.py') and '--flat' in c and c[c.index('--out') + 1].endswith(c[4]) for c in calls)
+          and [c[4] for c in calls] == ['ZZ', 'ZY', 'ZX'])
+    check('several states make one parent folder with a sub-folder per state holding the four usual files, and the four parent files',
+          parent.parent == out and all((parent / s / f).is_file() for s in ('ZZ', 'ZX') for f in ('STATE-PREP-' + s + '.txt', 'proposed-rows.json', 'prep-details.csv', 'name-compare.csv'))
+          and all((parent / f).is_file() for f in ('STATE-PREP-SUMMARY.txt', 'summary.csv', 'proposed-rows-all.json', 'name-patterns-all.csv')))
+    check('nothing is written outside the new parent folder', all(n == 'out' or n.startswith('out/') for n in new) and all(n.startswith('out/' + parent.name) for n in new if n != 'out'))
+    sm = (parent / 'STATE-PREP-SUMMARY.txt').read_text(encoding='utf-8').splitlines()
+    check('a failing state (a crash; a missing layer file) does not stop the others and is named in the summary; exit code 1',
+          rc == 1 and (parent / 'ZY' / 'prep-error.txt').is_file() and 'boom' in (parent / 'ZY' / 'prep-error.txt').read_text() and any(l.startswith('ZY  the prep stopped with an error, see ZY\\prep-error.txt') for l in sm)
+          and any(l.startswith('QQ  the layer file was not found') for l in sm) and any(l.startswith('ZZ  can build') for l in sm) and any(l.startswith('ZX  can build') for l in sm))
+    check('the summary starts with how many states v2 can build and how many it cannot; progress lines say "1 of 4  ZZ  N s"', sm[0] == 'v2 can build 2 of 4 states today.' and sm[1].startswith('v2 cannot build 0')
+          and msgs[0].startswith('1 of 4  ZZ  ') and msgs[1].startswith('2 of 4  ZY  ') and msgs[3].startswith('4 of 4  QQ  '))
+    al = json.load(open(parent / 'proposed-rows-all.json', encoding='utf-8'))
+    ties = [r for r in al['id_ties'] if r['kind'] == 'ZZ unit id']
+    check('an identical proposed row in two states appears once, with both states and the summed counts', len(ties) == 1 and sorted(ties[0]['states']) == ['ZX', 'ZZ'] and ties[0]['parks_hit'] == 50
+          and set(ties[0]['measured_by_state']) == {'ZX', 'ZZ'})
+    pc = list(csv.DictReader(open(parent / 'summary.csv', encoding='utf-8')))
+    npc = list(csv.DictReader(open(parent / 'name-patterns-all.csv', encoding='utf-8')))
+    check('summary.csv has one row per state with the numbers; name-patterns-all.csv sums the patterns over states, most common first',
+          [r['state'] for r in pc] == ['ZZ', 'ZY', 'ZX', 'QQ'] and pc[0]['id_propose'] == '2' and pc[1]['problem'] and npc and npc[0]['states'] == '2'
+          and [int(r['parks']) for r in npc] == sorted((int(r['parks']) for r in npc), reverse=True))
+    # exit codes: nothing could run = 2
+    P.subprocess.run = lambda cmd, **kw: Done(1, 'x')
+    try: rc2, _ = P.many(['ZZ'], 'ZZ', store, facts, repo, None, t / 'out2', say=lambda m: None)
+    finally: P.subprocess.run = real_run
+    check('exit code 2 when no state could run', rc2 == 2)
+    # the real child, once (a real process)
+    with contextlib.redirect_stdout(io.StringIO()): rc3 = P.main(['ZZ', 'ZX', '--store', str(store), '--facts', str(facts), '--repo', str(repo), '--out', str(t / 'out3')])
+    check('a real run of two states (real child processes) exits 0 and writes the summary', rc3 == 0 and list((t / 'out3').glob('v2-prep-ZZ-ZX-*/STATE-PREP-SUMMARY.txt')))
+    with contextlib.redirect_stdout(io.StringIO()): rc4 = P.main(['ZZ', '--store', str(store), '--facts', str(facts), '--repo', str(repo), '--out', str(t / 'out4')])
+    check('one state alone keeps its own folder name and files (v2-prep-ZZ-<time>\\STATE-PREP-ZZ.txt)', rc4 == 0 and list((t / 'out4').glob('v2-prep-ZZ-*/STATE-PREP-ZZ.txt')) and not list((t / 'out4').glob('**/STATE-PREP-SUMMARY.txt')))
+
 bat = (ROOT / 'tools' / 'pc-keys' / 'V2-STATE-PREP.bat').read_bytes() if (ROOT / 'tools' / 'pc-keys' / 'V2-STATE-PREP.bat').exists() else b''
-check('the .bat has CRLF line ends, asks for the state, tries Python 3.12 first, has no pip step',
-      b'\r\n' in bat and b'\n' not in bat.replace(b'\r\n', b'') and b'State (for example SC):' in bat and b'py -3.12' in bat and b'pip' not in bat and b'kpc_v2_state_prep.py' in bat)
+check('the .bat has CRLF line ends, asks for the states, tries Python 3.12 first, has no pip step',
+      b'\r\n' in bat and b'\n' not in bat.replace(b'\r\n', b'') and b'States (for example SC, or MN NY SC, or US for every state):' in bat and b'py -3.12' in bat and b'pip' not in bat and b'kpc_v2_state_prep.py' in bat)
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)
