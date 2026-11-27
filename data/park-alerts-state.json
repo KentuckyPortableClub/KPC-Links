@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25 18:06",
+ "updated": "2026-11-27 10:46",
  "pending": [],
  "seen": {
   "ky-b423d248-c5ae-49de-a4f7-3cbdccde5227": {
@@ -257,6 +257,19 @@
    "runs": 2,
    "missing": 0,
    "announced": true,
+   "refs": []
+  },
+  "nps-7955A20E-CDBE-4F60-B0C1-7A5B4C3F61AE": {
+   "who": "CUGA",
+   "title": "Pinnacle Road is closed",
+   "text": "Pinnacle Road is temporarily closed due to winter weather conditions.",
+   "link": "https://www.nps.gov/",
+   "routine": true,
+   "cat": "information",
+   "first": "2026-11-27",
+   "runs": 1,
+   "missing": 0,
+   "announced": false,
    "refs": []
   }
  },
