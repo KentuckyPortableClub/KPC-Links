@@ -117,8 +117,9 @@ def pin_on_land(lat, lon, geoms, near_m=NEAR_M):
 def load_table(repo):
     """The rule table (.github/us-key-v2-rules.json) from the repo, or links\\ on the PC; None when it is not there."""
     repo = pathlib.Path(repo)
-    for base in (repo, repo / 'links'):
-        d = load_json(base / '.github' / 'us-key-v2-rules.json')
+    here = pathlib.Path(__file__).resolve().parent
+    for f in (here / 'us-key-v2-rules.json', repo / '.github' / 'us-key-v2-rules.json', repo / 'links' / '.github' / 'us-key-v2-rules.json'):
+        d = load_json(f)   # beside this file on the PC (the kit folder), else in the repo copy
         if isinstance(d, dict): return d
     return None
 

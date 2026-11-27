@@ -214,7 +214,8 @@ def main(argv=None, here=None):
     a = ap.parse_args(argv)
     states = [s.upper() for s in a.states] or ['MN', 'NY', 'SC']
     links = find_links(here)
-    v2script = links / '.github' / 'scripts' / 'kpc_us_key_v2.py'
+    v2script = next((p for p in (here / 'kpc_us_key_v2.py', links / '.github' / 'scripts' / 'kpc_us_key_v2.py') if p.is_file()),
+                    links / '.github' / 'scripts' / 'kpc_us_key_v2.py')   # beside this file on the PC (the kit folder), else in the repo copy
     if not v2script.is_file():
         say('The v2 key builder (kpc_us_key_v2.py) is not on this PC yet. Nothing was run.'); return 2
     card = next((p for p in (here / 'kpc_v2_scorecard.py', links / 'tools' / 'pc-keys' / 'kpc_v2_scorecard.py') if p.is_file()), None)

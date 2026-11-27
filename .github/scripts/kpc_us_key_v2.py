@@ -115,7 +115,9 @@ def check_rules(d):
 
 
 def rules_path(repo, path=None):
-    return path or os.path.join(repo, '.github', 'us-key-v2-rules.json')
+    """The rule table: --rules, else the copy beside this script (the PC kit folder), else <repo>/.github/."""
+    beside = os.path.join(HERE, 'us-key-v2-rules.json')
+    return path or (beside if os.path.isfile(beside) else os.path.join(repo, '.github', 'us-key-v2-rules.json'))
 
 
 def load_rules(repo, path=None):
