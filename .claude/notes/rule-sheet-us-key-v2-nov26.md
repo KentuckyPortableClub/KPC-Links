@@ -513,3 +513,7 @@ Rule `id_shared_page` (table `shared_page_kinds`). The id value in the park fact
 - Still fails: no mark, a mark on one park only, a mark that names another record, or a mark that names a third park. Nothing else in G3 changed.
 - Today: 0 parks carry the mark in the 66 real keys, so no number changes.
 - Tests (tests/test_v2_scorecard_nov26.py): 'G3 same_land: two names, both parks marked ... passes and is counted as allowed'; '... no mark: still fails'; '... only one of the two parks carries the mark: still fails'; '... the mark names a different record: still fails'; '... the mark names a third park, not the other park: still fails'.
+
+## 37. 27 Nov 2026: the lock test's rare failure was the test's own clock, not the matcher
+- `test_lock_never_changes_answer` (and `test_lock_holds_same_as_cold`, `test_two_runs_same_bytes`) failed about 0.7% of single runs, more under load. Cause: the test fixture rewrote its layer file with `gzip.open` before each run, and gzip stamps the clock's second in its header. When the cold and the warm run fell in two different seconds the layer file had other bytes, so the key's `layer_files` sha256 differed and the byte compare failed. Every answer (`m`, `match`, `ac`) was the same.
+- Fix in the test only: the fixture writes its gzip files with a fixed time (mtime 0); `test_fixture_files_same_bytes` guards it. The matcher already writes keys with mtime 0 and is unchanged; real keys of 13 areas were the same text over many hash seeds, cold and warm.

@@ -61,6 +61,13 @@ def park(name, kind, dx_m=0.0, dy_m=0.0, link=None, size=None):
     return p
 
 
+def gz_text(path):
+    """A gzip text file with a fixed header time (mtime 0). gzip.open stamps the clock's second into the header, so a fixture
+    rewritten in the next second had other bytes, another sha256 in the key's layer_files and a false byte-compare failure
+    (test_lock_never_changes_answer, test_lock_holds_same_as_cold, test_two_runs_same_bytes; rule-sheet section 37)."""
+    return io.TextIOWrapper(gzip.GzipFile(path, 'wb', mtime=0), encoding='utf-8')
+
+
 class Fix:
     """A tiny repo + store + facts in a temp folder."""
 
@@ -81,7 +88,7 @@ class Fix:
         for area in sorted(set(self.files) | {V.area_of(k) for k in self.lists}):
             refs = self.lists.get(V.area_label(area), [r for r, p in self.parks.items() if p['area'] == area])
             os.makedirs(self.p('repo/data/pota/saved/parks'), exist_ok=True)
-            with gzip.open(self.p(f'repo/data/pota/saved/parks/{area}.json.gz'), 'wt') as f:
+            with gz_text(self.p(f'repo/data/pota/saved/parks/{area}.json.gz')) as f:
                 json.dump({'data': [dict({'reference': r, 'locationDesc': self.listed.get(r, area)}, **self.pota.get(r, {})) for r in refs]}, f)
         for area, recs in self.files.items():
             man = {r['layer']: dict({'complete': True}, **({'url': self.urls[area][r['layer']], 'where': '1=1'}
@@ -89,9 +96,9 @@ class Fix:
             for l in self.incomplete.get(area, []): man[l] = {'complete': False}
             for l in self.no_manifest.get(area, []): man.pop(l, None)
             man.update(self.man.get(area, {}))
-            with gzip.open(self.p(f'store/{area}.layer-records.json.gz'), 'wt') as f:
+            with gz_text(self.p(f'store/{area}.layer-records.json.gz')) as f:
                 json.dump({'kpcstore_layers': 1, 'area': area, 'made': '2026-11-26T11:00:00-06:00', 'manifest': man, 'records': recs}, f)
-        with gzip.open(self.p('facts.json.gz'), 'wt') as f: json.dump({'parks': self.parks}, f)
+        with gz_text(self.p('facts.json.gz')) as f: json.dump({'parks': self.parks}, f)
 
     def run(self, out='out', states=('MN',), extra=(), areas=()):
         self.write()
@@ -1435,6 +1442,19 @@ def test_gate_other_park_pin():
 
 
 # ------------------------------------------------------------------------------------------------------------- whole run
+def test_fixture_files_same_bytes():
+    # rule-sheet 37: the fixture's gzip files carry no clock time, so a cold and a warm run a second apart read the same bytes
+    f = Fix()
+    try:
+        mn_valley(f)
+        f.write()
+        first = {n: open(f.p(n), 'rb').read() for n in ('store/US-MN.layer-records.json.gz', 'facts.json.gz')}
+        assert all(b[4:8] == bytes(4) for b in first.values())           # gzip header MTIME field: 0
+        f.write()
+        assert first == {n: open(f.p(n), 'rb').read() for n in first}
+    finally: f.done()
+
+
 def test_two_runs_same_bytes():
     f = Fix()
     try:
