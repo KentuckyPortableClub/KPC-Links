@@ -2892,6 +2892,8 @@ OUTER_LINE = {   # layer prefix -> why its records never draw (rule 1b: an outer
     'sgmnb': "a state forest's statutory line (Minnesota DNR: 'State Forest boundaries often include private land'): "
              "drawn from the state's own land only (rule 1b)"}
 LOCK_TOL = 0.05   # a lock's records may differ from today's by at most 5% in total size (and never by name)
+LOCK_COPY = 0.95   # 26 Nov 2026: a park's other row may ride along a lock only when this share of its ground is on the id rows
+LOCK_V = 2   # 26 Nov 2026: lock file version (2 = the whole-park rule); older files are not read
 LOCKS = {}        # state -> {'used': n, 'broken': n, 'written': n}
 LOCK_ROWS = {}    # park -> its rows from a verified lock (this state's build)
 LOCK_BROKEN = []  # [state, park, layer, id kind, id value, why]: locks that did not hold today (the park was matched as usual)
@@ -2932,7 +2934,8 @@ def lock_check(st, recs, doc):
     takes ALL of today's records carrying that id (an agency renumbering its rows changes nothing: the id, not the row, is the
     key) and is confirmed by id with no further matching. Anything else: the lock is broken and listed, the park is matched
     as usual. Returns ({park: rows}, [broken rows]). Reads local files only."""
-    locks = (doc or {}).get('parks') or {}
+    # 26 Nov 2026: lock files from before the whole-park rule (kit 26i) are not read; this run writes new ones
+    locks = ((doc or {}).get('parks') or {}) if (doc or {}).get('v', 0) >= LOCK_V else {}
     want = {(L.get('layer'), L.get('kind'), str(L.get('value'))) for L in locks.values()}
     lays = {w[0] for w in want}
     by = {}
@@ -2983,6 +2986,23 @@ def lock_write(st, parks, byid, recs=None):
         recs_ = [a for a in recs_ if a is not None and a.get('_fresh') and not a.get('_hint') and _rec_id(a, k) == str(v)]
         lays = {_sl_layer(_oid(a)) for a in recs_}
         if not recs_ or len(lays) != 1 or next(iter(lays)) in OUTER_LINE: continue
+        # 26 Nov 2026 (kit 26i, owner's PC test 18:43 + 18:52: NY Bear Swamp US-5106 5,294 -> 1,748 acres, MN Red Lake US-4820
+        # 397,077 -> 72,512: a lock took only the rows with the id and the park's other proven rows, a PAD-US copy or another
+        # parcel, left the map): a lock is written only when the id rows ARE the whole park, so reusing it never drops land
+        # ... or when every other drawn row is a COPY lying on the id rows' own ground (NY: a PAD-US copy of a DEC state forest,
+        # 95% of its ground on the DEC tracts, measured on the outlines); a row that cannot be measured stops the lock
+        drawn = [byid.get(str(q[0])) for q in p.get('m') or [] if isinstance(q, (list, tuple)) and q]
+        drawn = [a for a in drawn if a is not None and a.get('_fresh') and not a.get('_hint')]
+        own = {_oid(a) for a in recs_}
+        rest = [a for a in drawn if _oid(a) not in own]
+        if rest:
+            va = {'rings': [r for a in recs_ for r in SL.rings_of(a.get('_g'))]}
+            if not va['rings']: continue
+            def _copy(a):
+                vb = {'rings': SL.rings_of(a.get('_g'))}
+                g = SL.ground_shares2(vb, va) if vb['rings'] else None
+                return g is not None and g[0] >= LOCK_COPY
+            if not all(_copy(a) for a in rest): continue
         # 26 Nov (grade of #390, US-11024: 440 acres saved, 574 today on a same-day file): a lock takes ALL of today's records
         # with that id, so it is written only when the park already holds all of them (else another tract with the same id
         # went elsewhere for a reason, and the park is matched as usual)
@@ -2994,8 +3014,9 @@ def lock_write(st, parks, byid, recs=None):
         out[ref] = {'layer': next(iter(lays)), 'kind': k, 'value': str(v),
                     'names': sorted({a.get('Unit_Nm') or a.get('Loc_Nm') or '' for a in recs_} - {''}),
                     'acres': round(sum(float(a.get('GIS_Acres') or 0) for a in recs_))}
+        if rest: out[ref]['copies'] = len(rest)
     return {'about': 'Agency-id locks (KPC_ID_LOCK, 26 Nov 2026): parks confirmed by a stable agency id, checked again in each run\'s own layer files.',
-            'state': st, 'parks': out}
+            'state': st, 'v': LOCK_V, 'parks': out}
 
 
 CARRY_ST = ['']   # the state fresh_records last joined (fresh_old_parks runs right after it for the same state)
@@ -4821,11 +4842,23 @@ def run(st):
             lock_path(st).parent.mkdir(parents=True, exist_ok=True)
             with open(lock_path(st), 'w', encoding='utf-8') as _fh: json.dump(_doc, _fh, indent=1, sort_keys=True, ensure_ascii=False)
             LOCKS.setdefault(st, {'used': 0, 'broken': 0})['written'] = len(_doc['parks'])
+            # 26 Nov 2026 (owner: 'how many times do I have to run it twice?'): the new locks are checked at once against this
+            # run's own layer files, so one run shows they hold (the next run's reuse is only faster, not a new test)
+            _su, _sb = lock_check(st, recs, _doc)
+            LOCKS[st]['same_day'] = [len(_su), len(_sb)]
+            LOCK_BROKEN.extend([b[:5] + ['same-day check: ' + b[5]] for b in _sb])
+            # rows a reused lock would leave off that are NOT copies on the id rows' ground (must be 0: the whole-park rule)
+            _lost = [r for r in _su if {str(x[0]) for x in _su[r]} - {str(x[0]) for x in parks[r].get('m') or []}]
+            LOCKS[st]['same_day_differs'] = len(_lost)
+            LOCKS[st]['copies'] = sum(int(L.get('copies') or 0) for L in _doc['parks'].values())
         except Exception as _e:  # noqa: BLE001
             notice(f'US key {st}', f'agency-id locks not written ({str(_e)[:120]})')
         _lk = LOCKS.get(st) or {}
         notice(f'US key {st}', f"agency-id locks: locked_used {_lk.get('used', 0)}, locked_broken {_lk.get('broken', 0)}, "
-               f"written for the next run {_lk.get('written', 0)}")
+               f"written for the next run {_lk.get('written', 0)}; same-day check of the new locks: "
+               f"{(_lk.get('same_day') or [0, 0])[0]} hold, {(_lk.get('same_day') or [0, 0])[1]} broken, "
+               f"{_lk.get('same_day_differs', 0)} would draw rows not drawn today; {_lk.get('copies', 0)} copy row(s) on the same ground "
+               f"left off when reused (no land lost)")
     progress(st, 'match checks done')
     if st in SAME_HOW or 'proven_only' in (_mc or {}):   # 25 Nov 2026: the better matcher's one line per state
         _sh, _po = SAME_HOW.get(st) or {}, (_mc or {}).get('proven_only') or {}

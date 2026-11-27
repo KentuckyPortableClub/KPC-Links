@@ -1100,6 +1100,20 @@
     "parks": []
    },
    "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:30 PM: 'Confirmed-park fast path against the store room (agency-ID proof only)'; 5:25 PM: 'stop holding fixes back'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
+  },
+  {
+   "id": "2026-11-26-locks-whole-park",
+   "when": "2026-11-26",
+   "from": "c86c0893d4d1",
+   "why": "Owner's PC test kit 26i (test-2026-11-26-1843 then -1852): reused locks kept only the rows carrying the agency id and dropped the park's other proven rows (NY 516 PAD-US rows, MN 50 PAD-US + 7 parcel rows; 28 NY and 3 MN parks shrank, e.g. Bear Swamp US-5106 5,294 -> 1,748 acres, Red Lake US-4820 397,077 -> 72,512). (4) A lock is written only when the id rows are the whole park: every other drawn row must be a copy with 95% of its ground on the id rows' own outlines (measured), else no lock and the park is matched as usual. Lock files from before this rule (no version 2) are not read. Each run checks its new locks at once against its own layer files (one run, not two).",
+   "scope": {
+    "states": [
+     "MN",
+     "NY"
+    ],
+    "parks": []
+   },
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:30 PM: 'Confirmed-park fast path against the store room (agency-ID proof only)'; 6:56 PM: 'idk how we still missing any'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }
