@@ -26,6 +26,7 @@ S, L, D, RX = 'str', 'list of str', 'dict of str', 'regex'
 TABLE_SHAPES = {
     'drop_layers': D, 'record_id_fields': D, 'class_fields': D, 'short_forms': D, 'des_kinds': D,
     'fixed_names': D, 'pin_only_reasons': D, 'neighbours': D, 'ca_neighbours': D, 'no_wait_layers': D, 'no_wait_status': D,
+    'single_kind_layers': {'*': [S]}, 'kinds_alike': [[S, S]],   # 27 Nov 2026, rule name_kind_agrees
     'kind_words': L, 'place_words': L, 'compound_kinds': L, 'core_drop': L, 'water_last_words': L, 'acre_fields': L,
     'size_witness_tags': L, 'placeholders': L, 'drop_words': L, 'ca_kind_words': L,
     'easement_rx': RX, 'type_field_rx': RX, 'lease_name_rx': RX, 'water_park_kind_rx': RX, 'office_rx': RX,
@@ -49,7 +50,8 @@ VALUE_KEYS = ('size_tol', 'two_sources_tol', 'pin_m', 'near_km', 'lock_acres_tol
               'acres_field_tol', 'acres_field_min_n', 'acres_field_sample', 'acres_field_min_acres',   # 27 Nov 2026, rule acres_field_guard
               'shared_record_share',   # 27 Nov 2026, rule shared_record_size
               'two_sources_same_acres',   # 27 Nov 2026, rule two_sources_not_a_copy
-              'union_lines', 'union_floor')   # 27 Nov 2026, rule size_union_not_sum
+              'union_lines', 'union_floor',   # 27 Nov 2026, rule size_union_not_sum
+              'two_sources_size_band')   # 27 Nov 2026, rule two_sources_size_agrees
 RULE_ROW = {'id': S, 'step': S, 'what': S, 'why': S, 'test': S, 'fn': S, 'stub': S}
 STEPS = {'load', '1', '2', '3', '4', 'gate', 'write'}
 STUBS = {'true', 'false', 'empty', 'identity', 'none'}
@@ -1445,6 +1447,70 @@ def no_pin_group(rs):
     return list(rs)
 
 
+def other_kind(p, rec, pool, rules):
+    """Rule name_kind_agrees (27 Nov 2026): a record found by the park's name (exact, page or two-language name) is another
+    kind of land when the park's name or type says a kind, the record itself says a kind (its own names, or its layer's kind
+    from single_kind_layers), and no kind the record is known by (those, its PAD-US designation type, layer_kinds) is the
+    park's. 'Ash Meadows' in the BLM herd-area layer is a herd area, not Ash Meadows National Wildlife Refuge. A designation
+    type or a park layer's kind alone never refuses (Hawaii's Lava Tree State Monument is Des_Tp SHCA, a park POTA calls a
+    State Park; NY sgnyb 'Olana' is a State Historic Site in an 'sp' layer), but it may agree (Oregon's Unity Lake State
+    Recreation Site, Des_Tp SREC, is the Unity Lake State Recreation Area). No kind on either side = no opinion (the normal
+    case: a bare name in a park layer). Two kinds of one pair of kinds_alike never
+    refuse each other (pairs only, never chains): POTA's BLM park types mix up the BLM designations (Utah's US-6073 King Top 'BLM Recreation Management
+    Area' is the King Top wilderness study area)."""
+    pk = kinds_of(p.get('name'), rules) | kinds_of(p.get('type'), rules)
+    if not pk: return False
+    pk |= {b for a, b in rules['kinds_alike'] if a in pk} | {a for a, b in rules['kinds_alike'] if b in pk}
+    own = set(rules['single_kind_layers'].get(rec['layer'], []))
+    says = set().union(*[kinds_of(n, rules) for n in rec['names']]) | own
+    return bool(says and not pk & (pool.rec_kinds(rec) | own))
+
+
+def size_contradicts(groups, proof, witnesses, pool, rules):
+    """Rule two_sources_size_agrees (27 Nov 2026): two sources prove only that two maps agree with EACH OTHER. When the park
+    has an official size (the size witnesses) and the land they agree on is more than two_sources_size_band times smaller or
+    larger than every official value, they describe a piece of the park or another place: no proof. The land = the larger of
+    the two sources' groups (their agency acres) or of the two records. No official size = no opinion (as before).
+    Proofs that are not two sources (pin, size) are never touched here."""
+    by, e = proof
+    if not by.endswith('two_sources') or not witnesses: return False
+    gs = [rs for g, rs in groups.items() if {pool.recs[i]['id'] for i in rs} & {e['source_a'], e['source_b']}]
+    ac = max([group_acres(rs, pool, rules) for rs in gs] + [e.get('acres_a') or 0, e.get('acres_b') or 0])
+    f = rules['numbers']['two_sources_size_band']
+    return not any(w / f <= ac <= w * f for w in witnesses)
+
+
+def far_proof_other_state(p, rs, pool):
+    """Rule far_proof_own_state (27 Nov 2026): a proof that is not the pin (size or two sources) uses a group of records only
+    when at least one of them comes from the layer file of an area POTA lists the park in (locationDesc). A park listed in
+    Alabama only is not proven by two Tennessee layers agreeing with each other (US-10428 Walls of Jericho). A park with no
+    listed area = no opinion. The pin's own records are never touched here (a park near a border keeps them)."""
+    listed = set(p.get('listed_in') or [])
+    return bool(listed) and not any(pool.recs[i]['area'] in listed for i in rs)
+
+
+def pin_beats_far_proof(proven):
+    """Rule pin_beats_far_proof (27 Nov 2026): the exact names proved land only by two sources (no group holds or nears the
+    pin, no official size agrees). Then a record of a longer or shorter form of the name that holds the pin is tried too
+    (pin_land_wins decides). -> True when every proof is a two-sources one."""
+    return bool(proven) and all(v[0].endswith('two_sources') for v in proven.values())
+
+
+def pin_land_wins(far, near, groups, pool, rules):
+    """Rule pin_beats_far_proof: the pin's land (near: longer or shorter name + pin) replaces the far two-sources land
+    (far) when it is at least as big (their agency acres, or measured outlines): two maps agreeing on a piece 1 km away is not
+    the park when the park's pin sits in a bigger record of its name (US-3935 Chuck Swan WMA: 755 ac far, 23,925 at the pin;
+    US-10428 Walls of Jericho: 759 in Tennessee, 12,330 at the pin). A smaller record at the pin is a part, so the far land
+    stays (US-2860 Umpqua Lighthouse State Park: two sources 375 ac, its 25-ac visitor centre at the pin)."""
+    size = lambda gs: max([land_total([pool.recs[i] for i in groups[g]], rules) for g in gs] or [0])
+    return bool(near) and size(near) >= size(far)
+
+
+def land_total(recs, rules):
+    """The largest layer total of the records' land (land_acres), 0 for none."""
+    return max(land_acres(recs, rules).values() or [0])
+
+
 def name_groups(p, ref, ctx):
     """Step 3 search for one park: -> (groups {gkey: [record i]}, notes set)."""
     pool, rules, pin, notes = ctx['pool'], ctx['rules'], pin_of(p), set()
@@ -1458,6 +1524,7 @@ def name_groups(p, ref, ctx):
         rec = pool.recs[i]
         no = refusal(p, ref, rec, i, ctx)
         if no: notes.add(no); continue
+        if other_kind(p, rec, pool, rules): notes.add('other_kind'); continue   # 27 Nov 2026, rule name_kind_agrees
         uv = unit_value(rec, rules)
         src = 'page' if i in page else 'lang' if i in lang else 'name'
         if line_by_itself(rec):   # 27 Nov 2026: a line is a group of its own, so it is proven by its own pin or not at all
@@ -1549,6 +1616,7 @@ def core_records(p, ref, ctx):
     for i in sorted(found):
         rec = pool.recs[i]
         if rec.get('line') or not pin_near(rec, pin, rules) or refusal(p, ref, rec, i, ctx): continue
+        if other_kind(p, rec, pool, rules): continue   # 27 Nov 2026, rule name_kind_agrees (a herd area, ACEC ... is no shorter name)
         rk, ok = pool.rec_kinds(rec), False
         for n in rec['names']:
             rc = name_core(n, '', rules)
@@ -1593,6 +1661,7 @@ def reason_for(p, groups, notes, twice, rules, own_file=False, gap=False):
     if notes & {'held', 'other_name', 'other_pin'}: return 'record_shared_with_another_park'
     if 'water' in notes: return 'water_only'
     if 'office' in notes: return 'office_only'
+    if 'other_kind' in notes: return 'name_on_other_kind_of_land'   # 27 Nov 2026, rule name_kind_agrees
     if notes & {'far', 'not_fee', 'easement'}: return 'name_but_no_pin_or_size_proof'
     if is_trail(p, rules): return 'record_layer_not_in_store'
     return 'no_record_store_gap' if gap else 'no_record_with_this_name'
@@ -1652,13 +1721,15 @@ def step_name(refs, ctx):
             r = prove_group(p, groups[g], pool, rules, wit)
             if r: (pinned if r[0] == 'name+pin' else sized)[g] = r
         sized.update(two_sources(p, {g: rs for g, rs in groups.items() if g not in pinned and g not in sized}, pool, rules))
+        sized = {g: v for g, v in sized.items() if not size_contradicts(groups, v, wit, pool, rules)   # 27 Nov 2026
+                 and not far_proof_other_state(p, groups[g], pool)}
         page = lambda d: {g: ({'page': 'page ', 'lang': 'two-language '}.get(g[3], '') + v[0], v[1]) for g, v in d.items()}
         pinned, sized = page(pinned), page(sized)
         twice = ambiguous_sizes(sized)
         proven = {**pinned, **{g: v for g, v in sized.items() if g not in twice}}
-        if not proven:
-            proven, more = core_records(p, ref, ctx)
-            groups = {**groups, **more}
+        if not proven or pin_beats_far_proof(proven):   # 27 Nov 2026: the pin's own land beats a far two-sources proof
+            cp, more = core_records(p, ref, ctx)
+            if not proven or pin_land_wins(proven, cp, {**groups, **more}, pool, rules): proven, groups = cp, {**groups, **more}
         if proven:
             want[ref] = {g: suffix_pieces(p, ref, groups[g], ctx) for g in proven}
             ev[ref] = proven

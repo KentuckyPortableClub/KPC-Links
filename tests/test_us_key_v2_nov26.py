@@ -1211,7 +1211,8 @@ def test_reason_store_gap():
 def test_pin_only_reasons_fixed_list():
     sheet = {'no_record_with_this_name', 'name_but_no_pin_or_size_proof', 'two_records_fit', 'record_shared_with_another_park',
              'water_only', 'office_only'}   # layer_not_complete left the list: a state with a gap is not built at all
-    assert set(RULES['pin_only_reasons']) == sheet | {'record_layer_not_in_store', 'park_has_no_pin', 'no_record_store_gap'}
+    assert set(RULES['pin_only_reasons']) == sheet | {'record_layer_not_in_store', 'park_has_no_pin', 'no_record_store_gap',
+                                                       'name_on_other_kind_of_land'}   # 27 Nov 2026, rule name_kind_agrees
     assert why(one('Nowhere State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing')]), 'US-1') == 'no_record_with_this_name'
 
 
@@ -1731,6 +1732,91 @@ def test_every_rule_names_a_test():
     assert not missing, missing
     assert all(hasattr(V, fn) for r in d['rules'] for fn in r['fn'].split(',') if fn), 'a rule row names a function the module lacks'
 
+
+
+# 27 Nov 2026 (grade item 2: wrong land and partial land past every gate). Rule sheet sections 23-26.
+def test_name_kind_agrees():
+    """Rule name_kind_agrees: a bare name in a single-purpose layer of another kind is not the park (NV US-0464 Ash Meadows
+    National Wildlife Refuge took the 115,783-ac 'Ash Meadows' herd area; UT US-11094 a hatchery took a BLM recreation site)."""
+    nwr, kd = 'Ash Meadows National Wildlife Refuge', 'National Wildlife Refuge'
+    rs = [rec('PAD-US', '4', 'Ash Meadows National Wildlife Refuge', ring(half_w=300)), rec('hma', 'hma148', 'Ash Meadows', ring(half_w=3000))]
+    assert ids(one(nwr, kd, rs), 'US-1') == ['4']                                     # the refuge keeps its own record only
+    d = one(nwr, kd, rs[1:])
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'name_on_other_kind_of_land'
+    assert ids(one('Ash Meadows BLM Herd Management Area', 'BLM Herd Management Area', rs[1:]), 'US-1') == ['hma148']   # its own kind
+    assert one('Glenwood State Fish Hatchery', 'State Fish Hatchery', [rec('rma', 'rma9736', 'Glenwood')])['parks']['US-1']['m'] == []
+    assert one('Calico Mountains Wilderness Area', 'Wilderness Area', [rec('hma', 'hma67', 'Calico Mountains')])['parks']['US-1']['m'] == []
+    # kinds_alike: POTA's BLM types mix up the BLM designations (UT US-6073 King Top is a wilderness study area)
+    assert ids(one('King Top BLM Recreation Management Area', 'BLM Recreation Management Area', [rec('wsa', 'wsa7', 'King Top')]), 'US-1') == ['wsa7']
+    assert one('Muddy Mountains BLM Wilderness Area', 'BLM Wilderness Area', [rec('rst', 'rst5', 'Muddy Mountains')])['parks']['US-1']['m'] == []
+    # a designation type or a park layer's kind alone never refuses; a record's own kind word does (TN US-7568 Barkley WMA)
+    assert ids(one('Lava Tree State Park', 'State Park', [rec('PAD-US', '7', 'Lava Tree', Des_Tp='SHCA')]), 'US-1') == ['7']
+    assert ids(one('Olana State Historic Site', 'State Historic Site', [rec('sgnyb', 'sgnyb407', 'Olana')]), 'US-1') == ['sgnyb407']
+    assert one('Barkley Wildlife Management Area', 'Wildlife Management Area', [rec('PAD-US', '8', 'Barkley Recreation Area')])['parks']['US-1']['m'] == []
+    # ... but it may agree (OR US-9154 Unity Lake: 'Recreation Site' reads as a BLM kind, Des_Tp SREC says a state park)
+    assert ids(one('Unity Lake State Recreation Area', 'State Recreation Area',
+                   [rec('PAD-US', '9', 'Unity Lake State Recreation Site', Des_Tp='SREC')]), 'US-1') == ['9']
+    assert one('Unity Lake State Recreation Area', 'State Recreation Area', [rec('PAD-US', '9', 'Unity Lake State Recreation Site')])['parks']['US-1']['m'] == []
+    # no kind on the park: no opinion
+    assert ids(one('Ash Meadows', '', rs[1:]), 'US-1') == ['hma148']
+    # kind_patterns wmgt: a water management area is not a wildlife management area (FL US-8335 Yellow River, sgflg44)
+    assert one('Yellow River Water Management Area', 'Water Management Area',
+               [rec('sgflg', 'sgflg44', 'Yellow River Wildlife Management Area')])['parks']['US-1']['m'] == []
+
+
+def chuck_swan(pin_acres, pin_half_w):
+    """Two far sources agree on a 733 / 755-ac piece 2 km from the pin; the pin sits in a longer-name record."""
+    rs = [rec('PAD-US', '255389', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=860), GIS_Acres=733),
+          rec('sgnyb', 'sgnyb13', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=870), Acres=755),
+          rec('sgmnd', 'sgmnd10', 'Chuck Swan WMA & SF', ring(half_w=pin_half_w), Acres=pin_acres)]
+    return one('Chuck Swan Wildlife Management Area', 'Wildlife Management Area', rs, urls=TWO_URLS)
+
+
+def test_pin_beats_far_proof():
+    """Rule pin_beats_far_proof: TN US-3935 Chuck Swan WMA (24,353 ac) was 'confirmed' on a 755-ac piece by two sources 1.2 km
+    away while its pin sat in 'Chuck Swan WMA & SF' (23,925 ac); AL US-10428 Walls of Jericho took two Tennessee layers while its
+    pin sat in the Alabama 'Walls of Jericho Tract'."""
+    d = chuck_swan(23925, 4900)
+    assert ids(d, 'US-1') == ['sgmnd10'] and by(d, 'US-1') == 'longer or shorter name+pin'
+    d = chuck_swan(25, 160)   # OR US-2860 Umpqua Lighthouse: a smaller record at the pin is a part; the far land stays
+    assert ids(d, 'US-1') == ['255389', 'sgnyb13'] and by(d, 'US-1') == 'name+two_sources'
+    rs = [rec('PAD-US', '255389', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=860), GIS_Acres=733),
+          rec('sgnyb', 'sgnyb13', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=870), Acres=755)]
+    assert by(one('Chuck Swan Wildlife Management Area', 'Wildlife Management Area', rs, urls=TWO_URLS), 'US-1') == 'name+two_sources'
+
+
+def test_two_sources_size_agrees():
+    """Rule two_sources_size_agrees: OR US-0503 McKay Creek NWR (official 1,837 ac) was proven on 21 ac by two sources; two maps
+    agreeing with each other says nothing when the park's official size is many times theirs."""
+    def pair(official):
+        rs = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=900), GIS_Acres=500), rec('sgnyb', 'sgnyb486', 'Harriman', ring(half_w=880), Acres=505)]
+        return one('Harriman State Park', 'State Park', rs, dx=1500, urls=TWO_URLS,
+                   size={'acres': official, 'witness': 'agency_document'} if official else None)
+    assert by(pair(None), 'US-1') == 'name+two_sources'          # no official size: no opinion
+    assert by(pair(1000), 'US-1') == 'name+two_sources'          # half the official size: still a proof
+    assert by(pair(200), 'US-1') == 'name+two_sources'           # 2.5 times it: still a proof
+    d = pair(2500)                                                # a fifth of the official size: a piece, not the park
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'name_but_no_pin_or_size_proof'
+    assert pair(100)['parks']['US-1']['m'] == []                  # five times it: another place
+
+
+def test_far_proof_own_state():
+    """Rule far_proof_own_state: a park POTA lists in one state is not proven by two layers of a neighbour state agreeing with
+    each other (US-10428 Walls of Jericho, listed US-AL, took Tennessee's sgtnh17 + sgtni153, pin outside)."""
+    def case(listed):
+        f = Fix()
+        try:
+            f.parks['US-1'] = park('Harriman State Park', 'State Park', dx_m=1500)
+            if listed: f.listed['US-1'] = listed
+            f.files['US-MN'] = [rec('PAD-US', '1', 'Somewhere Else', ring(90000))]
+            f.files['US-WI'] = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=900), GIS_Acres=500),
+                                rec('sgnyb', 'sgnyb486', 'Harriman', ring(half_w=880), Acres=505)]
+            f.urls['US-WI'] = TWO_URLS
+            assert f.run() == 0
+            return f.key()['parks']['US-1']
+        finally: f.done()
+    assert case('US-MN')['m'] == []
+    assert case('US-MN,US-WI')['match']['by'] == 'name+two_sources'   # listed in both: the neighbour's records count
 
 TESTS = [(n, f) for n, f in list(globals().items()) if n.startswith('test_') and callable(f)]
 

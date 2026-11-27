@@ -901,6 +901,42 @@
    "test": "test_size_union_not_sum",
    "fn": "union_share",
    "stub": "empty"
+  },
+  {
+   "id": "name_kind_agrees",
+   "step": "3",
+   "what": "a record found by the park's exact, page or two-language name (and by the longer-or-shorter name) is refused when the park's name or type says a kind, the record itself says a kind (its own names, or its layer's kind in single_kind_layers) and no kind the record is known by (those, its PAD-US Des_Tp, layer_kinds) is the park's; the two kinds of a pair in kinds_alike never refuse each other; a park left with nothing says name_on_other_kind_of_land",
+   "why": "Grade of the PC's build 27 Nov 8:09 AM, item 2 (wrong land and partial land past every gate). Dated 27 Nov 2026. NV US-0464 Ash Meadows National Wildlife Refuge (about 24,000 ac) also held the BLM herd-area records hma148 / sgnvi504 / hab75 'Ash Meadows' (115,783 ac): the exact rule takes the kind word off the park's name and joined ANY record of the bare name; after the two-sources fix US-9242 Calico Mountains Wilderness Area took hma67 'Calico Mountains' (162,605 ac) and US-9271 Muddy Mountains BLM Wilderness Area went 44,400 -> 187,798 ac. Measured on NV UT TN AL HI before the tables were set (rule sheet 23).",
+   "test": "test_name_kind_agrees",
+   "fn": "other_kind",
+   "stub": "false"
+  },
+  {
+   "id": "pin_beats_far_proof",
+   "step": "3",
+   "what": "when the exact names proved land only by two sources (no group holds or nears the pin, no official size agrees), the longer-or-shorter name is tried too; a record of it that holds the pin and is at least as big as the far land replaces the far land; a smaller one leaves the far land",
+   "why": "Grade of the PC's build 27 Nov 8:09 AM, item 2 (wrong land and partial land past every gate). Dated 27 Nov 2026. TN US-3935 Chuck Swan WMA (official 24,353 ac) was confirmed on 755 ac by PAD-US 733 + sgtnc 755, 1.2 km from the pin, while the pin sat in 'Chuck Swan WMA & SF' (23,925 ac); AL US-10428 Walls of Jericho took Tennessee's sgtnh17 + sgtni153 (759 ac) while its pin sat in Alabama's 'Walls of Jericho Tract' (12,330 ac); HI US-6423 Manuka State Preserve (26,044 ac) took the 14-ac Manuka State Wayside by its page name while its pin sat in the Manuka Natural Area Reserve (25,714 ac). The longer-or-shorter rule ran only when the exact names proved nothing (rule sheet 24).",
+   "test": "test_pin_beats_far_proof",
+   "fn": "pin_beats_far_proof,pin_land_wins",
+   "stub": "false"
+  },
+  {
+   "id": "two_sources_size_agrees",
+   "step": "3",
+   "what": "a two-sources proof (exact, page or two-language name) is refused when the park has an official size (size witnesses) and the land the two sources agree on (the larger of their groups' agency acres or of the two records) is more than two_sources_size_band times smaller or larger than every official value; no official size = as before",
+   "why": "Grade of the PC's build 27 Nov 8:09 AM, item 2 (wrong land and partial land past every gate). Dated 27 Nov 2026. Two sources only prove that two maps agree with EACH OTHER. OR US-0503 McKay Creek NWR (official 1,837 ac) was proven on 21 ac, US-0499 Cold Springs NWR (3,117) on 439 (rule sheet 25).",
+   "test": "test_two_sources_size_agrees",
+   "fn": "size_contradicts",
+   "stub": "false"
+  },
+  {
+   "id": "far_proof_own_state",
+   "step": "3",
+   "what": "a proof that is not the pin (size or two sources) uses a group of records only when one of them comes from the layer file of an area POTA lists the park in (locationDesc); no listed area = as before; pin proofs are never touched",
+   "why": "Grade of the PC's build 27 Nov 8:09 AM, item 2 (wrong land and partial land past every gate). Dated 27 Nov 2026. AL US-10428 Walls of Jericho State Natural Area (listed US-AL only) was proven by two Tennessee layers agreeing with each other, pin outside (rule sheet 26).",
+   "test": "test_far_proof_own_state",
+   "fn": "far_proof_other_state",
+   "stub": "false"
   }
  ],
  "values": {
@@ -1018,6 +1054,11 @@
    "value": 0.01,
    "why": "27 Nov 2026, rule size_union_not_sum: a group whose outlines overlap by less than 1% keeps its plain sum, bit for bit: a sliver where two neighbours' drawn edges cross is not land counted twice, cannot move a 10% size proof, and would only churn the keys of MN NY ND VT AK.",
    "test": "test_size_union_not_sum"
+  },
+  "two_sources_size_band": {
+   "value": 3.0,
+   "why": "27 Nov 2026 (rule two_sources_size_agrees), measured before it was set. The PC's build of 27 Nov 8:09 AM (51 US areas): 262 parks proven by two sources, 12 with an official size; their land over the official size: 0.011 (US-0503 McKay Creek NWR, 21 of 1,837 ac), 0.141 (US-0499 Cold Springs NWR, 439 of 3,117), 0.156 (US-4271 Beaver Brook SWA, 307 of 1,964), then nothing until 0.495 (US-0412 Currituck NWR), 0.53, 0.58, 0.60, 0.63, 0.69, 0.82, 1.31, 1.34. With this morning's fixes (Fable's out-after, 50 US areas): 192 two-source parks, 11 with an official size, the same values without Beaver Brook. A clear gap between 0.16 and 0.49, so 3 times either way; 96.6% of the parks proven by the pin or an id are within 3 times of their official size (1,290 of 1,335; 94.1% within 2). Drops: McKay Creek and Cold Springs only.",
+   "test": "test_two_sources_size_agrees"
   }
  },
  "tables": {
@@ -1651,9 +1692,10 @@
     "office_only": "only an office has this name",
     "no_record_store_gap": "no record with this name in the layers we have; a layer of this area is missing from the store, so look again after it is downloaded",
     "record_layer_not_in_store": "a trail park: its trail line layer is not in the store's layer files (manager, 26 Nov; not yet on the rule sheet)",
-    "park_has_no_pin": "the park has no usable pin (missing, 0,0 or impossible); its name was found but no agency id, size or two sources proves it"
+    "park_has_no_pin": "the park has no usable pin (missing, 0,0 or impossible); its name was found but no agency id, size or two sources proves it",
+    "name_on_other_kind_of_land": "a record has the park's name, but it is another kind of land (for example a herd area for a wildlife refuge)"
    },
-   "why": "rule sheet section 6, without layer_not_complete (a state with a gap is not built at all), plus record_layer_not_in_store (manager 26 Nov)",
+   "why": "rule sheet section 6, without layer_not_complete (a state with a gap is not built at all), plus record_layer_not_in_store (manager 26 Nov); name_on_other_kind_of_land (27 Nov 2026, rule name_kind_agrees)",
    "test": "test_pin_only_reasons_fixed_list"
   },
   "neighbours": {
@@ -1781,7 +1823,7 @@
    "value": [
     [
      "wma",
-     "wildlife management area|\\bwma\\b|\\bswa\\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting|fishery area|fishing access|habitat area|wildlife and environmental area|(?<!recreation )(?<!herd )(?<!conservation )management area"
+     "wildlife management area|\\bwma\\b|\\bswa\\b|wildlife area|game lands?|game areas?|game management area|hunting area|fish and wildlife area|public hunting|fishery area|fishing access|habitat area|wildlife and environmental area|(?<!recreation )(?<!herd )(?<!conservation )(?<!water )management area"
     ],
     [
      "wsr",
@@ -1882,9 +1924,17 @@
     [
      "pa",
      "protected area|aire prot[eé]g[eé]e"
+    ],
+    [
+     "wmgt",
+     "water management (area|district)|water conservation area"
+    ],
+    [
+     "acec",
+     "area of critical environmental concern|\\bacec\\b"
     ]
    ],
-   "why": "v1 kpc_match_checks.KINDS: the kind of place a name says (rule name_longer_or_shorter checks the kinds agree); round 7: the Canadian kinds (provincial / territorial park, marine protected area, bird sanctuary, national wildlife area, ecological and nature reserves) in English and French, so a longer-or-shorter name never joins a park to a place of another kind (CA-0852 Basin Head Provincial Park took Basin Head Marine Protected Area without them); 'protected area' too, so a Wildlife Management Area never takes a Protected Area of the same place name by a longer-or-shorter name (CA-2403 Douglas Marsh, CA-2379 Bell and Steeprock Canyons: two designations, left as pins)",
+   "why": "v1 kpc_match_checks.KINDS: the kind of place a name says (rule name_longer_or_shorter checks the kinds agree); round 7: the Canadian kinds (provincial / territorial park, marine protected area, bird sanctuary, national wildlife area, ecological and nature reserves) in English and French, so a longer-or-shorter name never joins a park to a place of another kind (CA-0852 Basin Head Provincial Park took Basin Head Marine Protected Area without them); 'protected area' too, so a Wildlife Management Area never takes a Protected Area of the same place name by a longer-or-shorter name (CA-2403 Douglas Marsh, CA-2379 Bell and Steeprock Canyons: two designations, left as pins) 27 Nov 2026 (rule name_kind_agrees): 'water management area' is its own kind (wmgt: a water district's land), not a wildlife management area (US-8335 Yellow River Water Management Area must not take Yellow River Wildlife Management Area, sgflg44, 27,245 ac); 'acec' for BLM Areas of Critical Environmental Concern.",
    "test": "test_name_longer_or_shorter"
   },
   "des_kinds": {
@@ -1942,6 +1992,103 @@
    },
    "why": "the kind of a layer whose records carry bare names ('Adirondack Park', 'Crow Wing'), from data/state-gis.json 'kind' (park / wild / preserve); v1 read it from its saved copies",
    "test": "test_name_longer_or_shorter"
+  },
+  "single_kind_layers": {
+   "value": {
+    "hma": [
+     "hma"
+    ],
+    "hab": [
+     "hma"
+    ],
+    "sgnvi": [
+     "hma"
+    ],
+    "wbl": [
+     "wild"
+    ],
+    "wld": [
+     "wild"
+    ],
+    "wsa": [
+     "wsa"
+    ],
+    "rma": [
+     "rma"
+    ],
+    "rst": [
+     "rma"
+    ],
+    "sgakg": [
+     "rma"
+    ],
+    "sgnmc": [
+     "rma"
+    ],
+    "sgazg": [
+     "rma"
+    ],
+    "sgcoe": [
+     "rma"
+    ],
+    "sgorf": [
+     "rma"
+    ],
+    "fwsr": [
+     "wsr"
+    ],
+    "wsrc": [
+     "wsr"
+    ],
+    "sgorg": [
+     "wsr"
+    ],
+    "sgute": [
+     "wsr"
+    ],
+    "sgakh": [
+     "acec"
+    ],
+    "sgnvh": [
+     "acec"
+    ]
+   },
+   "why": "27 Nov 2026 (rule name_kind_agrees): the kind of land of a single-purpose layer whose records carry bare names, read from each layer file's manifest (its 'agency' text and url), used ONLY to refuse a record of another kind (never to join one, so no park gains land from it): BLM herd areas / herd management areas (hab, hma, NV sgnvi) = hma; BLM and Forest Service wilderness (wbl, wld) = wild; BLM wilderness study areas (wsa) = wsa; BLM recreation areas and sites (rma, rst, sgakg, sgnmc, AZ sgazg, CO sgcoe, OR sgorf) = rma; wild and scenic river corridors (fwsr, wsrc, OR sgorg, UT sgute) = wsr; BLM Areas of Critical Environmental Concern (sgakh, sgnvh) = acec. NV, 27 Nov: hma148 / sgnvi504 / hab75 'Ash Meadows' (115,783 ac) were on US-0464 Ash Meadows National Wildlife Refuge; hma67 'Calico Mountains' (162,605 ac) on US-9242 Calico Mountains Wilderness Area.",
+   "test": "test_name_kind_agrees"
+  },
+  "kinds_alike": {
+   "value": [
+    [
+     "wsa",
+     "wild"
+    ],
+    [
+     "wsa",
+     "rma"
+    ],
+    [
+     "wsa",
+     "ca"
+    ],
+    [
+     "acec",
+     "rma"
+    ],
+    [
+     "acec",
+     "ca"
+    ],
+    [
+     "ca",
+     "rma"
+    ],
+    [
+     "hist",
+     "rma"
+    ]
+   ],
+   "why": "27 Nov 2026 (rule name_kind_agrees), measured on the NV UT TN AL HI files before it was set: POTA's types for BLM parks mix up the BLM designations, so the two kinds of each pair never refuse each other (pairs only, never chains): of 196 refused (park, record) pairs, 54 were a 'BLM Recreation Management Area' park on a wilderness study area of its exact name with its pin inside (US-6073 King Top, US-5931 Carcass Canyon, US-11100 North Escalante Canyons), 13 a 'Wilderness Area' on a WSA (US-11727 Mt. Ellen-Blue Hills, US-5791 Spruce Canyon), 12 a recreation area or 'National Conservation Area' on an ACEC or WSA (US-13207 Blue Mass Scenic Area, US-5822 Pariette Wetlands). Also ca-rma and hist-rma: Utah's US-6092 Joshua Tree National Landmark 'BLM National Conservation Area' and US-12137 Kennedy Stage Coach Station 'BLM Historic Area' are BLM recreation sites of their exact names, pin inside. Wilderness and a recreation management area are NOT alike: with them alike, US-9271 Muddy Mountains BLM Wilderness Area (44,400 ac) took the 128,292-ac Muddy Mountains SRMA. Herd areas (hma), wild and scenic rivers, refuges, monuments, hatcheries, state parks and WMAs pair with nothing: they are other land.",
+   "test": "test_name_kind_agrees"
   },
   "core_drop": {
    "value": [

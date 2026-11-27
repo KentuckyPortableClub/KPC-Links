@@ -348,7 +348,73 @@ Rule `reason_store_gap`, new reason code `no_record_store_gap`. Before, a park w
 - No gap = no change: keys of areas without a gap are byte for byte the same. Nothing is decided from the v1 key (owner, 27 Nov: v1 is no judge); the matcher cannot know which park is in the missing layer, so the reason says only what is true.
 - The reason's words are in the table `pin_only_reasons`; the reason counts in the build summary, scorecard and pin-only csv files are counted from the key, so the new code appears there by itself. The next tool should wait for the layer, not chase these as name problems.
 
-## 26. 27 Nov 2026: an easement is not joined by an agency id either (grade item 5)
+## 23. 27 Nov 2026 (grade item 2): same short name, other kind of land
+The exact rule takes the kind word off a park's name ("Calico Mountains Wilderness Area" -> "Calico Mountains") and then took
+ANY record of that bare name. Nevada: US-0464 Ash Meadows National Wildlife Refuge (about 24,000 ac) held the BLM herd-area
+records "Ash Meadows" (115,783 ac); after the two-sources fix US-9242 Calico Mountains Wilderness Area took the 162,605-ac herd
+area and US-9271 Muddy Mountains BLM Wilderness Area went 44,400 -> 187,798 ac. Rule `name_kind_agrees`:
+- **Refused:** the park's name or type says a kind, the record itself says a kind (its own names, or its layer's kind in the
+  new table `single_kind_layers`), and no kind the record is known by is the park's.
+- **`single_kind_layers`** (read from each layer file's manifest): herd areas hab / hma / NV sgnvi = hma; wilderness wbl / wld;
+  wsa; BLM recreation areas and sites rma / rst / sgakg / sgnmc / AZ sgazg / CO sgcoe / OR sgorf = rma; river corridors fwsr /
+  wsrc / OR sgorg / UT sgute = wsr; ACECs sgakh / sgnvh = acec. Used only to refuse, never to join.
+- **Never refuses alone:** a PAD-US designation type or a park layer's kind (`layer_kinds`). A park layer holds historic sites
+  too (NY "Olana"); Hawaii's Lava Tree State Monument is Des_Tp SHCA. They may agree, though (Oregon's Unity Lake State
+  Recreation Site, Des_Tp SREC). No kind on either side = no opinion: a bare name in a park layer is the normal case.
+- **`kinds_alike`** (pairs, never chains): POTA's types for BLM parks mix up the BLM designations: wsa-wild, wsa-rma, wsa-ca,
+  acec-rma, acec-ca, ca-rma, hist-rma. Utah: 54 "BLM Recreation Management Area" parks sit on a WSA of their exact name with
+  the pin inside (US-6073 King Top). Wilderness and a recreation area are NOT alike (else Muddy Mountains Wilderness took the
+  128,292-ac SRMA).
+- **New kind words:** "water management area" is its own kind (wmgt), not a wildlife management area (FL US-8335 Yellow River
+  must not take the 27,245-ac Yellow River WMA); "acec".
+- **What people see:** a park left with nothing is pin only, reason `name_on_other_kind_of_land`.
+- **Measured 27 Nov (NV UT TN AL HI: 196 refused (park, record) pairs before the pairs table, 101 after; then OR CO IA):** NV: Ash Meadows 115,783 -> 24,517;
+  Calico Mountains Wilderness 162,605 -> 64,559; Muddy Mountains Wilderness 187,798 -> 44,400; Mormon Mountains lost the herd
+  area; Gold Butte NM and High Rock Canyon SRMA lost their only (herd area / wilderness) land. UT: Swasey Mountain HMA (only a
+  WSA), Horseshoe Springs WMA (only an ACEC) pin only; King Top lost the herd area; three river parks lost recreation /
+  wilderness polygons. TN: four WMAs lost the Corps "Recreation Area" around them (Barkley 17,799 -> 7,322). OR: Honeycombs and
+  Bear Gulch "BLM Wilderness Area" pin only (their only record is an ACEC).
+
+## 24. 27 Nov 2026 (grade item 2): the pin's own land beats a far two-sources proof
+The longer-or-shorter rule ran only when the exact names proved nothing. So two maps agreeing on a piece 1-2 km away shut out
+the record holding the pin. Rule `pin_beats_far_proof`:
+- When the exact names proved land ONLY by two sources, the longer-or-shorter name is tried too. A record of it that holds the
+  pin and is at least as big as the far land replaces the far land. A smaller one is a part, so the far land stays.
+- Name + pin, name + size and id proofs are never touched.
+- **Measured 27 Nov:** TN US-3935 Chuck Swan WMA 755 -> 23,925 ac (official 24,353); AL US-10428 Walls of Jericho 759 ac in
+  Tennessee -> 12,330 in Alabama (official 12,617); HI US-6423 Manuka State Preserve 14-ac wayside -> 25,714-ac Natural Area
+  Reserve (official 26,044); IA US-12191 Turin Preserve 892 -> 1,107. Kept: OR US-2860 Umpqua Lighthouse State Park (two
+  sources 375 ac; the record at its pin is the 25-ac visitor centre).
+
+## 25. 27 Nov 2026 (grade item 2): two sources must not contradict the official size
+Two sources prove only that two maps agree with EACH OTHER. Rule `two_sources_size_agrees`, value `two_sources_size_band` 3:
+- The park has an official size (the size witnesses) and the land the two sources agree on is more than 3 times smaller or
+  larger than every official value = no proof. No official size = as before.
+- **Measured before the value was set:** PC build, 262 two-source parks, 12 with an official size; ratios 0.011, 0.141, 0.156,
+  then a gap to 0.495 ... 1.34. Out-after (50 US areas): 192 and 11. Drops: OR US-0503 McKay Creek NWR (21 of 1,837 ac), US-0499
+  Cold Springs NWR (439 of 3,117).
+- **Not used here:** the acreage bot's sizes that do not count as witnesses and page sizes that are not clean. They would also
+  catch Chuck Swan, Walls of Jericho, Pearl Hill and Quechee, but they are wrong too often: for parks proven by the pin they
+  disagree 3 times or more in 18% (bot) and 10% (page) of cases (HI US-2226 Wailua River: bot 1.12 ac). A ruling.
+
+## 26. 27 Nov 2026 (grade item 2): a far proof stays in the park's own state
+Rule `far_proof_own_state`: a proof that is not the pin (size or two sources) uses a group only when one of its records comes
+from the layer file of an area POTA lists the park in (locationDesc). Pin proofs are never touched (parks near a border keep
+the neighbour's records that hold their pin). Measured over out-after (50 US areas): one park has all its land from another
+state's file by a non-pin proof: US-10428 Walls of Jericho.
+
+## 27. 27 Nov 2026: what grade item 2 found that is not a rule fault
+- **Page names (Manuka):** section 24 fixes it; section 25 does not (no official size). 33 parks are proven by a page name
+  with size or two sources; 4 of them have a page whose name differs from POTA's (US-6423, US-6410 Iao Valley, US-9666
+  Rosemont, US-2423 Gardner). Refusing those would drop 2-3 right ones: left for a ruling.
+- **Aransas (TX US-0541):** no unit is missing from the store. fws785 (25,776 ac, the Matagorda Island unit) is in the file but
+  its interest is "E", so rule `fws_interest_by_name` refuses it as not fee land. That is the easement rule doing what it says.
+- **Little River State Forest (AL US-4598):** PAD-US 166058 (2,164 ac, exact name) is 1.5 km from the pin, one source, no
+  official size on file, so it proves nothing; the pin is in the "Addition" (704 ac). Needs an official size (acreage bot).
+- **Buck Hill (RI), Beaver Brook and Avon Bottoms (WI), Campbell Falls (CT), Glenwood (UT), Blackhawk and Harrier Marsh (IA),
+  JL Curran (RI):** already changed by this morning's two-sources fix (section 20).
+
+## 28. 27 Nov 2026: an easement is not joined by an agency id either (grade item 5)
 Rule `easement_not_by_id` (function `id_not_fee`), plus the type field `matype` in the table `type_field_rx`.
 Before: rule `easement_by_name` kept an easement out of every NAME join, but said "an agency-id proof is unaffected". So when a park's id matched an easement record, the easement came in with the rest of the id's records. Real case: Virginia's `sgvae` layer holds "NPS Easement" records (type field `MATYPE` = "Conservation Easement", owner Private or NPS, 0 to 348 acres). Their page link names the park (`nps.gov/pete`), so the NPS unit code joined them to Petersburg, Fredericksburg-Spotsylvania, Manassas, Prince William Forest and Cumberland Gap, up to 24 km from the pin. An easement is not park land.
 - What counts: a record whose type field says easement (now incl. `MATYPE`), or whose name says lease / agreement, or a Fish and Wildlife record whose interest type is not fee (E, R, A).
@@ -360,7 +426,7 @@ Before: rule `easement_by_name` kept an easement out of every NAME join, but sai
 - Which change did what: the 23 NPS and the Appalachian Trail records left through the id rule (they were id joins). The 17 + 2 refuge records and Widewater were NAME joins (step 3); they leave only because `matype` is now a type field, i.e. the older rule `easement_by_name` now sees them.
 - Grey area for the owner: the refuges' own easement records (Rappahannock, Eastern Shore) were shown as part of the refuge before; they leave too. Say if refuge easements should be shown.
 
-## 27. 27 Nov 2026: a park the facts do not know takes its name from POTA's list (grade item 6)
+## 29. 27 Nov 2026: a park the facts do not know takes its name from POTA's list (grade item 6)
 Rule `facts_fallback_pota_list` (function `pota_fallback`).
 Before: a park on POTA's list with no row in the park facts (new parks) got an empty name and no pin in the key. Eleven parks: US-13665 to US-13672, US-6253, US-6257, US-6274 (and US-13670).
 - A listed park whose facts row is missing, or has no name, takes the name (and the pin, when the facts have none) from POTA's own saved list. A facts name is never overwritten. The type stays blank until the facts have it.
