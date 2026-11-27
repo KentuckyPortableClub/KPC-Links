@@ -52,3 +52,9 @@ their work, and make it better than planned. Plain words, short reports. He is a
 - `.bat` files and part of the page reader README are CRLF: edit them as bytes.
 - Check agents' numbers against the files before telling him. Fable told him trails were fixed when they were not.
 - GitHub: NO BUILDING, branch + draft PR, author `KPC owner`, message ends `KPC owner, <date>`, no trailers.
+- `PAGE-READER.bat` first asked with `set /p` and a typed answer; on his PC typing 2 or 3 only printed the menu again (cause
+  not found; the file was clean CRLF). Changed 27 Nov 4:58 AM to one key press with `choice`, the way `LAYER-RECORDS.bat`
+  asks and works. NOT YET CONFIRMED BY HIM. Buttons cannot be tested here (no Windows): keep to patterns already proven on
+  his PC. Never replace a `.bat` while its window is open.
+- 27 Nov about 4:50 AM, his words: "i built us tables ran 50 state v2 did layer record bat did 0". So V2-STATE-PREP, a
+  50-state V2-BUILD, LAYER-RECORDS and 0-INSTALL-PAGE-BROWSER have run: read those results first.
