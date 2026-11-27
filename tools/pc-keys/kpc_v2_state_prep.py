@@ -49,6 +49,7 @@ class Rules:
         self.id_ties = g('id_ties', [])
         self.rec_fields = g('record_id_fields', {})
         self.drop = g('drop_layers', {})
+        self.no_wait_layers, self.no_wait_status = g('no_wait_layers', {}), g('no_wait_status', {})   # 27 Nov: not land = nothing to wait for
         self.kind_set = (self.kinds | KIND_EXTRA) - {'a', 'n', 'no', 'na', 'other', 'name', 'none', 'unknown', 'site', 'sites'} | {'site'}
         self.lim, self.lim_note = SC.load_limits(repo)
         self.place_len = 4
@@ -221,10 +222,12 @@ def store_room(doc, R, st):
         keys = Counter(str(r.get('key') or '') for r in rs)
         complete = bool((m or {}).get('complete'))
         why = (m or {}).get('why') or ('' if complete else ('not in the manifest' if m is None else 'not complete'))
+        nowait = '' if complete else (R.no_wait_layers.get(lay) or R.no_wait_status.get(str((m or {}).get('status') or '')) or '')
+        if nowait: why = f'not land, nothing to wait for ({nowait})'
         row = {'layer': lay, 'complete': complete, 'why': why, 'records': len(rs), 'no_shape': sum(1 for r in rs if not r.get('rings')),
                'repeat_keys': sum(1 for k, c in keys.items() if c > 1), 'not_in_manifest': m is None and bool(rs), 'dropped': lay in R.drop}
         rows.append(row)
-        if not complete: gaps.append(lay)
+        if not complete and not nowait: gaps.append(lay)
     return rows, sorted(gaps)
 
 

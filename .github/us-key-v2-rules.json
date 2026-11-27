@@ -12,6 +12,15 @@
    "stub": "empty"
   },
   {
+   "id": "load_no_wait",
+   "step": "load",
+   "what": "a layer that is not land is nothing to wait for: an incomplete layer named in no_wait_layers, or one the store room marks with a status in no_wait_status, is not a store-room gap (the build is clean, exit 0) and is listed as not_waited_for",
+   "why": "Owner 27 Nov 2026, 4:15 AM, asked 'both are held up by a layer that is points, not land (264 parks). Should v2 stop waiting for a layer like that?': \"i guess\". TOOLS-AUDIT F5: ND sgaki and VT vta held their states and can never give an outline.",
+   "test": "test_not_land_layer_is_no_gap",
+   "fn": "no_wait",
+   "stub": "empty"
+  },
+  {
    "id": "load_drop_layers",
    "step": "load",
    "what": "layers in drop_layers are dropped at load",
@@ -2258,6 +2267,20 @@
    ],
    "why": "FACTS-AUDIT F13 (26 Nov): 26 park names carry a curly apostrophe (13 US, 13 CA); full('Pu’tlaqne’katik') was 'putlaqnekatik' but the straight spelling 'pu tlaqne katik', so CA-1846's id records failed the id guard. A curly, a left, a modifier-letter apostrophe and a prime are the straight one wherever a name or an id is compared.",
    "test": "test_same_apostrophe"
+  },
+  "no_wait_layers": {
+   "value": {
+    "sgaki": "National Park Service National Register locations (nrhp_locations/MapServer/1): the club's verified-layers list says NOT A PARK LAYER and it is never downloaded"
+   },
+   "why": "owner 27 Nov 2026 (rule load_no_wait): a layer named here never holds a park outline. Add a layer only with proof that it holds no land (a points layer, or the club's own 'not a park layer' verdict).",
+   "test": "test_not_land_layer_is_no_gap"
+  },
+  "no_wait_status": {
+   "value": {
+    "not_land": "the store room's word (since its 26 Nov fix) for a layer whose records are all points: no area, no line"
+   },
+   "why": "owner 27 Nov 2026 (rule load_no_wait): the store room itself says the layer holds only points, so v2 needs no row per layer (VT vta: 483 records, none with a polygon, will carry this status after the rebuild if they are points).",
+   "test": "test_not_land_layer_is_no_gap"
   }
  },
  "notes": {

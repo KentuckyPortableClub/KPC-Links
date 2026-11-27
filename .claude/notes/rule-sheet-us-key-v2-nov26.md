@@ -205,3 +205,15 @@ does not hold, such as trail lines). One per park. Check rows can therefore neve
 - 9:53 PM, licences: "we don't want to get information that's not meant to be shared; we may use it privately but not share
   it". v2 may read a private record to prove a match, and marks it: each park says share all / part / none and lists its
   private records; a record with no licence answer counts as private.
+
+## 15. Ruled 27 Nov 2026, 4:15 AM (owner)
+- **A layer that is not land is nothing to wait for** (asked: "both are held up by a layer that is points, not land (264 parks).
+  Should v2 stop waiting for a layer like that?"; owner: "i guess"). Rule `load_no_wait`, two tables: `no_wait_layers` (a layer
+  by name, with proof it holds no land: `sgaki`, the Park Service's National Register locations, "NOT A PARK LAYER" in the
+  club's verified-layers list) and `no_wait_status` (the store room's own word `not_land` = all records are points). Such a
+  layer is not a store-room gap: exit 0, no "(store gap)" on the tool line, and v2-run.json lists it under `not_waited_for`.
+  Every other status (failed, missing, empty, refused, not now, held) is still a gap. No join changes.
+- Measured: ND 93 of 155 outlined, clean (was flagged for `sgaki`). VT 78 of 109, still flagged for `vta` until the store-room
+  rebuild says whether its 483 records are points. MN 295 and NY 819: key text unchanged.
+- **The site rule changed for a 401 / 403** (owner: "sure we are just polite"): see `net-rules-nov26.md`. v2 itself never
+  contacts a server; this is for the store room and the page reader.

@@ -88,13 +88,16 @@ START HERE in a new chat. The owner's report of every bad finding: https://claud
   1 status / 2 re-read kept pages / 3 read what is missing. NO KPC-Data PR YET. Two values wait for the owner's yes or no
   (`robots_challenge_page`, `robots_other_site_page`, both 'no-rules').
 - **The site rule** (owner's words, `net-rules-nov26.md`): only a real Disallow line is a no. About 3,100 pages were falsely
-  not read. Unanswered: should a 403 on the data stop that site for the run at all.
+  not read. ANSWERED 27 Nov 4:15 AM: a 401 / 403 is that page or layer only and the site carries on; 5 in a row, or a 429,
+  stop the site for the run. The two robots.txt values are confirmed ('no-rules'). Both tools changed and on the PC (27 Nov).
 - **Audits (read before touching either tool or the facts builder):** `audit-tools-nov26.md` (F1-F18 + section 6 false blocks),
   `audit-facts-nov26.md` (the park-facts chain, F1-F16).
 - **Waiting on the owner's PC, in this order:** LAYER-RECORDS 1 (he says "status is done"; read
   `results\STORE-ROOM-STATUS.txt` first), then 2, then 3; PAGE-READER 1, 2, 3; upload pack so the facts rebuild;
   `V2-STATE-PREP.bat`, `V2-BUILD.bat`. One run each: never ask for a rerun to see.
-- **Open, not built:** a v2 table row so a "not land" layer (ND `sgaki`, VT `vta`) does not hold a state (owner's call); the
+- **DONE 27 Nov (owner: "i guess"):** a not-land layer is no gap (rule sheet section 15). ND builds clean (93 of 155); VT
+  stays flagged for `vta` until the store-room rebuild says whether it is points.
+- **Open, not built:** the
   park-facts builder (drop `--key`, km2 guard, bad pins, Kentucky ids, freshness stamp, keep the page reader's new fields) and a
   PC button for it; "other spellings" table (US-0474, US-2147, US-4239); prep tool address comparison (scheme / www); licence
   counts on the scorecard; one front-door button for the whole chain; PA State Game Lands (308 parks, no record with their

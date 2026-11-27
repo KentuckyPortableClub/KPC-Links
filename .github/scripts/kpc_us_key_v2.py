@@ -23,7 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 S, L, D, RX = 'str', 'list of str', 'dict of str', 'regex'
 TABLE_SHAPES = {
     'drop_layers': D, 'record_id_fields': D, 'class_fields': D, 'short_forms': D, 'des_kinds': D,
-    'fixed_names': D, 'pin_only_reasons': D, 'neighbours': D, 'ca_neighbours': D,
+    'fixed_names': D, 'pin_only_reasons': D, 'neighbours': D, 'ca_neighbours': D, 'no_wait_layers': D, 'no_wait_status': D,
     'kind_words': L, 'place_words': L, 'compound_kinds': L, 'core_drop': L, 'water_last_words': L, 'acre_fields': L,
     'size_witness_tags': L, 'placeholders': L, 'drop_words': L, 'ca_kind_words': L,
     'easement_rx': RX, 'type_field_rx': RX, 'lease_name_rx': RX, 'water_park_kind_rx': RX, 'office_rx': RX,
@@ -593,11 +593,27 @@ def spell_layer(recs, layer, rules):
 
 
 # ---------------------------------------------------------------------------------------------------------------- load
-def layer_gaps(doc):
-    """Rule load_complete: layers of a file that are not complete, or that have records but no manifest row."""
+def layer_gaps(doc, rules=None):
+    """Rule load_complete: layers of a file that are not complete, or that have records but no manifest row.
+    Rule load_no_wait (owner 27 Nov 2026): a layer that is not land (points only) is nothing to wait for, so it is no gap."""
     man = doc.get('manifest') or {}
-    return sorted({l for l, m in man.items() if not (m or {}).get('complete')}
-                  | {str(r.get('layer') or '') for r in doc.get('records') or []} - set(man))
+    skip = set(no_wait(doc, rules))
+    return sorted(({l for l, m in man.items() if not (m or {}).get('complete')}
+                   | {str(r.get('layer') or '') for r in doc.get('records') or []} - set(man)) - skip)
+
+
+def no_wait(doc, rules):
+    """Rule load_no_wait: {layer: why} for the layers of a file that are not complete and are NOT waited for: the layer is
+    named in the table no_wait_layers, or the store room gave it a status in the table no_wait_status (its word for a layer
+    that holds only points). Such a layer never holds an outline, so a build without it is not a gap build."""
+    if not rules: return {}
+    names, words = rules.get('no_wait_layers') or {}, rules.get('no_wait_status') or {}
+    out = {}
+    for l, m in (doc.get('manifest') or {}).items():
+        if (m or {}).get('complete'): continue
+        if l in names: out[l] = names[l]
+        elif str((m or {}).get('status') or '') in words: out[l] = words[str(m.get('status'))]
+    return out
 
 
 def dropped_layer(layer, rules):
@@ -1648,8 +1664,9 @@ def build_state(area, a, rules, facts, layer_file, info):
         print(f'{st}: park list not found.'); info['not_built'] = 'no park list'; return 2, [], [], []
     if own is None:
         print(f'{st}: layer file not found.'); info['not_built'] = 'no layer file'; return 2, [], [], []
-    gaps = layer_gaps(own[0])
+    gaps = layer_gaps(own[0], rules)
     info['gaps'] = gaps
+    info['not_waited_for'] = no_wait(own[0], rules)
     pool = Pool(rules)
     pool.add_file(area, own[0])
     layer_files = {area: {'file': own[2], 'made': own[0].get('made'), 'sha256': own[1]}}
@@ -1657,7 +1674,7 @@ def build_state(area, a, rules, facts, layer_file, info):
     for nb in nbs:
         f = layer_file(nb)
         if f is None: info['neighbour_gaps'].append(f'{nb}: no file'); continue
-        info['neighbour_gaps'] += [f'{nb} {l}' for l in layer_gaps(f[0])]
+        info['neighbour_gaps'] += [f'{nb} {l}' for l in layer_gaps(f[0], rules)]
         pool.add_file(nb, f[0])
         layer_files[nb] = {'file': f[2], 'made': f[0].get('made'), 'sha256': f[1]}
     listed = park_states(a.repo, area)

@@ -72,6 +72,7 @@ class Fix:
         os.makedirs(os.path.join(self.d, 'store'))
         self.parks, self.files, self.incomplete, self.lists, self.no_manifest, self.listed = {}, {}, {}, {}, {}, {}
         self.urls = {}   # {area: {layer: url}}: manifest sources (rule layer_copy)
+        self.man = {}    # {area: {layer: manifest row}}: rows written as given (rule load_no_wait)
 
     def p(self, path): return os.path.join(self.d, path)
 
@@ -86,6 +87,7 @@ class Fix:
                                                            if r['layer'] in self.urls.get(area, {}) else {})) for r in recs}
             for l in self.incomplete.get(area, []): man[l] = {'complete': False}
             for l in self.no_manifest.get(area, []): man.pop(l, None)
+            man.update(self.man.get(area, {}))
             with gzip.open(self.p(f'store/{area}.layer-records.json.gz'), 'wt') as f:
                 json.dump({'kpcstore_layers': 1, 'area': area, 'made': '2026-11-26T11:00:00-06:00', 'manifest': man, 'records': recs}, f)
         with gzip.open(self.p('facts.json.gz'), 'wt') as f: json.dump({'parks': self.parks}, f)
@@ -147,6 +149,26 @@ def test_store_gap_built():
         f.incomplete = {'US-WI': ['wsrc']}
         f.files['US-WI'] = [rec('wsrc', 'wsrc1', 'Other River', ring(9000, 9000))]
         assert f.run() == 0 and ids(f.key(), 'US-1') == ['sgmnd1']   # a neighbour's gap does not stop the state
+    finally: f.done()
+
+
+def test_not_land_layer_is_no_gap():
+    f = Fix()
+    try:   # owner 27 Nov: a layer that is points, not land, is nothing to wait for (ND sgaki, VT vta held their states)
+        f.parks['US-1'] = park('Crow Wing State Park', 'State Park')
+        f.files['US-MN'] = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
+        f.man['US-MN'] = {'sgaki': {'complete': False, 'why': 'no file yet'}}                 # named in no_wait_layers
+        assert f.run() == 0 and ids(f.key(), 'US-1') == ['sgmnd1'] and f.info()['gaps'] == [], f.info()['gaps']
+        assert 'gaps' not in f.key() and not f.key()['tool'].endswith(' (store gap)')
+        assert list(f.info()['not_waited_for']) == ['sgaki'] and 'NOT A PARK LAYER' in f.info()['not_waited_for']['sgaki']
+        f.man['US-MN'] = {'zzpts': {'complete': False, 'status': 'not_land', 'why': 'not land (points)'}}   # the store room's word
+        assert f.run() == 0 and f.info()['gaps'] == [] and list(f.info()['not_waited_for']) == ['zzpts']
+        f.man['US-MN'] = {'zzpts': {'complete': False, 'status': 'failed', 'why': 'failed (HTTP 500)'}}     # any other status IS a gap
+        assert f.run() == 3 and f.info()['gaps'] == ['zzpts'] and f.info()['not_waited_for'] == {}
+        f.man['US-MN'] = {'zzpts': {'complete': False, 'status': 'empty'}, 'zzmiss': {'complete': False, 'status': 'missing'}}
+        assert f.run() == 3 and f.info()['gaps'] == ['zzmiss', 'zzpts']                       # empty and missing are still waited for
+        f.man['US-MN'] = {'sgaki': {'complete': True}}                                        # a complete layer is never listed
+        assert f.run() == 0 and f.info()['not_waited_for'] == {}
     finally: f.done()
 
 
