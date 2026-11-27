@@ -192,3 +192,16 @@ does not hold, such as trail lines). One per park. Check rows can therefore neve
 - Lake Vermilion US-2506 / US-7148: both stay pin only. One record carries two park names; the pins are about 2,457 ft apart.
 - The fair count stands: parks v1 drew only from layers the store room does not hold are set apart and listed; the scorecard
   prints the raw and the fair count every time.
+
+## 14. Ruled later on 26 Nov (owner)
+- 9:20 PM: v2 is not a test version. It builds any US state and Canada on the PC; everything stays on the PC until proven
+  ("no reason to lock it down"). A store-room gap no longer stops an area: it is built and flagged.
+- 9:46 + 9:49 PM, THE SITE RULE ("avoid servers if they say no plain and simple"; "it thinks it's blocked but it's not"):
+  a site is blocked ONLY by a real Disallow line in its robots.txt. Everything else is "not now" at most and is never saved
+  as blocked. The full table is in the PR's notes folder: `net-rules-nov26.md`.
+- 9:53 PM, Canada: sizes in hectares or km2 are converted to acres ("of course"); a French-only record may join an
+  English-named park, and mixed names too, when the place words and the kind agree ("of course"); place words are never
+  translated; a second proof is still needed.
+- 9:53 PM, licences: "we don't want to get information that's not meant to be shared; we may use it privately but not share
+  it". v2 may read a private record to prove a match, and marks it: each park says share all / part / none and lists its
+  private records; a record with no licence answer counts as private.
