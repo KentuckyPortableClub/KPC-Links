@@ -450,6 +450,103 @@ def test_line_name_needs_trail_kind():
     assert ids(d, 'US-1') == ['sgmne1'] and by(d, 'US-1') == 'id'                              # by id, any park
 
 
+FT = 0.3048
+
+
+def trec(n, name, pts=((-3000, 0), (3000, 0)), ref=None):
+    """A trail-bot line record as the store room writes it (27 Nov 2026): layer trl, key trl<n>, ref US-<n>, the bot's name."""
+    r = lrec('trl', f'trl{n}', name, pts)
+    r['attributes'] = {'name': name, 'ref': ref or f'US-{n}'}; r['record_id'] = n; r['source_file'] = f'US-{n}.json'; r['publishable'] = False; r['licence_class'] = 'PRIVATE UNTIL LICENCE READ'
+    return r
+
+
+def test_trail_bot_file():
+    # rules trail_bot_file / trail_bot_pin / trail_bot_name_not_proof (owner 27 Nov 2026, 5:45 AM: "Yes to trails")
+    def run(parks, records):
+        f = Fix()
+        try:
+            f.parks.update(parks); f.files['US-MN'] = records
+            assert f.run('cold', extra=['--write-locks']) == 0
+            return f.key(out='cold'), f.info(out='cold'), f.csv('v2-proof.csv', out='cold'), f.csv('v2-id-other-names.csv', out='cold'), \
+                json.load(open(f.p('cold/locks/US-MN.json')))['locks']
+        finally: f.done()
+    trail = lambda dy, **k: park('Root River State Trail', 'State Trail', dy_m=dy, **k)
+    # 20 ft from the line: joins, with the plain proof words, never 'name'
+    d, info, proof, _, _ = run({'US-0197': trail(20 * FT)}, [trec('0197', 'Root River State Trail')])
+    k = d['parks']['US-0197']
+    assert k['m'] == [['trl0197', 'Root River State Trail', 0, 'trail bot file+pin']] and k.get('line') is True
+    assert k['match']['by'] == 'trail bot file+pin' and info['gate']['ok']
+    pr = k['match']['evidence']['proofs']
+    assert [x['proof'] for x in pr] == ["the trail bot's file for this park (US-0197.json), the pin 20 ft from the line"], pr
+    assert pr[0]['pin_ft'] == 20 and 'name' not in pr[0]['by'] and ',trail bot file+pin,' in proof[1]
+    # 150 ft from the line: refused; the reason is true (the file IS in the store)
+    d, _, _, _, _ = run({'US-0197': trail(150 * FT)}, [trec('0197', 'Root River State Trail')])
+    assert d['parks']['US-0197']['m'] == [] and why(d, 'US-0197') == 'name_but_no_pin_or_size_proof'
+    assert why(d, 'US-0197') != 'record_layer_not_in_store'
+    # a trail park with no file in the store still says record_layer_not_in_store
+    d, _, _, _, _ = run({'US-0197': trail(20 * FT)}, [trec('0198', 'Other Trail', ((-3000, 9000), (3000, 9000)))])
+    assert why(d, 'US-0197') == 'record_layer_not_in_store'
+    # a file carrying ANOTHER park's exact name never joins that other park (its name is no proof), nor its own far park
+    d, _, _, _, _ = run({'US-0197': trail(5000), 'US-0198': park('Douglas State Trail', 'State Trail', dy_m=20 * FT)},
+                        [trec('0197', 'Douglas State Trail')])
+    assert d['parks']['US-0198']['m'] == [] == d['parks']['US-0197']['m']
+    # the ref and the key disagree: the file joins nobody
+    d, _, _, _, _ = run({'US-0197': trail(20 * FT)}, [trec('0197', 'Root River State Trail', ref='US-0198')])
+    assert d['parks']['US-0197']['m'] == []
+    # a park proven by land keeps its land and gains its own line within 100 ft; a far line does not come along
+    land = rec('sgmne', 'sgmne1', 'Root River State Trail', mgtprgprj='TRL00001')
+    d, _, _, _, _ = run({'US-0197': trail(20 * FT)}, [land, trec('0197', 'Root River State Trail')])
+    assert [(x[0], x[3]) for x in d['parks']['US-0197']['m']] == [('sgmne1', 'name+pin'), ('trl0197', 'trail bot file+pin')]
+    assert by(d, 'US-0197') == 'name+pin'
+    d, _, _, _, _ = run({'US-0197': trail(150 * FT)}, [land, trec('0197', 'Root River State Trail', ((-3000, 0), (3000, 0)))])
+    assert ids(d, 'US-0197') == ['sgmne1']
+    # an id-proven park (US-4556 Appalachian Trail) gains its own line; the lock and the id report hold only the id's records
+    d, info, proof, other, locks = run({'US-4556': park('Appalachian Trail National Scenic Trail', 'National Scenic Trail', dy_m=40 * FT,
+                                                    link={'id_kind': 'NPS unit code', 'id_value': 'APPA'})},
+                                   [rec('PAD-US', '3525', 'Appalachian National Scenic Trail', Loc_Nm='APPA', Mang_Name='NPS'),
+                                    trec('4556', 'Appalachian National Scenic Trail')])
+    k = d['parks']['US-4556']
+    assert [(x[0], x[3]) for x in k['m']] == [('3525', 'id NPS unit code APPA'), ('trl4556', 'trail bot file+pin')], k['m']
+    assert by(d, 'US-4556') == 'id' and k['match']['evidence']['trail_file_proofs'][0]['pin_ft'] == 40 and info['gate']['ok']
+    assert [r['layer'] for r in locks['US-4556']] == ['PAD-US'] and not any('trl4556' in x for x in other)
+    assert [x.split(',')[-4] for x in proof if ',trl4556,' in x] == ['']   # the lock column: a trail file is never in a lock
+    # the rule rows are in the table and name this test (a removed row is noticed)
+    rows = {r['id']: r['test'] for r in RULES['rules']}
+    assert all(rows.get(x) == 'test_trail_bot_file' for x in ('trail_bot_file', 'trail_bot_pin', 'trail_bot_name_not_proof')), rows
+
+
+def test_line_own_proof():
+    # rule line_own_proof (27 Nov 2026): a line of any layer joins only on its own proof; it never comes along with land
+    tr = ('Root River State Trail', 'State Trail')
+    area = rec('sgxx', 'sgxx1', 'Root River')
+    far = lambda key, name: lrec('sgxx', key, name, ((-3000, 2000), (3000, 2000)))   # 2 km from the pin
+    assert ids(one(*tr, [area, far('sgxx2', 'Root River')]), 'US-1') == ['sgxx1']               # same name group: no
+    assert ids(one(*tr, [area, far('sgxx2', 'Root River East')]), 'US-1') == ['sgxx1']          # a piece word: no
+    unit = rec('sgmne', 'sgmne1', 'Root River State Trail', mgtprgprj='TRL00001')
+    d = one(*tr, [unit, lrec('sgmne', 'sgmne2', 'Root River State Trail', ((50000, 0), (53000, 0)), mgtprgprj='TRL00001')])
+    assert ids(d, 'US-1') == ['sgmne1']                                                         # one unit value: no
+    mk = lambda k, u, rg=None: rec('sgmna', k, 'Swan Lake WMA', rg, uniqueid=u, lam_program_project_code='WMA01295', unit_name='Swan Lake WMA')
+    pl = lrec('sgmna', 'sgmna2', 'Swan Lake WMA', ((-3000, 3000), (3000, 3000)), uniqueid='WMA0129501',
+              lam_program_project_code='WMA01295', unit_name='Swan Lake WMA')
+    d = one('Swan Lake Wildlife Management Area', 'Wildlife Management Area', [mk('sgmna1', 'WMA0129500'), pl],
+            link={'id_kind': 'MN DNR unit id', 'id_value': 'WMA0129500'})
+    assert ids(d, 'US-1') == ['sgmna0129500']                                                   # a project piece: no
+    u = 'https://www.dec.ny.gov/lands/37372.html'
+    d = one('Michigan Hill State Forest', 'State Forest',
+            [rec('sgnya', 'sgnya1', 'Michigan Hill State Forest', URL=u),
+             lrec('sgnya', 'sgnya2', 'Michigan Hill State Forest', ((-3000, 4000), (3000, 4000)), URL='')],
+            link={'id_kind': 'NY DEC page number', 'id_value': '37372'})
+    assert ids(d, 'US-1') == ['sgnya1']                                                         # a piece of an id unit: no
+    # a line that passes its own proof (exact name, pin within 100 ft) still joins beside the land (Utah sgute: unchanged)
+    d = one(*tr, [area, lrec('sgxx', 'sgxx2', 'Root River', ((-3000, 10), (3000, 10)))])
+    assert ids(d, 'US-1') == ['sgxx1', 'sgxx2']
+    # a line carrying the park's id itself joins by id at any distance the id rules allow
+    d = one('Glacial Lakes State Park', 'State Park', [lrec('sgmne', 'sgmne1', 'Glacial Lakes', ((-3000, 2000), (3000, 2000)),
+                                                            mgtprgprj='SPK00170')],
+            link={'id_kind': 'MN DNR unit id', 'id_value': 'SPK00170'})
+    assert ids(d, 'US-1') == ['sgmne1'] and by(d, 'US-1') == 'id'
+
+
 def test_key_text_sha256():
     f = Fix()
     try:

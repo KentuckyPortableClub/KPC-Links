@@ -217,3 +217,32 @@ does not hold, such as trail lines). One per park. Check rows can therefore neve
   rebuild says whether its 483 records are points. MN 295 and NY 819: key text unchanged.
 - **The site rule changed for a 401 / 403** (owner: "sure we are just polite"): see `net-rules-nov26.md`. v2 itself never
   contacts a server; this is for the store room and the page reader.
+
+## 16. Ruled 27 Nov 2026, 5:45 AM (owner)
+Asked: "is the trail bot's pick enough when the park's pin is within 100 ft of the line?" Owner: "Yes to trails".
+**HELD, NOT IN FORCE YET:** two minutes later (5:47 AM) the owner passed on the grader's call: "NO for now ... leave trail parks
+pin-only until they have an official agency trail name/ID and strict <=100 ft check". The two do not agree; the owner was asked
+which stands. Until he says, this section and its rule rows stay on the side branch (not in #393) and trails stay off the PC.
+Why it was asked: the name inside a trail-bot file is typed in the trail bot's own list (the club's label for that park
+number). It is not read from the agency. So "exact name" proves nothing for such a file.
+- **What counts:** the trail bot's file for a park (layer `trl`, key `trl<n>`, ref `US-<n>`; the key and the ref must agree)
+  joins THAT park, and no other, when the park's pin is within 100 ft of the line (`line_pin_m`). It adds the line to land
+  the park already has, or it is the park's only record. It works for a park proven by an agency id too. The proof reads:
+  "the trail bot's file for this park (US-<n>.json), the pin N ft from the line".
+- **What does not count:** the name inside the file. It is never a name proof. The file never joins another park by name,
+  even one with that exact name. A file whose key and ref disagree joins nobody.
+- **Any line, any layer:** a line joins only on its own proof: it carries the park's agency id itself, or it has the exact
+  name with the pin within 100 ft, or it is the park's own trail-bot file. A line never comes along with a park's land, with
+  a same-named group, a unit, a project, a piece word or a piece of an id unit. Lines of web layers that are not trail-bot
+  files (Utah `sgute`) keep the section 12 rule.
+- **When unsure:** pin farther than 100 ft from the line = no line. The park keeps any land it has; with no land it stays
+  pin only with `name_but_no_pin_or_size_proof` (the file is in the store, so `record_layer_not_in_store` would be untrue).
+- **Real examples (measured on the MN and NY files with the trail lines, 27 Nov):**
+  - US-4239 North Country: POTA's name is "North Country Trail National Scenic Trail", the file's is "North Country
+    National Scenic Trail". The file is named for the park; the pin is 18 ft from the line. Joins by its file.
+  - US-11151 Cuyuna Lakes, US-11154 Taconite, US-9382 Great River Ridge: the review read 92, 46 and 54 m, but those are the
+    pin's distances to the parks' LAND. To the line itself the pins are 72, 89 and 31 ft. They keep their land and their line.
+  - US-4556 Appalachian Trail (NY): proven by its Park Service id; gains its own line, pin 42 ft from it.
+  - US-9388 Glacial Lakes: pin 112 ft from its line (34 m). Keeps its land, gets no line. US-9383 Goodhue-Pioneer: 282 ft
+    (86 m) from its line, and its land of that name does not prove it either: pin only.
+  - US-11153 Matthew Lourey: pin 3,873 ft from its line. Pin only.
