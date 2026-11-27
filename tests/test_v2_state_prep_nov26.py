@@ -204,8 +204,8 @@ with tempfile.TemporaryDirectory() as t:
     wjson(store / 'US-ZX.layer-records.json.gz', json.load(gzip.open(store / 'US-ZZ.layer-records.json.gz', 'rt', encoding='utf-8')))   # a second, same-looking state
     wjson(repo / 'data' / 'pota' / 'saved' / 'parks' / 'US-ZX.json.gz', {'data': [{'reference': r} for r in json.load(gzip.open(facts, 'rt'))['parks']]})
     (store / 'NOTES.txt').write_text('x'); wjson(store / 'US-ZZZ.layer-records.json.gz', {})   # not states
-    check('US (and ALL) pick exactly the states that have a layer file', P.parse_states(['US'], store) == (['ZX', 'ZY', 'ZZ'], True) and P.parse_states(['all'], store)[0] == ['ZX', 'ZY', 'ZZ'])
-    check('typed states: commas and spaces both work, a repeat is dropped; one state is not "many"', P.parse_states(['zz, zx', 'ZZ'], store) == (['ZZ', 'ZX'], True) and P.parse_states(['ZZ'], store) == (['ZZ'], False))
+    check('US (and ALL) pick exactly the states that have a layer file', P.parse_states(['US'], store)[:2] == (['ZX', 'ZY', 'ZZ'], True) and P.parse_states(['all'], store)[0] == ['ZX', 'ZY', 'ZZ'])
+    check('typed states: commas and spaces both work, a repeat is dropped; one state is not "many"', P.parse_states(['zz, zx', 'ZZ'], store)[:2] == (['ZZ', 'ZX'], True) and P.parse_states(['ZZ'], store)[:2] == (['ZZ'], False))
     calls = []
     real_run = subprocess_run = P.subprocess.run
 
@@ -258,6 +258,27 @@ with tempfile.TemporaryDirectory() as t:
     check('a real run of two states (real child processes) exits 0 and writes the summary', rc3 == 0 and list((t / 'out3').glob('v2-prep-ZZ-ZX-*/STATE-PREP-SUMMARY.txt')))
     with contextlib.redirect_stdout(io.StringIO()): rc4 = P.main(['ZZ', '--store', str(store), '--facts', str(facts), '--repo', str(repo), '--out', str(t / 'out4')])
     check('one state alone keeps its own folder name and files (v2-prep-ZZ-<time>\\STATE-PREP-ZZ.txt)', rc4 == 0 and list((t / 'out4').glob('v2-prep-ZZ-*/STATE-PREP-ZZ.txt')) and not list((t / 'out4').glob('**/STATE-PREP-SUMMARY.txt')))
+
+# ---- Canada: CA-<XX> areas
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    repo, store, facts = make_world(t)
+    shutil.copyfile(store / 'US-ZZ.layer-records.json.gz', store / 'CA-ZQ.layer-records.json.gz')
+    shutil.copyfile(store / 'US-ZY.layer-records.json.gz', store / 'CA-ZR.layer-records.json.gz')
+    shutil.copyfile(repo / 'data' / 'pota' / 'saved' / 'parks' / 'US-ZZ.json.gz', repo / 'data' / 'pota' / 'saved' / 'parks' / 'CA-ZQ.json.gz')
+    check('CA picks only the Canadian areas with a layer file; US only the states; ALL both; CA-ZQ and US-ZZ typed in full are the same as typed short',
+          P.parse_states(['CA'], store)[0] == ['CA-ZQ', 'CA-ZR'] and P.parse_states(['US'], store)[0] == ['ZY', 'ZZ'] and len(P.parse_states(['ALL'], store)[0]) == 4
+          and P.parse_states(['CA-ZQ', 'US-ZZ'], store)[0] == ['CA-ZQ', 'ZZ'] and P.parse_states(['CA'], store)[2] == 'CA')
+    with contextlib.redirect_stdout(io.StringIO()): rc, rep = P.run('CA-ZQ', store, facts, None, t / 'out', repo)
+    txt = (rep / 'STATE-PREP-CA-ZQ.txt').read_text(encoding='utf-8')
+    check('Canada: an area runs on its own layer file and park list (no neighbours): the same measurements, named by the area', rc == 0 and 'v2 can build CA-ZQ' in txt and 'PROPOSE 2' in txt and rep.name.startswith('v2-prep-CA-ZQ-'))
+    with contextlib.redirect_stdout(io.StringIO()): rc, rep2 = P.run('CA-ZR', store, facts, None, t / 'out', repo)
+    check('Canada: a layer that is not complete says "cannot build CA-ZR until"', 'v2 cannot build CA-ZR until: sgzzc' in (rep2 / 'STATE-PREP-CA-ZR.txt').read_text(encoding='utf-8'))
+    with contextlib.redirect_stdout(io.StringIO()): rc, parent = P.many(['CA-ZQ', 'CA-ZR'], 'CA', store, facts, repo, None, t / 'out2', call=lambda st, sub, *a: (lambda r: (r[0], ''))(P.run(st, a[0], a[1], a[3], sub, a[2], flat=True)), say=lambda m: None)
+    check('Canada: a CA run makes the parent v2-prep-CA-<time> with a folder per province', parent.name.startswith('v2-prep-CA-') and (parent / 'CA-ZQ' / 'STATE-PREP-CA-ZQ.txt').is_file() and 'CA-ZR  cannot build' in (parent / 'STATE-PREP-SUMMARY.txt').read_text(encoding='utf-8'))
+    d_ = P.neighbour_areas(type('R', (), {'neighbours': {'CA-ON': ['CA-QC', 'US-NY'], 'MN': 'WI ND'}})(), 'CA-ON')
+    check('neighbours: a Canadian area takes the rule table\'s list when A adds one (areas or letters); none until then; a US state gives US- areas',
+          d_ == ['CA-QC', 'US-NY'] and P.neighbour_areas(type('R', (), {'neighbours': {'MN': 'WI ND'}})(), 'MN') == ['US-ND', 'US-WI'] and P.neighbour_areas(type('R', (), {'neighbours': {}})(), 'CA-ON') == [])
 
 bat = (ROOT / 'tools' / 'pc-keys' / 'V2-STATE-PREP.bat').read_bytes() if (ROOT / 'tools' / 'pc-keys' / 'V2-STATE-PREP.bat').exists() else b''
 check('the .bat has CRLF line ends, asks for the states, tries Python 3.12 first, has no pip step',

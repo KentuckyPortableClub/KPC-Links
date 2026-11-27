@@ -13,7 +13,7 @@ Plain Python 3.12, no packages, no legacy modules.
 Exit codes: 0 built; 2 bad arguments / missing input / rule table refused; 3 a typed state not built (layer not complete);
 4 gate failed.
 """
-import argparse, csv, gzip, hashlib, io, json, math, os, re, sys, time, unicodedata
+import argparse, array, csv, gzip, hashlib, io, json, math, os, re, sys, time, unicodedata
 
 TOOL = 'kpc_us_key_v2 1 (2026-11-26)'
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -23,12 +23,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 S, L, D, RX = 'str', 'list of str', 'dict of str', 'regex'
 TABLE_SHAPES = {
     'drop_layers': D, 'record_id_fields': D, 'class_fields': D, 'short_forms': D, 'des_kinds': D,
-    'fixed_names': D, 'pin_only_reasons': D, 'neighbours': D,
+    'fixed_names': D, 'pin_only_reasons': D, 'neighbours': D, 'ca_neighbours': D,
     'kind_words': L, 'place_words': L, 'compound_kinds': L, 'core_drop': L, 'water_last_words': L, 'acre_fields': L,
-    'size_witness_tags': L, 'placeholders': L, 'drop_words': L,
+    'size_witness_tags': L, 'placeholders': L, 'drop_words': L, 'ca_kind_words': L,
     'easement_rx': RX, 'type_field_rx': RX, 'lease_name_rx': RX, 'water_park_kind_rx': RX, 'office_rx': RX,
     'trail_kind_rx': RX, 'line_park_kind_rx': RX, 'home_page_rx': RX, 'acre_field_rx': RX, 'roman_rx': RX,
-    'name_fields': {'*': [S]}, 'unit_fields': {'*': [S]}, 'full_name_fields': {'*': [[S]]}, 'layer_kinds': {'*': [S]},
+    'name_fields': {'*': [S]}, 'unit_fields': {'*': [S]}, 'bilingual_fields': {'*': [[S, S]]}, 'full_name_fields': {'*': [[S]]}, 'layer_kinds': {'*': [S]},
     'piece_suffixes': [RX], 'kind_patterns': [[S, RX]], 'name_equivalences': [[RX, S]],
     'id_ties': [{'kind': S, 'layer': S, 'field': S, '?rx': RX, '?where': D, '?measured': S, '?glue': S}],
     'kind_swaps': [{'park_kind': S, 'record_kinds': [S], '?layer': S}],
@@ -141,7 +141,22 @@ def load_rules(repo, path=None):
     r['_ties'] = {}
     for t in r['id_ties'] + web:
         r['_ties'].setdefault(t['layer'], []).append(dict(t, _rx=re.compile(t['rx'], re.I) if t.get('rx') else None))
+    r['_keep'] = keep_fields(r)
     return r
+
+
+def keep_fields(r):
+    """Rule memory: the attribute names any step reads (lower case); the loader keeps only these (plus acre / type fields)."""
+    k = {'des_tp'} | {f for f in r['acre_fields']} | set(r['record_id_fields'].values()) | set(r['class_fields'].values())
+    for ts in r['_ties'].values():
+        for t in ts: k |= {t['field']} | set(t.get('where') or {})
+    for fs in r['name_fields'].values(): k |= set(fs)
+    for fss in r['full_name_fields'].values(): k |= {f for fs in fss for f in fs}
+    for fs in r['unit_fields'].values(): k |= set(fs)
+    for u in r['unit_pieces'].values(): k |= {u['project_field'], u['name_field']}
+    for f in r['interest_fields'].values(): k.add(f['field'])
+    k |= {r['wetland_district']['field'], r['wetland_district']['type_field']}
+    return {x.lower() for x in k}
 
 
 # ---------------------------------------------------------------------------------------------------------------- names
@@ -284,7 +299,7 @@ def decode_rings(raw, q, min_pts=3):
     except (TypeError, ValueError): s = 10 ** 6
     out = []
     for ring in raw or []:
-        if not isinstance(ring, list) or len(ring) < 2: continue
+        if not isinstance(ring, (list, array.array)) or len(ring) < 2: continue
         x, y = ring[0], ring[1]; pts = [(x / s, y / s)]
         for i in range(2, len(ring) - 1, 2):
             x += ring[i]; y += ring[i + 1]; pts.append((x / s, y / s))
@@ -575,6 +590,19 @@ def repeated_key(count, spelled):
     return count > 1 and not spelled
 
 
+def layer_copies(manifest):
+    """Rule layer_copy: a layer whose source (url and where) is another layer's of the same file is a second copy of it; the
+    first label (sorted) is kept, the copies are dropped ('Québec prote' and 'Qu_bec prote' hold the same 5,611 records)."""
+    seen, out = {}, set()
+    for lay in sorted(manifest):
+        m = manifest[lay] or {}
+        if not m.get('url'): continue
+        k = (m.get('url'), m.get('where'))
+        if k in seen: out.add(lay)
+        else: seen[k] = lay
+    return out
+
+
 def already_loaded(by_ident, ident):
     """Rule load_same_record_twice: the record is already in from the state's own file (or an earlier neighbour)."""
     return ident in by_ident
@@ -602,7 +630,10 @@ class Pool:
         """Load one layer file. Every raw record's written id is kept first (the gate's check), then the drops."""
         rules, by_layer = self.rules, {}
         for r in doc.get('records') or []: by_layer.setdefault(str(r.get('layer') or ''), []).append(r)
+        copies = layer_copies(doc.get('manifest') or {})
         for layer in sorted(by_layer):
+            if layer in copies:
+                self.drop(f'layer_copy {layer}', len(by_layer[layer])); continue
             rs = by_layer[layer]
             spelled = spell_layer(rs, layer, rules)
             for r in rs:
@@ -628,7 +659,8 @@ class Pool:
         names = [str(r.get('record_name') or rules['fixed_names'].get(layer, ''))] + \
             [str(attr(a, f)) for f in rules['name_fields'].get(layer, []) if attr(a, f)]
         fulls = [' '.join(str(attr(a, f) or '').strip() for f in fs) for fs in rules['full_name_fields'].get(layer, [])]
-        rec = {'i': len(self.recs), 'area': area, 'layer': layer, 'key': key, 'id': rid, 'agency': agency, 'name': names[0],
+        rec = {'i': len(self.recs), 'area': area, 'layer': layer, 'key': key, 'id': rid, 'agency': agency,
+               'name': next((n for n in names if n.strip()), ''),
                'names': [n for n in dict.fromkeys(names) if n.strip()], 'full_names': [n for n in fulls if n.strip()],
                'a': a, 'q': r.get('q'), 'raw': r.get('rings')}
         if is_line(r):
@@ -967,10 +999,27 @@ def unit_value(rec, rules):
     return ''
 
 
+def bilingual_aliases(keys, pool, rules):
+    """Rule bilingual_name: a record that carries BOTH an English and a French name in its own fields (bilingual_fields),
+    one of them the park's name under the exact rules, makes the other one a name of the park too. No translation tables."""
+    out = set()
+    for i in {i for k in keys for i in pool.name_ix.get(k, [])}:
+        rec = pool.recs[i]
+        for e, f in rules['bilingual_fields'].get(rec['layer'], []):
+            ve, vf = attr(rec['a'], e), attr(rec['a'], f)
+            if is_placeholder(ve, rules) or is_placeholder(vf, rules): continue
+            fe, ff = name_forms(str(ve), rules), name_forms(str(vf), rules)
+            if fe & keys and not generic(str(vf), rules): out |= ff
+            if ff & keys and not generic(str(ve), rules): out |= fe
+    return out - keys
+
+
 def name_groups(p, ref, ctx):
     """Step 3 search for one park: -> (groups {gkey: [record i]}, notes set)."""
     pool, rules, pin, notes = ctx['pool'], ctx['rules'], pin_of(p), set()
-    own = {i for k in park_name_keys(p.get('name'), p.get('type'), rules) for i in pool.name_ix.get(k, [])}
+    keys = park_name_keys(p.get('name'), p.get('type'), rules)
+    keys |= bilingual_aliases(keys, pool, rules)
+    own = {i for k in keys for i in pool.name_ix.get(k, [])}
     page = {i for k in page_name_keys(p, rules) for i in pool.name_ix.get(k, [])} - own
     groups = {}
     for i in sorted(own | page):
@@ -1263,7 +1312,7 @@ def shape_word(rec):
     return 'line' if rec.get('line') else 'area'
 
 
-def state_doc(st, refs, parks, res, pool, rules, layer_files):
+def state_doc(st, refs, parks, res, pool, rules, layer_files, area=None, gaps=()):
     """The key, in the shape the PC diff tool reads. Never shows the lock (rule lock_is_witness)."""
     out = {}
     for ref in refs:
@@ -1285,8 +1334,16 @@ def state_doc(st, refs, parks, res, pool, rules, layer_files):
                         'match': {'status': 'pin', 'by': None, 'step': 4, 'evidence': {}, 'why': res['why'].get(ref, 'no_record_with_this_name')}}
     steps = {'id': sum(1 for h in res['how'].values() if h[0] == 2), 'name': sum(1 for h in res['how'].values() if h[0] == 3)}
     n = len(res['joins'])
-    return {'v2': 1, 'st': st, 'made': layer_files[f'US-{st}']['made'], 'tool': rules.get('_tool', TOOL), 'layer_files': layer_files,
-            'counts': {'parks': len(refs), 'outlined': n, 'confirmed': n, 'pin_only': len(refs) - n, 'by_step': steps}, 'parks': out}
+    doc = {'v2': 1, 'st': st, 'made': layer_files[area or f'US-{st}']['made'], 'tool': rules.get('_tool', TOOL) + gap_note(gaps),
+           'layer_files': layer_files,
+           'counts': {'parks': len(refs), 'outlined': n, 'confirmed': n, 'pin_only': len(refs) - n, 'by_step': steps}, 'parks': out}
+    if gaps: doc['gaps'] = list(gaps)
+    return doc
+
+
+def gap_note(gaps):
+    """Rule load_complete: a key built with a store-room gap says so on its tool line."""
+    return ' (store gap)' if gaps else ''
 
 
 def key_text(obj):
@@ -1345,63 +1402,150 @@ def write_csv(path, head, rows):
         w = csv.writer(f, lineterminator='\n'); w.writerow(head); w.writerows(rows)
 
 
-def clear_old_outputs(out, st):
-    """Rule stale_outputs_removed: a state's old key and lock file leave --out before it is built."""
-    for p in (os.path.join(out, f'US-{st}.json.gz'), os.path.join(out, 'locks', f'US-{st}.json')):
+def clear_old_outputs(out, area):
+    """Rule stale_outputs_removed: an area's old key and lock file leave --out before it is built."""
+    for p in (os.path.join(out, f'{area}.json.gz'), os.path.join(out, 'locks', f'{area}.json')):
         if os.path.exists(p): os.remove(p)
     return True
 
 
 # ---------------------------------------------------------------------------------------------------------------- run
+def slim_record(r, rules):
+    """Rule memory: one layer record as the steps use it: key, layer, name, q, the shape as compact integer arrays, and only
+    the attributes some step reads (never the whole attributes dict)."""
+    memo = rules.setdefault('_keep_memo', {})
+    a = r.get('attributes') or {}
+    out = {k: r[k] for k in ('key', 'layer', 'record_name', 'q', 'shape') if k in r}
+    keep = {}
+    for k, v in a.items():
+        ok = memo.get(k)
+        if ok is None:
+            t = str(k)
+            ok = memo[k] = t.lower() in rules['_keep'] or bool(rules['_acre_field_rx'].search(t) or rules['_type_field_rx'].match(t))
+        if ok: keep[k] = v
+    out['attributes'] = keep
+    for g in ('rings', 'paths'):
+        v = r.get(g)
+        if isinstance(v, str):
+            try: v = json.loads(v)
+            except ValueError: v = None
+        if v: out[g] = [compact(x) for x in v]
+    return out
+
+
+def compact(ring):
+    """A ring's integers as an array (4 bytes each when they fit, else 8) instead of a list of Python ints."""
+    if type(ring) is not list: return ring
+    try: return array.array('i', ring)
+    except OverflowError: return array.array('q', ring)
+    except TypeError: return ring
+
+
+def read_layer_file(path, rules):
+    """Rule memory: read a layer file as a stream, record by record (the records list comes last in the file), keeping each
+    record slim. -> {'made', 'manifest', ..., 'records': [slim records]}."""
+    dec, tag, recs = json.JSONDecoder(), '"records":[', []
+    with gzip.open(path, 'rt', encoding='utf-8') as f:
+        buf, eof = '', False
+        while tag not in buf and not eof:
+            c = f.read(1 << 20); buf += c; eof = not c
+        if tag not in buf:
+            d = json.loads(buf)
+            d['records'] = [slim_record(r, rules) for r in d.get('records') or []]
+            return d
+        i = buf.index(tag)
+        head = json.loads(buf[:i] + '"records":[]}')
+        pos = i + len(tag)
+        while True:
+            while pos < len(buf) and buf[pos] in ' \t\r\n,': pos += 1
+            if pos < len(buf) and buf[pos] == ']': pos += 1; break
+            try:
+                if pos >= len(buf): raise ValueError('need more')
+                obj, pos = dec.raw_decode(buf, pos)
+                recs.append(slim_record(obj, rules))
+                if pos > 1 << 20: buf, pos = buf[pos:], 0
+            except ValueError:
+                if eof: raise
+                c = f.read(1 << 20); eof = not c; buf = buf[pos:] + c; pos = 0
+        tail = (buf[pos:] + f.read()).strip()
+    if tail.startswith(','): head.update(json.loads('{' + tail[1:]))
+    head['records'] = recs
+    return head
+
+
 def read_gz_json(path):
     with gzip.open(path, 'rt', encoding='utf-8') as f: return json.load(f)
 
 
-def park_list(repo, st):
-    """The state's park list: POTA's own saved list (data/pota/saved/parks/US-<ST>.json.gz), the same one the legacy key reads."""
-    d = read_gz_json(os.path.join(repo, 'data', 'pota', 'saved', 'parks', f'US-{st}.json.gz'))
+def area_of(token):
+    """Rule areas: 'MN' -> 'US-MN'; 'US-MN' and 'CA-ON' stay as they are."""
+    t = str(token or '').strip().upper()
+    return t if re.fullmatch(r'[A-Z]{2}-[A-Z]{2}', t) else f'US-{t}'
+
+
+def area_label(area):
+    """The short name an area goes by in the key and the csv files: 'MN' for US-MN (as before), 'CA-ON' for Canada."""
+    return area[3:] if area.startswith('US-') else area
+
+
+def area_neighbours(area, rules):
+    """Rule areas: the neighbour areas whose layer files are read too (US states: neighbours; provinces: ca_neighbours)."""
+    cc, code = area[:2], area[3:]
+    table = rules['neighbours'] if cc == 'US' else rules['ca_neighbours'] if cc == 'CA' else {}
+    return [f'{cc}-{x}' for x in sorted(table.get(code, '').split())]
+
+
+def park_list(repo, area):
+    """The area's park list: POTA's own saved list (data/pota/saved/parks/<AREA>.json.gz), the same one the legacy key reads."""
+    d = read_gz_json(os.path.join(repo, 'data', 'pota', 'saved', 'parks', f'{area_of(area)}.json.gz'))
     return sorted({str(x.get('reference')) for x in d.get('data') or [] if x.get('reference')})
 
 
-def park_states(repo, st):
+def park_states(repo, area):
     """Rule id_far_pin_listed_states: {ref: [states]} from POTA's own list (each row's locationDesc, e.g. 'US-CT,US-GA,...')."""
-    d = read_gz_json(os.path.join(repo, 'data', 'pota', 'saved', 'parks', f'US-{st}.json.gz'))
+    d = read_gz_json(os.path.join(repo, 'data', 'pota', 'saved', 'parks', f'{area_of(area)}.json.gz'))
     return {str(x['reference']): sorted({t.strip() for t in str(x.get('locationDesc') or '').split(',') if t.strip()})
             for x in d.get('data') or [] if x.get('reference')}
 
 
-def build_state(st, a, rules, facts, layer_file, info):
-    """One state: load, match, gate, write. -> (exit code, proof rows, pin rows, other-name rows)."""
-    t0 = time.time()
-    clear_old_outputs(a.out, st)
-    own = layer_file(f'US-{st}')
-    try: refs = park_list(a.repo, st)
+def rules_for_area(rules, area):
+    """Rule ca_kind_words: a Canadian area also counts the Canadian / French kind words (Provincial, Parc, Réserve ...)."""
+    if not area.startswith('CA-'): return rules
+    return dict(rules, _kind_words=rules['_kind_words'] | {full(w, rules) for w in rules['ca_kind_words']})
+
+
+def build_state(area, a, rules, facts, layer_file, info):
+    """One area: load, match, gate, write. -> (exit code, proof rows, pin rows, other-name rows)."""
+    t0, st = time.time(), area_label(area)
+    rules = rules_for_area(rules, area)
+    clear_old_outputs(a.out, area)
+    own = layer_file(area)
+    try: refs = park_list(a.repo, area)
     except (OSError, ValueError):
         print(f'{st}: park list not found.'); info['not_built'] = 'no park list'; return 2, [], [], []
     if own is None:
         print(f'{st}: layer file not found.'); info['not_built'] = 'no layer file'; return 2, [], [], []
     gaps = layer_gaps(own[0])
-    if gaps:
-        info['not_built'] = 'layer not complete: ' + ', '.join(gaps)
-        print(f'{st}: NOT BUILT. Layer not complete: {", ".join(gaps)}.'); return 3, [], [], []
+    info['gaps'] = gaps
     pool = Pool(rules)
-    pool.add_file(f'US-{st}', own[0])
-    layer_files = {f'US-{st}': {'file': own[2], 'made': own[0].get('made'), 'sha256': own[1]}}
-    for nb in sorted(rules['neighbours'].get(st, '').split()):
-        f = layer_file(f'US-{nb}')
-        if f is None: info['neighbour_gaps'].append(f'US-{nb}: no file'); continue
-        info['neighbour_gaps'] += [f'US-{nb} {l}' for l in layer_gaps(f[0])]
-        pool.add_file(f'US-{nb}', f[0])
-        layer_files[f'US-{nb}'] = {'file': f[2], 'made': f[0].get('made'), 'sha256': f[1]}
-    listed = park_states(a.repo, st)
+    pool.add_file(area, own[0])
+    layer_files = {area: {'file': own[2], 'made': own[0].get('made'), 'sha256': own[1]}}
+    nbs = area_neighbours(area, rules)
+    for nb in nbs:
+        f = layer_file(nb)
+        if f is None: info['neighbour_gaps'].append(f'{nb}: no file'); continue
+        info['neighbour_gaps'] += [f'{nb} {l}' for l in layer_gaps(f[0])]
+        pool.add_file(nb, f[0])
+        layer_files[nb] = {'file': f[2], 'made': f[0].get('made'), 'sha256': f[1]}
+    listed = park_states(a.repo, area)
     parks = {r: dict(facts.get(r) or {'name': '', 'type': ''}, listed_in=listed.get(r) or []) for r in refs}
     for r, p in facts.items():
-        if r not in parks and str(p.get('area') or '')[3:] in [st] + rules['neighbours'].get(st, '').split(): parks[r] = p
+        if r not in parks and str(p.get('area') or '') in [area] + nbs: parks[r] = p
     locks = {}
-    if a.locks and os.path.isfile(os.path.join(a.locks, 'locks', f'US-{st}.json')):
-        with open(os.path.join(a.locks, 'locks', f'US-{st}.json'), encoding='utf-8') as f: locks = json.load(f).get('locks') or {}
+    if a.locks and os.path.isfile(os.path.join(a.locks, 'locks', f'{area}.json')):
+        with open(os.path.join(a.locks, 'locks', f'{area}.json'), encoding='utf-8') as f: locks = json.load(f).get('locks') or {}
     res = match_state(refs, parks, pool, rules, locks)
-    doc = state_doc(st, refs, parks, res, pool, rules, layer_files)
+    doc = state_doc(st, refs, parks, res, pool, rules, layer_files, area, gaps)
     g = gate(doc['parks'], res, pool, rules, parks)
     id_parks = [r for r in res['joins'] if res['how'][r][0] == 2]
     info.update({'records_loaded': len(pool.recs), 'records_dropped': dict(sorted(pool.dropped.items())), 'gate': g,
@@ -1414,18 +1558,20 @@ def build_state(st, a, rules, facts, layer_file, info):
     if g['ok']: info['key_text_sha256'] = key_text_sha256(doc)
     if not g['ok']:
         print(f'{st}: GATE FAILED, key not written. {len(g["bad"])} broken row(s), listed in v2-run.json.'); return 4, [], [], []
-    with open(os.path.join(a.out, f'US-{st}.json.gz'), 'wb') as f: f.write(gz_bytes(doc))
+    with open(os.path.join(a.out, f'{area}.json.gz'), 'wb') as f: f.write(gz_bytes(doc))
     if a.write_locks:
         os.makedirs(os.path.join(a.out, 'locks'), exist_ok=True)
-        with open(os.path.join(a.out, 'locks', f'US-{st}.json'), 'w', encoding='utf-8') as f:
+        with open(os.path.join(a.out, 'locks', f'{area}.json'), 'w', encoding='utf-8') as f:
             json.dump({'locks': res['locks_out']}, f, sort_keys=True, indent=1)
     pins = [[r, st, parks[r].get('name'), parks[r].get('type'), doc['parks'][r]['match']['why'],
              rules['pin_only_reasons'][doc['parks'][r]['match']['why']]] for r in refs if r not in res['joins']]
     c, lk = doc['counts'], info['locks']
+    gap_text = f" Built with a store-room gap: {', '.join(gaps)}." if gaps else ''
     print(f"{st}: {c['outlined']} of {c['parks']} parks outlined (id {c['by_step']['id']}, name {c['by_step']['name']}), "
-          f"{c['pin_only']} pin only. Locks held {lk['held']}, broken {lk['broken']}, new {lk['new']}. Gate OK. {time.time() - t0:.0f} s.")
+          f"{c['pin_only']} pin only. Locks held {lk['held']}, broken {lk['broken']}, new {lk['new']}. Gate OK.{gap_text} "
+          f"{time.time() - t0:.0f} s.")
     info['seconds'] = round(time.time() - t0, 1)
-    return 0, proof_rows(st, res, pool, rules), pins, id_other_names(st, res, parks, pool, rules)
+    return (3 if gaps else 0), proof_rows(st, res, pool, rules), pins, id_other_names(st, res, parks, pool, rules)
 
 
 def tool_line(trial):
@@ -1436,6 +1582,7 @@ def tool_line(trial):
 def run(argv=None):
     ap = argparse.ArgumentParser(description='Clean v2 US key matcher.')
     ap.add_argument('--states', nargs='+', default=[])
+    ap.add_argument('--areas', nargs='+', default=[], help='areas such as US-MN CA-ON')
     ap.add_argument('--store'); ap.add_argument('--facts'); ap.add_argument('--out')
     ap.add_argument('--locks'); ap.add_argument('--write-locks', action='store_true')
     ap.add_argument('--repo', default=os.path.dirname(os.path.dirname(HERE)))
@@ -1444,15 +1591,16 @@ def run(argv=None):
     try: a = ap.parse_args(argv)
     except SystemExit: return 2
     if a.selftest: return selftest()
-    if not (a.states and a.store and a.facts and a.out) or not os.path.isfile(a.facts) or not os.path.isdir(a.store):
-        print('Missing input: give --states, --store (a folder), --facts (a file) and --out.'); return 2
+    areas = list(dict.fromkeys(area_of(x) for x in a.states + a.areas))
+    if not (areas and a.store and a.facts and a.out) or not os.path.isfile(a.facts) or not os.path.isdir(a.store):
+        print('Missing input: give --states or --areas, --store (a folder), --facts (a file) and --out.'); return 2
     t_all = time.time()
     try: rules = load_rules(a.repo, a.rules)
     except (OSError, RulesError) as e:
         print(f'Rule table refused: {e}. Nothing was built.'); return 2
     facts = read_gz_json(a.facts).get('parks') or {}
     os.makedirs(a.out, exist_ok=True)
-    cache, run_info, code = {}, {'states': {}, 'inputs': {}}, 0
+    cache, run_info, code = {}, {'states': {}, 'areas': {}, 'inputs': {}}, 0
     run_info['inputs']['facts'] = {'file': os.path.basename(a.facts), 'sha256': sha256(a.facts)}
     run_info['inputs']['rules'] = {'file': a.rules or '.github/us-key-v2-rules.json', 'sha256': sha256(rules_path(a.repo, a.rules)),
                                    'trial': bool(a.rules)}
@@ -1462,23 +1610,26 @@ def run(argv=None):
     def layer_file(area):
         if area not in cache:
             p = os.path.join(a.store, f'{area}.layer-records.json.gz')
-            cache[area] = (read_gz_json(p), sha256(p), os.path.basename(p)) if os.path.isfile(p) else None
+            cache[area] = (read_layer_file(p, rules), sha256(p), os.path.basename(p)) if os.path.isfile(p) else None
+            if cache[area]: run_info['inputs'][area] = {'file': cache[area][2], 'sha256': cache[area][1]}
         return cache[area]
 
-    for st in [s.upper() for s in a.states]:
+    for n, area in enumerate(areas):
         info = {'seconds': 0, 'records_loaded': 0, 'records_dropped': {}, 'by_step': {}, 'gate': None, 'locks': None,
-                'locked_broken': [], 'not_built': None, 'neighbour_gaps': []}
-        run_info['states'][st] = info
-        c, pr, pn, on = build_state(st, a, rules, facts, layer_file, info)
+                'locked_broken': [], 'not_built': None, 'neighbour_gaps': [], 'gaps': []}
+        run_info['states'][area_label(area)] = info
+        run_info['areas'][area] = info
+        c, pr, pn, on = build_state(area, a, rules, facts, layer_file, info)
         code = 4 if 4 in (code, c) else max(code, c)
         proof_all += pr; pin_all += pn; other_all += on
+        later = {x for b in areas[n + 1:] for x in [b] + area_neighbours(b, rules)}
+        for k in [k for k in cache if k not in later]: del cache[k]   # rule memory: keep only files a later area reads
     write_csv(os.path.join(a.out, 'v2-proof.csv'), ['ref', 'st', 'file_key', 'agency_id', 'layer', 'record_name', 'acres', 'step', 'by',
                                                     'evidence', 'file_area', 'lock', 'shape'], proof_all)
     write_csv(os.path.join(a.out, 'v2-pin-only.csv'), ['ref', 'st', 'name', 'kind', 'reason_code', 'reason'], pin_all)
     write_csv(os.path.join(a.out, 'v2-id-other-names.csv'), ['ref', 'st', 'park_name', 'record_key', 'record_name', 'layer',
                                                              'km_from_pin'], other_all)
-    for area, f in sorted(cache.items()):
-        if f: run_info['inputs'][area] = {'file': f[2], 'sha256': f[1]}
+    run_info['inputs'] = dict(sorted(run_info['inputs'].items()))
     run_info['seconds_total'] = round(time.time() - t_all, 1)
     with open(os.path.join(a.out, 'v2-run.json'), 'w', encoding='utf-8') as f: json.dump(run_info, f, sort_keys=True, indent=1)
     return code

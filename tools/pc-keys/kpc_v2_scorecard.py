@@ -16,9 +16,10 @@ Words used here:
   size agrees = the joined acres are within 10% of an official size in the park facts (the agency size, or a page size marked
                 total). Parks with no official size are left out of that count.
 """
-import argparse, csv, datetime, gzip, json, math, os, pathlib, re, sys, time
+import argparse, csv, datetime, gzip, json, math, os, pathlib, re, shutil, sys, time
 from itertools import accumulate
 
+LINE_PIN_M = 30.48   # a pin this close to a line (a trail) counts as on it (the table's line_pin_m)
 NEAR_M = 100.0       # a pin this close to a record's edge counts as on the land
 SIZE_TOL = 0.10      # joined acres within 10% of the official size
 ACRE_DIFF = 0.10     # the park-by-park list shows parks whose joined acres differ by more than this
@@ -39,8 +40,14 @@ def load_json(p):
     except (OSError, ValueError, EOFError): return None
 
 
+def aname(st):
+    """'MN' -> 'US-MN'; 'CA-ON' stays (an area is what the layer files and the keys are named by)."""
+    st = str(st).strip().upper()
+    return st if re.match(r'^[A-Z]{2}-[A-Z]{2}$', st) else 'US-' + st
+
+
 def key_file(folder, st):
-    for n in (f'US-{st}.json.gz', f'US-{st}.json'):
+    for n in (f'{aname(st)}.json.gz', f'{aname(st)}.json'):
         if (pathlib.Path(folder) / n).is_file(): return pathlib.Path(folder) / n
     return None
 
@@ -101,6 +108,42 @@ def _edge_m(x, y, rings):
     return best
 
 
+def decode_paths(r):
+    """A line record's paths in degrees (the same delta reading as rings; two points make a path). [] when there are none."""
+    pr = dict(r); pr['rings'] = r.get('paths')
+    out = []
+    rg = pr['rings']
+    if isinstance(rg, str):
+        try: rg = json.loads(rg)
+        except ValueError: return []
+    try: q = 10 ** int(r.get('q') or 6)
+    except (TypeError, ValueError): q = 10 ** 6
+    for path in rg or []:
+        if not isinstance(path, list) or len(path) < 4: continue
+        xs = [v / q for v in accumulate(path[0::2])]; ys = [v / q for v in accumulate(path[1::2])]
+        n = min(len(xs), len(ys))
+        if n >= 2: out.append(list(zip(xs[:n], ys[:n])))
+    return out
+
+
+def line_m(lon, lat, paths):
+    """Metres from the pin to the nearest segment of a line (open paths)."""
+    kx, ky, best = 111320.0 * math.cos(math.radians(lat)), 110574.0, 1e18
+    for pa in paths:
+        for (x1, y1), (x2, y2) in zip(pa, pa[1:]):
+            ax, ay, bx, by = (x1 - lon) * kx, (y1 - lat) * ky, (x2 - lon) * kx, (y2 - lat) * ky
+            dx, dy = bx - ax, by - ay
+            L = dx * dx + dy * dy
+            t = 0.0 if L == 0 else max(0.0, min(1.0, -(ax * dx + ay * dy) / L))
+            best = min(best, math.hypot(ax + t * dx, ay + t * dy))
+    return best
+
+
+def is_line(rec):
+    """A record with paths and no rings is a line (a trail), not a record without a shape."""
+    return bool(isinstance(rec, dict) and rec.get('paths') and not rec.get('rings'))
+
+
 def pin_on_land(lat, lon, geoms, near_m=NEAR_M):
     """True when the pin is inside one of the shapes (geoms = [(box, rings)]) or within near_m of its edge. A coarse box test first."""
     mlat = near_m / 110540.0 * 1.5
@@ -124,13 +167,20 @@ def load_table(repo):
     return None
 
 
+def load_line_pin(repo):
+    """values.line_pin_m of the rule table (30.48 m, 100 ft, when it is missing)."""
+    v = ((load_table(repo) or {}).get('values') or {}).get('line_pin_m')
+    v = v.get('value') if isinstance(v, dict) else v
+    return float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0 else LINE_PIN_M
+
+
 def load_limits(repo):
     """The pin allowance (values.pin_m) and the size tolerance (values.size_tol) from the rule table; each value may be a plain
     number or a dict with 'value' (and why / test). Returns ({'pin_m', 'size_tol'}, note); the note says 'defaults used' when the
     table or a value is missing (then 100 m and 10%)."""
     d, out, miss = load_table(repo), {'pin_m': NEAR_M, 'size_tol': SIZE_TOL}, []
     vals = (d or {}).get('values') or {}
-    for k in out:
+    for k in ('pin_m', 'size_tol'):
         v = vals.get(k)
         v = v.get('value') if isinstance(v, dict) else v
         if isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0: out[k] = float(v)
@@ -174,7 +224,8 @@ class Store:
     ('sgmne089125'). The agency number is the digits of the layer's agency id field (id_fields)."""
 
     def __init__(self, folder, id_fields=None, pin_m=NEAR_M, size_tol=SIZE_TOL):
-        self.pin_m, self.size_tol = pin_m, size_tol
+        self.pin_m, self.size_tol, self.line_m = pin_m, size_tol, LINE_PIN_M
+        self.lines = {}
         self.folder, self.id_fields, self.files, self.geo = pathlib.Path(folder), dict(id_fields or {}), {}, {}
 
     def file(self, stem):
@@ -226,6 +277,13 @@ class Store:
             by_name = [i for i in idx if nk and _nk(f['recs'][i].get('record_name')) == nk]
             return f['recs'][by_name[0]] if len(by_name) == 1 else AMBIGUOUS
         return None
+
+    def line(self, rec):
+        """A line record's paths, or None."""
+        if not is_line(rec): return None
+        k = id(rec)
+        if k not in self.lines: self.lines[k] = decode_paths(rec)
+        return self.lines[k] or None
 
     def shape(self, rec):
         g = self.geo.get(id(rec))
@@ -338,15 +396,18 @@ def honest(side, parks, proof, facts, store, stems):
         n['ids'] += seen; n['ids_missing'] += miss; n['ids_trail'] += trl; n['ids_fit2'] += fit2
         n['found'][ref] = (seen - fit2, len(recs))   # how many of its joined ids are in today's files
         geoms = [g for g in (store.shape(r) for r in recs) if g]
+        lines = [x for x in (store.line(r) for r in recs) if x]
         pin = pin_of(fp)
-        if not geoms or not pin:
+        if (not geoms and not lines) or not pin:
             n['pin_cant'] += 1; pins[ref] = '-'
         else:
             n['pin_n'] += 1
-            ok = pin_on_land(pin[0], pin[1], geoms, store.pin_m)
+            ok = bool(geoms) and pin_on_land(pin[0], pin[1], geoms, store.pin_m)
+            if not ok: ok = any(line_m(pin[1], pin[0], x) <= store.line_m for x in lines)
             n['pin_yes'] += ok; pins[ref] = 'yes' if ok else 'no'
         sizes, ac = official_sizes(fp), joined_acres(p)
-        if sizes and ac:
+        all_lines = bool(recs) and all(is_line(r) for r in recs)       # a park that is only trail lines has no area to measure
+        if sizes and ac and not all_lines:
             n['size_n'] += 1; n['size_yes'] += size_agrees(ac, sizes, store.size_tol)
     return n, pins
 
@@ -472,16 +533,18 @@ def land_vs_base(st, bp, vp, proof, store, stems):
     return rows, nb, n21, n12
 
 
-def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=None, lock_check='skipped', lock_differs=(), lock_text='', trial=False, land=True):
+def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=None, lock_check='skipped', lock_differs=(), lock_text='', trial=False, land=True, nobase=False):
     """Returns (gates, state_blocks, csv_rows, notes). gates = [(id, ok, text)]."""
     repo = repo or pathlib.Path(__file__).resolve().parents[2]
     id_fields, note = load_id_fields(repo)
     lim, lnote = load_limits(repo)
     store = Store(storedir, id_fields, lim['pin_m'], lim['size_tol'])
+    store.line_m = load_line_pin(repo)
     facts = load_json(factsfile) or {}
     notes = [x for x in (note, lnote) if x]
     if not facts.get('parks'): notes.append('park facts not read: the pin and size numbers are empty')
-    run = (load_json(pathlib.Path(v2dir) / 'v2-run.json') or {}).get('states') or {}
+    runj = load_json(pathlib.Path(v2dir) / 'v2-run.json') or {}
+    run, areas_run = runj.get('states') or {}, runj.get('areas') or {}
     proof_all = read_csv(pathlib.Path(v2dir) / 'v2-proof.csv')
     pinonly_all = read_csv(pathlib.Path(v2dir) / 'v2-pin-only.csv')
     v1_seconds = v1_seconds or {}
@@ -489,19 +552,20 @@ def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=Non
     S, rows = {}, []
     for st in states:
         d = {'st': st}
-        kb, k2 = key_file(basedir, st), key_file(v2dir, st)
-        b, v = load_json(kb) if kb else None, load_json(k2) if k2 else None
+        kb, k2 = (None if nobase else key_file(basedir, st)), key_file(v2dir, st)
+        b, v = ({'parks': {}} if nobase else load_json(kb) if kb else None), load_json(k2) if k2 else None
         d['base_ok'], d['v2_ok'] = isinstance(b, dict), isinstance(v, dict)
         bp = (b or {}).get('parks') or {}; vp = (v or {}).get('parks') or {}
         d['bp'], d['vp'] = bp, vp
-        stems = [f'US-{st}'] + [s for s in sorted(((v or {}).get('layer_files') or {})) if s != f'US-{st}']
+        stems = [aname(st)] + [s for s in sorted(((v or {}).get('layer_files') or {})) if s != aname(st)]
         d['stems'] = stems
         d['proof'] = {}
         for r in proof_all or []:
             if r.get('st') == st: d['proof'].setdefault(r.get('ref'), []).append(r)
         d['proof_rows'] = [r for rs in d['proof'].values() for r in rs]
         d['pinonly_rows'] = [r for r in pinonly_all or [] if r.get('st') == st]
-        d['same'] = (set(bp) == set(vp), len(bp), len(vp), len(set(bp) - set(vp)), len(set(vp) - set(bp)))
+        d['nobase'] = nobase
+        d['same'] = (True, 0, len(vp), 0, 0) if nobase else (set(bp) == set(vp), len(bp), len(vp), len(set(bp) - set(vp)), len(set(vp) - set(bp)))
         d['out1'], d['out2'] = sum(joined(p) for p in bp.values()), sum(joined(p) for p in vp.values())
         d['conf1'], d['conf2'] = sum(confirmed(p) for p in bp.values()), sum(confirmed(p) for p in vp.values())
         d['pin1'], d['pin2'] = len(bp) - d['out1'], len(vp) - d['out2']
@@ -514,7 +578,7 @@ def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=Non
         d['missing'] = sum(1 for r in d['proof_rows'] if not store.has_key(r.get('file_key'), stems))
         d['h1'], pins1 = honest('v1', bp, None, facts, store, stems)
         d['h2'], pins2 = honest('v2', vp, d['proof'] if proof_all is not None else None, facts, store, stems)
-        rs = run.get(st) or {}
+        rs = run.get(st) or run.get(aname(st)) or areas_run.get(aname(st)) or {}
         d['run'] = rs
         d['nb'] = rs.get('not_built') or None          # a state v2 did not build: only G9 speaks for it
         d['nb_layer'] = not_built_layer(d['nb']) if d['nb'] else ''
@@ -530,6 +594,14 @@ def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=Non
         d['out1f'] = d['out1'] - len(d['gap'])
         d['conf1f'] = d['conf1'] - sum(g['confirmed'] for g in d['gap'])
         gaprefs = {g['ref'] for g in d['gap']}
+        d['why2'] = {}
+        d['step2'] = {}
+        for p_ in vp.values():
+            m_ = (p_ or {}).get('match') or {}
+            if joined(p_): k_ = f"step {m_.get('step')}" if m_.get('step') is not None else (m_.get('by') or 'no step'); d['step2'][k_] = d['step2'].get(k_, 0) + 1
+            else: k_ = m_.get('why') or 'no reason'; d['why2'][k_] = d['why2'].get(k_, 0) + 1
+        d['gaps'] = [str(x) for x in (rs.get('gaps') or (v or {}).get('gaps') or [])]
+        d['sha'] = rs.get('key_text_sha256') or (v or {}).get('key_text_sha256') or ''
         d['sec2'], d['sec1'] = num(rs.get('seconds')), num(v1_seconds.get(st))
         d['g11'] = same_name_land('v2', st, vp, d['proof'] if proof_all is not None else None, facts, store, stems)
         d['g11_v1'] = same_name_land('v1', st, bp, None, facts, store, stems)
@@ -538,7 +610,7 @@ def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=Non
         d['land'] = land_vs_base(st, bp, vp, d['proof'] if proof_all is not None else None, store, stems) if land and not d['nb'] and d['base_ok'] and d['v2_ok'] else None
         d['other_names'] = None if other_names is None else sum(1 for r in other_names if (r.get('st') or r.get('state') or st) == st)
         # the park-by-park list
-        for ref in sorted(set(bp) | set(vp)):
+        for ref in ([] if nobase else sorted(set(bp) | set(vp))):
             p1, p2 = bp.get(ref), vp.get(ref)
             j1, j2 = joined(p1), joined(p2)
             a1, a2 = (joined_acres(p1) if j1 else None), (joined_acres(p2) if j2 else None)
@@ -591,7 +663,9 @@ def make_gates(S, all_states, v1_seconds):
     states = [s for s in all_states if not S[s]['nb']]      # a state v2 did not build is judged by G9 only
     miss = [s for s in states if not S[s]['v2_ok'] or not S[s]['base_ok']]
     ok = all(S[s]['same'][0] and S[s]['v2_ok'] and S[s]['base_ok'] for s in states)
-    add('G1', ok, 'same parks as v1: ' + per_state(S, states, lambda d: f"{d['st']} {d['same'][1]} v1, {d['same'][2]} v2" + (
+    nb1 = [s for s in states if S[s]['nobase']]
+    if nb1 and len(nb1) == len(states): add('G1', all(S[s]['v2_ok'] for s in states), 'no v1 key to compare with' + ('' if all(S[s]['v2_ok'] for s in states) else ' (NO v2 KEY)'))
+    else: add('G1', ok, 'same parks as v1: ' + per_state(S, states, lambda d: f"{d['st']} {d['same'][1]} v1, {d['same'][2]} v2" + (
         f" ({d['same'][3]} missing, {d['same'][4]} extra)" if not d['same'][0] else '') + ('' if d['v2_ok'] else ' (NO v2 KEY)') + ('' if d['base_ok'] else ' (NO v1 KEY)')))
     n = sum(S[s]['old'] for s in states)
     add('G2', n == 0, f'ids ending in ~old in joins or check rows: {n}')
@@ -612,8 +686,12 @@ def make_gates(S, all_states, v1_seconds):
             a, f, b = d[key + '1'], d[key + '1f'], d[key + '2']
             return f"{d['st']} {a} -> {b}" + (f" ({len(d['gap'])} parks set apart: v1 drew them from layers the store room does not hold; fair count {f} -> {b})" if len(d['gap']) else '')
         return f'{label}: ' + per_state(S, states, one)
-    add('G6', all(S[s]['out2'] >= S[s]['out1f'] for s in states) and not miss, fair('out', 'outlined parks hold'))
-    add('G7', all(S[s]['conf2'] >= S[s]['conf1f'] for s in states) and not miss, fair('conf', 'confirmed parks hold'))
+    allnb = bool(states) and len(nb1) == len(states)
+    if allnb:
+        add('G6', True, 'no v1 key to compare with'); add('G7', True, 'no v1 key to compare with')
+    else:
+        add('G6', all(S[s]['out2'] >= S[s]['out1f'] for s in states if not S[s]['nobase']) and not miss, fair('out', 'outlined parks hold'))
+        add('G7', all(S[s]['conf2'] >= S[s]['conf1f'] for s in states if not S[s]['nobase']) and not miss, fair('conf', 'confirmed parks hold'))
     slow = [s for s in states if v1_seconds and S[s]['sec1'] is not None and (S[s]['sec2'] is None or S[s]['sec2'] > S[s]['sec1'])]
     two_s = [S[s]['sec2'] for s in ('MN', 'NY') if s in S and s in states]
     over = bool(two_s) and (any(x is None for x in two_s) or sum(two_s) >= TWO_STATES_SECONDS)
@@ -636,6 +714,7 @@ def make_gates(S, all_states, v1_seconds):
             if p1 is not None and (p2 is None or p2 < p1 - HONEST_SLACK):
                 # the size number rests on few parks: it fails only when v2 is also behind by at least 2 parks (counted at v1's rate)
                 if key == 'pin' or p2 is None or (p1 * n2 / 100.0 - y2) >= 2: bad.append(d['st'])
+            if d['nobase']: return f"{d['st']} v2 {fmt_pct(y2, n2)} ({y2} of {n2}), no v1 key to compare with"
             return f"{d['st']} v1 {fmt_pct(y1, n1)} ({y1} of {n1}), v2 {fmt_pct(y2, n2)} ({y2} of {n2})"
         t = per_state(S, states, one)
         add(gid, not bad, f'{label}: {t}' + (f' (v2 worse by more than {HONEST_SLACK:g} point' + (' and 2 parks' if key == 'size' else '') + f' in {" ".join(bad)})' if bad else ''))
@@ -645,12 +724,15 @@ def make_gates(S, all_states, v1_seconds):
 def _sec(x): return 'n/a' if x is None else f'{x:.0f} s'
 
 
-def render(gates, S, states, notes):
+def render(gates, S, states, notes, compared=''):
     fails = [g for g in gates if not g[1]]
     gaps = {s: S[s]['gap'] for s in states if not S[s]['nb']}
     ng = sum(len(v) for v in gaps.values())
     L = ['V2 PASSES' if not fails else f'V2 DOES NOT PASS YET ({len(fails)} gate{"s" if len(fails) != 1 else ""})',
          f'KPC v2 scorecard, {datetime.datetime.now():%d %b %Y %I:%M %p}. Counts only, no park names (the names are in the csv lists).']
+    if compared: L.insert(1, f'Compared with: {compared}')
+    shas = [(s, S[s]['sha']) for s in states if S[s].get('sha')]
+    if shas: L += ['Key text sha256 (the same on every machine; the zip bytes are not): ' + ', '.join(f'{s} {h}' for s, h in shas)]
     if ng:
         trl = sum(g['trail'] for v in gaps.values() for g in v)
         L.append(f"STORE ROOM GAP: {ng} parks ({', '.join(f'{s} {len(v)}' for s, v in gaps.items() if v)}): v1 drew them from layers today's store does not "
@@ -664,8 +746,13 @@ def render(gates, S, states, notes):
         if d['nb']:
             L.append(f"{s}: NOT BUILT, the store room's layer {d['nb_layer'] or str(d['nb'])[:100]} is not complete" if d['nb_layer'] else f"{s}: NOT BUILT, {str(d['nb'])[:120]}")
             continue
-        L.append(f"{s}: {d['same'][1]} parks in v1, {d['same'][2]} in v2. Outlined: v1 {d['out1']}, v2 {d['out2']}. "
-                 f"Confirmed: v1 {d['conf1']}, v2 {d['conf2']}. Pin only: v1 {d['pin1']}, v2 {d['pin2']}.")
+        if d['nobase']:
+            L.append(f"{s}: {d['same'][2]} parks in v2 (no v1 key to compare with). Outlined {d['out2']}, confirmed {d['conf2']}, pin only {d['pin2']}.")
+        else:
+            L.append(f"{s}: {d['same'][1]} parks in v1, {d['same'][2]} in v2. Outlined: v1 {d['out1']}, v2 {d['out2']}. "
+                     f"Confirmed: v1 {d['conf1']}, v2 {d['conf2']}. Pin only: v1 {d['pin1']}, v2 {d['pin2']}.")
+        fmt = lambda c: ', '.join(f'{k} {v}' for k, v in sorted(c.items(), key=lambda x: (-x[1], x[0]))) or 'none'
+        L.append(f"  Pin only, by reason: {fmt(d['why2'])}. Outlined, by step: {fmt(d['step2'])}." + (f" Store room gap in the layer file: {', '.join(d['gaps'])}." if d['gaps'] else ''))
         lk = d['locks']
         lks = 'Locks: not reported' if lk is None else f'Locks: held {lk[0]}, broken {lk[1]}, new {lk[2]}' + (' (see v2-run.json)' if lk[1] else '')
         L.append(f"  Check rows: v1 {d['c1']}, v2 {d['c2']}. Seconds: v1 {_sec(d['sec1'])}, v2 {_sec(d['sec2'])}. {lks}.")
@@ -673,7 +760,9 @@ def render(gates, S, states, notes):
                  f"Size agrees: v1 {fmt_pct(h1['size_yes'], h1['size_n'])} ({h1['size_yes']} of {h1['size_n']}), v2 {fmt_pct(h2['size_yes'], h2['size_n'])} ({h2['size_yes']} of {h2['size_n']}).")
         L.append(f"  Records not in today's file: v1 {h1['ids_missing']} of {h1['ids']} ({h1['ids_trail']} trail lines), v2 {h2['ids_missing']} of {h2['ids']}. "
                  f"Ids that fit two records (left out): v1 {h1['ids_fit2']}, v2 {h2['ids_fit2']}.")
-        if d['land'] is not None:
+        if d['nobase']:
+            L.append('  H3 same land as v1: no v1 key to compare with.')
+        elif d['land'] is not None:
             _, n, a, b = d['land']
             L.append(f"  H3 same land as v1 (a report, not a gate), parks outlined by both {n}: v2 covers at least 90% of v1's land in {a}; v1 covers at least 90% of v2's land in {b}. list: v2-land-vs-base.csv")
         if d['other_names'] is not None:
@@ -689,7 +778,7 @@ def lock_detail(cold, warm, states, max_refs=5):
     (each park's joined ids, sorted, and its status) or only labels. Returns (check, [states that differ], text, csv rows)."""
     diff, seen, rows, bad_parks, label_only = [], 0, [], {}, []
     for st in states:
-        a, b = pathlib.Path(cold) / f'US-{st}.json.gz', pathlib.Path(warm) / f'US-{st}.json.gz'
+        a, b = pathlib.Path(cold) / f'{aname(st)}.json.gz', pathlib.Path(warm) / f'{aname(st)}.json.gz'
         if not (a.is_file() and b.is_file()): continue
         seen += 1
         if a.read_bytes() == b.read_bytes(): continue
@@ -740,7 +829,7 @@ def parse_seconds(items):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description='Score a v2 US key against the v1 keys of the last PC test.')
-    ap.add_argument('--v2', required=True); ap.add_argument('--base', required=True); ap.add_argument('--store', required=True)
+    ap.add_argument('--v2', required=True); ap.add_argument('--base'); ap.add_argument('--no-base', action='store_true', help='no v1 key for these areas: report them on their own'); ap.add_argument('--base-name', help='the name of the v1 test, for the first lines'); ap.add_argument('--store', required=True)
     ap.add_argument('--facts', required=True); ap.add_argument('--states', nargs='+', required=True)
     ap.add_argument('--v1-seconds', nargs='*', default=[]); ap.add_argument('--out'); ap.add_argument('--repo')
     ap.add_argument('--lock-check', default='skipped', choices=['same', 'differs', 'skipped'])
@@ -749,11 +838,12 @@ def main(argv=None):
     ap.add_argument('--no-land', action='store_true', help='skip H3 (same land as v1), the slowest part')
     ap.add_argument('--cold', help='the cold run folder: the scorecard then compares it with --v2 itself (G10)')
     a = ap.parse_args(argv)
+    if not a.base and not a.no_base: ap.error('--base <v1 keys folder> or --no-base is needed')
     states = [s.upper() for s in a.states]
     t0 = time.time()
     lock, differs, ltext, lrows = a.lock_check, a.lock_differs, '', []
     if a.cold: lock, differs, ltext, lrows = lock_detail(a.cold, a.v2, states)
-    gates, S, rows, notes = build(a.v2, a.base, a.store, a.facts, states, parse_seconds(a.v1_seconds), a.repo, lock, differs, ltext, a.trial, not a.no_land)
+    gates, S, rows, notes = build(a.v2, a.base, a.store, a.facts, states, parse_seconds(a.v1_seconds), a.repo, lock, differs, ltext, a.trial, not a.no_land, a.no_base)
     out = pathlib.Path(a.out or a.v2); out.mkdir(parents=True, exist_ok=True)
     gap = [g for st in states if not S[st]['nb'] for g in S[st]['gap']]
     with open(out / 'v2-store-gap.csv', 'w', encoding='utf-8', newline='') as f:
@@ -772,7 +862,17 @@ def main(argv=None):
         lr = sorted([r for st in states if S[st]['land'] for r in S[st]['land'][0]], key=lambda r: -max(r['v1 land not in v2'], r['v2 land not in v1']))
         with open(out / 'v2-land-vs-base.csv', 'w', encoding='utf-8', newline='') as f:
             w = csv.DictWriter(f, fieldnames=['ref', 'state', 'name', 'v1 land acres', 'v2 land acres', 'v1 land not in v2', 'v2 land not in v1']); w.writeheader(); w.writerows(lr)
-    text = render(gates, S, states, notes)
+    oth = pathlib.Path(a.v2) / 'v2-id-other-names.csv'
+    if oth.is_file() and oth.resolve().parent != out.resolve(): shutil.copyfile(oth, out / 'v2-id-other-names.csv')   # the text points to it in the report folder
+    bp_ = pathlib.Path(a.base) if a.base else None
+    compared = a.base_name or ('' if a.no_base else (bp_.parent.name if bp_ and bp_.name.lower() == 'keys' else (bp_.name if bp_ else '')))
+    if a.no_base: compared = 'no v1 key to compare with (reported on its own)'
+    text = render(gates, S, states, notes, compared)
+    nums = {st: {'parks': S[st]['same'][2], 'nobase': S[st]['nobase'], 'not_built': bool(S[st]['nb']), 'out1': S[st]['out1'], 'out2': S[st]['out2'], 'conf1': S[st]['conf1'], 'conf2': S[st]['conf2'],
+                 'pin2': S[st]['pin2'], 'pin_yes': S[st]['h2']['pin_yes'], 'pin_n': S[st]['h2']['pin_n'], 'size_yes': S[st]['h2']['size_yes'], 'size_n': S[st]['h2']['size_n'],
+                 'pin_yes1': S[st]['h1']['pin_yes'], 'pin_n1': S[st]['h1']['pin_n'], 'why': S[st]['why2'], 'step': S[st]['step2'], 'gaps': S[st]['gaps'], 'sec2': S[st]['sec2'],
+                 'h3': (S[st]['land'][1:] if S[st]['land'] else None), 'gate_ok': (S[st]['run'].get('gate') or {}).get('ok') if S[st]['run'] else None} for st in states}
+    (out / 'v2-score.json').write_text(json.dumps({'gates': [[g, ok, t] for g, ok, t in gates], 'areas': nums}, indent=1, ensure_ascii=False), encoding='utf-8')
     (out / 'V2-SCORECARD.txt').write_text(text, encoding='utf-8')
     write_csv(out / 'v2-vs-base.csv', rows)
     print(text + f'(scorecard took {time.time() - t0:.1f} s)')

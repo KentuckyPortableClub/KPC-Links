@@ -18,7 +18,7 @@ the matcher's gate for the trial run, the scorecard verdict for both runs) and t
 is not part of a trial. If the matcher refuses the trial table (exit 2) it shows the matcher's one line and stops.
 Works in the repo (tools/pc-keys, repo root two levels up) and on the PC (kit folder with links\\ beside this file).
 """
-import argparse, datetime, pathlib, re, subprocess, sys
+import argparse, csv, datetime, json, pathlib, re, shutil, subprocess, sys, time
 
 HERE = pathlib.Path(__file__).resolve().parent
 LOCKS_ARG_IS_RUN_FOLDER = True   # the contract: --locks is the folder that HOLDS locks/US-<ST>.json, i.e. the cold run's own folder
@@ -47,8 +47,17 @@ def find_facts(here, links):
     return f if f.is_file() else links / '.pf' / 'data' / 'park-facts.json.gz'
 
 
+def area_of(x):
+    """MN -> US-MN; CA-ON (or US-MN) stays."""
+    x = str(x).strip().upper()
+    return x if re.match(r'^[A-Z]{2}-[A-Z]{2}$', x) else 'US-' + x
+
+
+def label_of(area): return area[3:] if area.startswith('US-') else area
+
+
 def has_keys(rep, states):
-    return all((rep / 'keys' / f'US-{s}.json.gz').is_file() for s in states)
+    return all((rep / 'keys' / f'{area_of(s)}.json.gz').is_file() for s in states)
 
 
 def find_baseline(reports, states, base=None):
@@ -83,15 +92,22 @@ def lock_compare(cold, warm, states):
     """('same'|'differs'|'skipped', [states that differ]): the cold key and the warm key of a state must be the same bytes."""
     diff, seen = [], 0
     for s in states:
-        a, b = pathlib.Path(cold) / f'US-{s}.json.gz', pathlib.Path(warm) / f'US-{s}.json.gz'
+        a, b = pathlib.Path(cold) / f'{area_of(s)}.json.gz', pathlib.Path(warm) / f'{area_of(s)}.json.gz'
         if not (a.is_file() and b.is_file()): continue
         seen += 1
         if a.read_bytes() != b.read_bytes(): diff.append(s)
     return ('differs' if diff else 'same' if seen else 'skipped'), diff
 
 
+def scope_flags(items):
+    """The matcher's flags for what was typed: US states by --states (letters), Canadian areas by --areas."""
+    us = [label_of(area_of(x)) for x in items if area_of(x).startswith('US-')]
+    other = [area_of(x) for x in items if not area_of(x).startswith('US-')]
+    return (['--states', *us] if us else []) + (['--areas', *other] if other else [])
+
+
 def run_v2(v2script, states, store, facts, out, links, locks=None, write_locks=False):
-    cmd = [sys.executable, '-X', 'utf8', str(v2script), '--states', *states, '--store', str(store), '--facts', str(facts),
+    cmd = [sys.executable, '-X', 'utf8', str(v2script), *scope_flags(states), '--store', str(store), '--facts', str(facts),
            '--out', str(out), '--repo', str(links)]
     if locks: cmd += ['--locks', str(locks)]
     if write_locks: cmd += ['--write-locks']
@@ -206,13 +222,177 @@ def try_mode(states, rules, base, secs, reports, store, facts, links, v2script, 
     return 0
 
 
+# ------------------------------------------------------------------------------------------------ BUILD MODE
+def store_areas(store, group='ALL'):
+    """Labels of every area with a layer file in the store: group US, CA (Canada) or ALL. MN or CA-ON as typed."""
+    store = pathlib.Path(store)
+    if not store.is_dir(): return []
+    ar = sorted(m.group(1) for f in store.iterdir() for m in [re.match(r'^((?:US|CA)-[A-Z]{2})\.layer-records\.json\.gz$', f.name)] if m)
+    return [a for a in ar if group == 'ALL' or a.startswith(group + '-')]
+
+
+def parse_areas(tokens, store):
+    """Typed words -> areas (US-MN, CA-ON). MN, US-MN, CA-ON, or the groups US, CA, ALL (every area with a layer file in the store)."""
+    toks = [t.upper() for x in tokens for t in re.split(r'[,\s;]+', str(x)) if t]
+    out = []
+    for t in toks:
+        for a in (store_areas(store, t) if t in ('US', 'CA', 'ALL') else [area_of(t)]):
+            if a not in out: out.append(a)
+    return out
+
+
+def newest_v1(reports, area):
+    """The newest PC test that holds this area's v1 key (keys\\US-<ST>.json.gz or keys\\CA-<XX>.json.gz), or None."""
+    for r in sorted((x for x in pathlib.Path(reports).glob('test-*') if x.is_dir()), key=lambda x: x.name, reverse=True):
+        if (r / 'keys' / f'{area}.json.gz').is_file(): return r
+    return None
+
+
+def classify(run_state, rc, area_file_ok):
+    """('built' | 'built with a store gap' | 'gate failed' | 'not built', detail)"""
+    rs = run_state or {}
+    gaps = rs.get('gaps') or []
+    if rs.get('not_built'): return 'not built', str(rs.get('not_built'))[:120]
+    if not area_file_ok: return 'not built', 'no key was written'
+    if (rs.get('gate') or {}).get('ok') is False or rc == 4: return 'gate failed', ''
+    if gaps: return 'built with a store gap', ', '.join(str(g) for g in gaps)
+    return 'built', ''
+
+
+def build_one(area, store, facts, links, v2script, card, reports, run, base_pick):
+    """One area in its own processes: cold, warm, scorecard. Returns a dict of numbers for the summary."""
+    af = run / area; cold, warm = af / 'cold', af / 'warm'
+    cold.mkdir(parents=True, exist_ok=True); warm.mkdir(parents=True, exist_ok=True)
+    res = {'area': area, 'label': label_of(area), 'seconds': None, 'status': '', 'detail': ''}
+    t0 = time.time()
+    rc1 = run_v2(v2script, [area], store, facts, cold, links, write_locks=True)
+    if rc1 not in (0, 3, 4):
+        (af / 'build-error.txt').write_text(f'The matcher stopped with exit code {rc1}. Its lines are on the screen above.\n', encoding='utf-8')
+        res.update(status='stopped', detail=f'the build stopped with an error, see {area}\\build-error.txt', seconds=time.time() - t0); return res
+    rc2 = run_v2(v2script, [area], store, facts, warm, links, locks=cold if LOCKS_ARG_IS_RUN_FOLDER else cold / 'locks')
+    if rc2 not in (0, 3, 4):
+        (af / 'build-error.txt').write_text(f'The second matcher run stopped with exit code {rc2}.\n', encoding='utf-8')
+        res.update(status='stopped', detail=f'the build stopped with an error, see {area}\\build-error.txt', seconds=time.time() - t0); return res
+    lock, differ = lock_compare(cold, warm, [area])
+    try: runj = json.loads((warm / 'v2-run.json').read_text(encoding='utf-8'))
+    except (OSError, ValueError): runj = {}
+    rs = (runj.get('areas') or {}).get(area) or (runj.get('states') or {}).get(label_of(area)) or (runj.get('states') or {}).get(area) or {}
+    keyf = warm / f'{area}.json.gz'
+    res['status'], res['detail'] = classify(rs, rc2, keyf.is_file())
+    res['sec2'] = rs.get('seconds')
+    if keyf.is_file():
+        (run / 'keys').mkdir(exist_ok=True); shutil.copyfile(keyf, run / 'keys' / keyf.name)
+    base = base_pick(area)
+    cmd = [sys.executable, '-X', 'utf8', str(card), '--v2', str(warm), '--store', str(store), '--facts', str(facts), '--states', label_of(area),
+           '--out', str(af), '--repo', str(links), '--lock-check', lock, '--cold', str(cold)]
+    if base:
+        cmd += ['--base', str(base / 'keys'), '--base-name', base.name]
+        secs = v1_seconds(base, [label_of(area)])
+        if secs: cmd += ['--v1-seconds'] + [f'{k}={v}' for k, v in secs.items()]
+    else: cmd += ['--no-base']
+    if differ: cmd += ['--lock-differs', label_of(area)]
+    r = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace')
+    res['card_rc'] = r.returncode; res['base'] = base.name if base else ''
+    try: res['score'] = (json.loads((af / 'v2-score.json').read_text(encoding='utf-8')) or {})
+    except (OSError, ValueError): res['score'] = {}
+    res['gates_failed'] = [g[0] for g in (res['score'].get('gates') or []) if not g[1]]
+    res['lock'] = lock
+    res['seconds'] = time.time() - t0
+    if res['status'] == 'built' and res['gates_failed']: res['detail'] = 'gates: ' + ' '.join(res['gates_failed'])
+    return res
+
+
+def pin_only_rows(run, results):
+    """Every pin-only park of the run with its reason (from each warm key and its v2-pin-only.csv)."""
+    rows = []
+    for r in results:
+        warm = run / r['area'] / 'warm'
+        kf = warm / f"{r['area']}.json.gz"
+        if not kf.is_file(): continue
+        key = _load(kf) or {}
+        txt = {}
+        try:
+            with open(warm / 'v2-pin-only.csv', encoding='utf-8', newline='') as f:
+                for x in csv.DictReader(f): txt[x.get('ref')] = x.get('reason') or ''
+        except OSError: pass
+        for ref, p in sorted((key.get('parks') or {}).items()):
+            if (p or {}).get('m'): continue
+            m = (p or {}).get('match') or {}
+            rows.append({'area': r['area'], 'ref': ref, 'name': (p or {}).get('n') or '', 'kind': (p or {}).get('t') or '', 'reason_code': m.get('why') or '', 'reason': txt.get(ref, '')})
+    return rows
+
+
+def build_summary(results, secs_total, run):
+    def pct(a, b): return 'n/a' if not b else f'{100.0 * a / b:.1f}%'
+    kinds = {}
+    for r in results: kinds[r['status']] = kinds.get(r['status'], 0) + 1
+    word = {'built': 'built', 'built with a store gap': 'built with a store gap', 'gate failed': 'gate failed', 'not built': 'not built', 'stopped': 'stopped with an error'}
+    L = [f"v2 built {kinds.get('built', 0) + kinds.get('built with a store gap', 0) + kinds.get('gate failed', 0)} of {len(results)} areas on this PC: "
+         + ', '.join(f"{n} {word[k]}" for k, n in sorted(kinds.items(), key=lambda x: -x[1])) + '.',
+         f"{sum(1 for r in results if r.get('gates_failed'))} areas have a failing scorecard gate. Nothing was published, uploaded or changed in v1.", '']
+    for r in results:
+        sc = (r.get('score') or {}).get('areas', {}).get(r['label']) or {}
+        det = f" ({r['detail']})" if r['detail'] else ''
+        line = f"{r['label']:6s} {word.get(r['status'], r['status'])}{det}"
+        if sc:
+            line += f"  outlined {sc.get('out2')} of {sc.get('parks')}  pin inside {pct(sc.get('pin_yes', 0), sc.get('pin_n', 0))}"
+            if sc.get('size_n'): line += f"  size agrees {pct(sc.get('size_yes', 0), sc.get('size_n', 0))}"
+            if not sc.get('nobase'): line += f"  v1 outlined {sc.get('out1')} pin {pct(sc.get('pin_yes1', 0), sc.get('pin_n1', 0))}  ({r.get('base')})"
+            else: line += '  no v1 key to compare with'
+        if r.get('gates_failed') and r['status'] != 'stopped': line += f"  gates failing: {' '.join(r['gates_failed'])}"
+        line += f"  {r['seconds']:.0f} s" if r.get('seconds') is not None else ''
+        L.append(line)
+    L += ['', f'{len(results)} areas, {secs_total:.0f} s in all. Files: summary.csv, pin-only-all.csv (every pin-only park with its reason), keys\\ (the built keys), and a folder per area',
+          'with its cold and warm runs and its own scorecard (V2-SCORECARD.txt).', 'Counts only here; the park names are in pin-only-all.csv and the per-area csv lists.']
+    return L
+
+
+def build_mode(tokens, store, facts, links, v2script, card, reports, out_root, call=None, say=say):
+    areas = parse_areas(tokens or ['MN', 'NY'], store)
+    if not areas: say('No area to build: nothing typed matches a layer file in the store folder. Nothing was run.'); return 2
+    run = pathlib.Path(out_root) / datetime.datetime.now().strftime('%Y-%m-%d-%H%M%S')
+    run.mkdir(parents=True, exist_ok=True)
+    say(f'Building real v2 keys for {len(areas)} area(s) into {run}. One area at a time. Nothing is published or uploaded.')
+    pick = lambda area: newest_v1(reports, area)
+    results, t0 = [], time.time()
+    for i, area in enumerate(areas, 1):
+        t1 = time.time()
+        if not (pathlib.Path(store) / f'{area}.layer-records.json.gz').is_file():
+            r = {'area': area, 'label': label_of(area), 'status': 'not built', 'detail': 'no layer file', 'seconds': 0.0, 'score': {}, 'gates_failed': []}
+        else:
+            try: r = (call or build_one)(area, store, facts, links, v2script, card, reports, run, pick)
+            except Exception as e: r = {'area': area, 'label': label_of(area), 'status': 'stopped', 'detail': f'the build stopped with an error ({type(e).__name__})', 'seconds': time.time() - t1, 'score': {}, 'gates_failed': []}
+        results.append(r)
+        say(f"{i} of {len(areas)}  {r['label']}  {time.time() - t1:.0f} s  {r['status']}" + (f" ({r['detail']})" if r['detail'] else ''))
+    L = build_summary(results, time.time() - t0, run)
+    (run / 'V2-BUILD-SUMMARY.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
+    cols = ['area', 'status', 'detail', 'parks', 'outlined', 'confirmed', 'pin_only', 'pin_inside_yes', 'pin_inside_of', 'size_agrees_yes', 'size_agrees_of', 'v1_test', 'v1_outlined',
+            'gates_failed', 'seconds']
+    with open(run / 'summary.csv', 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=cols); w.writeheader()
+        for r in results:
+            sc = (r.get('score') or {}).get('areas', {}).get(r['label']) or {}
+            w.writerow({'area': r['area'], 'status': r['status'], 'detail': r['detail'], 'parks': sc.get('parks'), 'outlined': sc.get('out2'), 'confirmed': sc.get('conf2'), 'pin_only': sc.get('pin2'),
+                        'pin_inside_yes': sc.get('pin_yes'), 'pin_inside_of': sc.get('pin_n'), 'size_agrees_yes': sc.get('size_yes'), 'size_agrees_of': sc.get('size_n'),
+                        'v1_test': r.get('base', ''), 'v1_outlined': None if sc.get('nobase') else sc.get('out1'), 'gates_failed': ' '.join(r.get('gates_failed') or []),
+                        'seconds': None if r.get('seconds') is None else round(r['seconds'], 1)})
+    po = pin_only_rows(run, results)
+    with open(run / 'pin-only-all.csv', 'w', encoding='utf-8', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=['area', 'ref', 'name', 'kind', 'reason_code', 'reason']); w.writeheader(); w.writerows(po)
+    say(''); [say(x) for x in L[:14]]
+    say(f'\nThe report is {run / "V2-BUILD-SUMMARY.txt"}')
+    if not any(r['status'] in ('built', 'built with a store gap', 'gate failed') for r in results): return 2
+    return 1 if any(r['status'] in ('stopped', 'not built', 'gate failed') for r in results) else 0
+
+
 def main(argv=None, here=None):
     here = pathlib.Path(here or HERE)
     ap = argparse.ArgumentParser(description='Test the v2 key side by side with a v1 test already on this PC.')
     ap.add_argument('states', nargs='*'); ap.add_argument('--base'); ap.add_argument('--store'); ap.add_argument('--facts')
     ap.add_argument('--reports'); ap.add_argument('--try', dest='try_rules', help='a trial rule table (json): the TRY A RULE workbench')
     a = ap.parse_args(argv)
-    states = [s.upper() for s in a.states] or ['MN', 'NY', 'SC']
+    build = bool(a.states) and a.states[0].lower() == 'build'
+    states = [s.upper() for s in (a.states[1:] if build else a.states)] or ([] if build else ['MN', 'NY', 'SC'])
     links = find_links(here)
     v2script = next((p for p in (here / 'kpc_us_key_v2.py', links / '.github' / 'scripts' / 'kpc_us_key_v2.py') if p.is_file()),
                     links / '.github' / 'scripts' / 'kpc_us_key_v2.py')   # beside this file on the PC (the kit folder), else in the repo copy
@@ -227,6 +407,8 @@ def main(argv=None, here=None):
     for what, p in (('the layer files folder', store), ('the park facts', facts)):
         if not p.exists():
             say(f'Not found: {what} ({p}). Nothing was run. Tell Claude.'); return 2
+    if build:
+        return build_mode(states, store, facts, links, v2script, card, reports, reports.parent / 'v2-keys')
     base = find_baseline(reports, states, a.base)
     if not base:
         say('No earlier v1 test holds a key for ' + ' '.join(states) + '. Run the key test (START-HERE) for these states first. Nothing was run.'); return 2

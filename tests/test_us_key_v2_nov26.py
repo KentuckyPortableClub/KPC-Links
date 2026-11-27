@@ -71,31 +71,34 @@ class Fix:
             shutil.copy(os.path.join(SRC['github'], f), os.path.join(self.d, 'repo', '.github', f))
         os.makedirs(os.path.join(self.d, 'store'))
         self.parks, self.files, self.incomplete, self.lists, self.no_manifest, self.listed = {}, {}, {}, {}, {}, {}
+        self.urls = {}   # {area: {layer: url}}: manifest sources (rule layer_copy)
 
     def p(self, path): return os.path.join(self.d, path)
 
     def write(self):
-        for st in sorted({k[3:] for k in self.files} | set(self.lists)):
-            refs = self.lists.get(st, [r for r, p in self.parks.items() if p['area'] == f'US-{st}'])
+        for area in sorted(set(self.files) | {V.area_of(k) for k in self.lists}):
+            refs = self.lists.get(V.area_label(area), [r for r, p in self.parks.items() if p['area'] == area])
             os.makedirs(self.p('repo/data/pota/saved/parks'), exist_ok=True)
-            with gzip.open(self.p(f'repo/data/pota/saved/parks/US-{st}.json.gz'), 'wt') as f:
-                json.dump({'data': [{'reference': r, 'locationDesc': self.listed.get(r, f'US-{st}')} for r in refs]}, f)
+            with gzip.open(self.p(f'repo/data/pota/saved/parks/{area}.json.gz'), 'wt') as f:
+                json.dump({'data': [{'reference': r, 'locationDesc': self.listed.get(r, area)} for r in refs]}, f)
         for area, recs in self.files.items():
-            man = {r['layer']: {'complete': True} for r in recs}
+            man = {r['layer']: dict({'complete': True}, **({'url': self.urls[area][r['layer']], 'where': '1=1'}
+                                                           if r['layer'] in self.urls.get(area, {}) else {})) for r in recs}
             for l in self.incomplete.get(area, []): man[l] = {'complete': False}
             for l in self.no_manifest.get(area, []): man.pop(l, None)
             with gzip.open(self.p(f'store/{area}.layer-records.json.gz'), 'wt') as f:
                 json.dump({'kpcstore_layers': 1, 'area': area, 'made': '2026-11-26T11:00:00-06:00', 'manifest': man, 'records': recs}, f)
         with gzip.open(self.p('facts.json.gz'), 'wt') as f: json.dump({'parks': self.parks}, f)
 
-    def run(self, out='out', states=('MN',), extra=()):
+    def run(self, out='out', states=('MN',), extra=(), areas=()):
         self.write()
+        sel = ['--areas', *areas] if areas else ['--states', *states]
         with contextlib.redirect_stdout(io.StringIO()):
-            return V.run(['--states', *states, '--store', self.p('store'), '--facts', self.p('facts.json.gz'), '--out', self.p(out),
+            return V.run([*sel, '--store', self.p('store'), '--facts', self.p('facts.json.gz'), '--out', self.p(out),
                           '--repo', self.p('repo'), *extra])
 
     def key(self, st='MN', out='out'):
-        with gzip.open(self.p(f'{out}/US-{st}.json.gz'), 'rt') as f: return json.load(f)
+        with gzip.open(self.p(f'{out}/{V.area_of(st)}.json.gz'), 'rt') as f: return json.load(f)
 
     def info(self, st='MN', out='out'):
         with open(self.p(f'{out}/v2-run.json')) as f: return json.load(f)['states'][st]
@@ -129,16 +132,17 @@ def one(name, kind, records, dx=0.0, dy=0.0, link=None, size=None):
 
 
 # ------------------------------------------------------------------------------------------------------------- load
-def test_incomplete_layer_not_built():
+def test_store_gap_built():
     f = Fix()
-    try:
+    try:   # owner 26 Nov: an area with an incomplete layer is BUILT and flagged (exit 3), no longer refused
         f.parks['US-1'] = park('Crow Wing State Park', 'State Park')
         f.files['US-MN'] = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
         f.incomplete['US-MN'] = ['sgmnd']
-        assert f.run() == 3 and not os.path.exists(f.p('out/US-MN.json.gz')) and 'sgmnd' in f.info()['not_built']
+        assert f.run() == 3 and ids(f.key(), 'US-1') == ['sgmnd1'] and f.info()['gaps'] == ['sgmnd']
+        assert f.key()['gaps'] == ['sgmnd'] and f.key()['tool'].endswith(' (store gap)') and f.info()['not_built'] is None
         f.incomplete = {}
         f.no_manifest['US-MN'] = ['sgmnd']                     # records, but no manifest row: not complete either
-        assert f.run() == 3
+        assert f.run() == 3 and f.key()['gaps'] == ['sgmnd']
         f.no_manifest = {}
         f.incomplete = {'US-WI': ['wsrc']}
         f.files['US-WI'] = [rec('wsrc', 'wsrc1', 'Other River', ring(9000, 9000))]
@@ -434,6 +438,97 @@ def test_key_text_sha256():
         import hashlib
         assert f.info()['key_text_sha256'] == hashlib.sha256(text).hexdigest()
     finally: f.done()
+
+
+# ------------------------------------------------------------------------------------------------------------- areas, Canada
+def ca_park(name, kind, area='CA-QC', **k):
+    return dict(park(name, kind, **k), area=area)
+
+
+def ca_one(name, kind, records, area='CA-QC', link=None, dx=0.0):
+    f = Fix()
+    try:
+        f.parks['CA-1'] = ca_park(name, kind, area, link=link, dx_m=dx)
+        f.files[area] = records
+        assert f.run(areas=[area]) == 0
+        return f.key(area)
+    finally: f.done()
+
+
+def test_ca_area_and_neighbours():
+    assert V.area_of('mn') == 'US-MN' and V.area_of('CA-ON') == 'CA-ON' and V.area_label('US-MN') == 'MN' and V.area_label('CA-QC') == 'CA-QC'
+    assert V.area_neighbours('CA-PE', RULES) == ['CA-NB', 'CA-NS'] and 'US-WI' in V.area_neighbours('US-MN', RULES)
+    f = Fix()
+    try:   # an NB park whose land is in the Québec file (a neighbour): found, and the files are named by area
+        f.parks['CA-1'] = ca_park('Mount Carleton Provincial Park', 'Provincial Park', 'CA-NB')
+        f.files['CA-NB'] = [rec('CPCAD', '9', 'Other Place', ring(50000))]
+        f.files['CA-QC'] = [rec('CPCAD', '7', 'Mount Carleton Provincial Park')]
+        assert f.run(areas=['CA-NB']) == 0 and os.path.exists(f.p('out/CA-NB.json.gz'))
+        assert ids(f.key('CA-NB'), 'CA-1') == ['7'] and f.key('CA-NB')['st'] == 'CA-NB'
+        run = json.load(open(f.p('out/v2-run.json')))
+        assert run['areas']['CA-NB'] is not None and 'CA-NB' in run['states'] and f.csv('v2-proof.csv')[1].split(',')[1] == 'CA-NB'
+    finally: f.done()
+    # a page address in a record's web field is the park's id (Manitoba Parks URL, measured)
+    d = ca_one('Hecla / Grindstone Provincial Park', 'Provincial Park',
+               [rec('Manitoba Par', 'Manitoba Par:1', 'Hecla/Grindstone Provincial Park', ring(3000),
+                    URL='https://www.gov.mb.ca/sd/parks/park-maps-and-locations/central/hecla.html')], area='CA-MB',
+               link={'id_kind': 'page address', 'id_value': 'GOV.MB.CA/SD/PARKS/PARK-MAPS-AND-LOCATIONS/CENTRAL/HECLA.HTML'})
+    assert ids(d, 'CA-1') == ['Manitoba Par:1'] and by(d, 'CA-1') == 'id'
+
+
+def test_layer_copy_dropped():
+    f = Fix()
+    try:   # CA-QC: 'Québec prote' and 'Qu_bec prote' are one layer read twice: one copy is kept
+        f.parks['CA-1'] = ca_park('Cap Tourmente National Wildlife Area', 'National Wildlife Area')
+        f.files['CA-QC'] = [rec('Qu_bec prote', 'Qu_bec prote:1', 'Cap Tourmente National Wildlife Area'),
+                            rec('Québec prote', 'Québec prote:1', 'Cap Tourmente National Wildlife Area')]
+        u = 'https://example/Aires_protegees/MapServer/23/query'
+        f.urls['CA-QC'] = {'Qu_bec prote': u, 'Québec prote': u}
+        assert f.run(areas=['CA-QC']) == 0
+        assert ids(f.key('CA-QC'), 'CA-1') == ['Qu_bec prote:1'] and f.info('CA-QC')['records_dropped'] == {'layer_copy Québec prote': 1}
+    finally: f.done()
+
+
+def test_bilingual_name():
+    en, fr = 'Cap Tourmente National Wildlife Area', 'Réserve nationale de faune du Cap-Tourmente'
+    both = rec('CPCAD', '22109', en, ring(9000), NAME_E=en, NAME_F=fr)      # carries both names, 9 km off the pin
+    reg = rec('Qu_bec prote', 'Qu_bec prote:2872', '', TOPONYME=fr)        # the French name only, under the pin
+    d = ca_one(en, 'National Wildlife Area', [both, reg])
+    assert ids(d, 'CA-1') == ['Qu_bec prote:2872'] and by(d, 'CA-1') == 'name+pin'
+    assert d['parks']['CA-1']['m'][0][1] == fr                              # the record's own name, never ''
+    # no record carrying both names: only the kind-word rule (ca_kind_words, longer or shorter name) can still see it
+    assert by(ca_one(en, 'National Wildlife Area', [reg]), 'CA-1') == 'longer or shorter name+pin'
+    reg2 = rec('Qu_bec prote', 'Qu_bec prote:9', '', TOPONYME='Réserve nationale de faune du Lac-Saint-François')
+    one_name = rec('CPCAD', '22109', en, ring(9000), NAME_E=en, NAME_F='None')
+    assert ca_one(en, 'National Wildlife Area', [one_name, reg2])['parks']['CA-1']['m'] == []   # never a guess
+
+
+def test_ca_kind_words():
+    r = [rec('CPCAD', '22022', 'Forillon National Park Of Canada')]
+    d = ca_one('Forillon National Park', 'National Park', r)
+    assert ids(d, 'CA-1') == ['22022'] and by(d, 'CA-1') == 'longer or shorter name+pin'
+    assert one('Forillon National Park', 'National Park', r)['parks']['US-1']['m'] == []   # US areas: not their words
+    # a longer-or-shorter name never joins a place of another kind (CA-0852 Basin Head)
+    d = ca_one('Basin Head Provincial Park', 'Provincial Park', [rec('CPCAD', '21882', 'Basin Head Marine Protected Area')], area='CA-PE')
+    assert d['parks']['CA-1']['m'] == []
+
+
+def test_stream_read_same():
+    d = tempfile.mkdtemp(prefix='v2stream-')
+    try:
+        recs = [rec('sgmnd', f'sgmnd{i}', f'Park {i}', ring(i * 1000), AREA_NAME=f'Park {i}', NOT_USED='x' * 50) for i in range(400)]
+        recs.append(dict(rec('PAD-US', '9', 'Lake', ring()), rings=json.dumps([ring()])))      # rings written as text
+        doc = {'kpcstore_layers': 1, 'area': 'US-MN', 'made': 'm', 'manifest': {'sgmnd': {'complete': True}}, 'records': recs,
+               'after': 'a key after the records'}
+        p = os.path.join(d, 'x.json.gz')
+        with gzip.open(p, 'wt') as f: json.dump(doc, f)
+        got = V.read_layer_file(p, RULES)
+        assert got['made'] == 'm' and got['after'] == 'a key after the records' and len(got['records']) == 401
+        a, b = got['records'][3], recs[3]
+        assert a['key'] == b['key'] and 'NOT_USED' not in a['attributes'] and a['attributes']['AREA_NAME'] == 'Park 3'
+        assert V.decode_rings(a['rings'], a['q']) == V.decode_rings(b['rings'], b['q'])
+        assert V.decode_rings(got['records'][-1]['rings'], 6) == V.decode_rings([ring()], 6)
+    finally: shutil.rmtree(d, ignore_errors=True)
 
 
 # ------------------------------------------------------------------------------------------------------------- step 3
@@ -962,8 +1057,9 @@ def test_stale_key_removed():
     try:
         mn_valley(f)
         assert f.run(extra=['--write-locks']) == 0 and os.path.exists(f.p('out/US-MN.json.gz'))
-        f.incomplete['US-MN'] = ['sgmne']
-        assert f.run() == 3 and not os.path.exists(f.p('out/US-MN.json.gz')) and not os.path.exists(f.p('out/locks/US-MN.json'))
+        os.remove(f.p('store/US-MN.layer-records.json.gz'))
+        f.files = {}; f.lists = {'MN': ['US-0364']}
+        assert f.run() == 2 and not os.path.exists(f.p('out/US-MN.json.gz')) and not os.path.exists(f.p('out/locks/US-MN.json'))
     finally: f.done()
 
 

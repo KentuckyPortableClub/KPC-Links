@@ -5,9 +5,9 @@
   {
    "id": "load_complete",
    "step": "load",
-   "what": "a typed state builds only when every layer in its own file is complete; else it is not built (exit 3)",
-   "why": "SC's own file lists sgnca with 0 records on 26 Nov: a key made from half a layer loses parks without saying so.",
-   "test": "test_incomplete_layer_not_built",
+   "what": "an area whose own file has a layer that is not complete (or has records but no manifest row) is BUILT and flagged: the key and v2-run.json carry gaps, the summary says 'built with a store-room gap', exit 3; the gate still runs",
+   "why": "Owner 26 Nov 9:20 PM: \"make the v2 not a test version, everything staying on pc till it is proven so let it do us and Canada etc no reason to lock it down\" (CONTRACT-2: a store-room gap no longer stops a build). Before: SC's sgnca with 0 records stopped SC.",
+   "test": "test_store_gap_built",
    "fn": "layer_gaps",
    "stub": "empty"
   },
@@ -613,6 +613,60 @@
    "test": "test_key_text_sha256",
    "fn": "key_text_sha256",
    "stub": "empty"
+  },
+  {
+   "id": "store_gap_flagged",
+   "step": "write",
+   "what": "a key built with a store-room gap ends its tool line with ' (store gap)' and carries gaps",
+   "why": "CONTRACT-2 (owner 26 Nov): nothing may mistake a gap build for a clean one",
+   "test": "test_store_gap_built",
+   "fn": "gap_note",
+   "stub": "empty"
+  },
+  {
+   "id": "layer_copy",
+   "step": "load",
+   "what": "a layer whose manifest source (url and where) equals another layer's in the same file is a second copy: the first label (sorted) is kept, the copy's records are dropped and counted",
+   "why": "round 7: CA-QC holds 'Québec prote' and 'Qu_bec prote' (the same 5,611 records), CA-SK three copies of ParksAsTitled/0; US-WI sgwia / wid and US-ND ndw / sgnda too (no US join changed)",
+   "test": "test_layer_copy_dropped",
+   "fn": "layer_copies",
+   "stub": "empty"
+  },
+  {
+   "id": "bilingual_name",
+   "step": "3",
+   "what": "a park's English name and a record's French name (or the reverse) are the same when one record carries BOTH names in its own fields (bilingual_fields) and one equals the park's name under the exact rules; accents aside (full() already). It is still only a name: the pin, a size or two sources must prove the land",
+   "why": "round 7 (manager): CA-0012 Cap Tourmente National Wildlife Area: CPCAD carries both names, the Québec register only 'Réserve nationale de faune du Cap-Tourmente'",
+   "test": "test_bilingual_name",
+   "fn": "bilingual_aliases",
+   "stub": "empty"
+  },
+  {
+   "id": "ca_kind_words",
+   "step": "3",
+   "what": "a CA area also counts ca_kind_words as kind words (generic names, name cores)",
+   "why": "round 7: Canadian and French kind words; US areas untouched",
+   "test": "test_ca_kind_words",
+   "fn": "rules_for_area",
+   "stub": "identity"
+  },
+  {
+   "id": "areas",
+   "step": "load",
+   "what": "--areas US-MN CA-ON beside --states MN: park lists, layer files, locks and key file names by AREA; US keys keep their names (US-MN.json.gz) and their two-letter 'st'; v2-run.json keeps 'states' by those letters and adds 'areas' by AREA",
+   "why": "CONTRACT-2 (owner 26 Nov 9:20 PM): 'let it do us and Canada etc'",
+   "test": "test_ca_area_and_neighbours",
+   "fn": "area_neighbours",
+   "stub": "empty"
+  },
+  {
+   "id": "stream_read",
+   "step": "load",
+   "what": "a layer file is read as a stream, record by record, and each record keeps only the attribute fields some step reads (keep_fields) and its shape as compact integer arrays; a file is dropped from memory when no later area reads it",
+   "why": "round 7: Ontario's file is 105 MB zipped; NY peaked at 2.0 GB before (897 MB after), MN 1.4 GB (653 MB)",
+   "test": "test_stream_read_same",
+   "fn": "slim_record",
+   "stub": "identity"
   }
  ],
  "values": {
@@ -757,9 +811,51 @@
      "layer": "sgakd",
      "field": "UNIT_CODE",
      "measured": "NY: 23 parks, 23 records; pin inside 18, within 5 km 5, far 0; PA file 9 parks (7 inside, 2 near)"
+    },
+    {
+     "kind": "page address",
+     "layer": "Manitoba Par",
+     "field": "URL",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "CA-MB 26 Nov: 48 parks, 48 records, one page per record and per park; pin inside 43, within 5 km 4, far 1"
+    },
+    {
+     "kind": "page address",
+     "layer": "Saskatchewan_6",
+     "field": "SRPA_CONTACT",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "CA-SK 26 Nov: 31 parks, one page per record and per park; pin inside 28, within 5 km 3, far 0"
+    },
+    {
+     "kind": "page address",
+     "layer": "CPCAD",
+     "field": "MPLAN_REF",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "CA-MB 2 parks, CA-SK 15, CA-YT 1, CA-QC 1 (26 Nov): one page per record and per park; pin inside or within 5 km in all"
+    },
+    {
+     "kind": "page address",
+     "layer": "NS-PPA Nova",
+     "field": "URL",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "CA-NS 26 Nov: 151 parks; one park per page (several records per page: the pieces of one area); records with pin inside 124, within 5 km 103, farther 46 (pieces of the same areas)"
+    },
+    {
+     "kind": "page address",
+     "layer": "Nova Scotia _2",
+     "field": "URL",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "CA-NS 26 Nov: the V1 copy of NS-PPA: the same 151 parks and counts"
+    },
+    {
+     "kind": "page address",
+     "layer": "Nova Scotia",
+     "field": "web_url",
+     "rx": "^(?:https?://)?(?:www\\.)?(.+?)/*$",
+     "measured": "CA-NS 26 Nov: 151 parks; records with pin inside 121, within 5 km 97, farther 43"
     }
    ],
-   "why": "measured on the 26 Nov files (counts in each row); web-address ties come from .github/link-id-ties.json",
+   "why": "measured on the 26 Nov files (counts in each row); web-address ties come from .github/link-id-ties.json; round 7: the Canadian ties are the park's own page address in a record's web-address field (normalised: no http, no www, no trailing slash). Numeric Canadian ids (Parks Canada DFHD, Canada's Historic Places, NS protected areas, Sepaq code) were measured against every field of every CA layer: no field holds them (every numeric hit was a row number or a year, far from the pin).",
    "test": "test_id_ties_minnesota_valley"
   },
   "unit_fields": {
@@ -805,9 +901,121 @@
     ],
     "sgmng": [
      "ORGNAME"
+    ],
+    "CPCAD": [
+     "NAME_E",
+     "NAME_F"
+    ],
+    "Parks Canada": [
+     "DESC_EN",
+     "DESC_FR"
+    ],
+    "Manitoba Par": [
+     "NAME_E",
+     "NOM_F"
+    ],
+    "Manitoba pro": [
+     "PROV_FOREST_NAME",
+     "NOM_FORET_PROV"
+    ],
+    "Manitoba wil": [
+     "NAME"
+    ],
+    "Manitoba wil_2": [
+     "NAME_E",
+     "NOM_F"
+    ],
+    "SK-ALL Gover": [
+     "PARKNM"
+    ],
+    "Hard look_18": [
+     "PARKNM"
+    ],
+    "Saskatchewan_6": [
+     "PARK_NAME"
+    ],
+    "NB Parks": [
+     "Park_Name",
+     "Nom_Parc"
+    ],
+    "NB Parks_1": [
+     "Park_Name"
+    ],
+    "NB-PP Govern": [
+     "NAME",
+     "Nom"
+    ],
+    "New Brunswic": [
+     "NAME",
+     "NOM"
+    ],
+    "New Brunswic_1": [
+     "NAME",
+     "NOM"
+    ],
+    "NS HRM Parks": [
+     "PARK_NAME"
+    ],
+    "NS NS_Lands_": [
+     "INT_NAME"
+    ],
+    "NS NS_Lands__1": [
+     "INT_NAME"
+    ],
+    "NS-F111 Nova": [
+     "NAME"
+    ],
+    "NS-NHS Nova": [
+     "NAME1"
+    ],
+    "NS-PPA Nova": [
+     "PROT_NAME"
+    ],
+    "Nova Scotia _2": [
+     "PROT_NAME"
+    ],
+    "Nova Scotia": [
+     "pro_name"
+    ],
+    "PE NCC_AT_Na": [
+     "NatureRese",
+     "Nature_res_FR"
+    ],
+    "PE Province": [
+     "NAME_E"
+    ],
+    "QC PoleConne": [
+     "TOPONYME"
+    ],
+    "Qu_bec Parc _1": [
+     "NOM_OFFICIEL"
+    ],
+    "Qu_bec Parc _3": [
+     "NOM_OFFICIEL"
+    ],
+    "Qu_bec Refug": [
+     "NOM_OFFICIEL"
+    ],
+    "Qu_bec R_ser": [
+     "NOM_OFFICIEL"
+    ],
+    "Qu_bec Zone": [
+     "NOM_OFFICIEL"
+    ],
+    "Qu_bec ecolo": [
+     "TOPONYME"
+    ],
+    "Qu_bec prote": [
+     "TOPONYME"
+    ],
+    "Qu_bec recog": [
+     "TOPONYME"
+    ],
+    "PE-PP Govern": [
+     "PARK"
     ]
    },
-   "why": "besides the file's record_name: PAD-US Unit_Nm / Loc_Nm (the legacy key's two names), NY State Parks Label (state-gis.json nm2), FWS complex and org names (the wetland district rule).",
+   "why": "besides the file's record_name: PAD-US Unit_Nm / Loc_Nm (the legacy key's two names), NY State Parks Label (state-gis.json nm2), FWS complex and org names (the wetland district rule).; round 7: the name fields of the Canadian layers (measured 26 Nov on MB NB NS PE QC SK SP YT; many CA layers leave record_name empty). A layer copy (layer_copy) is named by its kept label.",
    "test": "test_wildlife_and_fish_refuge"
   },
   "full_name_fields": {
@@ -1243,9 +1451,45 @@
     [
      "trh",
      "trail ?head"
+    ],
+    [
+     "pp",
+     "provincial park|parc provincial|territorial park|parc territorial|provincial recreation area"
+    ],
+    [
+     "mpa",
+     "marine protected area|zone de protection marine|marine conservation area|aire marine"
+    ],
+    [
+     "mbs",
+     "migratory bird sanctuary|refuge d'oiseaux|bird sanctuary"
+    ],
+    [
+     "nwa",
+     "national wildlife area|r[eé]serve nationale de faune"
+    ],
+    [
+     "er",
+     "ecological reserve|r[eé]serve [eé]cologique"
+    ],
+    [
+     "nr",
+     "nature reserve|r[eé]serve naturelle"
+    ],
+    [
+     "hist",
+     "lieu historique"
+    ],
+    [
+     "nps",
+     "parc national|national park reserve"
+    ],
+    [
+     "pa",
+     "protected area|aire prot[eé]g[eé]e"
     ]
    ],
-   "why": "v1 kpc_match_checks.KINDS: the kind of place a name says (rule name_longer_or_shorter checks the kinds agree)",
+   "why": "v1 kpc_match_checks.KINDS: the kind of place a name says (rule name_longer_or_shorter checks the kinds agree); round 7: the Canadian kinds (provincial / territorial park, marine protected area, bird sanctuary, national wildlife area, ecological and nature reserves) in English and French, so a longer-or-shorter name never joins a park to a place of another kind (CA-0852 Basin Head Provincial Park took Basin Head Marine Protected Area without them); 'protected area' too, so a Wildlife Management Area never takes a Protected Area of the same place name by a longer-or-shorter name (CA-2403 Douglas Marsh, CA-2379 Bell and Steeprock Canyons: two designations, left as pins)",
    "test": "test_name_longer_or_shorter"
   },
   "des_kinds": {
@@ -1426,6 +1670,138 @@
    "value": "\\b(trail|trails|river|riverway|route|byway|greenway|scenic river)\\b",
    "why": "round 6: only a trail / river / route park may take a line by NAME (from trail_kind_rx plus the river and route words); matched on the park's kind (type), never its name, so a state park named like a trail never takes the trail's line",
    "test": "test_line_name_needs_trail_kind"
+  },
+  "ca_neighbours": {
+   "value": {
+    "AB": "BC NT SK",
+    "BC": "AB NT YT",
+    "MB": "NU ON SK",
+    "NB": "NS PE QC",
+    "NL": "QC",
+    "NS": "NB PE SI SP",
+    "NT": "AB BC NU SK YT",
+    "NU": "MB NT",
+    "ON": "MB QC",
+    "PE": "NB NS",
+    "QC": "NB NL NU ON",
+    "SI": "NS",
+    "SK": "AB MB NT",
+    "SP": "NS",
+    "YT": "BC NT"
+   },
+   "why": "round 7: Canada's provinces and territories and their land borders (PE by the Confederation Bridge and the strait; SI Sable Island and SP St. Paul Island are POTA's own areas off Nova Scotia). Provinces only border provinces for v2: Canadian parks whose land sits in a US state file were not measured.",
+   "test": "test_ca_area_and_neighbours"
+  },
+  "ca_kind_words": {
+   "value": [
+    "provincial",
+    "provinciale",
+    "parc",
+    "parcs",
+    "nationale",
+    "national",
+    "ecological",
+    "ecologique",
+    "faunique",
+    "faune",
+    "sanctuary",
+    "migratory",
+    "bird",
+    "birds",
+    "heritage",
+    "historic",
+    "historique",
+    "lieu",
+    "territorial",
+    "wilderness",
+    "nature",
+    "naturelle",
+    "naturel",
+    "protected",
+    "protegee",
+    "aire",
+    "biosphere",
+    "marine",
+    "de",
+    "du",
+    "des",
+    "la",
+    "le",
+    "les",
+    "d",
+    "l",
+    "et",
+    "canada",
+    "quebec"
+   ],
+   "why": "round 7: the kind words of Canadian park names (Provincial Park, Parc national, Réserve écologique, Conservation Area, National Historic Site, Aire protégée, Refuge faunique ...) and the French small words (de, du, la ... as 'the', 'of', 'and' are for English); for CA areas only, so US keys stay byte-identical; 'of Canada' / '(Québec)' mark the federal or Québec park in a record's name (CPCAD 'La Mauricie National Park Of Canada' for CA-0047 La Mauricie National Park)",
+   "test": "test_ca_kind_words"
+  },
+  "bilingual_fields": {
+   "value": {
+    "CPCAD": [
+     [
+      "NAME_E",
+      "NAME_F"
+     ]
+    ],
+    "Parks Canada": [
+     [
+      "DESC_EN",
+      "DESC_FR"
+     ]
+    ],
+    "Manitoba Par": [
+     [
+      "NAME_E",
+      "NOM_F"
+     ]
+    ],
+    "Manitoba pro": [
+     [
+      "PROV_FOREST_NAME",
+      "NOM_FORET_PROV"
+     ]
+    ],
+    "Manitoba wil_2": [
+     [
+      "NAME_E",
+      "NOM_F"
+     ]
+    ],
+    "NB Parks": [
+     [
+      "Park_Name",
+      "Nom_Parc"
+     ]
+    ],
+    "NB-PP Govern": [
+     [
+      "NAME",
+      "Nom"
+     ]
+    ],
+    "New Brunswic": [
+     [
+      "NAME",
+      "NOM"
+     ]
+    ],
+    "New Brunswic_1": [
+     [
+      "NAME",
+      "NOM"
+     ]
+    ],
+    "PE NCC_AT_Na": [
+     [
+      "NatureRese",
+      "Nature_res_FR"
+     ]
+    ]
+   },
+   "why": "round 7, the one bilingual rule: these layers carry the English and the French name of one place in two fields of the same record (measured on the 26 Nov CA files); when one is the park's name the other is too. No translation tables, no guessing French from English.",
+   "test": "test_bilingual_name"
   }
  },
  "notes": {

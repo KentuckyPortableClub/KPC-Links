@@ -2,7 +2,7 @@
 """26 Nov 2026: tests of the v2 scorecard (tools/pc-keys/kpc_v2_scorecard.py) and of the side-by-side runner
 (tools/pc-keys/kpc_test_v2.py). Tiny made-up fixtures only; no real data, no real v2 matcher (the runner test uses a tiny fake
 kpc_us_key_v2.py). Prints PASS / FAIL, ends ALL PASS or SOME FAILED."""
-import contextlib, copy, csv, gzip, io, json, pathlib, shutil, sys, tempfile
+import re, contextlib, copy, csv, gzip, io, json, pathlib, shutil, sys, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools' / 'pc-keys'))
@@ -426,7 +426,7 @@ with tempfile.TemporaryDirectory() as t:
 # ---------------------------------------------------------------- the side-by-side runner
 FAKE = r'''import argparse, gzip, pathlib, shutil, sys
 ap = argparse.ArgumentParser()
-ap.add_argument('--states', nargs='+'); ap.add_argument('--store'); ap.add_argument('--facts'); ap.add_argument('--out')
+ap.add_argument('--states', nargs='+'); ap.add_argument('--areas', nargs='+'); ap.add_argument('--store'); ap.add_argument('--facts'); ap.add_argument('--out')
 ap.add_argument('--locks'); ap.add_argument('--write-locks', action='store_true'); ap.add_argument('--repo'); ap.add_argument('--rules')
 a = ap.parse_args()
 import json
@@ -437,6 +437,12 @@ fx, out = pathlib.Path(__FIX__), pathlib.Path(a.out)
 mode = (pathlib.Path(__file__).with_name('fake_mode.txt').read_text().strip() if pathlib.Path(__file__).with_name('fake_mode.txt').exists() else 'ok')
 out.mkdir(parents=True, exist_ok=True)
 for f in fx.iterdir(): shutil.copyfile(f, out / f.name)
+if a.areas and mode == 'crash_ca': print('boom'); sys.exit(1)
+if a.areas:
+    ar = a.areas[0]
+    shutil.copyfile(out / 'US-MN.json.gz', out / (ar + '.json.gz')); (out / 'US-MN.json.gz').unlink()
+    rj = out / 'v2-run.json'; d = json.loads(rj.read_text()); d['states'] = {ar: d['states']['MN']}; d['areas'] = d['states']; rj.write_text(json.dumps(d))
+    for fn in ('v2-proof.csv', 'v2-pin-only.csv'): (out / fn).write_text((out / fn).read_text().replace('MN', ar))
 if a.write_locks:
     (out / 'locks').mkdir(); (out / 'locks' / 'US-MN.json').write_text('{"locks": {}}')
 if a.locks and mode == 'warm_differs':
@@ -528,7 +534,10 @@ with tempfile.TemporaryDirectory() as t:
 with tempfile.TemporaryDirectory() as t:
     t = pathlib.Path(t)
     kit = make_kit(t, with_v2=False)
-    rc, out = run_runner(kit, ['MN'])
+    real_fl = RUN.find_links
+    RUN.find_links = lambda here: here / 'links'      # isolated: no matcher anywhere it can be found, whatever folder the repo sits in
+    try: rc, out = run_runner(kit, ['MN'])
+    finally: RUN.find_links = real_fl
     check('runner: the v2 script missing = one plain line, exit 2, no new folder', rc == 2 and len(out.strip().splitlines()) == 1
           and 'not on this PC' in out and len(list((kit / 'reports').glob('v2-2*'))) == 1)   # only the one the fixture made
     kit2 = make_kit(t / 'again')
@@ -593,6 +602,138 @@ a1, a2, m1, m2 = SC.land_pair([_sqg(-85.0, 38.0, 0.01)], [_sqg(-85.0, 38.0, 0.01
 check('H3: a half cover (v2 is a half-area square inside v1)', 0.45 < m1 / a1 < 0.55 and m2 == 0)
 a1, a2, m1, m2 = SC.land_pair([_sqg(-85.0, 38.0, 0.01)], [_sqg(-84.0, 39.0, 0.01)])
 check('H3: two squares far apart share nothing (the boxes say so before any grid)', m1 == a1 and m2 == a2 and a1 > 100)
+
+# ---- round 6: names the v1 test, key text hashes, other-names copy, no-base mode, lines
+def cli(t, extra_args, mut=None, run_extra=None, other_names=True, recs=None, facts_=None):
+    store, facts = write_world(t, None, recs)
+    if facts_: wjson(facts, facts_)
+    key, proof, pino, run = v2_data()
+    if mut: mut(key, proof, pino, run)
+    if run_extra: run['MN'].update(run_extra)
+    write_v2(t / 'v2', key, proof, pino, run)
+    if other_names: (t / 'v2' / 'v2-id-other-names.csv').write_text('st,ref\nMN,US-0001\n', encoding='utf-8')
+    out = t / 'report'
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        rc = SC.main(['--v2', str(t / 'v2'), '--store', str(store), '--facts', str(facts), '--states', 'MN', '--out', str(out), '--no-land'] + extra_args)
+    return rc, out, buf.getvalue()
+
+
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    wjson(t / 'test-2026-11-26-2014' / 'keys' / 'US-MN.json.gz', v1_key())
+    rc, out, text = cli(t, ['--base', str(t / 'test-2026-11-26-2014' / 'keys')], run_extra={'key_text_sha256': 'ab' * 32})
+    lines = (out / 'V2-SCORECARD.txt').read_text(encoding='utf-8').splitlines()
+    check('the scorecard names the v1 test it compared with in its first lines', lines[1] == 'Compared with: test-2026-11-26-2014')
+    check('the scorecard prints each area\'s key_text_sha256 from v2-run.json when present', any('MN ' + 'ab' * 32 in l for l in lines[:6]))
+    check('the warm run\'s v2-id-other-names.csv is copied into the report folder and the text points to it there', (out / 'v2-id-other-names.csv').is_file()
+          and 'list: v2-id-other-names.csv' in '\n'.join(lines))
+    check('no key text hash in v2-run.json = no hash line', 'sha256' not in (lambda: (cli(t / 'x', ['--base', str(t / 'test-2026-11-26-2014' / 'keys')])[2]))())
+
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    def stray(k, pr, po, r): k['parks']['US-0002']['m'] = []; k['parks']['US-0002']['match'] = {'status': 'pin', 'by': None, 'step': 4, 'why': 'two_records_fit'}; del pr[1]; po.append({'ref': 'US-0002', 'st': 'MN', 'name': 'x', 'kind': 'x', 'reason_code': 'two_records_fit', 'reason': 'x'})
+    rc, out, text = cli(t, ['--no-base'], mut=stray)
+    gl = {l.split()[0]: l for l in (out / 'V2-SCORECARD.txt').read_text(encoding='utf-8').splitlines() if re.match(r'^(G|H)\d+ ', l)}
+    num = json.load(open(out / 'v2-score.json'))['areas']['MN']
+    check('no-base mode: G1, G6 and G7 say "no v1 key to compare with" and pass (a lost outline is not judged without v1); the other gates still run',
+          all('PASS no v1 key to compare with' in gl[g] for g in ('G1', 'G6', 'G7')) and 'G4' in gl and 'G11' in gl and 'G9' in gl)
+    check('no-base mode: H3 says no v1 key to compare with; the area is reported on its own by reason and step; no v2-vs-base rows',
+          'no v1 key to compare with' in text and 'H3 same land as v1: no v1 key' in text and 'Pin only, by reason: no_record_with_this_name 1, two_records_fit 1' in text
+          and num['nobase'] and num['why'] == {'no_record_with_this_name': 1, 'two_records_fit': 1} and num['step'] == {'step 2': 1} and len(list(csv.DictReader(open(out / 'v2-vs-base.csv')))) == 0)
+
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    # a line: paths and no rings. The pin of US-0001 is ~11 m east of the line (0.0001 degree of longitude at 38 N is about 8.8 m)
+    line = {'key': 'sgzz1', 'layer': 'sgzz', 'record_id': '1', 'record_name': 'Alpha', 'attributes': {}, 'q': 6, 'shape': 'line', 'paths': [[-85000000, 38000000, 0, 10000]]}
+    def near(k, pr, po, r): pass
+    f1 = json.loads(json.dumps(FACTS)); f1['parks']['US-0001']['pin'] = [38.005, -84.9999]
+    rc, out, text = cli(t, ['--no-base'], recs=[line, BETA], facts_=f1)
+    n1 = json.load(open(out / 'v2-score.json'))['areas']['MN']
+    f2 = json.loads(json.dumps(FACTS)); f2['parks']['US-0001']['pin'] = [38.005, -84.998]
+    rc, out2, text2 = cli(t / 'two', ['--no-base'], recs=[line, BETA], facts_=f2)
+    n2 = json.load(open(out2 / 'v2-score.json'))['areas']['MN']
+    check('lines: a pin within line_pin_m (30.48 m) of a line (paths, no rings) counts as on it; 170 m away does not', n1['pin_yes'] == 1 and n2['pin_yes'] == 0 and n1['pin_n'] == n2['pin_n'] == 2)
+    check('lines: a park whose records are all lines is left out of the size numbers', n1['size_n'] == 1)
+    check('lines: decode_paths reads two points as a path; is_line needs paths and no rings', len(SC.decode_paths(line)[0]) == 2 and SC.is_line(line) and not SC.is_line(ALPHA))
+    check('lines: line_m is metres to the nearest segment (about 8.8 m for 0.0001 degree at 38 N)', 8 < SC.line_m(-84.9999, 38.005, SC.decode_paths(line)) < 10)
+
+# ---- the BUILD mode of the runner: real keys, one area per child process, a summary, a pin-only chart
+def build_world(t, mode='ok'):
+    kit = make_kit(t, mode)
+    st = t / '3-MAP-STORE-US-CA' / 'results' / 'store'
+    shutil.copyfile(st / 'US-MN.layer-records.json.gz', st / 'CA-ON.layer-records.json.gz')
+    shutil.copyfile(st / 'US-MN.layer-records.json.gz', st / 'CA-QC.layer-records.json.gz')
+    return kit
+
+
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    kit = build_world(t)
+    calls = []
+    real_sub = RUN.subprocess.run
+
+    def rec_run(cmd, *a, **k):
+        calls.append(list(cmd)); return real_sub(cmd, *a, **k)
+    before = snapshot(kit / 'reports')
+    RUN.subprocess.run = rec_run
+    try: rc, out = run_runner(kit, ['build', 'MN', 'CA-ON', 'SC'])
+    finally: RUN.subprocess.run = real_sub
+    runs = sorted((kit / 'v2-keys').iterdir())
+    check('build: one run folder v2-keys\\<date-time> beside the reports folder; the v1 tests in reports are not touched', len(runs) == 1 and snapshot(kit / 'reports') == before)
+    run = runs[0]
+    sm = (run / 'V2-BUILD-SUMMARY.txt').read_text(encoding='utf-8').splitlines()
+    check('build: the summary starts with how many were built; one line per area; a state with no layer file is "not built (no layer file)"',
+          sm[0].startswith('v2 built 2 of 3 areas') and any(l.startswith('MN ') and ' built ' in l for l in sm) and any(l.startswith('CA-ON ') for l in sm)
+          and any(l.startswith('SC ') and 'not built (no layer file)' in l for l in sm))
+    mn = next(l for l in sm if l.startswith('MN '))
+    ca = next(l for l in sm if l.startswith('CA-ON '))
+    check('build: with a v1 key the line says outlined of parks, pin inside, v1 outlined and the v1 test; without one it says no v1 key to compare with',
+          'outlined 2 of 3' in mn and 'pin inside' in mn and 'v1 outlined 2' in mn and 'test-2026-11-26-1100' in mn and 'outlined 2 of 3' in ca and 'no v1 key to compare with' in ca)
+    check('build: each area runs in its own child (cold, then warm, then the scorecard); US by --states, Canada by --areas; v1 matched only by the area name',
+          sum(1 for c in calls if '--write-locks' in c) == 2 and sum(1 for c in calls if '--locks' in c) == 2 and sum(1 for c in calls if str(c[3]).endswith('kpc_v2_scorecard.py')) == 2
+          and any('--states' in c and 'MN' in c for c in calls) and any('--areas' in c and 'CA-ON' in c for c in calls) and not any('--areas' in c and '--states' in c for c in calls)
+          and any('--no-base' in c for c in calls) and any('--base' in c and 'test-2026-11-26-1100' in str(c) for c in calls))
+    po = list(csv.DictReader(open(run / 'pin-only-all.csv', encoding='utf-8')))
+    check('build: pin-only-all.csv lists every pin-only park of the run with its area and reason', {(r['area'], r['ref']) for r in po} == {('US-MN', 'US-0003'), ('CA-ON', 'US-0003')} and po[0]['reason_code'] == 'no_record_with_this_name')
+    sc = list(csv.DictReader(open(run / 'summary.csv', encoding='utf-8')))
+    check('build: summary.csv has one row per area; the built keys are copied into keys\\; each area has cold, warm and its scorecard',
+          [r['area'] for r in sc] == ['US-MN', 'CA-ON', 'US-SC'] and sc[0]['outlined'] == '2' and (run / 'keys' / 'US-MN.json.gz').is_file() and (run / 'keys' / 'CA-ON.json.gz').is_file()
+          and all((run / a / x).exists() for a in ('US-MN', 'CA-ON') for x in ('cold', 'warm', 'V2-SCORECARD.txt')))
+    check('build: progress lines say "1 of 3  MN  N s  built"', any(re.match(r'^1 of 3  MN  \d+ s  built', l) for l in out.splitlines()) and any(re.match(r'^3 of 3  SC  0 s  not built', l) for l in out.splitlines()))
+    check('build: exit 1 when an area could not be built (SC), the others were built', rc == 1)
+
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    kit = build_world(t, 'crash_ca')
+    rc, out = run_runner(kit, ['build', 'CA-ON', 'MN'])
+    run = next((kit / 'v2-keys').iterdir())
+    check('build: a crashing area does not stop the run: it gets build-error.txt and one line, the next area is built',
+          (run / 'CA-ON' / 'build-error.txt').is_file() and 'stopped with an error, see CA-ON\\build-error.txt' in (run / 'V2-BUILD-SUMMARY.txt').read_text(encoding='utf-8')
+          and (run / 'keys' / 'US-MN.json.gz').is_file() and rc == 1)
+    t2 = t / 'again'
+    rc, out = run_runner(build_world(t2), ['build', 'ALL'])
+    run = next((t2 / 'kit' / 'v2-keys').iterdir())
+    check('build: ALL = every area with a layer file (US and Canada), US = only the states, CA = only Canada',
+          RUN.parse_areas(['ALL'], t2 / '3-MAP-STORE-US-CA' / 'results' / 'store') == ['CA-ON', 'CA-QC', 'US-MN'] and RUN.parse_areas(['us'], t2 / '3-MAP-STORE-US-CA' / 'results' / 'store') == ['US-MN']
+          and RUN.parse_areas(['CA'], t2 / '3-MAP-STORE-US-CA' / 'results' / 'store') == ['CA-ON', 'CA-QC'] and (run / 'V2-BUILD-SUMMARY.txt').is_file())
+    rc, out = run_runner(build_world(t / 'enter'), ['build'])
+    sm2 = (next((t / 'enter' / 'kit' / 'v2-keys').iterdir()) / 'V2-BUILD-SUMMARY.txt').read_text(encoding='utf-8')
+    check('build: nothing typed means MN NY (MN built, NY has no layer file here)', any(l.startswith('MN ') and ' built ' in l for l in sm2.splitlines()) and 'NY     not built (no layer file)' in sm2)
+bb = (ROOT / 'tools' / 'pc-keys' / 'V2-BUILD.bat').read_bytes()
+check('V2-BUILD.bat: CRLF, the prompt, Python 3.12 first, Enter = MN NY, runs build mode, no pip', b'\r\n' in bb and b'\n' not in bb.replace(b'\r\n', b'') and b'Areas (for example MN NY, or CA-ON, or US, CA, ALL): ' in bb
+      and b'py -3.12' in bb and b'set "ST=MN NY"' in bb and b'kpc_test_v2.py build %ST%' in bb and b'pip' not in bb)
+
+# ---- Canadian record keys: "<label>:<n>" (a label with spaces) and bare CPCAD numbers
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    r1 = dict(rec('NS HRM Parks:1', 'Point Pleasant', -63600000, 44600000, layer='NS HRM Parks'), record_id='1')
+    r2 = dict(rec('88', 'Kejimkujik', -65000000, 44400000, layer='CPCAD'), record_id='88')
+    wjson(t / 'store' / 'CA-NS.layer-records.json.gz', {'manifest': {}, 'made': 'x', 'records': [r1, r2]})
+    st = SC.Store(t / 'store', {})
+    check('Canadian keys: "NS HRM Parks:1" and the bare CPCAD number "88" are found by the file\'s own key in the area\'s file (CA-NS)',
+          st.find('NS HRM Parks:1', ['CA-NS']) is not None and st.find('88', ['CA-NS'])['record_name'] == 'Kejimkujik' and st.find('89', ['CA-NS']) is None
+          and SC.aname('CA-NS') == 'CA-NS' and SC.aname('MN') == 'US-MN')
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

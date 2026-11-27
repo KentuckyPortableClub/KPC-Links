@@ -176,11 +176,28 @@ def attr(rec, field):
     return next((a[k] for k in a if str(k).lower() == lo), None)
 
 
+AREA_RX = re.compile(r'^[A-Z]{2}-[A-Z]{2}$')
+
+
+def area_of(x):
+    """'MN' -> 'US-MN'; 'CA-ON' (or 'US-MN') stays."""
+    x = str(x).strip().upper()
+    return x if AREA_RX.match(x) else 'US-' + x
+
+
+def neighbour_areas(R, st):
+    """The areas next door from the rule table's neighbours (a US state: letters; a Canadian area: whatever the table gives, areas or letters)."""
+    v = R.neighbours.get(st)
+    if v is None: v = R.neighbours.get(area_of(st), '')
+    return sorted({area_of(x) for x in (v if isinstance(v, list) else str(v).replace(',', ' ').split()) if x})
+
+
 def park_refs(repo, st, facts):
-    d = SC.load_json(pathlib.Path(repo) / 'data' / 'pota' / 'saved' / 'parks' / f'US-{st}.json.gz')
+    A = area_of(st)
+    d = SC.load_json(pathlib.Path(repo) / 'data' / 'pota' / 'saved' / 'parks' / f'{A}.json.gz')
     if isinstance(d, dict) and d.get('data'):
         return sorted({str(x.get('reference')) for x in d['data'] if x.get('reference')}), ''
-    refs = sorted(r for r, p in facts.items() if str(p.get('area') or '') == f'US-{st}')
+    refs = sorted(r for r, p in facts.items() if str(p.get('area') or '') == A)
     return refs, "the state's park list (data/pota/saved/parks) was not found: the parks of the park facts for this state are used"
 
 
@@ -654,7 +671,9 @@ def run(st, store, facts_file, v2dir, out_parent, repo, now=None, flat=False):
     t0 = time.time()
     R = Rules(repo)
     facts = (SC.load_json(facts_file) or {}).get('parks') or {}
-    keep = {f'US-{st}'} | {f'US-{x}' for x in str(R.neighbours.get(st, '')).split()}
+    A = area_of(st)
+    nbs = neighbour_areas(R, st)
+    keep = {A} | set(nbs)
     lines, notes = [], []
     if not R.found: notes.append('the rule table (us-key-v2-rules.json) was not found: defaults and no table rows to compare with')
     if R.lim_note: notes.append(R.lim_note)
@@ -663,26 +682,26 @@ def run(st, store, facts_file, v2dir, out_parent, repo, now=None, flat=False):
     rset = set(refs)
     facts = {r: p for r, p in facts.items() if r in rset or str((p or {}).get('area') or '') in keep}    # other states' parks are never looked at
     docs = {}
-    stems = [f'US-{st}'] + [f'US-{x}' for x in sorted(str(R.neighbours.get(st, '')).split())]
+    stems = [A] + [x for x in nbs if x != A]
     for s in stems:
         d = load_compact(pathlib.Path(store) / f'{s}.layer-records.json.gz')
         if isinstance(d, dict): docs[s] = d
     _SHARED.clear()
-    own = docs.get(f'US-{st}')
+    own = docs.get(A)
     rep = pathlib.Path(out_parent) if flat else pathlib.Path(out_parent) / f'v2-prep-{st}-{(now or datetime.datetime.now()):%Y-%m-%d-%H%M%S}'
     rep.mkdir(parents=True, exist_ok=True)
     details, proposed = [], {'about': 'PROPOSED rows only, from measurements. Nothing here is in the real rule table. A person decides each row; every row needs its why and its test.',
                              'state': st, 'tables': {}, 'link_id_ties': [], 'other_spellings': [], 'name_candidates': []}
     L = [f'KPC v2 state prep for {st}, {datetime.datetime.now():%d %b %Y %I:%M %p}. Saved copies only. Counts only, no park names.']
     if own is None:
-        msg = f'{st}: the layer file US-{st}.layer-records.json.gz was not found in {store}. Nothing was measured.'
+        msg = f'{st}: the layer file {A}.layer-records.json.gz was not found in {store}. Nothing was measured.'
         (rep / f'STATE-PREP-{st}.txt').write_text('\n'.join(L + [msg]) + '\n', encoding='utf-8')
         print(msg); return 2, rep
     # 1
     srows, gaps = store_room(own, R, st)
     nb_gaps = []
     for s, d in docs.items():
-        if s != f'US-{st}':
+        if s != A:
             for r in store_room(d, R, s)[0]:
                 if not r['complete']: nb_gaps.append(f"{s} {r['layer']}")
     for s in stems[1:]:
@@ -810,23 +829,31 @@ def run(st, store, facts_file, v2dir, out_parent, repo, now=None, flat=False):
     return 0, rep
 
 
-STATE_FILE = re.compile(r'^US-([A-Z]{2})\.layer-records\.json\.gz$')
+STATE_FILE = re.compile(r'^((?:US|CA)-[A-Z]{2})\.layer-records\.json\.gz$')
 
 
-def store_states(store):
-    """Every state with a layer file in the store folder (US-<ST>.layer-records.json.gz), sorted."""
-    return sorted(m.group(1) for f in pathlib.Path(store).iterdir() for m in [STATE_FILE.match(f.name)] if m) if pathlib.Path(store).is_dir() else []
+def label_of(area):
+    """US-MN -> MN (the letters, as before); CA-ON stays CA-ON."""
+    return area[3:] if area.startswith('US-') else area
+
+
+def store_states(store, group='ALL'):
+    """Labels of every area with a layer file in the store folder: group US = US-*, CA = Canada's CA-*, ALL = both. Sorted."""
+    if not pathlib.Path(store).is_dir(): return []
+    ar = sorted(m.group(1) for f in pathlib.Path(store).iterdir() for m in [STATE_FILE.match(f.name)] if m)
+    return [label_of(x) for x in ar if group == 'ALL' or x.startswith(group + '-')]
 
 
 def parse_states(tokens, store):
-    """(states, is_many). US or ALL = every state with a layer file."""
+    """(labels, is_many, group label). US / CA / ALL = every area of that group with a layer file; MN or US-MN = US-MN; CA-ON = CA-ON."""
     toks = [t.upper() for x in tokens for t in re.split(r'[,\s;]+', str(x)) if t]
-    if any(t in ('US', 'ALL') for t in toks):
-        return store_states(store), True
+    groups = [t for t in toks if t in ('US', 'CA', 'ALL')]
     out = []
     for t in toks:
-        if t not in out: out.append(t)
-    return out, len(out) > 1
+        ls = store_states(store, t) if t in ('US', 'CA', 'ALL') else [label_of(area_of(t))]
+        out += [x for x in ls if x not in out]
+    label = groups[0] if len(groups) == 1 and len(toks) == 1 else ('-'.join(toks) if len(toks) <= 4 else 'many')
+    return out, (len(out) > 1 or bool(groups)), label
 
 
 def child_prep(st, out, store, facts, repo, v2):
@@ -889,7 +916,7 @@ def many(states, label, store, facts, repo, v2, out_parent, now=None, call=None,
     for i, st in enumerate(states, 1):
         t1 = time.time()
         sub = parent / st
-        if not (pathlib.Path(store) / f'US-{st}.layer-records.json.gz').is_file():
+        if not (pathlib.Path(store) / f'{area_of(st)}.layer-records.json.gz').is_file():
             failed[st] = 'the layer file was not found'
         else:
             sub.mkdir(parents=True, exist_ok=True)
@@ -966,11 +993,10 @@ def main(argv=None, here=None):
     toks = a.states or [input('States (for example SC, or MN NY SC, or US for every state): ').strip() or 'SC']
     for what, p in (('the layer files folder', store), ('the park facts', facts)):
         if not p.exists(): print(f'Not found: {what} ({p}). Nothing was run.'); return 2
-    states, is_many = parse_states(toks, store)
-    if not states: print(f'No state to run: no US-<ST>.layer-records.json.gz in {store}. Nothing was run.'); return 2
+    states, is_many, label = parse_states(toks, store)
+    if not states: print(f'No state to run: no layer file (US-<ST> or CA-<XX>.layer-records.json.gz) for what was typed in {store}. Nothing was run.'); return 2
     out = pathlib.Path(a.out) if a.out else here / 'reports'
     if not is_many: return run(states[0], store, facts, a.v2, out, links, flat=a.flat)[0]
-    label = 'US' if any(str(t).upper() in ('US', 'ALL') for t in toks) else '-'.join(states)
     return many(states, label, store, facts, links, a.v2, out)[0]
 
 
