@@ -579,7 +579,20 @@ src = (ROOT / 'tools' / 'pc-keys' / 'kpc_test_v2.py').read_text(encoding='utf-8'
 check('runner: nothing is downloaded or uploaded (no network words in its code)', not any(w in src for w in ('urllib', 'requests', 'http.client', 'socket', 'ftplib')))
 bat = (ROOT / 'tools' / 'pc-keys' / 'V2-SIDE-BY-SIDE.bat').read_bytes()
 check('the .bat has CRLF line ends, asks for states, tries Python 3.12 first, has no pip step', b'\r\n' in bat and b'\n' not in bat.replace(b'\r\n', b'')
-      and b'py -3.12' in bat and b'pip' not in bat and b'MN NY SC' in bat and b'kpc_test_v2.py' in bat)
+      and b'py -3.12' in bat and b'pip' not in bat and b'set "ST=MN NY"' in bat and b'kpc_test_v2.py' in bat)   # default MN NY: SC waits for its sgnca layer
+
+# ---- H3 (same land as v1): tiny squares, a report only
+def _sqg(x0, y0, w):   # a square w degrees wide, as (box, rings)
+    ring = [(x0, y0), (x0 + w, y0), (x0 + w, y0 + w), (x0, y0 + w)]
+    return ((x0, y0, x0 + w, y0 + w), [ring])
+a1, a2, m1, m2 = SC.land_pair([_sqg(-85.0, 38.0, 0.01)], [_sqg(-85.0, 38.0, 0.01)])
+check('H3: the same square on both sides is a full cover both ways (nothing missing)', a1 > 100 and abs(a1 - a2) < 1e-6 and m1 == 0 and m2 == 0)
+a1, a2, m1, m2 = SC.land_pair([_sqg(-85.0, 38.0, 0.01)], [_sqg(-85.0, 38.0, 0.005)])
+check('H3: v2 holds a quarter of v1\'s square: v1 land not in v2 is about 3/4 of v1; v2 land not in v1 is 0', 0.70 < m1 / a1 < 0.80 and m2 == 0)
+a1, a2, m1, m2 = SC.land_pair([_sqg(-85.0, 38.0, 0.01)], [_sqg(-85.0, 38.0, 0.01 / 2 ** 0.5)])
+check('H3: a half cover (v2 is a half-area square inside v1)', 0.45 < m1 / a1 < 0.55 and m2 == 0)
+a1, a2, m1, m2 = SC.land_pair([_sqg(-85.0, 38.0, 0.01)], [_sqg(-84.0, 39.0, 0.01)])
+check('H3: two squares far apart share nothing (the boxes say so before any grid)', m1 == a1 and m2 == a2 and a1 > 100)
 
 print('ALL PASS' if ok else 'SOME FAILED')
 sys.exit(0 if ok else 1)

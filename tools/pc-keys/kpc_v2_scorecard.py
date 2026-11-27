@@ -16,7 +16,7 @@ Words used here:
   size agrees = the joined acres are within 10% of an official size in the park facts (the agency size, or a page size marked
                 total). Parks with no official size are left out of that count.
 """
-import argparse, csv, datetime, gzip, json, os, pathlib, re, sys, time
+import argparse, csv, datetime, gzip, json, math, os, pathlib, re, sys, time
 from itertools import accumulate
 
 NEAR_M = 100.0       # a pin this close to a record's edge counts as on the land
@@ -24,6 +24,10 @@ SIZE_TOL = 0.10      # joined acres within 10% of the official size
 ACRE_DIFF = 0.10     # the park-by-park list shows parks whose joined acres differ by more than this
 HONEST_SLACK = 1.0   # v2 may be this many percentage points worse than v1 on the two honest numbers
 TWO_STATES_SECONDS = 300.0
+LAND_CELLS = 40000   # H3 (same land as v1): about this many grid points over a park's box (coarse on purpose)
+LAND_MIN_CELL_M = 20.0
+LAND_SHARE = 0.90    # H3 counts a park when one side covers at least this share of the other's land
+M2_ACRE = 4046.86
 
 
 def load_json(p):
@@ -406,7 +410,68 @@ def same_name_land(side, st, parks, proof, facts, store, stems):
     return out
 
 
-def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=None, lock_check='skipped', lock_differs=(), lock_text='', trial=False):
+def raster(rings, lon0, lat0, s):
+    """Grid points (cell centres, s metres apart) that lie inside the shape (even-odd over all rings): a set of ints."""
+    kx, ky = 111320.0 * math.cos(math.radians(lat0)), 110574.0
+    rows = {}
+    for r in rings:
+        pts = [((x - lon0) * kx / s, (y - lat0) * ky / s) for x, y in r]
+        for (x1, y1), (x2, y2) in zip(pts, pts[1:] + pts[:1]):
+            if y1 == y2: continue
+            lo, hi = (y1, y2) if y1 < y2 else (y2, y1)
+            for j in range(math.ceil(lo - 0.5), math.ceil(hi - 0.5)):
+                rows.setdefault(j, []).append(x1 + (j + 0.5 - y1) * (x2 - x1) / (y2 - y1))
+    out = set()
+    for j, xs in rows.items():
+        xs.sort()
+        base = (j + 2 ** 20) << 32
+        for a, b in zip(xs[0::2], xs[1::2]):
+            for c in range(math.ceil(a - 0.5), math.ceil(b - 0.5)): out.add(base + c + 2 ** 20)
+    return out
+
+
+def land_pair(g1, g2):
+    """g1, g2 = lists of (box, rings) (v1's records, v2's records). Returns (acres1, acres2, 1-not-in-2, 2-not-in-1) on one point grid.
+    Boxes first: two sides whose boxes do not touch share nothing, and only the part of a side inside the other's box is compared."""
+    def box(g): return (min(b[0] for b, _ in g), min(b[1] for b, _ in g), max(b[2] for b, _ in g), max(b[3] for b, _ in g))
+    b1, b2 = box(g1), box(g2)
+    x0, y0, x1, y1 = min(b1[0], b2[0]), min(b1[1], b2[1]), max(b1[2], b2[2]), max(b1[3], b2[3])
+    lat0 = (y0 + y1) / 2
+    area = max((x1 - x0) * 111320.0 * math.cos(math.radians(lat0)) * (y1 - y0) * 110574.0, 1.0)
+    s = max(LAND_MIN_CELL_M, math.sqrt(area / LAND_CELLS))
+    r1 = set().union(*[raster(rg, x0, y0, s) for _, rg in g1])
+    if g1 is g2 or [id(r) for r in g1] == [id(r) for r in g2]: r2 = r1
+    else: r2 = set().union(*[raster(rg, x0, y0, s) for _, rg in g2])
+    ca = s * s / M2_ACRE
+    if b1[2] < b2[0] or b2[2] < b1[0] or b1[3] < b2[1] or b2[3] < b1[1]: both = 0
+    else: both = len(r1 & r2)
+    return len(r1) * ca, len(r2) * ca, (len(r1) - both) * ca, (len(r2) - both) * ca
+
+
+def land_vs_base(st, bp, vp, proof, store, stems):
+    """H3, a report and never a gate: over parks outlined by both v1 and v2, how much of v1's land v2 covers, and the other way round.
+    Returns (rows, n_both, n_v2_has_v1, n_v1_has_v2)."""
+    rows, nb, n21, n12 = [], 0, 0, 0
+    for ref in sorted(set(bp) & set(vp)):
+        p1, p2 = bp[ref], vp[ref]
+        if not (joined(p1) and joined(p2)): continue
+        g = []
+        for side, p, pr in (('v1', p1, None), ('v2', p2, proof)):
+            recs = records_of(side, ref, p, store, stems, pr)[0]
+            g.append([sh for sh in (store.shape(r) for r in recs) if sh])
+        if not g[0] or not g[1]: continue
+        a1, a2, m1, m2 = land_pair(g[0], g[1])
+        if a1 <= 0 or a2 <= 0: continue
+        nb += 1
+        n21 += (a1 - m1) >= LAND_SHARE * a1
+        n12 += (a2 - m2) >= LAND_SHARE * a2
+        rows.append({'ref': ref, 'state': st, 'name': p2.get('n') or p1.get('n') or '', 'v1 land acres': round(a1, 1), 'v2 land acres': round(a2, 1),
+                     'v1 land not in v2': round(m1, 1), 'v2 land not in v1': round(m2, 1)})
+    rows.sort(key=lambda r: -max(r['v1 land not in v2'], r['v2 land not in v1']))
+    return rows, nb, n21, n12
+
+
+def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=None, lock_check='skipped', lock_differs=(), lock_text='', trial=False, land=True):
     """Returns (gates, state_blocks, csv_rows, notes). gates = [(id, ok, text)]."""
     repo = repo or pathlib.Path(__file__).resolve().parents[2]
     id_fields, note = load_id_fields(repo)
@@ -469,6 +534,7 @@ def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=Non
         d['g11_v1'] = same_name_land('v1', st, bp, None, facts, store, stems)
         lk = rs.get('locks') if isinstance(rs.get('locks'), dict) else None
         d['locks'] = (lk.get('held', 0), lk.get('broken', 0), lk.get('new', 0)) if lk else (None if 'locks' not in rs and not rs.get('locked_broken') else (0, len(rs.get('locked_broken') or []), 0))
+        d['land'] = land_vs_base(st, bp, vp, d['proof'] if proof_all is not None else None, store, stems) if land and not d['nb'] and d['base_ok'] and d['v2_ok'] else None
         d['other_names'] = None if other_names is None else sum(1 for r in other_names if (r.get('st') or r.get('state') or st) == st)
         # the park-by-park list
         for ref in sorted(set(bp) | set(vp)):
@@ -606,6 +672,9 @@ def render(gates, S, states, notes):
                  f"Size agrees: v1 {fmt_pct(h1['size_yes'], h1['size_n'])} ({h1['size_yes']} of {h1['size_n']}), v2 {fmt_pct(h2['size_yes'], h2['size_n'])} ({h2['size_yes']} of {h2['size_n']}).")
         L.append(f"  Records not in today's file: v1 {h1['ids_missing']} of {h1['ids']} ({h1['ids_trail']} trail lines), v2 {h2['ids_missing']} of {h2['ids']}. "
                  f"Ids that fit two records (left out): v1 {h1['ids_fit2']}, v2 {h2['ids_fit2']}.")
+        if d['land'] is not None:
+            _, n, a, b = d['land']
+            L.append(f"  H3 same land as v1 (a report, not a gate), parks outlined by both {n}: v2 covers at least 90% of v1's land in {a}; v1 covers at least 90% of v2's land in {b}. list: v2-land-vs-base.csv")
         if d['other_names'] is not None:
             L.append(f"  Id joins that carry another name, for the owner's eyes: {d['other_names']} rows, list: v2-id-other-names.csv")
     L += ['', 'Gates']
@@ -676,13 +745,14 @@ def main(argv=None):
     ap.add_argument('--lock-check', default='skipped', choices=['same', 'differs', 'skipped'])
     ap.add_argument('--lock-differs', nargs='*', default=[])
     ap.add_argument('--trial', action='store_true', help='a trial of other rules: the lock check is not part of it')
+    ap.add_argument('--no-land', action='store_true', help='skip H3 (same land as v1), the slowest part')
     ap.add_argument('--cold', help='the cold run folder: the scorecard then compares it with --v2 itself (G10)')
     a = ap.parse_args(argv)
     states = [s.upper() for s in a.states]
     t0 = time.time()
     lock, differs, ltext, lrows = a.lock_check, a.lock_differs, '', []
     if a.cold: lock, differs, ltext, lrows = lock_detail(a.cold, a.v2, states)
-    gates, S, rows, notes = build(a.v2, a.base, a.store, a.facts, states, parse_seconds(a.v1_seconds), a.repo, lock, differs, ltext, a.trial)
+    gates, S, rows, notes = build(a.v2, a.base, a.store, a.facts, states, parse_seconds(a.v1_seconds), a.repo, lock, differs, ltext, a.trial, not a.no_land)
     out = pathlib.Path(a.out or a.v2); out.mkdir(parents=True, exist_ok=True)
     gap = [g for st in states if not S[st]['nb'] for g in S[st]['gap']]
     with open(out / 'v2-store-gap.csv', 'w', encoding='utf-8', newline='') as f:
@@ -697,6 +767,10 @@ def main(argv=None):
     if lrows:
         with open(out / 'v2-lock-diff.csv', 'w', encoding='utf-8', newline='') as f:
             w = csv.DictWriter(f, fieldnames=list(lrows[0])); w.writeheader(); w.writerows(lrows)
+    if not a.no_land:
+        lr = sorted([r for st in states if S[st]['land'] for r in S[st]['land'][0]], key=lambda r: -max(r['v1 land not in v2'], r['v2 land not in v1']))
+        with open(out / 'v2-land-vs-base.csv', 'w', encoding='utf-8', newline='') as f:
+            w = csv.DictWriter(f, fieldnames=['ref', 'state', 'name', 'v1 land acres', 'v2 land acres', 'v1 land not in v2', 'v2 land not in v1']); w.writeheader(); w.writerows(lr)
     text = render(gates, S, states, notes)
     (out / 'V2-SCORECARD.txt').write_text(text, encoding='utf-8')
     write_csv(out / 'v2-vs-base.csv', rows)
