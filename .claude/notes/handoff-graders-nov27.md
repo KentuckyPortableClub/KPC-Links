@@ -59,7 +59,8 @@ loops, and nothing passed on that was not measured. Read this page, then `handof
 5. Page reader: 355 parks whose saved page is another park's; one kind of browser hang cannot be cut off (it now says so).
 6. Canada's 30 trail files are not read. Kentucky's key has a stray trail id (`US-0.json` on the status page).
 7. On hold until the build is graded (the grader's call): the frozen-matcher rule, the problem solver for the pin-only list,
-   the 4-box control panel. Notes for it: v2's own reason list has `layer_not_complete` and no `park_has_no_pin`; a web
+   the 4-box control panel. THE PLAN IS WRITTEN DOWN: `v2-next-phase-spec-nov27.md` (the owner: do not forget it); three
+   lines in `.claude/inbox/LEDGER.md`. Notes for it: v2's own reason list has `layer_not_complete` and no `park_has_no_pin`; a web
    page cannot start programs on the PC, so buttons stay `.bat` files.
 8. The owner's bad-findings report page has not been brought up to date with today.
 
