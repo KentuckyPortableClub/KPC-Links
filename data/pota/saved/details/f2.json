@@ -1,0 +1,38 @@
+{
+"US-13673":{
+"data":{
+"accessMethods":"Automobile,Foot",
+"accessibility":null,
+"activationMethods":"Automobile,Pedestrian",
+"active":1,
+"agencies":null,
+"agencyURLs":null,
+"createdByAdmin":"Ryan Tourge",
+"entityDeleted":0,
+"entityId":291,
+"entityName":"United States of America",
+"firstActivationDate":"2026-11-26",
+"firstActivator":"W5USN",
+"firstHuntDate":"2026-11-26",
+"firstHunter":"AI7MO",
+"grid4":"FN34",
+"grid6":"FN34ga",
+"latitude":44.036,
+"locationDesc":"US-VT",
+"locationName":"Vermont",
+"longitude":-73.4197,
+"name":"Chimney Point",
+"parkComments":"",
+"parkId":150715,
+"parkURLs":null,
+"parktypeDesc":"State Historic Site",
+"parktypeId":93,
+"reference":"US-13673",
+"referencePrefix":"US",
+"sensitivity":null,
+"uniqueHunters":89,
+"website":"https://historicsites.vermont.gov/chimney-point"
+},
+"saved":1795797385
+}
+}

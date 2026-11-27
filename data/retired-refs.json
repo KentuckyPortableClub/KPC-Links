@@ -370,6 +370,11 @@
    "d": "2026-11-24",
    "src": "world"
   },
+  "FR-11833": {
+   "n": "USINE DES EAUX DU PECQ Biological Reserve",
+   "d": "2026-11-27",
+   "src": "world"
+  },
   "FR-12166": {
    "n": "ETANG DE LA RESSORTOIRE Biological Reserve",
    "d": "2026-11-24",
@@ -5890,9 +5895,24 @@
    "d": "2026-11-21",
    "src": "world"
   },
+  "FR-6916": {
+   "n": "Le gisement lutetien de la ferme de l’Orme a Beynes Conservation Area",
+   "d": "2026-11-27",
+   "src": "world"
+  },
+  "FR-6918": {
+   "n": "La craie santonienne de la carriere de Beynes Conservation Area",
+   "d": "2026-11-27",
+   "src": "world"
+  },
   "FR-6920": {
    "n": "PLATEAU DE LONGNES Biological Reserve",
    "d": "2026-11-21",
+   "src": "world"
+  },
+  "FR-6922": {
+   "n": "Les gisements lutetiens le long de la vallee de Vaucouleurs a Montchauvet et Dammartin-en-Serve Conservation Area",
+   "d": "2026-11-27",
    "src": "world"
   },
   "FR-6923": {
@@ -8345,6 +8365,16 @@
    "d": "2026-11-24",
    "src": "world"
   },
+  "FR-8887": {
+   "n": "La Ferme De L'Orme Biological Reserve",
+   "d": "2026-11-27",
+   "src": "world"
+  },
+  "FR-8888": {
+   "n": "La Ferme De L'Orme Biological Reserve",
+   "d": "2026-11-27",
+   "src": "world"
+  },
   "FR-9162": {
    "n": "MARAIS DE LA BRETECHE Biological Reserve",
    "d": "2026-11-24",
@@ -8398,6 +8428,11 @@
   "LU-0053": {
    "n": "Ourdall Promenade Natura 2000",
    "d": "2026-11-11",
+   "src": "world"
+  },
+  "RU-3426": {
+   "n": "Торгашинское месторождение раннедевонской флоры Natural Monument",
+   "d": "2026-11-27",
    "src": "world"
   },
   "SI-0041": {
@@ -10307,5 +10342,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-11-25"
+ "updated": "2026-11-27"
 }
