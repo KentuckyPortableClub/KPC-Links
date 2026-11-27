@@ -103,6 +103,32 @@ START HERE in a new chat. The owner's report of every bad finding: https://claud
   counts on the scorecard; one front-door button for the whole chain; PA State Game Lands (308 parks, no record with their
   name); 355 parks whose saved page is another park's; hand downloads do not reach the store room; GA US-9795 for the owner.
 
+## Added 27 Nov, 4:15 to 4:50 AM (rulings, a collision with another chat, the trail finding)
+- **PC state, all read back equal (18 files):** v2 with rule `load_no_wait` (ND clean, 93 of 155; VT clean after the store
+  rebuild, its `vta` is points); store room 49 tests; page reader 34 tests.
+- **TWO CHATS COLLIDED ON THE PAGE READER.** At 4:20 AM another chat (its KPC-Data draft PR is #202) wrote
+  `kpc_park_pages.py`, `kpc_park_pages_work.py` and `RUN-ALL-TONIGHT.bat` to the PC from the OLD copies plus its own change
+  (the page browser switched on in the overnight button; a site that stops answering is read through the browser first,
+  `state['browser_hosts']`). That wiped the 26 Nov fixes out of `kpc_park_pages.py` (11 of 34 tests failed with the mix).
+  Fable merged both (3-way, one conflict) and delivered one set; the other chat's files are kept on the PC as
+  `*.other-builder-nov27.*`. `PAGE-READER.bat` had the same "browser never on" fault: fixed. BEFORE ANY PAGE READER OR STORE
+  ROOM CHANGE: stage the files from the PC and start from those. The GitHub copies are OLD until the PRs exist.
+- **The other chat told the owner to wait until 7:30 PM for sites to finish "resting".** Not needed: since 26 Nov no rest is
+  carried into the next run (the owner's site rule).
+- **TRAILS ARE NOT FIXED.** The keys' `trl` "layer" is `file:data/trails/US-{n}.json` (one saved line file per park, made by
+  the trail bot; the folder is not in KPC-Links main), not a web layer. The 26 Nov store fix planned it as a download, so the
+  owner's 4:09 AM status page said "held by a club rule: trl" for every US state and "55 of 66 areas with a gap". Fixed 27 Nov:
+  a `file:` address is left out of the plan (`split_not_web`), named once on the status page, written as `not_web_layers` in
+  the layer file; a points layer is no gap on the status page. OPEN: read the trail bot's line files into the layer files as
+  line records (v2 already reads `paths` + `"shape":"line"`). Find where the files live first (KPC-Data? `kpc_us_trails.py`).
+- **The owner's status page (27 Nov 4:09 AM), real gaps:** 22 areas; 11 of them only `sgaki` (not waited for by v2). Others:
+  CA-AB (SK-ALL Gover, no usable records), CA-NL, CA-ON, CA-YT (Yukon parks, no usable records), US-AZ (sgazb, sgazc held),
+  US-CO sgcod, US-FL sgflc, US-ID idw held, US-MS mszp mszw, US-UT sgutc, US-WA sgwae. Names empty in AB and BC layers
+  (fields PLUZ_NAME, PLREC_NAME, ParkName, PROTECTED_LANDS_NAME): v2 `name_fields` rows needed before AB / BC are built.
+- **Page reader status (26 Nov 11:00 PM):** 11,889 of 18,951 pages read; 3,057 "site busy" (BLM 897, NY DEC 567, Forest
+  Service 267); 789 real Disallow (PA game lands 306, PA parks 149, MN DNR 122); 271 need the page browser.
+- **Next for the owner:** LAYER-RECORDS 2 (rebuild), then 3; `0-INSTALL-PAGE-BROWSER.bat` once; PAGE-READER 2, then 3.
+
 ## For the other builder (#392 and later patches to v1)
 - "Full land kept" is not a pass mark where the land is another unit's: US-5106 Bear Swamp (Otsego): PAD-US 236421 holds about
   3,626 acres of US-5107 Bear Swamp (Cayuga), 134 km away. US-4820 Red Lake State Forest: three "Red Lake WMA" rows, about
