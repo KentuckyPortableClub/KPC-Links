@@ -41,8 +41,8 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
 1. Run `V2-SIDE-BY-SIDE.bat` on the PC (Enter = MN NY, about 2 minutes). Read `reports\v2-...\V2-SCORECARD.txt`.
 2. Store room: LAYER-RECORDS for SC (`sgnca` failed, so SC, the control state, is not built); the trail-line layer is not in
    the store room (17 MN + 4 NY parks cannot be drawn).
-3. Rulings: V2-G4 (Fish and Wildlife easement tracts stay off every park), V2-G5 (an agency page that groups other named land:
-   list `v2-id-other-names.csv`), Lake Vermilion US-2506 / US-7148 (one record, two park numbers: both stay pins today).
+3. RULED 26 Nov 9:27 PM (rule sheet section 13): easement tracts off by name (and off districts by id); Lake Vermilion both
+   pin only; the fair count stands. Still open: V2-G5 (an agency page that groups other named land: `v2-id-other-names.csv`).
 4. The page reader ran again on 26 Nov evening: rebuild the park facts from it, then rerun v2 (tonight's numbers use 24 Nov facts).
 
 ## Next jobs, in order

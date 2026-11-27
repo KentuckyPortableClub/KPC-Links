@@ -185,3 +185,10 @@ does not hold, such as trail lines). One per park. Check rows can therefore neve
   John Smith at 168 km; it is not tied, because it is a new tie and that park is a water trail. Measure: Opus's
   `out/measure-sgmac.txt` (26 Nov). US-4239 North Country: the record's name is "North Country National Scenic Trail", the
   park's is "North Country Trail National Scenic Trail"; the exact-name check refuses it (an "other spelling" case).
+
+## 13. Ruled (owner, 26 Nov 9:27 PM: "Sure", to the grader's three points on #393)
+- V2-G4: Fish and Wildlife easement tracts are kept off by NAME, and off wetland districts by id. (Exact wording, from the
+  grader: a park that is not a district and is proven by an agency id can still hold an easement tract that carries that id.)
+- Lake Vermilion US-2506 / US-7148: both stay pin only. One record carries two park names; the pins are about 2,457 ft apart.
+- The fair count stands: parks v1 drew only from layers the store room does not hold are set apart and listed; the scorecard
+  prints the raw and the fair count every time.
