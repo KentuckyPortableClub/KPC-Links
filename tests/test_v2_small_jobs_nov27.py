@@ -37,8 +37,12 @@ check('front door: it calls exactly one thing, the picked button, by a quoted va
       calls == ['"%TARGET%"'] and txt.index('if not exist "%TARGET%" goto :missing') < txt.index('call "%TARGET%"'))
 check('front door: a missing button is said plainly, with its path, and nothing is started',
       'is MISSING. This file was not found:' in txt and 'Nothing was started.' in txt and '%TARGET%' in txt.split(':missing')[1])
-check('front door: nothing starts by itself: it waits for a typed number, and Enter alone leaves',
-      'set /p "PICK=' in txt and 'if not defined PICK goto :end' in txt and txt.index('set /p') < txt.index('call "%TARGET%"'))
+# 27 Nov 2026 (manager's review): a typed answer (set /p) was not taken on the owner's PC that morning; the button asks with
+# one key press (choice), the pattern LAYER-RECORDS.bat uses and that works there. Q leaves; the highest errorlevel is tested first.
+check('front door: nothing starts by itself: it waits for one key press (choice, as LAYER-RECORDS.bat asks), and Q leaves',
+      'choice /c 1234Q /n /m ' in txt and 'set /p' not in low and txt.index('choice /c 1234Q') < txt.index('call "%TARGET%"')
+      and [l for l in lines if l.lower().startswith('if errorlevel')] ==
+      ['if errorlevel 5 goto :end', 'if errorlevel 4 goto :step4', 'if errorlevel 3 goto :step3', 'if errorlevel 2 goto :step2', 'if errorlevel 1 goto :step1'])
 check('front door: it downloads nothing itself (no web words, no pip, no powershell, no curl) and does not echo what was typed',
       not any(w in low for w in ('http', 'curl', 'powershell', 'pip ', 'bitsadmin', 'wget', 'invoke-web', 'urlmon')) and not re.search(r'echo[^\r\n]*%PICK%', txt, re.I))
 check('front door: it says which choice goes to the internet (3 in the store room and the page reader) and that 1 only shows the status',

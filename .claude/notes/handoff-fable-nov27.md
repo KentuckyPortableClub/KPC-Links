@@ -58,3 +58,33 @@ their work, and make it better than planned. Plain words, short reports. He is a
   his PC. Never replace a `.bat` while its window is open.
 - 27 Nov about 4:50 AM, his words: "i built us tables ran 50 state v2 did layer record bat did 0". So V2-STATE-PREP, a
   50-state V2-BUILD, LAYER-RECORDS and 0-INSTALL-PAGE-BROWSER have run: read those results first.
+
+## Done 27 Nov, 4:45 to 6:00 AM (Fable as manager; Opus and Sonnet built, Fable checked every number against the files)
+- **Job 1, DONE.** Store room: KPC-Store draft PR #39 (on top of #38), the PC copies byte for byte, PC buttons in `pc/`, 49 tests
+  through `tests/test_layer_records_nov26.py`; the older nov25 test brought up to the new tool (no check removed). Page reader:
+  the other chat's KPC-Data #202 already holds the PC copies (compared byte for byte at 4:50 AM, 34 tests pass), so no second
+  PR; that chat was told on #202. Since then `PAGE-READER.bat` changed on the PC (4:58 AM, `choice`): #202 has the older one.
+  Not brought over: `verified-layers.csv` (PC and GitHub differ in 199 lines of licence answers), `fetch-settings.json`.
+- **Job 2, DONE.** His rebuild finished 4:48 AM with the fixed tool: 66 areas, 58 whole, 8 with a gap, no `trl` rows, Vermont
+  clean. Real gaps, 12 layers: CA-AB SK-ALL Gover and CA-YT Yukon parks (no usable records), CA-ON Hard look~16 (timed out),
+  US-CO sgcod and US-FL sgflc (HTTP 404 incomplete), US-MS mszp mszw (never downloaded), held by a club host rule: CA-ON ON-CH
+  Conser, US-AZ sgazb sgazc, US-ID idw. `sgaki`, `sgutc`, `sgwae`, CA-NL are whole now. His 50-state v2 build is from 26 Nov
+  10 PM (`v2-keys\2026-11-26-220019`), before this rebuild: 24 of its 51 "store gap" flags are mostly `sgaki`, now whole.
+- **Job 3, BUILT, NOT ON THE PC.** KPC-Store draft PR #40 (on top of #39): the store room reads KPC-Data `data/trails` from a
+  folder `trail-files` beside the tool (or `--trails`) into line records; 56 tests; with v2 on today's files MN 295 -> 305,
+  NY 819 -> 821, only trail parks change. HELD for two findings: (1) the name inside a trail file is typed in the trail bot's
+  list (`kpc_us_trails.py` writes `x['name']`), not read from the agency record, so "exact name" is no second proof there:
+  ASKED THE OWNER whether the trail bot's pick plus the pin within 100 ft is enough; (2) US-11151, US-11154, US-9382 took their
+  line with the pin 46 to 92 m from it (the line came along with the park's land in the name step): close that in v2 first.
+  Also open: Canada's 30 trail files, a licence for trail lines, 7 pins 34 to 86 m from their line.
+- **Job 4, DONE as draft.** KPC-Data draft PR #203: the park facts builder (old key out, km2, bad pins, Kentucky ids, freshness
+  and a shrink stop, page reader fields kept; `page.names` stays plain strings as #201 and `page_names_land` read it) and
+  `PARK-FACTS-BUILD.bat`. On the PC in `5-ANSWER-KEY-TEST` (button, README, `park-facts-tool\`), NOT RUN THERE YET. Next, small:
+  the workflow line (drop `--key`, add `--previous`). The page reader's new fields were tested on made-up pages only.
+- **Job 6, DONE** (#393, on the PC, 10 files read back equal): other spellings (NY gains US-0474, US-2147; MN unchanged;
+  US-4239 on made-up records only), name fields for Alberta and BC Parks (AB nameless 231 -> 3, BC Parks 929 -> 0; 42 BC parks
+  change size by over 10%: look before BC is used; `BC RegionalP` needs `parkname`), licence counts, address compare, and
+  `V2-FRONT-DOOR.bat` (asks with `choice`; not run on a PC yet).
+- **New findings.** MN licence counts on today's file are 138 all / 97 part / 60 none (the notes said 217 / 78 / 0): all 6,712
+  `sgmnf` records are now private ("NO TERMS STATED"). ND is 96 of 155 on today's files (was 93).
+- **Still open:** jobs 5, 7, 8; the report artifact has not been brought up to date with the lines above.

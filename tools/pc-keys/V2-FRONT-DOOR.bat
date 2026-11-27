@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 title KPC: the v2 key, step by step
 rem 27 Nov 2026. A DRAFT front door. It only calls buttons that already exist and says so when one is missing.
-rem It starts nothing by itself: a step starts only when you type its number.
+rem It starts nothing by itself: a step starts only when you press its number.
 set "B1=C:\KPC\3-MAP-STORE-US-CA\LAYER-RECORDS.bat"
 set "B2=C:\KPC\6-TOOLS\PAGE-READER\PAGE-READER.bat"
 set "B3=C:\KPC\5-ANSWER-KEY-TEST\V2-STATE-PREP.bat"
@@ -21,7 +21,7 @@ echo.
 echo   ========================================================
 echo     KPC: THE NEW (v2) KEY, STEP BY STEP
 echo   ========================================================
-echo     Do the steps in this order. Nothing starts until you type
+echo     Do the steps in this order. Nothing starts until you press
 echo     a number. Each step is its own button and asks its own
 echo     questions.
 echo.
@@ -36,16 +36,14 @@ echo     and only when you pick their download choice (3).
 echo     After step 2 the park facts are rebuilt. That has no button
 echo     yet: tell Claude "the page reader is done".
 echo.
-set "PICK="
-set /p "PICK=    Type 1, 2, 3 or 4 (or just press Enter to leave): "
-if not defined PICK goto :end
-if "%PICK%"=="1" goto :step1
-if "%PICK%"=="2" goto :step2
-if "%PICK%"=="3" goto :step3
-if "%PICK%"=="4" goto :step4
-echo.
-echo     That is not on the list. Type 1, 2, 3 or 4.
-goto :menu
+rem 27 Nov 2026: one key press, no Enter (the way LAYER-RECORDS.bat asks). Typed answers were not taken on the owner's PC.
+choice /c 1234Q /n /m "    Press 1, 2, 3, 4, or Q to leave (no Enter needed): "
+if errorlevel 5 goto :end
+if errorlevel 4 goto :step4
+if errorlevel 3 goto :step3
+if errorlevel 2 goto :step2
+if errorlevel 1 goto :step1
+goto :end
 :step1
 set "NAME=the store room"
 set "TARGET=%B1%"
