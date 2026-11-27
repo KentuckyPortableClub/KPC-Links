@@ -1,0 +1,2068 @@
+#!/usr/bin/env python3
+"""Regression tests for the clean v2 US key matcher (.github/scripts/kpc_us_key_v2.py), 26 Nov 2026.
+One test per real bug, on tiny hand-made fixtures (never the real layer files). Then the MUTATION CHECK: every value, every
+table and every rule row of .github/us-key-v2-rules.json is broken in turn, and its named test must notice.
+Prints one line per test and per mutation, then ALL PASS or SOME FAILED. Run: python3.12 tests/test_us_key_v2_nov26.py"""
+import contextlib, copy, gzip, io, json, math, os, re, shutil, sys, tempfile, time, traceback
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, '.github', 'scripts'))
+import kpc_us_key_v2 as V  # noqa: E402
+
+LAT, LON = 45.0, -94.0
+KX, KY = 111320.0 * math.cos(math.radians(LAT)), 110574.0
+SRC = {'github': os.path.join(ROOT, '.github')}   # where Fix copies the rule table from (the mutation check points it elsewhere)
+
+
+# ------------------------------------------------------------------------------------------------------------- fixtures
+def ring(dx_m=0.0, dy_m=0.0, half_w=200.0, half_h=None, lat=LAT, lon=LON):
+    """A delta-encoded rectangle (q=6) centred dx_m east and dy_m north of (lat, lon)."""
+    half_h = half_w if half_h is None else half_h
+    cx, cy = lon + dx_m / KX, lat + dy_m / KY
+    pts = [(cx - half_w / KX, cy - half_h / KY), (cx + half_w / KX, cy - half_h / KY), (cx + half_w / KX, cy + half_h / KY),
+           (cx - half_w / KX, cy + half_h / KY), (cx - half_w / KX, cy - half_h / KY)]
+    ints = [(round(x * 1e6), round(y * 1e6)) for x, y in pts]
+    out = [ints[0][0], ints[0][1]]
+    for (x0, y0), (x1, y1) in zip(ints, ints[1:]): out += [x1 - x0, y1 - y0]
+    return out
+
+
+def poly(pts_m, lat=LAT, lon=LON):
+    """A delta-encoded ring (q=6) through points given in metres east / north of (lat, lon)."""
+    ints = [(round((lon + x / KX) * 1e6), round((lat + y / KY) * 1e6)) for x, y in list(pts_m) + [pts_m[0]]]
+    out = [ints[0][0], ints[0][1]]
+    for (x0, y0), (x1, y1) in zip(ints, ints[1:]): out += [x1 - x0, y1 - y0]
+    return out
+
+
+def rec(layer, key, name, rg=None, **attrs):
+    return {'key': key, 'layer': layer, 'record_id': re.sub(r'^[a-z]+', '', key) or key, 'record_name': name,
+            'attributes': attrs, 'q': 6, 'rings': [rg if rg is not None else ring()], 'publishable': True, 'licence_class': 'OPEN'}
+
+
+def path(pts_m, lat=LAT, lon=LON):
+    """A delta-encoded open line (q=6) through points given in metres east / north of (lat, lon)."""
+    ints = [(round((lon + x / KX) * 1e6), round((lat + y / KY) * 1e6)) for x, y in pts_m]
+    out = [ints[0][0], ints[0][1]]
+    for (x0, y0), (x1, y1) in zip(ints, ints[1:]): out += [x1 - x0, y1 - y0]
+    return out
+
+
+def lrec(layer, key, name, pts=((-3000, 0), (3000, 0)), **attrs):
+    """A LINE record in the agreed format: paths, shape 'line', no rings."""
+    return {'key': key, 'layer': layer, 'record_id': re.sub(r'^[a-z]+', '', key) or key, 'record_name': name,
+            'attributes': attrs, 'q': 6, 'paths': [path(pts)], 'shape': 'line', 'publishable': True, 'licence_class': 'OPEN'}
+
+
+def park(name, kind, dx_m=0.0, dy_m=0.0, link=None, size=None):
+    p = {'area': 'US-MN', 'name': name, 'type': kind, 'pin': [LAT + dy_m / KY, LON + dx_m / KX], 'page': {}}
+    if link: p['link'] = dict({'usable': True, 'id_is': 'known', 'id_shared_by': 1}, **link)
+    if size: p['size'] = size
+    return p
+
+
+def gz_text(path):
+    """A gzip text file with a fixed header time (mtime 0). gzip.open stamps the clock's second into the header, so a fixture
+    rewritten in the next second had other bytes, another sha256 in the key's layer_files and a false byte-compare failure
+    (test_lock_never_changes_answer, test_lock_holds_same_as_cold, test_two_runs_same_bytes; rule-sheet section 37)."""
+    return io.TextIOWrapper(gzip.GzipFile(path, 'wb', mtime=0), encoding='utf-8')
+
+
+class Fix:
+    """A tiny repo + store + facts in a temp folder."""
+
+    def __init__(self):
+        self.d = tempfile.mkdtemp(prefix='v2test-')
+        os.makedirs(os.path.join(self.d, 'repo', '.github'))
+        for f in ('us-key-v2-rules.json', 'link-id-ties.json'):
+            shutil.copy(os.path.join(SRC['github'], f), os.path.join(self.d, 'repo', '.github', f))
+        os.makedirs(os.path.join(self.d, 'store'))
+        self.parks, self.files, self.incomplete, self.lists, self.no_manifest, self.listed = {}, {}, {}, {}, {}, {}
+        self.pota = {}   # {ref: {'name', 'latitude', 'longitude'}}: extra columns of POTA's own list row
+        self.urls = {}   # {area: {layer: url}}: manifest sources (rule layer_copy)
+        self.man = {}    # {area: {layer: manifest row}}: rows written as given (rule load_no_wait)
+
+    def p(self, path): return os.path.join(self.d, path)
+
+    def write(self):
+        for area in sorted(set(self.files) | {V.area_of(k) for k in self.lists}):
+            refs = self.lists.get(V.area_label(area), [r for r, p in self.parks.items() if p['area'] == area])
+            os.makedirs(self.p('repo/data/pota/saved/parks'), exist_ok=True)
+            with gz_text(self.p(f'repo/data/pota/saved/parks/{area}.json.gz')) as f:
+                json.dump({'data': [dict({'reference': r, 'locationDesc': self.listed.get(r, area)}, **self.pota.get(r, {})) for r in refs]}, f)
+        for area, recs in self.files.items():
+            man = {r['layer']: dict({'complete': True}, **({'url': self.urls[area][r['layer']], 'where': '1=1'}
+                                                           if r['layer'] in self.urls.get(area, {}) else {})) for r in recs}
+            for l in self.incomplete.get(area, []): man[l] = {'complete': False}
+            for l in self.no_manifest.get(area, []): man.pop(l, None)
+            man.update(self.man.get(area, {}))
+            with gz_text(self.p(f'store/{area}.layer-records.json.gz')) as f:
+                json.dump({'kpcstore_layers': 1, 'area': area, 'made': '2026-11-26T11:00:00-06:00', 'manifest': man, 'records': recs}, f)
+        with gz_text(self.p('facts.json.gz')) as f: json.dump({'parks': self.parks}, f)
+
+    def run(self, out='out', states=('MN',), extra=(), areas=()):
+        self.write()
+        sel = ['--areas', *areas] if areas else ['--states', *states]
+        with contextlib.redirect_stdout(io.StringIO()):
+            return V.run([*sel, '--store', self.p('store'), '--facts', self.p('facts.json.gz'), '--out', self.p(out),
+                          '--repo', self.p('repo'), *extra])
+
+    def key(self, st='MN', out='out'):
+        with gzip.open(self.p(f'{out}/{V.area_of(st)}.json.gz'), 'rt') as f: return json.load(f)
+
+    def info(self, st='MN', out='out'):
+        with open(self.p(f'{out}/v2-run.json')) as f: return json.load(f)['states'][st]
+
+    def csv(self, name, out='out'):
+        return open(self.p(f'{out}/{name}')).read().splitlines()
+
+    def done(self): shutil.rmtree(self.d, ignore_errors=True)
+
+
+def ids(doc, ref): return sorted(str(x[0]) for x in doc['parks'][ref]['m'])
+def why(doc, ref): return doc['parks'][ref]['match']['why']
+def by(doc, ref): return doc['parks'][ref]['match']['by']
+
+
+RULES = V.load_rules(ROOT)
+
+
+def pool_of(*recs, area='US-MN'):
+    pl = V.Pool(RULES); pl.add_file(area, {'records': list(recs)}); return pl
+
+
+def one(name, kind, records, dx=0.0, dy=0.0, link=None, size=None, urls=None):
+    f = Fix()
+    try:
+        f.parks['US-1'] = park(name, kind, dx_m=dx, dy_m=dy, link=link, size=size)
+        f.files['US-MN'] = records
+        if urls: f.urls['US-MN'] = urls   # {layer: url}: the layers' map services (rule two_sources_independent)
+        assert f.run() == 0
+        return f.key()
+    finally: f.done()
+
+
+# ------------------------------------------------------------------------------------------------------------- load
+def test_store_gap_built():
+    f = Fix()
+    try:   # owner 26 Nov: an area with an incomplete layer is BUILT and flagged (exit 3), no longer refused
+        f.parks['US-1'] = park('Crow Wing State Park', 'State Park')
+        f.files['US-MN'] = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
+        f.incomplete['US-MN'] = ['sgmnd']
+        assert f.run() == 3 and ids(f.key(), 'US-1') == ['sgmnd1'] and f.info()['gaps'] == ['sgmnd']
+        assert f.key()['gaps'] == ['sgmnd'] and f.key()['tool'].endswith(' (store gap)') and f.info()['not_built'] is None
+        f.incomplete = {}
+        f.no_manifest['US-MN'] = ['sgmnd']                     # records, but no manifest row: not complete either
+        assert f.run() == 3 and f.key()['gaps'] == ['sgmnd']
+        f.no_manifest = {}
+        f.incomplete = {'US-WI': ['wsrc']}
+        f.files['US-WI'] = [rec('wsrc', 'wsrc1', 'Other River', ring(9000, 9000))]
+        assert f.run() == 0 and ids(f.key(), 'US-1') == ['sgmnd1']   # a neighbour's gap does not stop the state
+    finally: f.done()
+
+
+def test_not_land_layer_is_no_gap():
+    f = Fix()
+    try:   # owner 27 Nov: a layer that is points, not land, is nothing to wait for (ND sgaki, VT vta held their states)
+        f.parks['US-1'] = park('Crow Wing State Park', 'State Park')
+        f.files['US-MN'] = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
+        f.man['US-MN'] = {'sgaki': {'complete': False, 'why': 'no file yet'}}                 # named in no_wait_layers
+        assert f.run() == 0 and ids(f.key(), 'US-1') == ['sgmnd1'] and f.info()['gaps'] == [], f.info()['gaps']
+        assert 'gaps' not in f.key() and not f.key()['tool'].endswith(' (store gap)')
+        assert list(f.info()['not_waited_for']) == ['sgaki'] and 'NOT A PARK LAYER' in f.info()['not_waited_for']['sgaki']
+        f.man['US-MN'] = {'zzpts': {'complete': False, 'status': 'not_land', 'why': 'not land (points)'}}   # the store room's word
+        assert f.run() == 0 and f.info()['gaps'] == [] and list(f.info()['not_waited_for']) == ['zzpts']
+        f.man['US-MN'] = {'zzpts': {'complete': False, 'status': 'failed', 'why': 'failed (HTTP 500)'}}     # any other status IS a gap
+        assert f.run() == 3 and f.info()['gaps'] == ['zzpts'] and f.info()['not_waited_for'] == {}
+        f.man['US-MN'] = {'zzpts': {'complete': False, 'status': 'empty'}, 'zzmiss': {'complete': False, 'status': 'missing'}}
+        assert f.run() == 3 and f.info()['gaps'] == ['zzmiss', 'zzpts']                       # empty and missing are still waited for
+        f.man['US-MN'] = {'sgaki': {'complete': True}}                                        # a complete layer is never listed
+        assert f.run() == 0 and f.info()['not_waited_for'] == {}
+    finally: f.done()
+
+
+def test_drop_layer_never_matched():
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Foot Hills State Forest', 'State Forest')
+        f.files['US-MN'] = [rec('sgmnb', 'sgmnb1', 'Foot Hills', sft='SFT00019')]
+        assert f.run() == 0 and f.key()['parks']['US-1']['m'] == []
+        assert f.info()['records_dropped'].get('drop_layer sgmnb') == 1
+    finally: f.done()
+    # US-4491 Superior NF: the Forest Service's administrative line (3.9 M acres) is not the forest's own land (2.1 M)
+    d = one('Superior National Forest', 'National Forest', [rec('sgnvg', 'sgnvg42', 'Superior National Forest'),
+                                                           rec('PAD-US', '3082', 'Superior National Forest')])
+    assert ids(d, 'US-1') == ['3082']
+
+
+def test_record_without_shape_dropped():
+    pl = pool_of(dict(rec('sgmnd', 'sgmnd1', 'Crow Wing'), rings=[]))
+    assert pl.recs == [] and pl.dropped == {'no_shape': 1}
+
+
+def test_repeated_row_key_dropped():
+    pl = pool_of(rec('sgiaa', 'sgiaa247', 'BARBER CREEK WILDLIFE AREA'), rec('sgiaa', 'sgiaa247', 'IHAP JONES 1'),
+                 rec('sgiaa', 'sgiaa248', 'COLFAX WILDLIFE AREA'))
+    assert [r['key'] for r in pl.recs] == ['sgiaa248'] and pl.dropped == {'key_not_unique sgiaa': 2}
+
+
+def test_neighbour_copy_not_loaded_twice():
+    f = Fix()
+    try:
+        r = rec('fws', 'fws10', 'X', CMPXNAME='', ORGNAME='AGASSIZ NATIONAL WILDLIFE REFUGE', SUM_GISACRES=100, INTTYPE1='O')
+        f.parks['US-1'] = park('Agassiz National Wildlife Refuge', 'National Wildlife Refuge')
+        f.files['US-MN'] = [r]; f.files['US-WI'] = [copy.deepcopy(r)]
+        assert f.run() == 0 and [x[0] for x in f.key()['parks']['US-1']['m']] == ['fws10']
+        assert f.info()['records_dropped'] == {'same_record_in_two_files': 1}
+    finally: f.done()
+
+
+def test_agency_spelling_zero_led():
+    rs = [{'key': 'sgmnb6', 'attributes': {'sft': 'SFT00006'}}, {'key': 'sgmnb7', 'attributes': {'sft': 'SFT00019'}}]
+    sp = V.spell_layer(rs, 'sgmnb', RULES)
+    assert sp == {'sgmnb6': 'sgmnb06', 'sgmnb7': 'sgmnb019'} and sp['sgmnb6'] != 'sgmnb6'
+    two = [{'key': 'sgmnd1', 'attributes': {'pgrm_project': 'SPK00139'}}, {'key': 'sgmnd2', 'attributes': {'PGRM_PROJECT': 'SRA00304'}}]
+    assert V.spell_layer(two, 'sgmnd', RULES) == {}   # two letter prefixes: the file's own keys
+
+
+def test_acres_square_feet_converted():
+    r = pool_of(rec('sgmnd', 'sgmnd1', 'Crow Wing', ring(half_w=200), GIS_ACRES=40 * 43560.0)).recs[0]
+    assert abs(V.agency_acres(r, RULES) - 40.0) < 0.1
+    r2 = pool_of(rec('sgmne', 'sgmne1', 'X', ring(half_w=200), su_acres=12.5)).recs[0]
+    assert V.agency_acres(r2, RULES) == 12.5 and V.rec_acres(r2, RULES) == 12.5      # the first field with 'acre' in its name
+    r3 = pool_of(rec('sgnyb', 'sgnyb1', 'X', ring(half_w=200))).recs[0]
+    assert V.agency_acres(r3, RULES) is None and abs(V.rec_acres(r3, RULES) - 39.5) < 1   # measured: 400 m square
+    r4 = pool_of(rec('fws', 'fws1', 'X', ring(half_w=200), SUM_DOCACRES=30, GIS_Acres=31)).recs[0]
+    assert V.agency_acres(r4, RULES) == 31                                            # acre_fields before the fallback
+
+
+# ------------------------------------------------------------------------------------------------------------- step 2
+def mn_valley(f, extra=0, acres=60):
+    f.parks['US-7145'] = park('Minnesota Valley State Recreation Area', 'State Recreation Area',
+                              link={'id_kind': 'MN DNR unit id', 'id_value': 'SRA00304'})
+    f.files['US-MN'] = [rec('sgmne', f'sgmne{n}', 'MINNESOTA VALLEY', ring(n * 500), su_id=340000 + n, mgtprgprj='SRA00304  ',
+                            mgtprjname='MINNESOTA VALLEY', mgtprgname='STATE RECREATION AREA', su_acres=acres) for n in range(1, 4 + extra)]
+
+
+def test_id_ties_minnesota_valley():
+    f = Fix()
+    try:
+        mn_valley(f)
+        assert f.run() == 0
+        d = f.key()
+        assert ids(d, 'US-7145') == ['sgmne0340001', 'sgmne0340002', 'sgmne0340003'] and by(d, 'US-7145') == 'id'
+        assert d['parks']['US-7145']['match']['step'] == 2 and d['parks']['US-7145']['ac'] == 180
+    finally: f.done()
+    # the PAD-US Loc_Nm tie is for Park Service records only (non-NPS records use 4-letter Loc_Nm such as BACH)
+    d = one('Bach Hill National Historic Site', 'National Historic Site',
+            [rec('PAD-US', '41', 'Bach Hill Wildlife Area', Loc_Nm='BACH', Mang_Name='FWS')],
+            link={'id_kind': 'NPS unit code', 'id_value': 'BACH'})
+    assert by(d, 'US-1') != 'id'
+    d = one('Bach Hill National Historic Site', 'National Historic Site', [rec('PAD-US', '41', 'Bach Hill Site', Loc_Nm='BACH', Mang_Name='NPS')],
+            link={'id_kind': 'NPS unit code', 'id_value': 'BACH'})
+    assert by(d, 'US-1') == 'id'
+
+
+def test_shared_id_goes_to_name_step():
+    f = Fix()
+    try:
+        lk = {'id_kind': 'MN DNR unit id', 'id_value': 'SPK00139'}
+        f.parks['US-2477'] = park('Crow Wing State Park', 'State Park', link=lk)
+        f.parks['US-4792'] = park('Other Place State Park', 'State Park', dx_m=30000, link=lk)
+        f.files['US-MN'] = [rec('sgmnd', 'sgmnd1', 'Crow Wing', PGRM_PROJECT='SPK00139')]
+        assert f.run() == 0
+        d = f.key()
+        assert by(d, 'US-2477') == 'name+pin' and d['parks']['US-2477']['match']['step'] == 3 and d['parks']['US-4792']['m'] == []
+    finally: f.done()
+
+
+def test_id_guard_name_or_pin():
+    f = Fix()
+    try:   # two parks of one kind 3 km apart, their ids swapped in the facts: neither is joined by id
+        u = lambda n: f'https://www.dec.ny.gov/lands/{n}.html'
+        f.parks['US-1'] = park('Oak Hill State Forest', 'State Forest', link={'id_kind': 'NY DEC page number', 'id_value': '2'})
+        f.parks['US-2'] = park('Elm Ridge State Forest', 'State Forest', dx_m=3000, link={'id_kind': 'NY DEC page number', 'id_value': '1'})
+        f.files['US-MN'] = [rec('sgnya', 'sgnya1', 'Oak Hill State Forest', URL=u(1)), rec('sgnya', 'sgnya2', 'Elm Ridge State Forest', ring(3000), URL=u(2))]
+        assert f.run() == 0
+        d = f.key()
+        assert by(d, 'US-1') != 'id' and by(d, 'US-2') != 'id' and ids(d, 'US-1') == ['sgnya1'] and ids(d, 'US-2') == ['sgnya2']
+    finally: f.done()
+    # US-5249 Pine Hill (Delaware County): its DEC id points at the Cattaraugus forest 300 km away
+    d = one('Pine Hill (Delaware County) State Forest', 'State Forest',
+            [rec('sgnya', 'sgnya72664', 'Pine Hill State Forest', ring(300000), URL='https://www.dec.ny.gov/lands/68174.html'),
+             rec('sgnya', 'sgnya75517', 'Pine Hill State Forest', ring(), URL='https://www.dec.ny.gov/lands/102363.html')],
+            link={'id_kind': 'NY DEC page number', 'id_value': '68174'})
+    assert ids(d, 'US-1') == ['sgnya75517'] and by(d, 'US-1') == 'name+pin'
+    # the park's own name, but 15 km off: more than near_km, so not proven by id
+    d = one('Bearpen Hill State Forest', 'State Forest', [rec('sgnya', 'sgnya1', 'Bearpen Hill State Forest', ring(15000), URL='https://www.dec.ny.gov/lands/7.html')],
+            link={'id_kind': 'NY DEC page number', 'id_value': '7'})
+    assert d['parks']['US-1']['m'] == []
+    d = one('Bearpen Hill State Forest', 'State Forest', [rec('sgnya', 'sgnya1', 'Bearpen Hill State Forest', ring(5000), URL='https://www.dec.ny.gov/lands/7.html')],
+            link={'id_kind': 'NY DEC page number', 'id_value': '7'})
+    assert by(d, 'US-1') == 'id'                                         # the name and 5 km: proven by id
+
+
+def test_wetland_district_fee_only():
+    f = Fix()
+    try:
+        f.parks['US-0356'] = park('Big Stone Wetland Management District', 'Wetland Management District')
+        cx = 'BIG STONE WETLAND MANAGEMENT DISTRICT'
+        f.files['US-MN'] = [rec('fws', 'fws1', 'A WPA', ring(), CMPXNAME=cx, INTTYPE1='O', RSL_TYPE='WPA', SUM_GISACRES=100),
+                            rec('fws', 'fws2', 'B WPA', ring(8000), CMPXNAME=cx, INTTYPE1='O', RSL_TYPE='WPA', SUM_GISACRES=50),
+                            rec('fws', 'fws3', 'C easement', ring(2000), CMPXNAME=cx, INTTYPE1='E', RSL_TYPE='WPA', SUM_GISACRES=500),
+                            rec('fws', 'fws4', 'D refuge', ring(3000), CMPXNAME=cx, INTTYPE1='O', RSL_TYPE='NWR', SUM_GISACRES=50),
+                            rec('PAD-US', '77', cx, ring(), Unit_Nm=cx, Loc_Nm=cx, GIS_Acres=9000)]
+        assert f.run() == 0 and ids(f.key(), 'US-0356') == ['fws1', 'fws2']
+    finally: f.done()
+
+
+def test_record_with_other_park_name_refused():
+    f = Fix()
+    try:
+        lk = {'id_kind': 'NY DEC page number', 'id_value': '8269'}
+        f.parks['US-5046'] = park('Harris Hill State Forest', 'State Forest', link=lk)
+        f.parks['US-5047'] = park('Hatch Creek State Forest', 'State Forest', dx_m=5000)
+        url = 'https://www.dec.ny.gov/lands/8269.html'
+        f.files['US-MN'] = [rec('sgnya', 'sgnya1', 'Harris Hill State Forest', ring(), URL=url),
+                            rec('sgnya', 'sgnya2', 'Hatch Creek State Forest', ring(5000), URL=url),
+                            rec('sgmnd', 'sgmnd9', 'Minnesota Valley', ring(20000), AREA_NAME='Minnesota Valley',
+                                AREA_TYPE='State Recreation Area', LEGISLATIVE_NAME='Minnesota Valley State Recreation Area')]
+        f.parks['US-7145'] = park('Minnesota Valley State Recreation Area', 'State Recreation Area', dx_m=40000)
+        f.parks['US-9384'] = park('Minnesota Valley State Trail', 'State Trail', dx_m=20000)
+        assert f.run() == 0
+        d = f.key()
+        assert ids(d, 'US-5046') == ['sgnya1'] and ids(d, 'US-5047') == ['sgnya2']
+        assert d['parks']['US-9384']['m'] == []   # the SRA's land never goes to the trail by its bare name
+    finally: f.done()
+
+
+def test_wma_project_pieces():
+    f = Fix()
+    try:
+        f.parks['US-12693'] = park('Swan Lake Wildlife Management Area', 'Wildlife Management Area',
+                                   link={'id_kind': 'MN DNR unit id', 'id_value': 'WMA0129500'})
+        mk = lambda k, u, unit, dx: rec('sgmna', k, unit, ring(dx), uniqueid=u, lam_program_project_code='WMA01295', unit_name=unit)
+        f.files['US-MN'] = [mk('sgmna1', 'WMA0129500', 'Swan Lake WMA', 0), mk('sgmna2', 'WMA0129501', 'Swan Lake WMA', 3000),
+                            mk('sgmna3', 'WMA0129502', 'Swan Lake WMA', 6000), mk('sgmna4', 'WMA0129503', 'Other Slough WMA', 9000)]
+        assert f.run('cold', extra=['--write-locks']) == 0
+        d = f.key(out='cold')
+        assert ids(d, 'US-12693') == ['sgmna0129500', 'sgmna0129501', 'sgmna0129502'] and by(d, 'US-12693') == 'id'
+        assert f.info(out='cold')['gate']['id_mismatch'] == 0
+        assert json.load(open(f.p('cold/locks/US-MN.json')))['locks']['US-12693'][0]['count'] == 3
+    finally: f.done()
+
+
+def test_id_shared_page():
+    """Rule id_shared_page (27 Nov 2026): one DEC page, records of two names: the id proves only the park's own name."""
+    u = 'https://www.dec.ny.gov/lands/102484.html'
+    link = {'id_kind': 'NY DEC page number', 'id_value': '102484'}
+    recs = [rec('sgnya', 'sgnya1', 'Pigeon Lake Wilderness', URL=u), rec('sgnya', 'sgnya2', 'Pigeon Lake Wilderness', ring(500), URL=u),
+            rec('sgnya', 'sgnya3', 'Twitchell Lake Primitive Area', ring(9000), URL=u)]
+    d = one('Pigeon Lake Wilderness Area', 'Wilderness Area', recs, link=link)   # 9 km away, another unit of the page
+    assert ids(d, 'US-1') == ['sgnya1', 'sgnya2'] and by(d, 'US-1') == 'id'
+    # one name on the page: untouched, the pieces 9 km away stay
+    d = one('Pigeon Lake Wilderness Area', 'Wilderness Area', [recs[0], rec('sgnya', 'sgnya4', 'Pigeon Lake Wilderness', ring(9000), URL=u)], link=link)
+    assert ids(d, 'US-1') == ['sgnya1', 'sgnya4']
+    # a piece name ('X Wma - Gully') is the park's own; another unit is not
+    u2 = 'https://www.dec.ny.gov/lands/24439.html'
+    d = one('High Tor Wildlife Management Area', 'Wildlife Management Area',
+            [rec('sgnya', 'sgnya5', 'High Tor Wma', URL=u2), rec('sgnya', 'sgnya6', 'High Tor Wma - Clark Gully', ring(1500), URL=u2),
+             rec('sgnya', 'sgnya7', 'Bluff Point Wma', ring(2500), URL=u2)], link={'id_kind': 'NY DEC page number', 'id_value': '24439'})
+    assert ids(d, 'US-1') == ['sgnya5', 'sgnya6']
+    # no record carries the park's name: the park is the whole page (the complex), the id proves it as before
+    d = one('Raquette Boreal Complex State Preserve', 'State Preserve',
+            [rec('sgnya', 'sgnya8', 'White Hill Wild Forest', URL='https://www.dec.ny.gov/lands/83175.html'),
+             rec('sgnya', 'sgnya9', 'Raquette River Wild Forest', ring(3000), URL='https://www.dec.ny.gov/lands/83175.html')],
+            link={'id_kind': 'NY DEC page number', 'id_value': '83175'})
+    assert ids(d, 'US-1') == ['sgnya8', 'sgnya9'] and by(d, 'US-1') == 'id'
+    # the agency spells the park two other ways (the PC's South Carolina file, US-8153 Herbert Kirsh WMA): nothing is cut
+    us = 'https://www.dec.ny.gov/lands/777.html'
+    d = one('Herbert Kirsh Wildlife Management Area', 'Wildlife Management Area',
+            [rec('sgnya', 'sgnya10', 'Herbert Kirsch Wildlife Conservation Area', URL=us), rec('sgnya', 'sgnya11', 'Herb Kirsh Wildlife Conservation Area', ring(800), URL=us)],
+            link={'id_kind': 'NY DEC page number', 'id_value': '777'})
+    assert ids(d, 'US-1') == ['sgnya10', 'sgnya11']
+    # the park's whole name plus more words is its own piece (Nova Scotia, CA-1897 Trout Brook Wilderness Area Addition)
+    ut = 'https://www.dec.ny.gov/lands/778.html'
+    d = one('Trout Brook Wilderness Area', 'Wilderness Area',
+            [rec('sgnya', 'sgnya12', 'Trout Brook Wilderness Area', URL=ut), rec('sgnya', 'sgnya13', 'Trout Brook Wilderness Area Addition', ring(700), URL=ut),
+             rec('sgnya', 'sgnya14', 'Otter Pond Nature Reserve', ring(2500), URL=ut)], link={'id_kind': 'NY DEC page number', 'id_value': '778'})
+    assert ids(d, 'US-1') == ['sgnya12', 'sgnya13']
+    # the MN DNR unit id is not a page: its second-name record stays (US-11024 Blanket Flower Prairie SNA, Ole Huseby Homestead)
+    d = one('Blanket Flower Prairie SNA State Conservation Area', 'State Conservation Area',
+            [rec('sgmnf', 'sgmnf1', 'Blanket Flower Prairie', PGRM_PROJECT='SNA02027'),
+             rec('sgmnf', 'sgmnf2', 'Ole Huseby Homestead', ring(900), PGRM_PROJECT='SNA02027')],
+            link={'id_kind': 'MN DNR unit id', 'id_value': 'SNA02027'})
+    assert ids(d, 'US-1') == ['sgmnf1', 'sgmnf2']
+
+
+def test_id_unit_pieces():
+    f = Fix()
+    try:   # US-5416 Michigan Hill: a second DEC record of the forest carries no page number
+        u = 'https://www.dec.ny.gov/lands/37372.html'
+        f.parks['US-5416'] = park('Michigan Hill State Forest', 'State Forest', link={'id_kind': 'NY DEC page number', 'id_value': '37372'})
+        f.parks['US-9'] = park('Michigan Hill (B County) State Forest', 'State Forest', dx_m=70000)
+        f.files['US-MN'] = [rec('sgnya', 'sgnya1', 'Michigan Hill State Forest', URL=u),
+                            rec('sgnya', 'sgnya2', 'Michigan Hill State Forest', ring(4000), URL=''),
+                            rec('sgnya', 'sgnya3', 'Michigan Hill State Forest', ring(6000), URL='https://www.dec.ny.gov/lands/102358.html'),
+                            rec('sgnya', 'sgnya4', 'Michigan Hill State Forest', ring(40000), URL=''),
+                            rec('sgnya', 'sgnya5', 'Michigan Hill State Forest', ring(70000), URL=''),
+                            rec('PAD-US', '236641', 'Michigan Hill State Forest', ring(2000))]
+        assert f.run('cold', extra=['--write-locks']) == 0
+        d = f.key(out='cold')
+        assert ids(d, 'US-5416') == ['sgnya1', 'sgnya2']   # not another id, not 40 km, not another park's pin, not another layer
+        assert [x[3] for x in d['parks']['US-5416']['m'] if x[0] == 'sgnya2'] == ['piece of id unit']
+        assert json.load(open(f.p('cold/locks/US-MN.json')))['locks']['US-5416'][0]['count'] == 2 and f.info(out='cold')['gate']['ok']
+    finally: f.done()
+    # US-0673 Saint Croix: a PAD-US record of the same name held by a city, a private owner or the state fails the tie's
+    # where-filter (Mang_Name NPS), so it is not a piece of the Park Service unit
+    d = one('Saint Croix National Scenic Riverway', 'National Scenic Riverway',
+            [rec('PAD-US', '3561', 'St. Croix National Scenic Riverway', Loc_Nm='SACN', Mang_Name='NPS'),
+             rec('PAD-US', '69293', 'St. Croix National Scenic Riverway', ring(600), Loc_Nm='St. Croix National Scenic Riverway', Mang_Name='PVT'),
+             rec('PAD-US', '72037', 'St. Croix National Scenic Riverway', ring(1000), Loc_Nm='', Mang_Name='SDNR')],
+            link={'id_kind': 'NPS unit code', 'id_value': 'SACN'})
+    assert ids(d, 'US-1') == ['3561'] and by(d, 'US-1') == 'id'
+
+
+def test_far_pin_listed_states():
+    cajo = {'id_kind': 'NPS unit code', 'id_value': 'CAJO'}
+    nm = 'Captain John Smith Chesapeake National Historic Trail'
+    def case(listed, rec_name=nm, line=False):
+        f = Fix()
+        try:
+            f.parks['US-4567'] = park(nm, 'National Historic Trail', link=cajo)
+            if listed: f.listed['US-4567'] = listed
+            r = (lrec('PAD-US', '3601', rec_name, ((390000, 0), (420000, 0)), Loc_Nm='CAJO', Mang_Name='NPS') if line else
+                 rec('PAD-US', '3601', rec_name, ring(400000), Loc_Nm='CAJO', Mang_Name='NPS'))
+            f.files['US-MN'] = [r]
+            assert f.run() == 0
+            return f.key()['parks']['US-4567']
+        finally: f.done()
+    k = case('US-DC,US-DE,US-MD,US-MN,US-PA,US-VA')       # US-4567: pin in DC, its land 400 km off: listed in 6 states
+    assert [x[0] for x in k['m']] == ['3601'] and k['match']['by'] == 'id'
+    assert k['match']['evidence']['far_pin'] is True and k['match']['evidence']['listed_in'][:2] == ['US-DC', 'US-DE']
+    k = case('US-DC,US-MN', line=True)                     # a multi-state trail's far LINE joins by id too
+    assert [x[0] for x in k['m']] == ['3601'] and k.get('line') is True and k['m'][0][2] == 0
+    assert case('US-MN')['m'] == []                        # one state: never (a far id with the very name is still refused)
+    assert case('US-DC,US-MN', rec_name='Chesapeake Bay Gateways')['m'] == []   # several states, but not the park's full name
+    # US-5249 Pine Hill stays refused: a one-state park (see test_id_guard_name_or_pin)
+
+
+def test_line_load():
+    pl = pool_of(lrec('sgxx', 'sgxx1', 'Root River'), lrec('sgxx', 'sgxx2', 'Elm'))
+    assert len(pl.recs) == 2 and pl.dropped == {} and pl.recs[0]['line'] and V.rec_box(pl.recs[0])[2] > V.rec_box(pl.recs[0])[0]
+    assert V.has_shape({'paths': [[1, 2, 3, 4]], 'shape': 'line'}) and not V.has_shape({'paths': [[1, 2, 3, 4]]})
+    f = Fix()
+    try:   # a line with an acres field: 0 acres in m, ac 0; the size never proves it
+        f.parks['US-1'] = park('Root River State Trail', 'State Trail', size={'acres': 50, 'witness': 'agency_document'})
+        f.parks['US-2'] = park('Douglas State Trail', 'State Trail', dy_m=5000, size={'acres': 50, 'witness': 'agency_document'})
+        f.files['US-MN'] = [lrec('sgxx', 'sgxx1', 'Root River', GIS_ACRES=50),
+                            lrec('sgxx', 'sgxx2', 'Douglas', ((-3000, 3000), (3000, 3000)), GIS_ACRES=50)]
+        assert f.run() == 0
+        d = f.key()
+        assert d['parks']['US-1']['m'] == [['sgxx1', 'Root River', 0, 'name+pin']] and d['parks']['US-1']['ac'] == 0
+        assert d['parks']['US-2']['m'] == []                       # 2 km off the line: its acres field proves nothing
+        assert f.info()['lines'] == {'sgxx': 2}
+    finally: f.done()
+
+
+def test_line_pin_distance():
+    def case(dy, kind='State Trail', name='Root River State Trail'):
+        f = Fix()
+        try:
+            f.parks['US-1'] = park(name, kind, dy_m=dy)
+            f.files['US-MN'] = [lrec('sgxx', 'sgxx1', 'Root River')]
+            assert f.run() == 0
+            return f.key(), f.csv('v2-proof.csv')
+        finally: f.done()
+    d, proof = case(20)                                        # 20 m off the line: within 100 ft
+    k = d['parks']['US-1']
+    assert k['m'] == [['sgxx1', 'Root River', 0, 'name+pin']] and k.get('line') is True and proof[1].split(',')[-3] == 'line'
+    d, _ = case(60)                                            # 60 m off: pin only
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'name_but_no_pin_or_size_proof'
+    # two same-named lines 300 km apart, no unit value: never one trail
+    d = one('Root River State Trail', 'State Trail', [lrec('sgxx', 'sgxx1', 'Root River'),
+                                                      lrec('sgxx', 'sgxx2', 'Root River', ((300000, 0), (303000, 0)))])
+    assert ids(d, 'US-1') == ['sgxx1']
+    # another same-named park's pin within 100 ft of the line: refused for both
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Root River State Trail', 'State Trail')
+        f.parks['US-2'] = park('Root River (Fillmore County) State Trail', 'State Trail', dx_m=2000, dy_m=10)
+        f.files['US-MN'] = [lrec('sgxx', 'sgxx1', 'Root River')]
+        assert f.run() == 0 and f.key()['parks']['US-1']['m'] == [] == f.key()['parks']['US-2']['m']
+    finally: f.done()
+
+
+def test_line_name_needs_trail_kind():
+    line = [lrec('sgxx', 'sgxx1', 'Glacial Lakes')]
+    assert one('Glacial Lakes State Park', 'State Park', line)['parks']['US-1']['m'] == []     # named like the trail: no
+    assert ids(one('Glacial Lakes State Trail', 'State Trail', line), 'US-1') == ['sgxx1']
+    d = one('Glacial Lakes State Park', 'State Park', [lrec('sgmne', 'sgmne1', 'Glacial Lakes', mgtprgprj='SPK00170')],
+            link={'id_kind': 'MN DNR unit id', 'id_value': 'SPK00170'})
+    assert ids(d, 'US-1') == ['sgmne1'] and by(d, 'US-1') == 'id'                              # by id, any park
+
+
+FT = 0.3048
+
+
+def trec(n, name, pts=((-3000, 0), (3000, 0)), ref=None):
+    """A trail-bot line record as the store room writes it (27 Nov 2026): layer trl, key trl<n>, ref US-<n>, the bot's name."""
+    r = lrec('trl', f'trl{n}', name, pts)
+    r['attributes'] = {'name': name, 'ref': ref or f'US-{n}'}; r['record_id'] = n; r['source_file'] = f'US-{n}.json'; r['publishable'] = False; r['licence_class'] = 'PRIVATE UNTIL LICENCE READ'
+    return r
+
+
+def test_trail_bot_file():
+    # rules trail_bot_file / trail_bot_pin / trail_bot_name_not_proof (owner 27 Nov 2026, 5:45 AM: "Yes to trails")
+    def run(parks, records):
+        f = Fix()
+        try:
+            f.parks.update(parks); f.files['US-MN'] = records
+            assert f.run('cold', extra=['--write-locks']) == 0
+            return f.key(out='cold'), f.info(out='cold'), f.csv('v2-proof.csv', out='cold'), f.csv('v2-id-other-names.csv', out='cold'), \
+                json.load(open(f.p('cold/locks/US-MN.json')))['locks']
+        finally: f.done()
+    trail = lambda dy, **k: park('Root River State Trail', 'State Trail', dy_m=dy, **k)
+    # 20 ft from the line: joins, with the plain proof words, never 'name'
+    d, info, proof, _, _ = run({'US-0197': trail(20 * FT)}, [trec('0197', 'Root River State Trail')])
+    k = d['parks']['US-0197']
+    assert k['m'] == [['trl0197', 'Root River State Trail', 0, 'trail bot file+pin']] and k.get('line') is True
+    assert k['match']['by'] == 'trail bot file+pin' and info['gate']['ok']
+    pr = k['match']['evidence']['proofs']
+    assert [x['proof'] for x in pr] == ["the trail bot's file for this park (US-0197.json), the pin 20 ft from the line"], pr
+    assert pr[0]['pin_ft'] == 20 and 'name' not in pr[0]['by'] and ',trail bot file+pin,' in proof[1]
+    # 150 ft from the line: refused; the reason is true (the file IS in the store)
+    d, _, _, _, _ = run({'US-0197': trail(150 * FT)}, [trec('0197', 'Root River State Trail')])
+    assert d['parks']['US-0197']['m'] == [] and why(d, 'US-0197') == 'name_but_no_pin_or_size_proof'
+    assert why(d, 'US-0197') != 'record_layer_not_in_store'
+    # a trail park with no file in the store still says record_layer_not_in_store
+    d, _, _, _, _ = run({'US-0197': trail(20 * FT)}, [trec('0198', 'Other Trail', ((-3000, 9000), (3000, 9000)))])
+    assert why(d, 'US-0197') == 'record_layer_not_in_store'
+    # a file carrying ANOTHER park's exact name never joins that other park (its name is no proof), nor its own far park
+    d, _, _, _, _ = run({'US-0197': trail(5000), 'US-0198': park('Douglas State Trail', 'State Trail', dy_m=20 * FT)},
+                        [trec('0197', 'Douglas State Trail')])
+    assert d['parks']['US-0198']['m'] == [] == d['parks']['US-0197']['m']
+    # the ref and the key disagree: the file joins nobody
+    d, _, _, _, _ = run({'US-0197': trail(20 * FT)}, [trec('0197', 'Root River State Trail', ref='US-0198')])
+    assert d['parks']['US-0197']['m'] == []
+    # a park proven by land keeps its land and gains its own line within 100 ft; a far line does not come along
+    land = rec('sgmne', 'sgmne1', 'Root River State Trail', mgtprgprj='TRL00001')
+    d, _, _, _, _ = run({'US-0197': trail(20 * FT)}, [land, trec('0197', 'Root River State Trail')])
+    assert [(x[0], x[3]) for x in d['parks']['US-0197']['m']] == [('sgmne1', 'name+pin'), ('trl0197', 'trail bot file+pin')]
+    assert by(d, 'US-0197') == 'name+pin'
+    d, _, _, _, _ = run({'US-0197': trail(150 * FT)}, [land, trec('0197', 'Root River State Trail', ((-3000, 0), (3000, 0)))])
+    assert ids(d, 'US-0197') == ['sgmne1']
+    # an id-proven park (US-4556 Appalachian Trail) gains its own line; the lock and the id report hold only the id's records
+    d, info, proof, other, locks = run({'US-4556': park('Appalachian Trail National Scenic Trail', 'National Scenic Trail', dy_m=40 * FT,
+                                                    link={'id_kind': 'NPS unit code', 'id_value': 'APPA'})},
+                                   [rec('PAD-US', '3525', 'Appalachian National Scenic Trail', Loc_Nm='APPA', Mang_Name='NPS'),
+                                    trec('4556', 'Appalachian National Scenic Trail')])
+    k = d['parks']['US-4556']
+    assert [(x[0], x[3]) for x in k['m']] == [('3525', 'id NPS unit code APPA'), ('trl4556', 'trail bot file+pin')], k['m']
+    assert by(d, 'US-4556') == 'id' and k['match']['evidence']['trail_file_proofs'][0]['pin_ft'] == 40 and info['gate']['ok']
+    assert [r['layer'] for r in locks['US-4556']] == ['PAD-US'] and not any('trl4556' in x for x in other)
+    assert [x.split(',')[-4] for x in proof if ',trl4556,' in x] == ['']   # the lock column: a trail file is never in a lock
+    # the rule rows are in the table and name this test (a removed row is noticed)
+    rows = {r['id']: r['test'] for r in RULES['rules']}
+    assert all(rows.get(x) == 'test_trail_bot_file' for x in ('trail_bot_file', 'trail_bot_pin', 'trail_bot_name_not_proof')), rows
+
+
+def test_line_own_proof():
+    # rule line_own_proof (27 Nov 2026): a line of any layer joins only on its own proof; it never comes along with land
+    tr = ('Root River State Trail', 'State Trail')
+    area = rec('sgxx', 'sgxx1', 'Root River')
+    far = lambda key, name: lrec('sgxx', key, name, ((-3000, 2000), (3000, 2000)))   # 2 km from the pin
+    assert ids(one(*tr, [area, far('sgxx2', 'Root River')]), 'US-1') == ['sgxx1']               # same name group: no
+    assert ids(one(*tr, [area, far('sgxx2', 'Root River East')]), 'US-1') == ['sgxx1']          # a piece word: no
+    unit = rec('sgmne', 'sgmne1', 'Root River State Trail', mgtprgprj='TRL00001')
+    d = one(*tr, [unit, lrec('sgmne', 'sgmne2', 'Root River State Trail', ((50000, 0), (53000, 0)), mgtprgprj='TRL00001')])
+    assert ids(d, 'US-1') == ['sgmne1']                                                         # one unit value: no
+    mk = lambda k, u, rg=None: rec('sgmna', k, 'Swan Lake WMA', rg, uniqueid=u, lam_program_project_code='WMA01295', unit_name='Swan Lake WMA')
+    pl = lrec('sgmna', 'sgmna2', 'Swan Lake WMA', ((-3000, 3000), (3000, 3000)), uniqueid='WMA0129501',
+              lam_program_project_code='WMA01295', unit_name='Swan Lake WMA')
+    d = one('Swan Lake Wildlife Management Area', 'Wildlife Management Area', [mk('sgmna1', 'WMA0129500'), pl],
+            link={'id_kind': 'MN DNR unit id', 'id_value': 'WMA0129500'})
+    assert ids(d, 'US-1') == ['sgmna0129500']                                                   # a project piece: no
+    u = 'https://www.dec.ny.gov/lands/37372.html'
+    d = one('Michigan Hill State Forest', 'State Forest',
+            [rec('sgnya', 'sgnya1', 'Michigan Hill State Forest', URL=u),
+             lrec('sgnya', 'sgnya2', 'Michigan Hill State Forest', ((-3000, 4000), (3000, 4000)), URL='')],
+            link={'id_kind': 'NY DEC page number', 'id_value': '37372'})
+    assert ids(d, 'US-1') == ['sgnya1']                                                         # a piece of an id unit: no
+    # a line that passes its own proof (exact name, pin within 100 ft) still joins beside the land (Utah sgute: unchanged)
+    d = one(*tr, [area, lrec('sgxx', 'sgxx2', 'Root River', ((-3000, 10), (3000, 10)))])
+    assert ids(d, 'US-1') == ['sgxx1', 'sgxx2']
+    # a line carrying the park's id itself joins by id at any distance the id rules allow
+    d = one('Glacial Lakes State Park', 'State Park', [lrec('sgmne', 'sgmne1', 'Glacial Lakes', ((-3000, 2000), (3000, 2000)),
+                                                            mgtprgprj='SPK00170')],
+            link={'id_kind': 'MN DNR unit id', 'id_value': 'SPK00170'})
+    assert ids(d, 'US-1') == ['sgmne1'] and by(d, 'US-1') == 'id'
+
+
+def test_key_text_sha256():
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Crow Wing State Park', 'State Park')
+        f.files['US-MN'] = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
+        assert f.run() == 0
+        with gzip.open(f.p('out/US-MN.json.gz'), 'rb') as g: text = g.read()
+        import hashlib
+        assert f.info()['key_text_sha256'] == hashlib.sha256(text).hexdigest()
+    finally: f.done()
+
+
+# ------------------------------------------------------------------------------------------------------------- areas, Canada
+def ca_park(name, kind, area='CA-QC', **k):
+    return dict(park(name, kind, **k), area=area)
+
+
+def ca_one(name, kind, records, area='CA-QC', link=None, dx=0.0):
+    f = Fix()
+    try:
+        f.parks['CA-1'] = ca_park(name, kind, area, link=link, dx_m=dx)
+        f.files[area] = records
+        assert f.run(areas=[area]) == 0
+        return f.key(area)
+    finally: f.done()
+
+
+def test_ca_area_and_neighbours():
+    assert V.area_of('mn') == 'US-MN' and V.area_of('CA-ON') == 'CA-ON' and V.area_label('US-MN') == 'MN' and V.area_label('CA-QC') == 'CA-QC'
+    assert V.area_neighbours('CA-PE', RULES) == ['CA-NB', 'CA-NS'] and 'US-WI' in V.area_neighbours('US-MN', RULES)
+    f = Fix()
+    try:   # an NB park whose land is in the Québec file (a neighbour): found, and the files are named by area
+        f.parks['CA-1'] = ca_park('Mount Carleton Provincial Park', 'Provincial Park', 'CA-NB')
+        f.files['CA-NB'] = [rec('CPCAD', '9', 'Other Place', ring(50000))]
+        f.files['CA-QC'] = [rec('CPCAD', '7', 'Mount Carleton Provincial Park')]
+        assert f.run(areas=['CA-NB']) == 0 and os.path.exists(f.p('out/CA-NB.json.gz'))
+        assert ids(f.key('CA-NB'), 'CA-1') == ['7'] and f.key('CA-NB')['st'] == 'CA-NB'
+        run = json.load(open(f.p('out/v2-run.json')))
+        assert run['areas']['CA-NB'] is not None and 'CA-NB' in run['states'] and f.csv('v2-proof.csv')[1].split(',')[1] == 'CA-NB'
+    finally: f.done()
+    # a page address in a record's web field is the park's id (Manitoba Parks URL, measured)
+    d = ca_one('Hecla / Grindstone Provincial Park', 'Provincial Park',
+               [rec('Manitoba Par', 'Manitoba Par:1', 'Hecla/Grindstone Provincial Park', ring(3000),
+                    URL='https://www.gov.mb.ca/sd/parks/park-maps-and-locations/central/hecla.html')], area='CA-MB',
+               link={'id_kind': 'page address', 'id_value': 'GOV.MB.CA/SD/PARKS/PARK-MAPS-AND-LOCATIONS/CENTRAL/HECLA.HTML'})
+    assert ids(d, 'CA-1') == ['Manitoba Par:1'] and by(d, 'CA-1') == 'id'
+
+
+def test_layer_copy_dropped():
+    f = Fix()
+    try:   # CA-QC: 'Québec prote' and 'Qu_bec prote' are one layer read twice: one copy is kept
+        f.parks['CA-1'] = ca_park('Cap Tourmente National Wildlife Area', 'National Wildlife Area')
+        f.files['CA-QC'] = [rec('Qu_bec prote', 'Qu_bec prote:1', 'Cap Tourmente National Wildlife Area'),
+                            rec('Québec prote', 'Québec prote:1', 'Cap Tourmente National Wildlife Area')]
+        u = 'https://example/Aires_protegees/MapServer/23/query'
+        f.urls['CA-QC'] = {'Qu_bec prote': u, 'Québec prote': u}
+        assert f.run(areas=['CA-QC']) == 0
+        assert ids(f.key('CA-QC'), 'CA-1') == ['Qu_bec prote:1'] and f.info('CA-QC')['records_dropped'] == {'layer_copy Québec prote': 1}
+    finally: f.done()
+
+
+def test_bilingual_name():
+    en, fr = 'Cap Tourmente National Wildlife Area', 'Réserve nationale de faune du Cap-Tourmente'
+    both = rec('CPCAD', '22109', en, ring(9000), NAME_E=en, NAME_F=fr)      # carries both names, 9 km off the pin
+    reg = rec('Qu_bec prote', 'Qu_bec prote:2872', '', TOPONYME=fr)        # the French name only, under the pin
+    d = ca_one(en, 'National Wildlife Area', [both, reg])
+    assert ids(d, 'CA-1') == ['Qu_bec prote:2872'] and by(d, 'CA-1') == 'name+pin'
+    assert d['parks']['CA-1']['m'][0][1] == fr                              # the record's own name, never ''
+    # no record carrying both names: the two-language kind rule still sees it (same place words, same kind)
+    assert by(ca_one(en, 'National Wildlife Area', [reg]), 'CA-1') == 'two-language name+pin'
+    reg2 = rec('Qu_bec prote', 'Qu_bec prote:9', '', TOPONYME='Réserve nationale de faune du Lac-Saint-François')
+    one_name = rec('CPCAD', '22109', en, ring(9000), NAME_E=en, NAME_F='None')
+    assert ca_one(en, 'National Wildlife Area', [one_name, reg2])['parks']['CA-1']['m'] == []   # never a guess
+
+
+def test_ca_kind_words():
+    r = [rec('CPCAD', '22022', 'Forillon National Park Of Canada')]
+    d = ca_one('Forillon National Park', 'National Park', r)
+    assert ids(d, 'CA-1') == ['22022'] and by(d, 'CA-1') == 'longer or shorter name+pin'
+    assert one('Forillon National Park', 'National Park', r)['parks']['US-1']['m'] == []   # US areas: not their words
+    # a longer-or-shorter name never joins a place of another kind (CA-0852 Basin Head)
+    d = ca_one('Basin Head Provincial Park', 'Provincial Park', [rec('CPCAD', '21882', 'Basin Head Marine Protected Area')], area='CA-PE')
+    assert d['parks']['CA-1']['m'] == []
+
+
+def test_stream_read_same():
+    d = tempfile.mkdtemp(prefix='v2stream-')
+    try:
+        recs = [rec('sgmnd', f'sgmnd{i}', f'Park {i}', ring(i * 1000), AREA_NAME=f'Park {i}', NOT_USED='x' * 50) for i in range(400)]
+        recs.append(dict(rec('PAD-US', '9', 'Lake', ring()), rings=json.dumps([ring()])))      # rings written as text
+        doc = {'kpcstore_layers': 1, 'area': 'US-MN', 'made': 'm', 'manifest': {'sgmnd': {'complete': True}}, 'records': recs,
+               'after': 'a key after the records'}
+        p = os.path.join(d, 'x.json.gz')
+        with gzip.open(p, 'wt') as f: json.dump(doc, f)
+        got = V.read_layer_file(p, RULES)
+        assert got['made'] == 'm' and got['after'] == 'a key after the records' and len(got['records']) == 401
+        a, b = got['records'][3], recs[3]
+        assert a['key'] == b['key'] and 'NOT_USED' not in a['attributes'] and a['attributes']['AREA_NAME'] == 'Park 3'
+        assert V.decode_rings(a['rings'], a['q']) == V.decode_rings(b['rings'], b['q'])
+        assert V.decode_rings(got['records'][-1]['rings'], 6) == V.decode_rings([ring()], 6)
+    finally: shutil.rmtree(d, ignore_errors=True)
+
+
+def test_size_in_hectares():
+    # owner 26 Nov 9:53 PM: Canadian sizes in hectares / km2 prove by size. Pin 3 km off: only the size can prove it.
+    sz = {'acres': 2471.05, 'witness': 'agency_document'}
+    d = ca_one('Cowan Bog Ecological Reserve', 'Ecological Reserve', [rec('CPCAD', '17740', 'Cowan Bog Ecological Reserve', ring(3000, half_w=1600), O_AREA_HA='1000')],
+               area='CA-MB')
+    assert d['parks']['CA-1']['m'] == []
+    f = Fix()
+    try:
+        f.parks['CA-1'] = dict(ca_park('Cowan Bog Ecological Reserve', 'Ecological Reserve', 'CA-MB'), size=sz)
+        f.files['CA-MB'] = [rec('CPCAD', '17740', 'Cowan Bog Ecological Reserve', ring(3000, half_w=1600), O_AREA_HA='1000'),
+                            rec('Qu_bec Zone', 'Qu_bec Zone:1', 'Zec Varin', ring(90000), SUPERFICIE_KM2='10')]
+        assert f.run(areas=['CA-MB']) == 0
+        d = f.key('CA-MB')
+        assert ids(d, 'CA-1') == ['17740'] and by(d, 'CA-1') == 'name+size' and d['parks']['CA-1']['m'][0][2] == 2471
+    finally: f.done()
+    pl = pool_of(rec('Qu_bec Zone', 'Qu_bec Zone:1', 'Zec Varin', ring(half_w=1600), SUPERFICIE_KM2='10'))
+    assert round(V.agency_acres(pl.recs[0], RULES)) == 2471
+
+
+def test_page_size_unit():
+    # FACTS-AUDIT F1: CA-0062 Nahanni "30,000 square kilometers" was saved as 30,000 acres; the text decides
+    assert round(V.size_from_text('30,000 square kilometers', RULES)) == 7413150
+    assert round(V.size_from_text('568.71 hectares', RULES), 1) == 1405.3 and V.size_from_text('12,388 acres', RULES) == 12388
+    assert round(V.size_from_text('1,245 km2', RULES)) == 307646 and V.size_from_text('240 square mile', RULES) == 153600
+    assert V.size_from_text('606 + 360 acres', RULES) is None and V.size_from_text('about 40', RULES) is None
+    assert V.size_from_text('1.5 million hectare', RULES) == 1.5e6 * 2.47105
+    p = {'name': 'X', 'page': {'own_page': 'own', 'sizes': [{'acres': 30000, 'as': '30,000 square kilometers', 'total': True, 'clean': True}]}}
+    assert [round(x) for x in V.size_witnesses(p, set(), RULES)] == [7413150]
+    p['page']['sizes'][0]['as'] = '30,000 parsecs'
+    assert V.size_witnesses(p, set(), RULES) == []                        # a unit it cannot tell: not used
+
+
+def test_two_language_kind():
+    rules = V.rules_for_area(RULES, 'CA-QC')
+    assert V.kind_place('Philipsburg Migratory Bird Sanctuary', rules) == V.kind_place("Refuge d'oiseaux migrateurs de Philipsburg", rules)
+    assert V.kind_place('Cap Tourmente National Wildlife Area', rules) == V.kind_place('Réserve nationale de faune du Cap-Tourmente', rules)
+    assert V.kind_place("Réserve naturelle de l'Archipel-du-Mitan Nature Reserve", rules) == V.kind_place('Archipel-du-Mitan Nature Reserve', rules)
+    assert V.kind_place('Grass River Provincial Park', rules) != V.kind_place('Parc provincial de la rivière Grass', rules)   # never translated
+    assert V.kind_place('Pope National Wildlife Area', rules) != V.kind_place('Parc national de Pope', rules)                # another kind
+    assert V.kind_place('Pope National Wildlife Area', RULES) is None                                                         # US areas: no
+    fr = rec('Qu_bec prote', 'Qu_bec prote:1', '', TOPONYME="Refuge d'oiseaux migrateurs de Philipsburg")
+    d = ca_one('Philipsburg Migratory Bird Sanctuary', 'Bird Sanctuary', [fr])
+    assert ids(d, 'CA-1') == ['Qu_bec prote:1'] and by(d, 'CA-1') == 'two-language name+pin'
+    assert ca_one('Philipsburg Migratory Bird Sanctuary', 'Bird Sanctuary', [dict(fr, rings=[ring(3000)])])['parks']['CA-1']['m'] == []
+    assert V.kind_place('Lac-des-Elfes Nature Reserve', rules)[1] == ('lac', 'elfes')
+
+
+def test_same_apostrophe():
+    fresh = dict(RULES, _full={})                                          # no memo from earlier calls
+    assert V.full('Pu\u2019tlaqne\u2019katik', fresh) == V.full("Pu'tlaqne'katik", fresh) == 'pu tlaqne katik'
+    assert V.norm_val('a\u2019b') == "A'B"
+    d = ca_one('Pu\u2019tlaqne\u2019katik (Shingle Lake) Nature Reserve', 'Nature Reserve',
+               [rec('CPCAD', '7', "Pu'tlaqne'katik Nature Reserve")], area='CA-NS')
+    assert ids(d, 'CA-1') == ['7']
+
+
+def test_no_pin_park():
+    assert V.pin_of({'pin': [100.856, -49.514]}) is None and V.pin_of({'pin': [0, 0]}) is None and V.pin_of({}) is None
+    assert V.pin_of({'pin': [45, -94]}) == (45.0, -94.0)
+    def case(records, link=None, size=None, pin=None):
+        f = Fix()
+        try:
+            f.parks['CA-1'] = dict(ca_park('Maple Lake Wildlife Management Area', 'Wildlife Management Area', 'CA-MB', link=link, size=size), pin=pin)
+            f.files['CA-MB'] = records
+            assert f.run(areas=['CA-MB']) == 0
+            return f.key('CA-MB')
+        finally: f.done()
+    r = rec('CPCAD', '9', 'Maple Lake Wildlife Management Area', ring(half_w=500), O_AREA_HA='100')
+    d = case([r], pin=[100.856, -49.514])                               # a pin that cannot be: no pin rule may prove it
+    assert d['parks']['CA-1']['m'] == [] and why(d, 'CA-1') == 'park_has_no_pin'
+    d = case([r], size={'acres': 247.1, 'witness': 'agency_document'}, pin=[0, 0])
+    assert ids(d, 'CA-1') == ['9'] and by(d, 'CA-1') == 'name+size'   # a size still can
+    lk = {'id_kind': 'page address', 'id_value': 'GOV.MB.CA/SD/PARKS/MAPLE.HTML'}
+    rid = rec('Manitoba Par', 'Manitoba Par:4', 'Maple Lake Wildlife Management Area', URL='https://www.gov.mb.ca/sd/parks/maple.html')
+    d = case([rid], link=lk)
+    assert ids(d, 'CA-1') == ['Manitoba Par:4'] and d['parks']['CA-1']['match']['evidence']['no_pin'] is True
+    other = rec('Manitoba Par', 'Manitoba Par:4', 'Other Place Park', URL='https://www.gov.mb.ca/sd/parks/maple.html')
+    assert case([other], link=lk)['parks']['CA-1']['m'] == []            # the id record must carry the park's full name
+
+
+def test_two_sources_independent():
+    a = rec('CPCAD', '1', 'Sault-à-la-Puce Nature Reserve', O_AREA_HA='10')
+    b = rec('Qu_bec prote', 'Qu_bec prote:1', '', ring(10), TOPONYME='Sault-à-la-Puce Nature Reserve', HA_LEGAL='10.3')
+    c = rec('Qu_bec recog', 'Qu_bec recog:1', '', ring(20), TOPONYME='Sault-à-la-Puce Nature Reserve', HA_LEGAL='10')
+    def case(recs, urls):
+        f = Fix()
+        try:
+            f.parks['CA-1'] = ca_park('Sault-à-la-Puce Nature Reserve', 'Nature Reserve', dx_m=3000)
+            f.files['CA-QC'] = recs; f.urls['CA-QC'] = urls
+            assert f.run(areas=['CA-QC']) == 0
+            return f.key('CA-QC')
+        finally: f.done()
+    qc = 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/'
+    d = case([b, c], {'Qu_bec prote': qc + '23/query', 'Qu_bec recog': qc + '12/query'})
+    assert d['parks']['CA-1']['m'] == []                                 # one register read twice is one source
+    cp = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0/query'
+    d = case([a, b], {'CPCAD': cp, 'Qu_bec prote': qc + '23/query'})
+    assert by(d, 'CA-1') == 'name+two_sources'
+    e = d['parks']['CA-1']['match']['evidence']['proofs'][0]             # both services shown to the grader
+    assert {e['service_a'], e['service_b']} == {V.service_of(cp), V.service_of(qc + '23/query')}
+    assert case([a, b], {'CPCAD': cp})['parks']['CA-1']['m'] == []       # 27 Nov 2026: one service blank = unknown source, no proof
+    assert case([a, b], {})['parks']['CA-1']['m'] == []                  # both blank: no proof
+
+
+def test_licence_kept():
+    f = Fix()
+    try:   # NY sgnyd (Catskill): allowed for matching, never for publishing
+        f.parks['US-1'] = park('Catskill Park', 'State Park')
+        f.parks['US-2'] = park('Crow Wing State Park', 'State Park', dx_m=50000)
+        f.files['US-MN'] = [dict(rec('sgnyd', 'sgnyd1', 'Catskill Park'), publishable=False, licence_class='OTHER RESTRICTED'),
+                            rec('PAD-US', '5', 'Catskill Park'),
+                            dict(rec('sgnyb', 'sgnyb9', 'Crow Wing', ring(50000)), publishable=False, licence_class='RESTRICTED IN WRITING')]
+        assert f.run() == 0
+        d = f.key()
+        assert d['parks']['US-1']['share'] == 'part' and d['parks']['US-1']['private'] == ['sgnyd1']
+        assert d['parks']['US-2']['share'] == 'none' and d['parks']['US-2']['private'] == ['sgnyb9']
+        rows = [l.split(',') for l in f.csv('v2-proof.csv')[1:]]
+        assert {(r[2], r[-2], r[-1]) for r in rows} == {('sgnyd1', 'false', 'OTHER RESTRICTED'), ('5', 'true', 'OPEN'),
+                                                        ('sgnyb9', 'false', 'RESTRICTED IN WRITING')}
+        info = f.info()
+        assert info['share'] == {'all': 0, 'part': 1, 'none': 1} and info['joined_by_licence']['OTHER RESTRICTED'] == 1
+        f.files['US-MN'][0] = {k: v for k, v in f.files['US-MN'][0].items() if k != 'publishable'}   # no value: fail closed
+        assert f.run() == 4 and f.info()['gate']['licence_kept'] == 1
+        f.files['US-MN'][0] = dict(f.files['US-MN'][0], publishable=False, licence_class='')
+        assert f.run() == 4 and f.info()['gate']['licence_kept'] == 1   # private with no class: refused
+    finally: f.done()
+
+
+# ------------------------------------------------------------------------------------------------------------- step 3
+def test_exact_name_and_kind_word():
+    d = one('Crow Wing State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing')])
+    assert ids(d, 'US-1') == ['sgmnd1'] and by(d, 'US-1') == 'name+pin'
+    d = one('Itasca State Park', 'State Park', [rec('sgnyb', 'sgnyb1', 'Itasca SP')])
+    assert ids(d, 'US-1') == ['sgnyb1'] and by(d, 'US-1') == 'name+pin'   # 'SP' written out is the exact name
+    assert V.full('The Saddles  State-Forest', RULES) == 'saddles state forest'
+    assert V.generic('Wildlife Management Area', RULES) and V.generic('Unit IV', RULES) and not V.generic('Crow Wing', RULES)
+
+
+def test_possessive_second_try():
+    assert V.full_ps("DEVIL'S TRACK", RULES) == V.full('Devils Track', RULES) != V.full("DEVIL'S TRACK", RULES)
+    d = one("Knox's Headquarters State Historic Site", 'State Historic Site', [rec('PAD-US', '237417', 'Knox Headquarters State Historic Site')])
+    assert ids(d, 'US-1') == ['237417']                                   # first try: single letters set aside (US-10048)
+    d = one("Knox's Headquarters State Historic Site", 'State Historic Site', [rec('sgnyb', 'sgnyb1', 'Knoxs Headquarters State Historic Site')])
+    assert ids(d, 'US-1') == ['sgnyb1']                                   # second try: the possessive as one word
+    d = one("Knox's", '', [rec('sgnyb', 'sgnyb2', 'Knox')])
+    assert d['parks']['US-1']['m'] == []                                  # one real word: never
+    d = one("Knox's Headquarters State Historic Site", 'State Historic Site', [rec('PAD-US', '237417', 'Knox Headquarters State Historic Site')], dx=3000)
+    assert d['parks']['US-1']['m'] == []                                  # still needs its second proof
+
+
+def test_wildlife_and_fish_refuge():
+    d = one('Upper Mississippi River National Wildlife Refuge', 'National Wildlife Refuge',
+            [rec('sgmng', 'sgmng1009', 'UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE')])
+    assert ids(d, 'US-1') == ['sgmng1009'] and by(d, 'US-1') == 'name+pin'
+    d = one('Upper Mississippi River National Wildlife Refuge', 'National Wildlife Refuge',
+            [rec('fws', 'fws7', 'N/A WPA, Upper Mississippi Tract', ORGNAME='UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE', INTTYPE1='O')])
+    assert ids(d, 'US-1') == ['fws7']                                     # found by its second name field (ORGNAME)
+
+
+def test_name_alone_never_joins():
+    # US-4236 Upper Mississippi: the name fits, the pin is 350 m outside the outline, no size proves it: pin only
+    d = one('Upper Mississippi River National Wildlife Refuge', 'National Wildlife Refuge',
+            [rec('sgmng', 'sgmng1009', 'UPPER MISSISSIPPI RIVER NATIONAL WILDLIFE AND FISH REFUGE', ring(half_w=200))], dx=550)
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'name_but_no_pin_or_size_proof'
+    d = one('Lost Lake State Forest', 'State Forest', [rec('sgmnf', 'sgmnf1', 'Lost Lake State Forest')], dx=5000)
+    assert d['parks']['US-1']['m'] == []
+
+
+def test_pin_within_100_m():
+    d = one('Crow Wing State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing', ring(half_w=200))], dx=260)
+    assert ids(d, 'US-1') == ['sgmnd1'] and d['parks']['US-1']['match']['evidence']['proofs'][0]['pin_m'] == 60
+    d = one('Crow Wing State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing', ring(half_w=200))], dx=350)
+    assert d['parks']['US-1']['m'] == []
+    d = one('Crow Wing State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing', ring(half_w=200))], dx=210)
+    assert ids(d, 'US-1') == ['sgmnd1']                                   # 10 m out
+
+
+def test_thin_strip_vs_small_square():
+    sq = V.decode_rings([ring(half_w=168.5)], 6)                         # a true 28-acre square
+    strip = V.decode_rings([ring(half_w=1500, half_h=12.5)], 6)          # a 25 m strip, 3 km long
+    assert abs(V.acres_of(sq) - 28) < 0.5 and not V.too_thin(sq, RULES) and V.too_thin(strip, RULES)
+    d = one('Crow Wing State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing', ring(half_w=168.5))], dx=218)
+    assert ids(d, 'US-1') == ['sgmnd1']                                   # 50 m outside the small square: measurable
+    d = one('Elm Nook State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Elm Nook', ring(half_w=85))], dx=175)
+    assert ids(d, 'US-1') == ['sgmnd1']                                   # a 7-acre square, 90 m out: not a strip
+    d = one('Luce Line State Trail', 'State Trail', [rec('sgmnf', 'sgmnf1', 'Luce Line', ring(half_w=1500, half_h=12.5))], dy=62.5)
+    assert d['parks']['US-1']['m'] == []                                  # 50 m beside a 25 m strip: more than its own width
+    d = one('Luce Line State Trail', 'State Trail', [rec('sgmnf', 'sgmnf1', 'Luce Line', ring(half_w=1500, half_h=12.5))], dy=22.5)
+    assert ids(d, 'US-1') == ['sgmnf1']                                   # 10 m beside it (US-9102 Swallow Bluffs: 4 m from 55 m)
+
+
+def test_name_and_size_join():
+    sz = {'acres': 1000.0, 'witness': 'agency_document'}
+    big = lambda ac: [rec('PAD-US', '3040', 'Chippewa National Forest', ring(half_w=1300), GIS_Acres=ac)]
+    d = one('Chippewa National Forest', 'National Forest', big(1050), dx=2000, size=sz)
+    assert ids(d, 'US-1') == ['3040'] and by(d, 'US-1') == 'name+size'
+    assert one('Chippewa National Forest', 'National Forest', big(1200), dx=2000, size=sz)['parks']['US-1']['m'] == []
+    assert one('Chippewa National Forest', 'National Forest', big(1050), dx=2000, size={'acres': 1000.0, 'witness': 'same_record'})['parks']['US-1']['m'] == []
+    f = Fix()
+    try:   # an own-page clean total counts as an agency document
+        f.parks['US-1'] = park('Chippewa National Forest', 'National Forest', dx_m=2000)
+        f.parks['US-1']['page'] = {'own_page': 'own', 'sizes': [{'acres': 1000.0, 'total': True, 'clean': True}]}
+        f.parks['US-1']['link'] = {'page_kind': 'own page', 'site': 'agency (known)'}
+        f.files['US-MN'] = big(1050)
+        assert f.run() == 0 and by(f.key(), 'US-1') == 'name+size'
+    finally: f.done()
+    f = Fix()
+    try:   # two parks of the state share the name: no size can pick between them
+        f.parks['US-1'] = park('Chippewa National Forest', 'National Forest', dx_m=2000, size=sz)
+        f.parks['US-2'] = park('Chippewa National Forest', 'National Forest', dx_m=90000)
+        f.files['US-MN'] = big(1050)
+        assert f.run() == 0 and f.key()['parks']['US-1']['m'] == []
+    finally: f.done()
+
+
+TWO_URLS = {'PAD-US': 'https://a.example.gov/arcgis/rest/services/PADUS/FeatureServer/0/query',     # two map services
+            'sgnyb': 'https://b.example.gov/arcgis/rest/services/NYS_Parks/FeatureServer/0/query'}
+
+
+def test_name_two_sources():
+    rs = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=900), GIS_Acres=500),
+          rec('sgnyb', 'sgnyb486', 'Harriman', ring(half_w=880), Acres=505)]
+    d = one('Harriman State Park', 'State Park', rs, dx=1500, urls=TWO_URLS)
+    assert ids(d, 'US-1') == ['237514', 'sgnyb486'] and by(d, 'US-1') == 'name+two_sources'
+    e = d['parks']['US-1']['match']['evidence']['proofs'][0]
+    assert (e['service_a'], e['service_b']) == (V.service_of(TWO_URLS['PAD-US']), V.service_of(TWO_URLS['sgnyb']))
+    rs = [rec('sgnyb', 'sgnyb1', 'Harriman', ring(half_w=900), Acres=500), rec('sgnyb', 'sgnyb2', 'Harriman', ring(half_w=880), Acres=505)]
+    assert one('Harriman State Park', 'State Park', rs, dx=1500)['parks']['US-1']['m'] == []   # one layer is one source
+    rs = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=900), GIS_Acres=500),
+          rec('sgnyb', 'sgnyb486', 'Harriman', ring(half_w=880), Acres=575)]
+    assert one('Harriman State Park', 'State Park', rs, dx=1500, urls=TWO_URLS)['parks']['US-1']['m'] == []   # sizes 15% apart: no
+    rs = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=200), GIS_Acres=30),
+          rec('sgnyb', 'sgnyb486', 'Harriman', ring(1100, half_w=200), Acres=31)]
+    assert one('Harriman State Park', 'State Park', rs, dx=550, urls=TWO_URLS)['parks']['US-1']['m'] == []    # boxes apart: no
+
+
+def test_two_sources_not_a_copy():
+    """27 Nov 2026, grader: two copies of one record (hma/sgnvi) proved Nevada herd areas with the pin outside."""
+    def pair(sa, sb, ka='237514', kb='sgnyb486', urls=TWO_URLS):
+        rs = [rec('PAD-US', ka, 'Harriman State Park', ring(half_w=900), GIS_Acres=sa), rec('sgnyb', kb, 'Harriman', ring(half_w=880), Acres=sb)]
+        return one('Harriman State Park', 'State Park', rs, dx=1500, urls=urls)
+    d = pair(500, 505)
+    assert by(d, 'US-1') == 'name+two_sources'                                       # two services, sizes 1% apart: proof
+    e = d['parks']['US-1']['match']['evidence']['proofs'][0]
+    assert e['service_a'] and e['service_b'] and e['service_a'] != e['service_b']
+    assert by(pair(500, 500.5), 'US-1') == 'name+two_sources'                        # half an acre apart: two measures
+    assert pair(500, 500)['parks']['US-1']['m'] == []                                # identical acres: one record twice
+    assert pair(500, 500.05)['parks']['US-1']['m'] == []                             # closer than two_sources_same_acres
+    assert pair(500, 505, kb='237514')['parks']['US-1']['m'] == []                   # same record id in both layers
+    assert pair(500, 505, urls={'PAD-US': TWO_URLS['PAD-US']})['parks']['US-1']['m'] == []   # one service blank
+    assert pair(500, 505, urls={})['parks']['US-1']['m'] == []                       # both blank
+    # the same agency id (tie MN DNR unit id) on records of two layers: one record twice
+    u = {'sgmnd': 'https://a.example.gov/arcgis/rest/services/DNR_A/MapServer/0', 'sgmnf': 'https://b.example.gov/arcgis/rest/services/DNR_B/MapServer/0'}
+    def dnr(pa, pb):
+        rs = [rec('sgmnd', 'sgmnd1', 'Harriman State Park', ring(half_w=900), PGRM_PROJECT=pa, Acres=500),
+              rec('sgmnf', 'sgmnf2', 'Harriman State Park', ring(half_w=880), PGRM_PROJECT=pb, Acres=505)]
+        return one('Harriman State Park', 'State Park', rs, dx=1500, urls=u)
+    assert by(dnr('SPK00123', 'SPK00456'), 'US-1') == 'name+two_sources'
+    assert dnr('SPK00123', 'SPK00123')['parks']['US-1']['m'] == []
+
+
+def test_name_and_size_any_layer():
+    sz = {'acres': 2_092_768.0, 'witness': 'agency_document'}
+    rs = [rec('PAD-US', '3040', 'Superior National Forest', ring(half_w=47000), GIS_Acres=2_093_610, FeatClass='Fee'),
+          rec('sgmng', 'sgmng1', 'Superior National Forest', ring(half_w=50000))]
+    d = one('Superior National Forest', 'National Forest', rs, dx=52000, size=sz)
+    assert ids(d, 'US-1') == ['3040'] and by(d, 'US-1') == 'name+size'   # PAD-US's own total proves it, not the largest layer
+    d = one('Superior National Forest', 'National Forest', rs, size=sz)
+    e = d['parks']['US-1']['match']['evidence']
+    assert set(e['acres_by_layer']) == {'PAD-US', 'sgmng'} and d['parks']['US-1']['ac'] == max(e['acres_by_layer'].values())
+
+
+def test_water_only_refused():
+    d = one('Cedar Lake State Park', 'State Park', [rec('PAD-US', '5', 'Cedar Lake')])
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'water_only'
+    assert ids(one('Cedar Lake State Fishing Lake', 'State Fishing Lake', [rec('PAD-US', '5', 'Cedar Lake')]), 'US-1') == ['5']
+    d = one('Greenleaf Lake State Recreation Area', 'State Recreation Area',
+            [rec('sgmnd', 'sgmnd51', 'Greenleaf Lake', AREA_NAME='Greenleaf Lake', AREA_TYPE='State Recreation Area')])
+    assert ids(d, 'US-1') == ['sgmnd51']   # the agency files it as a State Recreation Area, not water
+
+
+def test_office_refused():
+    d = one('Laurentian Ranger District', 'National Forest', [rec('PAD-US', '2162', 'Laurentian Ranger District')])
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'office_only'
+
+
+def test_ny_dec_wild_forest():
+    d = one('Crystal Lake State Forest', 'State Forest', [rec('sgnya', 'sgnya72140', 'Crystal Lake Wild Forest')])
+    assert ids(d, 'US-1') == ['sgnya72140']
+    assert V.kind_swap_keys('lake wild forest', 'sgnya', RULES) == set()            # no real place word
+    assert V.kind_swap_keys('oak wild forest', 'sgnya', RULES) == set()             # 'oak' has fewer than 4 letters
+    assert V.kind_swap_keys('crystal lake wild forest', 'sgmnf', RULES) == set()    # NY DEC layer only
+
+
+def test_name_kind_swaps():
+    d = one('Canandaigua Lake State Park', 'State Park', [rec('sgnyb', 'sgnyb330', 'Canandaigua Lake Marine Park')])
+    assert ids(d, 'US-1') == ['sgnyb330'] and by(d, 'US-1') == 'name+pin'
+    d = one('Black Diamond State Trail', 'State Trail', [rec('sgnyb', 'sgnyb928', 'Black Diamond Trail', ring(half_w=300))])
+    assert ids(d, 'US-1') == ['sgnyb928'] and by(d, 'US-1') == 'name+pin'
+    assert one('Lake State Park', 'State Park', [rec('sgnyb', 'sgnyb1', 'Lake Marine Park')])['parks']['US-1']['m'] == []
+    d = one('Canandaigua Lake State Park', 'State Park', [rec('sgnyb', 'sgnyb330', 'Canandaigua Lake Marine Park')], dx=3000)
+    assert d['parks']['US-1']['m'] == []                                  # still needs its second proof
+
+
+def test_name_compound():
+    r = rec('sgscc', 'sgscc27', 'Buzzard Roost Heritage Preserve and Wildlife Management Area')
+    d = one('Buzzard Roost Heritage Preserve', 'Heritage Preserve', [r])
+    assert ids(d, 'US-1') == ['sgscc27'] and by(d, 'US-1') == 'name+pin'
+    d = one('Buzzard Roost Wildlife Management Area', 'Wildlife Management Area', [r])
+    assert ids(d, 'US-1') == ['sgscc27'] and by(d, 'US-1') == 'name+pin'
+    assert one('Buzzard Roost State Park', 'State Park', [r])['parks']['US-1']['m'] == []
+    f = Fix()
+    try:                                                                  # the record carries another park's full name: no
+        f.parks['US-1'] = park('Buzzard Roost Heritage Preserve', 'Heritage Preserve')
+        f.parks['US-2'] = park('Buzzard Roost Heritage Preserve and Wildlife Management Area', 'Heritage Preserve', dx_m=4000)
+        f.files['US-MN'] = [r]
+        assert f.run() == 0 and f.key()['parks']['US-1']['m'] == []
+    finally: f.done()
+
+
+def test_page_name():
+    lk = {'page_kind': 'own page', 'site': 'agency (known)', 'state_check': 'same state', 'name_match': 'strong',
+          'web_name': 'keystone woods wma', 'id_kind': 'page address', 'id_value': 'DNR.STATE.MN.US/WMAS/KEYSTONE-WOODS-WMA.HTML'}
+    r = rec('sgmnf', 'sgmnf5878', 'Keystone Woods WMA')
+    d = one('Keystone Wildlife Management Area', 'Wildlife Management Area', [r], link=lk)
+    assert ids(d, 'US-1') == ['sgmnf5878'] and by(d, 'US-1') == 'page name+pin'
+    assert one('Keystone Wildlife Management Area', 'Wildlife Management Area', [r], link=dict(lk, name_match='part'))['parks']['US-1']['m'] == []
+    assert one('Keystone Wildlife Management Area', 'Wildlife Management Area', [r], link=dict(lk, page_kind='list'))['parks']['US-1']['m'] == []
+    assert one('Keystone Wildlife Management Area', 'Wildlife Management Area', [r], link=lk, dx=3000)['parks']['US-1']['m'] == []
+
+
+def test_name_longer_or_shorter():
+    nick = "Nick’s Lake Campground and Day Use State Recreation Site"
+    d = one(nick, 'State Recreation Site', [rec('sgnya', 'sgnya72628', 'Nicks Lake Campground')])
+    assert ids(d, 'US-1') == ['sgnya72628'] and by(d, 'US-1') == 'longer or shorter name+pin'
+    d = one('Franny Reese State Park', 'State Park', [rec('PAD-US', '237501', 'Franny Reese Preserve State Park'),
+                                                     rec('PAD-US', '235540', 'Franny Reese State Park', ring(600, half_w=20))])
+    assert ids(d, 'US-1') == ['237501']               # the exact name proved nothing (273 m off); the longer name holds the pin
+    assert one(nick, 'State Recreation Site', [rec('sgnya', 'sgnya1', 'Nicks Lake Campground', ring(3000))])['parks']['US-1']['m'] == []
+    assert one('Bear Hill State Forest', 'State Forest', [rec('PAD-US', '1', 'Bear Hill State Park')])['parks']['US-1']['m'] == []
+    assert one('Bear Hill State Park', 'State Park', [rec('PAD-US', '1', 'Bear Hill Lake State Park')])['parks']['US-1']['m'] == []
+    d = one('Crow Wing State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing'), rec('PAD-US', '9', 'Crow Wing State Park Annex')])
+    assert ids(d, 'US-1') == ['sgmnd1'] and by(d, 'US-1') == 'name+pin'   # tried only when the exact names proved nothing
+    f = Fix()
+    try:                                               # another park's full name is refused first
+        f.parks['US-1'] = park('Franny Reese State Park', 'State Park')
+        f.parks['US-2'] = park('Franny Reese Preserve State Park', 'State Park', dx_m=8000)
+        f.files['US-MN'] = [rec('PAD-US', '237501', 'Franny Reese Preserve State Park')]
+        assert f.run() == 0 and f.key()['parks']['US-1']['m'] == []
+    finally: f.done()
+    d = one('Adirondack State Park', 'State Park', [rec('sgnyc', 'sgnyc1', '', ring(half_w=5000))])
+    assert ids(d, 'US-1') == ['sgnyc1'] and d['parks']['US-1']['m'][0][1] == 'Adirondack Park'   # the layer's fixed name
+    d = one('Lock 32 Canal State Park', 'State Park', [rec('sgnyb', 'sgnyb290', 'Canal Park Lock 32')])
+    assert ids(d, 'US-1') == ['sgnyb290']             # 75% of a 3-word core; the layer's kind (state parks) agrees
+    d = one('Lock 32 Canal State Park', 'State Park', [rec('PAD-US', '7', 'Lock 32 Canal Visitor Grounds', Des_Tp='SP')])
+    assert ids(d, 'US-1') == ['7']                    # the core begins the record's; the PAD-US designation type agrees
+    d = one('Elm Woods Protected Area', '', [rec('PAD-US', '8', 'Elm Woods')])
+    assert ids(d, 'US-1') == ['8']                    # 'protected' is set aside (core_drop)
+
+
+def test_name_words_run_together():
+    d = one('Roeliff Jansen Kill Multiple Use Area', 'Multiple Use Area', [rec('PAD-US', '237217', 'Roeliff Jansenkill Multiple Use Area')])
+    assert ids(d, 'US-1') == ['237217'] and by(d, 'US-1') == 'name+pin'
+    assert one('Roeliff Jansen Kill Multiple Use Area', 'Multiple Use Area', [rec('PAD-US', '1', 'Roeliff Jansenkill State Forest')])['parks']['US-1']['m'] == []
+    assert one('Roeliff Jansen Kill Multiple Use Area', 'Multiple Use Area', [rec('PAD-US', '237217', 'Roeliff Jansenkill Multiple Use Area')],
+               dx=3000)['parks']['US-1']['m'] == []
+
+
+def test_easement_by_name_refused():
+    rs = [rec('sgnyb', 'sgnyb407', 'Olana', Category='State Historic Site'), rec('sgnyb', 'sgnyb999', 'Olana', ring(300), Category='Conservation Easement')]
+    assert ids(one('Olana State Historic Site', 'State Historic Site', rs), 'US-1') == ['sgnyb407']
+    assert one('Elm Creek Lease Area', '', [rec('PAD-US', '5', 'Elm Creek Lease Area')])['parks']['US-1']['m'] == []   # a lease
+    f = Fix()
+    try:                                               # 27 Nov 2026: nor is an easement joined by an agency id (rule easement_not_by_id)
+        mn_valley(f)
+        f.files['US-MN'][0]['attributes']['Category'] = 'Easement'
+        assert f.run() == 0 and ids(f.key(), 'US-7145') == ['sgmne0340002', 'sgmne0340003']
+    finally: f.done()
+    # Virginia's own type field (matype) says it too
+    assert V.is_easement(pool_of(rec('sgvae', 'sgvae1', 'NPS Easement', MATYPE='Conservation Easement')).recs[0], RULES)
+    assert not V.is_easement(pool_of(rec('sgvae', 'sgvae2', 'NPS Easement', MATYPE='NPS Holding')).recs[0], RULES)
+
+
+def test_easement_not_by_id():
+    # the Petersburg case: one NPS unit code on a page link; the fee land and a 'NPS Easement' record 8 km away (type Conservation Easement)
+    nps = lambda c: f'http://www.nps.gov/{c}/index.htm'
+    link = {'id_kind': 'NPS unit code', 'id_value': 'PETE'}
+    rs = [rec('sgvae', 'sgvae1', 'Petersburg National Battlefield Park', LANDLINK=nps('pete'), MATYPE='National Park'),
+          rec('sgvae', 'sgvae2', 'NPS Easement', ring(8000), LANDLINK=nps('pete'), MATYPE='Conservation Easement'),
+          rec('sgvae', 'sgvae3', 'Petersburg National Battlefield Park', ring(1500), LANDLINK=nps('pete'), MATYPE='NPS Holding')]
+    d = one('Petersburg National Battlefield', 'National Battlefield', rs, link=link)
+    assert by(d, 'US-1') == 'id' and ids(d, 'US-1') == ['sgvae1', 'sgvae3']   # the fee units stay, the easement leaves
+    assert V.id_not_fee(pool_of(*rs).recs[1], RULES) and not V.id_not_fee(pool_of(*rs).recs[0], RULES)
+    # 27 Nov 2026 (whole-country check): only the TYPE FIELD refuses an id join. A lease in the name is the park (MI US-1527
+    # Newaygo State Park 'leased from Consumer's Energy'); a Fish and Wildlife interest code does not refuse an id either.
+    assert not V.id_not_fee(pool_of(rec('fws', 'fws1', 'A', INTTYPE1='E')).recs[0], RULES)
+    lease = rec('sgnyb', 'sgnyb9', "Newaygo State Park (leased from Consumer's Energy)", LANDLINK=nps('pete'), MATYPE='State Park')
+    assert not V.id_not_fee(pool_of(lease).recs[0], RULES)
+    d = one('Petersburg National Battlefield', 'National Battlefield', [rec('sgvae', 'sgvae9', "Petersburg (leased from the city)", LANDLINK=nps('pete'))], link=link)
+    assert ids(d, 'US-1') == ['sgvae9'] and by(d, 'US-1') == 'id'                 # its own id-matched leased record stays
+
+
+def test_facts_fallback_pota_list():
+    f = Fix()
+    try:   # a park the facts do not know: POTA's list gives the name and the pin; the type stays blank
+        f.parks['US-2'] = park('Oak Hill State Forest', 'State Forest')
+        f.lists['MN'] = ['US-1', 'US-2']
+        f.pota = {'US-1': {'name': 'Elm Ridge State Forest', 'latitude': LAT, 'longitude': LON}}
+        f.files['US-MN'] = [rec('sgnyb', 'sgnyb1', 'Elm Ridge State Forest', Category='State Forest')]
+        assert f.run() == 0
+        d = f.key()
+        assert d['parks']['US-1']['n'] == 'Elm Ridge State Forest' and not d['parks']['US-1']['t']
+        assert ids(d, 'US-1') == ['sgnyb1'] and d['parks']['US-2']['n'] == 'Oak Hill State Forest'   # a park the facts have is never overwritten
+    finally: f.done()
+
+
+def test_fws_interest_by_name():
+    nm = 'MONTEZUMA NATIONAL WILDLIFE REFUGE'
+    rs = [rec('fws', 'fws1', 'A', ORGNAME=nm, CMPXNAME='N/A', INTTYPE1='O', SUM_GISACRES=100),
+          rec('fws', 'fws2', 'A', ring(300), ORGNAME=nm, CMPXNAME='N/A', INTTYPE1='E', SUM_GISACRES=50)]
+    assert ids(one('Montezuma National Wildlife Refuge', 'National Wildlife Refuge', rs), 'US-1') == ['fws1']
+    assert one('Montezuma National Wildlife Refuge', 'National Wildlife Refuge', rs[1:])['parks']['US-1']['m'] == []
+
+
+def test_placeholder_not_unit():
+    nm = 'TAMARAC NATIONAL WILDLIFE REFUGE'
+    rs = [rec('fws', 'fws1', 'A WPA', ORGNAME=nm, CMPXNAME='N/A', INTTYPE1='O'),
+          rec('fws', 'fws2', 'B WPA', ring(3000), ORGNAME=nm, CMPXNAME='N/A', INTTYPE1='O')]
+    assert ids(one('Tamarac National Wildlife Refuge', 'National Wildlife Refuge', rs), 'US-1') == ['fws1']   # 'N/A' is no unit
+    home = 'https://www.dec.ny.gov/'
+    rs = [rec('sgnya', 'sgnya1', 'Bearpen Hill State Forest', URL=home), rec('sgnya', 'sgnya2', 'Bearpen Hill Wild Forest', ring(3000), URL=home)]
+    assert ids(one('Bearpen Hill State Forest', 'State Forest', rs), 'US-1') == ['sgnya1']                   # nor the bare home page
+    assert V.is_placeholder('N/A', RULES) and V.is_placeholder(home, RULES) and not V.is_placeholder(home + 'lands/8.html', RULES)
+
+
+def test_unit_pieces_taken():
+    u = lambda n: f'https://www.dec.ny.gov/lands/{n}.html'
+    rs = [rec('sgnya', 'sgnya1', 'Bearpen Hill State Forest', URL=u(1)), rec('sgnya', 'sgnya2', 'Bearpen Hill State Forest', ring(3000), URL=u(2)),
+          rec('sgnya', 'sgnya3', 'Bearpen Hill Wild Forest', ring(4000), URL=u(1))]
+    assert ids(one('Bearpen Hill State Forest', 'State Forest', rs), 'US-1') == ['sgnya1', 'sgnya3']   # one DEC page is one unit
+
+
+def test_far_pieces_not_joined():
+    rs = [rec('sgnyb', 'sgnyb1', 'Oak Hill'), rec('sgnyb', 'sgnyb2', 'Oak Hill', ring(6000)), rec('sgnyb', 'sgnyb3', 'Oak Hill', ring(15000)),
+          rec('sgnyb', 'sgnyb4', 'Oak Hill', ring(60000))]
+    assert ids(one('Oak Hill State Park', 'State Park', rs), 'US-1') == ['sgnyb1', 'sgnyb2', 'sgnyb3']   # a chain, never 60 km
+
+
+def test_unit_at_any_distance():
+    # US-0373 Windom WMD: fee tracts 80 km apart share the district (CMPXNAME): all are the district; its easement never is
+    nm = 'WINDOM WETLAND MANAGEMENT DISTRICT'
+    rs = [rec('fws', 'fws1', 'A WPA', ORGNAME='JACKSON COUNTY WPA', CMPXNAME=nm, INTTYPE1='O', RSL_TYPE='WPA', LIT='WJC'),
+          rec('fws', 'fws2', 'B WPA', ring(80000), ORGNAME='MURRAY COUNTY WPA', CMPXNAME=nm, INTTYPE1='O', RSL_TYPE='WPA', LIT='MRY'),
+          rec('fws', 'fws3', 'C WPA', ring(81000), ORGNAME='MURRAY COUNTY WPA', CMPXNAME=nm, INTTYPE1='E', RSL_TYPE='WPA', LIT='MRY')]
+    assert ids(one('Windom Wetland Management District', 'Wetland Management District', rs), 'US-1') == ['fws1', 'fws2']
+    # US-0367 Northern Tallgrass Prairie: no complex (N/A), so the refuge's own LIT is the unit
+    nm = 'NORTHERN TALLGRASS PRAIRIE NATIONAL WILDLIFE REFUGE'
+    rs = [rec('fws', 'fws1', 'A Unit', ORGNAME=nm, CMPXNAME='N/A', INTTYPE1='O', LIT='NTP'),
+          rec('fws', 'fws2', 'B Unit', ring(150000), ORGNAME=nm, CMPXNAME='N/A', INTTYPE1='O', LIT='NTP'),
+          rec('fws', 'fws3', 'C Unit', ring(151000), ORGNAME=nm, CMPXNAME='N/A', INTTYPE1='E', LIT='NTP')]
+    assert ids(one('Northern Tallgrass Prairie National Wildlife Refuge', 'National Wildlife Refuge', rs), 'US-1') == ['fws1', 'fws2']
+    # two same-named forests 300 km apart in a layer with no unit field never merge
+    rs = [rec('sgnyb', 'sgnyb1', 'Lost Lake State Forest'), rec('sgnyb', 'sgnyb2', 'Lost Lake State Forest', ring(300000))]
+    assert ids(one('Lost Lake State Forest', 'State Forest', rs), 'US-1') == ['sgnyb1']
+    # a unit far away still takes every refusal: another park's full name
+    f = Fix()
+    try:
+        u = 'https://www.dec.ny.gov/lands/9.html'
+        f.parks['US-1'] = park('Bearpen Hill State Forest', 'State Forest')
+        f.parks['US-2'] = park('Bearpen Hill Wild Forest', 'Wild Forest', dx_m=200000)
+        f.files['US-MN'] = [rec('sgnya', 'sgnya1', 'Bearpen Hill State Forest', URL=u),
+                            rec('sgnya', 'sgnya2', 'Bearpen Hill State Forest', ring(90000), URL=u),
+                            rec('sgnya', 'sgnya3', 'Bearpen Hill Wild Forest', ring(200000), URL=u)]
+        assert f.run() == 0
+        assert ids(f.key(), 'US-1') == ['sgnya1', 'sgnya2']
+    finally: f.done()
+
+
+def test_piece_suffix():
+    rs = [rec('sgnya', 'sgnya1', 'Otis Pike Pine Barrens State Forest - West'), rec('sgnya', 'sgnya2', 'Otis Pike Pine Barrens State Forest - East', ring(3000)),
+          rec('sgnyb', 'sgnyb2', 'Otis Pike Pine Barrens State Forest - East', ring(3000)),
+          rec('sgnya', 'sgnya3', 'Otis Pike Pine Barrens State Forest - North', ring(60000))]
+    assert ids(one('Otis Pike Pine Barrens State Forest', 'State Forest', rs), 'US-1') == ['sgnya1', 'sgnya2']
+    assert V.piece_base('x state forest unit 2', RULES) == 'x state forest'
+
+
+def test_piece_park_no_siblings():
+    # 27 Nov 2026 (the PC's New Brunswick file): CA-4478 Partridge Valley East took Partridge Valley West, park CA-4479's land
+    rs = [rec('sgnya', 'sgnya1', 'Partridge Valley East'), rec('sgnya', 'sgnya2', 'Partridge Valley West', ring(3000))]
+    assert ids(one('Partridge Valley East Protected Area', 'Protected Area', rs), 'US-1') == ['sgnya1']
+    assert V.park_is_piece({'name': 'Otis Pike Pine Barrens State Forest', 'type': 'State Forest'}, RULES) is False
+
+
+def test_two_parks_one_record_two_names():
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Pine Ridge State Park', 'State Park')
+        f.parks['US-2'] = park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50)
+        f.files['US-MN'] = [rec('sgnyb', 'sgnyb1', 'Pine Ridge')]
+        assert f.run() == 0
+        d = f.key()
+        assert d['parks']['US-1']['m'] == [] == d['parks']['US-2']['m']
+        assert why(d, 'US-1') == why(d, 'US-2') == 'record_shared_with_another_park'
+    finally: f.done()
+
+
+def test_other_park_pin_refused():
+    f = Fix()
+    try:   # PAD-US 236785: one record, rings at both Tracy Creek forests (102 km apart)
+        f.parks['US-12778'] = park('Tracy Creek (Steuben County) State Forest', 'State Forest')
+        f.parks['US-5342'] = park('Tracy Creek (Broome County) State Forest', 'State Forest', dx_m=100000,
+                                  link={'id_kind': 'NY DEC page number', 'id_value': '9'})
+        f.files['US-MN'] = [dict(rec('PAD-US', '236785', 'Tracy Creek State Forest', GIS_Acres=60), rings=[ring(), ring(100000)]),
+                            rec('sgnya', 'sgnya1', 'Tracy Creek State Forest', URL='https://www.dec.ny.gov/lands/8.html'),
+                            rec('sgnya', 'sgnya2', 'Tracy Creek State Forest', ring(100000), URL='https://www.dec.ny.gov/lands/9.html')]
+        assert f.run() == 0
+        d = f.key()
+        assert ids(d, 'US-12778') == ['sgnya1'] and ids(d, 'US-5342') == ['sgnya2'] and by(d, 'US-5342') == 'id'
+    finally: f.done()
+
+
+def test_id_beats_name():
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Bearpen Hill State Forest', 'State Forest', dx_m=5000, link={'id_kind': 'NY DEC page number', 'id_value': '8000'})
+        f.parks['US-2'] = park('Bearpen Hill State Forest', 'State Forest', dx_m=150)
+        f.files['US-MN'] = [rec('sgnya', 'sgnya1', 'Bearpen Hill State Forest', URL='https://www.dec.ny.gov/lands/8000.html')]
+        assert f.run() == 0
+        d = f.key()
+        assert by(d, 'US-1') == 'id' and d['parks']['US-2']['m'] == [] and why(d, 'US-2') == 'record_shared_with_another_park'
+    finally: f.done()
+
+
+def test_two_records_fit():
+    sz = {'acres': 100.0, 'witness': 'agency_document'}
+    rs = [rec('sgnya', 'sgnya1', 'Elm Point State Forest', ring(3000, half_w=330), ACRES=100, URL='https://www.dec.ny.gov/lands/1.html'),
+          rec('sgnya', 'sgnya2', 'Elm Point State Forest', ring(-3000, half_w=330), ACRES=102, URL='https://www.dec.ny.gov/lands/2.html')]
+    d = one('Elm Point State Forest', 'State Forest', rs, size=sz)
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'two_records_fit'
+
+
+def test_trail_park_reason():
+    assert why(one('Paul Bunyan State Trail', 'State Trail', [rec('sgmnd', 'sgmnd1', 'Crow Wing')]), 'US-1') == 'record_layer_not_in_store'
+
+
+def test_reason_store_gap():
+    """Rule reason_store_gap (27 Nov 2026): no record of the name + a gap in the park's own area = no_record_store_gap."""
+    def gapped(name, kind, records, dx=0.0, area_gap=True):
+        f = Fix()
+        try:
+            f.parks['US-1'] = park(name, kind, dx_m=dx)
+            f.files['US-MN'] = records
+            if area_gap: f.incomplete['US-MN'] = ['sgzzz']
+            assert f.run() == (3 if area_gap else 0)
+            return f.key()
+        finally: f.done()
+    other = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
+    assert why(gapped('Nowhere State Park', 'State Park', other, area_gap=False), 'US-1') == 'no_record_with_this_name'
+    d = gapped('Nowhere State Park', 'State Park', other)
+    assert why(d, 'US-1') == 'no_record_store_gap' and d['gaps'] == ['sgzzz']
+    # a named record without proof (pin 5 km off) keeps its reason even with a gap
+    far = [rec('sgmnd', 'sgmnd1', 'Elm Point State Park', ring(0, half_w=300))]
+    assert why(gapped('Elm Point State Park', 'State Park', far, dx=5000), 'US-1') == 'name_but_no_pin_or_size_proof'
+    # a trail park keeps record_layer_not_in_store
+    assert why(gapped('Paul Bunyan State Trail', 'State Trail', other), 'US-1') == 'record_layer_not_in_store'
+    assert 'no_record_store_gap' in RULES['pin_only_reasons']
+
+
+def test_pin_only_reasons_fixed_list():
+    sheet = {'no_record_with_this_name', 'name_but_no_pin_or_size_proof', 'two_records_fit', 'record_shared_with_another_park',
+             'water_only', 'office_only'}   # layer_not_complete left the list: a state with a gap is not built at all
+    assert set(RULES['pin_only_reasons']) == sheet | {'record_layer_not_in_store', 'park_has_no_pin', 'no_record_store_gap',
+                                                       'name_on_other_kind_of_land'}   # 27 Nov 2026, rule name_kind_agrees
+    assert why(one('Nowhere State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing')]), 'US-1') == 'no_record_with_this_name'
+
+
+def test_acres_no_double_count():
+    rs = [rec('PAD-US', '1', 'Agassiz National Wildlife Refuge', ring(half_w=10000), GIS_Acres=61000, FeatClass='Fee'),
+          rec('PAD-US', '2', 'Agassiz National Wildlife Refuge', ring(half_w=10000), GIS_Acres=61400, FeatClass='Designation'),
+          rec('PAD-US', '3', 'Agassiz NWR east piece', ring(15000, half_w=300), GIS_Acres=20, FeatClass='Fee')]
+    assert V.land_acres(pool_of(*rs).recs, RULES) == {'PAD-US': 61400.0}   # per class, the largest class; never 122,420
+    assert one('Agassiz National Wildlife Refuge', 'National Wildlife Refuge', rs[:2])['parks']['US-1']['ac'] == 61400
+    d = one('Agassiz National Wildlife Refuge', 'National Wildlife Refuge', rs[:2], dx=10500, size={'acres': 61000.0, 'witness': 'agency_document'})
+    assert by(d, 'US-1') == 'name+size'                                   # the same number proves the size
+
+
+def test_acres_same_ground_once():
+    rs = [rec('PAD-US', '8850', 'Helen L. McNitt', ring(half_w=380), GIS_Acres=143, FeatClass='Fee'),
+          rec('PAD-US', '237438', 'Helen L. McNitt', ring(half_w=370), GIS_Acres=135, FeatClass='Fee'),
+          rec('PAD-US', '9', 'Helen L. McNitt', ring(5000, half_w=370), GIS_Acres=135, FeatClass='Fee')]
+    assert V.land_acres(pool_of(*rs).recs, RULES) == {'PAD-US': 278.0}    # 143 once + the other piece 135
+    assert V.land_acres(pool_of(*rs[:2]).recs, RULES, agency_only=True) == {'PAD-US': 143.0}
+    # US-5145 Burnt-Rossman Hills: two L-shaped neighbours whose boxes overlap are NOT the same ground
+    la = poly([(0, 0), (1000, 0), (1000, 300), (300, 300), (300, 1000), (0, 1000)])
+    lb = poly([(1000, 1000), (1000, 330), (330, 330), (330, 1000)])
+    ls = [rec('sgnya', 'sgnya1', 'Burnt-Rossman Hills State Forest', la, ACRES=124), rec('sgnya', 'sgnya2', 'Burnt-Rossman Hills State Forest', lb, ACRES=112)]
+    assert V.land_acres(pool_of(*ls).recs, RULES) == {'sgnya': 236.0}
+    # 27 Nov 2026 (rule size_union_not_sum): the skip still decides which copy is counted; the union is measured on what is
+    # left. A copy of A (36.5, same name) is skipped; A and B (half on A) give 80 x 0.75 = 60. Without the skip: 116.5 x 0.5.
+    cp = [rec('PAD-US', '1', 'Helen L. McNitt', ring(0), GIS_Acres=40), rec('PAD-US', '2', 'Helen L. McNitt', ring(0, half_w=198), GIS_Acres=36.5),
+          rec('PAD-US', '3', 'McNitt Addition', ring(200), GIS_Acres=40)]
+    got = V.land_acres(pool_of(*cp).recs, RULES)['PAD-US']
+    assert abs(got - 60) < 0.3, got
+
+
+# ------------------------------------------------------------------------------------------------------------- step 1: locks
+def warm(f, out='warm', cold='cold'):
+    assert f.run(out, extra=['--locks', f.p(cold)]) == 0
+    return [x['why'] for x in f.info(out=out)['locked_broken']]
+
+
+def test_lock_holds_same_as_cold():
+    f = Fix()
+    try:
+        mn_valley(f)
+        assert f.run('cold', extra=['--write-locks']) == 0 and warm(f) == []
+        assert open(f.p('cold/US-MN.json.gz'), 'rb').read() == open(f.p('warm/US-MN.json.gz'), 'rb').read()   # the key hides the lock
+        assert f.info(out='warm')['locks'] == {'held': 1, 'broken': 0, 'new': 0} and f.info(out='cold')['locks']['new'] == 1
+        rows = [l.split(',') for l in f.csv('v2-proof.csv', 'warm')[1:]]
+        assert {r[7] for r in rows} == {'2'} and {r[-4] for r in rows} == {'held'} and {r[-3] for r in rows} == {'area'} and {r[-2] for r in rows} == {'true'}
+        row = json.load(open(f.p('cold/locks/US-MN.json')))['locks']['US-7145'][0]
+        assert row['count'] == 3 and row['acres'] == 180 and row['agency_id'] == 'SRA00304' and row['layer'] == 'sgmne'
+    finally: f.done()
+
+
+def test_broken_lock_logged():
+    f = Fix()
+    try:
+        mn_valley(f)
+        assert f.run('cold', extra=['--write-locks']) == 0
+        mn_valley(f, extra=1)                                  # a fourth tract with the same id: the park takes all four
+        assert warm(f) == ['record count changed'] and len(ids(f.key(out='warm'), 'US-7145')) == 4
+        mn_valley(f)
+        for r in f.files['US-MN']: r['record_name'] = 'MN VALLEY'
+        assert warm(f) == ['record renamed']
+        mn_valley(f, acres=64.2)                               # 7% bigger
+        assert warm(f) == ['size changed']
+        mn_valley(f)
+        f.files['US-MN'].append(rec('sgmnd', 'sgmnd1', 'Crow Wing', ring(50000)))
+        for r in f.files['US-MN'][:3]: r['attributes']['mgtprgprj'] = 'SRA00999'
+        assert warm(f) == ["id not in today's file"]
+        mn_valley(f)
+        f.parks['US-9'] = park('Other Place State Park', 'State Park', dx_m=30000, link={'id_kind': 'MN DNR unit id', 'id_value': 'SRA00304'})
+        assert warm(f) == ['id now claimed by a second park']
+        del f.parks['US-9']
+        f.parks['US-7145']['link']['id_value'] = 'SRA00399'
+        assert warm(f) == ["the park's page id changed or is missing"]
+        mn_valley(f)
+        f.parks['US-7146'] = f.parks.pop('US-7145')
+        assert warm(f) == ['the park is no longer in the list']
+        del f.parks['US-7146']
+        mn_valley(f)
+        for r in f.files['US-MN']: r['rings'] = [ring(40000)]  # the id's land now lies 40 km off: step 2 refuses it
+        why_ = warm(f)
+        assert len(why_) == 1 and why_[0].startswith('step 2 no longer proves it')
+    finally: f.done()
+
+
+def test_lock_zero_acres():
+    t = 0.05
+    assert V.acres_unchanged(0, 0, t) and V.acres_unchanged(None, 0, t)
+    assert not V.acres_unchanged(0, 5, t) and not V.acres_unchanged(5, 0, t)
+    assert V.acres_unchanged(100, 104, t) and not V.acres_unchanged(100, 106, t)
+    f = Fix()
+    try:   # a layer with no acre field: the lock measures the shape, and holds on an unchanged layer
+        f.parks['US-0963'] = park('Statue of Liberty National Monument', 'National Monument', link={'id_kind': 'NPS unit code', 'id_value': 'STLI'})
+        f.files['US-MN'] = [rec('sgakd', 'sgakd5', 'Statue of Liberty National Monument', UNIT_CODE='STLI')]
+        assert f.run('cold', extra=['--write-locks']) == 0
+        assert json.load(open(f.p('cold/locks/US-MN.json')))['locks']['US-0963'][0]['acres'] > 0 and warm(f) == []
+    finally: f.done()
+
+
+def test_lock_never_changes_answer():
+    f = Fix()
+    try:   # a hand-edited lock points park A at park B's id: A's answer is today's, and the lock is logged broken
+        u = lambda n: f'https://www.dec.ny.gov/lands/{n}.html'
+        f.parks['US-1'] = park('Oak Hill State Forest', 'State Forest', link={'id_kind': 'NY DEC page number', 'id_value': '1'})
+        f.parks['US-2'] = park('Elm Ridge State Forest', 'State Forest', dx_m=20000, link={'id_kind': 'NY DEC page number', 'id_value': '2'})
+        f.files['US-MN'] = [rec('sgnya', 'sgnya1', 'Oak Hill State Forest', URL=u(1)), rec('sgnya', 'sgnya2', 'Elm Ridge State Forest', ring(20000), URL=u(2))]
+        assert f.run('cold', extra=['--write-locks']) == 0
+        L = json.load(open(f.p('cold/locks/US-MN.json')))
+        L['locks']['US-1'] = copy.deepcopy(L['locks']['US-2'])
+        json.dump(L, open(f.p('cold/locks/US-MN.json'), 'w'))
+        assert warm(f) == ["the park's page id changed or is missing"]
+        assert ids(f.key(out='warm'), 'US-1') == ['sgnya1']
+        assert open(f.p('cold/US-MN.json.gz'), 'rb').read() == open(f.p('warm/US-MN.json.gz'), 'rb').read()
+    finally: f.done()
+
+
+# ------------------------------------------------------------------------------------------------------------- gate
+def gate_case(parks_doc, joins=None, how=None, parks=None):
+    pl = pool_of(rec('sgnya', 'sgnya1', 'Oak Hill State Forest', URL='https://www.dec.ny.gov/lands/8000.html'))
+    return V.gate(parks_doc, {'joins': joins or {}, 'how': how or {}}, pl, RULES, parks)
+
+
+def test_gate_refuses_old_id():
+    g = gate_case({'US-0681': {'n': 'Upper Delaware', 'm': [['3562~old', 'Upper Delaware', 5, 'name']], 'c': []}})
+    assert not g['ok'] and g['old_ids'] == 1
+
+
+def test_gate_refuses_missing_record():
+    g = gate_case({}, joins={'US-1': [5]}, how={'US-1': (3, 'name+pin', {})})
+    assert not g['ok'] and g['not_in_file'] == 1
+    assert gate_case({}, joins={'US-1': [0]}, how={'US-1': (3, 'name+pin', {})})['ok']
+    real = V.spell_layer
+    try:   # a spelling clash: two raw records written with one id
+        V.spell_layer = lambda recs, layer, rules: {r['key']: 'sgmne0777' for r in recs} if layer == 'sgmne' else {}
+        pl = pool_of(rec('sgmne', 'sgmne1', 'A', su_id=1), rec('sgmne', 'sgmne2', 'B', ring(5000), su_id=2))
+    finally: V.spell_layer = real
+    g = V.gate({}, {'joins': {'US-1': [0]}, 'how': {'US-1': (3, 'name+pin', {})}}, pl, RULES)
+    assert not g['ok'] and g['not_in_file'] == 1
+
+
+def test_gate_refuses_two_name_share():
+    g = gate_case({'US-1': {'n': 'Pine Ridge State Park', 'm': [['sgnyb1', 'Pine Ridge', 5, 'name+pin']]},
+                   'US-2': {'n': 'Pine Ridge Wildlife Management Area', 'm': [['sgnyb1', 'Pine Ridge', 5, 'name+pin']]}})
+    assert not g['ok'] and g['two_name'] == 1
+    g = gate_case({'US-1': {'n': 'Pine Hill (Delaware County) State Forest', 'm': [['236695', 'Pine Hill State Forest', 5, 'name+pin']]},
+                   'US-2': {'n': 'Pine Hill (Cattaraugus County) State Forest', 'm': [['236695', 'Pine Hill State Forest', 5, 'name+pin']]}})
+    assert not g['ok'] and g['two_name'] == 1                   # brackets make two names
+    g = gate_case({'US-1': {'n': 'Bear Swamp State Forest', 'm': [['236421', 'Bear Swamp', 5, 'id']]},
+                   'US-2': {'n': 'Bear Swamp State Forest', 'm': [['236421', 'Bear Swamp', 5, 'id']]}})
+    assert g['ok']                                              # one land, two park numbers, one name: allowed
+
+
+def test_gate_id_mismatch():
+    g = gate_case({}, joins={'US-1': [0]}, how={'US-1': (2, 'id', {'id_kind': 'NY DEC page number', 'id_value': '8001'})})
+    assert not g['ok'] and g['id_mismatch'] == 1
+    assert gate_case({}, joins={'US-1': [0]}, how={'US-1': (2, 'id', {'id_kind': 'NY DEC page number', 'id_value': '8000'})})['ok']
+
+
+def test_gate_other_park_pin():
+    parks = {'US-1': park('Oak Hill (A County) State Forest', 'State Forest'), 'US-2': park('Oak Hill (B County) State Forest', 'State Forest', dx_m=50)}
+    g = gate_case({}, joins={'US-1': [0]}, how={'US-1': (3, 'name+pin', {})}, parks=parks)
+    assert not g['ok'] and g['other_park_pin'] == 1
+    parks['US-2'] = park('Oak Hill (B County) State Forest', 'State Forest', dx_m=50000)
+    assert gate_case({}, joins={'US-1': [0]}, how={'US-1': (3, 'name+pin', {})}, parks=parks)['ok']
+
+
+# ------------------------------------------------------------------------------------------------------------- whole run
+def test_fixture_files_same_bytes():
+    # rule-sheet 37: the fixture's gzip files carry no clock time, so a cold and a warm run a second apart read the same bytes
+    f = Fix()
+    try:
+        mn_valley(f)
+        f.write()
+        first = {n: open(f.p(n), 'rb').read() for n in ('store/US-MN.layer-records.json.gz', 'facts.json.gz')}
+        assert all(b[4:8] == bytes(4) for b in first.values())           # gzip header MTIME field: 0
+        f.write()
+        assert first == {n: open(f.p(n), 'rb').read() for n in first}
+    finally: f.done()
+
+
+def test_two_runs_same_bytes():
+    f = Fix()
+    try:
+        mn_valley(f)
+        f.parks['US-2'] = park('Crow Wing State Park', 'State Park', dx_m=8000)
+        f.files['US-MN'].append(rec('sgmnd', 'sgmnd1', 'Crow Wing', ring(8000)))
+        assert f.run('a') == 0 and f.run('b') == 0
+        for n in ('US-MN.json.gz', 'v2-proof.csv', 'v2-pin-only.csv', 'v2-id-other-names.csv'):
+            assert open(f.p(f'a/{n}'), 'rb').read() == open(f.p(f'b/{n}'), 'rb').read(), n
+        assert f.csv('v2-proof.csv', 'a')[0] == 'ref,st,file_key,agency_id,layer,record_name,acres,step,by,evidence,file_area,lock,shape,publishable,licence_class'
+    finally: f.done()
+
+
+def test_stale_key_removed():
+    f = Fix()
+    try:
+        mn_valley(f)
+        assert f.run(extra=['--write-locks']) == 0 and os.path.exists(f.p('out/US-MN.json.gz'))
+        os.remove(f.p('store/US-MN.layer-records.json.gz'))
+        f.files = {}; f.lists = {'MN': ['US-0364']}
+        assert f.run() == 2 and not os.path.exists(f.p('out/US-MN.json.gz')) and not os.path.exists(f.p('out/locks/US-MN.json'))
+    finally: f.done()
+
+
+def test_id_other_names_report():
+    f = Fix()
+    try:   # a unit id that is the park (not a shared page, rule id_shared_page): another name inside it is joined and listed
+        f.parks['US-11024'] = park('Blanket Flower Prairie SNA State Conservation Area', 'State Conservation Area',
+                                   link={'id_kind': 'MN DNR unit id', 'id_value': 'SNA02027'})
+        f.files['US-MN'] = [rec('sgmnf', 'sgmnf1', 'Blanket Flower Prairie', PGRM_PROJECT='SNA02027'),
+                            rec('sgmnf', 'sgmnf2', 'Ole Huseby Homestead', ring(4000), PGRM_PROJECT='SNA02027')]
+        assert f.run() == 0 and len(ids(f.key(), 'US-11024')) == 2
+        rows = f.csv('v2-id-other-names.csv')
+        assert rows[0] == 'ref,st,park_name,record_key,record_name,layer,km_from_pin' and len(rows) == 2 and 'Ole Huseby' in rows[1]
+    finally: f.done()
+
+
+def test_no_legacy_import():
+    src = open(os.path.join(ROOT, '.github', 'scripts', 'kpc_us_key_v2.py'), encoding='utf-8').read()
+    bad = re.findall(r'^\s*(?:import|from)\s+[^\n]*\b(kpc_us_key|kpc_match_checks|kpc_same_land|kpc_store_attrs)\b', src, re.M)
+    assert not bad, bad
+    assert not re.search(r'__import__|importlib', src)
+
+
+def test_rule_table_typo_refused():
+    good = json.load(open(os.path.join(ROOT, '.github', 'us-key-v2-rules.json')))
+    def setp(d, path, v):
+        for k in path[:-1]: d = d[k]
+        if v is KeyError: d.pop(path[-1])
+        else: d[path[-1]] = v
+    cases = [(['switches'], {}), (['values', 'pin_ft'], {'value': 1, 'why': 'x', 'test': 'y'}), (['values', 'pin_m', 'why'], KeyError),
+             (['values', 'pin_m', 'value'], '100'), (['rules', 0, 'test'], KeyError), (['rules', 0, 'step'], 'later'),
+             (['rules', 0, 'stub'], 'maybe'), (['rules', 0, 'fn'], ''), (['tables', 'id_ties', 'value', 0, 'field'], KeyError),
+             (['tables', 'kind_patterns', 'value', 0, 1], '(unclosed'), (['tables', 'kind_swaps', 'value', 0, 'park'], 'x'),
+             (['notes', 'x'], 5), (['tables', 'own_page', 'value', 'sites'], 'agency')]
+    for path, v in cases:
+        d = copy.deepcopy(good); setp(d, path, v)
+        f = Fix()
+        try:
+            json.dump(d, open(f.p('repo/.github/us-key-v2-rules.json'), 'w'))
+            f.parks['US-1'] = park('Crow Wing State Park', 'State Park'); f.files['US-MN'] = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
+            assert f.run() == 2, path
+        finally: f.done()
+
+
+def test_trial_rules():
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Crow Wing State Park', 'State Park', dx_m=350); f.files['US-MN'] = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
+        assert f.run() == 0 and f.key()['parks']['US-1']['m'] == [] and '(trial' not in f.key()['tool']
+        d = json.load(open(f.p('repo/.github/us-key-v2-rules.json'))); d['values']['pin_m']['value'] = 200
+        json.dump(d, open(f.p('trial.json'), 'w'))
+        assert f.run('t', extra=['--rules', f.p('trial.json')]) == 0
+        k = f.key(out='t')
+        assert ids(k, 'US-1') == ['sgmnd1'] and k['tool'].endswith('(trial rules)')
+        r = json.load(open(f.p('t/v2-run.json')))['inputs']['rules']
+        assert r['file'] == f.p('trial.json') and r['trial'] and len(r['sha256']) == 64
+        d['values']['pin_ft'] = {'value': 1, 'why': 'x', 'test': 'y'}; json.dump(d, open(f.p('bad.json'), 'w'))
+        assert f.run('b', extra=['--rules', f.p('bad.json')]) == 2   # the same guards
+    finally: f.done()
+
+
+def test_selftest_runs():
+    with contextlib.redirect_stdout(io.StringIO()): assert V.run(['--selftest']) == 0
+
+
+# 27 Nov 2026: rule name_other_spelling (the table other_spellings: US-0474, US-2147, US-4239)
+def spelling_case(ref, name, kind, rec_name, layer='PAD-US', dx=0.0, strip=None, link=None, listed=None, rg=None, **attrs):
+    """One park `ref` and one record; -> the park's key row. `strip` = park numbers whose rows are taken out of the table."""
+    f = Fix()
+    try:
+        if strip:
+            tp = f.p('repo/.github/us-key-v2-rules.json')
+            d = json.load(open(tp, encoding='utf-8'))
+            for r in strip: d['tables']['other_spellings']['value'].pop(r)
+            json.dump(d, open(tp, 'w', encoding='utf-8'))
+        f.parks[ref] = park(name, kind, link=link)
+        if listed: f.listed[ref] = listed
+        f.files['US-MN'] = [rec(layer, f'{layer[:6].lower()}1', rec_name, rg if rg is not None else ring(dx), **attrs)]
+        assert f.run() == 0
+        return f.key()['parks'][ref]
+    finally: f.done()
+
+
+def test_other_spellings():
+    t = RULES['other_spellings']
+    assert sorted(t) == ['US-0474', 'US-2147', 'US-4239'] and all(r['why'] and r['date'] for rs in t.values() for r in rs)
+    # US-0474: POTA 'A.', the agency spells the middle name out
+    n, kd = 'Elizabeth A. Morton National Wildlife Refuge', 'National Wildlife Refuge'
+    k = spelling_case('US-0474', n, kd, 'Elizabeth Alexandra Morton National Wildlife Refuge')
+    assert len(k['m']) == 1 and k['match']['by'] == 'name+pin'                     # the row lets the right record through
+    assert spelling_case('US-1', n, kd, 'Elizabeth Alexandra Morton National Wildlife Refuge')['m'] == []   # any other park number: no row
+    assert spelling_case('US-0474', n, kd, 'Elizabeth Alexandra Morton National Wildlife Refuge', strip=['US-0474'])['m'] == []   # row removed
+    for near in ('Elizabeth Alexander Morton National Wildlife Refuge', 'Elizabeth Alexandra Morton', 'Elizabeth Alexandra Morton NWR Unit',
+                 'Alexandra Morton National Wildlife Refuge'):
+        assert spelling_case('US-0474', n, kd, near)['m'] == [], near              # a near miss is still refused
+    assert spelling_case('US-0474', n, kd, 'Elizabeth Alexandra Morton National Wildlife Refuge', dx=3000)['m'] == []   # still needs its proof
+    # US-2147: two exact strings, one with and one without the kind word
+    n, kd = 'Sunken Meadow State Park', 'State Park'
+    assert len(spelling_case('US-2147', n, kd, 'Alfred E. Smith/Sunken Meadow State Park')['m']) == 1
+    assert len(spelling_case('US-2147', n, kd, 'Alfred E. Smith/Sunken Meadow', layer='sgnyb')['m']) == 1
+    assert spelling_case('US-2147', n, kd, 'Alfred E. Smith/Sunken Meadow', layer='sgnyb', strip=['US-2147'])['m'] == []
+    assert spelling_case('US-2147', n, kd, 'Alfred Smith/Sunken Meadow State Park')['m'] == []
+    assert spelling_case('US-2147', n, kd, 'Alfred E. Smith')['m'] == []
+    # US-4239: a trail in several states; the far-pin name check reads the other spelling too
+    n, kd, noco = 'North Country Trail National Scenic Trail', 'National Scenic Trail', {'id_kind': 'NPS unit code', 'id_value': 'NOCO'}
+    far = dict(link=noco, listed='US-MN,US-ND,US-WI', rg=ring(400000), Loc_Nm='NOCO', Mang_Name='NPS')
+    k = spelling_case('US-4239', n, kd, 'North Country National Scenic Trail', **far)
+    assert len(k['m']) == 1
+    assert k['match']['by'] == 'id' and k['match']['evidence']['far_pin'] is True
+    assert spelling_case('US-4239', n, kd, 'North Country National Scenic Trail', strip=['US-4239'], **far)['m'] == []
+    assert spelling_case('US-4239', n, kd, 'North Country Scenic Trail', **far)['m'] == []
+    assert spelling_case('US-4239', n, kd, 'North Country National Scenic Trail', **dict(far, listed='US-MN'))['m'] == []   # one state: never
+
+
+# 27 Nov 2026: name_fields rows for Alberta and BC (the store room leaves their record_name empty)
+def test_name_fields_alberta_bc():
+    test_wildlife_and_fish_refuge()                                  # the table's older rows (FWS complex names) are still read
+    rows = [('AB Public La', 'PLUZ_NAME', 'Elbow Falls Provincial Recreation Area'), ('AB-PLUZ Gove', 'PLUZ_NAME', 'Bluerock Wildland Provincial Park'),
+            ('Alberta publ', 'PLREC_NAME', 'Cataract Creek Provincial Recreation Area'), ('Hard look~0', 'ParkName', 'Lakeway Heights Park'),
+            ('BC BC Parks', 'PROTECTED_LANDS_NAME', 'Alice Lake Provincial Park')]
+    kinds = ['Provincial Recreation Area', 'Wildland Provincial Park', 'Provincial Recreation Area', 'Park', 'Provincial Park']
+    f = Fix()
+    try:
+        recs = []
+        for n, ((layer, field, name), kind) in enumerate(zip(rows, kinds)):
+            ref = f'US-{n + 1}'
+            f.parks[ref] = park(name, kind, dx_m=n * 5000)
+            recs.append(rec(layer, f'z{n}', '', ring(n * 5000), **{field: name}))        # record_name empty, the name only in the field
+        f.parks['US-9'] = park('Moose Hill Park', 'Park', dx_m=40000)
+        recs.append(rec('Some Other Layer', 'z9', '', ring(40000), PLUZ_NAME='Moose Hill Park'))   # a layer with no row: still no name
+        f.files['US-MN'] = recs
+        assert f.run() == 0
+        k = f.key()
+        for n in range(len(rows)): assert ids(k, f'US-{n + 1}') == [f'z{n}'] and by(k, f'US-{n + 1}') == 'name+pin', rows[n]
+        assert k['parks']['US-9']['m'] == []
+    finally: f.done()
+
+
+# 27 Nov 2026, the owner (8:37 AM): "Both parks may share the record (marked 'same land, two park numbers') ONLY when each proves
+# it on its own (own agency ID, or own name + pin inside the record). Unproved shared records stay a hard gate fail. Never let a
+# smaller park take a bigger surrounding park's outline."
+SZ = lambda ac: {'acres': ac, 'witness': 'agency_document'}
+
+
+def shared_case(parks, recs):
+    """-> (exit code, key or None, csv lines). parks: {ref: park}; recs: the MN file."""
+    f = Fix()
+    try:
+        f.parks.update(parks); f.files['US-MN'] = recs
+        code = f.run()
+        return code, (f.key() if code == 0 else None), (f.csv('v2-shared-records.csv') if code == 0 else [])
+    finally: f.done()
+
+
+def test_shared_record_both_prove():
+    rows = {r['id'] for r in json.load(open(os.path.join(ROOT, '.github', 'us-key-v2-rules.json')))['rules']}
+    assert {'shared_record_own_proof', 'shared_record_size', 'gate_same_land', 'key_same_land', 'shared_records_report'} <= rows
+    # both by their own agency id (one MN forest record carries two DNR unit ids: a dual-agency unit, like Marrowbone SF / WMA)
+    code, k, lines = shared_case(
+        {'US-1': park('Marrowbone State Forest', 'State Forest', link={'id_kind': 'MN DNR unit id', 'id_value': 'SFT00010'}, size=SZ(40)),
+         'US-2': park('Marrowbone Wildlife Management Area', 'Wildlife Management Area', dx_m=60,
+                      link={'id_kind': 'MN DNR unit id', 'id_value': 'SFT00020'}, size=SZ(38))},
+        [rec('sgmnf', 'sgmnf1', 'Marrowbone', PGRM_PROJECT='SFT00010', WEB_LINK1='https://www.dnr.state.mn.us/state_forests/sft00020/index.html')])
+    assert code == 0, code                                                        # the gate lets the proven pair stand
+    assert ids(k, 'US-1') == ids(k, 'US-2') == ['sgmnf1'] and by(k, 'US-1') == by(k, 'US-2') == 'id'
+    assert k['parks']['US-1']['same_land'] == {'note': 'same land, two park numbers', 'with': [{'ref': 'US-2', 'name': 'Marrowbone Wildlife Management Area', 'record': 'sgmnf1'}]}
+    assert k['parks']['US-2']['same_land']['with'][0]['ref'] == 'US-1'
+    assert len(lines) == 2 and lines[1].startswith('US-1,MN,Marrowbone State Forest,US-2,') and 'own agency id (MN DNR unit id SFT00010)' in lines[1], lines
+    # both by their own exact name + pin inside
+    code, k, lines = shared_case({'US-1': park('Pine Ridge State Park', 'State Park', size=SZ(40)),
+                                  'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50, size=SZ(39))},
+                                 [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])
+    assert code == 0 and ids(k, 'US-1') == ids(k, 'US-2') == ['sgnyb1'] and 'same_land' in k['parks']['US-1']
+    assert 'own exact name on the record, pin inside it' in lines[1]
+    # a park that shares no record carries no same_land field
+    k = one('Crow Wing State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing State Park')], size=SZ(40))
+    assert ids(k, 'US-1') == ['sgmnd1'] and 'same_land' not in k['parks']['US-1']
+    # Lake Vermilion (rule sheet section 13): one id (SPK00285) for two parks is nobody's own id, and neither name is on the record
+    code, k, lines = shared_case(
+        {'US-2506': park('Lake Vermilion State Park', 'State Park', link={'id_kind': 'MN DNR unit id', 'id_value': 'SPK00285'}, size=SZ(40)),
+         'US-7148': park('Lake Vermilion Soudan Iron Mine State Park', 'State Park', dx_m=100,
+                         link={'id_kind': 'MN DNR unit id', 'id_value': 'SPK00285'}, size=SZ(40))},
+        [rec('sgmnd', 'sgmnd18', 'Lake Vermilion-Soudan Underground Mine State Park', PGRM_PROJECT='SPK00285')])
+    assert code == 0 and k['parks']['US-2506']['m'] == [] == k['parks']['US-7148']['m'] and len(lines) == 1
+
+
+def test_shared_record_one_proves():
+    # one pin inside, the other pin NEAR (60 m past the edge: enough for name + pin, not for a shared record)
+    code, k, lines = shared_case({'US-1': park('Pine Ridge State Park', 'State Park', size=SZ(40)),
+                                  'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=260, size=SZ(40))},
+                                 [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])
+    assert code == 0 and ids(k, 'US-1') == ['sgnyb1'] and k['parks']['US-2']['m'] == []
+    assert why(k, 'US-2') == 'record_shared_with_another_park' and 'same_land' not in k['parks']['US-1'] and len(lines) == 1
+    # one has an official size, the other none on file (unsure): the sized one keeps it
+    code, k, _ = shared_case({'US-1': park('Pine Ridge State Park', 'State Park'),
+                              'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50, size=SZ(40))},
+                             [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])
+    assert code == 0 and k['parks']['US-1']['m'] == [] and ids(k, 'US-2') == ['sgnyb1']
+    # neither has a size on file: both pin only, as before
+    code, k, _ = shared_case({'US-1': park('Pine Ridge State Park', 'State Park'),
+                              'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50)},
+                             [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])
+    assert code == 0 and k['parks']['US-1']['m'] == [] == k['parks']['US-2']['m']
+    # one by its own id, the other's id is on a different record only (its pieces do not count): only the first keeps it
+    code, k, _ = shared_case(
+        {'US-1': park('Marrowbone State Forest', 'State Forest', link={'id_kind': 'MN DNR unit id', 'id_value': 'SFT00010'}, size=SZ(40)),
+         'US-2': park('Marrowbone Wildlife Management Area', 'Wildlife Management Area', dx_m=5000, size=SZ(40))},
+        [rec('sgmnf', 'sgmnf1', 'Marrowbone', PGRM_PROJECT='SFT00010')])
+    assert code == 0 and ids(k, 'US-1') == ['sgmnf1'] and k['parks']['US-2']['m'] == []
+
+
+def test_shared_record_small_park():
+    # the record measures 39.5 acres (a 400 m square); half of it is 19.8
+    pk = lambda a, b: {'US-1': park('Pine Ridge State Park', 'State Park', size=SZ(a)),
+                       'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50, size=SZ(b))}
+    code, k, _ = shared_case(pk(40, 10), [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])   # a 10-acre park inside: it may not take the outline
+    assert code == 0 and ids(k, 'US-1') == ['sgnyb1'] and k['parks']['US-2']['m'] == [] and why(k, 'US-2') == 'record_shared_with_another_park'
+    code, k, _ = shared_case(pk(40, 21), [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])   # 21 acres: over half, both keep it
+    assert code == 0 and ids(k, 'US-1') == ids(k, 'US-2') == ['sgnyb1']
+    p = park('Pine Ridge State Park', 'State Park', size={'acres': 40.0, 'witness': 'agency_document'})
+    r = pool_of(rec('sgnyb', 'sgnyb1', 'Pine Ridge')).recs[0]
+    ctx = {'rules': RULES, 'shared_names': set()}
+    p2 = dict(p, page={'own_page': 'own', 'sizes': [{'acres': 12.0, 'total': True, 'clean': True}]}, link={'page_kind': 'own page', 'site': 'agency (known)'})
+    assert V.size_fits_record(p, r, ctx) and not V.size_fits_record(p2, r, ctx)   # the smallest official size counts
+
+
+def test_gate_same_land_measured_again():
+    # a step that wrongly lists a pair (one pin outside the record) is caught by the gate
+    pl = pool_of(rec('sgnyb', 'sgnyb1', 'Pine Ridge'))
+    parks = {'US-1': park('Pine Ridge State Park', 'State Park', size=SZ(40)),
+             'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=900, size=SZ(40))}
+    doc = {'US-1': {'n': 'Pine Ridge State Park', 'm': [['sgnyb1', 'Pine Ridge', 40, 'name+pin']]},
+           'US-2': {'n': 'Pine Ridge Wildlife Management Area', 'm': [['sgnyb1', 'Pine Ridge', 40, 'name+pin']]}}
+    res = {'joins': {'US-1': [0], 'US-2': [0]}, 'how': {'US-1': (3, 'name+pin', {}), 'US-2': (3, 'name+pin', {})},
+           'same_land': {0: {'US-1': 'x', 'US-2': 'x'}}, 'share_ctx': {'shared_names': set()}}
+    g = V.gate(doc, res, pl, RULES, parks)
+    assert not g['ok'] and g['two_name'] == 1
+    parks['US-2'] = park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50, size=SZ(40))
+    assert V.gate(doc, res, pl, RULES, parks)['ok']                                 # both proven: allowed
+    assert not V.gate(doc, dict(res, same_land={}), pl, RULES, parks)['ok']          # not listed by the step: still fails
+
+
+# 27 Nov 2026, rule acres_field_guard (Illinois sgild: acres from a flat web map, 1.6 to 1.85 times too big)
+def test_acres_field_guard():
+    half = 150.0                                                                      # a 300 m square: 22.24 acres measured
+    true_ac = (2 * half) ** 2 / 4046.8564224
+    f = Fix()
+    try:
+        recs = []
+        # 1.5 times: a square fills its box, and over 1.6 times its box the field is refused anyway (acre_box_factor)
+        for layer, n, factor, y in (('sgzza', 30, 1.5, 0), ('sgzzb', 30, 1.0, 60000), ('sgzzc', 10, 1.5, 120000), ('sgzzd', 30, 0.3, 180000)):
+            for j in range(n):
+                nm = {0: f'{layer} Hill State Park', 5: f'{layer} Lake State Park'}.get(j, f'{layer} tract {j}')
+                recs.append(rec(layer, f'{layer}{j}', nm, ring(j * 1000, y, half_w=half), GIS_Acres=round(true_ac * factor, 3)))
+            f.parks[f'US-{layer}'] = park(f'{layer} Hill State Park', 'State Park', dy_m=y)          # pin inside: name + pin
+            # pin 2 km off: only a size can prove it; the official size given is the layer's own field number
+            f.parks[f'US-{layer}L'] = park(f'{layer} Lake State Park', 'State Park', dx_m=3000, dy_m=y + 2000, size=SZ(round(true_ac * factor, 1)))
+        f.files['US-MN'] = recs
+        assert f.run() == 0
+        k, info = f.key(), f.info()
+        off = {r['layer']: r for r in info['acres_field_off']}
+        assert sorted(off) == ['sgzza'] and 1.45 < off['sgzza']['median'] < 1.55 and off['sgzza']['measured'] == 30, off
+        assert {r['layer'] for r in info['acres_field_checked']} == {'sgzza', 'sgzzb', 'sgzzc', 'sgzzd'}
+        ac = {r: k['parks'][f'US-{r}']['ac'] for r in ('sgzza', 'sgzzb', 'sgzzc', 'sgzzd')}
+        assert ac == {'sgzza': 22, 'sgzzb': 22, 'sgzzc': 33, 'sgzzd': 7}, ac                 # the switched-off layer: its outline, measured
+        assert k['parks']['US-sgzzaL']['m'] == []                                             # no size proof on a field that is switched off
+        assert by(k, 'US-sgzzbL') == 'name+size' and by(k, 'US-sgzzcL') == 'name+size'        # an honest field, or too few to judge: as before
+    finally: f.done()
+
+
+# 27 Nov 2026, rule size_union_not_sum (grader item 3: NJ sizes 1.89 times, NY US-10076 51 acres where 44 is right)
+def test_size_union_not_sum():
+    la = lambda *rs: V.land_acres(pool_of(*rs).recs, RULES)['PAD-US']
+    sq = (400 * 400) / 4046.8564224                                                    # a 400 m square: 39.54 acres
+    # the same outline under two names: counted once
+    assert abs(la(rec('PAD-US', '1', 'Pine Hill', GIS_Acres=40), rec('PAD-US', '2', 'Pine Hill Tract', GIS_Acres=40)) - 40) < 1e-6
+    # two squares, half on each other: 1.5 squares, not 2
+    got = la(rec('PAD-US', '1', 'A', ring(0)), rec('PAD-US', '2', 'B', ring(200)))
+    assert abs(got / (1.5 * sq) - 1) < 0.01, got
+    # three squares that do not overlap: exactly the old sum, bit for bit (two of them have overlapping boxes: L-shapes)
+    lx = poly([(0, 0), (1000, 0), (1000, 300), (300, 300), (300, 1000), (0, 1000)], lat=LAT + .1)
+    ly = poly([(1000, 1000), (1000, 330), (330, 330), (330, 1000)], lat=LAT + .1)
+    rs = [rec('PAD-US', '1', 'A', ring(0), GIS_Acres=10.1), rec('PAD-US', '2', 'B', lx, GIS_Acres=20.2), rec('PAD-US', '3', 'C', ly, GIS_Acres=30.3)]
+    assert la(*rs) == 30.3 + 20.2 + 10.1
+    # an outline with a hole: a square filling the hole adds its own ground; a square over the whole adds nothing
+    holed = rec('PAD-US', '1', 'A', poly([(-500, -500), (500, -500), (500, 500), (-500, 500)]))
+    holed['rings'].append(poly([(-250, -250), (-250, 250), (250, 250), (250, -250)]))
+    fill = rec('PAD-US', '2', 'B', ring(0, half_w=250))
+    assert la(holed, fill) == V.land_acres(pool_of(holed).recs, RULES)['PAD-US'] + V.land_acres(pool_of(fill).recs, RULES)['PAD-US']
+    whole = rec('PAD-US', '3', 'C', ring(0, half_w=500), GIS_Acres=247.1)
+    assert abs(la(holed, whole) - 247.1) < 0.5                                         # 185.3 + 247.1 -> 247.1
+    # US-10076: a 37-acre piece and the same thin 7-acre outline saved twice (other names): 44, not 51
+    strip = poly([(1000, 0), (2400, 0), (2400, 20), (1000, 20)])
+    us = [rec('PAD-US', '1', 'Big Pond', ring(0, half_w=193.5)), rec('PAD-US', '2', 'Big Pond Strip', strip), rec('PAD-US', '3', 'Big Pond Access', strip)]
+    assert round(la(*us[:1]) + 2 * la(*us[1:2])) == 51 and round(la(*us)) == 44
+    # a 10 m strip saved twice inside a 1 km outline: the lines must be close enough to find it (union_lines)
+    thin = poly([(-400, -5), (400, -5), (400, 5), (-400, 5)])
+    big = rec('PAD-US', '1', 'A', ring(0, half_w=500))
+    assert abs(la(big, rec('PAD-US', '2', 'B', thin), rec('PAD-US', '3', 'C', thin)) - la(big)) < 0.05
+    # a 0.5% overlap (two drawn edges crossing) keeps the plain sum; a 3% overlap does not (union_floor)
+    a, b = rec('PAD-US', '1', 'A', ring(0, half_w=500), GIS_Acres=247.1), rec('PAD-US', '2', 'B', ring(990, half_w=500), GIS_Acres=247.1)
+    assert la(a, b) == 247.1 + 247.1
+    a, b = rec('PAD-US', '1', 'A', ring(0, half_w=500), GIS_Acres=247.1), rec('PAD-US', '2', 'B', ring(940, half_w=500), GIS_Acres=247.1)
+    assert abs(la(a, b) - 494.2 * 0.97) < 0.5
+    # never below the largest record: a field smaller than its outline (MN sgmne: 0.02 acres on a 580-acre outline)
+    assert la(rec('PAD-US', '1', 'A', GIS_Acres=0.02), rec('PAD-US', '2', 'B', GIS_Acres=40)) == 40.0
+    # the same-ground skip already took the copy off: the union does not take it off again
+    sg = [rec('PAD-US', '1', 'Helen L. McNitt', GIS_Acres=40), rec('PAD-US', '2', 'Helen L. McNitt', GIS_Acres=39)]
+    assert la(*sg) == 40.0
+    # per class, as before: Fee and Designation are never added, each class measured on its own
+    got = la(rec('PAD-US', '1', 'A', ring(0), GIS_Acres=40, FeatClass='Fee'), rec('PAD-US', '2', 'B', ring(200), GIS_Acres=40, FeatClass='Fee'),
+             rec('PAD-US', '3', 'C', ring(0, half_w=300), GIS_Acres=55, FeatClass='Designation'))
+    assert abs(got - 60) < 0.6, got                                                    # Fee 80 x 0.75 = 60 beats Designation 55
+    # lines have no size, untouched
+    assert V.land_acres(pool_of(lrec('trl', 'trl1', 'A'), lrec('trl', 'trl2', 'B')).recs, RULES) == {'trl': 0.0}
+    # the size proof: official size = one copy; two overlapping copies of one name (sizes 1000 and 800, not the same ground
+    # by size) summed 1800 and failed; measured as ground they are 1000 and the size proves it
+    cp = [rec('PAD-US', '3040', 'Chippewa National Forest', ring(half_w=1300), GIS_Acres=1000),
+          rec('PAD-US', '3041', 'Chippewa National Forest', ring(half_w=1300), GIS_Acres=800)]
+    assert V.group_acres([0, 1], pool_of(*cp), RULES) == 1000.0
+    d = one('Chippewa National Forest', 'National Forest', cp, dx=2000, size={'acres': 1000.0, 'witness': 'agency_document'})
+    assert by(d, 'US-1') == 'name+size' and d['parks']['US-1']['ac'] == 1000
+
+
+def test_every_rule_names_a_test():
+    d = json.load(open(os.path.join(ROOT, '.github', 'us-key-v2-rules.json')))
+    names = [r['test'] for r in d['rules']] + [v['test'] for part in ('values', 'tables') for v in d[part].values()]
+    missing = sorted({n for n in names if not callable(globals().get(n)) or not n.startswith('test_')})
+    assert not missing, missing
+    assert all(hasattr(V, fn) for r in d['rules'] for fn in r['fn'].split(',') if fn), 'a rule row names a function the module lacks'
+
+
+
+# 27 Nov 2026 (grade item 2: wrong land and partial land past every gate). Rule sheet sections 23-26.
+def test_name_kind_agrees():
+    """Rule name_kind_agrees: a bare name in a single-purpose layer of another kind is not the park (NV US-0464 Ash Meadows
+    National Wildlife Refuge took the 115,783-ac 'Ash Meadows' herd area; UT US-11094 a hatchery took a BLM recreation site)."""
+    nwr, kd = 'Ash Meadows National Wildlife Refuge', 'National Wildlife Refuge'
+    rs = [rec('PAD-US', '4', 'Ash Meadows National Wildlife Refuge', ring(half_w=300)), rec('hma', 'hma148', 'Ash Meadows', ring(half_w=3000))]
+    assert ids(one(nwr, kd, rs), 'US-1') == ['4']                                     # the refuge keeps its own record only
+    d = one(nwr, kd, rs[1:])
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'name_on_other_kind_of_land'
+    assert ids(one('Ash Meadows BLM Herd Management Area', 'BLM Herd Management Area', rs[1:]), 'US-1') == ['hma148']   # its own kind
+    assert one('Glenwood State Fish Hatchery', 'State Fish Hatchery', [rec('rma', 'rma9736', 'Glenwood')])['parks']['US-1']['m'] == []
+    assert one('Calico Mountains Wilderness Area', 'Wilderness Area', [rec('hma', 'hma67', 'Calico Mountains')])['parks']['US-1']['m'] == []
+    # kinds_alike: POTA's BLM types mix up the BLM designations (UT US-6073 King Top is a wilderness study area)
+    assert ids(one('King Top BLM Recreation Management Area', 'BLM Recreation Management Area', [rec('wsa', 'wsa7', 'King Top')]), 'US-1') == ['wsa7']
+    assert one('Muddy Mountains BLM Wilderness Area', 'BLM Wilderness Area', [rec('rst', 'rst5', 'Muddy Mountains')])['parks']['US-1']['m'] == []
+    # a designation type or a park layer's kind alone never refuses; a record's own kind word does (TN US-7568 Barkley WMA)
+    assert ids(one('Lava Tree State Park', 'State Park', [rec('PAD-US', '7', 'Lava Tree', Des_Tp='SHCA')]), 'US-1') == ['7']
+    assert ids(one('Olana State Historic Site', 'State Historic Site', [rec('sgnyb', 'sgnyb407', 'Olana')]), 'US-1') == ['sgnyb407']
+    assert one('Barkley Wildlife Management Area', 'Wildlife Management Area', [rec('PAD-US', '8', 'Barkley Recreation Area')])['parks']['US-1']['m'] == []
+    # ... but it may agree (OR US-9154 Unity Lake: 'Recreation Site' reads as a BLM kind, Des_Tp SREC says a state park)
+    assert ids(one('Unity Lake State Recreation Area', 'State Recreation Area',
+                   [rec('PAD-US', '9', 'Unity Lake State Recreation Site', Des_Tp='SREC')]), 'US-1') == ['9']
+    assert one('Unity Lake State Recreation Area', 'State Recreation Area', [rec('PAD-US', '9', 'Unity Lake State Recreation Site')])['parks']['US-1']['m'] == []
+    # a record found by the PAGE name is judged by the page name's kind (MO US-5697 Atlanta Wildlife Area = MDC's Atlanta
+    # Conservation Area); a page name with no kind word = no opinion
+    pg = {'page_kind': 'own page', 'site': 'agency (known)', 'name_match': 'strong', 'web_name': 'atlanta conservation area'}
+    d = one('Atlanta Wildlife Area', 'Wildlife Area', [rec('PAD-US', '11', 'Atlanta Conservation Area')], link=pg)
+    assert ids(d, 'US-1') == ['11'] and by(d, 'US-1') == 'page name+pin'
+    assert one('Atlanta Wildlife Area', 'Wildlife Area', [rec('PAD-US', '11', 'Atlanta Conservation Area')])['parks']['US-1']['m'] == []
+    # a recreation area is one kind whoever runs it (MT US-6443 Lowry Bridge State Recreation Area on BLM rst 'Lowry Bridge')
+    assert ids(one('Lowry Bridge State Recreation Area', 'State Recreation Area', [rec('rst', 'rst3', 'Lowry Bridge')]), 'US-1') == ['rst3']
+    assert one('Coral Pink Sand Dunes State Park', 'State Park', [rec('rst', 'rst4', 'Coral Pink Sand Dunes')])['parks']['US-1']['m'] == []
+    # kind_fields: a record's own type field (BLM nca sma_code BLM_NM on 'Gold Butte') rules the herd-area park out
+    nm = rec('nca', 'nca21295', 'Gold Butte', ring(half_w=3000), sma_code='BLM_NM')
+    assert one('Gold Butte BLM Herd Management Area', 'BLM Herd Management Area', [nm])['parks']['US-1']['m'] == []
+    assert ids(one('Gold Butte National Monument', 'National Monument', [nm]), 'US-1') == ['nca21295']
+    # no kind on the park: no opinion
+    assert ids(one('Ash Meadows', '', rs[1:]), 'US-1') == ['hma148']
+    # kind_patterns wmgt: a water management area is not a wildlife management area (FL US-8335 Yellow River, sgflg44)
+    assert one('Yellow River Water Management Area', 'Water Management Area',
+               [rec('sgflg', 'sgflg44', 'Yellow River Wildlife Management Area')])['parks']['US-1']['m'] == []
+
+
+def chuck_swan(pin_acres, pin_half_w):
+    """Two far sources agree on a 733 / 755-ac piece 2 km from the pin; the pin sits in a longer-name record."""
+    rs = [rec('PAD-US', '255389', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=860), GIS_Acres=733),
+          rec('sgnyb', 'sgnyb13', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=870), Acres=755),
+          rec('sgmnd', 'sgmnd10', 'Chuck Swan WMA & SF', ring(half_w=pin_half_w), Acres=pin_acres)]
+    return one('Chuck Swan Wildlife Management Area', 'Wildlife Management Area', rs, urls=TWO_URLS)
+
+
+def test_pin_beats_far_proof():
+    """Rule pin_beats_far_proof: TN US-3935 Chuck Swan WMA (24,353 ac) was 'confirmed' on a 755-ac piece by two sources 1.2 km
+    away while its pin sat in 'Chuck Swan WMA & SF' (23,925 ac); AL US-10428 Walls of Jericho took two Tennessee layers while its
+    pin sat in the Alabama 'Walls of Jericho Tract'."""
+    d = chuck_swan(23925, 4900)
+    assert ids(d, 'US-1') == ['sgmnd10'] and by(d, 'US-1') == 'longer or shorter name+pin'
+    # WA US-0340 Spring Creek Hatchery: the far land has the park's size on file (any witness), the pin's land does not: no swap
+    rs = [rec('PAD-US', '255389', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=860), GIS_Acres=733),
+          rec('sgnyb', 'sgnyb13', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=870), Acres=755),
+          rec('sgmnd', 'sgmnd10', 'Chuck Swan WMA & SF', ring(half_w=4900), Acres=23925)]
+    d = one('Chuck Swan Wildlife Management Area', 'Wildlife Management Area', rs, urls=TWO_URLS, size={'acres': 750.0, 'witness': 'unknown'})
+    assert by(d, 'US-1') == 'name+two_sources'
+    d = one('Chuck Swan Wildlife Management Area', 'Wildlife Management Area', rs, urls=TWO_URLS, size={'acres': 24000.0, 'witness': 'unknown'})
+    assert ids(d, 'US-1') == ['sgmnd10']
+    d = chuck_swan(25, 160)   # OR US-2860 Umpqua Lighthouse: a smaller record at the pin is a part; the far land stays
+    assert ids(d, 'US-1') == ['255389', 'sgnyb13'] and by(d, 'US-1') == 'name+two_sources'
+    rs = [rec('PAD-US', '255389', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=860), GIS_Acres=733),
+          rec('sgnyb', 'sgnyb13', 'Chuck Swan Wildlife Management Area', ring(3000, half_w=870), Acres=755)]
+    assert by(one('Chuck Swan Wildlife Management Area', 'Wildlife Management Area', rs, urls=TWO_URLS), 'US-1') == 'name+two_sources'
+
+
+def test_two_sources_size_agrees():
+    """Rule two_sources_size_agrees: OR US-0503 McKay Creek NWR (official 1,837 ac) was proven on 21 ac by two sources; two maps
+    agreeing with each other says nothing when the park's official size is many times theirs."""
+    def pair(official):
+        rs = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=900), GIS_Acres=500), rec('sgnyb', 'sgnyb486', 'Harriman', ring(half_w=880), Acres=505)]
+        return one('Harriman State Park', 'State Park', rs, dx=1500, urls=TWO_URLS,
+                   size={'acres': official, 'witness': 'agency_document'} if official else None)
+    assert by(pair(None), 'US-1') == 'name+two_sources'          # no official size: no opinion
+    assert by(pair(1000), 'US-1') == 'name+two_sources'          # half the official size: still a proof
+    assert by(pair(200), 'US-1') == 'name+two_sources'           # 2.5 times it: still a proof
+    d = pair(2500)                                                # a fifth of the official size: a piece, not the park
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'name_but_no_pin_or_size_proof'
+    assert pair(100)['parks']['US-1']['m'] == []                  # five times it: another place
+
+
+def test_far_proof_own_state():
+    """Rule far_proof_own_state: a park POTA lists in one state is not proven by two layers of a neighbour state agreeing with
+    each other (US-10428 Walls of Jericho, listed US-AL, took Tennessee's sgtnh17 + sgtni153, pin outside)."""
+    def case(listed):
+        f = Fix()
+        try:
+            f.parks['US-1'] = park('Harriman State Park', 'State Park', dx_m=1500)
+            if listed: f.listed['US-1'] = listed
+            f.files['US-MN'] = [rec('PAD-US', '1', 'Somewhere Else', ring(90000))]
+            f.files['US-WI'] = [rec('PAD-US', '237514', 'Harriman State Park', ring(half_w=900), GIS_Acres=500),
+                                rec('sgnyb', 'sgnyb486', 'Harriman', ring(half_w=880), Acres=505)]
+            f.urls['US-WI'] = TWO_URLS
+            assert f.run() == 0
+            return f.key()['parks']['US-1']
+        finally: f.done()
+    assert case('US-MN')['m'] == []
+    assert case('US-MN,US-WI')['match']['by'] == 'name+two_sources'   # listed in both: the neighbour's records count
+
+
+# 27 Nov 2026 (whole-country check after the merge). Rule sheet sections 30-33.
+def test_contested_name():
+    """Rule contested_name: a refusal of one park never hands a record both parks' names reach to the other (KS US-2332
+    Clinton State Park took the Corps' 22,656-ac 'Clinton Recreation Area', second name CLINTON, once Clinton State Wildlife
+    Area was refused by kind)."""
+    corps = rec('PAD-US', '2474', 'Clinton Recreation Area', ring(half_w=3000), Des_Tp='REC', Loc_Nm='CLINTON')
+    own_sp = rec('sgnyb', 'sgnyb5', 'Clinton State Park', ring(200, half_w=300))
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Clinton State Park', 'State Park')
+        f.parks['US-2'] = park('Clinton State Wildlife Area', 'State Wildlife Area', dx_m=900)
+        f.files['US-MN'] = [corps, own_sp]
+        assert f.run() == 0
+        d = f.key()
+        assert ids(d, 'US-1') == ['sgnyb5'] and d['parks']['US-2']['m'] == []     # nobody takes the Corps project
+    finally: f.done()
+    # the park's pin inside, the rival's only near: the park keeps it (TX US-3035 LBJ State Park; the NHP's pin 41 m outside)
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Johnson State Park', 'State Park')
+        f.parks['US-2'] = park('Johnson Wildlife Management Area', 'Wildlife Management Area', dx_m=240)   # refused: another kind
+        f.files['US-MN'] = [rec('PAD-US', '7', 'Johnson Recreation Area', ring(half_w=200), Loc_Nm='JOHNSON')]
+        assert f.run() == 0
+        assert ids(f.key(), 'US-1') == ['7']
+    finally: f.done()
+    # the record carries the park's own exact full name: it is the park's (SK CA-1149 Shamrock Regional Park)
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Shamrock Regional Park', 'Regional Park')
+        f.parks['US-2'] = park('Shamrock Recreation Site', 'Recreation Site', dx_m=30)
+        f.files['US-MN'] = [rec('sgnyb', 'sgnyb8', 'Shamrock Regional Park', ring(half_w=200), Loc_Nm='Shamrock'),
+                            rec('rst', 'rst8', 'Shamrock', ring(30, half_w=100))]
+        assert f.run() == 0
+        assert 'sgnyb8' in ids(f.key(), 'US-1')
+    finally: f.done()
+    # alone, the state park still takes a bare-name record (no rival)
+    assert ids(one('Clinton State Park', 'State Park', [rec('sgnyb', 'sgnyb6', 'Clinton')]), 'US-1') == ['sgnyb6']
+    # the record's own layer rules a rival out: Calico Mountains HMA keeps its herd record (NV hma67)
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Calico Mountains BLM Herd Management Area', 'BLM Herd Management Area')
+        f.parks['US-2'] = park('Calico Mountains Wilderness Area', 'Wilderness Area', dx_m=500)
+        f.files['US-MN'] = [rec('hma', 'hma67', 'Calico Mountains', ring(half_w=3000)), rec('wbl', 'wbl205', 'Calico Mountains Wilderness', ring(500, half_w=400))]
+        assert f.run() == 0
+        d = f.key()
+        assert ids(d, 'US-1') == ['hma67'] and ids(d, 'US-2') == ['wbl205']
+    finally: f.done()
+
+TESTS = [(n, f) for n, f in list(globals().items()) if n.startswith('test_') and callable(f)]
+
+
+# ------------------------------------------------------------------------------------------------------------- mutation check
+def passes(name):
+    try:
+        globals()[name]()
+        return True
+    except Exception:  # noqa: BLE001  (a failure or a crash: the test noticed)
+        return False
+
+
+def with_table(d, name):
+    """Run test `name` against a mutated rule table d. -> True when the test still passes (the mutation survived)."""
+    global RULES
+    tmp = tempfile.mkdtemp(prefix='v2mut-')
+    old_rules, old_src = RULES, SRC['github']
+    try:
+        os.makedirs(os.path.join(tmp, '.github'))
+        json.dump(d, open(os.path.join(tmp, '.github', 'us-key-v2-rules.json'), 'w'))
+        shutil.copy(os.path.join(ROOT, '.github', 'link-id-ties.json'), os.path.join(tmp, '.github', 'link-id-ties.json'))
+        try: RULES = V.load_rules(tmp)
+        except V.RulesError: return False                       # the table is refused: noticed
+        SRC['github'] = os.path.join(tmp, '.github')
+        return passes(name)
+    finally:
+        RULES, SRC['github'] = old_rules, old_src
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def emptied(v):
+    if isinstance(v, list): return []
+    if isinstance(v, dict): return {}
+    return '(?!)'                                               # a pattern that never matches
+
+
+def stub_for(kind, real):
+    if kind == 'true': return lambda *a, **k: True
+    if kind == 'false': return lambda *a, **k: False
+    if kind == 'identity': return lambda *a, **k: a[0]
+    def empty(*a, **k):
+        r = real(*a, **k)
+        return tuple(type(x)() for x in r) if isinstance(r, tuple) else (type(r)() if r is not None else None)
+    return empty
+
+
+def mutation_lines():
+    """Every value x10 and /10, every table emptied, every id_ties 'where' removed, every rule row's function stubbed: the
+    named test must fail. -> [(ok, line)]."""
+    good = json.load(open(os.path.join(ROOT, '.github', 'us-key-v2-rules.json')))
+    out = []
+    for k, row in good['values'].items():
+        alive = []
+        for f in (10.0, 0.1):
+            d = copy.deepcopy(good); d['values'][k]['value'] = row['value'] * f
+            if with_table(d, row['test']): alive.append(f'x{f:g}')
+        ok = len(alive) < 2
+        out.append((ok, f"{'PASS' if ok else 'FAIL'} mutation value {k}: {row['test']} {'notices' if ok else 'does not notice x10 or /10'}"))
+    for k, row in good['tables'].items():
+        d = copy.deepcopy(good); d['tables'][k]['value'] = emptied(row['value'])
+        ok = not with_table(d, row['test'])
+        out.append((ok, f"{'PASS' if ok else 'FAIL'} mutation table {k} emptied: {row['test']} {'notices' if ok else 'does not notice'}"))
+    for n, t in enumerate(good['tables']['id_ties']['value']):
+        if not t.get('where'): continue
+        d = copy.deepcopy(good); d['tables']['id_ties']['value'][n].pop('where')
+        test = good['tables']['id_ties']['test']
+        ok = not with_table(d, test)
+        out.append((ok, f"{'PASS' if ok else 'FAIL'} mutation id_ties {t['layer']}.{t['field']} 'where' removed: {test} {'notices' if ok else 'does not notice'}"))
+    for row in good['rules']:
+        if row['stub'] == 'none':
+            out.append((True, f"PASS mutation rule {row['id']}: no function to stub; {row['test']} checks it directly"))
+            continue
+        fns = [x for x in row['fn'].split(',') if x]
+        real = {fn: getattr(V, fn) for fn in fns}
+        try:
+            for fn in fns: setattr(V, fn, stub_for(row['stub'], real[fn]))
+            ok = not passes(row['test'])
+        finally:
+            for fn in fns: setattr(V, fn, real[fn])
+        out.append((ok, f"{'PASS' if ok else 'FAIL'} mutation rule {row['id']} ({row['fn']} -> {row['stub']}): {row['test']} {'notices' if ok else 'does not notice'}"))
+    return out
+
+
+# ------------------------------------------------------------------------------------------------------------- runner
+def main():
+    t0, failed = time.time(), 0
+    for n, f in TESTS:
+        try:
+            f()
+            print(f'PASS {n}')
+        except Exception:  # noqa: BLE001
+            failed += 1
+            print(f'FAIL {n}: {traceback.format_exc().strip().splitlines()[-1][:300]}')
+    if '--no-mutation' not in sys.argv:
+        for ok, line in mutation_lines():
+            failed += not ok
+            print(line)
+    print(('ALL PASS' if not failed else f'SOME FAILED ({failed})') + f' ({time.time() - t0:.0f} s)')
+    return 1 if failed else 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
