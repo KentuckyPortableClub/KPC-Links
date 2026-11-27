@@ -272,3 +272,43 @@ This replaces the "against v1" parts of sections 7 and 8.3.
 - **Real example (Illinois, 27 Nov, built in a scratch folder from the IL layer file only, no v1 key):** 219 parks, 189
   outlined, 30 pin only; pin inside 96.8% (183 of 189); size agrees 10.3% (7 of 68); V2 PASSES. The PC's build of the same
   day had the same counts and failed G6, G7 and H2 against v1 before this ruling.
+
+## 18. Ruled 27 Nov 2026, 8:37 AM (owner): one record, two parks ("same land, two park numbers")
+The owner, passing on the grader's words with his yes: "Both parks may share the record (marked 'same land, two park numbers')
+ONLY when each proves it on its own (own agency ID, or own name + pin inside the record). Unproved shared records stay a hard
+gate fail. Never let a smaller park take a bigger surrounding park's outline (e.g., if a park's official acres are much smaller
+than the shared record, it stays pin-only). Write every allowed shared-record pair to a small report list so reps can spot
+dual-agency 2-fers vs. POTA duplicates." The grader: "if one park's official size is much smaller than the shared record (say
+under half the record's acres), it cannot inherit the whole surrounding polygon" (Marrowbone State Forest / WMA: the allowed
+kind; Cumberland Falls inside Daniel Boone NF: must NOT take the forest).
+- **What counts:** a record claimed in ONE step by parks of two names (the old rule gave it to nobody). Each park keeps it only
+  with its own proof on that record: its own agency id on the record itself (step 2; a piece of the unit with no id does not
+  count), or its own exact name on the record with its pin INSIDE it (near the edge is not enough). And it needs an official
+  size on file whose smallest value is at least half the record's acres (`shared_record_share` 0.5).
+- **Outcome:** two or more parks prove it = both keep it, both marked `same_land` in the key (`note: same land, two park
+  numbers`, `with`: the other park, its name, the record) and one row in `v2-shared-records.csv`. One proves it = that park
+  keeps it alone. None = nobody, as before (`record_shared_with_another_park`).
+- **When unsure:** no official size on file = unsure = the park does not take the record (proof or the pin).
+- **Not changed:** a record held by a stronger step (id beats name), a record carrying another park's full name, a record
+  holding another same-named park's pin. An id two parks claim is nobody's own id (rule `id_shared`).
+- **The gate:** one record on parks of two names passes only when the gate, measuring again with the same functions, finds
+  every park's own proof and size. Anything else is still a gate fail (exit 4).
+- **Lake Vermilion (section 13) stays pin only:** both parks carry the same id (SPK00285), so it is neither park's own; neither
+  exact name is on the records (PAD-US 209838 and sgmnd18 say "Lake Vermilion-Soudan Underground Mine State Park"); and
+  neither park has an official size on file. Both pins are inside, which alone is not enough.
+- **Measured 27 Nov (MN, NY, IL, ND, VT, AK files):** no key changed. No real pair proves it both ways today. The only park
+  where the "no size = unsure" choice matters: US-8610 Valley City WMA (ND; pin inside the "Valley City" record, exact
+  name, no official size). It stays pin only; with that choice reversed it would take PAD-US 215568 + ndw152 (801 acres).
+
+## 19. 27 Nov 2026: an agency acres field that disagrees with its own outline is not trusted
+Measured on Illinois: layer `sgild` writes its acres from a flat web map (Web Mercator), median 1.73 times its own outline, so
+39 parks had the right land and the wrong size. Rule `acres_field_guard`, general, for every layer:
+- Per layer of each area's file, records whose field says 5 acres or more, up to 100 picked evenly in id order, field divided
+  by the measured outline. At least 20 measured and a median more than 10% above 1 = the field is switched off for this run.
+- Switched off = the layer behaves exactly like a layer with no acres field: the key's sizes use the measured outline, and
+  the field is no size proof and no "two sources" witness. Fewer than 20 = as before. A field SMALLER than its outline is kept
+  (the agency may hold only part of what is drawn).
+- `v2-run.json` lists, per area, `acres_field_off` (layer, median, records measured) and `acres_field_checked` (every layer).
+- **Measured 27 Nov:** switched off: only IL `sgild` (median 1.731 on 100 records). Every other layer of the IL MN NY ND VT AK
+  files: 1.004 to 1.011. IL: 131 parks' key text changes (each holds an sgild record): record sizes only, a new `ac` for 129, no join changes; size agrees 7 -> 46 of 68 (the
+  scorecard's own count). MN, NY, ND, VT, AK: keys byte for byte the same. Time: AK 75 -> 79 s, IL 1.8 -> 2.5 s.

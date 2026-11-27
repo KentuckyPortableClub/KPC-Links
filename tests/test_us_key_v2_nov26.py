@@ -1440,6 +1440,138 @@ def test_name_fields_alberta_bc():
     finally: f.done()
 
 
+# 27 Nov 2026, the owner (8:37 AM): "Both parks may share the record (marked 'same land, two park numbers') ONLY when each proves
+# it on its own (own agency ID, or own name + pin inside the record). Unproved shared records stay a hard gate fail. Never let a
+# smaller park take a bigger surrounding park's outline."
+SZ = lambda ac: {'acres': ac, 'witness': 'agency_document'}
+
+
+def shared_case(parks, recs):
+    """-> (exit code, key or None, csv lines). parks: {ref: park}; recs: the MN file."""
+    f = Fix()
+    try:
+        f.parks.update(parks); f.files['US-MN'] = recs
+        code = f.run()
+        return code, (f.key() if code == 0 else None), (f.csv('v2-shared-records.csv') if code == 0 else [])
+    finally: f.done()
+
+
+def test_shared_record_both_prove():
+    rows = {r['id'] for r in json.load(open(os.path.join(ROOT, '.github', 'us-key-v2-rules.json')))['rules']}
+    assert {'shared_record_own_proof', 'shared_record_size', 'gate_same_land', 'key_same_land', 'shared_records_report'} <= rows
+    # both by their own agency id (one MN forest record carries two DNR unit ids: a dual-agency unit, like Marrowbone SF / WMA)
+    code, k, lines = shared_case(
+        {'US-1': park('Marrowbone State Forest', 'State Forest', link={'id_kind': 'MN DNR unit id', 'id_value': 'SFT00010'}, size=SZ(40)),
+         'US-2': park('Marrowbone Wildlife Management Area', 'Wildlife Management Area', dx_m=60,
+                      link={'id_kind': 'MN DNR unit id', 'id_value': 'SFT00020'}, size=SZ(38))},
+        [rec('sgmnf', 'sgmnf1', 'Marrowbone', PGRM_PROJECT='SFT00010', WEB_LINK1='https://www.dnr.state.mn.us/state_forests/sft00020/index.html')])
+    assert code == 0, code                                                        # the gate lets the proven pair stand
+    assert ids(k, 'US-1') == ids(k, 'US-2') == ['sgmnf1'] and by(k, 'US-1') == by(k, 'US-2') == 'id'
+    assert k['parks']['US-1']['same_land'] == {'note': 'same land, two park numbers', 'with': [{'ref': 'US-2', 'name': 'Marrowbone Wildlife Management Area', 'record': 'sgmnf1'}]}
+    assert k['parks']['US-2']['same_land']['with'][0]['ref'] == 'US-1'
+    assert len(lines) == 2 and lines[1].startswith('US-1,MN,Marrowbone State Forest,US-2,') and 'own agency id (MN DNR unit id SFT00010)' in lines[1], lines
+    # both by their own exact name + pin inside
+    code, k, lines = shared_case({'US-1': park('Pine Ridge State Park', 'State Park', size=SZ(40)),
+                                  'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50, size=SZ(39))},
+                                 [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])
+    assert code == 0 and ids(k, 'US-1') == ids(k, 'US-2') == ['sgnyb1'] and 'same_land' in k['parks']['US-1']
+    assert 'own exact name on the record, pin inside it' in lines[1]
+    # a park that shares no record carries no same_land field
+    k = one('Crow Wing State Park', 'State Park', [rec('sgmnd', 'sgmnd1', 'Crow Wing State Park')], size=SZ(40))
+    assert ids(k, 'US-1') == ['sgmnd1'] and 'same_land' not in k['parks']['US-1']
+    # Lake Vermilion (rule sheet section 13): one id (SPK00285) for two parks is nobody's own id, and neither name is on the record
+    code, k, lines = shared_case(
+        {'US-2506': park('Lake Vermilion State Park', 'State Park', link={'id_kind': 'MN DNR unit id', 'id_value': 'SPK00285'}, size=SZ(40)),
+         'US-7148': park('Lake Vermilion Soudan Iron Mine State Park', 'State Park', dx_m=100,
+                         link={'id_kind': 'MN DNR unit id', 'id_value': 'SPK00285'}, size=SZ(40))},
+        [rec('sgmnd', 'sgmnd18', 'Lake Vermilion-Soudan Underground Mine State Park', PGRM_PROJECT='SPK00285')])
+    assert code == 0 and k['parks']['US-2506']['m'] == [] == k['parks']['US-7148']['m'] and len(lines) == 1
+
+
+def test_shared_record_one_proves():
+    # one pin inside, the other pin NEAR (60 m past the edge: enough for name + pin, not for a shared record)
+    code, k, lines = shared_case({'US-1': park('Pine Ridge State Park', 'State Park', size=SZ(40)),
+                                  'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=260, size=SZ(40))},
+                                 [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])
+    assert code == 0 and ids(k, 'US-1') == ['sgnyb1'] and k['parks']['US-2']['m'] == []
+    assert why(k, 'US-2') == 'record_shared_with_another_park' and 'same_land' not in k['parks']['US-1'] and len(lines) == 1
+    # one has an official size, the other none on file (unsure): the sized one keeps it
+    code, k, _ = shared_case({'US-1': park('Pine Ridge State Park', 'State Park'),
+                              'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50, size=SZ(40))},
+                             [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])
+    assert code == 0 and k['parks']['US-1']['m'] == [] and ids(k, 'US-2') == ['sgnyb1']
+    # neither has a size on file: both pin only, as before
+    code, k, _ = shared_case({'US-1': park('Pine Ridge State Park', 'State Park'),
+                              'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50)},
+                             [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])
+    assert code == 0 and k['parks']['US-1']['m'] == [] == k['parks']['US-2']['m']
+    # one by its own id, the other's id is on a different record only (its pieces do not count): only the first keeps it
+    code, k, _ = shared_case(
+        {'US-1': park('Marrowbone State Forest', 'State Forest', link={'id_kind': 'MN DNR unit id', 'id_value': 'SFT00010'}, size=SZ(40)),
+         'US-2': park('Marrowbone Wildlife Management Area', 'Wildlife Management Area', dx_m=5000, size=SZ(40))},
+        [rec('sgmnf', 'sgmnf1', 'Marrowbone', PGRM_PROJECT='SFT00010')])
+    assert code == 0 and ids(k, 'US-1') == ['sgmnf1'] and k['parks']['US-2']['m'] == []
+
+
+def test_shared_record_small_park():
+    # the record measures 39.5 acres (a 400 m square); half of it is 19.8
+    pk = lambda a, b: {'US-1': park('Pine Ridge State Park', 'State Park', size=SZ(a)),
+                       'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50, size=SZ(b))}
+    code, k, _ = shared_case(pk(40, 10), [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])   # a 10-acre park inside: it may not take the outline
+    assert code == 0 and ids(k, 'US-1') == ['sgnyb1'] and k['parks']['US-2']['m'] == [] and why(k, 'US-2') == 'record_shared_with_another_park'
+    code, k, _ = shared_case(pk(40, 21), [rec('sgnyb', 'sgnyb1', 'Pine Ridge')])   # 21 acres: over half, both keep it
+    assert code == 0 and ids(k, 'US-1') == ids(k, 'US-2') == ['sgnyb1']
+    p = park('Pine Ridge State Park', 'State Park', size={'acres': 40.0, 'witness': 'agency_document'})
+    r = pool_of(rec('sgnyb', 'sgnyb1', 'Pine Ridge')).recs[0]
+    ctx = {'rules': RULES, 'shared_names': set()}
+    p2 = dict(p, page={'own_page': 'own', 'sizes': [{'acres': 12.0, 'total': True, 'clean': True}]}, link={'page_kind': 'own page', 'site': 'agency (known)'})
+    assert V.size_fits_record(p, r, ctx) and not V.size_fits_record(p2, r, ctx)   # the smallest official size counts
+
+
+def test_gate_same_land_measured_again():
+    # a step that wrongly lists a pair (one pin outside the record) is caught by the gate
+    pl = pool_of(rec('sgnyb', 'sgnyb1', 'Pine Ridge'))
+    parks = {'US-1': park('Pine Ridge State Park', 'State Park', size=SZ(40)),
+             'US-2': park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=900, size=SZ(40))}
+    doc = {'US-1': {'n': 'Pine Ridge State Park', 'm': [['sgnyb1', 'Pine Ridge', 40, 'name+pin']]},
+           'US-2': {'n': 'Pine Ridge Wildlife Management Area', 'm': [['sgnyb1', 'Pine Ridge', 40, 'name+pin']]}}
+    res = {'joins': {'US-1': [0], 'US-2': [0]}, 'how': {'US-1': (3, 'name+pin', {}), 'US-2': (3, 'name+pin', {})},
+           'same_land': {0: {'US-1': 'x', 'US-2': 'x'}}, 'share_ctx': {'shared_names': set()}}
+    g = V.gate(doc, res, pl, RULES, parks)
+    assert not g['ok'] and g['two_name'] == 1
+    parks['US-2'] = park('Pine Ridge Wildlife Management Area', 'Wildlife Management Area', dx_m=50, size=SZ(40))
+    assert V.gate(doc, res, pl, RULES, parks)['ok']                                 # both proven: allowed
+    assert not V.gate(doc, dict(res, same_land={}), pl, RULES, parks)['ok']          # not listed by the step: still fails
+
+
+# 27 Nov 2026, rule acres_field_guard (Illinois sgild: acres from a flat web map, 1.6 to 1.85 times too big)
+def test_acres_field_guard():
+    half = 150.0                                                                      # a 300 m square: 22.24 acres measured
+    true_ac = (2 * half) ** 2 / 4046.8564224
+    f = Fix()
+    try:
+        recs = []
+        # 1.5 times: a square fills its box, and over 1.6 times its box the field is refused anyway (acre_box_factor)
+        for layer, n, factor, y in (('sgzza', 30, 1.5, 0), ('sgzzb', 30, 1.0, 60000), ('sgzzc', 10, 1.5, 120000), ('sgzzd', 30, 0.3, 180000)):
+            for j in range(n):
+                nm = {0: f'{layer} Hill State Park', 5: f'{layer} Lake State Park'}.get(j, f'{layer} tract {j}')
+                recs.append(rec(layer, f'{layer}{j}', nm, ring(j * 1000, y, half_w=half), GIS_Acres=round(true_ac * factor, 3)))
+            f.parks[f'US-{layer}'] = park(f'{layer} Hill State Park', 'State Park', dy_m=y)          # pin inside: name + pin
+            # pin 2 km off: only a size can prove it; the official size given is the layer's own field number
+            f.parks[f'US-{layer}L'] = park(f'{layer} Lake State Park', 'State Park', dx_m=3000, dy_m=y + 2000, size=SZ(round(true_ac * factor, 1)))
+        f.files['US-MN'] = recs
+        assert f.run() == 0
+        k, info = f.key(), f.info()
+        off = {r['layer']: r for r in info['acres_field_off']}
+        assert sorted(off) == ['sgzza'] and 1.45 < off['sgzza']['median'] < 1.55 and off['sgzza']['measured'] == 30, off
+        assert {r['layer'] for r in info['acres_field_checked']} == {'sgzza', 'sgzzb', 'sgzzc', 'sgzzd'}
+        ac = {r: k['parks'][f'US-{r}']['ac'] for r in ('sgzza', 'sgzzb', 'sgzzc', 'sgzzd')}
+        assert ac == {'sgzza': 22, 'sgzzb': 22, 'sgzzc': 33, 'sgzzd': 7}, ac                 # the switched-off layer: its outline, measured
+        assert k['parks']['US-sgzzaL']['m'] == []                                             # no size proof on a field that is switched off
+        assert by(k, 'US-sgzzbL') == 'name+size' and by(k, 'US-sgzzcL') == 'name+size'        # an honest field, or too few to judge: as before
+    finally: f.done()
+
+
 def test_every_rule_names_a_test():
     d = json.load(open(os.path.join(ROOT, '.github', 'us-key-v2-rules.json')))
     names = [r['test'] for r in d['rules']] + [v['test'] for part in ('values', 'tables') for v in d[part].values()]

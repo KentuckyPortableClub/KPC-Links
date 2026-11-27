@@ -109,3 +109,15 @@ land got past the gates. THE NEXT CHAT STARTS HERE, in this order (each: a rule 
 7. **Pin-only reasons:** about 100 of 135 store-gap parks say "no record with this name": give them a store-gap reason.
 8. **Canada** was not in the build: include it in the next one.
 Then ONE rebuild on the PC and the zip to the grader. Do not ask the owner to rebuild before these are in.
+
+## Added 27 Nov, 9:40 AM: built, checked by Fable, on the PC
+- **Size guard (rule sheet 19):** a layer whose acres field runs more than 10% over its own outlines (median of up to 100
+  records) is not trusted for that run; the outline is measured. Illinois: `sgild` off (median 1.731); size agrees 7 -> 46 of 68;
+  131 parks get a new size, no park's records or proof change. MN NY ND VT AK: no layer off, keys the same. A switched-off layer
+  gives NO size proof (the outline is not a new kind of proof). STILL OPEN from the grade: overlapping outlines added up twice
+  (NJ, VA, PA; NY US-10076).
+- **Same land, two park numbers (rule sheet 18):** both parks keep one record only when each proves it on that record (own id, or
+  own exact name + pin inside) AND has an official size at least half the record's acres. No official size = pin only. On today's
+  files NO pair passes (Lake Vermilion stays pin only: the id is on both, neither exact name is on the record, no sizes); MN NY
+  keys the same. New list `v2-shared-records.csv`. TO DO when a real pair appears: the scorecard's G3 counts any id on two
+  park names as a failure; it must skip a pair the key marks `same_land` (the matcher's own gate re-checks such a pair).

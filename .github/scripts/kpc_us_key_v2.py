@@ -45,7 +45,9 @@ TABLE_SHAPES = {
 }
 LINK_TIE_SHAPE = [{'kind': S, 'layer': S, 'field': S, 'rx': RX, '?glue': S}]
 VALUE_KEYS = ('size_tol', 'two_sources_tol', 'pin_m', 'near_km', 'lock_acres_tol', 'thin_m', 'long_ratio', 'acre_box_factor',
-              'same_ground_share', 'same_ground_tol', 'place_word_len', 'line_pin_m', 'ha_acres', 'km2_acres', 'mi2_acres')
+              'same_ground_share', 'same_ground_tol', 'place_word_len', 'line_pin_m', 'ha_acres', 'km2_acres', 'mi2_acres',
+              'acres_field_tol', 'acres_field_min_n', 'acres_field_sample', 'acres_field_min_acres',   # 27 Nov 2026, rule acres_field_guard
+              'shared_record_share')   # 27 Nov 2026, rule shared_record_size
 RULE_ROW = {'id': S, 'step': S, 'what': S, 'why': S, 'test': S, 'fn': S, 'stub': S}
 STEPS = {'load', '1', '2', '3', '4', 'gate', 'write'}
 STUBS = {'true', 'false', 'empty', 'identity', 'none'}
@@ -479,6 +481,7 @@ def rec_box(rec):
 def agency_acres(rec, rules):
     """The agency's own acres field (acre_fields, else the first field matching acre_field_rx), checked against the record's
     box (acre_box_factor): square feet / square metres converted; None = none on file."""
+    if rec.get('acres_off'): return None   # 27 Nov 2026, rule acres_field_guard: this layer's acres field is not used in this run
     if '_aa' in rec: return rec['_aa']
     if line_has_no_size(rec):
         rec['_aa'] = None; return None
@@ -503,6 +506,57 @@ def agency_acres(rec, rules):
         if v > cap: v = next((round(v / d, 1) for d in (43560.0, 4046.86) if v / d <= cap), None)
     rec['_aa'] = float(v) if v else None
     return rec['_aa']
+
+
+def acres_field_sample(recs, rules):
+    """Rule acres_field_guard (27 Nov 2026): the field / outline ratios of one layer of one area's file. The records with an
+    acres field of at least acres_field_min_acres (lines never), in id order, at most acres_field_sample of them, picked
+    evenly from first to last, so the same file always gives the same sample. -> [ratio]."""
+    n = rules['numbers']
+    rs = sorted((r for r in recs if not r.get('line') and (agency_acres(r, rules) or 0) >= n['acres_field_min_acres']), key=lambda r: str(r['id']))
+    k = int(n['acres_field_sample'])
+    pick = rs if len(rs) <= k else [rs[int(j * len(rs) / k)] for j in range(k)]
+    out = []
+    for r in pick:
+        m = acres_of(shape(r))
+        if m > 0: out.append(agency_acres(r, rules) / m)
+    return out
+
+
+def acres_field_ok(ratios, rules):
+    """Rule acres_field_guard (27 Nov 2026; measured on Illinois: layer sgild writes its acres from a flat web map, 1.6 to 1.85
+    times too big): a layer's acres field is trusted unless at least acres_field_min_n records were measured and their median
+    field / outline is more than acres_field_tol ABOVE 1. Too few records to judge = trusted, as before. A field SMALLER than
+    its outline is kept: the agency may hold only part of what is drawn (MN sgmne: a 580-acre outline with su_acres 0.02)."""
+    n = rules['numbers']
+    if len(ratios) < n['acres_field_min_n']: return True
+    return median(ratios) <= 1 + n['acres_field_tol']
+
+
+def median(xs):
+    q = sorted(xs)
+    return q[len(q) // 2] if len(q) % 2 else (q[len(q) // 2 - 1] + q[len(q) // 2]) / 2
+
+
+def acres_field_check(pool, rules):
+    """Rule acres_field_guard, run once after loading and before step 2: every layer of every area's file is judged on its own
+    sample; a layer that fails has its acres field switched off for this run (agency_acres says None, so the outline is
+    measured instead, in the size proof, two sources, the lock and the key alike). -> ([switched off], [every layer judged]),
+    each row {area, layer, median, measured} for v2-run.json."""
+    by = {}
+    for r in pool.recs: by.setdefault((r['area'], r['layer']), []).append(r)
+    off, seen = [], []
+    for (area, layer), recs in sorted(by.items()):
+        rat = acres_field_sample(recs, rules)
+        if not rat: continue
+        row = {'area': area, 'layer': layer, 'measured': len(rat), 'median': round(median(rat), 3)}
+        seen.append(row)
+        if acres_field_ok(rat, rules): continue
+        off.append(row)
+        for r in recs:
+            r['acres_off'] = True
+            r.pop('_aa', None); r.pop('_ac', None)
+    return off, seen
 
 
 def size_field_acres(a, layer, rules):
@@ -975,6 +1029,58 @@ def resolve_claims(claims, parks, rules):
     return {i for i, refs in claims.items() if len({nk(parks[r].get('name')) for r in refs}) > 1}
 
 
+# 27 Nov 2026, the owner (8:37 AM, passing on the grader's words with his yes): "Both parks may share the record (marked 'same
+# land, two park numbers') ONLY when each proves it on its own (own agency ID, or own name + pin inside the record). Unproved
+# shared records stay a hard gate fail. Never let a smaller park take a bigger surrounding park's outline."
+SAME_LAND = 'same land, two park numbers'
+
+
+def own_proof(p, ref, rec, step, ctx):
+    """Rule shared_record_own_proof: the park's OWN proof on this one record, '' when it has none. Step 2 parks: the record
+    itself carries the park's agency id (a piece of the unit that carries no id does not count). Any park: the park's exact name
+    is on the record (exact-name rules, full_name_record) and its pin is INSIDE the record (near the edge is not enough; a line
+    has no inside). An id two parks claim never gets this far (rule id_shared), so it is never anyone's own."""
+    rules, pin = ctx['rules'], pin_of(p)
+    lk = p.get('link') or {}
+    if step == 2 and lk.get('id_value'):
+        kind, value = lk.get('id_kind'), norm_val(lk['id_value'])
+        if any(t['kind'] == kind and tie_value(rec, t, rules) == value for t in rules['_ties'].get(rec['layer'], [])):
+            return f'own agency id ({kind} {value}) on the record'
+    if pin is not None and not rec.get('line') and full_name_record(p, [rec['i']], ctx['pool'], rules, ref) \
+            and inside(pin[1], pin[0], shape(rec)):
+        return 'own exact name on the record, pin inside it'
+    return ''
+
+
+def size_fits_record(p, rec, ctx):
+    """Rule shared_record_size: a park takes a record it shares only when its official size is on file (the size witnesses) and
+    even its smallest official size is at least shared_record_share of the record's acres. No official size = unsure = it does
+    not take it (pin only, unless it has other land). So Cumberland Falls never takes the Daniel Boone forest around it."""
+    wit = size_witnesses(p, ctx['shared_names'], ctx['rules'])
+    return bool(wit) and min(wit) >= ctx['rules']['numbers']['shared_record_share'] * rec_acres(rec, ctx['rules'])
+
+
+def share_claims(bad, claims, step, ctx):
+    """Rules shared_record_own_proof / shared_record_size: for each record claimed in one step by parks of two names, the parks
+    that keep it: each one with its own proof and a size that fits. Two or more keep it = same land, two park numbers; one =
+    that park keeps it alone; none = nobody (as before). -> {record i: {ref: proof words}}."""
+    out = {}
+    for i in sorted(bad):
+        rec = ctx['pool'].recs[i]
+        out[i] = {}
+        for r in sorted(claims[i]):
+            pr = own_proof(ctx['parks'][r], r, rec, step, ctx)
+            if pr and size_fits_record(ctx['parks'][r], rec, ctx): out[i][r] = pr
+    return out
+
+
+def note_same_land(keep, ctx):
+    """Keeps the records two parks of two names now share (ctx['same_land'] {record i: {ref: proof}}) for the key, the gate and
+    the report."""
+    for i, refs in keep.items():
+        if len({nk(ctx['parks'][r].get('name')) for r in refs}) > 1: ctx['same_land'][i] = dict(refs)
+
+
 # ---------------------------------------------------------------------------------------------------------------- step 2
 def id_records(pool, p, kind, value, rules, names_by_full, layer=None):
     """All of today's records that carry the park's id (one layer when given), with their project pieces, after the
@@ -1081,9 +1187,11 @@ def step_id(refs, ctx):
     for ref, rs in want.items():
         for i in rs: claims.setdefault(i, []).append(ref)
     bad = resolve_claims(claims, parks, rules)
+    keep = share_claims(bad, claims, 2, ctx)   # 27 Nov 2026: a park that proves the record on its own keeps it
+    note_same_land(keep, ctx)
     out = {}
     for ref in sorted(want):
-        rs = [i for i in want[ref] if i not in bad]
+        rs = [i for i in want[ref] if i not in bad or ref in keep[i]]
         if len(rs) < len(want[ref]): note[ref] = 'a record of this id is claimed by another park'
         if rs: out[ref] = rs
     return out, {r: ev[r] for r in out}, note, pieces
@@ -1449,9 +1557,11 @@ def step_name(refs, ctx):
     for ref, gs in want.items():
         for i in {i for rs in gs.values() for i in rs}: claims.setdefault(i, []).append(ref)
     bad = resolve_claims(claims, parks, rules)
+    keep = share_claims(bad, claims, 3, ctx)   # 27 Nov 2026: a park that proves the record on its own keeps it
+    note_same_land(keep, ctx)
     out, by = {}, {}
     for ref in sorted(want):
-        gs = {g: rs for g, rs in want[ref].items() if not bad & set(rs)}
+        gs = {g: rs for g, rs in want[ref].items() if not {i for i in bad if ref not in keep[i]} & set(rs)}
         if not gs:
             why[ref] = 'record_shared_with_another_park'; continue
         out[ref] = sorted({i for rs in gs.values() for i in rs})
@@ -1469,7 +1579,7 @@ def match_state(refs, parks, pool, rules, locks=None):
     same_name = {k: sorted(v) for k, v in names_by_full.items() if len(v) > 1}
     ctx = {'parks': parks, 'refs': set(refs), 'pool': pool, 'rules': rules, 'names_by_full': names_by_full,
            'same_name': same_name, 'shared_names': {k for k, c in cnt.items() if c > 1}}
-    ctx['taken'] = set()
+    ctx['taken'], ctx['same_land'] = set(), {}
     got, ev, notes, pieces = step_id(refs, ctx)
     joins = dict(got)
     how = {ref: (2, 'id', ev[ref]) for ref in got}
@@ -1488,7 +1598,9 @@ def match_state(refs, parks, pool, rules, locks=None):
     ctx.update(today=today, notes=notes, shared=shared_ids(refs, parks, rules))
     status, broken = compare_locks(locks or {}, ctx)
     return {'joins': joins, 'how': how, 'why': {r: c for r, c in why.items() if r not in joins}, 'locks_out': today, 'pieces': pieces,
-            'lock_status': status, 'locked_broken': broken, 'trail': trail}
+            'lock_status': status, 'locked_broken': broken, 'trail': trail,
+            'same_land': {i: v for i, v in sorted(ctx['same_land'].items()) if all(i in joins.get(r, ()) for r in v)},
+            'share_ctx': {'shared_names': ctx['shared_names']}}
 
 
 # ---------------------------------------------------------------------------------------------------------------- gate
@@ -1498,14 +1610,31 @@ def gate_old_ids(doc_parks):
             if str(x[0]).endswith('~old')]
 
 
-def gate_two_names(doc_parks):
-    """Rule gate_two_name: no record id on two parks under two names (record names, and POTA's park names with brackets)."""
-    by_id = {}
+def gate_two_names(doc_parks, allowed=None):
+    """Rule gate_two_name: no record id on two parks under two names (record names, and POTA's park names with brackets).
+    27 Nov 2026 (rule gate_same_land): one record on parks of two names passes only when shared_allowed, measured again here,
+    lets every one of those parks hold it ('same land, two park numbers'). Two record names under one id still fail."""
+    by_id, allowed = {}, allowed or {}
     for ref, p in sorted(doc_parks.items()):
         for x in p.get('m') or []:
             if nk(x[1]):
-                v = by_id.setdefault(str(x[0]), (set(), set())); v[0].add(nk(x[1])); v[1].add(nk(p.get('n')))
-    return [('two_name', i, ' / '.join(sorted(v[1]))) for i, v in sorted(by_id.items()) if len(v[0]) > 1 or len(v[1]) > 1]
+                v = by_id.setdefault(str(x[0]), (set(), set(), set())); v[0].add(nk(x[1])); v[1].add(nk(p.get('n'))); v[2].add(ref)
+    return [('two_name', i, ' / '.join(sorted(v[1]))) for i, v in sorted(by_id.items())
+            if len(v[0]) > 1 or (len(v[1]) > 1 and not v[2] <= allowed.get(i, set()))]
+
+
+def shared_allowed(res, pool, rules, parks):
+    """Rule gate_same_land (27 Nov 2026): the records the gate lets two parks of two names share, measured again on their own
+    terms (each park's own proof and size, the same functions the step used), so a step that regresses is caught.
+    -> {record id: {refs}}."""
+    ctx = dict(res.get('share_ctx') or {'shared_names': set()}, rules=rules, pool=pool, parks=parks)
+    out = {}
+    for i, refs in sorted((res.get('same_land') or {}).items()):
+        rec = pool.recs[i]
+        if all(i in res['joins'].get(r, ()) and own_proof(parks[r], r, rec, res['how'][r][0], ctx) and size_fits_record(parks[r], rec, ctx)
+               for r in refs):
+            out.setdefault(str(rec['id']), set()).update(refs)
+    return out
 
 
 def gate_unresolved(res, pool):
@@ -1579,7 +1708,8 @@ def gate_licence(res, pool):
 
 def gate(doc_parks, res, pool, rules, parks=None):
     """Step 5: the hard stop. -> {'ok', 'old_ids', 'two_name', 'not_in_file', 'id_mismatch', 'other_park_pin', 'bad'}."""
-    bad = gate_old_ids(doc_parks) + gate_two_names(doc_parks) + gate_unresolved(res, pool) + gate_id_mismatch(res, pool, rules, parks) \
+    allowed = shared_allowed(res, pool, rules, parks) if parks else {}   # 27 Nov 2026: same land, two park numbers
+    bad = gate_old_ids(doc_parks) + gate_two_names(doc_parks, allowed) + gate_unresolved(res, pool) + gate_id_mismatch(res, pool, rules, parks) \
         + (gate_other_pin(res, parks, pool, rules) if parks else []) + gate_licence(res, pool)
     out = {k: sum(1 for b in bad if b[0] == k) for k in ('old_ids', 'two_name', 'not_in_file', 'id_mismatch', 'other_park_pin', 'licence_kept')}
     out['ok'], out['bad'] = not bad, [list(b) for b in bad]
@@ -1629,6 +1759,8 @@ def state_doc(st, refs, parks, res, pool, rules, layer_files, area=None, gaps=()
             recs = [pool.recs[i] for i in res['joins'][ref]]
             out[ref]['share'] = share_of(recs)
             out[ref]['private'] = sorted({r['id'] for r in recs if not may_show(r)})
+            mark = same_land_mark(ref, res, pool, parks)   # 27 Nov 2026: only on a park that shares a record; others unchanged
+            if mark: out[ref]['same_land'] = mark
         else:
             out[ref] = {'n': p.get('name'), 't': p.get('type'), 'm': [], 'c': [], 'ac': None, 'src': [],
                         'match': {'status': 'pin', 'by': None, 'step': 4, 'evidence': {}, 'why': res['why'].get(ref, 'no_record_with_this_name')}}
@@ -1639,6 +1771,29 @@ def state_doc(st, refs, parks, res, pool, rules, layer_files, area=None, gaps=()
            'counts': {'parks': len(refs), 'outlined': n, 'confirmed': n, 'pin_only': len(refs) - n, 'by_step': steps}, 'parks': out}
     if gaps: doc['gaps'] = list(gaps)
     return doc
+
+
+def same_land_mark(ref, res, pool, parks):
+    """Rule key_same_land (27 Nov 2026): the plain mark on a park that shares a record with a park of another name:
+    {'note': 'same land, two park numbers', 'with': [{'ref', 'name', 'record'}]}; None for every other park."""
+    rows = [{'ref': o, 'name': parks[o].get('name'), 'record': pool.recs[i]['id']}
+            for i, refs in sorted((res.get('same_land') or {}).items()) if ref in refs for o in sorted(refs) if o != ref]
+    return {'note': SAME_LAND, 'with': rows} if rows else None
+
+
+def shared_rows(st, res, pool, rules, parks):
+    """Rule shared_records_report (27 Nov 2026, the owner: "Write every allowed shared-record pair to a small report list so reps
+    can spot dual-agency 2-fers vs. POTA duplicates"): one row per record and pair of parks for v2-shared-records.csv."""
+    out = []
+    for i, refs in sorted((res.get('same_land') or {}).items()):
+        rec, rs = pool.recs[i], sorted(refs)
+        for x, a in enumerate(rs):
+            for b in rs[x + 1:]:
+                wa = size_witnesses(parks[a], (res.get('share_ctx') or {}).get('shared_names', set()), rules)
+                wb = size_witnesses(parks[b], (res.get('share_ctx') or {}).get('shared_names', set()), rules)
+                out.append([a, st, parks[a].get('name'), b, parks[b].get('name'), rec['key'], rec['layer'], rec['name'],
+                            round(rec_acres(rec, rules), 1), refs[a], refs[b], ' '.join(f'{w:g}' for w in wa), ' '.join(f'{w:g}' for w in wb)])
+    return out
 
 
 def gap_note(gaps):
@@ -1843,16 +1998,16 @@ def kind_place(name, rules):
 
 
 def build_state(area, a, rules, facts, layer_file, info):
-    """One area: load, match, gate, write. -> (exit code, proof rows, pin rows, other-name rows)."""
+    """One area: load, match, gate, write. -> (exit code, proof rows, pin rows, other-name rows, shared-record rows)."""
     t0, st = time.time(), area_label(area)
     rules = rules_for_area(rules, area)
     clear_old_outputs(a.out, area)
     own = layer_file(area)
     try: refs = park_list(a.repo, area)
     except (OSError, ValueError):
-        print(f'{st}: park list not found.'); info['not_built'] = 'no park list'; return 2, [], [], []
+        print(f'{st}: park list not found.'); info['not_built'] = 'no park list'; return 2, [], [], [], []
     if own is None:
-        print(f'{st}: layer file not found.'); info['not_built'] = 'no layer file'; return 2, [], [], []
+        print(f'{st}: layer file not found.'); info['not_built'] = 'no layer file'; return 2, [], [], [], []
     gaps = layer_gaps(own[0], rules)
     info['gaps'] = gaps
     info['not_waited_for'] = no_wait(own[0], rules)
@@ -1866,6 +2021,8 @@ def build_state(area, a, rules, facts, layer_file, info):
         info['neighbour_gaps'] += [f'{nb} {l}' for l in layer_gaps(f[0], rules)]
         pool.add_file(nb, f[0])
         layer_files[nb] = {'file': f[2], 'made': f[0].get('made'), 'sha256': f[1]}
+    # 27 Nov 2026, rule acres_field_guard: a layer whose acres field disagrees with its own outlines is not used for sizes
+    info['acres_field_off'], info['acres_field_checked'] = acres_field_check(pool, rules)
     listed = park_states(a.repo, area)
     parks = {r: dict(facts.get(r) or {'name': '', 'type': ''}, listed_in=listed.get(r) or []) for r in refs}
     for r, p in facts.items():
@@ -1892,7 +2049,7 @@ def build_state(area, a, rules, facts, layer_file, info):
     info['joined_by_licence'] = dict(sorted(lic.items()))
     if g['ok']: info['key_text_sha256'] = key_text_sha256(doc)
     if not g['ok']:
-        print(f'{st}: GATE FAILED, key not written. {len(g["bad"])} broken row(s), listed in v2-run.json.'); return 4, [], [], []
+        print(f'{st}: GATE FAILED, key not written. {len(g["bad"])} broken row(s), listed in v2-run.json.'); return 4, [], [], [], []
     with open(os.path.join(a.out, f'{area}.json.gz'), 'wb') as f: f.write(gz_bytes(doc))
     if a.write_locks:
         os.makedirs(os.path.join(a.out, 'locks'), exist_ok=True)
@@ -1906,7 +2063,9 @@ def build_state(area, a, rules, facts, layer_file, info):
           f"{c['pin_only']} pin only. Locks held {lk['held']}, broken {lk['broken']}, new {lk['new']}. Gate OK.{gap_text} "
           f"{time.time() - t0:.0f} s.")
     info['seconds'] = round(time.time() - t0, 1)
-    return (3 if gaps else 0), proof_rows(st, res, pool, rules), pins, id_other_names(st, res, parks, pool, rules)
+    info['same_land_records'] = len(res['same_land'])   # 27 Nov 2026: records two parks of two names share (v2-shared-records.csv)
+    return (3 if gaps else 0), proof_rows(st, res, pool, rules), pins, id_other_names(st, res, parks, pool, rules), \
+        shared_rows(st, res, pool, rules, parks)
 
 
 def tool_line(trial):
@@ -1940,7 +2099,7 @@ def run(argv=None):
     run_info['inputs']['rules'] = {'file': a.rules or '.github/us-key-v2-rules.json', 'sha256': sha256(rules_path(a.repo, a.rules)),
                                    'trial': bool(a.rules)}
     rules['_tool'] = tool_line(bool(a.rules))
-    proof_all, pin_all, other_all = [], [], []
+    proof_all, pin_all, other_all, shared_all = [], [], [], []
 
     def layer_file(area):
         if area not in cache:
@@ -1954,9 +2113,9 @@ def run(argv=None):
                 'locked_broken': [], 'not_built': None, 'neighbour_gaps': [], 'gaps': []}
         run_info['states'][area_label(area)] = info
         run_info['areas'][area] = info
-        c, pr, pn, on = build_state(area, a, rules, facts, layer_file, info)
+        c, pr, pn, on, sh = build_state(area, a, rules, facts, layer_file, info)
         code = 4 if 4 in (code, c) else max(code, c)
-        proof_all += pr; pin_all += pn; other_all += on
+        proof_all += pr; pin_all += pn; other_all += on; shared_all += sh
         later = {x for b in areas[n + 1:] for x in [b] + area_neighbours(b, rules)}
         for k in [k for k in cache if k not in later]: del cache[k]   # rule memory: keep only files a later area reads
     write_csv(os.path.join(a.out, 'v2-proof.csv'), ['ref', 'st', 'file_key', 'agency_id', 'layer', 'record_name', 'acres', 'step', 'by',
@@ -1964,6 +2123,10 @@ def run(argv=None):
     write_csv(os.path.join(a.out, 'v2-pin-only.csv'), ['ref', 'st', 'name', 'kind', 'reason_code', 'reason'], pin_all)
     write_csv(os.path.join(a.out, 'v2-id-other-names.csv'), ['ref', 'st', 'park_name', 'record_key', 'record_name', 'layer',
                                                              'km_from_pin'], other_all)
+    # 27 Nov 2026: every record two parks of two names share, with each park's own proof and official size (rule shared_records_report)
+    write_csv(os.path.join(a.out, 'v2-shared-records.csv'), ['ref', 'st', 'name', 'other_ref', 'other_name', 'record_key', 'layer',
+                                                             'record_name', 'record_acres', 'proof', 'other_proof', 'official_acres',
+                                                             'other_official_acres'], shared_all)
     run_info['inputs'] = dict(sorted(run_info['inputs'].items()))
     run_info['seconds_total'] = round(time.time() - t_all, 1)
     with open(os.path.join(a.out, 'v2-run.json'), 'w', encoding='utf-8') as f: json.dump(run_info, f, sort_keys=True, indent=1)

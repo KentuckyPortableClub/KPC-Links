@@ -802,6 +802,60 @@
    "test": "test_licence_kept",
    "fn": "may_show",
    "stub": "true"
+  },
+  {
+   "id": "shared_record_own_proof",
+   "step": "3",
+   "what": "a record claimed in one step by parks of two names is kept by each park that proves it on its own: its own agency id on the record (step 2), or its own exact name on the record with its pin INSIDE it; a park without such a proof does not keep it (both without: nobody, as before)",
+   "why": "owner 27 Nov 2026, 8:37 AM, passing on the grader's words with his yes: \"Both parks may share the record (marked 'same land, two park numbers') ONLY when each proves it on its own (own agency ID, or own name + pin inside the record). Unproved shared records stay a hard gate fail. Never let a smaller park take a bigger surrounding park's outline.\" Real: Lake Vermilion US-2506 / US-7148 share one id (SPK00285) and neither has its exact name on record 209838, so both stay pin only. Dated 27 Nov 2026.",
+   "test": "test_shared_record_both_prove",
+   "fn": "own_proof",
+   "stub": "empty"
+  },
+  {
+   "id": "shared_record_size",
+   "step": "3",
+   "what": "a park keeps a record it shares only when its official size is on file and even its smallest official size is at least shared_record_share of the record's acres; no official size on file = unsure = it does not keep it",
+   "why": "owner 27 Nov 2026, 8:37 AM, passing on the grader's words with his yes: \"Both parks may share the record (marked 'same land, two park numbers') ONLY when each proves it on its own (own agency ID, or own name + pin inside the record). Unproved shared records stay a hard gate fail. Never let a smaller park take a bigger surrounding park's outline.\" The grader: \"if one park's official size is much smaller than the shared record (say under half the record's acres), it cannot inherit the whole surrounding polygon\" (Cumberland Falls inside Daniel Boone NF). No size = unsure = pin only (rule sheet section 4: proof or the pin). Dated 27 Nov 2026.",
+   "test": "test_shared_record_small_park",
+   "fn": "size_fits_record",
+   "stub": "true"
+  },
+  {
+   "id": "gate_same_land",
+   "step": "gate",
+   "what": "the gate lets one record stand on parks of two names only when, measured again, every one of them has its own proof and a size that fits; any other record on two names still fails the gate",
+   "why": "owner 27 Nov 2026, 8:37 AM, passing on the grader's words with his yes: \"Both parks may share the record (marked 'same land, two park numbers') ONLY when each proves it on its own (own agency ID, or own name + pin inside the record). Unproved shared records stay a hard gate fail. Never let a smaller park take a bigger surrounding park's outline.\" (\"Unproved shared records stay a hard gate fail.\") Dated 27 Nov 2026.",
+   "test": "test_shared_record_both_prove",
+   "fn": "shared_allowed",
+   "stub": "empty"
+  },
+  {
+   "id": "key_same_land",
+   "step": "write",
+   "what": "a park that shares a record with a park of another name says so in the key: same_land {note: 'same land, two park numbers', with: [the other park, its name, the record]}; no other park gets the field",
+   "why": "owner 27 Nov 2026, 8:37 AM, passing on the grader's words with his yes: \"Both parks may share the record (marked 'same land, two park numbers') ONLY when each proves it on its own (own agency ID, or own name + pin inside the record). Unproved shared records stay a hard gate fail. Never let a smaller park take a bigger surrounding park's outline.\" Dated 27 Nov 2026.",
+   "test": "test_shared_record_both_prove",
+   "fn": "same_land_mark",
+   "stub": "empty"
+  },
+  {
+   "id": "shared_records_report",
+   "step": "write",
+   "what": "every shared record and pair of parks is one row of v2-shared-records.csv: both parks, the record, its acres, each park's own proof and official size",
+   "why": "owner 27 Nov 2026, 8:37 AM: \"Write every allowed shared-record pair to a small report list so reps can spot dual-agency 2-fers vs. POTA duplicates.\" Dated 27 Nov 2026.",
+   "test": "test_shared_record_both_prove",
+   "fn": "shared_rows",
+   "stub": "empty"
+  },
+  {
+   "id": "acres_field_guard",
+   "step": "load",
+   "what": "per layer of each area's file, the agency acres field is compared with the measured outline on a sample; when at least acres_field_min_n records were measured and the median field / outline is more than acres_field_tol above 1, that layer's acres field is not used in this run (the outline is measured instead: size proof, two sources, lock, key); v2-run.json lists such layers under acres_field_off with their median",
+   "why": "measured 27 Nov 2026 on Illinois: layer sgild writes its acres from a flat web map (Web Mercator), median 1.73 times its own outline (1.60 to 1.83 for 80% of its records), so 39 Illinois parks had the right land and the wrong size. Every other layer measured on the IL MN NY ND VT AK files: median 1.004 to 1.011. A field SMALLER than its outline is kept: the agency may hold only part of what is drawn (MN sgmne: a 580-acre outline with su_acres 0.02).",
+   "test": "test_acres_field_guard",
+   "fn": "acres_field_ok",
+   "stub": "true"
   }
  ],
  "values": {
@@ -879,6 +933,31 @@
    "value": 640.0,
    "why": "1 square mile = 640 acres (page sizes written in square miles)",
    "test": "test_page_size_unit"
+  },
+  "acres_field_tol": {
+   "value": 0.1,
+   "why": "27 Nov 2026, rule acres_field_guard: the same 10% as size_tol (a field more than 10% over its own outline cannot pass the size proof honestly). Honest layers measured 1.004 to 1.011 (IL MN NY ND VT AK); a web-map field is at least 1.10 anywhere in the US (Puerto Rico, 18 degrees north) and 1.73 in Illinois.",
+   "test": "test_acres_field_guard"
+  },
+  "acres_field_min_n": {
+   "value": 20,
+   "why": "27 Nov 2026, rule acres_field_guard: fewer measured records than this = too few to judge, the field is used as before (a median of 20 is not moved by a few odd records).",
+   "test": "test_acres_field_guard"
+  },
+  "acres_field_sample": {
+   "value": 100,
+   "why": "27 Nov 2026, rule acres_field_guard: at most this many records of a layer are measured, picked evenly in id order, so a 13,000-record layer stays fast; on the IL MN NY ND VT files the 100-record median of every layer is within 0.005 of the median of all its records.",
+   "test": "test_acres_field_guard"
+  },
+  "acres_field_min_acres": {
+   "value": 5,
+   "why": "27 Nov 2026, rule acres_field_guard: only records whose acres field says at least 5 acres are measured; a tiny parcel's stored outline (simplified about 3 m) is too rough to judge a field by.",
+   "test": "test_acres_field_guard"
+  },
+  "shared_record_share": {
+   "value": 0.5,
+   "why": "27 Nov 2026, the grader's number passed on by the owner: \"if one park's official size is much smaller than the shared record (say under half the record's acres), it cannot inherit the whole surrounding polygon\".",
+   "test": "test_shared_record_small_park"
   }
  },
  "tables": {
