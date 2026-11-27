@@ -89,3 +89,23 @@ loops, and nothing passed on that was not measured. Read this page, then `handof
   an unproved shared record stays a hard fail. Being built.
 - **The grader's pre-grade and fix list of 27 Nov is saved whole:** `pregrade-grader-nov27.md`. Done from it so far: #40's red test,
   the reason-list correction. The rest is the open list.
+
+## THE GRADE of `v2-keys\2026-11-27-080935` (the grader, 27 Nov 9:09 AM): build sound, publish / merge NO
+Saved whole: `grade-grader-nov27-0809.md`. Hard gates clean in all 51 US areas, all 251 trail joins within 98 ft. But real wrong
+land got past the gates. THE NEXT CHAT STARTS HERE, in this order (each: a rule row + a test + a real-data run, PC first):
+1. **Fake "two sources"** (79 parks, 28 with the pin outside; Nevada's herd areas): `other_services()` counts two layers as two
+   sources when the service address is blank, so two copies of one record prove a park. Need: two different, non-blank services,
+   and never the same acres / ids.
+2. **Wrong land, confirmed:** US-6423 Manuka (took the 14-acre wayside), US-11094 Glenwood Hatchery (took a BLM area), US-10428
+   Walls of Jericho (took Tennessee's land). Partial land to review: US-3935, 7714, 1655, 8335, 2282, 5735, 9317, 12191, 4271,
+   9832, 6992. Texas / Alabama unit drops: Aransas, Little River SF.
+3. **Size measuring:** Illinois `sgild` (flat-map acres) AND overlapping PAD-US outlines added up twice (NJ 1.89x, VA 1.25x, PA
+   1.19x). BEING BUILT 27 Nov by this chat: a general guard (an acres field that disagrees with its outline is not used). Still
+   to do after it: measure the UNION of overlapping outlines, not their sum (this is also NY US-10076, 51 vs 44 acres).
+4. **Michigan layer `mid`:** real extra land (over 1.5x on 41 of 93 parks): project boundaries, not owned land? Check before use.
+5. **Id joins:** "NPS Easement" records joined to battlefields up to 15 miles off; four suspicious NY joins; the Appalachian
+   Trail's 384 records up to 487 miles away. List: `v2-id-other-names.csv`.
+6. **Park facts:** 11 new parks with blank names (US-13665 to 13672, US-6253, 6257, 6274); Kure Atoll US-0121 moved to US-KI.
+7. **Pin-only reasons:** about 100 of 135 store-gap parks say "no record with this name": give them a store-gap reason.
+8. **Canada** was not in the build: include it in the next one.
+Then ONE rebuild on the PC and the zip to the grader. Do not ask the owner to rebuild before these are in.
