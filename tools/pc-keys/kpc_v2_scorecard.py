@@ -458,20 +458,26 @@ def fmt_pct(a, b):
 def park_name_share(parks):
     """The owner's meaning of 'two names': one record (one joined id) on two parks whose POTA names differ (letters and digits of the
     whole name, text in brackets INCLUDED: 'Pine Hill State Forest (Delaware County)' and '... (Cattaraugus County)' are two names).
-    Returns (ids on parks with different names, ids on parks with the very same name, rows for the csv)."""
+    Returns (ids on parks with different names, ids on parks with the very same name, rows for the csv, ids allowed by the key's
+    own same_land marks). 27 Nov 2026: an id on parks of different names is allowed (not counted as different) only when every
+    two parks of different names on it carry a same_land mark that names the other park for that same id, on BOTH sides."""
     by_id = {}
     for ref, row in sorted((parks or {}).items()):
         if not isinstance(row, dict): continue
         for x in row.get('m') or []:
             if isinstance(x, (list, tuple)) and x: by_id.setdefault(str(x[0]), {})[ref] = _nk(row.get('n'))
-    diff = same = 0
+    def marked(a, b, i):   # 27 Nov 2026: does park a's same_land mark name park b for record i?
+        sl = ((parks.get(a) or {}).get('same_land') or {})
+        return any(isinstance(w, dict) and w.get('ref') == b and str(w.get('record')) == i for w in (sl.get('with') or []) if isinstance(sl, dict))
+    diff = same = allowed = 0
     rows = []
     for i, refs in sorted(by_id.items()):
         if len(refs) < 2: continue
         if len(set(refs.values())) > 1:
-            diff += 1; rows.append({'record_id': i, 'parks': ' '.join(sorted(refs))})
+            if all(marked(a, b, i) and marked(b, a, i) for a in refs for b in refs if refs[a] != refs[b]): allowed += 1
+            else: diff += 1; rows.append({'record_id': i, 'parks': ' '.join(sorted(refs))})
         else: same += 1
-    return diff, same, rows
+    return diff, same, rows, allowed
 
 
 def bare_name(n):
@@ -606,7 +612,7 @@ def build(v2dir, basedir, storedir, factsfile, states, v1_seconds=None, repo=Non
         d['c2'] = sum(len((p or {}).get('c') or []) for p in vp.values())
         d['old'] = old_ids(vp)
         d['lic'] = licence_counts(vp)
-        d['pdiff'], d['psame'], d['pshare'] = park_name_share(vp)
+        d['pdiff'], d['psame'], d['pshare'], d['pallow'] = park_name_share(vp)   # 27 Nov 2026: pallow = ids the key marks same_land on both parks
         for r_ in d['pshare']: r_['state'] = st
         d['two'], d['samename'] = two_name_count(vp)
         d['missing'] = sum(1 for r in d['proof_rows'] if not store.has_key(r.get('file_key'), stems))
@@ -706,8 +712,9 @@ def make_gates(S, all_states, v1_seconds=None):
     add('G2', n == 0, f'ids ending in ~old in joins or check rows: {n}')
     two, same = sum(S[s]['two'] for s in states), sum(S[s]['samename'] for s in states)
     pd_, ps_ = sum(S[s]['pdiff'] for s in states), sum(S[s]['psame'] for s in states)
+    pa_ = sum(S[s].get('pallow', 0) for s in states)   # 27 Nov 2026
     add('G3', two == 0 and pd_ == 0, f'two names: ids naming two records {two} (same record name on two parks: {same}, allowed); '
-        f'one record on two parks with different park names {pd_}; one record on two parks with the very same park name {ps_} (allowed)')
+        f'one record on two parks with different park names {pd_} (and {pa_} more, allowed: both parks carry the same_land mark naming each other); one record on two parks with the very same park name {ps_} (allowed)')
     n, tot = sum(S[s]['missing'] for s in states), sum(len(S[s]['proof_rows']) for s in states)
     nopf = [s for s in states if not S[s]['proof_rows'] and S[s]['out2']]
     add('G4', n == 0 and not nopf, f'joined records not in the layer files: {n} of {tot}' + (f' (no proof rows for {" ".join(nopf)})' if nopf else ''))

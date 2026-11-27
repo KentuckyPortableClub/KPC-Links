@@ -288,6 +288,30 @@ def same_park_name(k, pr, po, r):
 g, S2, _, _ = score(same_park_name)
 check('G3: one record on two parks with the very same park name is shown (1) and allowed', g['G3'] and S2['MN']['psame'] == 1 and S2['MN']['pdiff'] == 0)
 
+# 27 Nov 2026: a record two parks of two names share is allowed only when BOTH parks carry the key's same_land mark naming the other park for that record
+def mark(ref, rec, name='x'): return {'note': 'same land, two park numbers', 'with': [{'ref': ref, 'name': name, 'record': rec}]}
+def two_names(k, pr, po, r):
+    pine(k, pr, po, r); k['parks']['US-0003']['n'] = 'Beta Lake State Park'
+def both_marked(k, pr, po, r):
+    two_names(k, pr, po, r); k['parks']['US-0001']['same_land'] = mark('US-0003', 'sgzz1'); k['parks']['US-0003']['same_land'] = mark('US-0001', 'sgzz1')
+def one_marked(k, pr, po, r):
+    two_names(k, pr, po, r); k['parks']['US-0001']['same_land'] = mark('US-0003', 'sgzz1')
+def other_record(k, pr, po, r):
+    two_names(k, pr, po, r); k['parks']['US-0001']['same_land'] = mark('US-0003', 'sgzz1'); k['parks']['US-0003']['same_land'] = mark('US-0001', 'other9')
+def third_park(k, pr, po, r):
+    two_names(k, pr, po, r); k['parks']['US-0001']['same_land'] = mark('US-0003', 'sgzz1'); k['parks']['US-0003']['same_land'] = mark('US-0099', 'sgzz1')
+g, S2, _, _ = score(both_marked)
+check('G3 same_land: two names, both parks marked and naming each other for that record: passes and is counted as allowed',
+      g['G3'] and S2['MN']['pdiff'] == 0 and S2['MN']['pallow'] == 1 and '(and 1 more, allowed' in score.last[1])
+g, S2, _, _ = score(two_names)
+check('G3 same_land: two names, no mark: still fails', not g['G3'] and S2['MN']['pdiff'] == 1 and S2['MN']['pallow'] == 0)
+g, S2, _, _ = score(one_marked)
+check('G3 same_land: only one of the two parks carries the mark: still fails', not g['G3'] and S2['MN']['pdiff'] == 1 and S2['MN']['pallow'] == 0)
+g, S2, _, _ = score(other_record)
+check('G3 same_land: the mark names a different record: still fails', not g['G3'] and S2['MN']['pdiff'] == 1 and S2['MN']['pallow'] == 0)
+g, S2, _, _ = score(third_park)
+check('G3 same_land: the mark names a third park, not the other park: still fails', not g['G3'] and S2['MN']['pdiff'] == 1 and S2['MN']['pallow'] == 0)
+
 TWO_PART = dict(ALPHA, rings=[sq(-85000000, 38000000), sq(-85505000, 38495000)])    # one record, two pieces, 60 km apart
 
 
