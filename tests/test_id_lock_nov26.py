@@ -93,6 +93,10 @@ nps0 = {'OBJECTID': 4447, 'Unit_Nm': 'Federal Hall National Memorial', 'GIS_Acre
 d4 = {'parks': {'US-0773': {'layer': 'padus', 'kind': 'NPS unit code', 'value': 'FEHA', 'names': ['Federal Hall National Memorial'], 'acres': 0}}}
 u4, b4 = check_('NY', [nps0], d4)
 check(f'E: a record with no size on file both times is unchanged: the lock holds ({b4})', 'US-0773' in u4 and not b4)
+u5, b5 = check_('NY', [dict(nps0, GIS_Acres=50)], d4)
+check(f'E: 0 acres saved, 50 today: the lock breaks ({b5})', 'US-0773' not in u5 and b5 and 'resized' in b5[0][5])
+u6, b6 = check_('NY', [dict(dec, SA={'URL': 'https://www.dec.ny.gov/lands/99999.html'}), dict(dec2, SA={'URL': 'https://www.dec.ny.gov/lands/99999.html'})], d2)
+check(f"E: the agency page id in the record's address changed: the lock breaks ({b6})", 'US-8622' not in u6 and b6 and "not in today's layer file" in b6[0][5])
 run_ = src[src.index('def run(st):'):]
 check('D: locked parks skip the matching loop, the match checks and the gate',
       "if ref in LOCK_ROWS:" in run_ and 'set(TRL) | set(LOCK_ROWS)' in src and src.count('set(TRL) | set(LOCK_ROWS)') == 2)
