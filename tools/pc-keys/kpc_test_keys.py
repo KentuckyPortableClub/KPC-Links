@@ -304,7 +304,8 @@ def run_build(st, rep, attrs):
                        KPC_PIN_ONLY_LIST=str(rep / 'pin-only-parks.csv'), KPC_REPOINTS=str(rep / 'saved-answers-moved.csv'),
                        KPC_LISTED=str(rep / 'rows-kept-but-listed.csv'), KPC_NOSTORE_LIST=str(rep / 'layers-not-in-store.csv'),
                        KPC_GAP_LIST=str(rep / 'layers-not-complete.csv'),
-                       KPC_CARRY_LIST=str(rep / 'old-rows-not-carried.csv'),   # 26 Nov: old rows whose name does not fit the fresh record of that number
+                       KPC_CARRY_LIST=str(rep / 'old-rows-not-carried.csv'),
+                       KPC_LOCK_LIST=str(rep / 'locks-broken.csv'),   # 26 Nov: agency-id locks that did not hold today   # 26 Nov: old rows whose name does not fit the fresh record of that number
                        KPC_PROOF_LIST=str(rep / 'row-proof.csv'))   # R6: why each old row of a park that lost rows did or did not prove   # 25 Nov (owner 8:48 AM): a state stops on a gap
             cmd = [sys.executable, '-X', 'utf8', '.github/scripts/kpc_us_key.py']
     kept = []
@@ -503,6 +504,28 @@ def wrong_land_lines(kf, rep):
     return out
 
 
+def leads_lines(kf, rep):
+    """26 Nov 2026 (owner 1:58 PM 'dont forget about them leads'): the pin-only parks the old engine proposed an outline for
+    (C:\\KPC\\7-NOTES\\leads-nov26) against the NEW key: which of them the key now outlines by its own rules, which are still a pin.
+    A lead is never joined by this list; the key's rules decide. Report only."""
+    import csv
+    f = HERE.parent / '7-NOTES' / 'leads-nov26' / 'LEADS-pin-only-parks-with-a-proposed-outline.csv'
+    if not f.is_file(): return []
+    tag = kf.stem
+    rows = [r for r in csv.DictReader(open(f, encoding='utf-8')) if r.get('area') == tag and r.get('engine says') == 'SURE/STRONG']
+    if not rows: return []
+    parks = (load(kf) or {}).get('parks') or {}
+    refs = sorted({r['park'] for r in rows})
+    got = [r for r in refs if (parks.get(r) or {}).get('m')]
+    pin = [r for r in refs if r not in got]
+    nm = {r['park']: r.get('name', '') for r in rows}
+    (rep / f'LEADS-CHECK-{tag}.txt').write_text('\n'.join(
+        [f'{tag}: {len(refs)} lead park(s) (SURE/STRONG); outlined by the key now {len(got)}, still a pin {len(pin)}.', '', 'OUTLINED NOW:']
+        + [f'  {r} {nm[r]}' for r in got] + ['', 'STILL A PIN (the lead is not proven by the key\'s rules):'] + [f'  {r} {nm[r]}' for r in pin]) + '\n',
+        encoding='utf-8')
+    return [f'  leads (SURE/STRONG, old engine): {len(refs)} park(s); outlined now {len(got)}, still a pin {len(pin)} (list: LEADS-CHECK-{tag}.txt)']
+
+
 def _run_state(st, rep, attrs, tot):
     say(f'  building {st} ... (its progress lines show below)')
     t0 = time.time()
@@ -535,6 +558,10 @@ def _run_state(st, rep, attrs, tot):
             lines += wrong_land_lines(kf, rep)
         except Exception as e:  # noqa: BLE001
             lines.append(f'  wrong-land check not run ({type(e).__name__}: {str(e)[:120]})')
+        try:
+            lines += leads_lines(kf, rep)
+        except Exception as e:  # noqa: BLE001
+            lines.append(f'  leads check not run ({type(e).__name__}: {str(e)[:120]})')
         if (LAST / kf.name).is_file():
             lines += compare(f"{tag} against this PC's last test", LAST / kf.name, kf)[0]
         shutil.copy2(kf, LAST / kf.name)

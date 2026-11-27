@@ -180,9 +180,9 @@ with tempfile.TemporaryDirectory() as td:
 
 # ---- R5: wetland district tracts from the layer file (source check: the filter on the fws records' realty fields) ----------
 check("R5: the district rule reads the layer file's fws records (CMPXNAME, RSL_TYPE 'WPA', INTTYPE1 'O') before any live read",
-      "_lay_fws = [a for a in recs if a.get('_fresh') and _sl_layer(_oid(a)) == 'fws' and (a.get('SA') or {}).get('CMPXNAME')]" in src
-      and src.index('_lay_fws = [') < src.index('try: j, _pg = fetch_geo(FWS'))
-i_ = src.index('_lay_fws = ['); blk = src[i_:src.index('try: j, _pg = fetch_geo(FWS', i_)]
+      "_lay_fws_all = [a for a in recs if a.get('_fresh') and _sl_layer(_oid(a)) == 'fws' and (a.get('SA') or {}).get('CMPXNAME')]" in src
+      and src.index('_lay_fws_all = [') < src.index('try: j, _pg = fetch_geo(FWS'))   # 26 Nov: read once for every district
+i_ = src.index('_lay_fws_all = ['); blk = src[i_:src.index('try: j, _pg = fetch_geo(FWS', i_)]
 check("R5 fix: the district's tract rows are code rows ('official': the agency's own records), never a person's saved answer",
       "'official: the district = FWS fee" in blk and "'reviewed:" not in blk and MC.row_class([1, 'x', 1, 'official: the district']) == 'code')
 import kpc_store_attrs as SA  # noqa: E402

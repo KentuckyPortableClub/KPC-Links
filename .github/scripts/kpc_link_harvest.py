@@ -102,7 +102,7 @@ def from_layers(P, found):
     for f in pathlib.Path('data/us-key').glob('US-*.json'):
         for ref, p in json.load(open(f))['parks'].items():
             for x in p.get('m') or []:
-                m = re.fullmatch(r'([a-z]+)(\d+)', str(x[0]))
+                m = re.fullmatch(r'([a-z]+)([1-9]\d*)', str(x[0]))   # 26 Nov: an agency id ('sgmnb06') is not a row number
                 if m and m.group(1) in L:
                     want.setdefault(m.group(1), {}).setdefault(int(m.group(2)), set()).add(ref)
     n = 0

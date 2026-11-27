@@ -124,7 +124,7 @@ def store_index(store=None):
         except Exception: continue  # noqa: BLE001
         _grp = list(d.get('parks') or []) + [{'records': d.get('records') or []}]
         _all = [r for p in _grp for r in p.get('records') or []]
-        _pk = {id(r): k_ for r, k_ in zip(_all, SA.publish_keys(_all))}   # batch 16 item 1: the key's spelling (agency id)
+        _pk = {id(r): k_ for r, k_ in zip(_all, SA.publish_keys(_all, f.name.split('.')[0]))}   # batch 16 item 1: the key's spelling (agency id)
         for p in _grp:
             for r in p.get('records') or []:
                 k = _pk.get(id(r), '')

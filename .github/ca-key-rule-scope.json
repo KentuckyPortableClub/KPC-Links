@@ -174,6 +174,14 @@
    "why": "Shared rule files change for the US key batch of 26 Nov (kpc_match_checks.py, kpc_key_rules.py, kpc_same_land.py): a possessive written as one word is a second try in the exact-name test (DEVIL'S = DEVILS), a held id counts only while it is one of the park's joined records, and a thin shape must be long. Canada names with a possessive can now match where they did not; nothing else in the Canada pass reads these. Scope none: no Canada area is rebuilt for it now; the next full Canada build reads it.",
    "scope": "none",
    "approved": "APPROVED, decided_by KPC owner, 26 Nov 4:18 PM: 'your only job is to find and fix problems with keys...we want accuracy more matches more confirmed matches'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
+  },
+  {
+   "id": "2026-11-26-name-gaps-shared",
+   "when": "2026-11-26",
+   "from": "bb5687fe3cbd",
+   "why": "Only because kpc_match_checks.py (a Canada rule file too) learns that FWS 'National Wildlife and Fish Refuge' = 'National Wildlife Refuge' in the exact-name test; Canada has no such name; and 'page names the land' also reads the page reader's whole-page names (page.names), which no Canada park facts carry yet. Scope none.",
+   "scope": "none",
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:18 PM: 'yeah no more putting stuff off so it does not get dropped'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }
