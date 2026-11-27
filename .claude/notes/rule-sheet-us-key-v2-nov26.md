@@ -25,8 +25,10 @@ v2 imports none of `kpc_us_key`, `kpc_match_checks`, `kpc_same_land`. It is one 
 ## 3. Loading
 - A typed state builds only if every layer in its own file is `complete` in the manifest. If not: that state is NOT BUILT, the
   gap is listed, exit code 3. A neighbour's gap is listed but does not stop the state.
-- Layers in `drop_layers` (today: `sgmnb`, the MN statutory state forest line, which holds private land) are dropped at load.
-  They never reach matching, so nothing has to take them off later.
+- Layers in `drop_layers` are dropped at load, so they never reach matching and nothing has to take them off later. Today:
+  `sgmnb` (the MN statutory state forest line, which holds private land) and `sgnvg` (the Forest Service's administrative
+  forest line: US-4491 Superior was drawn at 3,886,760 acres from it; its owned land is 2,093,610, official 2,092,769).
+  Club rule: a forest is the agency's own land, never the proclamation line.
 - A record with no shape is dropped at load and counted.
 
 ## 4. Matching: five steps, straight down, best proof first
@@ -62,7 +64,9 @@ A park that is proven at a step is done. It is not searched again.
    the same place under a longer or shorter name when the record holds the pin and the kinds agree (#390 rule 5); the name
    inside the park's own page address when the link bot rated it strong; place words run together (`Jansen Kill` =
    `Jansenkill`); `X Heritage Preserve and Wildlife Management Area` read as either kind; pieces named with a direction or
-   a number (`... State Forest - East`). Same-name records join as pieces only within 10 km of the pin or of a proven piece.
+   a number (`... State Forest - East`). Records grouped by NAME alone join as pieces only within 10 km of the pin or of a
+   proven piece. Records that share a REAL unit value (a wetland district's complex name, a refuge's own code, a trail's
+   project) are one unit at any distance: a district is scattered by nature (Windom 17,913 acres, v1 17,804).
    Never by name: an easement or lease; a Fish and Wildlife tract that is not owned in fee (V2-G4); a record that holds the
    pin of another park with the same bare name (review blocker: one PAD-US record can hold two same-named forests in two
    counties: Pine Hill, Robert Moses, Tracy Creek, Bear Swamp). The rules live in `us-key-v2-rules.json`, one row each:
@@ -150,3 +154,15 @@ does not hold, such as trail lines). One per park. Check rows can therefore neve
   failed (SC is not built); a layer with one shapeless record is marked not complete (MA, NC, VT); the Iowa layer repeats
   row keys inside MN's file (290 records dropped).
 - V2-G3: records published by a row number (layers with no agency id) cannot be locked; they are matched fresh every run.
+
+## 11. What the first full run showed (26 Nov, 8:40 PM, Fable's own run on the PC's MN and NY layer files)
+- Scorecard: V2 PASSES, every gate. Outlined, fair count: MN 293 -> 295, NY 818 -> 819. MN + NY build in about 40 seconds
+  (v1: 7.2 minutes). Check rows 767 -> 0; every pin-only park has one reason.
+- Pin inside the land: MN 86.9% -> 87.5%, NY 98.4% -> 98.8%. Size agrees: MN 34 -> 35 of 40, NY 29 of 36 -> 29 of 37.
+- The same land, measured on the shapes: v2 covers at least 90% of v1's land in 93.5% of MN parks and 95.4% of NY parks.
+  Where it does not: 29 parks where v1 held another unit's land (402,030 acres: Red Lake WMA on Red Lake State Forest, state
+  park units on same-named state forests, PAD-US records spread over two same-named forests), 4 parks left out on purpose
+  (easements, land under water), and none where v2 misses the park's own land.
+- No park on a same-named park's land: v2 0, v1 5 (Pine Hill, Robert Moses, Tracy Creek).
+- Still pin only on purpose in NY: US-0474, US-2147 (need an "other spelling"), US-10040 (only an old size proves it),
+  US-10045 (the record names two parks), US-13624 (a trail strip with no pin on it), US-2011 (pin outside the land).
