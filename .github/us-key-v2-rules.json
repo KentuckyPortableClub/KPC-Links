@@ -1006,9 +1006,10 @@
   "drop_layers": {
    "value": {
     "sgmnb": "MN statutory state forest line: holds private land",
-    "sgnvg": "USFS administrative forest boundary (EDW_ForestSystemBoundaries): holds private and state land inside the line"
+    "sgnvg": "USFS administrative forest boundary (EDW_ForestSystemBoundaries): holds private and state land inside the line",
+    "mid": "Michigan DNR project boundaries (DNRLOTSParcelsOPENDATA layer 13, agency label 'project boundaries'): a planning line round the owned parcels, 1.5x or more the official size on 48 of 85 parks, no ownership field"
    },
-   "why": "MN statutory state forest line holds private land; 16 MN forests took other land; round 5 land check: US-4491 Superior NF took sgnvg42 (3,886,760 acres) beside PAD-US 3082 (2,093,610, the official 2,092,769 NFS acres). Club 2-fer rule: a national forest is agency-owned land, never the proclamation or administrative line.",
+   "why": "MN statutory state forest line holds private land; 16 MN forests took other land; 27 Nov 2026 grade item 4: Michigan 'mid' draws the DNR project area (Three Rivers 7,604 ac beside PAD-US 2,127 and sgmib 2,126, official 2,125); round 5 land check: US-4491 Superior NF took sgnvg42 (3,886,760 acres) beside PAD-US 3082 (2,093,610, the official 2,092,769 NFS acres). Club 2-fer rule: a national forest is agency-owned land, never the proclamation or administrative line.",
    "test": "test_drop_layer_never_matched"
   },
   "record_id_fields": {
