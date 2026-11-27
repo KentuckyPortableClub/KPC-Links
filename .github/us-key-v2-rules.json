@@ -239,8 +239,8 @@
   {
    "id": "easement_not_by_id",
    "step": "2",
-   "what": "a record that is an easement (its type field says so, or its name says lease or agreement) or whose interest is not fee-owned (Fish and Wildlife type E, R, A) is never joined by an agency id either; the other records of the same id still join",
-   "why": "grade 27 Nov 2026 item 5: 23 'NPS Easement' records (type 'Conservation Easement') joined Fredericksburg-Spotsylvania, Petersburg, Manassas, Prince William and Cumberland Gap by the NPS unit code in their page link, up to 24 km from the pin; an easement is private land the park does not own.",
+   "what": "a record whose TYPE FIELD says easement (type_field_rx + easement_rx) is never joined by an agency id either; the other records of the same id still join. Narrowed 27 Nov 2026: a lease or agreement in the record's NAME, or a Fish and Wildlife interest code, does not refuse an id join",
+   "why": "grade 27 Nov 2026 item 5: 23 'NPS Easement' records (type 'Conservation Easement') joined Fredericksburg-Spotsylvania, Petersburg, Manassas, Prince William and Cumberland Gap by the NPS unit code in their page link, up to 24 km from the pin; an easement is private land the park does not own. Narrowed after the whole-country check (Fable, 27 Nov 2026): the name rule dropped Michigan's own id-matched state parks, US-1527 Newaygo State Park ('leased from Consumer's Energy') and US-3329 Tippy Dam lost their outlines, US-1487 Belle Isle its id record; a leased state park is the park. Measured in out-after (all areas but AK): 41 id-joined records an id refusal could touch: 38 by the type field (25 'NPS Easement' rows: 23 in the VA key, the Cumberland Gap one also in KY and TN; the Appalachian Trail sgvae510687 in 5 areas, 8 Nova Scotia 'Wilderness Area, Conservation Easement' rows), 3 by a lease name (the Michigan three), 0 by a Fish and Wildlife interest code.",
    "test": "test_easement_not_by_id",
    "fn": "id_not_fee",
    "stub": "false"
@@ -905,8 +905,8 @@
   {
    "id": "name_kind_agrees",
    "step": "3",
-   "what": "a record found by the park's exact, page or two-language name (and by the longer-or-shorter name) is refused when the park's name or type says a kind, the record itself says a kind (its own names, or its layer's kind in single_kind_layers) and no kind the record is known by (those, its PAD-US Des_Tp, layer_kinds) is the park's; the two kinds of a pair in kinds_alike never refuse each other; a park left with nothing says name_on_other_kind_of_land",
-   "why": "Grade of the PC's build 27 Nov 8:09 AM, item 2 (wrong land and partial land past every gate). Dated 27 Nov 2026. NV US-0464 Ash Meadows National Wildlife Refuge (about 24,000 ac) also held the BLM herd-area records hma148 / sgnvi504 / hab75 'Ash Meadows' (115,783 ac): the exact rule takes the kind word off the park's name and joined ANY record of the bare name; after the two-sources fix US-9242 Calico Mountains Wilderness Area took hma67 'Calico Mountains' (162,605 ac) and US-9271 Muddy Mountains BLM Wilderness Area went 44,400 -> 187,798 ac. Measured on NV UT TN AL HI before the tables were set (rule sheet 23).",
+   "what": "a record found by the park's exact, page or two-language name (and by the longer-or-shorter name) is refused when the park's name or type says a kind, the record itself says a kind (its own names, or its layer's kind in single_kind_layers) and no kind the record is known by (those, its PAD-US Des_Tp, layer_kinds) is the park's; the two kinds of a pair in kinds_alike never refuse each other; a park left with nothing says name_on_other_kind_of_land; a record found by the park's PAGE name is judged by the page name's kind (no kind word on the page name = no opinion)",
+   "why": "Grade of the PC's build 27 Nov 8:09 AM, item 2 (wrong land and partial land past every gate). Dated 27 Nov 2026. NV US-0464 Ash Meadows National Wildlife Refuge (about 24,000 ac) also held the BLM herd-area records hma148 / sgnvi504 / hab75 'Ash Meadows' (115,783 ac): the exact rule takes the kind word off the park's name and joined ANY record of the bare name; after the two-sources fix US-9242 Calico Mountains Wilderness Area took hma67 'Calico Mountains' (162,605 ac) and US-9271 Muddy Mountains BLM Wilderness Area went 44,400 -> 187,798 ac. Measured on NV UT TN AL HI before the tables were set (rule sheet 23). 27 Nov 2026, whole-country check: page-name joins were judged by POTA's type word and lost true land (MO US-5697 Atlanta Wildlife Area = MDC's Atlanta Conservation Area; WA US-12344 White Salmon Oak State Natural Area = DNR's NRCA; CA-ON CA-5363 Fletcher Creek Ecological Reserve = the CPCAD 'Ecological Preserve'); kinds_alike + rec-rma and hist-sp (MT US-6443 Lowry Bridge, FL US-3633 Koreshan).",
    "test": "test_name_kind_agrees",
    "fn": "other_kind",
    "stub": "false"
@@ -914,8 +914,8 @@
   {
    "id": "pin_beats_far_proof",
    "step": "3",
-   "what": "when the exact names proved land only by two sources (no group holds or nears the pin, no official size agrees), the longer-or-shorter name is tried too; a record of it that holds the pin and is at least as big as the far land replaces the far land; a smaller one leaves the far land",
-   "why": "Grade of the PC's build 27 Nov 8:09 AM, item 2 (wrong land and partial land past every gate). Dated 27 Nov 2026. TN US-3935 Chuck Swan WMA (official 24,353 ac) was confirmed on 755 ac by PAD-US 733 + sgtnc 755, 1.2 km from the pin, while the pin sat in 'Chuck Swan WMA & SF' (23,925 ac); AL US-10428 Walls of Jericho took Tennessee's sgtnh17 + sgtni153 (759 ac) while its pin sat in Alabama's 'Walls of Jericho Tract' (12,330 ac); HI US-6423 Manuka State Preserve (26,044 ac) took the 14-ac Manuka State Wayside by its page name while its pin sat in the Manuka Natural Area Reserve (25,714 ac). The longer-or-shorter rule ran only when the exact names proved nothing (rule sheet 24).",
+   "what": "when the exact names proved land only by two sources (no group holds or nears the pin, no official size agrees), the longer-or-shorter name is tried too; a record of it that holds the pin and is at least as big as the far land replaces the far land; a smaller one leaves the far land; never when the far land is within size_tol of a size the park has on file (any witness, as information) and the pin's land is not",
+   "why": "Grade of the PC's build 27 Nov 8:09 AM, item 2 (wrong land and partial land past every gate). Dated 27 Nov 2026. TN US-3935 Chuck Swan WMA (official 24,353 ac) was confirmed on 755 ac by PAD-US 733 + sgtnc 755, 1.2 km from the pin, while the pin sat in 'Chuck Swan WMA & SF' (23,925 ac); AL US-10428 Walls of Jericho took Tennessee's sgtnh17 + sgtni153 (759 ac) while its pin sat in Alabama's 'Walls of Jericho Tract' (12,330 ac); HI US-6423 Manuka State Preserve (26,044 ac) took the 14-ac Manuka State Wayside by its page name while its pin sat in the Manuka Natural Area Reserve (25,714 ac). The longer-or-shorter rule ran only when the exact names proved nothing (rule sheet 24). 27 Nov 2026, whole-country check: WA US-0340 Spring Creek Hatchery State Park went 10 -> 37 ac (size on file 9.6).",
    "test": "test_pin_beats_far_proof",
    "fn": "pin_beats_far_proof,pin_land_wins",
    "stub": "false"
@@ -937,6 +937,15 @@
    "test": "test_far_proof_own_state",
    "fn": "far_proof_other_state",
    "stub": "false"
+  },
+  {
+   "id": "contested_name",
+   "step": "3",
+   "what": "a record the names of parks of two or more full names reach (before any proof or refusal) leaves a park that proved it when a rival would claim it (the record holds or nears the rival's pin, at least as well as this park's pin: inside beats near; and the record's own layer, PAD-US type or type field does not say a kind that is not the rival's) and the rival does not claim it; never when the record carries this park's own exact full name; when the rival claims it too, the old rules decide (same_step_two_names, shared_record_*)",
+   "why": "Whole-country check of the merged build (Fable, 27 Nov 2026). Dated 27 Nov 2026. A refusal freed wrong land: KS US-2332 Clinton State Park 1,342 -> 22,656 ac (PAD-US 2474 'Clinton Recreation Area', the Corps project, second name CLINTON), Hillsdale, Milford, Perry, Tuttle Creek; OH Deer Creek, Delaware, Dillon, Paint Creek. In out-after the State Wildlife Area of the same short name claimed the record too, so nobody had it; the kind rule refused the wildlife area and the state park was left alone (rule sheet 30).",
+   "test": "test_contested_name",
+   "fn": "contested_filter,contest_lost",
+   "stub": "identity"
   }
  ],
  "values": {
@@ -1932,9 +1941,13 @@
     [
      "acec",
      "area of critical environmental concern|\\bacec\\b"
+    ],
+    [
+     "rec",
+     "recreation(al)? area"
     ]
    ],
-   "why": "v1 kpc_match_checks.KINDS: the kind of place a name says (rule name_longer_or_shorter checks the kinds agree); round 7: the Canadian kinds (provincial / territorial park, marine protected area, bird sanctuary, national wildlife area, ecological and nature reserves) in English and French, so a longer-or-shorter name never joins a park to a place of another kind (CA-0852 Basin Head Provincial Park took Basin Head Marine Protected Area without them); 'protected area' too, so a Wildlife Management Area never takes a Protected Area of the same place name by a longer-or-shorter name (CA-2403 Douglas Marsh, CA-2379 Bell and Steeprock Canyons: two designations, left as pins) 27 Nov 2026 (rule name_kind_agrees): 'water management area' is its own kind (wmgt: a water district's land), not a wildlife management area (US-8335 Yellow River Water Management Area must not take Yellow River Wildlife Management Area, sgflg44, 27,245 ac); 'acec' for BLM Areas of Critical Environmental Concern.",
+   "why": "v1 kpc_match_checks.KINDS: the kind of place a name says (rule name_longer_or_shorter checks the kinds agree); round 7: the Canadian kinds (provincial / territorial park, marine protected area, bird sanctuary, national wildlife area, ecological and nature reserves) in English and French, so a longer-or-shorter name never joins a park to a place of another kind (CA-0852 Basin Head Provincial Park took Basin Head Marine Protected Area without them); 'protected area' too, so a Wildlife Management Area never takes a Protected Area of the same place name by a longer-or-shorter name (CA-2403 Douglas Marsh, CA-2379 Bell and Steeprock Canyons: two designations, left as pins) 27 Nov 2026 (rule name_kind_agrees): 'water management area' is its own kind (wmgt: a water district's land), not a wildlife management area (US-8335 Yellow River Water Management Area must not take Yellow River Wildlife Management Area, sgflg44, 27,245 ac); 'acec' for BLM Areas of Critical Environmental Concern. 27 Nov 2026 (rule name_kind_agrees, whole-country check): 'rec' for a recreation area, whoever runs it (it is also 'sp', as before, so the longer-or-shorter rule is unchanged); with kinds_alike rec-rma a State Recreation Area is not refused a BLM recreation site of its name (MT US-6443 Lowry Bridge).",
    "test": "test_name_longer_or_shorter"
   },
   "des_kinds": {
@@ -1955,9 +1968,11 @@
     "WSR": "wsr",
     "NCA": "rma",
     "SRMA": "rma",
-    "RMA": "rma"
+    "RMA": "rma",
+    "BLM_NM": "nps",
+    "BLM_NCA": "ca"
    },
-   "why": "v1 kpc_match_checks.DES: the kind a PAD-US designation type (Des_Tp) stands for",
+   "why": "v1 kpc_match_checks.DES: the kind a PAD-US designation type (Des_Tp) stands for 27 Nov 2026: + BLM_NM, BLM_NCA, the sma_code values of BLM's nca layer (read through kind_fields).",
    "test": "test_name_longer_or_shorter"
   },
   "layer_kinds": {
@@ -2085,9 +2100,29 @@
     [
      "hist",
      "rma"
+    ],
+    [
+     "rec",
+     "rma"
+    ],
+    [
+     "hist",
+     "sp"
     ]
    ],
-   "why": "27 Nov 2026 (rule name_kind_agrees), measured on the NV UT TN AL HI files before it was set: POTA's types for BLM parks mix up the BLM designations, so the two kinds of each pair never refuse each other (pairs only, never chains): of 196 refused (park, record) pairs, 54 were a 'BLM Recreation Management Area' park on a wilderness study area of its exact name with its pin inside (US-6073 King Top, US-5931 Carcass Canyon, US-11100 North Escalante Canyons), 13 a 'Wilderness Area' on a WSA (US-11727 Mt. Ellen-Blue Hills, US-5791 Spruce Canyon), 12 a recreation area or 'National Conservation Area' on an ACEC or WSA (US-13207 Blue Mass Scenic Area, US-5822 Pariette Wetlands). Also ca-rma and hist-rma: Utah's US-6092 Joshua Tree National Landmark 'BLM National Conservation Area' and US-12137 Kennedy Stage Coach Station 'BLM Historic Area' are BLM recreation sites of their exact names, pin inside. Wilderness and a recreation management area are NOT alike: with them alike, US-9271 Muddy Mountains BLM Wilderness Area (44,400 ac) took the 128,292-ac Muddy Mountains SRMA. Herd areas (hma), wild and scenic rivers, refuges, monuments, hatcheries, state parks and WMAs pair with nothing: they are other land.",
+   "why": "27 Nov 2026 (rule name_kind_agrees), measured on the NV UT TN AL HI files before it was set: POTA's types for BLM parks mix up the BLM designations, so the two kinds of each pair never refuse each other (pairs only, never chains): of 196 refused (park, record) pairs, 54 were a 'BLM Recreation Management Area' park on a wilderness study area of its exact name with its pin inside (US-6073 King Top, US-5931 Carcass Canyon, US-11100 North Escalante Canyons), 13 a 'Wilderness Area' on a WSA (US-11727 Mt. Ellen-Blue Hills, US-5791 Spruce Canyon), 12 a recreation area or 'National Conservation Area' on an ACEC or WSA (US-13207 Blue Mass Scenic Area, US-5822 Pariette Wetlands). Also ca-rma and hist-rma: Utah's US-6092 Joshua Tree National Landmark 'BLM National Conservation Area' and US-12137 Kennedy Stage Coach Station 'BLM Historic Area' are BLM recreation sites of their exact names, pin inside. Wilderness and a recreation management area are NOT alike: with them alike, US-9271 Muddy Mountains BLM Wilderness Area (44,400 ac) took the 128,292-ac Muddy Mountains SRMA. Herd areas (hma), wild and scenic rivers, refuges, monuments, hatcheries, state parks and WMAs pair with nothing: they are other land. 27 Nov 2026 (whole-country check): + rec-rma: Montana's US-6443 Lowry Bridge State Recreation Area is the BLM's Lowry Bridge recreation site (rma / rst / sgakg, pin inside); a 'State Park' stays apart from a BLM recreation area (UT US-3065 Coral Pink Sand Dunes). + hist-sp: Florida's US-3633 Koreshan State Historic Site is the 'Koreshan State Park' of fnl / sgfla (US-3619 Fernandina Plaza the same).",
+   "test": "test_name_kind_agrees"
+  },
+  "kind_fields": {
+   "value": {
+    "nca": [
+     "sma_code"
+    ],
+    "sgnvf": [
+     "NLCS_TYPE"
+    ]
+   },
+   "why": "27 Nov 2026 (rule name_kind_agrees, whole-country check): a record's own type field says its kind of land, read through the kind words and des_kinds. BLM's national monuments / NCAs layer nca carries bare names ('Gold Butte') with sma_code BLM_NM / BLM_NCA, Nevada's sgnvf NLCS_TYPE 'National Monument' / 'National Conservation Area' (counted in the NV file: 19 BLM_NM, 4 BLM_NCA, 2 BLM_NSA, 1 BLM_CMPA; 4 + 6 NLCS_TYPE). NV US-4393 Gold Butte National Monument: its own nca21295 / sgnvf4422 'Gold Butte' (294,633 ac) was claimed by US-13115 Gold Butte BLM Herd Management Area too, so nobody had it.",
    "test": "test_name_kind_agrees"
   },
   "core_drop": {

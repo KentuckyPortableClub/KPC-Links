@@ -26,7 +26,7 @@ S, L, D, RX = 'str', 'list of str', 'dict of str', 'regex'
 TABLE_SHAPES = {
     'drop_layers': D, 'record_id_fields': D, 'class_fields': D, 'short_forms': D, 'des_kinds': D,
     'fixed_names': D, 'pin_only_reasons': D, 'neighbours': D, 'ca_neighbours': D, 'no_wait_layers': D, 'no_wait_status': D,
-    'single_kind_layers': {'*': [S]}, 'kinds_alike': [[S, S]],   # 27 Nov 2026, rule name_kind_agrees
+    'single_kind_layers': {'*': [S]}, 'kinds_alike': [[S, S]], 'kind_fields': {'*': [S]},   # 27 Nov 2026, rule name_kind_agrees
     'kind_words': L, 'place_words': L, 'compound_kinds': L, 'core_drop': L, 'water_last_words': L, 'acre_fields': L,
     'size_witness_tags': L, 'placeholders': L, 'drop_words': L, 'ca_kind_words': L,
     'easement_rx': RX, 'type_field_rx': RX, 'lease_name_rx': RX, 'water_park_kind_rx': RX, 'office_rx': RX,
@@ -170,6 +170,7 @@ def keep_fields(r):
     for f in r['interest_fields'].values(): k.add(f['field'])
     k |= {r['wetland_district']['field'], r['wetland_district']['type_field']} | {f for f, _ in r['size_fields'].values()}
     k |= {t['ref_field'] for t in r['trail_bot_layers'].values()}
+    for fs in r['kind_fields'].values(): k |= set(fs)   # 27 Nov 2026, rule name_kind_agrees
     return {x.lower() for x in k}
 
 
@@ -1199,9 +1200,17 @@ def id_records(pool, p, kind, value, rules, names_by_full, layer=None):
 
 
 def id_not_fee(rec, rules):
-    """Rule easement_not_by_id (27 Nov 2026, grade item 5): a record that is an easement (its type field says so, or its name
-    says lease or agreement) or whose interest is not fee-owned is never joined by an id either."""
-    return is_easement(rec, rules) or not_fee_interest(rec, rules)
+    """Rule easement_not_by_id (27 Nov 2026, grade item 5): a record whose TYPE FIELD says easement is never joined by an id
+    either (Virginia's 'NPS Easement' records: MATYPE Conservation Easement). Narrowed the same day: a lease or agreement in
+    the NAME, or a Fish and Wildlife interest code, does not refuse an id join (a leased state park is the park: Michigan's
+    US-1527 Newaygo State Park, 'leased from Consumer's Energy'; no id-joined Fish and Wildlife record in the country has a
+    non-fee code)."""
+    return type_says_easement(rec, rules)
+
+
+def type_says_easement(rec, rules):
+    """A record type field (type_field_rx) that says easement (easement_rx)."""
+    return any(rules['_easement_rx'].search(str(v)) for k, v in rec['a'].items() if rules['_type_field_rx'].match(str(k)) and v not in (None, ''))
 
 
 def shared_ids(refs, parks, rules):
@@ -1447,7 +1456,7 @@ def no_pin_group(rs):
     return list(rs)
 
 
-def other_kind(p, rec, pool, rules):
+def other_kind(p, rec, pool, rules, page=None):
     """Rule name_kind_agrees (27 Nov 2026): a record found by the park's name (exact, page or two-language name) is another
     kind of land when the park's name or type says a kind, the record itself says a kind (its own names, or its layer's kind
     from single_kind_layers), and no kind the record is known by (those, its PAD-US designation type, layer_kinds) is the
@@ -1457,11 +1466,13 @@ def other_kind(p, rec, pool, rules):
     Recreation Site, Des_Tp SREC, is the Unity Lake State Recreation Area). No kind on either side = no opinion (the normal
     case: a bare name in a park layer). Two kinds of one pair of kinds_alike never
     refuse each other (pairs only, never chains): POTA's BLM park types mix up the BLM designations (Utah's US-6073 King Top 'BLM Recreation Management
-    Area' is the King Top wilderness study area)."""
-    pk = kinds_of(p.get('name'), rules) | kinds_of(p.get('type'), rules)
+    Area' is the King Top wilderness study area). page (27 Nov 2026): a record found by the park's page name is judged by the
+    PAGE name's kind, the agency's own word for its land (Missouri's US-5697 Atlanta Wildlife Area is MDC's Atlanta
+    Conservation Area); a page name with no kind word = no opinion."""
+    pk = kinds_of(page, rules) if page is not None else park_kinds(p, rules)
     if not pk: return False
     pk |= {b for a, b in rules['kinds_alike'] if a in pk} | {a for a, b in rules['kinds_alike'] if b in pk}
-    own = set(rules['single_kind_layers'].get(rec['layer'], []))
+    own = set(rules['single_kind_layers'].get(rec['layer'], [])) | field_kinds(rec, rules)
     says = set().union(*[kinds_of(n, rules) for n in rec['names']]) | own
     return bool(says and not pk & (pool.rec_kinds(rec) | own))
 
@@ -1496,14 +1507,27 @@ def pin_beats_far_proof(proven):
     return bool(proven) and all(v[0].endswith('two_sources') for v in proven.values())
 
 
-def pin_land_wins(far, near, groups, pool, rules):
+def pin_land_wins(far, near, groups, pool, rules, official=()):
     """Rule pin_beats_far_proof: the pin's land (near: longer or shorter name + pin) replaces the far two-sources land
     (far) when it is at least as big (their agency acres, or measured outlines): two maps agreeing on a piece 1 km away is not
     the park when the park's pin sits in a bigger record of its name (US-3935 Chuck Swan WMA: 755 ac far, 23,925 at the pin;
     US-10428 Walls of Jericho: 759 in Tennessee, 12,330 at the pin). A smaller record at the pin is a part, so the far land
-    stays (US-2860 Umpqua Lighthouse State Park: two sources 375 ac, its 25-ac visitor centre at the pin)."""
+    stays (US-2860 Umpqua Lighthouse State Park: two sources 375 ac, its 25-ac visitor centre at the pin). official (27 Nov
+    2026): the park's size on file, any witness (park_size_any); far land within size_tol of it, and pin land not, stays (WA
+    US-0340 Spring Creek Hatchery State Park: two sources 10 ac, size on file 9.6; the pin's records 37 ac)."""
     size = lambda gs: max([land_total([pool.recs[i] for i in groups[g]], rules) for g in gs] or [0])
-    return bool(near) and size(near) >= size(far)
+    if not near or size(near) < size(far): return False
+    fits = lambda ac: any(abs(ac - w) <= rules['numbers']['size_tol'] * w for w in official)
+    return not (fits(size(far)) and not fits(size(near)))   # 27 Nov 2026: far land that has the park's size stays
+
+
+def park_size_any(p, witnesses):
+    """Rule pin_beats_far_proof: every size the park has on file, as information (the witnesses, and the facts' size whatever
+    its witness). Used only to keep land as it is, never to prove land."""
+    s = (p.get('size') or {}).get('acres')
+    try: extra = [float(s)] if s is not None and float(s) > 0 else []
+    except (TypeError, ValueError): extra = []
+    return list(witnesses) + extra
 
 
 def land_total(recs, rules):
@@ -1511,22 +1535,109 @@ def land_total(recs, rules):
     return max(land_acres(recs, rules).values() or [0])
 
 
-def name_groups(p, ref, ctx):
-    """Step 3 search for one park: -> (groups {gkey: [record i]}, notes set)."""
-    pool, rules, pin, notes = ctx['pool'], ctx['rules'], pin_of(p), set()
+def name_reach(p, ref, pool, rules):
+    """The records the park's names reach, before any proof or refusal: (own name, page name, two-language name) sets."""
     keys = park_name_keys(p.get('name'), p.get('type'), rules) | other_spelling_keys(ref, rules)   # 27 Nov 2026: other spellings
     keys |= bilingual_aliases(keys, pool, rules)
     own = {i for k in keys for i in pool.name_ix.get(k, [])}
     page = {i for k in page_name_keys(p, rules) for i in pool.name_ix.get(k, [])} - own
     lang = {i for kp in {kind_place(n, rules) for n in (p.get('name'),)} - {None} for i in pool.kp_ix.get(kp, ())} - own - page
+    return own, page, lang
+
+
+def field_kinds(rec, rules):
+    """Rule name_kind_agrees (27 Nov 2026): the kinds a record's own type field states (kind_fields: per layer, read through the
+    kind words and the des_kinds codes): BLM's nca layer says sma_code BLM_NM (a national monument) on 'Gold Butte'."""
+    out = set()
+    for fld in rules['kind_fields'].get(rec['layer'], []):
+        v = attr(rec['a'], fld)
+        if is_placeholder(v, rules): continue
+        out |= kinds_of(str(v), rules) | ({rules['des_kinds'][str(v).strip()]} if str(v).strip() in rules['des_kinds'] else set())
+    return out
+
+
+def layer_kinds_of(rec, pool, rules):
+    """Rule contested_name: the kinds a record has from its source, not from its words: its layer (single_kind_layers,
+    layer_kinds) and its PAD-US designation type (des_kinds)."""
+    return set(rules['single_kind_layers'].get(rec['layer'], [])) | set(rules['layer_kinds'].get(rec['layer'], [])) | \
+        {rules['des_kinds'][d] for d in [attr(rec['a'], 'Des_Tp')] if d in rules['des_kinds']} | field_kinds(rec, rules)
+
+
+def park_kinds(p, rules):
+    """The kinds the park's name and type say."""
+    return kinds_of(p.get('name'), rules) | kinds_of(p.get('type'), rules)
+
+
+def rival_claims(r, rec, ctx):
+    """Rule contested_name: a rival park would prove this record by its own name and its pin (the record holds or nears its
+    pin), and the record's own source (its layer or PAD-US designation type: layer_kinds_of) does not say it is another kind
+    than the rival. A rival the source rules out is not a claim (NV hma67 'Calico Mountains', a herd-area layer, is no claim of
+    US-9242 Calico Mountains Wilderness Area); a rival refused only by a kind word of the record, a copy or a far proof still is."""
+    p, rules = ctx['parks'][r], ctx['rules']
+    src = layer_kinds_of(rec, ctx['pool'], rules)
+    if src and not src & park_kinds(p, rules): return False
+    return pin_near(rec, pin_of(p), rules)
+
+
+def contested_filter(want, ctx):
+    """Rule contested_name (27 Nov 2026): a record the names of parks of two or more names reach (before any proof or refusal)
+    stays with a park that proved it only when every rival that would claim it (rival_claims) claims it too; then the old rules
+    decide between them (same_step_two_names, shared_record_*). A rival that claims it but was refused (another kind word, a
+    copy ...) makes it nobody's, as when both claimed it. So a refusal of one park never hands the record to the other: Kansas
+    US-2332 Clinton State Park took the Corps' 22,656-ac 'Clinton Recreation Area' (second name 'CLINTON') once the kind rule
+    refused Clinton State Wildlife Area. -> {ref: groups}."""
+    parks, reach = ctx['parks'], ctx['reach']
+    by_rec, wants = {}, {}
+    for r, rs in reach.items():
+        for i in rs: by_rec.setdefault(i, set()).add(r)
+    for r, gs in want.items():
+        for rs in gs.values():
+            for i in rs: wants.setdefault(i, set()).add(r)
+    out = {}
+    for ref, gs in want.items():
+        new = {}
+        for g, rs in gs.items():
+            keep = [i for i in rs if not contest_lost(ref, i, by_rec.get(i, ()), wants.get(i, ()), ctx)]
+            if keep: new[g] = keep
+        out[ref] = new
+    return out
+
+
+def contest_lost(ref, i, reached, wanting, ctx):
+    """Rule contested_name: True when park ref must give up record i: a rival of another full name (parks of one full name:
+    rules other_pin / same_name decide) would claim it and does not, and the record does not carry ref's own exact FULL name
+    (no kind word taken off: SK CA-1149 'Shamrock Regional Park' is that park's, whatever Shamrock Recreation Site's pin), and
+    the rival's pin holds the record at least as well as ref's own pin (pin_hold)."""
+    parks, rules, rec = ctx['parks'], ctx['rules'], ctx['pool'].recs[i]
+    p = parks[ref]
+    name = full(p.get('name'), rules)
+    if ({name, full_ps(p.get('name'), rules)} - {''}) & record_name_keys(rec['names'], rec['layer'], rules): return False
+    own = pin_hold(rec, pin_of(p), rules)
+    return any(full(parks[r].get('name'), rules) != name and r not in wanting and pin_of(parks[r]) is not None
+               and rival_claims(r, rec, ctx) and pin_hold(rec, pin_of(parks[r]), rules) >= own for r in reached)
+
+
+def pin_hold(rec, pin, rules):
+    """Rule contested_name: 2 = the pin is inside the record, 1 = near it (pin_near), 0 = neither. A rival whose pin is only
+    near does not outweigh a park whose pin is inside (TX US-3035 Lyndon B. Johnson State Park keeps its own record; the
+    National Historical Park's pin is 41 m outside it)."""
+    if pin is None or not pin_near(rec, pin, rules): return 0
+    return 1 if rec.get('line') or not inside(pin[1], pin[0], shape(rec)) else 2
+
+
+def name_groups(p, ref, ctx):
+    """Step 3 search for one park: -> (groups {gkey: [record i]}, notes set)."""
+    pool, rules, pin, notes = ctx['pool'], ctx['rules'], pin_of(p), set()
+    own, page, lang = name_reach(p, ref, pool, rules)
     groups = {}
     for i in sorted(own | page | lang):
         rec = pool.recs[i]
         no = refusal(p, ref, rec, i, ctx)
         if no: notes.add(no); continue
-        if other_kind(p, rec, pool, rules): notes.add('other_kind'); continue   # 27 Nov 2026, rule name_kind_agrees
-        uv = unit_value(rec, rules)
         src = 'page' if i in page else 'lang' if i in lang else 'name'
+        if other_kind(p, rec, pool, rules, page_name(p, rules) if src == 'page' else None):   # 27 Nov 2026, rule name_kind_agrees
+            notes.add('other_kind'); continue
+        uv = unit_value(rec, rules)
         if line_by_itself(rec):   # 27 Nov 2026: a line is a group of its own, so it is proven by its own pin or not at all
             groups[(rec['layer'], 'line', rec['id'], src)] = [i]; continue
         groups.setdefault((rec['layer'], 'unit', uv, src) if uv else (rec['layer'], 'name', full(rec['name'], rules), src), []).append(i)
@@ -1712,6 +1823,7 @@ def step_name(refs, ctx):
     """Step 3 for all parks: -> ({ref: [record i]}, {ref: (by, evidence)}, {ref: reason code})."""
     parks, pool, rules = ctx['parks'], ctx['pool'], ctx['rules']
     want, ev, why = {}, {}, {}
+    ctx['reach'] = {r: set().union(*name_reach(parks[r], r, pool, rules)) for r in sorted(ctx['refs'])}   # rule contested_name
     for ref in refs:
         p = parks[ref]
         groups, notes = name_groups(p, ref, ctx)
@@ -1729,12 +1841,14 @@ def step_name(refs, ctx):
         proven = {**pinned, **{g: v for g, v in sized.items() if g not in twice}}
         if not proven or pin_beats_far_proof(proven):   # 27 Nov 2026: the pin's own land beats a far two-sources proof
             cp, more = core_records(p, ref, ctx)
-            if not proven or pin_land_wins(proven, cp, {**groups, **more}, pool, rules): proven, groups = cp, {**groups, **more}
+            if not proven or pin_land_wins(proven, cp, {**groups, **more}, pool, rules, park_size_any(p, wit)):
+                proven, groups = cp, {**groups, **more}
         if proven:
             want[ref] = {g: suffix_pieces(p, ref, groups[g], ctx) for g in proven}
             ev[ref] = proven
         else:
             why[ref] = reason_for(p, groups, notes, twice, rules, own_file=bool(pool.trail_ix.get(ref)), gap=bool(ctx.get('gaps')))
+    want = contested_filter(want, ctx)   # 27 Nov 2026, rule contested_name
     claims = {}
     for ref, gs in want.items():
         for i in {i for rs in gs.values() for i in rs}: claims.setdefault(i, []).append(ref)

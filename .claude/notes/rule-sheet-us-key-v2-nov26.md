@@ -432,3 +432,60 @@ Before: a park on POTA's list with no row in the park facts (new parks) got an e
 - A listed park whose facts row is missing, or has no name, takes the name (and the pin, when the facts have none) from POTA's own saved list. A facts name is never overwritten. The type stays blank until the facts have it.
 - Measured on TN: the four TN parks (US-13670, US-6253, US-6257, US-6274) now carry their names; they are still pin only, "no record with this name", because the matcher found no record under those names (no size, no type known).
 - Kure Atoll US-0121 is not touched: POTA now lists it under US-KI, there is no US-KI layer file, so it is in no key (see the report; a ruling is needed).
+
+## 30. 27 Nov 2026 (whole-country check): a refusal never hands a contested record to the other park
+Before, "two parks of two names claim it = nobody" (rule `same_step_two_names`) was the real guard. Any refusal of one of the
+two parks switched it off. Kansas: US-2332 Clinton State Park 1,342 -> 22,656 ac (PAD-US 2474 "Clinton Recreation Area", the
+Corps project, second name CLINTON) once the kind rule refused Clinton State Wildlife Area; Hillsdale, Milford, Perry, Tuttle
+Creek; Ohio Deer Creek, Delaware, Dillon, Paint Creek. Rule `contested_name`:
+- **Contested:** a record the names of parks of two or more full names reach (exact, page or two-language name keys, before
+  any proof or refusal).
+- **It stays with a park that proved it only when** every rival that would claim it also claims it. A rival "would claim it"
+  when the record holds or nears the rival's pin at least as well as the park's own pin (inside beats near: TX US-3035 LBJ
+  State Park keeps its record, the National Historical Park's pin is 41 m outside it), unless the record's own source (its
+  layer, PAD-US type or type field) says a kind that is not the rival's. A record that carries the park's own exact FULL name
+  is always the park's (SK CA-1149 Shamrock Regional Park). When the rival claims it too, the old rules decide
+  (`same_step_two_names`, `shared_record_*`).
+- **Otherwise nobody**, as when both claimed it. Uncontested records, id joins and parks of one full name (rules `other_pin`,
+  `same_name`) are not touched.
+- Why the source and not the name word: "Clinton Recreation Area" says "recreation area" (kind sp, the same as a state park),
+  so a kind word cannot settle it; the herd-area layer can (NV hma67 "Calico Mountains" is no claim of Calico Mountains
+  Wilderness, so Calico Mountains HMA keeps it).
+- **Measured (12 areas rebuilt, kit = this worktree, against out-final):** KS: the five state parks lose the Corps projects
+  (Clinton 22,656 -> 1,342, Hillsdale 13,176 -> 3,224, Milford 45,289 -> 1,007, Perry 39,453 -> 1,787; Tuttle Creek pin only);
+  the three State Wildlife Areas keep their own sgksc records. OH: the four state parks back to 3,886 / 2,003 / 3,096 / 4,883.
+  WA: US-13403 Loomis Lake State Fishing Lake loses sgwaa104 + PAD-US 271578 "Loomis Lake" (411 / 401 ac: the WA State Parks
+  layer's Loomis Lake, which Loomis Lake State Park would claim). NV UT WY: no change (Calico HMA, Browns Park x2, Adobe Town
+  keep their records). Other areas, read from out-final with the new functions (no rebuild): DE US-10682 McGinnis Pond State
+  Fishing Lake gives up five "McGinnis Pond" land records (49-142 ac) the wildlife area's pin sits in; no other area.
+
+## 31. 27 Nov 2026 (whole-country check): the kind rule, judged right
+Rule `name_kind_agrees` lost true land in four ways. Fixes:
+- **Page names** are judged by the PAGE name's kind (the agency's own word); a page name with no kind word = no opinion.
+  MO US-5697 Atlanta Wildlife Area, US-5707 Lost Valley, US-10386 Compton Hollow; WA US-12344, US-12578 (DNR's NRCA); NM
+  US-11796 Socorro, US-8273 Angel Peak; AR US-0637 Mills Park; CA-ON CA-5363 Fletcher Creek; CA-NB CA-5194 Manawagonish.
+- **A recreation area is one kind whoever runs it:** new kind word `rec` ("recreation area"; it is also `sp` as before, so the
+  longer-or-shorter rule is unchanged) and `kinds_alike` rec-rma: MT US-6443 Lowry Bridge SRA on BLM's Lowry Bridge; ID
+  US-7365 St. Anthony Sand Dunes NRA keeps its SRMA records. A "State Park" stays apart from a BLM recreation area.
+- **hist-sp alike:** FL US-3633 Koreshan and US-3619 Fernandina Plaza State Historic Sites are "... State Park" in fnl / sgfla.
+- **A record's own type field** (new table `kind_fields`: BLM nca `sma_code` BLM_NM / BLM_NCA, NV sgnvf `NLCS_TYPE`): NV
+  US-4393 Gold Butte National Monument's own "Gold Butte" monument records were also claimed by the Gold Butte herd-area park,
+  so nobody had them. Checked by reading the NV name groups, not by a rebuild.
+- Left as they are (other land, true catches): AR US-12760 Norfork NFH and TX US-6550 Cooper WMA (Corps "Recreation Areas"),
+  WY US-6230 Cumberland WMA (herd area), Gold Butte on herd areas, NV US-9254 High Rock Canyon SRMA (wilderness), UT US-5998
+  Horseshoe Springs WMA (ACEC), UT US-6045 Swasey Mountain HMA (WSA / recreation area), MT US-4548 Pompeys Pillar NM (434-ac
+  ACEC). For the owner: OR US-13068 Honeycombs, US-13075 Bear Gulch, US-10487 Lake Abert ("BLM Wilderness Area" on an ACEC).
+
+## 32. 27 Nov 2026 (whole-country check): the far land that has the park's size stays
+Rule `pin_beats_far_proof`: no swap when the far land is within size_tol (10%) of a size the park has on file (any witness, as
+information) and the pin's land is not. WA US-0340 Spring Creek Hatchery State Park: 37 -> 10 ac again (size on file 9.6).
+The other swaps keep: Chuck Swan (far 755, size on file 24,396), Turin (pin's land 1,107 = size on file), Walls of Jericho and
+Manuka (no size on file).
+
+## 33. 27 Nov 2026 (whole-country check): only a real easement refuses an id join
+Rule `easement_not_by_id` narrowed: only a record TYPE FIELD that says easement refuses an id join. A lease or agreement in the
+name, and a Fish and Wildlife interest code, do not. A leased state park is the park: MI US-1527 Newaygo State Park ("leased
+from Consumer's Energy") and US-3329 Tippy Dam get their outlines back, US-1487 Belle Isle its id record. Measured in
+out-after (all areas but AK): 41 id-joined records an id refusal could touch: 38 by the type field (25 "NPS Easement" rows: 23 in the VA key, the
+Cumberland Gap one also in KY and TN; the Appalachian Trail sgvae510687 in 5 areas, 8 Nova Scotia "Wilderness Area, Conservation Easement"), 3 by a lease name (the
+Michigan three), 0 by a Fish and Wildlife code. The 38 stay out. Name joins are unchanged (`easement_by_name`).
