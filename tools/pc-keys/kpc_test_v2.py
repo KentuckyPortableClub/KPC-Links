@@ -329,20 +329,25 @@ def build_summary(results, secs_total, run):
     word = {'built': 'built', 'built with a store gap': 'built with a store gap', 'gate failed': 'gate failed', 'not built': 'not built', 'stopped': 'stopped with an error'}
     L = [f"v2 built {kinds.get('built', 0) + kinds.get('built with a store gap', 0) + kinds.get('gate failed', 0)} of {len(results)} areas on this PC: "
          + ', '.join(f"{n} {word[k]}" for k, n in sorted(kinds.items(), key=lambda x: -x[1])) + '.',
-         f"{sum(1 for r in results if r.get('gates_failed'))} areas have a failing scorecard gate. Nothing was published, uploaded or changed in v1.", '']
+         f"{sum(1 for r in results if r.get('gates_failed'))} areas have a failing scorecard gate. Nothing was published, uploaded or changed in v1.",
+         # 27 Nov 2026, the owner: "why judge against crap work.. I need a system that works end to end and gives me excellent results"
+         'Pass or fail is judged on v2 by itself. Pin inside and size agrees are v2\'s own numbers (no limit yet). v1 numbers come last, for information only.', '']
     for r in results:
         sc = (r.get('score') or {}).get('areas', {}).get(r['label']) or {}
         det = f" ({r['detail']})" if r['detail'] else ''
         line = f"{r['label']:6s} {word.get(r['status'], r['status'])}{det}"
         if sc:
-            line += f"  outlined {sc.get('out2')} of {sc.get('parks')}  pin inside {pct(sc.get('pin_yes', 0), sc.get('pin_n', 0))}"
-            if sc.get('size_n'): line += f"  size agrees {pct(sc.get('size_yes', 0), sc.get('size_n', 0))}"
+            line += f"  outlined {sc.get('out2')} of {sc.get('parks')}, pin only {sc.get('pin2')}"
+            line += f"  pin inside {pct(sc.get('pin_yes', 0), sc.get('pin_n', 0))} ({sc.get('pin_yes', 0)} of {sc.get('pin_n', 0)})"
+            line += f"  size agrees {pct(sc.get('size_yes', 0), sc.get('size_n', 0))} ({sc.get('size_yes', 0)} of {sc.get('size_n', 0)})"
             lic = sc.get('lic')      # 27 Nov 2026: licence counts, from the scorecard's own v2-score.json
             if lic: line += f"  licence: share all {lic.get('all', 0)}, part {lic.get('part', 0)}, none {lic.get('none', 0)}"
-            if not sc.get('nobase'): line += f"  v1 outlined {sc.get('out1')} pin {pct(sc.get('pin_yes1', 0), sc.get('pin_n1', 0))}  ({r.get('base')})"
-            else: line += '  no v1 key to compare with'
-        if r.get('gates_failed') and r['status'] != 'stopped': line += f"  gates failing: {' '.join(r['gates_failed'])}"
+        if r['status'] != 'stopped' and (r.get('score') or {}).get('gates'):
+            line += f"  gates failing: {' '.join(r['gates_failed'])}" if r.get('gates_failed') else '  gates: all pass'
         line += f"  {r['seconds']:.0f} s" if r.get('seconds') is not None else ''
+        if sc:   # 27 Nov 2026: v1 last, for information only, never part of pass or fail
+            if sc.get('has_v1', not sc.get('nobase')): line += f"  | for information: v1 outlined {sc.get('out1')}, pin inside {pct(sc.get('pin_yes1', 0), sc.get('pin_n1', 0))} ({r.get('base')})"
+            else: line += '  | no v1 key to compare with'
         L.append(line)
     lics = [((r.get('score') or {}).get('areas', {}).get(r['label']) or {}).get('lic') for r in results]
     lics = [x for x in lics if x]
@@ -375,15 +380,17 @@ def build_mode(tokens, store, facts, links, v2script, card, reports, out_root, c
         say(f"{i} of {len(areas)}  {r['label']}  {time.time() - t1:.0f} s  {r['status']}" + (f" ({r['detail']})" if r['detail'] else ''))
     L = build_summary(results, time.time() - t0, run)
     (run / 'V2-BUILD-SUMMARY.txt').write_text('\n'.join(L) + '\n', encoding='utf-8')
-    cols = ['area', 'status', 'detail', 'parks', 'outlined', 'confirmed', 'pin_only', 'pin_inside_yes', 'pin_inside_of', 'size_agrees_yes', 'size_agrees_of', 'v1_test', 'v1_outlined',
-            'share_all', 'share_part', 'share_none', 'gates_failed', 'seconds']
+    # 27 Nov 2026: the v1 columns moved to the END (for information only; only the tests read this file, checked with grep);
+    # gates_failed lists only the gates on v2 by itself
+    cols = ['area', 'status', 'detail', 'parks', 'outlined', 'confirmed', 'pin_only', 'pin_inside_yes', 'pin_inside_of', 'size_agrees_yes', 'size_agrees_of',
+            'share_all', 'share_part', 'share_none', 'gates_failed', 'seconds', 'v1_test', 'v1_outlined']
     with open(run / 'summary.csv', 'w', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, fieldnames=cols); w.writeheader()
         for r in results:
             sc = (r.get('score') or {}).get('areas', {}).get(r['label']) or {}
             w.writerow({'area': r['area'], 'status': r['status'], 'detail': r['detail'], 'parks': sc.get('parks'), 'outlined': sc.get('out2'), 'confirmed': sc.get('conf2'), 'pin_only': sc.get('pin2'),
                         'pin_inside_yes': sc.get('pin_yes'), 'pin_inside_of': sc.get('pin_n'), 'size_agrees_yes': sc.get('size_yes'), 'size_agrees_of': sc.get('size_n'),
-                        'v1_test': r.get('base', ''), 'v1_outlined': None if sc.get('nobase') else sc.get('out1'),
+                        'v1_test': r.get('base', ''), 'v1_outlined': sc.get('out1') if sc.get('has_v1', not sc.get('nobase')) else None,
                         'share_all': (sc.get('lic') or {}).get('all'), 'share_part': (sc.get('lic') or {}).get('part'), 'share_none': (sc.get('lic') or {}).get('none'), 'gates_failed': ' '.join(r.get('gates_failed') or []),
                         'seconds': None if r.get('seconds') is None else round(r['seconds'], 1)})
     po = pin_only_rows(run, results)

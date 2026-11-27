@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-"""KPC v2 scorecard (26 Nov 2026). Decides, with a pass / fail exit code, whether a v2 US key (kpc_us_key_v2.py) is good enough
-against the owner's last PC test of the old matcher (v1). Rule sheet: .claude/notes/rule-sheet-us-key-v2-nov26.md (sections 5, 7, 8).
+"""KPC v2 scorecard (26 Nov 2026). Decides, with a pass / fail exit code, whether a v2 US key (kpc_us_key_v2.py) is good enough.
+Rule sheet: .claude/notes/rule-sheet-us-key-v2-nov26.md (sections 5, 7, 8, 17).
+27 Nov 2026 (section 17, the owner: "why judge against crap work.. I need a system that works end to end and gives me excellent
+results"): pass / fail is judged on v2 BY ITSELF. Nothing about the old key (v1) is a gate. The v1 numbers, when a v1 key is
+given, are printed at the end, for information only. Pin inside the land and size agrees are v2's own quality numbers, with no limit.
 
-  py -3 kpc_v2_scorecard.py --v2 <v2 folder> --base <v1 keys folder> --store <layer files folder> --facts <park-facts.json.gz>
+  py -3 kpc_v2_scorecard.py --v2 <v2 folder> [--base <v1 keys folder>] --store <layer files folder> --facts <park-facts.json.gz>
                             --states MN NY SC [--v1-seconds MN=252 NY=180] [--out <folder>] [--repo <KPC-Links root>]
                             [--cold <cold run folder>] [--lock-check same|differs|skipped]
+  (no --base, or --no-base: no v1 key; the for-information block is left out)
 
 Writes V2-SCORECARD.txt (counts only, no park names) and v2-vs-base.csv (park by park, the names are there) into --out
 (default: the v2 folder). Exit 0 = every gate passes, 1 = at least one fails. Reads files only; stdlib only; no network.
@@ -23,8 +27,8 @@ LINE_PIN_M = 30.48   # a pin this close to a line (a trail) counts as on it (the
 NEAR_M = 100.0       # a pin this close to a record's edge counts as on the land
 SIZE_TOL = 0.10      # joined acres within 10% of the official size
 ACRE_DIFF = 0.10     # the park-by-park list shows parks whose joined acres differ by more than this
-HONEST_SLACK = 1.0   # v2 may be this many percentage points worse than v1 on the two honest numbers
-TWO_STATES_SECONDS = 300.0
+HONEST_SLACK = 1.0   # not used since 27 Nov 2026 (H1 / H2 are v2's own numbers, no limit: rule sheet 17); kept for old readers
+TWO_STATES_SECONDS = 300.0   # 27 Nov 2026: shown as a target line, not a gate (it went with G8)
 LAND_CELLS = 40000   # H3 (same land as v1): about this many grid points over a park's box (coarse on purpose)
 LAND_MIN_CELL_M = 20.0
 LAND_SHARE = 0.90    # H3 counts a park when one side covers at least this share of the other's land
@@ -685,18 +689,19 @@ def per_state(S, states, f):
     return ', '.join(f(S[s]) for s in states)
 
 
-def make_gates(S, all_states, v1_seconds):
+def make_gates(S, all_states, v1_seconds=None):
+    """The gates: v2 judged BY ITSELF. 27 Nov 2026, the owner: "why judge against crap work.. I need a system that works end to
+    end and gives me excellent results". So no gate reads the v1 key: G1 (same parks as v1), G6 / G7 (outlined / confirmed hold
+    against v1), G8 (speed against v1), H1 / H2 (pin inside / size agrees, v2 against v1) are not gates any more. Their numbers
+    are in v1_info_lines() at the end of the text, for information only. G1 is not replaced: the park facts are not POTA's list
+    for an area (a park listed in two states has one area there), and the scorecard reads no other park list.
+    v1_seconds is not used here any more; it is kept so old callers still work."""
     G = []
 
     def add(gid, ok, text): G.append((gid, bool(ok), text))
     nb = [s for s in all_states if S[s]['nb']]
     states = [s for s in all_states if not S[s]['nb']]      # a state v2 did not build is judged by G9 only
-    miss = [s for s in states if not S[s]['v2_ok'] or not S[s]['base_ok']]
-    ok = all(S[s]['same'][0] and S[s]['v2_ok'] and S[s]['base_ok'] for s in states)
-    nb1 = [s for s in states if S[s]['nobase']]
-    if nb1 and len(nb1) == len(states): add('G1', all(S[s]['v2_ok'] for s in states), 'no v1 key to compare with' + ('' if all(S[s]['v2_ok'] for s in states) else ' (NO v2 KEY)'))
-    else: add('G1', ok, 'same parks as v1: ' + per_state(S, states, lambda d: f"{d['st']} {d['same'][1]} v1, {d['same'][2]} v2" + (
-        f" ({d['same'][3]} missing, {d['same'][4]} extra)" if not d['same'][0] else '') + ('' if d['v2_ok'] else ' (NO v2 KEY)') + ('' if d['base_ok'] else ' (NO v1 KEY)')))
+    nokey = [s for s in states if not S[s]['v2_ok']]         # 27 Nov 2026: a missing v2 key failed G1 before; now it fails G9
     n = sum(S[s]['old'] for s in states)
     add('G2', n == 0, f'ids ending in ~old in joins or check rows: {n}')
     two, same = sum(S[s]['two'] for s in states), sum(S[s]['samename'] for s in states)
@@ -707,95 +712,97 @@ def make_gates(S, all_states, v1_seconds):
     nopf = [s for s in states if not S[s]['proof_rows'] and S[s]['out2']]
     add('G4', n == 0 and not nopf, f'joined records not in the layer files: {n} of {tot}' + (f' (no proof rows for {" ".join(nopf)})' if nopf else ''))
     c2 = sum(S[s]['c2'] for s in states); r2 = sum(len(S[s]['pinonly_rows']) for s in states)
-    p2 = sum(S[s]['pin2'] for s in states); c1 = sum(S[s]['c1'] for s in states)
+    p2 = sum(S[s]['pin2'] for s in states)
     add('G5', all(S[s]['c2'] + len(S[s]['pinonly_rows']) <= S[s]['pin2'] for s in states),
-        f'check rows {c2} + pin-only reasons {r2} against {p2} pin-only parks (v1 had {c1} check rows)')
-
-    def fair(key, label):
-        def one(d):
-            a, f, b = d[key + '1'], d[key + '1f'], d[key + '2']
-            return f"{d['st']} {a} -> {b}" + (f" ({len(d['gap'])} parks set apart: v1 drew them from layers the store room does not hold; fair count {f} -> {b})" if len(d['gap']) else '')
-        return f'{label}: ' + per_state(S, states, one)
-    allnb = bool(states) and len(nb1) == len(states)
-    if allnb:
-        add('G6', True, 'no v1 key to compare with'); add('G7', True, 'no v1 key to compare with')
-    else:
-        add('G6', all(S[s]['out2'] >= S[s]['out1f'] for s in states if not S[s]['nobase']) and not miss, fair('out', 'outlined parks hold'))
-        add('G7', all(S[s]['conf2'] >= S[s]['conf1f'] for s in states if not S[s]['nobase']) and not miss, fair('conf', 'confirmed parks hold'))
-    slow = [s for s in states if v1_seconds and S[s]['sec1'] is not None and (S[s]['sec2'] is None or S[s]['sec2'] > S[s]['sec1'])]
-    two_s = [S[s]['sec2'] for s in ('MN', 'NY') if s in S and s in states]
-    over = bool(two_s) and (any(x is None for x in two_s) or sum(two_s) >= TWO_STATES_SECONDS)
-    sp = per_state(S, states, lambda d: f"{d['st']} {_sec(d['sec2'])} (v1 {_sec(d['sec1'])})")
-    add('G8', not slow and not over, 'speed: ' + sp + (f'; MN+NY {sum(x or 0 for x in two_s):.0f} s, limit {TWO_STATES_SECONDS:.0f}' if two_s else '')
-        + ('' if v1_seconds else '; v1 times not given'))
-    nogate = [s for s in states if not S[s]['run'] or not ((S[s]['run'].get('gate') or {}).get('ok') is True)]
-    add('G9', not nb and not nogate, "the matcher's own gate: " + ('ok in every state' if not nb and not nogate else
-        (('NOT BUILT ' + ' '.join(nb) + '; ') if nb else '') + (('gate not ok or no run record: ' + ' '.join(nogate)) if nogate else '')))
+        f'check rows {c2} + pin-only reasons {r2} against {p2} pin-only parks')
+    nogate = [s for s in states if s not in nokey and (not S[s]['run'] or not ((S[s]['run'].get('gate') or {}).get('ok') is True))]
+    bad9 = nb or nogate or nokey
+    add('G9', not bad9, "the matcher's own gate: " + ('ok in every state' if not bad9 else
+        (('NOT BUILT ' + ' '.join(nb) + '; ') if nb else '') + (('NO v2 KEY ' + ' '.join(nokey) + '; ') if nokey else '')
+        + (('gate not ok or no run record: ' + ' '.join(nogate)) if nogate else '')).rstrip('; '))
     h11 = sum(len(S[s]['g11']) for s in states); h11p = len({(g['state'], g['park']) for s in states for g in S[s]['g11']})
-    v11 = sum(len(S[s]['g11_v1']) for s in states)
-    add('G11', h11 == 0, f"no park on a same-named park's land: v2 {h11} records ({h11p} parks); v1 {v11} (for information)")
-    for gid, key, label in (('H1', 'pin', 'pin inside the land'), ('H2', 'size', 'size agrees with the official size')):
-        bad = []
-
-        def one(d):
-            a, b = d['h1'], d['h2']
-            y1, n1, y2, n2 = a[key + '_yes'], a[key + '_n'], b[key + '_yes'], b[key + '_n']
-            p1, p2 = pct(y1, n1), pct(y2, n2)
-            if p1 is not None and (p2 is None or p2 < p1 - HONEST_SLACK):
-                # the size number rests on few parks: it fails only when v2 is also behind by at least 2 parks (counted at v1's rate)
-                if key == 'pin' or p2 is None or (p1 * n2 / 100.0 - y2) >= 2: bad.append(d['st'])
-            if d['nobase']: return f"{d['st']} v2 {fmt_pct(y2, n2)} ({y2} of {n2}), no v1 key to compare with"
-            return f"{d['st']} v1 {fmt_pct(y1, n1)} ({y1} of {n1}), v2 {fmt_pct(y2, n2)} ({y2} of {n2})"
-        t = per_state(S, states, one)
-        add(gid, not bad, f'{label}: {t}' + (f' (v2 worse by more than {HONEST_SLACK:g} point' + (' and 2 parks' if key == 'size' else '') + f' in {" ".join(bad)})' if bad else ''))
+    add('G11', h11 == 0, f"no park on a same-named park's land: {h11} records ({h11p} parks)")
     return G
+
+
+def quality_text(d):
+    """27 Nov 2026: v2's own two quality numbers, one line. Not pass or fail: no limit is set yet (rule sheet section 17)."""
+    h = d['h2']
+    return (f"Quality, not pass or fail (no limit is set yet; a low number needs a look): pin inside the land {fmt_pct(h['pin_yes'], h['pin_n'])} "
+            f"({h['pin_yes']} of {h['pin_n']}); size agrees with the official size {fmt_pct(h['size_yes'], h['size_n'])} ({h['size_yes']} of {h['size_n']}).")
+
+
+def has_v1(d): return bool(not d['nobase'] and d['base_ok'])
+
+
+def v1_info_lines(S, states, compared='', v1_seconds_given=True):
+    """27 Nov 2026: everything that compares v2 with the old key, for information only (the owner: "why judge against crap
+    work"). [] when no area has a v1 key: then the block is left out of the text."""
+    built = [s for s in states if not S[s]['nb']]
+    with_v1 = [s for s in built if has_v1(S[s])]
+    if not with_v1: return []
+    L = ['', 'Next to the old key (v1), for information only. Not part of pass or fail.']
+    if compared: L.append(f'Compared with: {compared}')
+    gaps = {s: S[s]['gap'] for s in with_v1}
+    ng = sum(len(v) for v in gaps.values())
+    if ng:
+        trl = sum(g['trail'] for v in gaps.values() for g in v)
+        L.append(f"Store room gap: {ng} parks ({', '.join(f'{s} {len(v)}' for s, v in gaps.items() if v)}): v1 drew them from layers today's store does not "
+                 f"hold (trail lines {trl}, other {ng - trl}). List: v2-store-gap.csv")
+    else:
+        L.append('Store room gap: 0 parks.')
+    for s in built:
+        d = S[s]
+        if not has_v1(d):
+            L.append(f'{s}: no v1 key to compare with.'); continue
+        h1, h2 = d['h1'], d['h2']
+        sm = d['same']
+        L.append(f"{s}: parks v1 {sm[1]}, v2 {sm[2]}" + ('' if sm[0] else f" ({sm[3]} not in v2, {sm[4]} not in v1)") + '.'
+                 f" Outlined v1 {d['out1']} -> v2 {d['out2']}, confirmed v1 {d['conf1']} -> v2 {d['conf2']}"
+                 + (f" ({len(d['gap'])} parks set apart: v1 drew them from layers the store room does not hold; fair count outlined {d['out1f']} -> {d['out2']}, "
+                    f"confirmed {d['conf1f']} -> {d['conf2']})" if d['gap'] else '') + '.')
+        L.append(f"  Pin inside the land: v1 {fmt_pct(h1['pin_yes'], h1['pin_n'])} ({h1['pin_yes']} of {h1['pin_n']}), v2 {fmt_pct(h2['pin_yes'], h2['pin_n'])} ({h2['pin_yes']} of {h2['pin_n']}). "
+                 f"Size agrees: v1 {fmt_pct(h1['size_yes'], h1['size_n'])} ({h1['size_yes']} of {h1['size_n']}), v2 {fmt_pct(h2['size_yes'], h2['size_n'])} ({h2['size_yes']} of {h2['size_n']}).")
+        L.append(f"  Check rows: v1 {d['c1']}, v2 {d['c2']}. Seconds: v1 {_sec(d['sec1'])}, v2 {_sec(d['sec2'])}" + ('' if v1_seconds_given else ' (v1 times not given)') + '. '
+                 f"v1 records not in today's file: {h1['ids_missing']} of {h1['ids']} ({h1['ids_trail']} trail lines); v1 ids that fit two records: {h1['ids_fit2']}. "
+                 f"v1 parks on a same-named park's land: {len(d['g11_v1'])} records.")
+        if d['land'] is not None:
+            _, n, a, b = d['land']
+            L.append(f"  Same land as v1, parks outlined by both {n}: v2 covers at least 90% of v1's land in {a}; v1 covers at least 90% of v2's land in {b}. List: v2-land-vs-base.csv")
+    L.append('Park by park: v2-vs-base.csv.')
+    return L
 
 
 def _sec(x): return 'n/a' if x is None else f'{x:.0f} s'
 
 
-def render(gates, S, states, notes, compared=''):
+def render(gates, S, states, notes, compared='', v1_seconds_given=True):
+    """27 Nov 2026 (rule sheet 17): the first lines are v2 by itself: the verdict, then per area the parks outlined and pin only,
+    the quality numbers, the licence counts; then the gates. Every v1 number is in the last block, for information only."""
     fails = [g for g in gates if not g[1]]
-    gaps = {s: S[s]['gap'] for s in states if not S[s]['nb']}
-    ng = sum(len(v) for v in gaps.values())
-    L = ['V2 PASSES' if not fails else f'V2 DOES NOT PASS YET ({len(fails)} gate{"s" if len(fails) != 1 else ""})',
-         f'KPC v2 scorecard, {datetime.datetime.now():%d %b %Y %I:%M %p}. Counts only, no park names (the names are in the csv lists).']
-    if compared: L.insert(1, f'Compared with: {compared}')
+    L = ['V2 PASSES' if not fails else f'V2 DOES NOT PASS YET ({len(fails)} gate{"s" if len(fails) != 1 else ""}: {" ".join(g[0] for g in fails)})',
+         f'KPC v2 scorecard, {datetime.datetime.now():%d %b %Y %I:%M %p}. v2 is judged by itself; the old key (v1) is not part of pass or fail. '
+         'Counts only, no park names (the names are in the csv lists).']
     shas = [(s, S[s]['sha']) for s in states if S[s].get('sha')]
     if shas: L += ['Key text sha256 (the same on every machine; the zip bytes are not): ' + ', '.join(f'{s} {h}' for s, h in shas)]
-    if ng:
-        trl = sum(g['trail'] for v in gaps.values() for g in v)
-        L.append(f"STORE ROOM GAP: {ng} parks ({', '.join(f'{s} {len(v)}' for s, v in gaps.items() if v)}): v1 drew them from layers today's store does not "
-                 f"hold (trail lines {trl}, other {ng - trl}). List: v2-store-gap.csv")
-    else:
-        L.append('STORE ROOM GAP: 0 parks.')
     L.append('')
     for s in states:
         d = S[s]
-        h1, h2 = d['h1'], d['h2']
         if d['nb']:
             L.append(f"{s}: NOT BUILT, the store room's layer {d['nb_layer'] or str(d['nb'])[:100]} is not complete" if d['nb_layer'] else f"{s}: NOT BUILT, {str(d['nb'])[:120]}")
             continue
-        if d['nobase']:
-            L.append(f"{s}: {d['same'][2]} parks in v2 (no v1 key to compare with). Outlined {d['out2']}, confirmed {d['conf2']}, pin only {d['pin2']}.")
-        else:
-            L.append(f"{s}: {d['same'][1]} parks in v1, {d['same'][2]} in v2. Outlined: v1 {d['out1']}, v2 {d['out2']}. "
-                     f"Confirmed: v1 {d['conf1']}, v2 {d['conf2']}. Pin only: v1 {d['pin1']}, v2 {d['pin2']}.")
+        if not d['v2_ok']:
+            L.append(f'{s}: NO v2 KEY in the folder.'); continue
+        L.append(f"{s}: {d['same'][2]} parks. Outlined {d['out2']}, pin only {d['pin2']}. Confirmed {d['conf2']}.")
+        L.append('  ' + quality_text(d))
+        L.append('  ' + licence_text(d['lic'], d['out2']))
         fmt = lambda c: ', '.join(f'{k} {v}' for k, v in sorted(c.items(), key=lambda x: (-x[1], x[0]))) or 'none'
         L.append(f"  Pin only, by reason: {fmt(d['why2'])}. Outlined, by step: {fmt(d['step2'])}." + (f" Store room gap in the layer file: {', '.join(d['gaps'])}." if d['gaps'] else ''))
         lk = d['locks']
         lks = 'Locks: not reported' if lk is None else f'Locks: held {lk[0]}, broken {lk[1]}, new {lk[2]}' + (' (see v2-run.json)' if lk[1] else '')
-        L.append(f"  Check rows: v1 {d['c1']}, v2 {d['c2']}. Seconds: v1 {_sec(d['sec1'])}, v2 {_sec(d['sec2'])}. {lks}.")
-        L.append(f"  Pin inside the land: v1 {fmt_pct(h1['pin_yes'], h1['pin_n'])} of {h1['pin_n']}, v2 {fmt_pct(h2['pin_yes'], h2['pin_n'])} of {h2['pin_n']}. "
-                 f"Size agrees: v1 {fmt_pct(h1['size_yes'], h1['size_n'])} ({h1['size_yes']} of {h1['size_n']}), v2 {fmt_pct(h2['size_yes'], h2['size_n'])} ({h2['size_yes']} of {h2['size_n']}).")
-        L.append('  ' + licence_text(d['lic'], d['out2']))
-        L.append(f"  Records not in today's file: v1 {h1['ids_missing']} of {h1['ids']} ({h1['ids_trail']} trail lines), v2 {h2['ids_missing']} of {h2['ids']}. "
-                 f"Ids that fit two records (left out): v1 {h1['ids_fit2']}, v2 {h2['ids_fit2']}.")
-        if d['nobase']:
-            L.append('  H3 same land as v1: no v1 key to compare with.')
-        elif d['land'] is not None:
-            _, n, a, b = d['land']
-            L.append(f"  H3 same land as v1 (a report, not a gate), parks outlined by both {n}: v2 covers at least 90% of v1's land in {a}; v1 covers at least 90% of v2's land in {b}. list: v2-land-vs-base.csv")
+        h2 = d['h2']
+        L.append(f"  Check rows {d['c2']}. Seconds {_sec(d['sec2'])}. {lks}. Records not in today's file: {h2['ids_missing']} of {h2['ids']}. "
+                 f"Ids that fit two records (left out): {h2['ids_fit2']}.")
         if d['other_names'] is not None:
             L.append(f"  Id joins that carry another name, for the owner's eyes: {d['other_names']} rows, list: v2-id-other-names.csv")
     built = [s for s in states if not S[s]['nb']]
@@ -803,10 +810,14 @@ def render(gates, S, states, notes, compared=''):
         tot = licence_sum(S[s]['lic'] for s in built)
         L.append(f"Total over {len(built)} built area{'s' if len(built) != 1 else ''}: " + licence_text(tot, sum(S[s]['out2'] for s in built)))
         L.append('  (share all = every record of the park may be shown; share part = some may be; share none = only private records prove it.)')
-    L += ['', 'Gates']
+    two_s = [S[s]['sec2'] for s in ('MN', 'NY') if s in S and not S[s]['nb']]
+    if len(two_s) == 2:     # rule sheet 7, "speed is a test": shown, but no longer a gate (it was part of G8)
+        L.append(f"Speed: MN + NY {'n/a' if None in two_s else f'{sum(two_s):.0f} s'} (the rule sheet's target is under {TWO_STATES_SECONDS:.0f} s; not a gate).")
+    L += ['', 'Gates (v2 by itself)']
     L += [f"{gid} {'PASS' if ok else 'FAIL'} {text}" for gid, ok, text in gates]
-    L += [''] + [f'Note: {n}.' for n in notes] + ['Park by park: v2-vs-base.csv.']
-    return '\n'.join(L) + '\n'
+    L += v1_info_lines(S, states, compared, v1_seconds_given)
+    L += [''] + [f'Note: {n}.' for n in notes]
+    return '\n'.join(L).rstrip('\n') + '\n'
 
 
 def lock_detail(cold, warm, states, max_refs=5):
@@ -864,8 +875,8 @@ def parse_seconds(items):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description='Score a v2 US key against the v1 keys of the last PC test.')
-    ap.add_argument('--v2', required=True); ap.add_argument('--base'); ap.add_argument('--no-base', action='store_true', help='no v1 key for these areas: report them on their own'); ap.add_argument('--base-name', help='the name of the v1 test, for the first lines'); ap.add_argument('--store', required=True)
+    ap = argparse.ArgumentParser(description='Score a v2 US key by itself; a v1 key, when given, is shown for information only.')
+    ap.add_argument('--v2', required=True); ap.add_argument('--base'); ap.add_argument('--no-base', action='store_true', help='no v1 key for these areas (the same as leaving out --base)'); ap.add_argument('--base-name', help='the name of the v1 test, for the information block'); ap.add_argument('--store', required=True)
     ap.add_argument('--facts', required=True); ap.add_argument('--states', nargs='+', required=True)
     ap.add_argument('--v1-seconds', nargs='*', default=[]); ap.add_argument('--out'); ap.add_argument('--repo')
     ap.add_argument('--lock-check', default='skipped', choices=['same', 'differs', 'skipped'])
@@ -874,7 +885,7 @@ def main(argv=None):
     ap.add_argument('--no-land', action='store_true', help='skip H3 (same land as v1), the slowest part')
     ap.add_argument('--cold', help='the cold run folder: the scorecard then compares it with --v2 itself (G10)')
     a = ap.parse_args(argv)
-    if not a.base and not a.no_base: ap.error('--base <v1 keys folder> or --no-base is needed')
+    if not a.base: a.no_base = True   # 27 Nov 2026: no v1 key is fine; v2 is judged by itself (rule sheet 17)
     states = [s.upper() for s in a.states]
     t0 = time.time()
     lock, differs, ltext, lrows = a.lock_check, a.lock_differs, '', []
@@ -903,10 +914,10 @@ def main(argv=None):
     bp_ = pathlib.Path(a.base) if a.base else None
     compared = a.base_name or ('' if a.no_base else (bp_.parent.name if bp_ and bp_.name.lower() == 'keys' else (bp_.name if bp_ else '')))
     if a.no_base: compared = 'no v1 key to compare with (reported on its own)'
-    text = render(gates, S, states, notes, compared)
+    text = render(gates, S, states, notes, compared, bool(parse_seconds(a.v1_seconds)))
     nums = {st: {'parks': S[st]['same'][2], 'nobase': S[st]['nobase'], 'not_built': bool(S[st]['nb']), 'out1': S[st]['out1'], 'out2': S[st]['out2'], 'conf1': S[st]['conf1'], 'conf2': S[st]['conf2'],
                  'pin2': S[st]['pin2'], 'pin_yes': S[st]['h2']['pin_yes'], 'pin_n': S[st]['h2']['pin_n'], 'size_yes': S[st]['h2']['size_yes'], 'size_n': S[st]['h2']['size_n'],
-                 'pin_yes1': S[st]['h1']['pin_yes'], 'pin_n1': S[st]['h1']['pin_n'], 'why': S[st]['why2'], 'step': S[st]['step2'], 'lic': S[st]['lic'], 'gaps': S[st]['gaps'], 'sec2': S[st]['sec2'],
+                 'pin_yes1': S[st]['h1']['pin_yes'], 'pin_n1': S[st]['h1']['pin_n'], 'has_v1': has_v1(S[st]), 'why': S[st]['why2'], 'step': S[st]['step2'], 'lic': S[st]['lic'], 'gaps': S[st]['gaps'], 'sec2': S[st]['sec2'],
                  'h3': (S[st]['land'][1:] if S[st]['land'] else None), 'gate_ok': (S[st]['run'].get('gate') or {}).get('ok') if S[st]['run'] else None} for st in states}
     (out / 'v2-score.json').write_text(json.dumps({'gates': [[g, ok, t] for g, ok, t in gates], 'areas': nums}, indent=1, ensure_ascii=False), encoding='utf-8')
     (out / 'V2-SCORECARD.txt').write_text(text, encoding='utf-8')

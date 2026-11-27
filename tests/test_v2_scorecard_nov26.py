@@ -93,7 +93,9 @@ def score(mut=None, v1s=None, lock='same', base=None, states=('MN',), recs=None,
 
 
 good, S, notes, rows = score(v1s={'MN': 100})
-check('good fixture: every gate passes', all(good.values()) and len(good) == 13)
+# 27 Nov 2026 (rule sheet 17): the gates are v2 by itself: G2 G3 G4 G5 G9 G10 G11. G1 G6 G7 G8 H1 H2 compared with v1: information only
+check('good fixture: every gate passes; the gates are the seven on v2 by itself, none of the old v1 comparisons',
+      all(good.values()) and sorted(good) == ['G10', 'G11', 'G2', 'G3', 'G4', 'G5', 'G9'])
 check('good fixture: the park-by-park list is empty when v2 equals v1', rows == [])
 check('outlined means joined records: v1 2 of 3, v2 2 of 3; confirmed v1 1, v2 2',
       (S['MN']['out1'], S['MN']['out2'], S['MN']['conf1'], S['MN']['conf2']) == (2, 2, 1, 2))
@@ -121,7 +123,9 @@ check('G4: a joined key found in the layer file passes', good['G4'])
 
 
 def drop_park(k, pr, po, r): del k['parks']['US-0003']; po.clear()
-check('G1: a park missing in v2 fails', not score(drop_park)[0]['G1'])
+g, S2, _, _ = score(drop_park)
+check('27 Nov: a park v1 has and v2 has not is no longer a gate (G1 dropped); the information block says so', all(g.values())
+      and 'MN: parks v1 3, v2 2 (1 not in v2, 0 not in v1).' in score.last[1])
 
 
 def many_checks(k, pr, po, r): k['parks']['US-0003']['c'] = [['a', 'b', 1, 'check'], ['c', 'd', 1, 'check']]
@@ -134,20 +138,21 @@ def lose_outline(k, pr, po, r):
     del pr[1]
     po.append({'ref': 'US-0002', 'st': 'MN', 'name': 'x', 'kind': 'x', 'reason_code': 'two_records_fit', 'reason': 'x'})
 g, S2, _, rows = score(lose_outline)
-check('G6: fewer outlined parks than v1 fails', not g['G6'] and S2['MN']['out2'] == 1)
+check('27 Nov: fewer outlined parks than v1 is not a gate (was G6); the information block shows v1 2 -> v2 1', all(g.values()) and S2['MN']['out2'] == 1
+      and 'Outlined v1 2 -> v2 1' in score.last[1])
 check('park list: a lost outline is one row, with the reason code', len(rows) == 1 and rows[0]['difference'] == 'outline lost' and rows[0]['v2_reason'] == 'two_records_fit')
 
 
 def less_confirmed(k, pr, po, r): k['parks']['US-0001']['match']['status'] = 'outlined'
 base_c = v1_key(); base_c['parks']['US-0002']['match']['status'] = 'confirmed'
-check('G7: fewer confirmed parks than v1 fails (same outlined count)',
-      not score(less_confirmed, base=base_c)[0]['G7'] and score(less_confirmed, base=base_c)[0]['G6'])
+check('27 Nov: fewer confirmed parks than v1 is not a gate (was G7); the information block shows it',
+      all(score(less_confirmed, base=base_c)[0].values()) and 'confirmed v1 2 -> v2 1' in score.last[1])
 
 
 def slow(k, pr, po, r): r['MN']['seconds'] = 200.0
-check('G8: slower than v1 fails', not score(slow, v1s={'MN': 100})[0]['G8'] and score(None, v1s={'MN': 100})[0]['G8'])
-check('G8: MN alone at 300 seconds or more fails the MN+NY limit even with no v1 time',
-      not score(lambda k, pr, po, r: r['MN'].update(seconds=300.0))[0]['G8'] and score(None)[0]['G8'])
+check('27 Nov: slower than v1 is not a gate (was G8); both times are in the information block',
+      all(score(slow, v1s={'MN': 100})[0].values()) and 'Seconds: v1 100 s, v2 200 s.' in score.last[1])
+check('27 Nov: no v1 time given = the information block says so, nothing fails', all(score(None)[0].values()) and '(v1 times not given)' not in score.last[1])
 
 
 def gate_bad(k, pr, po, r): r['MN']['gate']['ok'] = False
@@ -158,7 +163,8 @@ check('G9: a state with no run record fails', not score(lambda k, pr, po, r: r.c
 check('G10: a lock check not run is NOT CHECKED and fails; same passes, differs fails, skipped passes (said so)',
       score(lock='same')[0]['G10'] and not score(lock='differs')[0]['G10'] and not score(lock='skipped')[0]['G10']
       and 'NOT CHECKED' in SC.lock_gate('skipped')[2] and SC.lock_gate('skipped', trial=True)[1] and 'not part of a trial' in SC.lock_gate('skipped', trial=True)[2])
-check('a missing v2 key for a typed state fails G1', not score(states=('MN', 'NY'))[0]['G1'])
+g, S2, _, _ = score(states=('MN', 'NY'))
+check('a missing v2 key for a typed state fails (G9 now, was G1) and the text says NO v2 KEY', not g['G9'] and 'NO v2 KEY NY' in score.last[1] and 'NY: NO v2 KEY' in score.last[1])
 
 # the honest numbers
 sqr = SC.decode_rings(ALPHA)
@@ -184,36 +190,38 @@ check('honest numbers on the fixture: pin inside 1 of 2 (Alpha yes, Beta no), si
 def worse_pin(k, pr, po, r):
     k['parks']['US-0001']['m'] = [['sgzz2', 'Beta', 100, 'name']]; pr[0].update(file_key='sgzz2', record_name='Beta')
 g, S2, _, rows = score(worse_pin)
-check('H1: v2 pin inside worse than v1 by more than 1 point fails; the park shows in the list with pin yes / no',
-      not g['H1'] and S2['MN']['h2']['pin_yes'] == 0)
+check('27 Nov: v2 pin inside worse than v1 is not a gate (was H1); v2\'s own number is in its quality line with the count',
+      'H1' not in g and S2['MN']['h2']['pin_yes'] == 0 and 'pin inside the land 0.0% (0 of 2)' in score.last[1])   # (G3 fails here: one record on two parks)
 
 
 def worse_size(k, pr, po, r): k['parks']['US-0001']['ac'] = 300
 g, S2, _, rows = score(worse_size)
-check('H2: one park off the official size (1 of 2 -> 0 of 2) is fewer than 2 parks worse: passes; the list still shows the park (acres differ)',
-      g['H2'] and any(x['difference'] == 'acres differ' for x in rows))
+check('27 Nov: one park off the official size passes (no gate); the list still shows the park (acres differ)',
+      all(g.values()) and any(x['difference'] == 'acres differ' for x in rows))
 two_ok = v1_key(); two_ok['parks']['US-0002']['ac'] = 500        # v1 size agrees for both parks (2 of 2)
 
 
 def worse_size2(k, pr, po, r): k['parks']['US-0001']['ac'] = 300
 g, S2, _, rows = score(worse_size2, base=two_ok)
-check('H2: v2 worse by more than 1 point AND at least 2 parks (2 of 2 -> 0 of 2) fails, with the counts printed',
-      not g['H2'] and 'v1 100.0% (2 of 2), v2 0.0% (0 of 2)' in score.last[1])
+check('27 Nov: v2 size agrees 0 of 2 against v1 2 of 2 passes (was H2); v2\'s own number is printed, the v1 one only in the information block',
+      all(g.values()) and 'size agrees with the official size 0.0% (0 of 2)' in score.last[1].split('Gates (v2 by itself)')[0]
+      and 'Size agrees: v1 100.0% (2 of 2), v2 0.0% (0 of 2)' in score.last[1].split('Next to the old key')[1])
 
 # the store room gap
 gap_base = v1_key(); gap_base['parks']['US-0003']['m'] = [['sgzz99', 'Gone', 5, 'name'], ['trl7', 'A trail', 0, 'line']]
 g, S2, _, rows = score(base=gap_base)
 txt = score.last[1]
-check('store room gap: a park v1 drew only from records not in today\'s files is set apart; G6 and G7 pass on the fair count and print both numbers',
-      g['G6'] and g['G7'] and S2['MN']['out1'] == 3 and S2['MN']['out1f'] == 2 and len(S2['MN']['gap']) == 1
-      and 'MN 3 -> 2 (1 parks set apart' in txt and 'fair count 2 -> 2' in txt)
-check('store room gap: the block near the top says how many, by state, and what kind (trail lines / other)',
-      'STORE ROOM GAP: 1 parks (MN 1)' in txt.splitlines()[2] and 'trail lines 0, other 1' in txt.splitlines()[2] and 'v2-store-gap.csv' in txt)
+check('store room gap: a park v1 drew only from records not in today\'s files is set apart; the information block prints both counts',
+      all(g.values()) and S2['MN']['out1'] == 3 and S2['MN']['out1f'] == 2 and len(S2['MN']['gap']) == 1
+      and 'Outlined v1 3 -> v2 2' in txt and '(1 parks set apart' in txt and 'fair count outlined 2 -> 2' in txt)
+gl_ = next(l for l in txt.splitlines() if l.startswith('Store room gap:'))
+check('store room gap (a v1 idea): its line is in the information block, how many, by state, and what kind (trail lines / other)',
+      txt.index(gl_) > txt.index('Next to the old key') and 'Store room gap: 1 parks (MN 1)' in gl_ and 'trail lines 0, other 1' in gl_ and 'v2-store-gap.csv' in gl_)
 check('store room gap: the park list calls it a store room gap, not an outline lost', [r['difference'] for r in rows] == ['store room gap'])
 part_base = v1_key(); part_base['parks']['US-0003']['m'] = [['sgzz99', 'Gone', 5, 'name'], ['sgzz2', 'Beta', 5, 'name']]
 g, S2, _, rows = score(base=part_base)
-check('store room gap: a park where only SOME of v1\'s records are missing is NOT set apart (G6 fails: v2 left it a pin)',
-      not g['G6'] and not S2['MN']['gap'])
+check('store room gap: a park where only SOME of v1\'s records are missing is NOT set apart (and nothing fails: not a gate now)',
+      all(g.values()) and not S2['MN']['gap'])
 
 
 def drew_other_way(k, pr, po, r):
@@ -301,7 +309,8 @@ check('G11: parks with different bare names never count', g['G11'])
 tb = v1_key(); tb['parks']['US-0001'].update(n='Tracy Creek (Albany County)'); tb['parks']['US-0001']['match'] = {'status': 'confirmed', 'by': 'name'}
 tb['parks']['US-0003']['n'] = 'Tracy Creek (Essex County)'
 g, S2, _, _ = score(tracy, base=tb, recs=[TWO_PART, BETA])
-check('G11: the same check on v1 is counted beside it, for information (not a gate)', len(S2['MN']['g11_v1']) == 1 and 'v1 1 (for information)' in score.last[1])
+check('G11: the same check on v1 is counted in the information block only (not a gate, not on the G11 line)', len(S2['MN']['g11_v1']) == 1
+      and "v1 parks on a same-named park's land: 1 records" in score.last[1] and 'v1' not in next(l for l in score.last[1].splitlines() if l.startswith('G11 ')))
 check('G11: counts only in the text (no park names), refs in the csv', 'Tracy' not in score.last[1])
 
 with tempfile.TemporaryDirectory() as t:
@@ -415,13 +424,56 @@ with tempfile.TemporaryDirectory() as t:
                       '--v1-seconds', 'MN=100', '--repo', str(ROOT), '--lock-check', 'differs', '--lock-differs', 'MN'])
     txt = (t / 'v2' / 'V2-SCORECARD.txt').read_text(encoding='utf-8')
     cs = list(csv.DictReader(open(t / 'v2' / 'v2-vs-base.csv', encoding='utf-8')))
-    check('exit code 1 and the first line says how many gates fail', rc == 1 and txt.startswith('V2 DOES NOT PASS YET (2 gates)'))
+    check('exit code 1 and the first line says how many gates fail and which (a lost outline is not one of them now)', rc == 1 and txt.startswith('V2 DOES NOT PASS YET (1 gate: G10)\n'))
     check('the text has no park names and fits one screen', 'Alpha' not in txt and 'Beta' not in txt and len(txt.splitlines()) <= 40)
     check('v2-vs-base.csv has the names and the columns', cs and cs[0]['name'] == 'Beta Park' and list(cs[0]) == SC.CSV_COLS)
     key, proof, pino, run = v2_data(); write_v2(t / 'v2', key, proof, pino, run)
     with contextlib.redirect_stdout(io.StringIO()):
         rc = SC.main(['--v2', str(t / 'v2'), '--base', str(t / 'base'), '--store', str(store), '--facts', str(facts), '--states', 'MN', '--repo', str(ROOT), '--lock-check', 'same'])
     check('a good run: exit 0 and the first line is V2 PASSES', rc == 0 and (t / 'v2' / 'V2-SCORECARD.txt').read_text().startswith('V2 PASSES\n'))
+
+# ---- 27 Nov 2026 (rule sheet 17), the owner: "why judge against crap work.. I need a system that works end to end and gives me
+# excellent results": pass / fail is v2 by itself; v1 is for information only
+def worse_everywhere(k, pr, po, r):
+    lose_outline(k, pr, po, r)                     # fewer outlined and confirmed than v1
+    k['parks']['US-0001']['ac'] = 300              # size agrees 0 of 1 against v1's 2 of 2
+    k['parks']['US-0001']['m'] = [['sgzz2', 'Beta', 300, 'name']]; pr[0].update(file_key='sgzz2', record_name='Beta')   # pin not on its land
+    r['MN']['seconds'] = 900.0                     # far slower than v1
+bad_base = v1_key(); bad_base['parks']['US-0002']['ac'] = 500
+bad_base['parks']['US-0004'] = {'n': 'Delta Park', 't': 'SP', 'm': [['sgzz1', 'Alpha', 100, 'name']], 'c': [], 'ac': 100, 'match': {'status': 'confirmed', 'by': 'id'}}
+g, S2, _, _ = score(worse_everywhere, v1s={'MN': 100}, base=bad_base)
+txt = score.last[1]
+h1_, h2_ = S2['MN']['h1'], S2['MN']['h2']
+check('27 Nov: a key worse than v1 on every old comparison (parks, outlined, confirmed, pin inside, size agrees, speed) PASSES when its own gates pass',
+      all(g.values()) and txt.startswith('V2 PASSES\n') and S2['MN']['out2'] < S2['MN']['out1'] and S2['MN']['conf2'] < S2['MN']['conf1']
+      and h2_['pin_yes'] * h1_['pin_n'] < h1_['pin_yes'] * h2_['pin_n'] and h2_['size_yes'] * h1_['size_n'] < h1_['size_yes'] * h2_['size_n']
+      and S2['MN']['sec2'] > S2['MN']['sec1'] and not S2['MN']['same'][0])
+top, rest = txt.split('\nGates (v2 by itself)\n')
+gates_block, info = rest.split('\nNext to the old key (v1), for information only. Not part of pass or fail.\n')
+check('27 Nov: the pass / fail line, the first lines and the gates block hold no v1 number (no "v1" at all); every v1 number is in the last block',
+      'v1' not in top.replace('the old key (v1)', '') and 'v1' not in gates_block and 'Outlined v1 3 -> v2 1' in info and 'Seconds: v1 100 s, v2 900 s' in info
+      and 'Pin inside the land: v1 ' in info and 'Size agrees: v1 ' in info and 'parks v1 4, v2 3' in info)
+check('27 Nov: the first lines say outlined, pin only, the two quality numbers with counts, and the licence counts, in that order',
+      top.splitlines()[3] == 'MN: 3 parks. Outlined 1, pin only 2. Confirmed 1.' and top.splitlines()[4].startswith('  Quality, not pass or fail (no limit is set yet')
+      and 'pin inside the land 0.0% (0 of 1); size agrees with the official size 0.0% (0 of 1).' in top.splitlines()[4] and top.splitlines()[5].startswith('  Licence, what the club may show'))
+check('27 Nov: no gate line names an old comparison (G1 G6 G7 G8 H1 H2), and the information lines start with no gate id',
+      not re.search(r'^(G1|G6|G7|G8|H1|H2) ', txt, re.M) and not re.search(r'^(G|H)\d+ ', info, re.M))
+g, S2, _, _ = score(lambda k, pr, po, r: (worse_everywhere(k, pr, po, r), add_old(k, pr, po, r)), v1s={'MN': 100}, base=bad_base)
+check('27 Nov: the same key with one of its own gates failing (a ~old id, G2) still FAILS, and the first line names only that gate',
+      not g['G2'] and [k_ for k_, v_ in g.items() if not v_] == ['G2'] and score.last[1].startswith('V2 DOES NOT PASS YET (1 gate: G2)\n'))
+with tempfile.TemporaryDirectory() as t:
+    t = pathlib.Path(t)
+    store, facts = write_world(t)
+    key, proof, pino, run = v2_data(); write_v2(t / 'v2', key, proof, pino, run)
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):    # no --base and no --no-base at all
+        rc = SC.main(['--v2', str(t / 'v2'), '--store', str(store), '--facts', str(facts), '--states', 'MN', '--repo', str(ROOT), '--lock-check', 'same', '--v1-seconds', 'MN=1'])
+    nt = (t / 'v2' / 'V2-SCORECARD.txt').read_text(encoding='utf-8')
+    js = json.load(open(t / 'v2' / 'v2-score.json'))
+    check('27 Nov: no v1 key at all (no --base): a full scorecard, exit 0, the seven gates, the quality line, no information block, no "v1" anywhere',
+          rc == 0 and nt.startswith('V2 PASSES\n') and len(js['gates']) == 7 and 'pin inside the land 50.0% (1 of 2)' in nt and 'Licence, what the club may show' in nt
+          and 'Next to the old key' not in nt and 'v1' not in nt.replace('the old key (v1)', '') and js['areas']['MN']['has_v1'] is False)
+
 
 # ---------------------------------------------------------------- the side-by-side runner
 FAKE = r'''import argparse, gzip, pathlib, shutil, sys
@@ -529,7 +581,7 @@ with tempfile.TemporaryDirectory() as t:
     rc, out = run_runner(kit, ['MN', 'SC'])
     check('runner: the matcher exits 3 for one state: the scorecard still runs for the other, says SC NOT BUILT, G9 fails, exit 1',
           rc == 1 and '(exit 3)' in out and "SC: NOT BUILT, the store room's layer sgzz is not complete" in out and 'MN: 3 parks' in out
-          and 'G9 FAIL' in out and 'G1 PASS' in out)
+          and 'G9 FAIL' in out and 'G2 PASS' in out)
 
 with tempfile.TemporaryDirectory() as t:
     t = pathlib.Path(t)
@@ -624,7 +676,9 @@ with tempfile.TemporaryDirectory() as t:
     wjson(t / 'test-2026-11-26-2014' / 'keys' / 'US-MN.json.gz', v1_key())
     rc, out, text = cli(t, ['--base', str(t / 'test-2026-11-26-2014' / 'keys')], run_extra={'key_text_sha256': 'ab' * 32})
     lines = (out / 'V2-SCORECARD.txt').read_text(encoding='utf-8').splitlines()
-    check('the scorecard names the v1 test it compared with in its first lines', lines[1] == 'Compared with: test-2026-11-26-2014')
+    check('27 Nov: the scorecard names the v1 test in the information block (under its heading), not in the first lines',
+          'Compared with: test-2026-11-26-2014' in lines and lines.index('Compared with: test-2026-11-26-2014') == lines.index('Next to the old key (v1), for information only. Not part of pass or fail.') + 1
+          and not any('Compared with' in l for l in lines[:5]))
     check('the scorecard prints each area\'s key_text_sha256 from v2-run.json when present', any('MN ' + 'ab' * 32 in l for l in lines[:6]))
     check('the warm run\'s v2-id-other-names.csv is copied into the report folder and the text points to it there', (out / 'v2-id-other-names.csv').is_file()
           and 'list: v2-id-other-names.csv' in '\n'.join(lines))
@@ -636,10 +690,10 @@ with tempfile.TemporaryDirectory() as t:
     rc, out, text = cli(t, ['--no-base'], mut=stray)
     gl = {l.split()[0]: l for l in (out / 'V2-SCORECARD.txt').read_text(encoding='utf-8').splitlines() if re.match(r'^(G|H)\d+ ', l)}
     num = json.load(open(out / 'v2-score.json'))['areas']['MN']
-    check('no-base mode: G1, G6 and G7 say "no v1 key to compare with" and pass (a lost outline is not judged without v1); the other gates still run',
-          all('PASS no v1 key to compare with' in gl[g] for g in ('G1', 'G6', 'G7')) and 'G4' in gl and 'G11' in gl and 'G9' in gl)
-    check('no-base mode: H3 says no v1 key to compare with; the area is reported on its own by reason and step; no v2-vs-base rows',
-          'no v1 key to compare with' in text and 'H3 same land as v1: no v1 key' in text and 'Pin only, by reason: no_record_with_this_name 1, two_records_fit 1' in text
+    check('no-base mode: the seven gates on v2 by itself run, no G1 / G6 / G7 / G8 / H1 / H2 line, and no information block',
+          sorted(gl) == ['G10', 'G11', 'G2', 'G3', 'G4', 'G5', 'G9'] and 'Next to the old key' not in text)
+    check('no-base mode: the area is reported on its own by reason and step; no v2-vs-base rows',
+          'Pin only, by reason: no_record_with_this_name 1, two_records_fit 1' in text
           and num['nobase'] and num['why'] == {'no_record_with_this_name': 1, 'two_records_fit': 1} and num['step'] == {'step 2': 1} and len(list(csv.DictReader(open(out / 'v2-vs-base.csv')))) == 0)
 
 with tempfile.TemporaryDirectory() as t:
@@ -708,6 +762,12 @@ with tempfile.TemporaryDirectory() as t:
           and any(l.startswith('Licence, what the club may show, total over 2 areas: share all 0, share part 0, share none 4 (of 4 outlined parks).') and '4 had no licence word' in l for l in sm)
           and any('share all = every record of the park may be shown' in l for l in sm))
     check('build summary: summary.csv has share_all, share_part, share_none per area', sc[0]['share_all'] == '0' and sc[0]['share_none'] == '2' and 'share_part' in sc[0])
+    check('27 Nov build summary: a line per area gives outlined, pin only, the two quality numbers with counts, licence, the gates; v1 only after "| for information"',
+          'outlined 2 of 3, pin only 1  pin inside 50.0% (1 of 2)  size agrees 50.0% (1 of 2)  licence:' in mn and 'gates: all pass' in mn
+          and mn.index('| for information: v1 outlined 2') > mn.index('gates: all pass') and 'v1' not in mn.split('| for information')[0]
+          and ca.endswith('| no v1 key to compare with') and any('Pass or fail is judged on v2 by itself' in l for l in sm[:3]))
+    check('27 Nov build summary: summary.csv keeps every column, the v1 columns last; gates_failed is empty (only the gates on v2 by itself)',
+          list(sc[0])[-2:] == ['v1_test', 'v1_outlined'] and len(sc[0]) == 18 and sc[0]['gates_failed'] == '' and sc[0]['v1_outlined'] == '2' and sc[1]['v1_outlined'] == '')
 
 with tempfile.TemporaryDirectory() as t:
     t = pathlib.Path(t)

@@ -30,9 +30,9 @@ grader's call, 5:47 AM). ORDER: 1, then 2, then 3. Each line below says what alr
   kind-of-land guard, a part never takes the whole), its plain verdict words, and its real examples as test cases (Windy Gap
   US-9678, Little Pee Dee US-3917, Cedar Mesa US-11748, Owyhee River US-13039). Rewrite them to read today's layer files.
 - Fix first, or it sorts parks wrong:
-  a. The reason list. v2's own list (rule sheet section 6): `no_record_with_this_name`, `name_but_no_pin_or_size_proof`,
-     `two_records_fit`, `record_shared_with_another_park`, `water_only`, `office_only`, `layer_not_complete`,
-     `record_layer_not_in_store`. The plan's `park_has_no_pin` is not a v2 reason; `layer_not_complete` is missing from the plan.
+  a. The reason list: go by the CODE, not the rule sheet's section 6 (corrected 27 Nov, the grader caught it): the live matcher
+     has `park_has_no_pin` and has no `layer_not_complete`. The fresh build's reasons: no_record_with_this_name,
+     name_but_no_pin_or_size_proof, water_only, record_shared_with_another_park, record_layer_not_in_store, office_only.
   b. Reasons must be true (a trail park whose pin is too far says "name but no pin or size proof": add a plain reason for it).
   c. "What sits under the pin" only SUGGESTS. v2's proof still decides. Pins are the weakest evidence we have.
   d. No yes / no list to the owner park by park (his rule of 25 Nov). A row v2's own proof can settle goes in without asking;

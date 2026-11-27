@@ -248,3 +248,27 @@ number). It is not read from the agency. So "exact name" proves nothing for such
   - US-9388 Glacial Lakes: pin 112 ft from its line (34 m). Keeps its land, gets no line. US-9383 Goodhue-Pioneer: 282 ft
     (86 m) from its line, and its land of that name does not prove it either: pin only.
   - US-11153 Matthew Lourey: pin 3,873 ft from its line. Pin only.
+
+## 17. Ruled 27 Nov 2026, 8:34 AM (owner): v2 is judged by itself
+Owner: "Old keys and old information and v1 ... why judge against any of that cause it clearly wasnt not working .. why i have
+to rebuild over and over.. end goal accuracy and efficiency excellent keys why judge against crap work.. I need a system that
+works end to end and gives me excellent results".
+This replaces the "against v1" parts of sections 7 and 8.3.
+- **A gate now (pass / fail):** only what v2 is by itself. G2 no `~old` ids. G3 two names. G4 every joined record is in
+  today's layer files. G5 a reason for every pin-only park. G9 the matcher's own gate (a typed area with no v2 key fails here
+  now). G10 a lock never changes an answer. G11 no park on a same-named park's land. Ids and wording are as before.
+- **Not a gate any more:** G1 same parks as v1, G6 outlined parks hold, G7 confirmed parks hold, G8 speed against v1 (and the
+  MN + NY under 5 minutes part with it), H1 and H2 against v1, the store room gap, H3 same land as v1.
+- **G1 is dropped, not replaced.** The park facts give each park one area, so they are not POTA's list for a state (a park
+  listed in two states is in one area only). The scorecard reads no other park list, and no new input was added.
+- **Information only:** when a v1 key is given, its numbers come last, under "Next to the old key (v1), for information only.
+  Not part of pass or fail." With no v1 key that block is left out and nothing fails. No v1 number is in the first lines, the
+  gates or the pass / fail line.
+- **Quality numbers:** pin inside the land and size agrees with the official size are v2's own, printed with their counts in
+  each area's second line, for example "pin inside the land 96.8% (183 of 189)". They are NOT pass / fail. No limit is set yet;
+  a low number is for a grader to look at. Setting a limit is a new ruling.
+- **Where it shows:** `V2-SCORECARD.txt`, `v2-score.json` (gates = only the gates above), `V2-BUILD-SUMMARY.txt` (v1 after
+  "| for information") and `summary.csv` (`gates_failed` = only the gates above; the v1 columns are the last two).
+- **Real example (Illinois, 27 Nov, built in a scratch folder from the IL layer file only, no v1 key):** 219 parks, 189
+  outlined, 30 pin only; pin inside 96.8% (183 of 189); size agrees 10.3% (7 of 68); V2 PASSES. The PC's build of the same
+  day had the same counts and failed G6, G7 and H2 against v1 before this ruling.

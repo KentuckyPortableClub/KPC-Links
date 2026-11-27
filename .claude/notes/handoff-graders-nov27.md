@@ -60,7 +60,7 @@ loops, and nothing passed on that was not measured. Read this page, then `handof
 6. Canada's 30 trail files are not read. Kentucky's key has a stray trail id (`US-0.json` on the status page).
 7. On hold until the build is graded (the grader's call): the frozen-matcher rule, the problem solver for the pin-only list,
    the 4-box control panel. THE PLAN IS WRITTEN DOWN: `v2-next-phase-spec-nov27.md` (the owner: do not forget it); three
-   lines in `.claude/inbox/LEDGER.md`. Notes for it: v2's own reason list has `layer_not_complete` and no `park_has_no_pin`; a web
+   lines in `.claude/inbox/LEDGER.md`. Notes for it: (CORRECTED 8:40 AM, the grader caught it) the live matcher HAS `park_has_no_pin` and has NO `layer_not_complete`; the rule sheet's section 6 list is out of date, go by the code; a web
    page cannot start programs on the PC, so buttons stay `.bat` files.
 8. The owner's bad-findings report page has not been brought up to date with today.
 
@@ -72,3 +72,20 @@ loops, and nothing passed on that was not measured. Read this page, then `handof
 - Buttons cannot be tested here. Keep to patterns proven on his PC (`choice`, not `set /p`). Never replace a `.bat` while
   its window is open.
 - A silent tool looks frozen. Anything that can wait or work for more than a minute must print what it is doing.
+
+## Added 27 Nov, 8:45 AM
+- **The fresh build** `v2-keys\2026-11-27-080935`: 51 areas, 46 clean, 5 with a store gap; 9,962 of 13,321 outlined; licence 7,715
+  all / 1,444 part / 803 none; 3,359 pin only (2,496 no record with this name, 666 name but no proof, 80 water only, 70 record
+  shared with another park, 46 layer not in store, 1 office only). The grader is grading it.
+- **OWNER, 8:34 AM: v1 is no judge** ("why judge against crap work"). The scorecard now passes or fails v2 by itself (G2, G3, G4, G5,
+  G9, G10, G11); every v1 comparison is information only, at the end; pin-inside and size-agrees are plain numbers with no limit
+  yet (rule sheet section 17). On the PC.
+- **Size in Illinois (7 of 68 agree): right land, measured wrongly.** Layer `sgild` writes acres from a flat web map (1.6 to 1.85
+  times too big in Illinois); v2 trusts that field over the outline. 39 of the 61 misses. 3 are real land faults (Shawnee took a
+  private same-name record, PAD-US 69282; two refuges are partly in other states); 18 are a wrong size on the park's page.
+  Work: `/home/claude/work/out/h2-il/` (in that chat only): fix = do not trust an acres field that disagrees with its outline.
+- **OWNER + GRADER, 8:37 AM: one record may serve two parks** ("same land, two park numbers") only when each park proves it by
+  itself (own agency id, or own name + pin inside); never a smaller park taking a bigger park's outline; every pair on a list;
+  an unproved shared record stays a hard fail. Being built.
+- **The grader's pre-grade and fix list of 27 Nov is saved whole:** `pregrade-grader-nov27.md`. Done from it so far: #40's red test,
+  the reason-list correction. The rest is the open list.
