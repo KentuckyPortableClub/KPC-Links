@@ -27,7 +27,7 @@ TABLE_SHAPES = {
     'drop_layers': D, 'record_id_fields': D, 'class_fields': D, 'short_forms': D, 'des_kinds': D,
     'fixed_names': D, 'pin_only_reasons': D, 'neighbours': D, 'ca_neighbours': D, 'no_wait_layers': D, 'no_wait_status': D,
     'single_kind_layers': {'*': [S]}, 'kinds_alike': [[S, S]], 'kind_fields': {'*': [S]},   # 27 Nov 2026, rule name_kind_agrees
-    'kind_words': L, 'place_words': L, 'compound_kinds': L, 'core_drop': L, 'water_last_words': L, 'acre_fields': L,
+    'shared_page_kinds': L, 'kind_words': L, 'place_words': L, 'compound_kinds': L, 'core_drop': L, 'water_last_words': L, 'acre_fields': L,
     'size_witness_tags': L, 'placeholders': L, 'drop_words': L, 'ca_kind_words': L,
     'easement_rx': RX, 'type_field_rx': RX, 'lease_name_rx': RX, 'water_park_kind_rx': RX, 'office_rx': RX,
     'trail_kind_rx': RX, 'line_park_kind_rx': RX, 'home_page_rx': RX, 'acre_field_rx': RX, 'roman_rx': RX,
@@ -1276,6 +1276,26 @@ def id_unit_pieces(p, ref, rs, ctx):
     return [i for i in chain_pieces(cands, pin, pool, rules, seeds=list(rs)) if i not in rs] if cands and pin else []
 
 
+def own_name_record(p, ref, rec, rules):
+    """Rule id_shared_page: True when the record carries the park's OWN name: an exact name (the exact-name rules and the
+    other_spellings table), or the same place words with only kind words different ('Pigeon Lake Wilderness' for Pigeon Lake
+    Wilderness Area), or the part before ' - ' ('High Tor Wma - Clark Gully' is a piece of High Tor Wma). A name with other place
+    words ('Twitchell Lake Primitive Area') is another unit's name."""
+    keys = park_name_keys(p.get('name'), p.get('type'), rules) | other_spelling_keys(ref, rules)
+    if keys & record_name_keys(rec['names'], rec['layer'], rules): return True
+    core = name_core(p.get('name'), None, rules)
+    return bool(core) and any(name_core(part, None, rules) == core for n in rec['names'] for part in {n, n.split(' - ')[0]})
+
+
+def shared_page_own(p, ref, kind, rs, pool, rules):
+    """Rule id_shared_page: when the records of one id of a page-address kind carry two or more different names, the id proves
+    only the records with the park's own name. -> (the records kept, True when the page was shared)."""
+    if kind not in rules['shared_page_kinds']: return rs, False
+    names = {name_core(pool.recs[i]['name'], None, rules) or (pool.recs[i]['name'],) for i in rs}
+    if len(names) < 2: return rs, False
+    return [i for i in rs if own_name_record(p, ref, pool.recs[i], rules)], True
+
+
 def step_id(refs, ctx):
     """Step 2, rules id_tie / id_shared / id_guard / id_unit_pieces: -> ({ref: [record i]}, {ref: evidence}, {ref: note},
     {record i: True} for the pieces)."""
@@ -1290,6 +1310,8 @@ def step_id(refs, ctx):
         if k in shared: note[ref] = 'id shared by two parks'; continue
         rs = id_records(pool, p, k[0], k[1], rules, names_by_full)
         if not rs: note[ref] = 'id not in the layer files'; continue
+        rs, _ = shared_page_own(p, ref, k[0], rs, pool, rules)   # 27 Nov 2026, rule id_shared_page
+        if not rs: note[ref] = 'id page shared by other units: no record carries the park\'s name'; continue
         far = False
         nopin = False
         if not id_guard(p, rs, pool, rules):

@@ -497,3 +497,10 @@ Rule `piece_park_no_siblings`. Found by Fable's whole-country check on the PC's 
 - Real case: CA-4478 Partridge Valley East Protected Area also took "Partridge Valley West" (637 ac), the land of park CA-4479.
 - A whole park (Otis Pike Pine Barrens State Forest) still takes its East and West pieces as before.
 
+
+## 35. 27 Nov 2026 (grade item 5, id joins): a shared DEC page proves only the park's own name
+Rule `id_shared_page` (table `shared_page_kinds`). The id value in the park facts is right; the page is shared.
+- NY DEC uses ONE page for a whole management complex. Real cases: Lake George Wild Forest took 3 Hudson River Special Management Area records 34-41 km away (page 53165); Pigeon Lake took Twitchell Lake (102484); Raquette Boreal took White Hill, Raquette River and Raquette-Jordan (83175); Mount Loretto took Butler Manor Woods (8291).
+- Rule: when one id of a page kind is on records of two or more different names, the id proves only the records with the park's own name. Own name = the exact name (existing exact-name rules), or the same place words with another kind word ('Pigeon Lake Wilderness'), or the part before ' - ' ('High Tor Wma - Clark Gully'). The other-name records do not join by id; a name rule may still prove them.
+- One name on the page: nothing changes. No record with the park's name on a shared page: the page proves nothing (pin only unless a name rule proves land).
+- Only for the NY DEC page number and the page-address kinds. Not general: the MN DNR unit id and the NPS unit code ARE the park. Measured: Blanket Flower Prairie SNA holds Ole Huseby Homestead (same SNA id, 440 + 134 = 574 ac); Upper Delaware's records are named 'Scenic and Recreational River'; Montana FWP ids hold 'Fishing Access Site' records of the same land. The general form would cut those true joins.

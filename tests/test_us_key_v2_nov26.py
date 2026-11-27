@@ -345,6 +345,37 @@ def test_wma_project_pieces():
     finally: f.done()
 
 
+def test_id_shared_page():
+    """Rule id_shared_page (27 Nov 2026): one DEC page, records of two names: the id proves only the park's own name."""
+    u = 'https://www.dec.ny.gov/lands/102484.html'
+    link = {'id_kind': 'NY DEC page number', 'id_value': '102484'}
+    recs = [rec('sgnya', 'sgnya1', 'Pigeon Lake Wilderness', URL=u), rec('sgnya', 'sgnya2', 'Pigeon Lake Wilderness', ring(500), URL=u),
+            rec('sgnya', 'sgnya3', 'Twitchell Lake Primitive Area', ring(9000), URL=u)]
+    d = one('Pigeon Lake Wilderness Area', 'Wilderness Area', recs, link=link)   # 9 km away, another unit of the page
+    assert ids(d, 'US-1') == ['sgnya1', 'sgnya2'] and by(d, 'US-1') == 'id'
+    # one name on the page: untouched, the pieces 9 km away stay
+    d = one('Pigeon Lake Wilderness Area', 'Wilderness Area', [recs[0], rec('sgnya', 'sgnya4', 'Pigeon Lake Wilderness', ring(9000), URL=u)], link=link)
+    assert ids(d, 'US-1') == ['sgnya1', 'sgnya4']
+    # a piece name ('X Wma - Gully') is the park's own; another unit is not
+    u2 = 'https://www.dec.ny.gov/lands/24439.html'
+    d = one('High Tor Wildlife Management Area', 'Wildlife Management Area',
+            [rec('sgnya', 'sgnya5', 'High Tor Wma', URL=u2), rec('sgnya', 'sgnya6', 'High Tor Wma - Clark Gully', ring(1500), URL=u2),
+             rec('sgnya', 'sgnya7', 'Bluff Point Wma', ring(2500), URL=u2)], link={'id_kind': 'NY DEC page number', 'id_value': '24439'})
+    assert ids(d, 'US-1') == ['sgnya5', 'sgnya6']
+    # no record carries the park's name: the page proves nothing (pin only)
+    d = one('Raquette Boreal Complex State Preserve', 'State Preserve',
+            [rec('sgnya', 'sgnya8', 'White Hill Wild Forest', URL='https://www.dec.ny.gov/lands/83175.html'),
+             rec('sgnya', 'sgnya9', 'Raquette River Wild Forest', ring(3000), URL='https://www.dec.ny.gov/lands/83175.html')],
+            link={'id_kind': 'NY DEC page number', 'id_value': '83175'})
+    assert ids(d, 'US-1') == [] and by(d, 'US-1') != 'id'
+    # the MN DNR unit id is not a page: its second-name record stays (US-11024 Blanket Flower Prairie SNA, Ole Huseby Homestead)
+    d = one('Blanket Flower Prairie SNA State Conservation Area', 'State Conservation Area',
+            [rec('sgmnf', 'sgmnf1', 'Blanket Flower Prairie', PGRM_PROJECT='SNA02027'),
+             rec('sgmnf', 'sgmnf2', 'Ole Huseby Homestead', ring(900), PGRM_PROJECT='SNA02027')],
+            link={'id_kind': 'MN DNR unit id', 'id_value': 'SNA02027'})
+    assert ids(d, 'US-1') == ['sgmnf1', 'sgmnf2']
+
+
 def test_id_unit_pieces():
     f = Fix()
     try:   # US-5416 Michigan Hill: a second DEC record of the forest carries no page number
@@ -1418,14 +1449,14 @@ def test_stale_key_removed():
 
 def test_id_other_names_report():
     f = Fix()
-    try:   # US-10293 Raquette Boreal: DEC's page groups other named land with the park
-        url = 'https://www.dec.ny.gov/lands/83175.html'
-        f.parks['US-10293'] = park('Raquette Boreal Complex State Preserve', 'State Preserve', link={'id_kind': 'NY DEC page number', 'id_value': '83175'})
-        f.files['US-MN'] = [rec('sgnya', 'sgnya1', 'Raquette-Jordan Boreal Primitive Area', URL=url),
-                            rec('sgnya', 'sgnya2', 'Lake Ozonia Fishing Access Site', ring(4000), URL=url)]
-        assert f.run() == 0 and len(ids(f.key(), 'US-10293')) == 2
+    try:   # a unit id that is the park (not a shared page, rule id_shared_page): another name inside it is joined and listed
+        f.parks['US-11024'] = park('Blanket Flower Prairie SNA State Conservation Area', 'State Conservation Area',
+                                   link={'id_kind': 'MN DNR unit id', 'id_value': 'SNA02027'})
+        f.files['US-MN'] = [rec('sgmnf', 'sgmnf1', 'Blanket Flower Prairie', PGRM_PROJECT='SNA02027'),
+                            rec('sgmnf', 'sgmnf2', 'Ole Huseby Homestead', ring(4000), PGRM_PROJECT='SNA02027')]
+        assert f.run() == 0 and len(ids(f.key(), 'US-11024')) == 2
         rows = f.csv('v2-id-other-names.csv')
-        assert rows[0] == 'ref,st,park_name,record_key,record_name,layer,km_from_pin' and len(rows) == 2 and 'Lake Ozonia' in rows[1]
+        assert rows[0] == 'ref,st,park_name,record_key,record_name,layer,km_from_pin' and len(rows) == 2 and 'Ole Huseby' in rows[1]
     finally: f.done()
 
 

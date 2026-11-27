@@ -102,6 +102,15 @@
    "stub": "empty"
   },
   {
+   "id": "id_shared_page",
+   "step": "2",
+   "what": "when one id of a page-address kind (shared_page_kinds: the NY DEC page number, a page address) is carried by records of two or more different names, the id proves only the records that carry the park's own name (exact name, or the same place words with another kind word, or the part before ' - '); the other-name records of that page do not join by id (a name rule may still prove them)",
+   "why": "NY DEC uses one page for a whole management complex: US-10083 Lake George Wild Forest took Hudson River Special Management Area records 34 to 41 km away (page 53165), US-10294 Pigeon Lake took Twitchell Lake (102484), US-10293 Raquette Boreal took White Hill, Raquette River and Raquette-Jordan (83175), US-5695 Mount Loretto took Butler Manor Woods (8291). Not for the MN DNR unit id or the NPS unit code: the unit id there is the park (Blanket Flower Prairie SNA holds Ole Huseby Homestead; Upper Delaware's records are named Scenic and Recreational River).",
+   "test": "test_id_shared_page",
+   "fn": "own_name_record",
+   "stub": "false"
+  },
+  {
    "id": "wma_project_pieces",
    "step": "2",
    "what": "unit_pieces rows: the park's id proves the sgmna record with that uniqueid; every sgmna record with the same lam_program_project_code AND the same unit_name joins by id too, and belongs to the lock; another unit name of that project does not",
@@ -2715,6 +2724,14 @@
    },
    "why": "the store room writes the trail bot's line files (KPC-Data data/trails/US-<n>.json) into the layer files as layer trl, key trl<n>, with the file's ref (US-<n>) and name as attributes (27 Nov 2026). The ref and the key must name the same park number. owner 27 Nov 2026, 5:45 AM: \"Yes to trails\" (asked: is the trail bot's pick enough when the park's pin is within 100 ft of the line?).",
    "test": "test_trail_bot_file"
+  },
+  "shared_page_kinds": {
+   "value": [
+    "NY DEC page number",
+    "page address"
+   ],
+   "why": "the kinds whose id is a web page that one agency page may share across several units (measured 27 Nov: NY 83 DEC pages carry 2+ names; MN DNR unit id and NPS unit code are left out, the general form cut true joins there)",
+   "test": "test_id_shared_page"
   }
  },
  "notes": {
