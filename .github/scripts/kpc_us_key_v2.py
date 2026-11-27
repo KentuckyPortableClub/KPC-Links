@@ -27,7 +27,7 @@ TABLE_SHAPES = {
     'kind_words': L, 'place_words': L, 'compound_kinds': L, 'core_drop': L, 'water_last_words': L, 'acre_fields': L,
     'size_witness_tags': L, 'placeholders': L, 'drop_words': L,
     'easement_rx': RX, 'type_field_rx': RX, 'lease_name_rx': RX, 'water_park_kind_rx': RX, 'office_rx': RX,
-    'trail_kind_rx': RX, 'home_page_rx': RX, 'acre_field_rx': RX, 'roman_rx': RX,
+    'trail_kind_rx': RX, 'line_park_kind_rx': RX, 'home_page_rx': RX, 'acre_field_rx': RX, 'roman_rx': RX,
     'name_fields': {'*': [S]}, 'unit_fields': {'*': [S]}, 'full_name_fields': {'*': [[S]]}, 'layer_kinds': {'*': [S]},
     'piece_suffixes': [RX], 'kind_patterns': [[S, RX]], 'name_equivalences': [[RX, S]],
     'id_ties': [{'kind': S, 'layer': S, 'field': S, '?rx': RX, '?where': D, '?measured': S, '?glue': S}],
@@ -40,7 +40,7 @@ TABLE_SHAPES = {
 }
 LINK_TIE_SHAPE = [{'kind': S, 'layer': S, 'field': S, 'rx': RX, '?glue': S}]
 VALUE_KEYS = ('size_tol', 'two_sources_tol', 'pin_m', 'near_km', 'lock_acres_tol', 'thin_m', 'long_ratio', 'acre_box_factor',
-              'same_ground_share', 'same_ground_tol', 'place_word_len')
+              'same_ground_share', 'same_ground_tol', 'place_word_len', 'line_pin_m')
 RULE_ROW = {'id': S, 'step': S, 'what': S, 'why': S, 'test': S, 'fn': S, 'stub': S}
 STEPS = {'load', '1', '2', '3', '4', 'gate', 'write'}
 STUBS = {'true', 'false', 'empty', 'identity', 'none'}
@@ -274,8 +274,9 @@ def page_name_keys(p, rules):
 
 
 # ---------------------------------------------------------------------------------------------------------------- shapes
-def decode_rings(raw, q):
-    """The layer file's delta-encoded integer rings -> [[(lon, lat), ...], ...] (first point, then steps)."""
+def decode_rings(raw, q, min_pts=3):
+    """The layer file's delta-encoded integer rings (or a line's paths, min_pts 2) -> [[(lon, lat), ...], ...] (first point,
+    then steps)."""
     if isinstance(raw, str):
         try: raw = json.loads(raw)
         except ValueError: return []
@@ -287,7 +288,7 @@ def decode_rings(raw, q):
         x, y = ring[0], ring[1]; pts = [(x / s, y / s)]
         for i in range(2, len(ring) - 1, 2):
             x += ring[i]; y += ring[i + 1]; pts.append((x / s, y / s))
-        if len(pts) >= 3: out.append(pts)
+        if len(pts) >= min_pts: out.append(pts)
     return out
 
 
@@ -308,6 +309,18 @@ def edge_m(lon, lat, rings):
     kx, ky, best = 111320.0 * math.cos(math.radians(lat)), 110574.0, float('inf')
     for r in rings:
         for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1]):
+            ax, ay, bx, by = (x1 - lon) * kx, (y1 - lat) * ky, (x2 - lon) * kx, (y2 - lat) * ky
+            dx, dy = bx - ax, by - ay
+            t = 0.0 if dx == dy == 0 else max(0.0, min(1.0, -(ax * dx + ay * dy) / (dx * dx + dy * dy)))
+            best = min(best, math.hypot(ax + t * dx, ay + t * dy))
+    return best
+
+
+def line_m(lon, lat, paths):
+    """The pin's distance in metres to the nearest segment of a line (open paths, never closed)."""
+    kx, ky, best = 111320.0 * math.cos(math.radians(lat)), 110574.0, float('inf')
+    for r in paths:
+        for (x1, y1), (x2, y2) in zip(r, r[1:]):
             ax, ay, bx, by = (x1 - lon) * kx, (y1 - lat) * ky, (x2 - lon) * kx, (y2 - lat) * ky
             dx, dy = bx - ax, by - ay
             t = 0.0 if dx == dy == 0 else max(0.0, min(1.0, -(ax * dx + ay * dy) / (dx * dx + dy * dy)))
@@ -403,10 +416,20 @@ def tie_value(rec, tie, rules):
 
 
 def shape(rec):
+    """A record's area rings ([] for a line: a line has no area; its paths are in rec['_p'])."""
     if '_g' not in rec:
-        rec['_g'] = decode_rings(rec['raw'], rec['q'])
-        rec['_b'] = box_of(rec['_g'])
+        if rec.get('line'):
+            rec['_g'], rec['_p'] = [], decode_rings(rec['paths'], rec['q'], min_pts=2)
+            rec['_b'] = box_of(rec['_p'])
+        else:
+            rec['_g'] = decode_rings(rec['raw'], rec['q'])
+            rec['_b'] = box_of(rec['_g'])
     return rec['_g']
+
+
+def line_has_no_size(rec):
+    """Rule line_no_acres: a line never has acres (never in ac, the size proof, two sources or same ground)."""
+    return bool(rec.get('line'))
 
 
 def rec_box(rec):
@@ -418,6 +441,8 @@ def agency_acres(rec, rules):
     """The agency's own acres field (acre_fields, else the first field matching acre_field_rx), checked against the record's
     box (acre_box_factor): square feet / square metres converted; None = none on file."""
     if '_aa' in rec: return rec['_aa']
+    if line_has_no_size(rec):
+        rec['_aa'] = None; return None
     a, v = rec['a'], None
     for k in rules['acre_fields']:
         try:
@@ -442,7 +467,7 @@ def agency_acres(rec, rules):
 def rec_acres(rec, rules):
     """A record's size: the agency's own acres, else its outline measured."""
     if '_ac' not in rec:
-        rec['_ac'] = agency_acres(rec, rules) or round(acres_of(shape(rec)), 1)
+        rec['_ac'] = 0.0 if line_has_no_size(rec) else agency_acres(rec, rules) or round(acres_of(shape(rec)), 1)
     return rec['_ac']
 
 
@@ -482,8 +507,9 @@ def same_ground(v, a, kv, k, rules):
 def land_acres(recs, rules, agency_only=False):
     """{layer: acres}: per class, the largest class; same ground counted once. agency_only: the agency's acres only."""
     groups = {}
-    for rec in recs: groups.setdefault(rec['layer'], {}).setdefault(class_of(rec, rules), []).append(rec)
-    out = {}
+    for rec in recs:
+        if not line_has_no_size(rec): groups.setdefault(rec['layer'], {}).setdefault(class_of(rec, rules), []).append(rec)
+    out = {rec['layer']: 0.0 for rec in recs if line_has_no_size(rec)}
     for layer, classes in groups.items():
         best = 0.0
         for rs in classes.values():
@@ -534,9 +560,14 @@ def dropped_layer(layer, rules):
     return layer in rules['drop_layers']
 
 
+def is_line(r):
+    """Rule line_record: a record with paths, shape 'line' and no rings is a LINE (a trail), not a record without a shape."""
+    return not r.get('rings') and bool(r.get('paths')) and r.get('shape') == 'line'
+
+
 def has_shape(r):
     """Rule load_no_shape."""
-    return bool(r.get('rings'))
+    return bool(r.get('rings')) or is_line(r)
 
 
 def repeated_key(count, spelled):
@@ -555,7 +586,7 @@ class Pool:
     def __init__(self, rules):
         self.rules, self.recs, self.dropped, self.by_ident = rules, [], {}, {}
         self.raw_ids, self.tie_ix, self.name_ix, self.piece_ix, self.core_ix, self.base_ix = {}, {}, {}, {}, {}, {}
-        self.layer_name_ix = {}
+        self.layer_name_ix, self.lines = {}, {}
 
     def rec_kinds(self, rec):
         """v1 record kinds: the kinds its names carry, its PAD-US designation type, its layer's kind (layer_kinds)."""
@@ -600,6 +631,9 @@ class Pool:
         rec = {'i': len(self.recs), 'area': area, 'layer': layer, 'key': key, 'id': rid, 'agency': agency, 'name': names[0],
                'names': [n for n in dict.fromkeys(names) if n.strip()], 'full_names': [n for n in fulls if n.strip()],
                'a': a, 'q': r.get('q'), 'raw': r.get('rings')}
+        if is_line(r):
+            rec.update(line=True, paths=r.get('paths'))
+            self.lines[layer] = self.lines.get(layer, 0) + 1
         self.recs.append(rec); self.by_ident[(layer, rid)] = rec
         i = rec['i']
         for t in rules['_ties'].get(layer, []):
@@ -643,19 +677,29 @@ def pin_near(rec, pin, rules):
     """Rules name_needs_proof / name_pin_near_edge / thin_must_be_long: the pin is inside the record or within pin_m of its
     edge (a thin long strip: within its own mean width, at most pin_m)."""
     n, g = rules['numbers'], shape(rec)
+    if rec.get('line'): return line_pin_near(rec, pin, rules)
     if pin is None or km_to_box(pin[0], pin[1], rec['_b']) * 1000 > n['pin_m']: return False
     if inside(pin[1], pin[0], g): return True
     return edge_m(pin[1], pin[0], g) <= (min(n['pin_m'], mean_width_m(g)) if too_thin(g, rules) else n['pin_m'])
 
 
+def line_pin_near(rec, pin, rules):
+    """Rule line_pin_m: the pin within line_pin_m (100 ft) of the line's nearest segment."""
+    shape(rec)
+    lim = rules['numbers']['line_pin_m']
+    return pin is not None and km_to_box(pin[0], pin[1], rec['_b']) * 1000 <= lim and line_m(pin[1], pin[0], rec['_p']) <= lim
+
+
 def pin_evidence(rec, pin):
     g = shape(rec)
+    if rec.get('line'): return {'pin_near': rec['id'], 'pin_m': round(line_m(pin[1], pin[0], rec['_p']), 1)}
     return {'pin_in': rec['id']} if inside(pin[1], pin[0], g) else {'pin_near': rec['id'], 'pin_m': round(edge_m(pin[1], pin[0], g))}
 
 
 def shape_km(rec, pin):
     """The pin's distance in km to the record's shape (0 inside)."""
     g = shape(rec)
+    if rec.get('line'): return line_m(pin[1], pin[0], rec['_p']) / 1000.0
     return 0.0 if inside(pin[1], pin[0], g) else edge_m(pin[1], pin[0], g) / 1000.0
 
 
@@ -736,6 +780,14 @@ def id_guard(p, rs, pool, rules):
     return False
 
 
+def far_pin_waiver(p, rs, pool, rules):
+    """Rule id_far_pin_listed_states: the id guard's pin and near_km are waived when POTA lists the park in more than one state
+    and one of the id's records (found through a real tie) carries the park's full name under the exact-name rules."""
+    if len(p.get('listed_in') or []) < 2: return False
+    keys = park_name_keys(p.get('name'), p.get('type'), rules)
+    return any(keys & record_name_keys(pool.recs[i]['names'], pool.recs[i]['layer'], rules) for i in rs)
+
+
 def piece_id_empty(rec, rules):
     """Rule id_unit_pieces: the record carries no real id under any tie of its layer, AND it meets every tie's where-filter
     (a PAD-US record not managed by NPS is not part of an NPS unit, even under the same name)."""
@@ -774,10 +826,14 @@ def step_id(refs, ctx):
         if k in shared: note[ref] = 'id shared by two parks'; continue
         rs = id_records(pool, p, k[0], k[1], rules, names_by_full)
         if not rs: note[ref] = 'id not in the layer files'; continue
-        if not id_guard(p, rs, pool, rules): note[ref] = 'id records carry neither the park\'s name nor its pin'; continue
+        far = False
+        if not id_guard(p, rs, pool, rules):
+            if not far_pin_waiver(p, rs, pool, rules): note[ref] = 'id records carry neither the park\'s name nor its pin'; continue
+            far = True
         extra = id_unit_pieces(p, ref, rs, ctx)
         pieces.update(extra)
         want[ref], ev[ref] = sorted(set(rs) | set(extra)), {'id_kind': k[0], 'id_value': k[1]}
+        if far: ev[ref].update(far_pin=True, listed_in=list(p.get('listed_in') or []))
     claims = {}
     for ref, rs in want.items():
         for i in rs: claims.setdefault(i, []).append(ref)
@@ -868,9 +924,15 @@ def held_by_stronger(i, taken):
     return i in taken
 
 
+def line_kind_ok(p, rules):
+    """Rule line_by_name_kind: only a trail / river / route park may take a line by NAME (any park may by id)."""
+    return bool(rules['_line_park_kind_rx'].search(str(p.get('type') or '')))
+
+
 def refusal(p, ref, rec, i, ctx):
     """Why a named record may not join this park by a NAME rule ('' = it may)."""
     rules = ctx['rules']
+    if rec.get('line') and not line_kind_ok(p, rules): return 'line_kind'
     if not wmd_ok(p, rec, rules): return 'not_fee'
     if is_office(rec, rules): return 'office'
     if is_water(p, rec, rules): return 'water'
@@ -1003,7 +1065,7 @@ def core_records(p, ref, ctx):
     proofs, groups = {}, {}
     for i in sorted(found):
         rec = pool.recs[i]
-        if not pin_near(rec, pin, rules) or refusal(p, ref, rec, i, ctx): continue
+        if rec.get('line') or not pin_near(rec, pin, rules) or refusal(p, ref, rec, i, ctx): continue
         rk, ok = pool.rec_kinds(rec), False
         for n in rec['names']:
             rc = name_core(n, '', rules)
@@ -1173,9 +1235,10 @@ def gate_other_pin(res, parks, pool, rules):
         others = [o for o in by_name.get(full(parks[ref].get('name'), rules), []) if o != ref and pin_of(parks[o])]
         for i in rs:
             for o in others:
-                g, pin = shape(pool.recs[i]), pin_of(parks[o])
-                if km_to_box(pin[0], pin[1], pool.recs[i]['_b']) * 1000 <= rules['numbers']['pin_m'] and \
-                        (inside(pin[1], pin[0], g) or edge_m(pin[1], pin[0], g) <= rules['numbers']['pin_m']):
+                g, pin, r = shape(pool.recs[i]), pin_of(parks[o]), pool.recs[i]
+                if (r.get('line') and line_m(pin[1], pin[0], r['_p']) <= rules['numbers']['line_pin_m']) or \
+                        (not r.get('line') and km_to_box(pin[0], pin[1], r['_b']) * 1000 <= rules['numbers']['pin_m'] and
+                         (inside(pin[1], pin[0], g) or edge_m(pin[1], pin[0], g) <= rules['numbers']['pin_m'])):
                     bad.append(('other_park_pin', ref, f"{pool.recs[i]['id']} holds {o}'s pin"))
     return bad
 
@@ -1190,6 +1253,16 @@ def gate(doc_parks, res, pool, rules, parks=None):
 
 
 # ---------------------------------------------------------------------------------------------------------------- outputs
+def all_lines(recs):
+    """Rule key_line_flag: every joined record is a line, so the map draws a line."""
+    return bool(recs) and all(r.get('line') for r in recs)
+
+
+def shape_word(rec):
+    """Rule proof_shape_column: 'line' or 'area' for the proof file."""
+    return 'line' if rec.get('line') else 'area'
+
+
 def state_doc(st, refs, parks, res, pool, rules, layer_files):
     """The key, in the shape the PC diff tool reads. Never shows the lock (rule lock_is_witness)."""
     out = {}
@@ -1206,6 +1279,7 @@ def state_doc(st, refs, parks, res, pool, rules, layer_files):
             out[ref] = {'n': p.get('name'), 't': p.get('type'), 'm': rows, 'c': [],
                         'match': {'status': 'confirmed', 'by': by, 'step': step, 'evidence': e, 'why': None},
                         'ac': round(max(per.values())), 'src': sorted(per)}
+            if all_lines([pool.recs[i] for i in res['joins'][ref]]): out[ref]['line'] = True
         else:
             out[ref] = {'n': p.get('name'), 't': p.get('type'), 'm': [], 'c': [], 'ac': None, 'src': [],
                         'match': {'status': 'pin', 'by': None, 'step': 4, 'evidence': {}, 'why': res['why'].get(ref, 'no_record_with_this_name')}}
@@ -1215,9 +1289,19 @@ def state_doc(st, refs, parks, res, pool, rules, layer_files):
             'counts': {'parks': len(refs), 'outlined': n, 'confirmed': n, 'pin_only': len(refs) - n, 'by_step': steps}, 'parks': out}
 
 
+def key_text(obj):
+    """The key's JSON text: sorted keys, no spaces, UTF-8."""
+    return json.dumps(obj, sort_keys=True, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+
+
+def key_text_sha256(obj):
+    """Rule key_text_sha256: the sha256 of the key's uncompressed text, so two machines (two zlib builds) compare by content."""
+    return hashlib.sha256(key_text(obj)).hexdigest()
+
+
 def gz_bytes(obj):
     """JSON with sorted keys in a gzip with a fixed time, so the same inputs give the same bytes (rule same_in_same_out)."""
-    raw = json.dumps(obj, sort_keys=True, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+    raw = key_text(obj)
     buf = io.BytesIO()
     with gzip.GzipFile(fileobj=buf, mode='wb', mtime=0, filename='') as g: g.write(raw)
     return buf.getvalue()
@@ -1238,7 +1322,7 @@ def proof_rows(st, res, pool, rules):
         for i in res['joins'][ref]:
             rec = pool.recs[i]
             out.append([ref, st, rec['key'], rec['id'] if rec['agency'] else '', rec['layer'], rec['name'], round(rec_acres(rec, rules), 1),
-                        step, by, ' '.join(f'{k}={e[k]}' for k in sorted(e)), rec['area'], lock])
+                        step, by, ' '.join(f'{k}={e[k]}' for k in sorted(e)), rec['area'], lock, shape_word(rec)])
     return out
 
 
@@ -1279,6 +1363,13 @@ def park_list(repo, st):
     return sorted({str(x.get('reference')) for x in d.get('data') or [] if x.get('reference')})
 
 
+def park_states(repo, st):
+    """Rule id_far_pin_listed_states: {ref: [states]} from POTA's own list (each row's locationDesc, e.g. 'US-CT,US-GA,...')."""
+    d = read_gz_json(os.path.join(repo, 'data', 'pota', 'saved', 'parks', f'US-{st}.json.gz'))
+    return {str(x['reference']): sorted({t.strip() for t in str(x.get('locationDesc') or '').split(',') if t.strip()})
+            for x in d.get('data') or [] if x.get('reference')}
+
+
 def build_state(st, a, rules, facts, layer_file, info):
     """One state: load, match, gate, write. -> (exit code, proof rows, pin rows, other-name rows)."""
     t0 = time.time()
@@ -1302,7 +1393,8 @@ def build_state(st, a, rules, facts, layer_file, info):
         info['neighbour_gaps'] += [f'US-{nb} {l}' for l in layer_gaps(f[0])]
         pool.add_file(f'US-{nb}', f[0])
         layer_files[f'US-{nb}'] = {'file': f[2], 'made': f[0].get('made'), 'sha256': f[1]}
-    parks = {r: facts.get(r) or {'name': '', 'type': ''} for r in refs}
+    listed = park_states(a.repo, st)
+    parks = {r: dict(facts.get(r) or {'name': '', 'type': ''}, listed_in=listed.get(r) or []) for r in refs}
     for r, p in facts.items():
         if r not in parks and str(p.get('area') or '')[3:] in [st] + rules['neighbours'].get(st, '').split(): parks[r] = p
     locks = {}
@@ -1318,6 +1410,8 @@ def build_state(st, a, rules, facts, layer_file, info):
                            'broken': len({b['ref'] for b in res['locked_broken']}),
                            'new': sum(1 for r in id_parks if r not in res['lock_status'])},
                  'locked_broken': res['locked_broken'], 'seconds': round(time.time() - t0, 1)})
+    info['lines'] = dict(sorted(pool.lines.items()))
+    if g['ok']: info['key_text_sha256'] = key_text_sha256(doc)
     if not g['ok']:
         print(f'{st}: GATE FAILED, key not written. {len(g["bad"])} broken row(s), listed in v2-run.json.'); return 4, [], [], []
     with open(os.path.join(a.out, f'US-{st}.json.gz'), 'wb') as f: f.write(gz_bytes(doc))
@@ -1379,7 +1473,7 @@ def run(argv=None):
         code = 4 if 4 in (code, c) else max(code, c)
         proof_all += pr; pin_all += pn; other_all += on
     write_csv(os.path.join(a.out, 'v2-proof.csv'), ['ref', 'st', 'file_key', 'agency_id', 'layer', 'record_name', 'acres', 'step', 'by',
-                                                    'evidence', 'file_area', 'lock'], proof_all)
+                                                    'evidence', 'file_area', 'lock', 'shape'], proof_all)
     write_csv(os.path.join(a.out, 'v2-pin-only.csv'), ['ref', 'st', 'name', 'kind', 'reason_code', 'reason'], pin_all)
     write_csv(os.path.join(a.out, 'v2-id-other-names.csv'), ['ref', 'st', 'park_name', 'record_key', 'record_name', 'layer',
                                                              'km_from_pin'], other_all)

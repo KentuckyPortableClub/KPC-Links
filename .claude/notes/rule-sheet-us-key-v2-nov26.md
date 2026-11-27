@@ -166,3 +166,22 @@ does not hold, such as trail lines). One per park. Check rows can therefore neve
 - No park on a same-named park's land: v2 0, v1 5 (Pine Hill, Robert Moses, Tracy Creek).
 - Still pin only on purpose in NY: US-0474, US-2147 (need an "other spelling"), US-10040 (only an old size proves it),
   US-10045 (the record names two parks), US-13624 (a trail strip with no pin on it), US-2011 (pin outside the land).
+
+## 12. Trails and far-away pins (owner 26 Nov 9:09 PM: "go ahead and do all that")
+- **Why the trail parks are missing:** the store-room tool leaves trail lines out on purpose (`kpc_layer_records.py`:
+  `NOT_LAND = {'trl', 'line'}`, "Trail lines are not layers of land") and drops every record with no polygon. No layer file
+  holds a line today. That is KPC-Store work; v2 is ready for it.
+- **A line in a layer file** (the format v2 reads): the usual record with no `rings`, and `"paths": [[x0, y0, dx, dy, ...]]`
+  in the same spelling as rings, plus `"shape": "line"`.
+- **A line joins a park** by its agency id, or by the exact name with the pin within 100 ft of the line (`line_pin_m` in the
+  table). Never by size, never by a longer or shorter name. Only a trail, river, route or greenway park may take a line by
+  name. A line is 0 acres everywhere. The key says `"line": true` when a park is all lines.
+- **A far pin** (US-4572 Lewis and Clark: pin in Omaha; the park facts hold 15 parks with "Lewis and Clark" in the name): the
+  10 km limit and the pin are waived only when POTA's own list puts the park in two or more states (`locationDesc`), the
+  agency id matches, and a record carries the park's full name. A one-state park never gets the waiver (Pine Hill stays refused).
+- **Tested how:** the far-pin rule ran on the real MN and NY files and changed no park (no trail record is in the files).
+  The line rules are tested on small made-up examples ONLY. Nothing here is proven on real trail lines yet.
+- Grey area V2-G7: the Park Service boundary layer `sgmac` (in the MA file) carries unit codes and would reach US-4567 Captain
+  John Smith at 168 km; it is not tied, because it is a new tie and that park is a water trail. Measure: Opus's
+  `out/measure-sgmac.txt` (26 Nov). US-4239 North Country: the record's name is "North Country National Scenic Trail", the
+  park's is "North Country Trail National Scenic Trail"; the exact-name check refuses it (an "other spelling" case).

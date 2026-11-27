@@ -40,6 +40,20 @@ def rec(layer, key, name, rg=None, **attrs):
             'attributes': attrs, 'q': 6, 'rings': [rg if rg is not None else ring()]}
 
 
+def path(pts_m, lat=LAT, lon=LON):
+    """A delta-encoded open line (q=6) through points given in metres east / north of (lat, lon)."""
+    ints = [(round((lon + x / KX) * 1e6), round((lat + y / KY) * 1e6)) for x, y in pts_m]
+    out = [ints[0][0], ints[0][1]]
+    for (x0, y0), (x1, y1) in zip(ints, ints[1:]): out += [x1 - x0, y1 - y0]
+    return out
+
+
+def lrec(layer, key, name, pts=((-3000, 0), (3000, 0)), **attrs):
+    """A LINE record in the agreed format: paths, shape 'line', no rings."""
+    return {'key': key, 'layer': layer, 'record_id': re.sub(r'^[a-z]+', '', key) or key, 'record_name': name,
+            'attributes': attrs, 'q': 6, 'paths': [path(pts)], 'shape': 'line'}
+
+
 def park(name, kind, dx_m=0.0, dy_m=0.0, link=None, size=None):
     p = {'area': 'US-MN', 'name': name, 'type': kind, 'pin': [LAT + dy_m / KY, LON + dx_m / KX], 'page': {}}
     if link: p['link'] = dict({'usable': True, 'id_is': 'known', 'id_shared_by': 1}, **link)
@@ -56,7 +70,7 @@ class Fix:
         for f in ('us-key-v2-rules.json', 'link-id-ties.json'):
             shutil.copy(os.path.join(SRC['github'], f), os.path.join(self.d, 'repo', '.github', f))
         os.makedirs(os.path.join(self.d, 'store'))
-        self.parks, self.files, self.incomplete, self.lists, self.no_manifest = {}, {}, {}, {}, {}
+        self.parks, self.files, self.incomplete, self.lists, self.no_manifest, self.listed = {}, {}, {}, {}, {}, {}
 
     def p(self, path): return os.path.join(self.d, path)
 
@@ -65,7 +79,7 @@ class Fix:
             refs = self.lists.get(st, [r for r, p in self.parks.items() if p['area'] == f'US-{st}'])
             os.makedirs(self.p('repo/data/pota/saved/parks'), exist_ok=True)
             with gzip.open(self.p(f'repo/data/pota/saved/parks/US-{st}.json.gz'), 'wt') as f:
-                json.dump({'data': [{'reference': r} for r in refs]}, f)
+                json.dump({'data': [{'reference': r, 'locationDesc': self.listed.get(r, f'US-{st}')} for r in refs]}, f)
         for area, recs in self.files.items():
             man = {r['layer']: {'complete': True} for r in recs}
             for l in self.incomplete.get(area, []): man[l] = {'complete': False}
@@ -329,6 +343,97 @@ def test_id_unit_pieces():
              rec('PAD-US', '72037', 'St. Croix National Scenic Riverway', ring(1000), Loc_Nm='', Mang_Name='SDNR')],
             link={'id_kind': 'NPS unit code', 'id_value': 'SACN'})
     assert ids(d, 'US-1') == ['3561'] and by(d, 'US-1') == 'id'
+
+
+def test_far_pin_listed_states():
+    cajo = {'id_kind': 'NPS unit code', 'id_value': 'CAJO'}
+    nm = 'Captain John Smith Chesapeake National Historic Trail'
+    def case(listed, rec_name=nm, line=False):
+        f = Fix()
+        try:
+            f.parks['US-4567'] = park(nm, 'National Historic Trail', link=cajo)
+            if listed: f.listed['US-4567'] = listed
+            r = (lrec('PAD-US', '3601', rec_name, ((390000, 0), (420000, 0)), Loc_Nm='CAJO', Mang_Name='NPS') if line else
+                 rec('PAD-US', '3601', rec_name, ring(400000), Loc_Nm='CAJO', Mang_Name='NPS'))
+            f.files['US-MN'] = [r]
+            assert f.run() == 0
+            return f.key()['parks']['US-4567']
+        finally: f.done()
+    k = case('US-DC,US-DE,US-MD,US-MN,US-PA,US-VA')       # US-4567: pin in DC, its land 400 km off: listed in 6 states
+    assert [x[0] for x in k['m']] == ['3601'] and k['match']['by'] == 'id'
+    assert k['match']['evidence']['far_pin'] is True and k['match']['evidence']['listed_in'][:2] == ['US-DC', 'US-DE']
+    k = case('US-DC,US-MN', line=True)                     # a multi-state trail's far LINE joins by id too
+    assert [x[0] for x in k['m']] == ['3601'] and k.get('line') is True and k['m'][0][2] == 0
+    assert case('US-MN')['m'] == []                        # one state: never (a far id with the very name is still refused)
+    assert case('US-DC,US-MN', rec_name='Chesapeake Bay Gateways')['m'] == []   # several states, but not the park's full name
+    # US-5249 Pine Hill stays refused: a one-state park (see test_id_guard_name_or_pin)
+
+
+def test_line_load():
+    pl = pool_of(lrec('sgxx', 'sgxx1', 'Root River'), lrec('sgxx', 'sgxx2', 'Elm'))
+    assert len(pl.recs) == 2 and pl.dropped == {} and pl.recs[0]['line'] and V.rec_box(pl.recs[0])[2] > V.rec_box(pl.recs[0])[0]
+    assert V.has_shape({'paths': [[1, 2, 3, 4]], 'shape': 'line'}) and not V.has_shape({'paths': [[1, 2, 3, 4]]})
+    f = Fix()
+    try:   # a line with an acres field: 0 acres in m, ac 0; the size never proves it
+        f.parks['US-1'] = park('Root River State Trail', 'State Trail', size={'acres': 50, 'witness': 'agency_document'})
+        f.parks['US-2'] = park('Douglas State Trail', 'State Trail', dy_m=5000, size={'acres': 50, 'witness': 'agency_document'})
+        f.files['US-MN'] = [lrec('sgxx', 'sgxx1', 'Root River', GIS_ACRES=50),
+                            lrec('sgxx', 'sgxx2', 'Douglas', ((-3000, 3000), (3000, 3000)), GIS_ACRES=50)]
+        assert f.run() == 0
+        d = f.key()
+        assert d['parks']['US-1']['m'] == [['sgxx1', 'Root River', 0, 'name+pin']] and d['parks']['US-1']['ac'] == 0
+        assert d['parks']['US-2']['m'] == []                       # 2 km off the line: its acres field proves nothing
+        assert f.info()['lines'] == {'sgxx': 2}
+    finally: f.done()
+
+
+def test_line_pin_distance():
+    def case(dy, kind='State Trail', name='Root River State Trail'):
+        f = Fix()
+        try:
+            f.parks['US-1'] = park(name, kind, dy_m=dy)
+            f.files['US-MN'] = [lrec('sgxx', 'sgxx1', 'Root River')]
+            assert f.run() == 0
+            return f.key(), f.csv('v2-proof.csv')
+        finally: f.done()
+    d, proof = case(20)                                        # 20 m off the line: within 100 ft
+    k = d['parks']['US-1']
+    assert k['m'] == [['sgxx1', 'Root River', 0, 'name+pin']] and k.get('line') is True and proof[1].split(',')[-1] == 'line'
+    d, _ = case(60)                                            # 60 m off: pin only
+    assert d['parks']['US-1']['m'] == [] and why(d, 'US-1') == 'name_but_no_pin_or_size_proof'
+    # two same-named lines 300 km apart, no unit value: never one trail
+    d = one('Root River State Trail', 'State Trail', [lrec('sgxx', 'sgxx1', 'Root River'),
+                                                      lrec('sgxx', 'sgxx2', 'Root River', ((300000, 0), (303000, 0)))])
+    assert ids(d, 'US-1') == ['sgxx1']
+    # another same-named park's pin within 100 ft of the line: refused for both
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Root River State Trail', 'State Trail')
+        f.parks['US-2'] = park('Root River (Fillmore County) State Trail', 'State Trail', dx_m=2000, dy_m=10)
+        f.files['US-MN'] = [lrec('sgxx', 'sgxx1', 'Root River')]
+        assert f.run() == 0 and f.key()['parks']['US-1']['m'] == [] == f.key()['parks']['US-2']['m']
+    finally: f.done()
+
+
+def test_line_name_needs_trail_kind():
+    line = [lrec('sgxx', 'sgxx1', 'Glacial Lakes')]
+    assert one('Glacial Lakes State Park', 'State Park', line)['parks']['US-1']['m'] == []     # named like the trail: no
+    assert ids(one('Glacial Lakes State Trail', 'State Trail', line), 'US-1') == ['sgxx1']
+    d = one('Glacial Lakes State Park', 'State Park', [lrec('sgmne', 'sgmne1', 'Glacial Lakes', mgtprgprj='SPK00170')],
+            link={'id_kind': 'MN DNR unit id', 'id_value': 'SPK00170'})
+    assert ids(d, 'US-1') == ['sgmne1'] and by(d, 'US-1') == 'id'                              # by id, any park
+
+
+def test_key_text_sha256():
+    f = Fix()
+    try:
+        f.parks['US-1'] = park('Crow Wing State Park', 'State Park')
+        f.files['US-MN'] = [rec('sgmnd', 'sgmnd1', 'Crow Wing')]
+        assert f.run() == 0
+        with gzip.open(f.p('out/US-MN.json.gz'), 'rb') as g: text = g.read()
+        import hashlib
+        assert f.info()['key_text_sha256'] == hashlib.sha256(text).hexdigest()
+    finally: f.done()
 
 
 # ------------------------------------------------------------------------------------------------------------- step 3
@@ -718,7 +823,7 @@ def test_lock_holds_same_as_cold():
         assert open(f.p('cold/US-MN.json.gz'), 'rb').read() == open(f.p('warm/US-MN.json.gz'), 'rb').read()   # the key hides the lock
         assert f.info(out='warm')['locks'] == {'held': 1, 'broken': 0, 'new': 0} and f.info(out='cold')['locks']['new'] == 1
         rows = [l.split(',') for l in f.csv('v2-proof.csv', 'warm')[1:]]
-        assert {r[7] for r in rows} == {'2'} and {r[-1] for r in rows} == {'held'}
+        assert {r[7] for r in rows} == {'2'} and {r[-2] for r in rows} == {'held'} and {r[-1] for r in rows} == {'area'}
         row = json.load(open(f.p('cold/locks/US-MN.json')))['locks']['US-7145'][0]
         assert row['count'] == 3 and row['acres'] == 180 and row['agency_id'] == 'SRA00304' and row['layer'] == 'sgmne'
     finally: f.done()
@@ -848,7 +953,7 @@ def test_two_runs_same_bytes():
         assert f.run('a') == 0 and f.run('b') == 0
         for n in ('US-MN.json.gz', 'v2-proof.csv', 'v2-pin-only.csv', 'v2-id-other-names.csv'):
             assert open(f.p(f'a/{n}'), 'rb').read() == open(f.p(f'b/{n}'), 'rb').read(), n
-        assert f.csv('v2-proof.csv', 'a')[0] == 'ref,st,file_key,agency_id,layer,record_name,acres,step,by,evidence,file_area,lock'
+        assert f.csv('v2-proof.csv', 'a')[0] == 'ref,st,file_key,agency_id,layer,record_name,acres,step,by,evidence,file_area,lock,shape'
     finally: f.done()
 
 

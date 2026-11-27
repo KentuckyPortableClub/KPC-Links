@@ -541,6 +541,78 @@
    "test": "test_trial_rules",
    "fn": "tool_line",
    "stub": "identity"
+  },
+  {
+   "id": "id_far_pin_listed_states",
+   "step": "2",
+   "what": "the id guard's pin and near_km limits are waived when POTA's own park list puts the park in more than one state (the row's locationDesc), the id matches through a real tie, and one id record carries the park's full name under the exact-name rules; the park then takes the id's records as step 2 does (every refusal applies); by stays 'id', evidence gains far_pin and listed_in. A one-state park never gets the waiver.",
+   "why": "round 6: US-4556 Appalachian Trail (pin in Georgia, 14 states), US-4567 Captain John Smith (pin in DC, 6 states): their land in NY is far from the pin.",
+   "test": "test_far_pin_listed_states",
+   "fn": "far_pin_waiver",
+   "stub": "false"
+  },
+  {
+   "id": "line_record",
+   "step": "load",
+   "what": "a record with 'paths', shape 'line' and no rings is a LINE, not a record without a shape; v2-run.json counts lines per layer; its box comes from the paths",
+   "why": "round 6: the agreed record format for trail lines (no layer file holds one yet)",
+   "test": "test_line_load",
+   "fn": "is_line",
+   "stub": "false"
+  },
+  {
+   "id": "line_no_acres",
+   "step": "3",
+   "what": "a line has 0 acres: never in ac, the size proof, the two-sources proof or same ground, even when it carries an acres field",
+   "why": "round 6: a line is not land",
+   "test": "test_line_load",
+   "fn": "line_has_no_size",
+   "stub": "false"
+  },
+  {
+   "id": "line_pin_m",
+   "step": "3",
+   "what": "a line joins by name (exact name rules only, never longer-or-shorter, never by size) only with the pin within line_pin_m of its nearest segment; the same distance is used for another same-named park's pin",
+   "why": "round 6: the club's 100 ft trail distance",
+   "test": "test_line_pin_distance",
+   "fn": "line_pin_near",
+   "stub": "true"
+  },
+  {
+   "id": "line_by_name_kind",
+   "step": "3",
+   "what": "only a park whose kind matches line_park_kind_rx may take a line by name; any park may take one by id",
+   "why": "round 6: a state park named like a trail must not take the trail's line",
+   "test": "test_line_name_needs_trail_kind",
+   "fn": "line_kind_ok",
+   "stub": "true"
+  },
+  {
+   "id": "key_line_flag",
+   "step": "write",
+   "what": "the key marks a park 'line': true when every joined record is a line; its m rows are [id, name, 0, how]",
+   "why": "round 6: the map side must know to draw a line",
+   "test": "test_line_pin_distance",
+   "fn": "all_lines",
+   "stub": "false"
+  },
+  {
+   "id": "proof_shape_column",
+   "step": "write",
+   "what": "v2-proof.csv ends with a 'shape' column: area or line",
+   "why": "round 6",
+   "test": "test_line_pin_distance",
+   "fn": "shape_word",
+   "stub": "empty"
+  },
+  {
+   "id": "key_text_sha256",
+   "step": "write",
+   "what": "v2-run.json holds per state key_text_sha256, the sha256 of the key's uncompressed JSON text, so two machines with different zlib builds compare by content",
+   "why": "round 6: the owner's PC wrote the same key text as the manager's machine but another zip size",
+   "test": "test_key_text_sha256",
+   "fn": "key_text_sha256",
+   "stub": "empty"
   }
  ],
  "values": {
@@ -598,6 +670,11 @@
    "value": 0.8,
    "why": "two same-name records are the same ground when 80% of the sample points inside the smaller one's SHAPE lie inside the other (US-5145 Burnt-Rossman: neighbouring pieces with overlapping boxes were merged)",
    "test": "test_acres_same_ground_once"
+  },
+  "line_pin_m": {
+   "value": 30.48,
+   "why": "100 ft, the club's trail distance (POTA: activate within 100 feet of the trail; club 2-fer rule: lines = 100 ft from the edge). A line joins by name only with the pin this close to its nearest segment.",
+   "test": "test_line_pin_distance"
   }
  },
  "tables": {
@@ -1344,6 +1421,11 @@
    },
    "why": "v1 own_page / page_size_witness / hand_copy_sourced: the park's own agency page's clean total counts as an agency document; a hand copy counts only when it names its page",
    "test": "test_name_and_size_join"
+  },
+  "line_park_kind_rx": {
+   "value": "\\b(trail|trails|river|riverway|route|byway|greenway|scenic river)\\b",
+   "why": "round 6: only a trail / river / route park may take a line by NAME (from trail_kind_rx plus the river and route words); matched on the park's kind (type), never its name, so a state park named like a trail never takes the trail's line",
+   "test": "test_line_name_needs_trail_kind"
   }
  },
  "notes": {

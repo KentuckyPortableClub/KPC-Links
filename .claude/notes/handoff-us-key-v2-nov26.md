@@ -55,6 +55,23 @@ Read this first in a new matching chat. Plain words. Owner: KPC owner. Nothing i
    table rows only (agency id fields, kind words, French and English names).
 5. Only when v2 beats v1 on the PC and the owner says so: v2 replaces v1, its file joins the US rule files, the hash moves once.
 
+## Added later on 26 Nov (after the owner's PC run)
+- **The owner's PC run (8:55 PM): V2 PASSES**, MN 295, NY 819, MN 9 s and NY 11 s; the key text is the same as Fable's run
+  (`key_text_sha256` in v2-run.json: MN ddb89b90..., NY 2294966e...; the ZIP bytes differ between Windows and Linux, the text
+  does not). It compared with test-2026-11-26-2014 (the newest finished v1 test): v1 MN 311, NY 822, fair count 294 and 818.
+  That v1 key still has the 5 same-named-park hits.
+- **State prep takes several states or `US`** (one state per process, about 1.5 GB at its peak). On the 14 states staged
+  here: v2 can build 8 (CT IA MN NJ NY PA SD WI); 6 are blocked by the store room (sgnca: GA NC SC; sgmaa: MA, one shapeless
+  record of 61,486; sgaki: ND; vta: VT). 51 proposed id rows, including a Georgia layer whose Website field holds the park's
+  own page address for 118 parks.
+- **Trails and far pins are built in v2** (rule sheet section 12): line records, the 100 ft pin distance, the far-pin waiver
+  for parks POTA lists in several states. Fixture-tested only for lines: no layer file holds a line.
+- **KPC-Store job, not started, the owner has not said go:** `kpc_layer_records.py` must keep the `trl` / `line` layers and
+  save line shapes as `paths` + `"shape": "line"`; and one shapeless record should not mark a whole layer "not complete"
+  (that alone blocks MA). Running it means a LAYER-RECORDS download: the owner's button.
+- **Small fixes still open in the tools:** the scorecard does not name the v1 test it compared with; the scorecard and the
+  map side do not know lines yet; the "other spellings" table is not built.
+
 ## For the other builder (#392 and later patches to v1)
 - "Full land kept" is not a pass mark where the land is another unit's: US-5106 Bear Swamp (Otsego): PAD-US 236421 holds about
   3,626 acres of US-5107 Bear Swamp (Cayuga), 134 km away. US-4820 Red Lake State Forest: three "Red Lake WMA" rows, about
