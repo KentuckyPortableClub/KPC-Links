@@ -1125,6 +1125,17 @@
     "parks": []
    },
    "approved": "APPROVED, decided_by KPC owner, 26 Nov 8:20 PM: 'We run mn and ny 100s of times ... when the next state will be different'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
+  },
+  {
+   "id": "2026-11-26-layer-kind-fallback",
+   "when": "2026-11-26",
+   "from": "b149c08a831f",
+   "why": "Red Lake State Forest US-4820 held three 'Red Lake WMA' records of Minnesota's forest layer sgmnf (about 324,500 acres; UNIT_TYPE 'Wildlife Management Area'), because the layer's kind ('forest') was added to every record. A layer's kind is now only a fallback: a record's own name or its own type field decides when it says a kind. Every state with a typed state layer.",
+   "scope": {
+    "states": ["*"],
+    "parks": ["US-4820"]
+   },
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 8:49 PM: 'know how many times I said look at the official website no one did...wish you all would listen'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }

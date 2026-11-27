@@ -1357,7 +1357,9 @@ def zip_state(st, have):
                         ring = pts[parts[k2]:parts[k2 + 1]]
                         xs, ys = tr.transform([q[0] for q in ring], [q[1] for q in ring])
                         rs.append([[round(x, 6), round(y, 6)] for x, y in zip(xs, ys)])
-                    g = {'rings': rs}; k = kinds(nm) | kk
+                    # 26 Nov 2026 (Red Lake State Forest US-4820 held three 'Red Lake WMA' records, about 324,500 acres): a LAYER's
+                    # kind is only a fallback; a record whose own name already says its kind keeps that kind alone
+                    g = {'rings': rs}; k = (kinds(nm) | kk) if tf else (kinds(nm) or kk)
                     if _dup(have, (norm(nm), frozenset(k)), bbox(g)): continue
                     ZIPGEO.setdefault(pre, {})[f'{pre}{i}'] = [nm, [_fine(r2) for r2 in rs if len(r2) > 3]]   # R-G6 fine lines: 3 m, not 'every Nth point'
                     out.append({'OBJECTID': f'{pre}{i}', 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(), 'Loc_Mang': label,
@@ -1451,7 +1453,11 @@ def extra_state(st, have, only=None):
             # 'we are not here to correct POTA's mistakes, we show the boundaries of where they are'): when POTA numbered the
             # easement itself and a person named that record in overrides.json, it IS the park's outline (Buena Vista SWA)
             if re.search(r'easement', nm, re.I) and _nf(nm) not in {_nf(w) for o in OVR.values() for w in (o.get('join') or []) + (o.get('alias') or [])}: continue
-            k = kinds(nm) | kk
+            # 26 Nov 2026 (owner's PC test; Red Lake State Forest US-4820 held three 'Red Lake WMA' records of Minnesota's forest
+            # layer sgmnf, about 324,500 acres): the layer's kind ('forest') was added to EVERY record, so a record named 'WMA' also
+            # counted as a forest and joined the forest by its name. A layer's kind is now only a fallback: the record's own name, or
+            # its own type field (UNIT_TYPE 'Wildlife Management Area'), decides when it says a kind
+            k = kinds(nm) or kinds(_rt) or kk
             if opt.get('not_in') and norm(nm) in {norm(o['Unit_Nm']) for o in out if str(o['OBJECTID']).startswith(opt['not_in'])}: continue
             # 24 Nov 2026 (owner's settled-joins ruling S4, 5:00 AM: records a saved answer names are REQUIRED, never trimmed): a state
             # record a person's saved answer names is kept even when PAD-US has the same name on the same ground (the cross-state run
