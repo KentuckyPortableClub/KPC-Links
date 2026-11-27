@@ -595,17 +595,6 @@
   "kpc-pota-discord.yml|2026-11-27T09:19:00+00:00": "2026-11-27T10:26+00:00 started",
   "kpc-reports.yml|2026-11-27T09:29:00+00:00": "2026-11-27T10:26+00:00 started"
  },
- "last": "2026-11-27T10:26+00:00",
- "last_restarted": [
-  "kpc-band-alerts.yml (missed Nov 27 09:48 UTC)",
-  "kpc-boards.yml (missed Nov 27 09:44 UTC)",
-  "kpc-bot-health.yml (missed Nov 27 09:44 UTC)",
-  "kpc-canada.yml (missed Nov 27 08:53 UTC)",
-  "kpc-community.yml (missed Nov 27 08:17 UTC)",
-  "kpc-discord-watch.yml (missed Nov 27 09:47 UTC)",
-  "kpc-fb-comments.yml (missed Nov 27 08:32 UTC, NOT restarted: its next scheduled run catches up)",
-  "kpc-hunters.yml (missed Nov 27 09:07 UTC)",
-  "kpc-pota-discord.yml (missed Nov 27 09:19 UTC)",
-  "kpc-reports.yml (missed Nov 27 09:29 UTC)"
- ]
+ "last": "2026-11-27T10:46+00:00",
+ "last_restarted": []
 }
