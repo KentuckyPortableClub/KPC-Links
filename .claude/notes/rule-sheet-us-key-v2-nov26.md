@@ -220,9 +220,11 @@ does not hold, such as trail lines). One per park. Check rows can therefore neve
 
 ## 16. Ruled 27 Nov 2026, 5:45 AM (owner)
 Asked: "is the trail bot's pick enough when the park's pin is within 100 ft of the line?" Owner: "Yes to trails".
-**HELD, NOT IN FORCE YET:** two minutes later (5:47 AM) the owner passed on the grader's call: "NO for now ... leave trail parks
-pin-only until they have an official agency trail name/ID and strict <=100 ft check". The two do not agree; the owner was asked
-which stands. Until he says, this section and its rule rows stay on the side branch (not in #393) and trails stay off the PC.
+**IN FORCE since 27 Nov 2026, 6:14 AM.** At 5:47 AM the owner passed on the grader's call ("NO for now ... an official agency
+trail name/ID and strict <=100 ft check"). Asked which stands, the owner: "Trails pota could be wrong trust official" and "do not
+trust old work". Read together with his yes: the official line is trusted; the trail bot's pick is old work, so today's pin
+within 100 ft must confirm it. A trail park whose pin is farther stays without its line until an agency id or name proves it
+(the grader's condition). The 100 ft check is strict and in code (rule `trail_bot_pin`); no real park was ever past it.
 Why it was asked: the name inside a trail-bot file is typed in the trail bot's own list (the club's label for that park
 number). It is not read from the agency. So "exact name" proves nothing for such a file.
 - **What counts:** the trail bot's file for a park (layer `trl`, key `trl<n>`, ref `US-<n>`; the key and the ref must agree)
