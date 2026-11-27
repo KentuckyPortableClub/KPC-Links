@@ -1086,6 +1086,20 @@
     "parks": []
    },
    "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:18 PM: 'yeah no more putting stuff off so it does not get dropped'; 4:18 PM: 'we want accuracy more matches more confirmed matches'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
+  },
+  {
+   "id": "2026-11-26-locks-more",
+   "when": "2026-11-26",
+   "from": "c3d6fb78cad1",
+   "why": "Grade of #390 (PC test test-2026-11-26-1810: MN locked_used 119, broken 1; NY used 5, broken 4). (1) Agency-id locks also use the agency ids a record carries in its own web address field (.github/link-id-ties.json: NY DEC page number on 515 NY parks confirmed by id, MT FWP, MI DNR, CA State Parks ids), never a server row. (2) A record with no size on file both times is unchanged (four NY Park Service sites saved as 0 acres broke on a same-day file). (3) A lock is written only when the park already holds ALL of today's records with that id in that layer (US-11024: 440 acres saved, 574 today, because another tract with the same id went elsewhere). FWS and PAD-US: no stable agency id that POTA's side proves (the FWS LIT code is on no POTA link), so no lock there.",
+   "scope": {
+    "states": [
+     "MN",
+     "NY"
+    ],
+    "parks": []
+   },
+   "approved": "APPROVED, decided_by KPC owner, 26 Nov 5:30 PM: 'Confirmed-park fast path against the store room (agency-ID proof only)'; 5:25 PM: 'stop holding fixes back'; 25 Nov 12:09 PM: 'no need to ask about a ducking number changes I do not have to approve you all to fix this.'"
   }
  ]
 }

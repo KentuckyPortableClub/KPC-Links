@@ -76,6 +76,23 @@ used, broken = check_('MN', [a1, a2, b], two)
 check('C: two parks holding one agency id: neither lock is used', 'US-1' not in used and 'US-9' not in used and 'US-4' in used
       and all('another park holds' in x[5] for x in broken))
 
+# 26 Nov (grade of #390): an agency id in the record's own web address (NY DEC page number), zero-size records, all tracts
+dec = {'OBJECTID': 'sgnya72140', 'Unit_Nm': 'Carlton Hill Mua', 'GIS_Acres': 1346, 'SA': {'URL': 'https://www.dec.ny.gov/lands/82684.html'}, '_fresh': True}
+dec2 = dict(dec, OBJECTID='sgnya74176', GIS_Acres=614)
+pk = {'US-8622': {'m': [['sgnya72140', 'Carlton Hill Mua', 1346, 'id: x'], ['sgnya74176', 'Carlton Hill Mua', 614, 'id: x']],
+                  'match': {'status': 'confirmed', 'by': 'id', 'id': 'NY DEC page number 82684'}}}
+d2 = write_('NY', pk, {x['OBJECTID']: x for x in (dec, dec2)}, [dec, dec2])
+check(f"E: a NY DEC page number in the record's own address locks; both tracts held ({d2['parks']})",
+      d2['parks'].get('US-8622', {}).get('kind') == 'NY DEC page number' and d2['parks']['US-8622']['acres'] == 1960)
+u2, b2 = check_('NY', [dict(dec, OBJECTID='sgnya90001'), dict(dec2, OBJECTID='sgnya90002')], d2)
+check('E: the NY DEC lock holds after renumbering', sorted(x[0] for x in u2.get('US-8622') or []) == ['sgnya90001', 'sgnya90002'] and not b2)
+pk1 = {'US-8622': dict(pk['US-8622'], m=[pk['US-8622']['m'][0]])}
+d3 = write_('NY', pk1, {x['OBJECTID']: x for x in (dec, dec2)}, [dec, dec2])
+check('E: a park holding only one of two tracts with its id is not locked (the other went elsewhere for a reason)', 'US-8622' not in d3['parks'])
+nps0 = {'OBJECTID': 4447, 'Unit_Nm': 'Federal Hall National Memorial', 'GIS_Acres': 0, 'SA': {'UNIT_CODE': 'FEHA'}, '_fresh': True}
+d4 = {'parks': {'US-0773': {'layer': 'padus', 'kind': 'NPS unit code', 'value': 'FEHA', 'names': ['Federal Hall National Memorial'], 'acres': 0}}}
+u4, b4 = check_('NY', [nps0], d4)
+check(f'E: a record with no size on file both times is unchanged: the lock holds ({b4})', 'US-0773' in u4 and not b4)
 run_ = src[src.index('def run(st):'):]
 check('D: locked parks skip the matching loop, the match checks and the gate',
       "if ref in LOCK_ROWS:" in run_ and 'set(TRL) | set(LOCK_ROWS)' in src and src.count('set(TRL) | set(LOCK_ROWS)') == 2)

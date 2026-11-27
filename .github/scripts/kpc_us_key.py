@@ -2900,12 +2900,28 @@ LOCK_BROKEN = []  # [state, park, layer, id kind, id value, why]: locks that did
 def lock_path(st): return OUT / 'locks' / f'US-{st}.json'
 
 
+def _lock_kinds():
+    """The stable agency id kinds a lock may use: the match checks' record id kinds (MC.ID_KINDS: Park Service unit code, MN DNR
+    unit id) and, 26 Nov 2026 (grade of #390: 'expand agency-ID locks beyond NPS + MN DNR'), the agency ids a record carries in
+    its OWN web address field (.github/link-id-ties.json: NY DEC page number, MT FWP lands id, MI DNR id, CA State Parks page id):
+    the agency's own number for the place, never a server row."""
+    try: ties = {t['kind'] for t in MC.load_link_ties()}
+    except Exception: ties = set()  # noqa: BLE001
+    return sorted(set(MC.ID_KINDS) | ties, key=len, reverse=True)
+
+
 def _lock_kind(s):
     """'MN DNR unit id SFT00036' -> ('MN DNR unit id', 'SFT00036'); (None, None) for anything that is not one of the stable agency
-    id kinds the match checks know (MC.ID_KINDS, the Park Service unit code)."""
-    for k in sorted(MC.ID_KINDS, key=len, reverse=True):
+    id kinds (_lock_kinds)."""
+    for k in _lock_kinds():
         if str(s or '').startswith(k + ' '): return k, str(s)[len(k) + 1:].strip()
     return None, None
+
+
+def _rec_id(a, k):
+    """The record's own value of agency id kind k: a record field (MC.ids_from) or, failing that, its own web address."""
+    ids = MC.ids_from(a)
+    return str(ids.get(k) or ids.get(MC.addr_key(k)) or '')
 
 
 def lock_check(st, recs, doc):
@@ -2925,7 +2941,8 @@ def lock_check(st, recs, doc):
         lay = _sl_layer(_oid(a))
         if lay not in lays or lay in OUTER_LINE: continue
         for k, v in MC.ids_from(a).items():
-            if (lay, k, str(v)) in want: by.setdefault((lay, k, str(v)), []).append(a)
+            k = k[5:] if k.startswith('addr:') else k   # 26 Nov: an id read from the record's own web address counts the same
+            if (lay, k, str(v)) in want and a not in by.get((lay, k, str(v)), []): by.setdefault((lay, k, str(v)), []).append(a)
     holders = {}
     for ref, L in locks.items(): holders.setdefault((L.get('layer'), L.get('kind'), str(L.get('value'))), []).append(ref)
     used, broken = {}, []
@@ -2942,7 +2959,10 @@ def lock_check(st, recs, doc):
             else:
                 ac = sum(float(a.get('GIS_Acres') or 0) for a in hits)
                 la = float(L.get('acres') or 0)
-                if not (la > 0 and ac > 0 and abs(ac - la) <= LOCK_TOL * la + 1): why = f'resized: {la:.0f} acres saved, {ac:.0f} today'
+                # 26 Nov (grade of #390: four NY Park Service sites saved as 0 acres broke on a same-day file): a record with no
+                # size on file both times is unchanged; else the total must be within LOCK_TOL
+                if not (la <= 1 and ac <= 1) and not (la > 0 and ac > 0 and abs(ac - la) <= LOCK_TOL * la + 1):
+                    why = f'resized: {la:.0f} acres saved, {ac:.0f} today'
         if why:
             broken.append([st, ref, key[0], key[1], key[2], why]); continue
         used[ref] = [[a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', round(float(a.get('GIS_Acres') or 0)),
@@ -2950,7 +2970,7 @@ def lock_check(st, recs, doc):
     return used, broken
 
 
-def lock_write(st, parks, byid):
+def lock_write(st, parks, byid, recs=None):
     """26 Nov 2026: this run's agency-id proofs, for the next run's fast path: every park confirmed BY ID (never by a name rule,
     a page, a size or a person) whose joined records carry that id in one layer, from today's layer files. Returns the doc."""
     out = {}
@@ -2960,9 +2980,17 @@ def lock_write(st, parks, byid):
         k, v = _lock_kind(mt['id'])
         if not k: continue
         recs_ = [byid.get(str(q[0])) for q in p.get('m') or [] if isinstance(q, (list, tuple)) and q]
-        recs_ = [a for a in recs_ if a is not None and a.get('_fresh') and not a.get('_hint') and str(MC.ids_from(a).get(k) or '') == str(v)]
+        recs_ = [a for a in recs_ if a is not None and a.get('_fresh') and not a.get('_hint') and _rec_id(a, k) == str(v)]
         lays = {_sl_layer(_oid(a)) for a in recs_}
         if not recs_ or len(lays) != 1 or next(iter(lays)) in OUTER_LINE: continue
+        # 26 Nov (grade of #390, US-11024: 440 acres saved, 574 today on a same-day file): a lock takes ALL of today's records
+        # with that id, so it is written only when the park already holds all of them (else another tract with the same id
+        # went elsewhere for a reason, and the park is matched as usual)
+        lay1 = next(iter(lays))
+        if recs is not None:
+            allr = [a for a in recs if a.get('_fresh') and not a.get('_hint') and not a.get('_nostore') and _sl_layer(_oid(a)) == lay1
+                    and _rec_id(a, k) == str(v)]
+            if {_oid(a) for a in allr} - {_oid(a) for a in recs_}: continue
         out[ref] = {'layer': next(iter(lays)), 'kind': k, 'value': str(v),
                     'names': sorted({a.get('Unit_Nm') or a.get('Loc_Nm') or '' for a in recs_} - {''}),
                     'acres': round(sum(float(a.get('GIS_Acres') or 0) for a in recs_))}
@@ -4789,7 +4817,7 @@ def run(st):
     if _ol: notice(f'US key {st}', f'{_ol} outer-line row(s) taken off (rule 1b: drawn from the agency\'s own land only)')
     if _kr('KPC_ID_LOCK') and _kr('KPC_STORE_FRESH'):
         try:
-            _doc = lock_write(st, parks, {_oid(a): a for a in recs})
+            _doc = lock_write(st, parks, {_oid(a): a for a in recs}, recs)
             lock_path(st).parent.mkdir(parents=True, exist_ok=True)
             with open(lock_path(st), 'w', encoding='utf-8') as _fh: json.dump(_doc, _fh, indent=1, sort_keys=True, ensure_ascii=False)
             LOCKS.setdefault(st, {'used': 0, 'broken': 0})['written'] = len(_doc['parks'])
