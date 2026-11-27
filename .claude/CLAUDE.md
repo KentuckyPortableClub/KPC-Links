@@ -4,6 +4,7 @@ Owner: Brandon White, KZ4CP (brandonwhite42166@gmail.com). Plain-language answer
 Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from `main`, repo KentuckyPortableClub/KPC-Links).
 
 - `.claude/notes/handoff-app-lounges-nov19.md`: where the APP + LOUNGES stand (Nov 19), what waits on Brandon, the carbon-copy rule. Read first in a new app/Lounge chat.
+- `.claude/notes/handoff-fable-nov27.md`: START HERE to finish the matching tools (Nov 27): what is where, the jobs left in order, what is already ruled, the traps. Then the v2 hand-off below.
 - `.claude/notes/handoff-us-key-v2-nov26.md`: NEWEST (Nov 26 night): the clean v2 key matcher (#393, US + Canada, on the PC only, not live): fresh layer files only, one rule table, scorecard, try-a-rule workbench, state prep, the PC buttons; the store room + page reader fixes (PC only) and the two audits `audit-tools-nov26.md`, `audit-facts-nov26.md`; rule sheet `rule-sheet-us-key-v2-nov26.md`. Read its 'Added 26 Nov night' section first in a new matching chat.
 - `.claude/notes/handoff-matching-nov25.md`: (Nov 25): the better matcher (#380), full layer files as the fresh source (KPC-Store #38), the owner's PC test, next jobs. Read first in a new matching chat.
 - `.claude/notes/handoff-matching-nov23.md`: where MATCHING + ACCURACY stand (Nov 23), the next jobs in order, what waits on Brandon, how to bring his PC test kit up to date after a change. Read first in a new matching chat.
