@@ -13,7 +13,9 @@ Nothing is downloaded and nothing goes to GitHub. Then run LAYER-RECORDS.bat (it
 import datetime, gzip, hashlib, json, pathlib, sys
 
 HERE = pathlib.Path(__file__).resolve().parent
-HAVE = HERE.parent / 'Tools' / 'KPC-TOOLS-NOV14' / '1-STORE-TOOL' / 'kpc-outline-store-full' / 'have'
+HAVE = next((p for p in (HERE.parent / '3-MAP-STORE-US-CA' / 'have',   # 26 Nov: the new folder name first
+                         HERE.parent / 'Tools' / 'KPC-TOOLS-NOV14' / '1-STORE-TOOL' / 'kpc-outline-store-full' / 'have') if p.is_dir()),
+            HERE.parent / 'Tools' / 'KPC-TOOLS-NOV14' / '1-STORE-TOOL' / 'kpc-outline-store-full' / 'have')
 
 
 def main(argv):
