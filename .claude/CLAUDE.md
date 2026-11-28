@@ -1,3 +1,5 @@
+**Robots rules (final — do not ask Brandon):** read [ROBOTS-RULES.md](../ROBOTS-RULES.md). The standard is RFC 9309. Be polite.
+
 # Kentucky Portable Club website: notes for Claude
 
 Owner: Brandon White, KZ4CP (brandonwhite42166@gmail.com). Plain-language answers please; he is a ham, not a web developer.
