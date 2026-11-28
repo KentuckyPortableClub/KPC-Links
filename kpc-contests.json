@@ -1,20 +1,6 @@
 {
- "updated": "2026-11-27T13:48:34Z",
+ "updated": "2026-11-28T11:11:56Z",
  "week": [
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gl6kp",
-   "when": "2000Z-2100Z, Nov 27",
-   "segs": [
-    [
-     "2026-11-27T20:00Z",
-     "2026-11-27T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "ARRL EME Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003drsoh",
@@ -410,6 +396,96 @@
    "modes": [
     "CW"
    ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC FT4 Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hoenp",
+   "when": "0100Z-0130Z, Dec 4",
+   "segs": [
+    [
+     "2026-12-04T01:00Z",
+     "2026-12-04T01:30Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Weekly RTTY Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hp9j5",
+   "when": "0145Z-0215Z, Dec 4",
+   "segs": [
+    [
+     "2026-12-04T01:45Z",
+     "2026-12-04T02:15Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "QRP Fox Hunt",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gzbpi",
+   "when": "0200Z-0330Z, Dec 4",
+   "segs": [
+    [
+     "2026-12-04T02:00Z",
+     "2026-12-04T03:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "QRP"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hnj98",
+   "when": "0230Z-0300Z, Dec 4",
+   "segs": [
+    [
+     "2026-12-04T02:30Z",
+     "2026-12-04T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003hdot5",
+   "when": "2000Z-2100Z, Dec 4",
+   "segs": [
+    [
+     "2026-12-04T20:00Z",
+     "2026-12-04T21:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ARRL 160-Meter Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003h53si",
+   "when": "2200Z, Dec 4 to 1600Z, Dec 6",
+   "segs": [
+    [
+     "2026-12-04T22:00Z",
+     "2026-12-06T16:00Z"
+    ]
+   ],
+   "modes": [],
    "kinds": [],
    "src": "WA7BNM"
   }
@@ -1972,7 +2048,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (27)",
+  "WA7BNM": "ok (32)",
   "CORRAL": "ok (42)"
  }
 }
