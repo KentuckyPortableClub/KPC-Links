@@ -16,32 +16,52 @@ command. Python standard library only.
 import datetime, glob, html, json, os, pathlib, secrets, subprocess, sys, threading, time, urllib.parse, webbrowser, zipfile
 import http.server
 
-VERSION = 'KPC control panel 2026-11-23a'
+VERSION = 'KPC control panel 2026-11-27a'
 ROOT = pathlib.Path(os.environ.get('KPC_TOOLS_ROOT') or pathlib.Path(__file__).resolve().parent)
 
-FOLDERS = {   # tool folders, from the Tools folder
-    'store': r'KPC-TOOLS-NOV14\1-STORE-TOOL\kpc-outline-store-full',
-    'world': r'kpc-outline-store-world-v4\kpc-outline-store-world',
-    'bots': r'KPC-PC-BOTS-NOV21',
-    'ids': r'KPC-ID-crosswalk',
-    'fers': r'kpc-fers-pc-v1.2\kpc-fers-pc',
-    'ferbot': r'KPC-2FER-PC-RUNNER\KPC-2FER-PC-RUNNER',
-    'hand': r'KPC-TOOLS-NOV14\3-HAND-HELPER\kpc-hand-helper',
-    'trace': r'KPC-TRACE-TEST',
-    'keys': r'..\key builder files',   # 23 Nov: the PC test keys (next to the Tools folder)
+FOLDERS = {   # tool folders, from the tools folder. 26 Nov: 'new name|old name', the first that exists is used
+    'store': r'..\3-MAP-STORE-US-CA|KPC-TOOLS-NOV14\1-STORE-TOOL\kpc-outline-store-full',
+    'world': r'..\4-MAP-STORE-WORLD|kpc-outline-store-world-v4\kpc-outline-store-world',
+    'bots': r'PAGE-READER|KPC-PC-BOTS-NOV21',
+    'ids': r'PARK-ID-MATCHER|KPC-ID-crosswalk',
+    'fers': r'2FER-FINDER-V1|kpc-fers-pc-v1.2\kpc-fers-pc',
+    'ferbot': r'2FER-FINDER|KPC-2FER-PC-RUNNER\KPC-2FER-PC-RUNNER',
+    'hand': r'FILE-HAND-DOWNLOADS|KPC-TOOLS-NOV14\3-HAND-HELPER\kpc-hand-helper',
+    'trace': r'TRACE-TEST|KPC-TRACE-TEST',
+    'keys': r'..\5-ANSWER-KEY-TEST|..\key builder files',   # the PC test keys (next to the tools folder)
+    'house': r'HOUSEKEEPING',          # sizes, clean-up (archive, never delete), fix paths, layer guide, back-up
 }
 
 # (section, id, button, what it does, folder, .bat, where its results go (newest = last finished))
 JOBS = [
-    ('1. Collect information', 'pages', 'Read park web pages', 'Reads each park\'s own web page for its name, size, manager and maps. Likely wrong matches first. Up to 3 hours a run; it carries on where it stopped. Pages that build themselves are opened in the page browser once it is installed.',
+    # 27 Nov 2026 (owner: 'update the html ... so we know what fables updates do'): the three main buttons the matching chat
+    # made on 26-27 Nov come first, in the order to use them. Each asks 1 status / 2 / 3 and writes one status page.
+    ('0. Start here: the main buttons, in this order', 'layerrec', 'Store room: 1 status, 2 rebuild, 3 download what is missing (LAYER-RECORDS)',
+     'The layer files the keys read. Start with 1 (status, no internet) and do what its last lines say. 2 rebuilds the layer files from what is already downloaded (no internet). 3 downloads only what is missing: it shows the list and waits for your Y. Every choice writes results\\STORE-ROOM-STATUS.txt.',
+     'store', 'LAYER-RECORDS.bat', ['results/STORE-ROOM-STATUS.txt']),
+    ('0. Start here: the main buttons, in this order', 'pagereader', 'Page reader: 1 status, 2 re-read kept pages, 3 read what is missing (PAGE-READER)',
+     'Park web pages. 1 = status, what is read and what is not (no internet). 2 = read the pages already kept on this PC again with the newest rules (no internet; do it after every reader fix). 3 = read only what is missing or failed, and the slow sites as slowly as they ask; it can run all night. The page browser is switched on when it is installed. Writes PAGE-READER-STATUS.txt.',
+     'bots', 'PAGE-READER.bat', ['PAGE-READER-STATUS.txt']),
+    ('0. Start here: the main buttons, in this order', 'v2prep', 'New key (v2): prepare a state',
+     'Type one state, several, or US. Reads the saved layers and park facts, finds the fields that carry the parks\' ids and names, and proposes rule-table rows. Changes nothing, no internet. Run it before the first build of a new state.',
+     'keys', 'V2-STATE-PREP.bat', ['reports/v2-prep-*/STATE-PREP-*.txt']),
+    ('0. Start here: the main buttons, in this order', 'v2build', 'New key (v2): build',
+     'Builds the new key for the states or provinces you pick, from today\'s saved layer files only, twice each to check the locks, and compares with the old key where there is one. Never downloads, uploads or publishes. The answer: V2-BUILD-SUMMARY.txt in the newest folder inside v2-keys.',
+     'keys', 'V2-BUILD.bat', ['v2-keys/*/V2-BUILD-SUMMARY.txt']),
+    ('0. Start here: the main buttons, in this order', 'v2side', 'New key (v2): side by side with your last old-key test',
+     'About 2 minutes for MN NY. The answer is the first line of reports\\v2-...\\V2-SCORECARD.txt: V2 PASSES or V2 DOES NOT PASS YET.',
+     'keys', 'V2-SIDE-BY-SIDE.bat', ['reports/v2-*/V2-SCORECARD.txt']),
+    ('1. Collect information', 'pages', 'Read park web pages (older button: PAGE-READER choice 3 does this now)', 'Reads each park\'s own web page for its name, size, manager and maps. Likely wrong matches first. Up to 3 hours a run; it carries on where it stopped. Pages that build themselves are opened in the page browser once it is installed.',
      'bots', '2-READ-PARK-PAGES.bat', ['page-reader/out/summary.md']),
-    ('1. Collect information', 'tonight', 'Run everything tonight (read, find own pages, slow sites, map points, upload pack)', 'One window, no pauses: reads park pages, looks for the own pages of parks with no good link, reads the slow sites, turns addresses into map points and makes the upload pack. Start it before bed.',
+    ('1. Collect information', 'tonight', 'Run everything tonight (older button: read, find own pages, slow sites, map points, upload pack)', 'One window, no pauses: reads park pages, looks for the own pages of parks with no good link, reads the slow sites, turns addresses into map points and makes the upload pack. Start it before bed.',
      'bots', 'RUN-ALL-TONIGHT.bat', ['SEND-BACK/kpc-upload-pack-*.zip']),
-    ('1. Collect information', 'reread', 'Read the kept pages again (no website asked)', 'Reads the pages already saved on this PC again with the newest reader, so a reader fix reaches every park. Asks no website. Run it after a reader update.',
+    ('1. Collect information', 'reread', 'Read the kept pages again (older button: PAGE-READER choice 2 does this now)', 'Reads the pages already saved on this PC again with the newest reader, so a reader fix reaches every park. Asks no website. Run it after a reader update.',
      'bots', '2e-REREAD-KEPT-PAGES.bat', ['page-reader/out/summary.md']),
     ('1. Collect information', 'findown', 'Find own pages (parks with no link, a dead link or only the front page)', "Looks on the agency's own site for the park's own page; keeps it only on a sure match. robots.txt always wins.",
      'bots', '2f-FIND-OWN-PAGES.bat', ['page-reader/out/found-links-summary.txt']),
-    ('1. Collect information', 'slow', 'Read the slow sites', 'Reads the parks whose sites ask for long waits between pages, slowly, as they ask.',
+    ('1. Collect information', 'names', 'Find the real names (parks whose name may not match)', 'Reads the pages already kept on this PC again, only for parks with a possible name problem, and saves every name the page calls the park. No website is asked.',
+     'bots', '2h-FIND-REAL-NAMES.bat', ['page-reader/out/name-refs.json']),
+    ('1. Collect information', 'slow', 'Read the slow sites (older button: PAGE-READER choice 3 does this now)', 'Reads the parks whose sites ask for long waits between pages, slowly, as they ask.',
      'bots', '2g-READ-SLOW-SITES.bat', ['page-reader/out/summary.md']),
     ('1. Collect information', 'uploadpack', 'Make the upload pack (after reading park pages)', 'Packs the page facts of finished areas and the crosswalk of the agencies you allowed (upload-approved-agencies.txt) into one file in SEND-BACK. Nothing uploads: you put it on KPC-Data (intake-files, pc-upload) and run "KPC PC upload pack (by hand)".',
      'bots', '5-MAKE-UPLOAD-PACK.bat', ['SEND-BACK/kpc-upload-pack-*.zip']),
@@ -77,7 +97,7 @@ JOBS = [
      'bots', '1-MAKE-PRIVATE-LISTS.bat', ['PRIVATE/priority-parks.csv']),
     ('3. Check the matches', 'idmatch', 'Match web links and agency lists to map records', 'Checks that the ID in each park\'s web link, and in the agency\'s own list, is on the map record we joined. Confirms parks or flags wrong joins. No internet.',
      'ids', 'RUN.bat', ['crosswalk-out/*/summary.txt', 'agency-fields-out/*/summary.txt']),
-    ('3. Check the matches', 'testkeys', 'Test the answer keys on this PC (START-HERE)', 'Builds the answer keys from the saved copies only and writes reports\\test-...\\REPORT.txt (counts only). Adds any new kit update first. Nothing is downloaded or published.',
+    ('3. Check the matches', 'testkeys', 'Test the OLD answer keys on this PC (START-HERE)', 'Builds the answer keys from the saved copies only and writes reports\\test-...\\REPORT.txt (counts only). Adds any new kit update first. Nothing is downloaded or published.',
      'keys', 'START-HERE.bat', ['reports/*/REPORT.txt']),
     ('3. Check the matches', 'crossstate', 'Get the cross-state pieces (once)', "Asks the agencies once, slowly, for the few park pieces across a state line (rule W11, your one-time OK of 23 Nov), then adds them to this PC's saved copies. Run START-HERE after it.",
      'keys', 'GET-CROSS-STATE.bat', ['cross-state-report.txt']),
@@ -113,11 +133,32 @@ JOBS = [
      'trace', '1-RUN-TRACE-TEST.bat', ['reports/*/bar.txt']),
     ('6. Tracing (approximate; nothing goes on the map)', 'traceheld', 'Trace parks with no outline (held)', 'Traces the parks with no outline from the picture maps saved on this PC. Every trace is held in Tools\\traces, never on a map, until you rule.',
      'trace', '2-TRACE-PARKS-WITH-NO-OUTLINE.bat', ['../traces/report.csv']),
+    ('7. Keep it tidy', 'sizes', 'Folder sizes (one line)', 'How big the KPC folder is and how much it grew since last time. The panel also does this by itself when a tool finishes (the line at the top), and when it starts it empties TEMP of files older than 7 days.',
+     'house', '1-SIZES.bat', ['sizes.csv']),
+    ('7. Keep it tidy', 'cleanup', 'Clean up: old copies to the archive', 'Shows the old copies (kit zips already added, older test reports, old .before copies, exact duplicates, retired folders) and moves them to the archive after you type YES. Keeps the newest ones and test-2026-11-25-2245. Never touches the layers, the originals or the map store.',
+     'house', '2-CLEAN-UP.bat', ['../../ARCHIVE/*/moved.csv']),
+    ('7. Keep it tidy', 'undoclean', 'Undo the last clean-up', 'Puts everything the last clean-up moved back where it was.',
+     'house', '3-UNDO-CLEAN-UP.bat', ['../../ARCHIVE/*/undone.csv']),
+    ('7. Keep it tidy', 'fixpaths', 'Fix paths after a move', 'After a new drive letter or folder name: shows every settings line that still names the old place (D:\\...) and rewrites it to this folder after you type YES. The old lines are kept.',
+     'house', '4-FIX-PATHS.bat', ['fix-paths-log.txt']),
+    ('7. Keep it tidy', 'layerguide', 'Layer guide (answer key for every layer code)', 'One row per layer code: plain name, agency, area, which key uses it, and what this PC holds of it (whole-layer files, complete or not, your hand files, Layers-TIDY). Saves over LAYER-GUIDE.csv and opens LAYER-GUIDE.html (type to search).',
+     'house', '5-LAYER-GUIDE.bat', ['LAYER-GUIDE.html']),
+    ('7. Keep it tidy', 'backup', 'Back up to an outside drive', 'Copies the whole KPC folder to the drive letter you type (copy only; a second run copies only what changed).',
+     'house', '6-BACK-UP.bat', ['BACKUP-LOG.txt']),
+    ('7. Keep it tidy', 'dupes', 'Remove duplicate layer files', 'Finds layer files that are exactly the same, byte for byte, in the layer folders (map layers and new downloads). Shows the list, then after you type YES removes the extra copies for good. One copy of each always stays (the one in Originals first). Never Private.',
+     'house', '7-DUPLICATE-LAYERS.bat', ['duplicates-removed.csv']),
+]
+# 27 Nov 2026 (owner: 'make notes somewhere so we know what fables updates do'): the long version is C:\\KPC\\7-NOTES\\WHAT-CHANGED.txt
+CHANGES = [
+    ('What changed lately (26-27 Nov). The full notes: 7-NOTES\\WHAT-CHANGED.txt', 'New key (v2)', 'A new, simpler key builder. It reads only today\'s layer files, the park facts and one rule table: no old answers carried forward. Your MN NY run passed (MN 295, NY 819 outlined) and it gave no park another unit\'s land (the old key gave 29 parks about 402,000 acres that were not theirs). The old key is not changed.'),
+    ('What changed lately (26-27 Nov). The full notes: 7-NOTES\\WHAT-CHANGED.txt', 'Store room (LAYER-RECORDS)', 'One button with 1 status / 2 rebuild / 3 download. Fixed: one empty record blocked a whole state (MA, NC), the wrong id column (Iowa, MN, WI), Canada layers read twice, national layers saved whole in a state file, failed downloads that still counted as fresh.'),
+    ('What changed lately (26-27 Nov). The full notes: 7-NOTES\\WHAT-CHANGED.txt', 'Page reader (PAGE-READER)', 'One button with 1 status / 2 re-read / 3 read what is missing. Fixed: about 5,000 parks counted as read when the site sent nothing, headings saved as names, square km saved as acres, failed reads that could wipe good facts, and the page browser was never switched on overnight. Sites that stop answering are read through the page browser.'),
+    ('What changed lately (26-27 Nov). The full notes: 7-NOTES\\WHAT-CHANGED.txt', 'The site rule (your ruling)', 'Only a real robots.txt Disallow line is a no. A 401 / 403 is that page only, for that run. Five in a row from one site, or one 429, stops that site for the run. Nothing is carried into the next run.'),
 ]
 NOT_YET = [
-    ('7. Not on this PC yet', "Build the website's answer keys", '"Test the answer keys" above builds them on this PC for checking only. The website build is a long chain of GitHub steps (saved copies, gates, freeze, overlay). Waits for the patches and your word to lift NO BUILDING.'),
-    ('7. Not on this PC yet', 'Move approved traces to the map store', 'Only after the tracing test passes and you rule. Traces would go in as approximate, never official, never a 2-fer.'),
-    ('7. Not on this PC yet', 'Upload by itself', 'The PC never uploads on its own: "Make the upload pack" makes the file, you carry it up.'),
+    ('8. Not on this PC yet', "Build the website's answer keys", '"Test the answer keys" above builds them on this PC for checking only. The website build is a long chain of GitHub steps (saved copies, gates, freeze, overlay). Waits for the patches and your word to lift NO BUILDING.'),
+    ('8. Not on this PC yet', 'Move approved traces to the map store', 'Only after the tracing test passes and you rule. Traces would go in as approximate, never official, never a 2-fer.'),
+    ('8. Not on this PC yet', 'Upload by itself', 'The PC never uploads on its own: "Make the upload pack" makes the file, you carry it up.'),
 ]
 SEND = [   # small, shareable results only (never the store, the cache, or a PRIVATE file)
     ('store', 'results/SEND-BACK/*'), ('store', 'results/report/SUMMARY-ALL.txt'), ('store', 'results/report/publishable-ALL.csv'),
@@ -135,7 +176,8 @@ SEND_NEVER = ('private', '.kpcstore', 'store/', 'cache', 'fetch-state')
 
 
 def folder(key):
-    return ROOT / pathlib.Path(*FOLDERS[key].split('\\'))
+    cands = [ROOT / pathlib.Path(*c.split('\\')) for c in FOLDERS[key].split('|')]
+    return next((c for c in cands if c.exists()), cands[0])
 
 
 def newest(key, pats):
@@ -160,10 +202,13 @@ def when(t):
 def next_steps():
     """Plain-word hints from the results' dates. Each is a suggestion; nothing is started."""
     out = []
+    kd = folder('keys')   # 26 Nov: a kit update that START-HERE has not added yet
+    waiting = sorted(z.stem for z in kd.glob('kpc-kit-update-*.zip') if not (kd / 'links' / f'.done-{z.stem}').exists())
+    if waiting: out.append(('testkeys', f'Test the answer keys: kit {waiting[-1].replace("kpc-kit-update-", "")} is waiting (START-HERE adds it first).'))
     st = folder('bots') / 'page-reader' / 'out' / 'state.json'
     try:
         left = len(json.loads(st.read_text(encoding='utf-8')).get('left') or [])
-        if left: out.append(('pages', f'Read park web pages: {left:,} parks still to read (each run does up to 3,000 pages and carries on).'))
+        if left: out.append(('pagereader', f'Page reader, choice 3: {left:,} parks still to read (it carries on where it stopped).'))
     except (OSError, ValueError): pass
     store = newest('store', ['results/store/*.kpcstore.json.gz'])
     lists = newest('store', ['results/agency-lists/*.json.gz'])
@@ -212,6 +257,30 @@ def make_send_zip():
     return zp, [r for _, r in files]
 
 
+_SIZE = {'busy': False}
+
+
+def refresh_sizes():
+    """26 Nov: the one-line folder size (and TEMP emptied of old files) in the background: at start and when a tool finishes."""
+    if _SIZE['busy'] or not (folder('house') / 'kpc_housekeeping.py').is_file(): return
+    _SIZE['busy'] = True
+
+    def go():
+        try:
+            import importlib.util
+            spec = importlib.util.spec_from_file_location('kpc_housekeeping', folder('house') / 'kpc_housekeeping.py')
+            m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+            m.temp(quiet=True); m.sizes(quiet=True)
+        except Exception: pass   # noqa: BLE001 (a size line is never worth stopping the panel for)
+        finally: _SIZE['busy'] = False
+    threading.Thread(target=go, daemon=True).start()
+
+
+def size_line():
+    try: return (folder('house') / 'size-line.txt').read_text(encoding='utf-8').strip()
+    except OSError: return ''
+
+
 class Runner:
     """Starts a job's .bat in its own window and remembers it until that window closes."""
     def __init__(self, fake=False):
@@ -220,7 +289,9 @@ class Runner:
     def busy(self):
         with self.lock:
             for j in list(self.running):
-                if self.running[j].poll() is not None: del self.running[j]
+                if self.running[j].poll() is not None:
+                    del self.running[j]
+                    if not self.fake: refresh_sizes()
             return dict((j, JOB[j][4]) for j in self.running)
 
     def start(self, jid):
@@ -256,12 +327,19 @@ USES = {
     'traceinstall': ({'trace-pkgs'}, set()), 'tracetest': ({'trace-work'}, {'trace-pkgs', 'store-map', 'pages'}),
     'traceheld': ({'trace-held'}, {'trace-pkgs', 'pics'}),
     'tonight': ({'pages', 'upload'}, {'page-browser'}), 'reread': ({'pages'}, {'page-browser'}), 'findown': ({'pages'}, set()), 'slow': ({'pages'}, set()),
-    'testkeys': ({'keys'}, set()), 'crossstate': ({'keys'}, set()),
+    'testkeys': ({'keys'}, {'store-layerfiles'}), 'crossstate': ({'keys'}, set()),
+    'layerrec': ({'store-net', 'store-layerfiles'}, set()), 'pagereader': ({'pages'}, {'page-browser'}), 'names': ({'pages'}, set()),
+    'v2prep': ({'v2'}, {'store-layerfiles'}), 'v2build': ({'v2'}, {'store-layerfiles'}), 'v2side': ({'v2'}, {'keys', 'store-layerfiles'}), 'sizes': ({'sizes'}, set()), 'layerguide': ({'guide'}, {'store-layerfiles'}),
+    'backup': ({'backup'}, set()),
     'ferbotcode': ({'ferbot'}, set()), 'ferbot': ({'ferbot'}, {'store-map'}), 'ferbotworld': ({'ferbot'}, {'world-map'}), 'ferbotcheck': ({'ferbot'}, set()),
 }
 
 
+EXCLUSIVE = {'cleanup', 'undoclean', 'fixpaths', 'dupes'}   # 26 Nov: they move or rewrite other tools' files: they wait for every tool, and every tool waits for them
+
+
 def clash(a, b):
+    if a in EXCLUSIVE or b in EXCLUSIVE: return True
     wa, ra = USES.get(a, ({a}, set())); wb, rb = USES.get(b, ({b}, set()))
     return bool(wa & (wb | rb) or wb & ra)
 
@@ -274,7 +352,7 @@ def status(runner):
     if time.time() - _NEXT['t'] > 20: _NEXT.update(t=time.time(), v=next_steps())
     return {'jobs': {j[1]: {'last': when(newest(j[4], j[6])), 'here': (folder(j[4]) / j[5]).is_file(), 'running': j[1] in b,
                             'waits': next((JOB[x][2] for x in b if x != j[1] and clash(j[1], x)), '')} for j in JOBS},
-            'next': [{'job': k, 'text': t} for k, t in _NEXT['v']], 'now': when(time.time())}
+            'next': [{'job': k, 'text': t} for k, t in _NEXT['v']], 'now': when(time.time()), 'size': size_line()}
 
 
 PAGE = '''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -294,8 +372,8 @@ button{font:inherit;border:0;border-radius:6px;padding:7px 14px;cursor:pointer;b
 button.small{background:#e8e4da;color:var(--ink);padding:5px 10px;font-size:14px}
 button:disabled{background:var(--off);cursor:default}.run{color:var(--busy);font-weight:600}
 .msg{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#1d2a22;color:#fff;padding:8px 14px;border-radius:6px;display:none}
-footer{color:var(--soft);font-size:13px;padding:8px 0 30px}
-</style></head><body><header><h1>KPC control panel</h1><p>Each button opens the tool in its own window. Two tools can run at once; tools that change the same files take turns.</p></header>
+footer{color:var(--soft);font-size:13px;padding:8px 0 30px}header p.size{color:#f1e3b0;font-size:13px}
+</style></head><body><header><h1>KPC control panel</h1><p>Each button opens the tool in its own window. Two tools can run at once; tools that change the same files take turns.</p><p id="size" class="size"></p></header>
 <main><div class="next" id="next"><h2>What next?</h2><ul id="nextlist"><li>Looking...</li></ul></div>
 @@SECTIONS@@
 <section><h2>Send results to Claude</h2><div class="grid"><div class="card"><h3>Make the zip for Claude</h3>
@@ -317,6 +395,7 @@ async function refresh(){try{const r=await fetch('/status?t='+T);const s=await r
   else if(j.running){b.disabled=true;st.textContent='Running in its own window';st.className='state run'}
   else if(j.waits){b.disabled=true;st.textContent='Waits for: '+j.waits;st.className='state run'}
   else{b.disabled=false;st.textContent='';st.className='state'}}
+ document.getElementById('size').textContent=s.size||'';
  const ul=document.getElementById('nextlist');ul.innerHTML='';
  if(!s.next.length){ul.innerHTML='<li>Nothing is behind. Pick any step below.</li>'}
  for(const n of s.next){const li=document.createElement('li');li.textContent=n.text;const b=document.createElement('button');b.className='small';b.textContent='Start';b.onclick=()=>run(n.job);li.appendChild(b);ul.appendChild(li)}
@@ -327,6 +406,13 @@ refresh();setInterval(refresh,3000);
 
 def page(token):
     secs, cur = [], None
+    for sec, name, what in CHANGES:   # 27 Nov: what changed lately, above the buttons
+        if sec != cur:
+            if cur: secs.append('</div></section>')
+            secs.append(f'<section><h2>{html.escape(sec)}</h2><div class="grid">'); cur = sec
+        secs.append(f'<div class="card"><h3>{html.escape(name)}</h3><p>{html.escape(what)}</p></div>')
+    if cur: secs.append('</div></section>')
+    cur = None
     for sec, jid, name, what, fk, bat, _ in JOBS:
         if sec != cur:
             if cur: secs.append('</div></section>')
@@ -401,10 +487,11 @@ def main(argv=None):
     if '--check' in argv:
         print(VERSION, '  tools folder:', ROOT)
         for sec, jid, name, what, fk, bat, res in JOBS:
-            print(f'  [{"here" if (folder(fk) / bat).is_file() else "MISSING"}] {sec} | {name} | {FOLDERS[fk]}\\{bat} | last: {when(newest(fk, res))}')
+            print(f'  [{"here" if (folder(fk) / bat).is_file() else "MISSING"}] {sec} | {name} | {os.path.relpath(folder(fk), ROOT)}\\{bat} | last: {when(newest(fk, res))}')
         for k, t in next_steps(): print('  NEXT:', t)
         return 0
     srv, url, _ = serve(fake='--fake' in argv)
+    if '--fake' not in argv: refresh_sizes()
     print(f'{VERSION}\nThe panel is open in your browser. If it did not open, paste this address into the browser:\n  {url}\n'
           'Keep this window open while you use the panel; close it to close the panel.')
     if '--no-browser' not in argv: webbrowser.open(url)
