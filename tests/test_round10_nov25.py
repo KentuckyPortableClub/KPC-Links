@@ -152,7 +152,7 @@ with tempfile.TemporaryDirectory() as td:
 
 # ---- owner 25 Nov 12:07 PM ('Delete any holds they maybe wrong idk'): saved answers are hints only (KPC_SAVED_HINTS_ONLY) ----
 sw = json.load(open(ROOT / '.github/key-switches.json', encoding='utf-8'))['switches'].get('KPC_SAVED_HINTS_ONLY') or {}
-check('the switch KPC_SAVED_HINTS_ONLY is on for MN and NY only', sorted(sw.get('on') or []) == ['MN', 'NY'])
+check('the switch KPC_SAVED_HINTS_ONLY is on for MN, NY and the spread-test states', sorted(sw.get('on') or []) == ['CA', 'CO', 'FL', 'GA', 'ME', 'MN', 'NY', 'PA', 'TX', 'WA', 'WI'])
 i_ = src.index('def run(st):'); runsrc = src[i_:src.index('\ndef ', i_ + 10)]
 check("run() sets the state's saved answers aside (OVR.pop into SAVED_HINTS) right at the start, before any matching; the files are not touched",
       "if _r in OVR: SAVED_HINTS[_r] = OVR.pop(_r)" in runsrc and runsrc.index('SAVED_HINTS[_r]') < runsrc.index('load_cache(st)')

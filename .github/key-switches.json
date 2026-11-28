@@ -33,12 +33,12 @@
     "KPC_MATCH_CHECKS": {"on": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]},
     "KPC_ANSWER_HOLDERS": {"on": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]},
     "KPC_CONFIRM_SIZE_HOLD": {"on": []},
-    "KPC_SAME_LAND": {"on": ["MN", "NY"]},
-    "KPC_PROVEN_ONLY": {"on": ["MN", "NY"]},
-    "KPC_STORE_FRESH": {"on": ["MN", "NY"]},
-    "KPC_SAVED_HINTS_ONLY": {"on": ["MN", "NY"]},
-    "KPC_NO_WEBSITE_CARRY": {"on": ["MN", "NY"]},
-    "KPC_FRESH_ONLY": {"on": ["MN", "NY"]},
-    "KPC_ID_LOCK": {"on": ["MN", "NY"]}
+    "KPC_SAME_LAND": {"on": ["CA", "CO", "FL", "GA", "ME", "MN", "NY", "PA", "TX", "WA", "WI"]},
+    "KPC_PROVEN_ONLY": {"on": ["CA", "CO", "FL", "GA", "ME", "MN", "NY", "PA", "TX", "WA", "WI"]},
+    "KPC_STORE_FRESH": {"on": ["CA", "CO", "FL", "GA", "ME", "MN", "NY", "PA", "TX", "WA", "WI"]},
+    "KPC_SAVED_HINTS_ONLY": {"on": ["CA", "CO", "FL", "GA", "ME", "MN", "NY", "PA", "TX", "WA", "WI"]},
+    "KPC_NO_WEBSITE_CARRY": {"on": ["CA", "CO", "FL", "GA", "ME", "MN", "NY", "PA", "TX", "WA", "WI"]},
+    "KPC_FRESH_ONLY": {"on": ["CA", "CO", "FL", "GA", "ME", "MN", "NY", "PA", "TX", "WA", "WI"]},
+    "KPC_ID_LOCK": {"on": ["CA", "CO", "FL", "GA", "ME", "MN", "NY", "PA", "TX", "WA", "WI"]}
   }
 }
